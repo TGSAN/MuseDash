@@ -1,0 +1,674 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &198268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 452678}
+  - 114: {fileID: 11416448}
+  m_Layer: 0
+  m_Name: EditorData
+  m_TagString: 
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &452678
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198268}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11416448
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c590ac1eca734802b0c4be850c487de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpineActionKeys:
+  - in
+  - out
+  - standby
+  - char_run
+  - char_jump
+  - char_atk_p
+  - char_atk_g
+  - char_atk_miss
+  - char_hurt
+  - char_jump_hurt
+  - char_die
+  - note_out_p
+  - note_out_g
+  - boss_close_atk_1
+  - boss_close_atk_2
+  - boss_far_atk_1_start
+  - boss_far_atk_1
+  - boss_far_atk_1_L
+  - boss_far_atk_1_R
+  - boss_far_atk_1_end
+  - boss_far_atk_2_start
+  - boss_far_atk_2
+  - boss_far_atk_2_end
+  - boss_hurt
+  - servant_skill
+  - talk_controller
+  - char_press
+  SpineActionDes:
+  - "\u8FDB\u573A"
+  - "\u9000\u573A"
+  - "\u5F85\u673A"
+  - "\u89D2\u8272\u8DD1\u6B65\u5FAA\u73AF"
+  - "\u89D2\u8272\u8DF3\u8DC3"
+  - "\u89D2\u8272\u653B\u51FB\uFF08perfect\uFF09"
+  - "\u89D2\u8272\u653B\u51FB\uFF08geart\uFF09"
+  - "\u89D2\u8272\u653B\u51FB\uFF08\u7A7A\u6325\uFF09"
+  - "\u89D2\u8272\u53D7\u4F24"
+  - "\u89D2\u8272\u7A7A\u4E2D\u53D7\u4F24"
+  - "\u89D2\u8272\u6B7B\u4EA1"
+  - "note\u88AB\u51FB\u98DE\uFF08perfect\uFF09"
+  - "note\u88AB\u51FB\u98DE\uFF08geart\uFF09"
+  - "boss\u8FD1\u6218\u653B\u51FB1"
+  - "boss\u8FD1\u6218\u653B\u51FB2"
+  - "boss\u8FDC\u7A0B\u653B\u51FB1\u5F00\u59CB"
+  - "boss\u8FDC\u7A0B\u653B\u51FB1\u53D1\u5C04"
+  - "boss\u8FDC\u7A0B\u653B\u51FB1\u53D1\u5C04_\u5DE6"
+  - "boss\u8FDC\u7A0B\u653B\u51FB1\u53D1\u5C04_\u53F3"
+  - "boss\u8FDC\u7A0B\u653B\u51FB1\u7ED3\u675F"
+  - "boss\u8FDC\u7A0B\u653B\u51FB2\u5F00\u59CB"
+  - "boss\u8FDC\u7A0B\u653B\u51FB2\u53D1\u5C04"
+  - "boss\u8FDC\u7A0B\u653B\u51FB2\u7ED3\u675F"
+  - "boss\u88AB\u51FB\u9000"
+  - "\u4F7F\u9B54\u6280\u80FD"
+  - "\u5BF9\u8BDDnote"
+  - "\u89D2\u8272\u957F\u6309"
+  SpineEventName:
+  - DoNothing
+  - DestorySelf
+  - UnBindFromNode
+  - NormalNodeOnAttacked
+  - AttackToNormalRun
+  - UnActiveObject
+  - OnNormalAttack
+  - FrontRenderObject
+  - UnLockActionProtect
+  - OnGainEnergyBottle
+  - OnJumpEnd
+  SpineEventDes:
+  - "\u4EC0\u4E48\u4E5F\u4E0D\u5E72"
+  - "(\u52A8\u4F5C)\u9500\u6BC1"
+  - "(\u52A8\u4F5C)\u89E3\u9664node\u7ED1\u5B9A"
+  - "(\u52A8\u4F5C)\u666E\u901Anode\u53D7\u51FB"
+  - "(\u52A8\u4F5C)\u653B\u51FB\u6062\u590D\u5230\u884C\u8D70"
+  - "(\u52A8\u4F5C)\u53D6\u6D88\u6FC0\u6D3B\u5BF9\u8C61"
+  - "(\u52A8\u4F5C)\u89D2\u8272\u6E32\u67D3\u6392\u5E8F"
+  - "(\u52A8\u4F5C)\u524D\u7F6E\u6E32\u67D3\u5BF9\u8C61"
+  - "(\u52A8\u4F5C)\u89E3\u9664\u4FDD\u62A4\u7EA7\u522B\u9501\u5B9A"
+  - "(\u52A8\u4F5C)\u64AD\u653E\u56DE\u8840\u7279\u6548"
+  - "(\u52A8\u4F5C)\u8DF3\u8DC3\u7ED3\u675F"
+  SpineModeName:
+  - NormalEnemyController
+  - PressEnemyController
+  - ObstacleController
+  - GirlActionController
+  - ArmActionController
+  - MultHitEnemyController
+  - PressEnemyMidController
+  - LongPressEndNodeController
+  - DebugInfoController
+  - ResourceItemController
+  - TeacherController
+  - FreeController
+  - LongPressController
+  - GroundEnergyBottleController
+  - AirEnergyBottleController
+  - AirGoldController
+  - GroundMusicNodeController
+  - AirMusicNodeController
+  - GirlCollisionDetectNodeController
+  - ItemDetectController
+  - PendulumBobController
+  - WoodenBoxController
+  - MimicParentController
+  - MimicEnemyController
+  - TeachPointController
+  - TalkController
+  SpineModeDes:
+  - "\u5E38\u89C4node\uFF0C\u5305\u62EC\u4E0A\u4E0B\u6ED1"
+  - "\u957F\u6309node\u5F00\u59CB"
+  - "\u969C\u788D\u7269node"
+  - "\u73A9\u5BB6\u89D2\u8272"
+  - "\u50DA\u673A"
+  - "\u591A\u6B21\u653B\u51FBnode"
+  - "\u957F\u6309node\u4E2D\u6BB5"
+  - "\u957F\u6309node\u672B\u5C3E"
+  - "Debug\u4FE1\u606F"
+  - "\u8D44\u6E90node"
+  - "\u6559\u5B66node"
+  - "\u65E0\u64CD\u4F5Cnode"
+  - "\u65B0\u7248\u957F\u6309node"
+  - "\u5730\u9762\u56DE\u8840node"
+  - "\u5929\u7A7A\u56DE\u8840node"
+  - "\u5929\u7A7A\u91D1\u5E01node"
+  - "\u5730\u9762\u97F3\u7B26node"
+  - "\u5929\u7A7A\u97F3\u7B26node"
+  - "\u89D2\u8272\u78B0\u649E\u68C0\u6D4Bnode"
+  - "\u9053\u5177\u6302\u8F7Dnode"
+  - "\u5B9D\u7BB1node"
+  - "\u6728\u7BB1node"
+  - "\u5B9D\u7BB1\u602A\u7236\u8282\u70B9node"
+  - "\u5B9D\u7BB1\u602Anode"
+  - "\u6559\u5B66\u5173\u5361\u8282\u70B9node"
+  - "\u5BF9\u8BDDnode"
+  StageEvents:
+  - flodAction: 0
+    flodTime: 1
+    actionEvents: []
+    timeEvents:
+    - flod: 1
+      time: 0
+      eventItems:
+      - actionIndex: 0
+        soundPath: 
+        sceneObject: {fileID: 195760, guid: 4feca83b2d828a049aba06e5a405c779, type: 2}
+  - flodAction: 1
+    flodTime: 1
+    actionEvents: []
+    timeEvents:
+    - flod: 1
+      time: 0
+      eventItems:
+      - actionIndex: 0
+        soundPath: 
+        sceneObject: {fileID: 195760, guid: b545034c159bd9b40ae8b933f37b1ddd, type: 2}
+  - flodAction: 1
+    flodTime: 1
+    actionEvents: []
+    timeEvents:
+    - flod: 1
+      time: 0
+      eventItems:
+      - actionIndex: 2
+        soundPath: 
+        sceneObject: {fileID: 117528, guid: a67cad4b16d16104189ad378cbf9aa15, type: 2}
+    - flod: 1
+      time: 0.06
+      eventItems:
+      - actionIndex: 8
+        soundPath: 
+        sceneObject: {fileID: 0}
+  - flodAction: 1
+    flodTime: 1
+    actionEvents: []
+    timeEvents:
+    - flod: 1
+      time: 0
+      eventItems:
+      - actionIndex: 2
+        soundPath: 
+        sceneObject: {fileID: 117528, guid: a67cad4b16d16104189ad378cbf9aa15, type: 2}
+    - flod: 1
+      time: 0.053
+      eventItems:
+      - actionIndex: 8
+        soundPath: 
+        sceneObject: {fileID: 0}
+      - actionIndex: 9
+        soundPath: 
+        sceneObject: {fileID: 0}
+  - flodAction: 1
+    flodTime: 1
+    actionEvents: []
+    timeEvents:
+    - flod: 1
+      time: 0
+      eventItems:
+      - actionIndex: 2
+        soundPath: 
+        sceneObject: {fileID: 117528, guid: a67cad4b16d16104189ad378cbf9aa15, type: 2}
+    - flod: 1
+      time: 0.06
+      eventItems:
+      - actionIndex: 8
+        soundPath: 
+        sceneObject: {fileID: 0}
+  - flodAction: 0
+    flodTime: 1
+    actionEvents: []
+    timeEvents:
+    - flod: 1
+      time: 0
+      eventItems:
+      - actionIndex: 2
+        soundPath: 
+        sceneObject: {fileID: 117528, guid: c61e5f399bfdac74681cdccc24f17f5f, type: 2}
+    - flod: 1
+      time: 0.06
+      eventItems:
+      - actionIndex: 8
+        soundPath: 
+        sceneObject: {fileID: 0}
+      - actionIndex: 8
+        soundPath: 
+        sceneObject: {fileID: 0}
+  - flodAction: 1
+    flodTime: 1
+    actionEvents: []
+    timeEvents:
+    - flod: 1
+      time: 0
+      eventItems:
+      - actionIndex: 2
+        soundPath: 
+        sceneObject: {fileID: 117528, guid: c61e5f399bfdac74681cdccc24f17f5f, type: 2}
+    - flod: 1
+      time: 0.098
+      eventItems:
+      - actionIndex: 8
+        soundPath: 
+        sceneObject: {fileID: 0}
+  - flodAction: 1
+    flodTime: 1
+    actionEvents: []
+    timeEvents:
+    - flod: 1
+      time: 0
+      eventItems:
+      - actionIndex: 2
+        soundPath: 
+        sceneObject: {fileID: 117528, guid: c61e5f399bfdac74681cdccc24f17f5f, type: 2}
+    - flod: 1
+      time: 0.264
+      eventItems:
+      - actionIndex: 8
+        soundPath: 
+        sceneObject: {fileID: 0}
+      - actionIndex: 8
+        soundPath: 
+        sceneObject: {fileID: 0}
+  - flodAction: 0
+    flodTime: 1
+    actionEvents: []
+    timeEvents:
+    - flod: 1
+      time: 0
+      eventItems:
+      - actionIndex: 2
+        soundPath: 
+        sceneObject: {fileID: 117528, guid: c61e5f399bfdac74681cdccc24f17f5f, type: 2}
+    - flod: 1
+      time: 0.06
+      eventItems:
+      - actionIndex: 8
+        soundPath: 
+        sceneObject: {fileID: 0}
+      - actionIndex: 8
+        soundPath: 
+        sceneObject: {fileID: 0}
+  - flodAction: 0
+    flodTime: 1
+    actionEvents: []
+    timeEvents:
+    - flod: 1
+      time: 0
+      eventItems:
+      - actionIndex: 2
+        soundPath: 
+        sceneObject: {fileID: 117528, guid: c61e5f399bfdac74681cdccc24f17f5f, type: 2}
+    - flod: 1
+      time: 2.61
+      eventItems:
+      - actionIndex: 8
+        soundPath: 
+        sceneObject: {fileID: 0}
+      - actionIndex: 8
+        soundPath: 
+        sceneObject: {fileID: 0}
+  - flodAction: 0
+    flodTime: 1
+    actionEvents: []
+    timeEvents:
+    - flod: 1
+      time: 0
+      eventItems:
+      - actionIndex: 0
+        soundPath: 
+        sceneObject: {fileID: 195760, guid: b545034c159bd9b40ae8b933f37b1ddd, type: 2}
+      - actionIndex: 0
+        soundPath: 
+        sceneObject: {fileID: 162360, guid: e24005cba0c544292a4de617316f5212, type: 2}
+    - flod: 1
+      time: 16.14
+      eventItems:
+      - actionIndex: 0
+        soundPath: 
+        sceneObject: {fileID: 142856, guid: 812bf651544c4465ca13fd7171ae6207, type: 2}
+    - flod: 1
+      time: 30.4
+      eventItems:
+      - actionIndex: 0
+        soundPath: 
+        sceneObject: {fileID: 142856, guid: 83cebcb42d09a1b498a05b233f3015ae, type: 2}
+    - flod: 1
+      time: 41.85
+      eventItems:
+      - actionIndex: 0
+        soundPath: 
+        sceneObject: {fileID: 142856, guid: 15ebe43321dd4184eb3221ba950a4075, type: 2}
+  - flodAction: 1
+    flodTime: 1
+    actionEvents:
+    - nodeIndex: 114
+      sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+      bornActionIndex: 21
+      hittedActionIndex: 2
+      missActionIndex: 2
+    - nodeIndex: 115
+      sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+      bornActionIndex: 21
+      hittedActionIndex: 2
+      missActionIndex: 2
+    timeEvents:
+    - flod: 1
+      time: 0
+      eventItems:
+      - actionIndex: 0
+        soundPath: 
+        sceneObject: {fileID: 195760, guid: b545034c159bd9b40ae8b933f37b1ddd, type: 2}
+    - flod: 1
+      time: 37.78
+      eventItems:
+      - actionIndex: 0
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: bce1f8ca0f83789418567df7e6186bae, type: 2}
+    - flod: 1
+      time: 51.62
+      eventItems:
+      - actionIndex: 0
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+    - flod: 1
+      time: 70
+      eventItems:
+      - actionIndex: 1
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+  - flodAction: 1
+    flodTime: 1
+    actionEvents: []
+    timeEvents:
+    - flod: 1
+      time: 0
+      eventItems:
+      - actionIndex: 1
+        soundPath: 
+        sceneObject: {fileID: 195760, guid: b545034c159bd9b40ae8b933f37b1ddd, type: 2}
+      - actionIndex: 0
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: bce1f8ca0f83789418567df7e6186bae, type: 2}
+    - flod: 1
+      time: 34.34
+      eventItems:
+      - actionIndex: 0
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+    - flod: 1
+      time: 38.3
+      eventItems:
+      - actionIndex: 21
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+    - flod: 1
+      time: 38.8
+      eventItems:
+      - actionIndex: 21
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+    - flod: 1
+      time: 39.3
+      eventItems:
+      - actionIndex: 21
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+    - flod: 1
+      time: 39.8
+      eventItems:
+      - actionIndex: 21
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+    - flod: 1
+      time: 41
+      eventItems:
+      - actionIndex: 1
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+  - flodAction: 0
+    flodTime: 1
+    actionEvents: []
+    timeEvents:
+    - flod: 1
+      time: 0
+      eventItems:
+      - actionIndex: 2
+        soundPath: 
+        sceneObject: {fileID: 117528, guid: c61e5f399bfdac74681cdccc24f17f5f, type: 2}
+  - flodAction: 0
+    flodTime: 1
+    actionEvents: []
+    timeEvents:
+    - flod: 1
+      time: 0
+      eventItems:
+      - actionIndex: 2
+        soundPath: 
+        sceneObject: {fileID: 117528, guid: a67cad4b16d16104189ad378cbf9aa15, type: 2}
+  - flodAction: 1
+    flodTime: 1
+    actionEvents:
+    - nodeIndex: 0
+      sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+      bornActionIndex: 8
+      hittedActionIndex: 0
+      missActionIndex: 0
+    timeEvents:
+    - flod: 1
+      time: 0
+      eventItems:
+      - actionIndex: 2
+        soundPath: 
+        sceneObject: {fileID: 117528, guid: c61e5f399bfdac74681cdccc24f17f5f, type: 2}
+    - flod: 1
+      time: 37.78
+      eventItems:
+      - actionIndex: 2
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: bce1f8ca0f83789418567df7e6186bae, type: 2}
+    - flod: 1
+      time: 51.62
+      eventItems:
+      - actionIndex: 2
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+    - flod: 1
+      time: 70
+      eventItems:
+      - actionIndex: 4
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+  - flodAction: 0
+    flodTime: 1
+    actionEvents: []
+    timeEvents: []
+  - flodAction: 0
+    flodTime: 1
+    actionEvents: []
+    timeEvents: []
+  - flodAction: 0
+    flodTime: 1
+    actionEvents: []
+    timeEvents: []
+  - flodAction: 0
+    flodTime: 0
+    actionEvents: []
+    timeEvents: []
+  - flodAction: 1
+    flodTime: 1
+    actionEvents: []
+    timeEvents:
+    - flod: 1
+      time: 0
+      eventItems:
+      - actionIndex: 2
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: bce1f8ca0f83789418567df7e6186bae, type: 2}
+    - flod: 1
+      time: 34.34
+      eventItems:
+      - actionIndex: 2
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+    - flod: 1
+      time: 38.3
+      eventItems:
+      - actionIndex: 8
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+    - flod: 1
+      time: 38.8
+      eventItems:
+      - actionIndex: 8
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+    - flod: 1
+      time: 39.3
+      eventItems:
+      - actionIndex: 8
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+    - flod: 1
+      time: 39.8
+      eventItems:
+      - actionIndex: 8
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+    - flod: 1
+      time: 41
+      eventItems:
+      - actionIndex: 4
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+  - flodAction: 1
+    flodTime: 1
+    actionEvents:
+    - nodeIndex: 237
+      sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+      bornActionIndex: 8
+      hittedActionIndex: 0
+      missActionIndex: 0
+    timeEvents:
+    - flod: 1
+      time: 1
+      eventItems:
+      - actionIndex: 2
+        soundPath: 
+        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+  - flodAction: 0
+    flodTime: 0
+    actionEvents: []
+    timeEvents: []
+  - flodAction: 0
+    flodTime: 0
+    actionEvents: []
+    timeEvents: []
+  - flodAction: 0
+    flodTime: 0
+    actionEvents: []
+    timeEvents: []
+  - flodAction: 0
+    flodTime: 0
+    actionEvents: []
+    timeEvents: []
+  - flodAction: 0
+    flodTime: 0
+    actionEvents: []
+    timeEvents: []
+  - flodAction: 0
+    flodTime: 0
+    actionEvents: []
+    timeEvents: []
+  - flodAction: 0
+    flodTime: 0
+    actionEvents: []
+    timeEvents: []
+  - flodAction: 0
+    flodTime: 0
+    actionEvents: []
+    timeEvents: []
+  - flodAction: 0
+    flodTime: 0
+    actionEvents: []
+    timeEvents: []
+  - flodAction: 0
+    flodTime: 0
+    actionEvents: []
+    timeEvents: []
+  - flodAction: 0
+    flodTime: 0
+    actionEvents: []
+    timeEvents: []
+  - flodAction: 0
+    flodTime: 0
+    actionEvents: []
+    timeEvents: []
+  - flodAction: 0
+    flodTime: 0
+    actionEvents: []
+    timeEvents: []
+  - flodAction: 0
+    flodTime: 0
+    actionEvents: []
+    timeEvents: []
+  - flodAction: 0
+    flodTime: 0
+    actionEvents: []
+    timeEvents: []
+--- !u!114 &11450216
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 198268}
+      propertyPath: 
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 198268}
+  m_IsPrefabParent: 1

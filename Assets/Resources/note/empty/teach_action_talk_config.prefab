@@ -1,0 +1,216 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &162360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 493656}
+  - 114: {fileID: 11422150}
+  m_Layer: 0
+  m_Name: teach_action_talk_config
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &493656
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162360}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11422150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37cc963d4e2d44e28b2ca242f9aeec8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  talks:
+  - AttackTalks: 08000000090000000a000000
+    MissTalks: 0b0000000c0000000d000000
+  - AttackTalks: 110000001200000013000000
+    MissTalks: 140000001500000016000000
+  - AttackTalks: 19000000190000001a0000001b000000
+    MissTalks: 0b0000000c0000000d000000
+  - AttackTalks: 190000001c0000001d0000001e000000
+    MissTalks: 140000001500000016000000
+  - AttackTalks: 240000002500000026000000
+    MissTalks: 270000002800000029000000
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: talks.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[0].MissTalks.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[2].MissTalks.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[0].AttackTalks.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[2].AttackTalks.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[3].AttackTalks.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[0].AttackTalks.Array.data[0]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[0].MissTalks.Array.data[0]
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[0].AttackTalks.Array.data[1]
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[0].AttackTalks.Array.data[2]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[0].MissTalks.Array.data[1]
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[0].MissTalks.Array.data[2]
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[2].AttackTalks.Array.data[0]
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[2].AttackTalks.Array.data[1]
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[2].AttackTalks.Array.data[2]
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[2].MissTalks.Array.data[0]
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[2].MissTalks.Array.data[1]
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[2].MissTalks.Array.data[2]
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[1].AttackTalks.Array.data[0]
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[1].AttackTalks.Array.data[1]
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[1].AttackTalks.Array.data[2]
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[1].MissTalks.Array.data[0]
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[1].MissTalks.Array.data[1]
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[1].MissTalks.Array.data[2]
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[2].AttackTalks.Array.data[3]
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[3].AttackTalks.Array.data[0]
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[3].AttackTalks.Array.data[2]
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[3].AttackTalks.Array.data[3]
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[3].AttackTalks.Array.data[1]
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[3].MissTalks.Array.data[0]
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[3].MissTalks.Array.data[1]
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[3].MissTalks.Array.data[2]
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[4].AttackTalks.Array.data[0]
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[4].AttackTalks.Array.data[1]
+      value: 37
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[4].AttackTalks.Array.data[2]
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[4].MissTalks.Array.data[0]
+      value: 39
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[4].MissTalks.Array.data[1]
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: talks.Array.data[4].MissTalks.Array.data[2]
+      value: 41
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 162360}
+  m_IsPrefabParent: 1

@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &198268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 452678}
+  - 114: {fileID: 11462910}
+  m_Layer: 0
+  m_Name: StateMachineData
+  m_TagString: 
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &452678
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198268}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11450216
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11462910
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c04972d77864ba38fee3c618e1ad47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StateMachines:
+  - id: 0
+    des: "\u6D4B\u8BD5\u72B6\u6001\u673A1"
+    nodes:
+    - idx: 1
+      parentIdx: 0
+      des: "\u5F00\u59CB"
+      nodeScript: OnStateDoNothing
+      nodeWindow:
+        serializedVersion: 2
+        x: 37
+        y: 48
+        width: 100
+        height: 120
+      condictions:
+      - idx: 1
+        childIdx: 2
+        condictionScripts:
+        - CndTrue
+        - CndFalse
+      - idx: 2
+        childIdx: 5
+        condictionScripts: []
+    - idx: 2
+      parentIdx: 1
+      des: "\u54C8\u54C8\u54C8"
+      nodeScript: OnStateDoNothing
+      nodeWindow:
+        serializedVersion: 2
+        x: 195
+        y: 189
+        width: 100
+        height: 80
+      condictions:
+      - idx: 1
+        childIdx: 6
+        condictionScripts: []
+    - idx: 5
+      parentIdx: 1
+      des: "\u72B6\u60015"
+      nodeScript: 
+      nodeWindow:
+        serializedVersion: 2
+        x: 111
+        y: 295
+        width: 100
+        height: 40
+      condictions: []
+    - idx: 6
+      parentIdx: 2
+      des: "\u72B6\u60016"
+      nodeScript: 
+      nodeWindow:
+        serializedVersion: 2
+        x: 330
+        y: 54
+        width: 100
+        height: 80
+      condictions:
+      - idx: 1
+        childIdx: 1
+        condictionScripts: []
+  nodeScripts:
+  - des: "\u4EC0\u4E48\u4E5F\u4E0D\u505A"
+    scriptName: OnStateDoNothing
+  condScripts:
+  - des: "\u603B\u662F\u901A\u8FC7"
+    scriptName: CndTrue
+  - des: "\u603B\u662F\u4E0D\u901A\u8FC7"
+    scriptName: CndFalse
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 198268}
+      propertyPath: 
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 198268}
+  m_IsPrefabParent: 1

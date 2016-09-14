@@ -1,0 +1,286 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &172086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 441372}
+  - 33: {fileID: 3346970}
+  - 23: {fileID: 2391944}
+  - 114: {fileID: 11483888}
+  - 114: {fileID: 11444338}
+  - 95: {fileID: 95000011389276500}
+  m_Layer: 0
+  m_Name: 0501
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &441372
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172086}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &2391944
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172086}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 3cf52204278250f40aa0334441b63b6c, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 2
+--- !u!33 &3346970
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172086}
+  m_Mesh: {fileID: 0}
+--- !u!114 &11444338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437c8c5f12a3449ee91f447c2447bdc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objController: {fileID: 0}
+  actionData:
+  - collapsed: 1
+    isEndLoop: 1
+    isRandomSequence: 0
+    isSelfProtect: 0
+    name: standby
+    protectLevel: 0
+    arrayCount: 1
+    spineActionKeyIndex: 2
+    actionIdx: 0b000000000000000000000000000000000000000000000000000000000000000000000000000000
+    actionEventIdx: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  - collapsed: 1
+    isEndLoop: 1
+    isRandomSequence: 0
+    isSelfProtect: 0
+    name: in
+    protectLevel: 0
+    arrayCount: 2
+    spineActionKeyIndex: 0
+    actionIdx: 080000000b0000000000000000000000000000000000000000000000000000000000000000000000
+    actionEventIdx: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  - collapsed: 1
+    isEndLoop: 1
+    isRandomSequence: 0
+    isSelfProtect: 0
+    name: out
+    protectLevel: 0
+    arrayCount: 2
+    spineActionKeyIndex: 1
+    actionIdx: 090000000a0000000000000000000000000000000000000000000000000000000000000000000000
+    actionEventIdx: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  - collapsed: 1
+    isEndLoop: 1
+    isRandomSequence: 0
+    isSelfProtect: 0
+    name: boss_close_atk_2
+    protectLevel: 0
+    arrayCount: 2
+    spineActionKeyIndex: 14
+    actionIdx: 010000000b0000000000000000000000000000000000000000000000000000000000000000000000
+    actionEventIdx: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  - collapsed: 1
+    isEndLoop: 1
+    isRandomSequence: 0
+    isSelfProtect: 0
+    name: boss_close_atk_1
+    protectLevel: 0
+    arrayCount: 2
+    spineActionKeyIndex: 13
+    actionIdx: 000000000b0000000000000000000000000000000000000000000000000000000000000000000000
+    actionEventIdx: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  - collapsed: 1
+    isEndLoop: 1
+    isRandomSequence: 0
+    isSelfProtect: 0
+    name: boss_far_atk_1
+    protectLevel: 0
+    arrayCount: 2
+    spineActionKeyIndex: 16
+    actionIdx: 030000000b0000000000000000000000000000000000000000000000000000000000000000000000
+    actionEventIdx: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  - collapsed: 1
+    isEndLoop: 1
+    isRandomSequence: 0
+    isSelfProtect: 0
+    name: boss_far_atk_2
+    protectLevel: 0
+    arrayCount: 2
+    spineActionKeyIndex: 21
+    actionIdx: 02000000050000000000000000000000000000000000000000000000000000000000000000000000
+    actionEventIdx: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  - collapsed: 1
+    isEndLoop: 1
+    isRandomSequence: 0
+    isSelfProtect: 0
+    name: boss_far_atk_2_start
+    protectLevel: 0
+    arrayCount: 2
+    spineActionKeyIndex: 20
+    actionIdx: 06000000050000000000000000000000000000000000000000000000000000000000000000000000
+    actionEventIdx: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  - collapsed: 1
+    isEndLoop: 1
+    isRandomSequence: 0
+    isSelfProtect: 0
+    name: boss_far_atk_2_end
+    protectLevel: 0
+    arrayCount: 2
+    spineActionKeyIndex: 22
+    actionIdx: 040000000b0000000000000000000000000000000000000000000000000000000000000000000000
+    actionEventIdx: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  - collapsed: 1
+    isEndLoop: 1
+    isRandomSequence: 0
+    isSelfProtect: 0
+    name: boss_hurt
+    protectLevel: 0
+    arrayCount: 2
+    spineActionKeyIndex: 23
+    actionIdx: 070000000b0000000000000000000000000000000000000000000000000000000000000000000000
+    actionEventIdx: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  actionMode: 0
+  startDelay: 3
+--- !u!114 &11483888
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonDataAsset: {fileID: 11400000, guid: 12ca7953f39ef8b4283f8e1fb0ff99d2, type: 2}
+  initialSkinName: default
+  calculateNormals: 0
+  calculateTangents: 0
+  zSpacing: 0
+  renderMeshes: 1
+  immutableTriangles: 0
+  frontFacing: 0
+  logErrors: 0
+  submeshSeparators: []
+  timeScale: 1
+  loop: 0
+  _animationName: outside
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: skeletonDataAsset
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: objColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: objColor.g
+      value: .0823529437
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: objColor.b
+      value: .694117665
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: objColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.x
+      value: 2.52999997
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: .360000014
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.z
+      value: -1.99000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 172086}
+  m_IsPrefabParent: 1
+--- !u!95 &95000011389276500
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172086}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 447b64e80c148ef4ba8807d95a69d6d5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1

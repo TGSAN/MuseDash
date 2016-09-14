@@ -1,0 +1,41 @@
+{
+"skeleton": { "hash": "xhpnyNW63Y6S+1CSG0P7FErMbTw", "spine": "2.1.27", "width": 0, "height": 0, "images": "../Scene03/E00J_fire/" },
+"bones": [
+	{ "name": "root", "scaleX": 0, "scaleY": 0 },
+	{ "name": "root2", "parent": "root" },
+	{ "name": "x", "parent": "root2" },
+	{ "name": "y", "parent": "x" }
+],
+"slots": [
+	{ "name": "a", "bone": "y", "attachment": "a" }
+],
+"skins": {
+	"default": {
+		"a": {
+			"a": { "width": 16, "height": 16 }
+		}
+	}
+},
+"animations": {
+	"in_080": {
+		"bones": {
+			"x": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 1.1, "x": 0, "y": 0 }
+				]
+			}
+		}
+	},
+	"in_200": {
+		"bones": {
+			"x": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0, "curve": "stepped" },
+					{ "time": 2.5, "x": 0, "y": 0 }
+				]
+			}
+		}
+	}
+}
+}
