@@ -35,8 +35,8 @@ namespace PnlStage
 
         public override void OnShow()
         {
-			StageDisc.StageDisc.LoadAllDiscCover();
-            this.OnSongChanged(1);
+            StageDisc.StageDisc.LoadAllDiscCover();
+            this.OnSongChanged(PnlScrollCircle.instance.currentSongIdx);
         }
 
         public override void OnHide()
@@ -64,6 +64,7 @@ namespace PnlStage
             StageBattleComponent.Instance.Host.SetAsUINotifyInstance();
             TaskStageTarget.Instance.Host.SetAsUINotifyInstance();
             SceneAudioManager.Instance.bgm.clip = null;
+            PnlScrollCircle.instance.ResetPos();
             PnlScrollCircle.instance.JumpToSong(idx);
             /*if (this.diskAudioSource == null) {
 				this.diskAudioSource = SceneAudioManager.Instance.bgm;

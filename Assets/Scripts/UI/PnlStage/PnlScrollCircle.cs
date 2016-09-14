@@ -453,6 +453,12 @@ namespace Assets.Scripts.NGUI
             m_Coroutine = StartCoroutine(LoadCoroutine());
         }
 
+        public void ResetPos()
+        {
+            m_ZAngle = 0;
+            pivot.localEulerAngles = Vector3.zero;
+        }
+
         public void JumpToSong(int idx, int from = -4, float dt = 0.8f)
         {
             idx -= 1;
