@@ -16,7 +16,7 @@ public class SpineAltarsRefreshEdit : EditorWindow {
 
 	private string path = "note/";
 	private string scale = "0.005";
-	private float fscale = 0.5f;
+	private float fscale = 0.005f;
 
 
 	[MenuItem("RHY/spine的.asset统一刷新")]
