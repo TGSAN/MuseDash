@@ -33,6 +33,8 @@ namespace Assets.Scripts.NGUI
         public float slideSpeed;
         public float delaySlideTime;
         public Vector2 minMaxSlide;
+        public int numFrom;
+        public float animDuration;
 
         [Header("缩放")]
         public float distanceToChangeScale;
@@ -135,7 +137,7 @@ namespace Assets.Scripts.NGUI
                 var angleBetween = Mathf.Abs(pivot.localEulerAngles.z - endAngles.z);
                 var t = angleBetween / elasticSpeed;
                 var originZAngle = m_ZAngle;
-                m_SlideTweener = pivot.DORotate(endAngles, t).SetEase(Ease.OutSine).OnUpdate(() =>
+                m_SlideTweener = pivot.DORotate(endAngles, t, RotateMode.FastBeyond360).SetEase(Ease.OutSine).OnUpdate(() =>
                 {
                     m_ZAngle += Vector3.Angle(up, pivot.up) * isPositive;
                     up = pivot.up;
@@ -296,7 +298,7 @@ namespace Assets.Scripts.NGUI
             var endValue = pivot.localEulerAngles + offset;
             var up = pivot.up;
             var isPositive = offset.z > 0 ? 1 : -1;
-            m_NextTweener = pivot.transform.DORotate(endValue, dt).OnUpdate(() =>
+            m_NextTweener = pivot.transform.DORotate(endValue, dt, RotateMode.FastBeyond360).OnUpdate(() =>
             {
                 m_ZAngle += Vector3.Angle(up, pivot.up) * isPositive;
                 up = pivot.up;
@@ -459,14 +461,14 @@ namespace Assets.Scripts.NGUI
             pivot.localEulerAngles = Vector3.zero;
         }
 
-        public void JumpToSong(int idx, int from = -4, float dt = 0.8f)
+        public void JumpToSong(int idx, float dt = 0.8f)
         {
             idx -= 1;
-            m_ZAngle -= angle * (idx - 2 + from);
+            m_ZAngle -= angle * (idx - 2 - numFrom);
             var angleAxis = new Vector3(0, 0, m_ZAngle);
             pivot.transform.localEulerAngles = angleAxis;
-            var offset = new Vector3(0, 0, -160);
-            OnChangeOffset(offset, dt);
+            var offset = new Vector3(0, 0, -numFrom * angle);
+            OnChangeOffset(offset, animDuration);
         }
 
         #endregion 操作
