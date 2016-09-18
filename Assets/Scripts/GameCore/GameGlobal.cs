@@ -104,10 +104,10 @@ namespace GameLogic {
 		public const uint NODE_TYPE_MUSIC = 4;
 		//隐藏
 		public const uint NODE_TYPE_HIDE = 5;
-		//boss
-		public const uint NODE_TYPE_BOSS = 6;
 		//长按
-		public const uint NODE_TYPE_PRESS = 7;
+		public const uint NODE_TYPE_PRESS = 6;
+		//boss
+		public const uint NODE_TYPE_BOSS = 7;
 
 		//miss不处理类型
 		public static List<uint> NODE_TYPES_NO_MISS = new List<uint> (){NODE_TYPE_GOLD, NODE_TYPE_HP, NODE_TYPE_MUSIC, NODE_TYPE_HIDE};

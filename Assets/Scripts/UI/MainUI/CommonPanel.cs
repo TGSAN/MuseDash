@@ -57,10 +57,12 @@ public class CommonPanel : MonoBehaviour {
 
 	void Start() {
 		this.SignltonCheck ();
+		this.m_UIMask.Reset ();
 	}
 
 	void OnEnable() {
 		this.SignltonCheck ();
+		this.m_UIMask.Reset ();
 	}
 
 	private void SignltonCheck() {

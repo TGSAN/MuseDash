@@ -236,6 +236,21 @@ public class GirlManager : MonoBehaviour {
 		*/
 	}
 
+	public void UnLockActionProtect() {
+		for (int i = 0; i < this.girls.Length; i++) {
+			GameObject _girl = this.girls [i];
+			if (_girl == null) {
+				continue;
+			}
+
+			SpineActionController sac = _girl.GetComponent<SpineActionController> ();
+			if (sac != null) {
+				sac.SetProtectLevel (0);
+				sac.SetCurrentActionName (null);
+			}
+		}
+	}
+
 	public void AttacksWithoutExchange(uint result, string actKey = null) {
 		for (int i = 0; i < this.girls.Length; i++) {
 			GameObject _girl = this.girls [i];

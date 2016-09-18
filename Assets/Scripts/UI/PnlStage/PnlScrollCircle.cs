@@ -74,7 +74,7 @@ namespace Assets.Scripts.NGUI
         private Sequence m_SlideSeq;
         private Sequence m_DlySeq;
         private float m_ZAngle = 0.0f;
-        private int m_CurrentIdx = 0;
+		private static int m_CurrentIdx = 0;
         private bool m_IsSliding = false;
         private ResourceRequest m_Request;
         private Coroutine m_Coroutine;
@@ -84,7 +84,7 @@ namespace Assets.Scripts.NGUI
 
         public float offsetX { get; private set; }
 
-        public int currentSongIdx
+		public static int currentSongIdx
         {
             get { return m_CurrentIdx + 1; }
         }

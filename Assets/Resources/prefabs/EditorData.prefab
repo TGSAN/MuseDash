@@ -377,7 +377,7 @@ MonoBehaviour:
       bornActionIndex: 21
       hittedActionIndex: 2
       missActionIndex: 2
-    - nodeIndex: 115
+    - nodeIndex: 113
       sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
       bornActionIndex: 21
       hittedActionIndex: 2
@@ -409,7 +409,22 @@ MonoBehaviour:
         sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
   - flodAction: 1
     flodTime: 1
-    actionEvents: []
+    actionEvents:
+    - nodeIndex: 114
+      sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+      bornActionIndex: 21
+      hittedActionIndex: 2
+      missActionIndex: 2
+    - nodeIndex: 113
+      sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+      bornActionIndex: 21
+      hittedActionIndex: 2
+      missActionIndex: 2
+    - nodeIndex: 89
+      sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+      bornActionIndex: 21
+      hittedActionIndex: 2
+      missActionIndex: 2
     timeEvents:
     - flod: 1
       time: 0
@@ -417,6 +432,9 @@ MonoBehaviour:
       - actionIndex: 1
         soundPath: 
         sceneObject: {fileID: 195760, guid: b545034c159bd9b40ae8b933f37b1ddd, type: 2}
+    - flod: 1
+      time: 2
+      eventItems:
       - actionIndex: 0
         soundPath: 
         sceneObject: {fileID: 191332, guid: bce1f8ca0f83789418567df7e6186bae, type: 2}
@@ -427,31 +445,7 @@ MonoBehaviour:
         soundPath: 
         sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
     - flod: 1
-      time: 38.3
-      eventItems:
-      - actionIndex: 21
-        soundPath: 
-        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
-    - flod: 1
-      time: 38.8
-      eventItems:
-      - actionIndex: 21
-        soundPath: 
-        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
-    - flod: 1
-      time: 39.3
-      eventItems:
-      - actionIndex: 21
-        soundPath: 
-        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
-    - flod: 1
-      time: 39.8
-      eventItems:
-      - actionIndex: 21
-        soundPath: 
-        sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
-    - flod: 1
-      time: 41
+      time: 42.5
       eventItems:
       - actionIndex: 1
         soundPath: 

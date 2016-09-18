@@ -15,6 +15,8 @@ public class GameInit : MonoBehaviour {
 			this.Init ();
 			once = false;
 		}
+
+		CommonPanel.GetInstance ().SetMask (false);
 	}
 
 	void OnDisable()
@@ -52,7 +54,7 @@ public class GameInit : MonoBehaviour {
 	public void Init() {
 		#region 角色
 		RoleManageComponent.Instance.InitRole ();
-		ChoseHeroManager.Get ().InitLoadModle ();
+		//ChoseHeroManager.Get ().InitLoadModle ();
 		#endregion
 		Debug.Log ("初始化");
 		FormulaBase.AccountManagerComponent.Instance.Init ();
