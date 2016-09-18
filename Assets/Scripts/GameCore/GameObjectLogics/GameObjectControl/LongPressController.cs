@@ -13,6 +13,7 @@ public class LongPressController: BaseEnemyObjectController {
 	}
 
 	public override void OnControllerStart () {
+		GameKernel.Instance.IsUnderLongPress = true;
 		base.OnControllerStart ();
 
 		//ArrayList mds = StageBattleComponent.Instance.GetMusicData ();
@@ -37,12 +38,14 @@ public class LongPressController: BaseEnemyObjectController {
 			AttacksController.Instance.ShowPressGirl (true);
 		} else {
 			if (!GameKernel.Instance.IsOnFeverState ()) {
+				GirlManager.Instance.UnLockActionProtect ();
 				base.OnControllerMiss (idx);
 				GameGlobal.gGameMissPlay.SetMissHardTime (0);
 				GameKernel.Instance.IsLongPressFailed = true;
 				GirlManager.Instance.BeAttackEffect ();
 				AttacksController.Instance.BeAttacked ();
 			} else {
+				GirlManager.Instance.UnLockActionProtect ();
 				foreach (var girl in GirlManager.Instance.Girls) {
 					if (girl != null) {
 						if (SpineActionController.CurrentAnimationName (girl) != "run") {

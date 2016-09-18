@@ -544,6 +544,7 @@ GameObject:
   - 114: {fileID: 114000011584650222}
   - 114: {fileID: 114000010123876884}
   - 65: {fileID: 65000011961423266}
+  - 114: {fileID: 114000012792604206}
   m_Layer: 5
   m_Name: BtnBack
   m_TagString: Untagged
@@ -2176,12 +2177,12 @@ MonoBehaviour:
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 0.3580702
+    - time: 0.36
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 0.5438597
+    - time: 0.53
       value: 1
       inSlope: 0
       outSlope: 0
@@ -3337,12 +3338,12 @@ MonoBehaviour:
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 0.33
+    - time: 0.333
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 0.5157895
+    - time: 0.5
       value: 1
       inSlope: 0
       outSlope: 0
@@ -4770,10 +4771,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 1000013292720822}
-  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
-  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
-  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  duration: 0.1
+  hover: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 0.73, g: 0.47794116, b: 1, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: 1}
+  duration: 0.02
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -5054,6 +5055,21 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 7813e9a99211745c984b111b3f050312, type: 2}
   mSpriteName: menu_button_sto_n
   mFillCenter: 1
+--- !u!114 &114000012792604206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012521134944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10616d4ce51c5994086c006a7c1189e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 4000012437089276}
+  hover: {x: 0, y: 0, z: 0}
+  pressed: {x: 2, y: -3, z: 0}
+  duration: 0.02
 --- !u!114 &114000012840543944
 MonoBehaviour:
   m_ObjectHideFlags: 1

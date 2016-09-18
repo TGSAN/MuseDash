@@ -45,4 +45,13 @@ public class UIMask : MonoBehaviour {
 			this.m_CallBack ();
 		}
 	}
+
+	public void Reset() {
+		this.m_CallBack = null;
+		this.m_Mask.enabled = true;
+		this.m_Mask.from = 1f;
+		this.m_Mask.to = 0f;
+		this.m_Mask.ResetToBeginning ();
+		this.m_Mask.PlayForward ();
+	}
 }

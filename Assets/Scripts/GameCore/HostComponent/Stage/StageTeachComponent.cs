@@ -91,6 +91,11 @@ namespace FormulaBase {
 			return result;
 		}
 
+		public void AddPlayCountRecord(int val) {
+			this.playCountRecord += val;
+			Debug.Log ("Teach play record " + this.playCountRecord);
+		}
+
 		public void SetPlayResult(int idx, uint result) {
 			if (!this.IsTeachingStage ()) {
 				return;
@@ -100,7 +105,8 @@ namespace FormulaBase {
 				return;
 			}
 
-			if (GameKernel.Instance.IsUnderLongPress) {
+			MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx (idx);
+			if (md.nodeData.type == GameGlobal.NODE_TYPE_PRESS) {
 				return;
 			}
 
@@ -113,7 +119,7 @@ namespace FormulaBase {
 				return;
 			}
 
-			this.playCountRecord += 1;
+			this.AddPlayCountRecord (1);
 			// Show teach play succeed info.
 			if (TeachActionTalkConfigController.Instance != null) { 
 				TeachActionTalkConfigController.Instance.OnAttacked ();

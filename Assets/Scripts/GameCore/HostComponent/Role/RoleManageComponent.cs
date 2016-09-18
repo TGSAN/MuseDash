@@ -228,6 +228,8 @@ namespace FormulaBase {
 		/// </summary>
 		/// <returns>The fight girl index.</returns>
 		public int GetFightGirlIndex() {
+			return 3;
+			/*
 			for (int i = 0; i < roles.Count; i++) {
 				FormulaHost _role = this.roles [i];
 				if (_role == null) {
@@ -243,6 +245,7 @@ namespace FormulaBase {
 
 			Debugger.LogWarning ("get error fight girl");
 			return -1;
+			*/
 		}
 
 		/// <summary>
@@ -315,15 +318,17 @@ namespace FormulaBase {
 		/// 获取角色的体力加成
 		/// </summary>
 		/// <returns>The role physical add.</returns>
-		public int  GetRolePhysicalAdd() {
-			//for(int i=0;i<GirlNumber;i++)
+		public int GetRolePhysicalAdd() {
 			int tPhysical = 0;
-			if (GetRole (0).GetDynamicIntByKey (SignKeys.LOCKED) == 0)
-				tPhysical += 10;
-			if (GetRole (1).GetDynamicIntByKey (SignKeys.LOCKED) == 0)
-				tPhysical += 20;
-			if (GetRole (2).GetDynamicIntByKey (SignKeys.LOCKED) == 0)
-				tPhysical += 20;
+			for (int i = 0; i < GirlNumber; i++) {
+				FormulaHost _role = this.GetRole (i);
+				if (_role == null) {
+					continue;
+				}
+
+				tPhysical += _role.GetDynamicIntByKey (SignKeys.PHYSICAL);
+			}
+
 			return tPhysical;
 		}
 
