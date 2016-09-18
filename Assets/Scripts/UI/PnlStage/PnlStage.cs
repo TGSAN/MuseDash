@@ -41,6 +41,7 @@ namespace PnlStage
 
 		public override void OnHide()
 		{
+			print ("rinima");
 		}
 
 		public void OnSongChanged(int idx)
