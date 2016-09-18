@@ -11,7 +11,9 @@ using System.IO;
 /// </summary>
 public class BgmRefreshEdit : EditorWindow {
 	private const string PATH = "路径";
+	private const string DES1 = "是否后台加载";
 
+	private bool isLoadInBackground = true;
 	private string path = "stage/";
 
 
@@ -25,6 +27,8 @@ public class BgmRefreshEdit : EditorWindow {
 		EditorGUILayout.BeginVertical ();
 
 		this.path = EditorGUILayout.TextField (PATH, this.path);
+		this.isLoadInBackground = EditorGUILayout.Toggle (DES1, this.isLoadInBackground);
+
 		if (GUILayout.Button ("Reflesh")) {
 			this.RefleshAsset ();
 		}
@@ -39,11 +43,11 @@ public class BgmRefreshEdit : EditorWindow {
 			return;
 		}
 
-		if (sda.loadInBackground == true) {
+		if (sda.loadInBackground == this.isLoadInBackground) {
 			return;
 		}
 
-		sda.loadInBackground = true;
+		sda.loadInBackground = this.isLoadInBackground;
 		sda.SaveAndReimport ();
 
 		EditorUtility.SetDirty(sda);
