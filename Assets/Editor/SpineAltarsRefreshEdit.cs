@@ -15,7 +15,7 @@ public class SpineAltarsRefreshEdit : EditorWindow {
 	private const string TYEP_KW = "SkeletonData";
 
 	private string path = "note/";
-	private string scale = "0.5";
+	private string scale = "0.005";
 	private float fscale = 0.5f;
 
 
