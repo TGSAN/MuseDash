@@ -13,6 +13,13 @@ using UnityEngine;
 namespace GameLogic {
 	public class AttackToNormalRun : DoNothing {
 		public override void Do (Spine.AnimationState state, int trackIndex, int loopCount) {
+			// Air run.
+			if (GirlManager.Instance.IsJumpingAction ()) {
+				//SpineActionController.Play (ACTION_KEYS.AIR_STAND, this.gameObject);
+				return;
+			}
+
+			// Ground run.
 			SpineActionController.Play (ACTION_KEYS.RUN, this.gameObject);
 		}
 	}

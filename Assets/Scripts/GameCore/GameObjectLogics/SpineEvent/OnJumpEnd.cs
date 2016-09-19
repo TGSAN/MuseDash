@@ -14,6 +14,7 @@ namespace GameLogic {
 	public class OnJumpEnd : DoNothing {
 	public override void Do (Spine.AnimationState state, int trackIndex, int loopCount) {
 			GirlManager.Instance.SetJumpingAction (false);
+			SpineActionController.Play (ACTION_KEYS.RUN, this.gameObject);
 		}
 	}
 }

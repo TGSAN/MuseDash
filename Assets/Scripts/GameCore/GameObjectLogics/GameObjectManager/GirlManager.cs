@@ -324,11 +324,28 @@ public class GirlManager : MonoBehaviour {
 		return this.isJumpingAction;
 	}
 
+	public void JumpBeatPause() {
+		foreach (var girl in this.girls) {
+			if (girl == null) {
+				continue;
+			}
+
+			CharactorJumpAssert cja = girl.GetComponent<CharactorJumpAssert> ();
+			if (cja == null) {
+				continue;
+			}
+
+			cja.DoDelay ();
+		}
+	}
+
 	public void PlayGirlDeadAnimation() {
 		foreach (var girl in this.girls) {
-			if (girl != null) {
-				SpineActionController.Play (ACTION_KEYS.CHAR_DEAD, girl);
+			if (girl == null) {
+				continue;
 			}
+
+			SpineActionController.Play (ACTION_KEYS.CHAR_DEAD, girl);
 		}
 	}
 

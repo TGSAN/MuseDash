@@ -81,7 +81,7 @@ namespace GameLogic {
 			this.pressState = state;
 			if (this.IsPunch ()) {
 				this.pressHardTime = PRESS_HARD_TIME;
-				GirlManager.Instance.SetJumpingAction (false);
+				//GirlManager.Instance.SetJumpingAction (false);
 				return;
 			}
 
@@ -293,6 +293,14 @@ namespace GameLogic {
 					resultCode = GameMusic.JUMPOVER;
 				}
 
+				// Jump beat check
+				MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx (_idx);
+				if (md.nodeData.type == GameGlobal.NODE_TYPE_AIR_BEAT) {
+					if (!GirlManager.Instance.IsJumpingAction ()) {
+						resultCode = GameMusic.NONE;
+					}
+				}
+
 				//4, Touch succeed, do touch result.
 				this.TouchResult (_idx, resultCode, actionType);	//(mark)  show result by id
 
@@ -325,6 +333,13 @@ namespace GameLogic {
 			MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx (idx);
 			if (md.nodeData.addCombo) {
 				this.PlayComboPhaser (resultCode, md.nodeData.isShowPlayEffect);
+			}
+
+			// Jump beat pause
+			if (md.nodeData.type == GameGlobal.NODE_TYPE_AIR_BEAT) {
+				if (GirlManager.Instance.IsJumpingAction ()) {
+					GirlManager.Instance.JumpBeatPause ();
+				}
 			}
 		}
 

@@ -63,8 +63,15 @@ public abstract class BaseEnemyObjectController : BaseSpineObjectController {
 			return false;
 		}
 
-		//if ((md.nodeData.isAirunits || md.nodeData.enableJump) && isJumpping) {
+		if (md.nodeData.jump_note && isJumpping) {
+			return false;
+		}
+
 		if (md.nodeData.enable_jump && isJumpping) {
+			return false;
+		}
+
+		if (md.nodeData.type == GameGlobal.NODE_TYPE_AIR_BEAT && !isJumpping) {
 			return false;
 		}
 
