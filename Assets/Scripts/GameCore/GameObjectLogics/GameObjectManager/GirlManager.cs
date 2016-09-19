@@ -5,8 +5,9 @@ using FormulaBase;
 using DYUnityLib;
 
 public class GirlManager : MonoBehaviour {
-	private static string GILR_PATH = "char/";
-	private static string ARM_PATH = "servant/";
+	private const string GILR_PATH = "char/";
+	private const string ARM_PATH = "servant/";
+	private const decimal COMEOUT_HARD_TIME = 2m;
 	private static GirlManager instacne = null;
 	private GameObject[] girls;
 	private GameObject[] arms;
@@ -197,10 +198,10 @@ public class GirlManager : MonoBehaviour {
 	}
 
 	public void ComeOut() {
+		GameGlobal.gGameTouchPlay.SetPressHardTime (COMEOUT_HARD_TIME);
+		GameGlobal.gGameTouchPlay.SetJumpHardTime (COMEOUT_HARD_TIME);
 		this.StartCoroutine (this.AfterComeOut ());
 	}
-
-
 
 	private IEnumerator AfterComeOut () {
 		yield return new WaitForSeconds (0.1f);
@@ -303,7 +304,7 @@ public class GirlManager : MonoBehaviour {
 			}
 
 			// Then state set.
-			this.SetJumpingAction (false);
+			//this.SetJumpingAction (false);
 		}
 
 		CharPanel.Instance.BeAttack ();
@@ -318,6 +319,9 @@ public class GirlManager : MonoBehaviour {
 
 	public void SetJumpingAction(bool value) {
 		this.isJumpingAction = value;
+		if (this.isJumpingAction == false) {
+			GameGlobal.gGameTouchPlay.SetJumpHardTime (-1m);
+		}
 	}
 
 	public bool IsJumpingAction() {

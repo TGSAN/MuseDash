@@ -17,7 +17,7 @@ public class OnCharactorJumpEnd : StateMachineBehaviour {
 	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 		GirlManager.Instance.SetJumpingAction (false);
 		SpineActionController.Play (ACTION_KEYS.RUN, animator.gameObject);
-		Debug.Log ("Girl jump end by animation end.");
+		//Debug.Log ("Girl jump end by animation end.");
 	}
 
 	// OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here

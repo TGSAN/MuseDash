@@ -16,7 +16,7 @@ namespace GameLogic {
 		private readonly int WIDTH_MID = Screen.width / 2;
 
 		private const decimal PRESS_HARD_TIME = 0.15m;
-		private const decimal JUMP_HARD_TIME = 0.2m;
+		private const decimal JUMP_HARD_TIME = 1m;
 
 		// touch play about(cd)
 		private decimal pressHardTime = -1m;
@@ -122,6 +122,14 @@ namespace GameLogic {
 
 		public bool IsPressing() {
 			return Input.anyKey;
+		}
+
+		public void SetPressHardTime(decimal t) {
+			this.pressHardTime = t;
+		}
+
+		public void SetJumpHardTime(decimal t) {
+			this.jumpHardTime = t;
 		}
 
 		public void TimeStep() {
@@ -314,7 +322,7 @@ namespace GameLogic {
 
 		public void TouchResult(int idx, uint resultCode, uint actionType) {
 			this.pressHardTime = -1m;
-			this.jumpHardTime = -1m;
+			//this.jumpHardTime = -1m;
 
 			if (resultCode > GameMusic.MISS && resultCode < GameMusic.JUMPOVER) {
 				BattleEnemyManager.Instance.SetPlayResult (idx, resultCode);
