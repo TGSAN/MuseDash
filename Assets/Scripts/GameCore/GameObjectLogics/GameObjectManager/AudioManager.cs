@@ -80,34 +80,21 @@ public class AudioManager {
 		return this.GetBackGroundMusicLength () - this.GetBackGroundMusicTime ();
 	}
 
-	public void SetUIbackGroundMusic(string fileName) {
-		string pathName = (UI_MUSIC_PATH + fileName);
-		this.PlayingMusic = pathName;
-		this.backGroundMusic.clip = null;
-		this.backGroundMusic.clip = (AudioClip)Resources.Load (pathName);
-	}
-
-	public void SetUIbackGroundMusic(AudioClip clip) {
-		this.backGroundMusic.clip = null;
-		this.backGroundMusic.clip = clip;
-	}
-
 	public void SetBackGroundMusic(string fileName) {
 		//string pathName = (MUSIC_PATH + fileName);
 		this.PlayingMusic = fileName;
-		if (this.backGroundMusic == null) {
-			this.SetBgmSource ();
-			return;
-		}
-
+		this.SetBgmSource ();
 		if (this.backGroundMusic == null) {
 			return;
 		}
 
-		Debug.Log ("Load battle bgm " + this.PlayingMusic + " succeed.");
-		this.backGroundMusic.clip = null;
-		//SceneAudioManager.Instance.Load (pathName + ".ogg", this.backGroundMusic);
-		this.backGroundMusic.clip = Resources.Load<AudioClip> (this.PlayingMusic);
+		//this.backGroundMusic.clip.LoadAudioData ();
+		if (this.backGroundMusic.clip == null) {
+			this.backGroundMusic.clip = null;
+			//SceneAudioManager.Instance.Load (pathName + ".ogg", this.backGroundMusic);
+			this.backGroundMusic.clip = Resources.Load<AudioClip> (this.PlayingMusic);
+			Debug.Log ("Load battle bgm " + this.PlayingMusic + " succeed.");
+		}
 	}
 
 	public void SetEffectVolume(float volume) {
@@ -145,12 +132,7 @@ public class AudioManager {
 		}
 
 		this.audioMap = new Hashtable ();
-		this.backGroundMusic = SceneAudioManager.Instance.bgm;
-		if (this.backGroundMusic != null) {
-			this.backGroundMusic.Stop ();
-			this.backGroundMusic.playOnAwake = false;
-			this.backGroundMusic.pitch = GameGlobal.TIME_SCALE;
-		}
+		this.SetBgmSource ();
 
 		int lenAtk = 4;
 		this.girlAttacks = new AudioClip[lenAtk];
@@ -212,11 +194,6 @@ public class AudioManager {
 
 	public void PlayBackGroundMusic() {
 		if (this.backGroundMusic == null) {
-			this.SetBackGroundMusic (this.playingMusicName);
-			this.ResetBackGroundMusic ();
-		}
-
-		if (this.backGroundMusic == null) {
 			return;
 		}
 
@@ -226,11 +203,6 @@ public class AudioManager {
 
 	public void PlayBackGroundMusicAtTime(float time) {
 		if (this.backGroundMusic == null) {
-			this.SetBackGroundMusic (this.playingMusicName);
-			return;
-		}
-
-		if (this.backGroundMusic == null) {
 			return;
 		}
 
@@ -239,11 +211,6 @@ public class AudioManager {
 	}
 
 	public void PlayBackGroundMusicAt(float rate) {
-		if (this.backGroundMusic == null) {
-			this.SetBackGroundMusic (this.playingMusicName);
-			return;
-		}
-
 		if (this.backGroundMusic == null) {
 			return;
 		}
@@ -382,5 +349,6 @@ public class AudioManager {
 
 		this.backGroundMusic = SceneAudioManager.Instance.bgm;
 		this.girlEffect = SceneAudioManager.Instance.role;
+		this.backGroundMusic.loop = false;
 	}
 }

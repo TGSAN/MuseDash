@@ -484,6 +484,7 @@ namespace FormulaBase {
 
 			GameGlobal.gGameMusic.Run ();
 			GameGlobal.gGameMusicScene.Run ();
+			GameGlobal.gGameMusic.PlayMusic ();
 			Debug.Log ("Stage start");
 			//UserUI.Instance.SetGUIActive (false);
 		}
@@ -559,17 +560,6 @@ namespace FormulaBase {
 			GameGlobal.gGameMusicScene.SetTimer (ref tGms);
 			
 			GameGlobal.gTouch.OnStart ();
-
-			uint cid = 0;
-			if (this.Host != null) {
-				cid = (uint)this.Host.GetDynamicDataByKey (SignKeys.ID);
-			}
-
-			if (cid == 0) {
-				cid = GameGlobal.DEBUG_DEFAULT_STAGE;
-			}
-
-			this.SetStageId (cid);
 
 			string sceneName = this.GetSceneName ();
 			string musicName = this.GetMusicName ();
