@@ -108,6 +108,8 @@ namespace GameLogic {
 		public const uint NODE_TYPE_PRESS = 6;
 		//boss
 		public const uint NODE_TYPE_BOSS = 7;
+		//只能空中打击
+		public const uint NODE_TYPE_AIR_BEAT = 8;
 
 		//miss不处理类型
 		public static List<uint> NODE_TYPES_NO_MISS = new List<uint> (){NODE_TYPE_GOLD, NODE_TYPE_HP, NODE_TYPE_MUSIC, NODE_TYPE_HIDE};
