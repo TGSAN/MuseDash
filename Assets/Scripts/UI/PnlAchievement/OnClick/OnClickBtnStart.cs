@@ -5,6 +5,7 @@ using System;
 using UnityEngine;
 using FormulaBase;
 using GameLogic;
+using Assets.Scripts.NGUI;
 
 namespace PnlAchievement {
 	public class OnClickBtnStart : UIPhaseOnClickBase {
@@ -13,6 +14,7 @@ namespace PnlAchievement {
 
 			int sid = StageBattleComponent.Instance.GetId ();
 			uint diff = StageBattleComponent.Instance.GetDiffcult ();
+			SceneAudioManager.Instance.bgm.clip = PnlScrollCircle.instance.CatchClip;
 			StageBattleComponent.Instance.Enter ((uint)sid, diff);
 		}
 	}

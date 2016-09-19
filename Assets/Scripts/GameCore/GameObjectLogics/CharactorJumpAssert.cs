@@ -15,7 +15,10 @@ public class CharactorJumpAssert : MonoBehaviour {
 	}
 	*/
 
-	public IEnumerator DoDelay() {
+	public void DoDelay() {
+	}
+
+	private IEnumerator __DoDelay() {
 		yield return new WaitForSeconds (this.delay);
 	}
 }
