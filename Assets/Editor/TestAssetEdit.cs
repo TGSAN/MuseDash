@@ -323,7 +323,7 @@ public class TestAssetEdit : EditorWindow {
 			int _nidx = -1;
 			string nodeIdx = ConfigPool.Instance.GetConfigStringValue (name, i, "CubeType");
 			for (int ii = 1; ii <= clen; ii++) {
-				string _nid = ConfigPool.Instance.GetConfigStringValue ("notedata", ii.ToString (), "uid");
+				string _nid = ConfigPool.Instance.GetConfigStringValue ("notedata", ii.ToString (), "id");
 				if (_nid == nodeIdx) {
 					_nidx = ii;
 					break;
