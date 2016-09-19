@@ -13,10 +13,10 @@ GameObject:
   - 114: {fileID: 11441148}
   - 114: {fileID: 11413524}
   - 95: {fileID: 9507724}
+  - 111: {fileID: 111000011897565238}
   - 114: {fileID: 114000013739757070}
   - 114: {fileID: 114000013865288618}
   - 114: {fileID: 114000014242524332}
-  - 114: {fileID: 114000010606378968}
   m_Layer: 0
   m_Name: marija_normal
   m_TagString: Untagged
@@ -154,14 +154,14 @@ MonoBehaviour:
     actionIdx: 08000000000000000000000000000000000000000000000000000000000000000000000000000000
     actionEventIdx: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   - collapsed: 1
-    isEndLoop: 1
+    isEndLoop: 0
     isRandomSequence: 0
     isSelfProtect: 1
     name: char_press
-    protectLevel: 1
-    arrayCount: 2
+    protectLevel: 0
+    arrayCount: 1
     spineActionKeyIndex: 26
-    actionIdx: 0d0000000e0000000000000000000000000000000000000000000000000000000000000000000000
+    actionIdx: 0d000000000000000000000000000000000000000000000000000000000000000000000000000000
     actionEventIdx: 08000000000000000000000000000000000000000000000000000000000000000000000000000000
   - collapsed: 1
     isEndLoop: 0
@@ -202,7 +202,7 @@ MonoBehaviour:
     arrayCount: 2
     spineActionKeyIndex: 4
     actionIdx: 0c0000000e0000000000000000000000000000000000000000000000000000000000000000000000
-    actionEventIdx: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+    actionEventIdx: 0a000000000000000000000000000000000000000000000000000000000000000000000000000000
   actionMode: 3
   startDelay: 0
 --- !u!114 &11441148
@@ -296,18 +296,22 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 179966}
   m_IsPrefabParent: 1
---- !u!114 &114000010606378968
-MonoBehaviour:
+--- !u!111 &111000011897565238
+Animation:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179966}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dd0b02798a844aefbd297ab43dcd7db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delay: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 8aa938ad9db23b940907a61b918cdb61, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 8aa938ad9db23b940907a61b918cdb61, type: 2}
+  - {fileID: 7400000, guid: d4f111a83ece35946a4578a7646eec24, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114000013739757070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -334,13 +338,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mountData:
-  - actionId: 20
+  - actionId: 21
     instance: {fileID: 107504, guid: 7f38a66c2bd6545d6af7681ba7b9db57, type: 2}
     moduleId: 18
-  - actionId: 9
+  - actionId: 6
     instance: {fileID: 153738, guid: 7f8c2fc11e5214e4dbd061e1bacbce8c, type: 2}
     moduleId: 18
-  - actionId: 8
+  - actionId: 5
     instance: {fileID: 189244, guid: 3036c4d7e53614cf28ac41e79f1fa8d0, type: 2}
     moduleId: 18
 --- !u!114 &114000014242524332
