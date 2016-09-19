@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FormulaBase;
 
 namespace Assets.Scripts.NGUI
 {
@@ -78,11 +79,18 @@ namespace Assets.Scripts.NGUI
         private bool m_IsSliding = false;
         private ResourceRequest m_Request;
         private Coroutine m_Coroutine;
+		private AudioClip m_CatchClip;
 
         private readonly Dictionary<int, GameObject> m_CellGroup = new Dictionary<int, GameObject>();
         private readonly List<StageInfo> m_StageInfos = new List<StageInfo>();
 
         public float offsetX { get; private set; }
+
+		public AudioClip CatchClip {
+			get {
+				return this.m_CatchClip;
+			}
+		}
 
 		public static int currentSongIdx
         {
@@ -117,7 +125,7 @@ namespace Assets.Scripts.NGUI
         private void InitInfo()
         {
             var jData = ConfigPool.Instance.GetConfigByName("stage");
-            for (int i = 0; i < jData.Count; i++)
+            for (int i = 1; i < jData.Count; i++)
             {
                 var iconPath = jData[i]["icon"].ToString();
                 var musicPath = jData[i]["FileName_1"].ToString();
@@ -423,7 +431,13 @@ namespace Assets.Scripts.NGUI
             var data = new float[length];
             var name = clip.name;
             clip.GetData(data, 0);
-            Resources.UnloadAsset(clip);
+			//Resources.UnloadAsset(clip);
+			if (this.m_CatchClip != null) {
+				Resources.UnloadAsset (this.m_CatchClip);
+			}
+
+			this.m_CatchClip = clip;
+
             var newClip = AudioClip.Create(name, data.Length, 2, 44100, false);
             newClip.SetData(data, 0);
             while (!newClip.isReadyToPlay)
@@ -435,9 +449,10 @@ namespace Assets.Scripts.NGUI
             {
                 Destroy(audioSource.clip);
             }
-            audioSource.clip = newClip;
+			audioSource.clip = newClip;
             audioSource.Play();
             audioSource.loop = true;
+			PnlStage.PnlStage.Instance.OnSongChanged (currentSongIdx);
         }
 
         #endregion 资源加载

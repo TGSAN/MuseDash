@@ -141,11 +141,13 @@ namespace GameLogic {
 		}
 
 		// First tick of this.objTimer
+		/*
 		public void TimerStartTrigger(object sender, uint triggerId, params object[] args){
-			this.PlayMusic ();
-			decimal ts = (decimal)args [0];
-			Debug.Log ("Music start at " + ts);
+			//this.PlayMusic ();
+			//decimal ts = (decimal)args [0];
+			//Debug.Log ("Music start at " + ts);
 		}
+		*/
 
 		// Last tick of this.objTimer
 		public void TimerEndTrigger(object sender, uint triggerId, params object[] args){
@@ -459,8 +461,8 @@ namespace GameLogic {
 			gTrigger.UnRegEvent (GameGlobal.MUSIC_STEP_EVENT);
 
 			// Timer event music start
-			EventTrigger eStart = gTrigger.RegEvent (GameGlobal.MUSIC_START_PRESS);
-			eStart.Trigger += TimerStartTrigger;
+			//EventTrigger eStart = gTrigger.RegEvent (GameGlobal.MUSIC_START_PRESS);
+			//eStart.Trigger += TimerStartTrigger;
 			
 			// Timer event music end
 			EventTrigger eEnd = gTrigger.RegEvent (GameGlobal.MUSIC_END_PRESS);

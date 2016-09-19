@@ -23,8 +23,6 @@ namespace PnlStage
 			}
 		}
 
-		private static int _currentSelectedStageIdx = 1;
-
 		private Coroutine _loadMusicCoroutine;
 		public AudioSource diskAudioSource;
 
@@ -37,11 +35,14 @@ namespace PnlStage
 		{
 			StageDisc.StageDisc.LoadAllDiscCover();
 			this.OnSongChanged(PnlScrollCircle.currentSongIdx);
+			SceneAudioManager.Instance.bgm.clip = null;
+			PnlScrollCircle.instance.ResetPos();
+			PnlScrollCircle.instance.JumpToSong(PnlScrollCircle.currentSongIdx);
 		}
 
 		public override void OnHide()
 		{
-			print ("rinima");
+			//print ("rinima");
 		}
 
 		public void OnSongChanged(int idx)
@@ -60,14 +61,14 @@ namespace PnlStage
 				return;
 			}
 
-			_currentSelectedStageIdx = PnlScrollCircle.currentSongIdx;
 			StageBattleComponent.Instance.InitById(idx);
 			StageBattleComponent.Instance.Host.SetAsUINotifyInstance();
 			TaskStageTarget.Instance.Host.SetAsUINotifyInstance();
+			/*
 			SceneAudioManager.Instance.bgm.clip = null;
 			PnlScrollCircle.instance.ResetPos();
 			PnlScrollCircle.instance.JumpToSong(idx);
-			/*if (this.diskAudioSource == null) {
+			if (this.diskAudioSource == null) {
 				this.diskAudioSource = SceneAudioManager.Instance.bgm;
 			}
 
