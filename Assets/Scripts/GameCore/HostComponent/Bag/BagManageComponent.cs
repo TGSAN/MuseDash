@@ -107,7 +107,7 @@ namespace FormulaBase {
 				return;
 			}
 			host.SetDynamicData(SignKeys.BAG_HAVENEWITEM,Show);
-			Messenger.Broadcast(MainMenuPanel.Broadcast_BagHaveNewItem);
+			//Messenger.Broadcast(MainMenuPanel.Broadcast_BagHaveNewItem);
 			host.Save(new HttpResponseDelegate(SetBagHaveNewCallBack));
 		}
 		public void SetBagHaveNewCallBack(bool _success)

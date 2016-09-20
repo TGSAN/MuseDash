@@ -27,9 +27,9 @@ namespace FormulaBase {
 				this.Host.SetAsUINotifyInstance ();
 			}
 
-			Messenger.Broadcast (MainMenuPanel.BroadcastChangeMoney);
-			Messenger.Broadcast (MainMenuPanel.BroadcastChangeDiamond);
-			Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
+			//Messenger.Broadcast (MainMenuPanel.BroadcastChangeMoney);
+			//Messenger.Broadcast (MainMenuPanel.BroadcastChangeDiamond);
+			//Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
 		}
 
 		public FormulaHost GetAccount() {

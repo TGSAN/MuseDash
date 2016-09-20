@@ -61,7 +61,7 @@ namespace FormulaBase {
 			if(_success)
 			{
 				CommonPanel.GetInstance().ShowWaittingPanel(false);
-				Messenger.Broadcast(LevelPrepaerPanel.BraodCast_RestChestEmpty);
+				//Messenger.Broadcast(LevelPrepaerPanel.BraodCast_RestChestEmpty);
 				Messenger.Broadcast(bagPanel2.BroadcastBagItem);
 			}
 			else 
@@ -338,7 +338,7 @@ namespace FormulaBase {
 			{
 				temp.SetRealTimeCountDown((int)temp.Result(FormulaKeys.FORMULA_94));
 			}
-			Messenger.Broadcast<int>(LevelPrepaerPanel.BraodCast_ChestMissAni,10);
+			//Messenger.Broadcast<int>(LevelPrepaerPanel.BraodCast_ChestMissAni,10);
 			ItemManageComponent.Instance.GetChestList.Remove(temp);
 			GetChestList.Add(temp);
 		
@@ -368,7 +368,7 @@ namespace FormulaBase {
 			{
 				return false;
 			}
-			Messenger.Broadcast<int>(LevelPrepaerPanel.BraodCast_ChestMissAni,10);
+			//Messenger.Broadcast<int>(LevelPrepaerPanel.BraodCast_ChestMissAni,10);
 			List<FormulaHost> tempList=new List<FormulaHost>();
 
 			for(int i=0,max=GetChestList.Count;i<max;i++)
@@ -423,7 +423,7 @@ namespace FormulaBase {
 		
 				}
 
-				Messenger.Broadcast<int>(LevelPrepaerPanel.BraodCast_ChestMissAni,10);
+				//Messenger.Broadcast<int>(LevelPrepaerPanel.BraodCast_ChestMissAni,10);
 				GetTimeDownChest.Remove(_host);
 //				////++++++++
 //				Messenger.Broadcast<int>(LevelPrepaerPanel.BraodCast_ChestMissAni,10);
@@ -455,7 +455,7 @@ namespace FormulaBase {
 						GetChestList[i].SetRealTimeCountDown((int)GetChestList[i].Result(FormulaKeys.FORMULA_94));
 					}
 				}
-				Messenger.Broadcast<int>(LevelPrepaerPanel.BraodCast_ChestMissAni,10);
+				//Messenger.Broadcast<int>(LevelPrepaerPanel.BraodCast_ChestMissAni,10);
 				GetChestList.Remove(_host);
 				////++++++++
 
@@ -572,7 +572,7 @@ namespace FormulaBase {
 						GetChestList[i].SetRealTimeCountDown((int)GetChestList[i].Result(FormulaKeys.FORMULA_94));
 					}
 				}
-				Messenger.Broadcast<int>(LevelPrepaerPanel.BraodCast_ChestMissAni,10);
+				//Messenger.Broadcast<int>(LevelPrepaerPanel.BraodCast_ChestMissAni,10);
 				GetChestList.Remove(_host);
 				ChestManageComponent.Instance.ChestBagToGrid();
 				if(GetChestList.Count==0)
@@ -597,7 +597,7 @@ namespace FormulaBase {
 				//ChestManageComponent.Instance.ChestBagToGrid();
 		
 			//	Messenger.Broadcast(LevelPrepaerPanel.BraodCast_RestChestEmpty);
-				Messenger.Broadcast(MainMenuPanel.BroadcastChangeMoney);
+				//Messenger.Broadcast(MainMenuPanel.BroadcastChangeMoney);
 			}
 			else 
 			{
@@ -611,9 +611,9 @@ namespace FormulaBase {
 			//ChestManageComponent.Instance.ChestBagToGrid();
 			//Messenger.Broadcast<int>(LevelPrepaerPanel.BraodCast_ChestMissAni,10);
 			//Messenger.Broadcast(LevelPrepaerPanel.BraodCast_RestChestEmpty);
-			Messenger.Broadcast(MainMenuPanel.BroadcastChangeMoney);
-
+			//Messenger.Broadcast(MainMenuPanel.BroadcastChangeMoney);
 		}
+
 //		/// <summary>
 //		/// 检测宝箱数据
 //		/// </summary>

@@ -73,8 +73,8 @@ namespace FormulaBase {
 				return;
 			}
 
-			Messenger.Broadcast (MainMenuPanel.BroadcastChangeDiamond);
-			Messenger.Broadcast (MainMenuPanel.Broadcast_MainMenuChangeDiamond);
+			//Messenger.Broadcast (MainMenuPanel.BroadcastChangeDiamond);
+			//Messenger.Broadcast (MainMenuPanel.Broadcast_MainMenuChangeDiamond);
 			CommonPanel.GetInstance ().ShowWaittingPanel (false);
 			Debug.Log ("接受改变钻石的反馈");
 		}

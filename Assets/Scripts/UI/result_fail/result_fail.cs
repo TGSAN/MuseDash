@@ -23,7 +23,7 @@ namespace result_fail {
 		}
 
 		public override void OnShow () {
-			// this.SetTxrByCharacter ();
+			this.SetTxrByCharacter ();
 			this.Pause ();
 		}
 
@@ -38,8 +38,16 @@ namespace result_fail {
 		}
 
 		private void SetTxrByCharacter() {
+			if (ResourceLoader.Instance == null) {
+				return;
+			}
+
 			int heroIndex = BattleRoleAttributeComponent.Instance.Host.GetDynamicIntByKey (SignKeys.ID);
 			string txrName = ConfigPool.Instance.GetConfigStringValue ("character", heroIndex.ToString (), "image_fail");
+			if (this.txrCharact != null && txrName.Contains (this.txrCharact.name)) {
+				return;
+			}
+
 			ResourceLoader.Instance.Load (txrName, this.__LoadTxr);
 		}
 

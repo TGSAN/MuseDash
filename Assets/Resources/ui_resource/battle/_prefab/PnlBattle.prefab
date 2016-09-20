@@ -125,6 +125,7 @@ GameObject:
   - 82: {fileID: 82000011365097250}
   - 114: {fileID: 114000011295454562}
   - 114: {fileID: 114000010550956096}
+  - 114: {fileID: 114000010075825476}
   m_Layer: 5
   m_Name: BtnPause
   m_TagString: UI
@@ -321,7 +322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000012262477378
 GameObject:
   m_ObjectHideFlags: 1
@@ -644,7 +645,7 @@ Transform:
   m_GameObject: {fileID: 1000011238616792}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 4000012272971726}
   - {fileID: 4000010266011316}
@@ -812,8 +813,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012843169304}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 175.80002, z: 0}
-  m_LocalScale: {x: 0.6666666, y: 0.6666666, z: 1}
+  m_LocalPosition: {x: -3, y: 178, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 1}
   m_Children: []
   m_Father: {fileID: 224000012827489954}
   m_RootOrder: 1
@@ -965,8 +966,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011856035876}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 175.80002, z: 0}
-  m_LocalScale: {x: 0.6666666, y: 0.6666666, z: 1}
+  m_LocalPosition: {x: -3, y: 178, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224000012827489954}
   m_RootOrder: 0
@@ -1018,7 +1019,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010620653822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: 0, z: 0}
+  m_LocalPosition: {x: 6, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4000011863480778}
@@ -1171,6 +1172,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010075825476
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010616374330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10616d4ce51c5994086c006a7c1189e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 4000011556943792}
+  hover: {x: 0, y: 0, z: 0}
+  pressed: {x: 2, y: -3, z: 0}
+  duration: 0.02
 --- !u!114 &114000010099443278
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1262,18 +1278,18 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0.6431373, g: 0.94117653, b: 0.9960785, a: 1}
   mPivot: 4
-  mWidth: 92
-  mHeight: 72
+  mWidth: 58
+  mHeight: 46
   mDepth: 203
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.2777778
+  aspectRatio: 1.2608696
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: 4fd14487917a19b46971f89f965e6383, type: 3}
   mFont: {fileID: 0}
   mText: 55
-  mFontSize: 72
+  mFontSize: 45
   mFontStyle: 0
   mAlignment: 2
   mEncoding: 1
@@ -3345,10 +3361,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 1000010616374330}
-  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
-  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  hover: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 0.6911765, g: 0.6911765, b: 0.6911765, a: 1}
   disabledColor: {r: 1, g: 1, b: 1, a: 1}
-  duration: 0.2
+  duration: 0.02
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -3424,11 +3440,11 @@ MonoBehaviour:
   bottomAnchor:
     target: {fileID: 4000014217287512}
     relative: 0
-    absolute: 0
+    absolute: -1
   topAnchor:
     target: {fileID: 4000014217287512}
     relative: 1
-    absolute: 0
+    absolute: -1
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 5
@@ -3549,18 +3565,18 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 0.9137255, b: 0.19607843, a: 1}
   mPivot: 4
-  mWidth: 92
-  mHeight: 72
+  mWidth: 58
+  mHeight: 46
   mDepth: 203
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.2777778
+  aspectRatio: 1.2608696
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: 4fd14487917a19b46971f89f965e6383, type: 3}
   mFont: {fileID: 0}
   mText: 55
-  mFontSize: 72
+  mFontSize: 45
   mFontStyle: 0
   mAlignment: 2
   mEncoding: 1
@@ -3908,7 +3924,7 @@ MonoBehaviour:
   mEffectDistance: {x: 1, y: 1}
   mOverflow: 2
   mMaterial: {fileID: 0}
-  mApplyGradient: 1
+  mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
   mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
   mSpacingX: 0

@@ -299,10 +299,10 @@ public class CommonPanel : MonoBehaviour {
 	{
 		if (_Blur) {
 			GetMainmenu.gameObject.layer = 5;
-			GetMainmenu.GetComponent<MainMenuPanel> ().SetModelLayer (false);
+			//GetMainmenu.GetComponent<MainMenuPanel> ().SetModelLayer (false);
 		} else {
 			GetMainmenu.gameObject.layer = 17;
-			GetMainmenu.GetComponent<MainMenuPanel> ().SetModelLayer (true);
+			//GetMainmenu.GetComponent<MainMenuPanel> ().SetModelLayer (true);
 		}
 	}
 
