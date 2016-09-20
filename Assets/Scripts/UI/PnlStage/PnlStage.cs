@@ -11,60 +11,59 @@ using UnityEngine;
 
 namespace PnlStage
 {
-	public class PnlStage : UIPhaseBase
-	{
-		private static PnlStage instance = null;
+    public class PnlStage : UIPhaseBase
+    {
+        private static PnlStage instance = null;
 
-		public static PnlStage Instance
-		{
-			get
-			{
-				return instance;
-			}
-		}
+        public static PnlStage Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
 
-		private Coroutine _loadMusicCoroutine;
-		public AudioSource diskAudioSource;
+        private Coroutine _loadMusicCoroutine;
+        public AudioSource diskAudioSource;
 
-		private void Start()
-		{
-			instance = this;
-		}
+        private void Start()
+        {
+            instance = this;
+        }
 
-		public override void OnShow()
-		{
-			StageDisc.StageDisc.LoadAllDiscCover();
-			this.OnSongChanged(PnlScrollCircle.currentSongIdx);
-			SceneAudioManager.Instance.bgm.clip = null;
-			PnlScrollCircle.instance.ResetPos();
-			PnlScrollCircle.instance.JumpToSong(PnlScrollCircle.currentSongIdx);
-		}
+        public override void OnShow()
+        {
+            StageDisc.StageDisc.LoadAllDiscCover();
+            this.OnSongChanged(PnlScrollCircle.currentSongIdx);
+            SceneAudioManager.Instance.bgm.clip = null;
+            PnlScrollCircle.instance.ResetPos();
+            PnlScrollCircle.instance.JumpToSong(PnlScrollCircle.currentSongIdx);
+        }
 
-		public override void OnHide()
-		{
-			//print ("rinima");
-		}
+        public override void OnHide()
+        {
+        }
 
-		public void OnSongChanged(int idx)
-		{
-			Debug.Log("Stage selected " + idx);
-			if (idx <= 0)
-			{
-				Debug.Log("Unlaw stage : " + idx);
-				return;
-			}
+        public void OnSongChanged(int idx)
+        {
+            Debug.Log("Stage selected " + idx);
+            if (idx <= 0)
+            {
+                Debug.Log("Unlaw stage : " + idx);
+                return;
+            }
 
-			int len = ConfigPool.Instance.GetConfigLenght("stage");
-			if (idx >= len)
-			{
-				Debug.Log("Unlaw stage : " + idx);
-				return;
-			}
+            int len = ConfigPool.Instance.GetConfigLenght("stage");
+            if (idx >= len)
+            {
+                Debug.Log("Unlaw stage : " + idx);
+                return;
+            }
 
-			StageBattleComponent.Instance.InitById(idx);
-			StageBattleComponent.Instance.Host.SetAsUINotifyInstance();
-			TaskStageTarget.Instance.Host.SetAsUINotifyInstance();
-			/*
+            StageBattleComponent.Instance.InitById(idx);
+            StageBattleComponent.Instance.Host.SetAsUINotifyInstance();
+            TaskStageTarget.Instance.Host.SetAsUINotifyInstance();
+            /*
 			SceneAudioManager.Instance.bgm.clip = null;
 			PnlScrollCircle.instance.ResetPos();
 			PnlScrollCircle.instance.JumpToSong(idx);
@@ -91,13 +90,13 @@ namespace PnlStage
 
 			string musicPath = ConfigPool.Instance.GetConfigStringValue ("stage", idx.ToString (), "FileName_1");
 			this._loadMusicCoroutine = ResourceLoader.Instance.Load (musicPath, this.__OnLoadMusic, ResourceLoader.RES_FROM_LOCAL);*/
-		}
+        }
 
-		/*private void __OnLoadMusic(UnityEngine.Object musicRes) {
+        /*private void __OnLoadMusic(UnityEngine.Object musicRes) {
 			AudioClip clip = musicRes as AudioClip;
 			this.diskAudioSource.loop = true;
 			this.diskAudioSource.clip = clip;
 			this.diskAudioSource.Play ();
 		}*/
-	}
+    }
 }

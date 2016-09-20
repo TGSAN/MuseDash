@@ -25,10 +25,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11405424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -42,74 +42,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 90a2910fa5718459aa61293fd192373b, type: 2}
   mSprites:
-  - name: charm_progress_1
-    x: 932
-    y: 625
-    width: 32
-    height: 32
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: charm_progress_2
-    x: 968
-    y: 625
-    width: 32
-    height: 32
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: charm_progress_3
-    x: 163
-    y: 191
-    width: 32
-    height: 32
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: charm_progress_4
-    x: 199
-    y: 191
-    width: 32
-    height: 32
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: cube_base
-    x: 0
-    y: 479
-    width: 500
-    height: 141
-    borderLeft: 181
-    borderRight: 302
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
   - name: difficulty_1
-    x: 909
-    y: 666
+    x: 1006
+    y: 954
     width: 10
     height: 10
     borderLeft: 0
@@ -121,8 +56,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: difficulty_2
-    x: 909
-    y: 652
+    x: 1006
+    y: 966
     width: 10
     height: 10
     borderLeft: 2
@@ -134,8 +69,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: difficulty_3
-    x: 909
-    y: 638
+    x: 1006
+    y: 978
     width: 10
     height: 10
     borderLeft: 1
@@ -147,8 +82,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: difficulty_4
-    x: 909
-    y: 624
+    x: 1006
+    y: 990
     width: 10
     height: 10
     borderLeft: 0
@@ -160,8 +95,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: difficulty_5
-    x: 991
-    y: 810
+    x: 1006
+    y: 1002
     width: 10
     height: 10
     borderLeft: 1
@@ -173,8 +108,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: difficulty_6
-    x: 1005
-    y: 810
+    x: 1006
+    y: 1014
     width: 10
     height: 10
     borderLeft: 1
@@ -187,7 +122,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: energy_base
     x: 0
-    y: 134
+    y: 54
     width: 159
     height: 89
     borderLeft: 0
@@ -212,8 +147,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ico_trophy_bright
-    x: 808
-    y: 629
+    x: 864
+    y: 633
     width: 50
     height: 47
     borderLeft: 0
@@ -225,8 +160,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: locked
-    x: 808
-    y: 680
+    x: 804
+    y: 682
     width: 120
     height: 140
     borderLeft: 0
@@ -237,9 +172,35 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: sld_stage_base
+    x: 0
+    y: 28
+    width: 60
+    height: 24
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: sld_stage_progress
+    x: 983
+    y: 742
+    width: 32
+    height: 12
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: speaker
-    x: 862
-    y: 625
+    x: 161
+    y: 92
     width: 43
     height: 51
     borderLeft: 0
@@ -251,8 +212,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: speaker_base
-    x: 504
-    y: 512
+    x: 241
+    y: 514
     width: 280
     height: 108
     borderLeft: 0
@@ -264,7 +225,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: stage_base
-    x: 404
+    x: 402
     y: 624
     width: 400
     height: 400
@@ -277,8 +238,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: stage_bg_white
-    x: 163
-    y: 155
+    x: 983
+    y: 756
     width: 32
     height: 32
     borderLeft: 2
@@ -290,8 +251,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: star
-    x: 932
-    y: 661
+    x: 804
+    y: 624
     width: 58
     height: 56
     borderLeft: 0
@@ -303,8 +264,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: switch_button
-    x: 932
-    y: 721
+    x: 926
+    y: 723
     width: 55
     height: 99
     borderLeft: 0
@@ -316,8 +277,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: text_base
-    x: 199
-    y: 155
+    x: 983
+    y: 790
     width: 32
     height: 32
     borderLeft: 11
@@ -328,9 +289,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: trophy_base
+    x: 926
+    y: 649
+    width: 75
+    height: 72
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: unlock_light
     x: 0
-    y: 227
+    y: 374
     width: 239
     height: 248
     borderLeft: 0
@@ -342,7 +316,7 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 0
   - name: white_circle
-    x: 808
+    x: 804
     y: 824
     width: 200
     height: 200
@@ -355,8 +329,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: white_circle_light
-    x: 243
-    y: 248
+    x: 0
+    y: 145
     width: 227
     height: 227
     borderLeft: 0
