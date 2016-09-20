@@ -31,6 +31,7 @@ public class SceneLoader : MonoBehaviour {
 
 	public UISprite m_sprite;
 	public TweenAlpha twAlpha;
+	public Camera camera;
 
 	void Start () {
 		//	UIEventListener.Get(m_labelContinue).onClick=ClickContinueButton;
@@ -45,6 +46,7 @@ public class SceneLoader : MonoBehaviour {
 		twAlpha.Play ();
 		*/
 		this.LoadSceneAsync ();
+		ScreenFit.CameraFit (this.camera);
 	}
 
 	public static void SetLoadInfo(ref string sceneName){

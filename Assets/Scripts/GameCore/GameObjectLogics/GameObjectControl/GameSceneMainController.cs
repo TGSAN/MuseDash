@@ -15,7 +15,7 @@ public class GameSceneMainController : MonoBehaviour {
 
 	void Start () {
 		//this.InitCommonObject ();
-		this.ScreenFit ();
+		this._ScreenFit ();
 
 		this.secondCounter = 0f;
 		Application.targetFrameRate = 60;
@@ -83,13 +83,13 @@ public class GameSceneMainController : MonoBehaviour {
 		SettingComponent.Instance.Host.SetDynamicData (SignKeys.SMALLlTYPE, fpsShow);
 	}
 
-	private void ScreenFit() {
+	private void _ScreenFit() {
 		this.gameCamera = GameObject.Find ("GameCamera").gameObject;
-		if (this.gameCamera) {
-			Camera cam = this.gameCamera.GetComponent<Camera> ();
-			float _srate = cam.rect.height / cam.rect.width;
-			float _wrate = Screen.height / (float)Screen.width;
-			cam.fieldOfView *= 1 + (_wrate - _srate);
+		if (this.gameCamera == null) {
+			return;
 		}
+
+		Camera cam = this.gameCamera.GetComponent<Camera> ();
+		ScreenFit.CameraFit (cam);
 	}
 }

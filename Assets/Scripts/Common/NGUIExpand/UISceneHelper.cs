@@ -19,6 +19,7 @@ public class UISceneHelper : MonoBehaviour {
 		}
 	}
 
+	private Camera sceneUiCamera;
 	private Dictionary<string, UIRootHelper> dymWidgets;
 
 	[SerializeField]
@@ -32,6 +33,7 @@ public class UISceneHelper : MonoBehaviour {
 	void Start() {
 		//this.InitByPath ();
 		instance = this;
+		this.InitCamera ();
 		this.InitByWidget ();
 	}
 
@@ -42,7 +44,7 @@ public class UISceneHelper : MonoBehaviour {
 
 		UIRootHelper[] urhs = Transform.FindObjectsOfType<UIRootHelper> ();
 		foreach (UIRootHelper urh in urhs) {
-			this.dymWidgets [urh.name] = urh;
+			this.RegDymWidget (urh.name, urh);
 		}
 	}
 
@@ -152,6 +154,21 @@ public class UISceneHelper : MonoBehaviour {
 		}
 
 		this.dymWidgets [uiName] = urh;
+	}
+
+	private void InitCamera() {
+		if (this.transform.childCount <= 0) {
+			return;
+		}
+
+		Transform camTransform = this.transform.GetChild (0);
+		if (camTransform == null) {
+			return;
+		}
+
+		this.sceneUiCamera = camTransform.gameObject.GetComponent<Camera> ();
+		// Auto UIRoot for auto screen alignment 自动设置UIRoot作为屏幕对齐
+		ScreenFit.CameraFit (this.sceneUiCamera);
 	}
 
 	private void InitByWidget() {
