@@ -228,8 +228,8 @@ namespace FormulaBase {
 		/// </summary>
 		/// <returns>The fight girl index.</returns>
 		public int GetFightGirlIndex() {
-			return 3;
-			/*
+			//return 3;
+			/**/
 			for (int i = 0; i < roles.Count; i++) {
 				FormulaHost _role = this.roles [i];
 				if (_role == null) {
@@ -245,7 +245,6 @@ namespace FormulaBase {
 
 			Debugger.LogWarning ("get error fight girl");
 			return -1;
-			*/
 		}
 
 		/// <summary>

@@ -11,12 +11,10 @@ using System.IO;
 /// </summary>
 public class BgmRefreshEdit : EditorWindow {
 	private const string PATH = "路径";
-	private const string SCAL = "大小";
-	private const string TYEP_KW = "SkeletonData";
+	private const string DES1 = "是否后台加载";
 
+	private bool isLoadInBackground = true;
 	private string path = "stage/";
-	private string scale = "0.5";
-	private float fscale = 0.5f;
 
 
 	[MenuItem("RHY/stage bgm 统一刷新")]
@@ -29,7 +27,8 @@ public class BgmRefreshEdit : EditorWindow {
 		EditorGUILayout.BeginVertical ();
 
 		this.path = EditorGUILayout.TextField (PATH, this.path);
-		this.scale = EditorGUILayout.TextField (SCAL, this.scale);
+		this.isLoadInBackground = EditorGUILayout.Toggle (DES1, this.isLoadInBackground);
+
 		if (GUILayout.Button ("Reflesh")) {
 			this.RefleshAsset ();
 		}
@@ -38,9 +37,18 @@ public class BgmRefreshEdit : EditorWindow {
 	}
 
 	private void __RefleshAsset(string path) {
-		AudioImporter sda = Resources.Load<AudioImporter> (path);
-		sda.loadInBackground = true;
+		AudioImporter sda = AudioImporter.GetAtPath (path) as AudioImporter;
+		if (sda == null) {
+			Debug.Log ("Null ogg path : " + path);
+			return;
+		}
 
+		if (sda.loadInBackground == this.isLoadInBackground) {
+			return;
+		}
+
+		sda.loadInBackground = this.isLoadInBackground;
+		sda.SaveAndReimport ();
 
 		EditorUtility.SetDirty(sda);
 
@@ -55,8 +63,7 @@ public class BgmRefreshEdit : EditorWindow {
 			return;
 		}
 
-		this.fscale = float.Parse (this.scale);
-		Debug.Log ("Reflesh all Spine SkeletonData.atlas with scale " + this.fscale + " in " + path);
+		Debug.Log ("Reflesh all ogg in " + path);
 
 		int startIndex = 0;
 		string guid = AssetDatabase.AssetPathToGUID (path);
@@ -72,19 +79,18 @@ public class BgmRefreshEdit : EditorWindow {
 				string[] _pn = file.Split ('/');
 				string _fname = _pn [_pn.Length - 1];
 				string _fShortName = _fname.Split ('.') [0];
-				if (_fShortName.Contains(TYEP_KW)) {
-					string _shortPath = file.Replace (path, "");
-					_shortPath = _shortPath.Replace ("/Resources/", "");
-					_shortPath = _shortPath.Replace (_fname, "");
-					/*
-					SkeletonDataAsset sda;
-					sda.GetAnimationStateData().DefaultMix = 0f;
-					sda.scale = _scale;
-					*/
-					string _resPath = this.path + _shortPath + _fShortName;
-					this.__RefleshAsset(_resPath);
-					Debug.Log (file, AssetDatabase.LoadAssetAtPath<Object> (GetRelativeAssetsPath (file)));
-				}
+
+				string _shortPath = file.Replace (path, "");
+				_shortPath = _shortPath.Replace ("/Resources/", "");
+				_shortPath = _shortPath.Replace (_fname, "");
+				/*
+				SkeletonDataAsset sda;
+				sda.GetAnimationStateData().DefaultMix = 0f;
+				sda.scale = _scale;
+				*/
+				string _resPath = "Assets/Resources/" + this.path + _shortPath + _fShortName + ".ogg";
+				this.__RefleshAsset(_resPath);
+				Debug.Log (file, AssetDatabase.LoadAssetAtPath<Object> (GetRelativeAssetsPath (file)));
 			}
 
 			startIndex++;
@@ -92,7 +98,7 @@ public class BgmRefreshEdit : EditorWindow {
 				EditorUtility.ClearProgressBar ();
 				EditorApplication.update = null;
 				startIndex = 0;
-				Debug.Log ("Spine asset搜索完毕");
+				Debug.Log (".ogg搜索完毕");
 			}
 		};
 	}

@@ -235,7 +235,7 @@ namespace FormulaBase {
 
 			// StageBattleComponent.Instance.Dead ();
 			CharPanel.Instance.HideCombo ();
-			UISceneHelper.Instance.ShowUi ("result_fail");
+			UISceneHelper.Instance.ShowUi ("PnlFail");
 			//ResurgencePanelScript.Instance.Show ();
 		}
 

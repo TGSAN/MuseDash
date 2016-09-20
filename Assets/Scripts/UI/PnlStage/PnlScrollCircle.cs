@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using FormulaBase;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,7 +46,12 @@ namespace Assets.Scripts.NGUI
         public Vector2 minMaxSlide;
         public int numFrom;
         public float animDuration;
+
+        [Header("文字信息")]
         public float txtOffsetX;
+
+        public Vector2 maxMinAlpha;
+        public float eneryAnimDurationEnter, eneryAnimDurationLeave;
 
         [Header("缩放")]
         public float distanceToChangeScale;
@@ -69,9 +75,11 @@ namespace Assets.Scripts.NGUI
 
         public GameObject cell;
         public GameObject leftButton, rightButton;
-        public UILabel txtNameNext, txtAuthorNext, txtEnergyNext;
+        public UILabel txtNameNext, txtAuthorNext;
         public UILabel txtNameLast, txtAuthorLast, txtEnergyLast;
         public UISprite sprBkgNext, sprBkgLast;
+        public UISprite sprEnergy;
+        public GameObject energy, difficulty;
 
         [Header("音频")]
         public int resolution = 1024;
@@ -85,6 +93,7 @@ namespace Assets.Scripts.NGUI
 
         private Tweener m_SlideTweener;
         private Tweener m_NextTweener;
+        private Tweener m_EnergyTweener1, m_EnergyTweener2;
         private Sequence m_SlideSeq;
         private Sequence m_DlySeq;
         private float m_ZAngle = 0.0f;
@@ -92,11 +101,20 @@ namespace Assets.Scripts.NGUI
         private bool m_IsSliding = false;
         private ResourceRequest m_Request;
         private Coroutine m_Coroutine;
+        private AudioClip m_CatchClip;
 
         private readonly Dictionary<int, GameObject> m_CellGroup = new Dictionary<int, GameObject>();
         private readonly List<StageInfo> m_StageInfos = new List<StageInfo>();
 
         public float offsetX { get; private set; }
+
+        public AudioClip CatchClip
+        {
+            get
+            {
+                return this.m_CatchClip;
+            }
+        }
 
         public static int currentSongIdx
         {
@@ -114,6 +132,7 @@ namespace Assets.Scripts.NGUI
         private void Update()
         {
             OnScrolling();
+            OnSongInfoChange();
         }
 
         #region 初始化
@@ -126,13 +145,12 @@ namespace Assets.Scripts.NGUI
                 var musicPath = item.musicPath;
             }
             this.onSongChange += PlayMusic;
-            this.onSongChange += OnSongInfoChange;
         }
 
         private void InitInfo()
         {
             var jData = ConfigPool.Instance.GetConfigByName("stage");
-            for (int i = 0; i < jData.Count; i++)
+            for (int i = 1; i < jData.Count; i++)
             {
                 var iconPath = jData[i]["icon"].ToString();
                 var musicPath = jData[i]["FileName_1"].ToString();
@@ -279,6 +297,38 @@ namespace Assets.Scripts.NGUI
         {
             m_IsSliding = false;
             onSongChange(m_CurrentIdx + 1);
+            OnEnergyInfoChange(true);
+        }
+
+        public void OnEnergyInfoChange(bool change)
+        {
+            if (m_EnergyTweener1 != null)
+            {
+                m_EnergyTweener1.Kill();
+            }
+            if (m_EnergyTweener2 != null)
+            {
+                m_EnergyTweener2.Kill();
+            }
+            if (change)
+            {
+                m_EnergyTweener1 = DOTween.To(() => sprEnergy.fillAmount, x => sprEnergy.fillAmount = x, 1.0f, eneryAnimDurationEnter);
+                m_EnergyTweener2 = energy.transform.DOScale(1.0f, eneryAnimDurationEnter);
+                var cost = StageBattleComponent.Instance.Host.Result(FormulaKeys.FORMULA_330);
+                txtEnergyLast.text = cost.ToString();
+                var diff = StageBattleComponent.Instance.Host.GetDynamicIntByKey(SignKeys.DIFFCULT);
+                print(cost);
+                for (int i = 0; i < difficulty.transform.childCount; i++)
+                {
+                    var child = difficulty.transform.GetChild(i);
+                    child.gameObject.SetActive(i < diff);
+                }
+            }
+            else
+            {
+                m_EnergyTweener1 = DOTween.To(() => sprEnergy.fillAmount, x => sprEnergy.fillAmount = x, 0.0f, eneryAnimDurationLeave);
+                m_EnergyTweener2 = energy.transform.DOScale(0.0f, eneryAnimDurationLeave);
+            }
         }
 
         private void OnMusicPlayAction(GameObject go)
@@ -320,6 +370,7 @@ namespace Assets.Scripts.NGUI
             {
                 m_ZAngle += Vector3.Angle(up, pivot.up) * isPositive;
                 up = pivot.up;
+                m_IsSliding = true;
             }).OnComplete(() =>
             {
                 m_ZAngle = Mathf.RoundToInt(m_ZAngle / angle) * angle;
@@ -328,14 +379,35 @@ namespace Assets.Scripts.NGUI
             }).SetEase(Ease.OutSine);
         }
 
-        private void OnSongInfoChange(int idx)
+        private void OnSongInfoChange()
         {
+            if (m_CurrentIdx < m_StageInfos.Count)
+            {
+                var offsetForInfo = new Vector3(offsetX < 0 ? txtOffsetX : -txtOffsetX, 0, 0);
+                txtNameLast.text = m_StageInfos[m_CurrentIdx].idx + " " + m_StageInfos[m_CurrentIdx].musicName;
+                txtAuthorLast.text = "Music by " + m_StageInfos[m_CurrentIdx].musicAuthor;
+                var lerpNumLast = 1 - scale * (Mathf.Abs(pivot.transform.position.x - m_CellGroup[m_CurrentIdx].transform.position.x)) / (Mathf.Sin(angle * Mathf.Deg2Rad) * radius);
+                txtNameLast.alpha = lerpNumLast;
+                txtAuthorLast.alpha = lerpNumLast;
+                sprBkgLast.alpha = Mathf.Lerp(maxMinAlpha.x, maxMinAlpha.y, lerpNumLast); ;
+                txtNameLast.transform.parent.localPosition = Vector3.Lerp(offsetForInfo, Vector3.zero, lerpNumLast);
+
+                var nextIdx = offsetX > 0 ? m_CurrentIdx - 1 < 0 ? m_StageInfos.Count - 1 : m_CurrentIdx - 1 : m_CurrentIdx + 1 > m_StageInfos.Count - 1 ? 0 : m_CurrentIdx + 1;
+                txtNameNext.text = m_StageInfos[nextIdx].idx + " " + m_StageInfos[nextIdx].musicName;
+                txtAuthorNext.text = "Music by " + m_StageInfos[nextIdx].musicAuthor;
+                var lerpNumNext = 1 - lerpNumLast;
+                txtNameNext.alpha = lerpNumNext;
+                txtAuthorNext.alpha = lerpNumNext;
+                sprBkgNext.alpha = Mathf.Lerp(maxMinAlpha.x, maxMinAlpha.y, lerpNumNext);
+                txtNameNext.transform.parent.localPosition = Vector3.Lerp(new Vector3(-offsetForInfo.x, 0.0f, 0.0f), Vector3.zero, lerpNumNext);
+            }
         }
 
         private void OnScrolling()
         {
             if (m_IsSliding)
             {
+                OnEnergyInfoChange(false);
                 SceneAudioManager.Instance.bgm.Stop();
             }
             var midIdx = Mathf.RoundToInt(-m_ZAngle / angle + 2);
@@ -422,27 +494,6 @@ namespace Assets.Scripts.NGUI
                     }
                 }
             }
-            if (m_CurrentIdx < m_StageInfos.Count)
-            {
-                var offsetForInfo = new Vector3(offsetX < 0 ? txtOffsetX : -txtOffsetX, 0, 0);
-                txtNameLast.text = m_StageInfos[m_CurrentIdx].idx + " " + m_StageInfos[m_CurrentIdx].musicName;
-                txtAuthorLast.text = "Music by " + m_StageInfos[m_CurrentIdx].musicAuthor;
-                txtEnergyLast.text = m_StageInfos[m_CurrentIdx].musicEnergy.ToString();
-                var lerpNumLast = 1 - scale * (Mathf.Abs(pivot.transform.position.x - m_CellGroup[m_CurrentIdx].transform.position.x)) / 100;
-                txtNameLast.alpha = lerpNumLast;
-                txtAuthorLast.alpha = lerpNumLast;
-                sprBkgLast.alpha = lerpNumLast;
-                txtNameLast.transform.parent.localPosition = Vector3.Lerp(offsetForInfo, Vector3.zero, lerpNumLast);
-
-                var nextIdx = offsetX > 0 ? m_CurrentIdx - 1 < 0 ? m_StageInfos.Count - 1 : m_CurrentIdx - 1 : m_CurrentIdx + 1 > m_StageInfos.Count - 1 ? 0 : m_CurrentIdx + 1;
-                txtNameNext.text = m_StageInfos[nextIdx].idx + " " + m_StageInfos[nextIdx].musicName;
-                txtAuthorNext.text = "Music by " + m_StageInfos[nextIdx].musicAuthor;
-                var lerpNumNext = 1 - lerpNumLast;
-                txtNameNext.alpha = lerpNumNext;
-                txtAuthorNext.alpha = lerpNumNext;
-                sprBkgNext.alpha = lerpNumNext;
-                txtNameNext.transform.parent.localPosition = Vector3.Lerp(new Vector3(-offsetForInfo.x, 0.0f, 0.0f), Vector3.zero, lerpNumNext);
-            }
         }
 
         #endregion 事件
@@ -465,7 +516,14 @@ namespace Assets.Scripts.NGUI
             var data = new float[length];
             var name = clip.name;
             clip.GetData(data, 0);
-            Resources.UnloadAsset(clip);
+            //Resources.UnloadAsset(clip);
+            if (this.m_CatchClip != null)
+            {
+                Resources.UnloadAsset(this.m_CatchClip);
+            }
+
+            this.m_CatchClip = clip;
+
             var newClip = AudioClip.Create(name, data.Length, 2, 44100, false);
             newClip.SetData(data, 0);
             while (!newClip.isReadyToPlay)
@@ -480,6 +538,7 @@ namespace Assets.Scripts.NGUI
             audioSource.clip = newClip;
             audioSource.Play();
             audioSource.loop = true;
+            PnlStage.PnlStage.Instance.OnSongChanged(currentSongIdx);
         }
 
         #endregion 资源加载

@@ -23,8 +23,6 @@ namespace PnlStage
             }
         }
 
-        private static int _currentSelectedStageIdx = 1;
-
         private Coroutine _loadMusicCoroutine;
         public AudioSource diskAudioSource;
 
@@ -36,14 +34,17 @@ namespace PnlStage
         public override void OnShow()
         {
             StageDisc.StageDisc.LoadAllDiscCover();
-            this.InitSong(PnlScrollCircle.currentSongIdx);
+            this.OnSongChanged(PnlScrollCircle.currentSongIdx);
+            SceneAudioManager.Instance.bgm.clip = null;
+            PnlScrollCircle.instance.ResetPos();
+            PnlScrollCircle.instance.JumpToSong(PnlScrollCircle.currentSongIdx);
         }
 
         public override void OnHide()
         {
         }
 
-        public void InitSong(int idx)
+        public void OnSongChanged(int idx)
         {
             Debug.Log("Stage selected " + idx);
             if (idx <= 0)
@@ -59,14 +60,14 @@ namespace PnlStage
                 return;
             }
 
-            _currentSelectedStageIdx = PnlScrollCircle.currentSongIdx;
             StageBattleComponent.Instance.InitById(idx);
             StageBattleComponent.Instance.Host.SetAsUINotifyInstance();
             TaskStageTarget.Instance.Host.SetAsUINotifyInstance();
-            SceneAudioManager.Instance.bgm.clip = null;
-            PnlScrollCircle.instance.ResetPos();
-            PnlScrollCircle.instance.JumpToSong(idx);
-            /*if (this.diskAudioSource == null) {
+            /*
+			SceneAudioManager.Instance.bgm.clip = null;
+			PnlScrollCircle.instance.ResetPos();
+			PnlScrollCircle.instance.JumpToSong(idx);
+			if (this.diskAudioSource == null) {
 				this.diskAudioSource = SceneAudioManager.Instance.bgm;
 			}
 
@@ -85,7 +86,7 @@ namespace PnlStage
 				this._loadMusicCoroutine = null;
 			}
 
-			//StageDisc.StageDisc.InitSong (idx);
+			//StageDisc.StageDisc.OnSongChanged (idx);
 
 			string musicPath = ConfigPool.Instance.GetConfigStringValue ("stage", idx.ToString (), "FileName_1");
 			this._loadMusicCoroutine = ResourceLoader.Instance.Load (musicPath, this.__OnLoadMusic, ResourceLoader.RES_FROM_LOCAL);*/

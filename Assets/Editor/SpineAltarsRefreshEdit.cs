@@ -14,9 +14,9 @@ public class SpineAltarsRefreshEdit : EditorWindow {
 	private const string SCAL = "大小";
 	private const string TYEP_KW = "SkeletonData";
 
-	private string path = "note/";
-	private string scale = "0.5";
-	private float fscale = 0.5f;
+	private string path = "";
+	private string scale = "0.005";
+	private float fscale = 0.005f;
 
 
 	[MenuItem("RHY/spine的.asset统一刷新")]
