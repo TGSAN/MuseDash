@@ -120,6 +120,10 @@ public class CharPanel : MonoBehaviour {
 	}
 
 	private GameObject GetUsefulNumberShow() {
+		if (this.ComboNumberShowPreloads == null) {
+			return null;
+		}
+
 		for (int i = 0; i < this.ComboNumberShowPreloads.Count; i++) {
 			GameObject _obj = this.ComboNumberShowPreloads [i];
 			if (_obj == null) {

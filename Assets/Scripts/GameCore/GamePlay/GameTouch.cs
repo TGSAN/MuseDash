@@ -16,7 +16,7 @@ namespace GameLogic {
 		private readonly int WIDTH_MID = Screen.width / 2;
 
 		private const decimal PRESS_HARD_TIME = 0.15m;
-		private const decimal JUMP_HARD_TIME = 0.2m;
+		private const decimal JUMP_HARD_TIME = 1m;
 
 		// touch play about(cd)
 		private decimal pressHardTime = -1m;
@@ -81,7 +81,7 @@ namespace GameLogic {
 			this.pressState = state;
 			if (this.IsPunch ()) {
 				this.pressHardTime = PRESS_HARD_TIME;
-				GirlManager.Instance.SetJumpingAction (false);
+				//GirlManager.Instance.SetJumpingAction (false);
 				return;
 			}
 
@@ -122,6 +122,14 @@ namespace GameLogic {
 
 		public bool IsPressing() {
 			return Input.anyKey;
+		}
+
+		public void SetPressHardTime(decimal t) {
+			this.pressHardTime = t;
+		}
+
+		public void SetJumpHardTime(decimal t) {
+			this.jumpHardTime = t;
 		}
 
 		public void TimeStep() {
@@ -293,6 +301,14 @@ namespace GameLogic {
 					resultCode = GameMusic.JUMPOVER;
 				}
 
+				// Jump beat check
+				MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx (_idx);
+				if (md.nodeData.type == GameGlobal.NODE_TYPE_AIR_BEAT) {
+					if (!GirlManager.Instance.IsJumpingAction ()) {
+						resultCode = GameMusic.NONE;
+					}
+				}
+
 				//4, Touch succeed, do touch result.
 				this.TouchResult (_idx, resultCode, actionType);	//(mark)  show result by id
 
@@ -306,7 +322,7 @@ namespace GameLogic {
 
 		public void TouchResult(int idx, uint resultCode, uint actionType) {
 			this.pressHardTime = -1m;
-			this.jumpHardTime = -1m;
+			//this.jumpHardTime = -1m;
 
 			if (resultCode > GameMusic.MISS && resultCode < GameMusic.JUMPOVER) {
 				BattleEnemyManager.Instance.SetPlayResult (idx, resultCode);
@@ -325,6 +341,13 @@ namespace GameLogic {
 			MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx (idx);
 			if (md.nodeData.addCombo) {
 				this.PlayComboPhaser (resultCode, md.nodeData.isShowPlayEffect);
+			}
+
+			// Jump beat pause
+			if (md.nodeData.type == GameGlobal.NODE_TYPE_AIR_BEAT) {
+				if (GirlManager.Instance.IsJumpingAction ()) {
+					GirlManager.Instance.JumpBeatPause ();
+				}
 			}
 		}
 

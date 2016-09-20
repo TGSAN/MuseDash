@@ -266,6 +266,10 @@ namespace FormulaBase {
 		/// UnlockTrophy
 		///
 		public const string UnlockTrophy = "UnlockTrophy";
+		///
+		/// CLOTH
+		///
+		public const string CLOTH = "CLOTH";
 
 	}
 }

@@ -88,13 +88,65 @@ public class ConfigPool {
 		return int.Parse (jData.ToString ());
 	}
 
-	public string GetConfigStringValue(string filename, string id, string key, int defaultValue = 0) {
+	public int GetConfigIntValue(string filename, string compkey, string valuekey, object compvalue, int defaultValue = 0) {
+		JsonData jData = this.GetConfigValue (filename, compkey, valuekey, compvalue);
+		if (jData == null) {
+			return defaultValue;
+		}
+
+		return int.Parse (jData.ToString ());
+	}
+
+	public string GetConfigStringValue(string filename, string id, string key) {
 		JsonData jData = this.GetConfigValue (filename, id, key);
 		if (jData == null) {
 			return null;
 		}
 		
 		return jData.ToString ();
+	}
+
+	public string GetConfigStringValue(string filename, string compkey, string valuekey, object compvalue) {
+		JsonData jData = this.GetConfigValue (filename, compkey, valuekey, compvalue);
+		if (jData == null) {
+			return null;
+		}
+
+		return jData.ToString ();
+	}
+
+	public JsonData GetConfigValue(string filename, string compkey, string valuekey, object compvalue) {
+		JsonData jd = this.GetConfigByName (filename);
+		if (jd == null) {
+			return null;
+		}
+
+		foreach (string jid in jd.Keys) {
+			JsonData _jd = this.GetConfigValue (filename, jid, compkey);
+			if (_jd == null) {
+				continue;
+			}
+
+			if (_jd.IsInt) {
+				if (int.Parse (_jd.ToString ()) == (int)compvalue) {
+					return this.GetConfigValue (filename, jid, valuekey);
+				}
+			}
+
+			if (_jd.IsString) {
+				if (_jd.ToString () == compvalue.ToString ()) {
+					return this.GetConfigValue (filename, jid, valuekey);
+				}
+			}
+
+			if (_jd.IsDouble) {
+				if (float.Parse (_jd.ToString ()) == (float)compvalue) {
+					return this.GetConfigValue (filename, jid, valuekey);
+				}
+			}
+		}
+
+		return null;
 	}
 
 	public JsonData GetConfigValue(string filename, string id, string key) {

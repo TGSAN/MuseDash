@@ -5,8 +5,9 @@ using FormulaBase;
 using DYUnityLib;
 
 public class GirlManager : MonoBehaviour {
-	private static string GILR_PATH = "char/";
-	private static string ARM_PATH = "servant/";
+	private const string GILR_PATH = "char/";
+	private const string ARM_PATH = "servant/";
+	private const decimal COMEOUT_HARD_TIME = 2m;
 	private static GirlManager instacne = null;
 	private GameObject[] girls;
 	private GameObject[] arms;
@@ -119,7 +120,14 @@ public class GirlManager : MonoBehaviour {
 		}
 
 		Debug.Log ("Battle with hero : " + heroIndex);
-		this.girlnames [0] = ConfigPool.Instance.GetConfigStringValue ("character", heroIndex.ToString (), "character");
+		int clothIdx = ConfigPool.Instance.GetConfigIntValue ("character", heroIndex.ToString (), "character");
+		string clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", "uid", "path", clothIdx);
+#if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
+		if (GameGlobal.DEBUG_CLOTH_UID > 0) {
+			clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", "uid", "path", GameGlobal.DEBUG_CLOTH_UID);
+		}
+#endif
+		this.girlnames [0] = clothPath;
 		string[] _armnames = BattlePetComponent.Instance.GetPetPerfabNames ();
 		if (_armnames != null) {
 			this.armnames = _armnames;
@@ -197,10 +205,10 @@ public class GirlManager : MonoBehaviour {
 	}
 
 	public void ComeOut() {
+		GameGlobal.gGameTouchPlay.SetPressHardTime (COMEOUT_HARD_TIME);
+		GameGlobal.gGameTouchPlay.SetJumpHardTime (COMEOUT_HARD_TIME);
 		this.StartCoroutine (this.AfterComeOut ());
 	}
-
-
 
 	private IEnumerator AfterComeOut () {
 		yield return new WaitForSeconds (0.1f);
@@ -303,7 +311,7 @@ public class GirlManager : MonoBehaviour {
 			}
 
 			// Then state set.
-			this.SetJumpingAction (false);
+			//this.SetJumpingAction (false);
 		}
 
 		CharPanel.Instance.BeAttack ();
@@ -318,17 +326,37 @@ public class GirlManager : MonoBehaviour {
 
 	public void SetJumpingAction(bool value) {
 		this.isJumpingAction = value;
+		if (this.isJumpingAction == false) {
+			GameGlobal.gGameTouchPlay.SetJumpHardTime (-1m);
+		}
 	}
 
 	public bool IsJumpingAction() {
 		return this.isJumpingAction;
 	}
 
+	public void JumpBeatPause() {
+		foreach (var girl in this.girls) {
+			if (girl == null) {
+				continue;
+			}
+
+			CharactorJumpAssert cja = girl.GetComponent<CharactorJumpAssert> ();
+			if (cja == null) {
+				continue;
+			}
+
+			cja.DoDelay ();
+		}
+	}
+
 	public void PlayGirlDeadAnimation() {
 		foreach (var girl in this.girls) {
-			if (girl != null) {
-				SpineActionController.Play (ACTION_KEYS.CHAR_DEAD, girl);
+			if (girl == null) {
+				continue;
 			}
+
+			SpineActionController.Play (ACTION_KEYS.CHAR_DEAD, girl);
 		}
 	}
 

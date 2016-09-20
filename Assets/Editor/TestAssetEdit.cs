@@ -24,6 +24,7 @@ public class TestAssetEdit : EditorWindow {
 	private const string DES_4 = "角色血量百分比";
 	private const string DES_5 = "游戏速度";
 	private const string DES_6 = "角色";
+	private const string DES_7 = "角色测试服装UID";
 
 	private float debugTimeScale = 1f;
 	private float debugHpRate = 1f;
@@ -61,6 +62,7 @@ public class TestAssetEdit : EditorWindow {
 		EditorGUILayout.EndHorizontal ();
 
 		AdminData.Instance.DefaultRoleIdx = int.Parse (EditorGUILayout.TextField (DES_6, AdminData.Instance.DefaultRoleIdx.ToString ()));
+		AdminData.Instance.DefaultClothUid = int.Parse (EditorGUILayout.TextField (DES_7, AdminData.Instance.DefaultClothUid.ToString ()));
 		EditorGUILayout.BeginHorizontal ();
 		AdminData.Instance.DefaultStage = int.Parse (EditorGUILayout.TextField (DES_1, AdminData.Instance.DefaultStage.ToString ()));
 		if (GUILayout.Button (SAVE_BUTTON)) {
@@ -179,7 +181,7 @@ public class TestAssetEdit : EditorWindow {
 	private void CharacterConfigCheck() {
 		JsonData jd = ConfigPool.Instance.GetConfigByName ("character");
 		if (jd == null) {
-			Debug.Log ("没有stage配置表");
+			Debug.Log ("没有character配置表");
 			return;
 		}
 
@@ -187,7 +189,7 @@ public class TestAssetEdit : EditorWindow {
 			string _name = ConfigPool.Instance.GetConfigStringValue ("character", iid, "name");
 			string _imgVictory = ConfigPool.Instance.GetConfigStringValue ("character", iid, "image_victory");
 			string _imgFail = ConfigPool.Instance.GetConfigStringValue ("character", iid, "image_fail");
-			string _characterPrefab = ConfigPool.Instance.GetConfigStringValue ("character", iid, "character");
+			//string _characterPrefab = ConfigPool.Instance.GetConfigStringValue ("character", iid, "character");
 			string _fxgreat = ConfigPool.Instance.GetConfigStringValue ("character", iid, "fx_atk_great");
 			string _fxperfect = ConfigPool.Instance.GetConfigStringValue ("character", iid, "fx_atk_perfect");
 			string _fxcrit = ConfigPool.Instance.GetConfigStringValue ("character", iid, "fx_atk_crit");
@@ -213,7 +215,7 @@ public class TestAssetEdit : EditorWindow {
 					Debug.Log ("character配置表" + iid + "没有 image_fail 资源 : " + _imgFail);
 				}
 			}
-
+			/*
 			if (_characterPrefab == null) {
 				Debug.Log ("character" + iid + "没有 character 配置");
 			} else {
@@ -221,7 +223,7 @@ public class TestAssetEdit : EditorWindow {
 					Debug.Log ("character配置表" + iid + "没有 character 资源 : " + _characterPrefab);
 				}
 			}
-
+*/
 			if (_fxgreat == null) {
 				Debug.Log ("character" + iid + "没有 fx_atk_great 配置");
 			} else {
@@ -251,6 +253,23 @@ public class TestAssetEdit : EditorWindow {
 			} else {
 				if (Resources.Load (_fever) == null) {
 					Debug.Log ("character配置表" + iid + "没有 fever 资源 : " + _fever);
+				}
+			}
+		}
+
+		JsonData clothjd = ConfigPool.Instance.GetConfigByName ("clothing");
+		if (clothjd == null) {
+			Debug.Log ("没有clothing配置表");
+			return;
+		}
+
+		foreach (string iid in clothjd.Keys) {
+			string _path = ConfigPool.Instance.GetConfigStringValue ("clothing", iid.ToString (), "path");
+			if (_path == null) {
+				Debug.Log ("clothing" + iid + "没有 path 配置");
+			} else {
+				if (Resources.Load (_path) == null) {
+					Debug.Log ("clothing配置表" + iid + "没有 path 资源 : " + _path);
 				}
 			}
 		}
