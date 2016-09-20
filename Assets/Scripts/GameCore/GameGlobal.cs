@@ -20,6 +20,16 @@ namespace GameLogic {
 			}
 		}
 
+		public static int DEBUG_CLOTH_UID {
+			get {
+				if (AdminData.Instance == null) {
+					return 0;
+				}
+
+				return (int)AdminData.Instance.DefaultClothUid;
+			}
+		}
+
 		public const int LIMITE_INT = 999999;
 		public const float TIME_SCALE = 1f;
 		public const decimal DEFAULT_MUSIC_LEN = 240m;

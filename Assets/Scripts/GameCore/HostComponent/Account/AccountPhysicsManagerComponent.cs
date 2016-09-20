@@ -112,8 +112,8 @@ namespace FormulaBase {
 			}
 
 			this.SetPhysicText ();
-			Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
-			Messenger.Broadcast (MainMenuPanel.Broadcast_MainMenuChangePhysical);
+			//Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
+			//Messenger.Broadcast (MainMenuPanel.Broadcast_MainMenuChangePhysical);
 		}
 	}
 }

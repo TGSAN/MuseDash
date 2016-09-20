@@ -5,6 +5,7 @@ namespace FormulaBase {
 	public class ConfigKeys {
 		public static Dictionary<string, string> NamePaths = new Dictionary<string, string> {
 			{ "character", "char/_config/"},
+			{ "clothing", "char/_config/"},
 			{ "cube", "config/"},
 			{ "cube_combination", "config/"},
 			{ "experience", "config/"},

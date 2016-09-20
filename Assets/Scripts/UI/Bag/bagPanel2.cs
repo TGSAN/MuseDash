@@ -761,7 +761,7 @@ public class bagPanel2 : UIPanelBase {
 		ItemManageComponent.Instance.GetChosedItem.Clear ();
 		this.ClearChoseItem ();
 		this.SortItem ();
-		Messenger.Broadcast (MainMenuPanel.BroadcastChangeMoney);
+		//Messenger.Broadcast (MainMenuPanel.BroadcastChangeMoney);
 		Messenger.Broadcast (bagItemCell.BroadCast_HideMask);
 		Messenger.Broadcast<bool> (bagItemCell.BraodCast_BagSaleItemPluralNumber, true);
 		this.ShowBagSize ();	

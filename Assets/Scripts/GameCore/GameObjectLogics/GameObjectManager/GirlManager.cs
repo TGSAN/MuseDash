@@ -120,7 +120,14 @@ public class GirlManager : MonoBehaviour {
 		}
 
 		Debug.Log ("Battle with hero : " + heroIndex);
-		this.girlnames [0] = ConfigPool.Instance.GetConfigStringValue ("character", heroIndex.ToString (), "character");
+		int clothIdx = ConfigPool.Instance.GetConfigIntValue ("character", heroIndex.ToString (), "character");
+		string clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", "uid", "path", clothIdx);
+#if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
+		if (GameGlobal.DEBUG_CLOTH_UID > 0) {
+			clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", "uid", "path", GameGlobal.DEBUG_CLOTH_UID);
+		}
+#endif
+		this.girlnames [0] = clothPath;
 		string[] _armnames = BattlePetComponent.Instance.GetPetPerfabNames ();
 		if (_armnames != null) {
 			this.armnames = _armnames;

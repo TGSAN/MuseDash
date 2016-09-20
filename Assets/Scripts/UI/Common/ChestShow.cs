@@ -31,8 +31,8 @@ public class ChestShow : MonoBehaviour {
 		Debug.LogWarning(this.gameObject.name);
 		m_ShowChestAnimator.Play("Ge_UI_small_start");
 
-		Messenger.MarkAsPermanent(ChestGridCell.BroadcastCutDownTime);
-		Messenger.AddListener(ChestGridCell.BroadcastCutDownTime,SetChestRemindTime);
+		//Messenger.MarkAsPermanent(ChestGridCell.BroadcastCutDownTime);
+		//Messenger.AddListener(ChestGridCell.BroadcastCutDownTime,SetChestRemindTime);
 	//	StartCoroutine("PlayInAniMation");
 		//BUG ....会掉帧
 	}
@@ -58,7 +58,7 @@ public class ChestShow : MonoBehaviour {
 
 	void OnDisable()
 	{
-		Messenger.RemoveListener (ChestGridCell.BroadcastCutDownTime, SetChestRemindTime);
+		//Messenger.RemoveListener (ChestGridCell.BroadcastCutDownTime, SetChestRemindTime);
 	}
 
 	// Use this for initialization
@@ -83,7 +83,7 @@ public class ChestShow : MonoBehaviour {
 	bool m_CloseBlur=true;
 	public void ClickExitMask(GameObject _ob,bool _CloseBlur=true)
 	{
-		AudioClipDefine.AudioClipManager.Get().SetAudioVolme();
+		//AudioClipDefine.AudioClipManager.Get().SetAudioVolme();
 		m_CloseBlur=_CloseBlur;
 		m_ShowChestAnimator.Play("Ge_UI_small_out");
 
@@ -217,7 +217,7 @@ public class ChestShow : MonoBehaviour {
 		if (_success) {
 			//Messenger.Broadcast(LevelPrepaerPanel.BraodCast_RestChestEmpty);
 			Messenger.Broadcast (bagPanel2.BroadcastBagItem);
-			Messenger.Broadcast (MainMenuPanel.BroadcastChangeDiamond);
+			//Messenger.Broadcast (MainMenuPanel.BroadcastChangeDiamond);
 			Debug.Log ("删除UI");
 			UIManageSystem.g_Instance.RomoveUI ();
 			CommonPanel.GetInstance ().ShowWaittingPanel (false);
@@ -261,7 +261,7 @@ public class ChestShow : MonoBehaviour {
 			//	UIManageSystem.g_Instance.RomoveUI();
 			//刷新背包
 			Messenger.Broadcast (bagPanel2.BroadcastBagItem);
-			Messenger.Broadcast (MainMenuPanel.BroadcastChangeMoney);
+			//Messenger.Broadcast (MainMenuPanel.BroadcastChangeMoney);
 			Messenger.Broadcast (bagPanel2.BroadcastBagUpSize);
 
 		} else {
