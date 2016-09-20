@@ -133,6 +133,7 @@ namespace Assets.Scripts.NGUI
         {
             OnScrolling();
             OnSongInfoChange();
+            UpdatePos();
         }
 
         #region 初始化
@@ -269,6 +270,7 @@ namespace Assets.Scripts.NGUI
         {
             var numPerRound = 360f / angle;
             var count = Mathf.CeilToInt(m_StageInfos.Count / numPerRound) * numPerRound;
+            count = 20;
             // 读取关卡数量生成disk元件
             for (int i = 0; i < count; i++)
             {
@@ -280,13 +282,33 @@ namespace Assets.Scripts.NGUI
                 {
                     sd.SetStageId(i + 1);
                 }
-
                 var myAngle = angleOffset + angle * i;
+                if (i > count / 2)
+                {
+                    var idx = (count - i);
+                    myAngle = angleOffset - angle * idx;
+                }
                 item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
-                    Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
+                       Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
                 item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
                 m_CellGroup.Add(i, item);
             }
+        }
+
+        private void UpdatePos()
+        {
+            /*for (int i = 0; i < m_CellGroup.Count; i++)
+            {
+                if (offsetX > 0)
+                {
+                    var item = m_CellGroup[i];
+                    var idx = (m_CellGroup.Count - i);
+                    var myAngle = angleOffset - angle * idx;
+                    item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
+                           Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
+                    item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
+                }
+            }*/
         }
 
         #endregion 初始化
@@ -317,7 +339,6 @@ namespace Assets.Scripts.NGUI
                 var cost = StageBattleComponent.Instance.Host.Result(FormulaKeys.FORMULA_330);
                 txtEnergyLast.text = cost.ToString();
                 var diff = StageBattleComponent.Instance.Host.GetDynamicIntByKey(SignKeys.DIFFCULT);
-                print(cost);
                 for (int i = 0; i < difficulty.transform.childCount; i++)
                 {
                     var child = difficulty.transform.GetChild(i);
@@ -463,9 +484,9 @@ namespace Assets.Scripts.NGUI
                     var x = (go.transform.position.x - pivot.transform.position.x) * scale;
                     var absX = Mathf.Abs(x);
                     var myAngleOffset = angleOffset + 2 * angle;
-                    var x0 = radius * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * (myAngleOffset)));
-                    var x1 = radius * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * (myAngleOffset - angle)));
-                    var x2 = radius * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * (myAngleOffset - angle * 2)));
+                    var x0 = radius * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * (myAngleOffset))) + offset0.x;
+                    var x1 = radius * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * (myAngleOffset - angle))) + offset1.x;
+                    var x2 = radius * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * (myAngleOffset - angle * 2))) + +offset2.x;
                     var distance0 = x1 - x0;
                     var ditance1 = x2 - x1;
                     var distance2 = radius - x2;
