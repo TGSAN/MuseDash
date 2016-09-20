@@ -1,118 +1,143 @@
-/// UI分析工具自动生成代码
-/// StageDiscUI主模块
-/// 
-using System;
-using UnityEngine;
 using FormulaBase;
 using GameLogic;
+
+/// UI分析工具自动生成代码
+/// StageDiscUI主模块
+///
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-namespace StageDisc {
-	public class StageDisc : UIPhaseBase {
-		private static Dictionary<int, StageDisc> _discTable = null;
+namespace StageDisc
+{
+    public class StageDisc : UIPhaseBase
+    {
+        private static Dictionary<int, StageDisc> _discTable = null;
 
-		private static StageDisc instance = null;
-		public static StageDisc Instance {
-			get {
-					return instance;
-			}
-		}
+        private static StageDisc instance = null;
 
-		private Coroutine _loadTxrCoroutine;
-		private FormulaHost stageHost;
+        public static StageDisc Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
 
-		public int staegId;
-		public GameObject unLock;
-		public UITexture txrDisc;
+        private Coroutine _loadTxrCoroutine;
+        private FormulaHost stageHost;
 
-		public static void LoadAllDiscCover() {
-			if (_discTable == null) {
-				return;
-			}
+        public int staegId;
+        public GameObject unLock;
+        public UITexture txrDisc;
 
-			SetTxrByOrder (1);
-		}
+        public static void LoadAllDiscCover()
+        {
+            if (_discTable == null)
+            {
+                return;
+            }
 
-		public static void SetTxrByOrder(int idx) {
-			if (idx > _discTable.Count) {
-				return;
-			}
+            SetTxrByOrder(1);
+        }
 
-			_discTable [idx].SetTxrByOrder ();
-		}
+        public static void SetTxrByOrder(int idx)
+        {
+            if (idx > _discTable.Count)
+            {
+                return;
+            }
 
-		void Start() {
-			instance = this;
-		}
+            _discTable[idx].SetTxrByOrder();
+        }
 
-		public override void OnShow () {
-		}
+        private void Start()
+        {
+            instance = this;
+        }
 
-		public override void OnHide () {
-		}
+        public override void OnShow()
+        {
+        }
 
-		public void SetStageId(int idx) {
-			if (this.staegId > 0) {
-				return;
-			}
+        public override void OnHide()
+        {
+        }
 
-			this.staegId = idx;
-			this.InitStageInfo ();
-			UIRootHelper urh = this.gameObject.GetComponent<UIRootHelper> ();
-			if (urh != null) {
-				this.stageHost.SetAsUINotifyInstance (urh);
-			}
+        public void SetStageId(int idx)
+        {
+            if (this.staegId > 0)
+            {
+                return;
+            }
 
-			if (_discTable == null) {
-				_discTable = new Dictionary<int, StageDisc> ();
-			}
+            this.staegId = idx;
+            this.InitStageInfo();
+            UIRootHelper urh = this.gameObject.GetComponent<UIRootHelper>();
+            if (urh != null)
+            {
+                this.stageHost.SetAsUINotifyInstance(urh);
+            }
 
-			_discTable [this.staegId] = this;
-			//this.SetTxrByStage ();
-		}
+            if (_discTable == null)
+            {
+                _discTable = new Dictionary<int, StageDisc>();
+            }
 
-		private void InitStageInfo() {
-			this.stageHost = FomulaHostManager.Instance.CreateHost ("Stage");
-			this.stageHost.SetDynamicData (SignKeys.ID, this.staegId);
-			this.stageHost.SetDynamicData (SignKeys.DIFFCULT, GameGlobal.DIFF_LEVEL_NORMAL);
-			this.stageHost.Result (FormulaKeys.FORMULA_9);
-		}
+            _discTable[this.staegId] = this;
+            //this.SetTxrByStage ();
+        }
 
-		private void SetTxrByStage() {
-			//yield return new WaitForSeconds (0.1f);
-			string txrName = ConfigPool.Instance.GetConfigStringValue ("stage", this.staegId.ToString (), "icon");
-			this._loadTxrCoroutine = ResourceLoader.Instance.Load (txrName, this.__LoadTxr);
-		}
+        private void InitStageInfo()
+        {
+            this.stageHost = FomulaHostManager.Instance.CreateHost("Stage");
+            this.stageHost.SetDynamicData(SignKeys.ID, this.staegId);
+            this.stageHost.SetDynamicData(SignKeys.DIFFCULT, GameGlobal.DIFF_LEVEL_NORMAL);
+            this.stageHost.Result(FormulaKeys.FORMULA_9);
+        }
 
-		private void SetTxrByOrder() {
-			string txrName = ConfigPool.Instance.GetConfigStringValue ("stage", this.staegId.ToString (), "icon");
-			this._loadTxrCoroutine = ResourceLoader.Instance.Load (txrName, this.__LoadTxrByOrder);
-		}
+        private void SetTxrByStage()
+        {
+            //yield return new WaitForSeconds (0.1f);
+            string txrName = ConfigPool.Instance.GetConfigStringValue("stage", this.staegId.ToString(), "icon");
+            this._loadTxrCoroutine = ResourceLoader.Instance.Load(txrName, this.__LoadTxr);
+        }
 
-		private void __LoadTxr(UnityEngine.Object resObj) {
-			Texture t = resObj as Texture;
-			if (t == null) {
-				string txrName = ConfigPool.Instance.GetConfigStringValue ("stage", this.staegId.ToString (), "icon");
-				Debug.Log ("Load stage icon " + this.staegId + " StageDisc texture failed : " + txrName);
-			}
+        private void SetTxrByOrder()
+        {
+            string txrName = ConfigPool.Instance.GetConfigStringValue("stage", this.staegId.ToString(), "icon");
+            this._loadTxrCoroutine = ResourceLoader.Instance.Load(txrName, this.__LoadTxrByOrder);
+        }
 
-			this.txrDisc.mainTexture = t;
-		}
+        private void __LoadTxr(UnityEngine.Object resObj)
+        {
+            Texture t = resObj as Texture;
+            if (t == null)
+            {
+                string txrName = ConfigPool.Instance.GetConfigStringValue("stage", this.staegId.ToString(), "icon");
+                Debug.Log("Load stage icon " + this.staegId + " StageDisc texture failed : " + txrName);
+            }
 
-		private void __LoadTxrByOrder(UnityEngine.Object resObj) {
-			Texture t = resObj as Texture;
-			if (t == null) {
-				string txrName = ConfigPool.Instance.GetConfigStringValue ("stage", this.staegId.ToString (), "icon");
-				Debug.Log ("Load stage icon " + this.staegId + " StageDisc texture failed : " + txrName);
-			}
+            this.txrDisc.mainTexture = t;
+        }
 
-			this.txrDisc.mainTexture = t;
-			StageDisc.SetTxrByOrder (this.staegId + 1);
+        private void __LoadTxrByOrder(UnityEngine.Object resObj)
+        {
+            Texture t = resObj as Texture;
+            if (t == null)
+            {
+                string txrName = ConfigPool.Instance.GetConfigStringValue("stage", this.staegId.ToString(), "icon");
+                Debug.Log("Load stage icon " + this.staegId + " StageDisc texture failed : " + txrName);
+            }
 
-			if (this._loadTxrCoroutine != null) {
-				ResourceLoader.Instance.StopCoroutine (this._loadTxrCoroutine);
-			}
-		}
-	}
+            this.txrDisc.mainTexture = t;
+            StageDisc.SetTxrByOrder(this.staegId + 1);
+
+            if (this._loadTxrCoroutine != null)
+            {
+                ResourceLoader.Instance.StopCoroutine(this._loadTxrCoroutine);
+            }
+        }
+    }
 }
