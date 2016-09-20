@@ -10,11 +10,21 @@ namespace Assets.Scripts.NGUI
     {
         public string iconPath;
         public string musicPath;
+        public string musicName;
+        public string musicAuthor;
+        public int musicEnergy;
+        public int musicDifficulty;
+        public int idx;
 
-        public StageInfo(string icon, string music)
+        public StageInfo(int i, string icon, string music, string name, string author, int energy, int difficulty)
         {
+            idx = i;
             iconPath = icon;
             musicPath = music;
+            musicName = name;
+            musicAuthor = author;
+            musicEnergy = energy;
+            musicDifficulty = difficulty;
         }
     }
 
@@ -35,6 +45,7 @@ namespace Assets.Scripts.NGUI
         public Vector2 minMaxSlide;
         public int numFrom;
         public float animDuration;
+        public float txtOffsetX;
 
         [Header("缩放")]
         public float distanceToChangeScale;
@@ -58,6 +69,9 @@ namespace Assets.Scripts.NGUI
 
         public GameObject cell;
         public GameObject leftButton, rightButton;
+        public UILabel txtNameNext, txtAuthorNext, txtEnergyNext;
+        public UILabel txtNameLast, txtAuthorLast, txtEnergyLast;
+        public UISprite sprBkgNext, sprBkgLast;
 
         [Header("音频")]
         public int resolution = 1024;
@@ -74,7 +88,7 @@ namespace Assets.Scripts.NGUI
         private Sequence m_SlideSeq;
         private Sequence m_DlySeq;
         private float m_ZAngle = 0.0f;
-		private static int m_CurrentIdx = 0;
+        private static int m_CurrentIdx = 0;
         private bool m_IsSliding = false;
         private ResourceRequest m_Request;
         private Coroutine m_Coroutine;
@@ -84,7 +98,7 @@ namespace Assets.Scripts.NGUI
 
         public float offsetX { get; private set; }
 
-		public static int currentSongIdx
+        public static int currentSongIdx
         {
             get { return m_CurrentIdx + 1; }
         }
@@ -112,6 +126,7 @@ namespace Assets.Scripts.NGUI
                 var musicPath = item.musicPath;
             }
             this.onSongChange += PlayMusic;
+            this.onSongChange += OnSongInfoChange;
         }
 
         private void InitInfo()
@@ -121,7 +136,9 @@ namespace Assets.Scripts.NGUI
             {
                 var iconPath = jData[i]["icon"].ToString();
                 var musicPath = jData[i]["FileName_1"].ToString();
-                m_StageInfos.Add(new StageInfo(iconPath, musicPath));
+                var musicName = jData[i]["JsonName"].ToString();
+                var authorName = jData[i]["Author"].ToString();
+                m_StageInfos.Add(new StageInfo(i + 1, iconPath, musicPath, musicName, authorName, 0, 0));
             }
         }
 
@@ -158,6 +175,7 @@ namespace Assets.Scripts.NGUI
             {
                 if (isPressing)
                 {
+                    offsetX = mul;
                     m_IsSliding = true;
                     m_DlySeq = DOTween.Sequence();
                     m_DlySeq.AppendInterval(delaySlideTime);
@@ -310,6 +328,10 @@ namespace Assets.Scripts.NGUI
             }).SetEase(Ease.OutSine);
         }
 
+        private void OnSongInfoChange(int idx)
+        {
+        }
+
         private void OnScrolling()
         {
             if (m_IsSliding)
@@ -356,9 +378,8 @@ namespace Assets.Scripts.NGUI
                     if (go.transform.localScale.x >= maxScale - 0.01f)
                     {
                         OnMusicPlayAction(go);
+                        m_CurrentIdx = idx;
                     }
-
-                    m_CurrentIdx = idx;
                 }
                 else
                 {
@@ -400,6 +421,27 @@ namespace Assets.Scripts.NGUI
                         child.localPosition = offset;
                     }
                 }
+            }
+            if (m_CurrentIdx < m_StageInfos.Count)
+            {
+                var offsetForInfo = new Vector3(offsetX < 0 ? txtOffsetX : -txtOffsetX, 0, 0);
+                txtNameLast.text = m_StageInfos[m_CurrentIdx].idx + " " + m_StageInfos[m_CurrentIdx].musicName;
+                txtAuthorLast.text = "Music by " + m_StageInfos[m_CurrentIdx].musicAuthor;
+                txtEnergyLast.text = m_StageInfos[m_CurrentIdx].musicEnergy.ToString();
+                var lerpNumLast = 1 - scale * (Mathf.Abs(pivot.transform.position.x - m_CellGroup[m_CurrentIdx].transform.position.x)) / 100;
+                txtNameLast.alpha = lerpNumLast;
+                txtAuthorLast.alpha = lerpNumLast;
+                sprBkgLast.alpha = lerpNumLast;
+                txtNameLast.transform.parent.localPosition = Vector3.Lerp(offsetForInfo, Vector3.zero, lerpNumLast);
+
+                var nextIdx = offsetX > 0 ? m_CurrentIdx - 1 < 0 ? m_StageInfos.Count - 1 : m_CurrentIdx - 1 : m_CurrentIdx + 1 > m_StageInfos.Count - 1 ? 0 : m_CurrentIdx + 1;
+                txtNameNext.text = m_StageInfos[nextIdx].idx + " " + m_StageInfos[nextIdx].musicName;
+                txtAuthorNext.text = "Music by " + m_StageInfos[nextIdx].musicAuthor;
+                var lerpNumNext = 1 - lerpNumLast;
+                txtNameNext.alpha = lerpNumNext;
+                txtAuthorNext.alpha = lerpNumNext;
+                sprBkgNext.alpha = lerpNumNext;
+                txtNameNext.transform.parent.localPosition = Vector3.Lerp(new Vector3(-offsetForInfo.x, 0.0f, 0.0f), Vector3.zero, lerpNumNext);
             }
         }
 

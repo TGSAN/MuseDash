@@ -36,18 +36,14 @@ namespace PnlStage
         public override void OnShow()
         {
             StageDisc.StageDisc.LoadAllDiscCover();
-            this.OnSongChanged(PnlScrollCircle.currentSongIdx);
+            this.InitSong(PnlScrollCircle.currentSongIdx);
         }
 
         public override void OnHide()
         {
         }
 
-        private void OnSongChangeName()
-        {
-        }
-
-        public void OnSongChanged(int idx)
+        public void InitSong(int idx)
         {
             Debug.Log("Stage selected " + idx);
             if (idx <= 0)
@@ -89,7 +85,7 @@ namespace PnlStage
 				this._loadMusicCoroutine = null;
 			}
 
-			//StageDisc.StageDisc.OnSongChanged (idx);
+			//StageDisc.StageDisc.InitSong (idx);
 
 			string musicPath = ConfigPool.Instance.GetConfigStringValue ("stage", idx.ToString (), "FileName_1");
 			this._loadMusicCoroutine = ResourceLoader.Instance.Load (musicPath, this.__OnLoadMusic, ResourceLoader.RES_FROM_LOCAL);*/
