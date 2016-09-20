@@ -59,18 +59,15 @@ namespace PnlAdventure
         private void PlayBgm()
         {
             int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex();
-            if (heroIndex < 0)
-            {
+            if (heroIndex < 0) {
                 return;
             }
 
-            if (SoundEffectComponent.Instance == null)
-            {
+            if (SoundEffectComponent.Instance == null) {
                 return;
             }
 
-            if (SoundEffectComponent.Instance.IsPause())
-            {
+            if (SoundEffectComponent.Instance.IsPause()) {
                 return;
             }
 

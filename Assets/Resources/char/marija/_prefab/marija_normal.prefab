@@ -13,10 +13,10 @@ GameObject:
   - 114: {fileID: 11441148}
   - 114: {fileID: 11413524}
   - 95: {fileID: 9507724}
-  - 111: {fileID: 111000011897565238}
   - 114: {fileID: 114000013739757070}
   - 114: {fileID: 114000013865288618}
   - 114: {fileID: 114000014242524332}
+  - 114: {fileID: 114000011694846932}
   m_Layer: 0
   m_Name: marija_normal
   m_TagString: Untagged
@@ -132,7 +132,7 @@ MonoBehaviour:
     arrayCount: 2
     spineActionKeyIndex: 8
     actionIdx: 090000000e0000000000000000000000000000000000000000000000000000000000000000000000
-    actionEventIdx: 0a000000000000000000000000000000000000000000000000000000000000000000000000000000
+    actionEventIdx: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   - collapsed: 1
     isEndLoop: 1
     isRandomSequence: 0
@@ -202,7 +202,7 @@ MonoBehaviour:
     arrayCount: 2
     spineActionKeyIndex: 4
     actionIdx: 0c0000000e0000000000000000000000000000000000000000000000000000000000000000000000
-    actionEventIdx: 0a000000000000000000000000000000000000000000000000000000000000000000000000000000
+    actionEventIdx: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   actionMode: 3
   startDelay: 0
 --- !u!114 &11441148
@@ -296,22 +296,18 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 179966}
   m_IsPrefabParent: 1
---- !u!111 &111000011897565238
-Animation:
+--- !u!114 &114000011694846932
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179966}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 8aa938ad9db23b940907a61b918cdb61, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 8aa938ad9db23b940907a61b918cdb61, type: 2}
-  - {fileID: 7400000, guid: d4f111a83ece35946a4578a7646eec24, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd0b02798a844aefbd297ab43dcd7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0.2
 --- !u!114 &114000013739757070
 MonoBehaviour:
   m_ObjectHideFlags: 1

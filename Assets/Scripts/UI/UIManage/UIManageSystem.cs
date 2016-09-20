@@ -26,7 +26,8 @@ public class UIManageSystem : System.Object {
 	#endregion
 //	public  delegate void  ReomveUICallBack();
 //	public ReomveUICallBack m_ReomveUICallBack=null;
-	MainMenuPanel m_MainMenuPanel=null;
+	//MainMenuPanel m_MainMenuPanel=null;
+	/*
 	MainMenuPanel GetMainMenuPanel
 	{
 		get
@@ -37,7 +38,7 @@ public class UIManageSystem : System.Object {
 			}
 			return m_MainMenuPanel;
 		}
-	}
+	}*/
 
 	static UIManageSystem m_Instance=null;
 	static public  UIManageSystem g_Instance
@@ -164,7 +165,7 @@ public class UIManageSystem : System.Object {
 		GameObject.DestroyObject(temp.m_Object);
 		if(m_StackStack.Count==1)
 		{
-			GetMainMenuPanel.SetExitButtonShow(false);
+			//GetMainMenuPanel.SetExitButtonShow(false);
 		}
 	}
 	/// <summary>

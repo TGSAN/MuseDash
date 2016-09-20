@@ -18,7 +18,9 @@ public class UISceneHelper : MonoBehaviour {
 			return instance;
 		}
 	}
-	
+
+	private Dictionary<string, UIRootHelper> dymWidgets;
+
 	[SerializeField]
 	/// <summary>
 	/// The widgets.
@@ -31,6 +33,17 @@ public class UISceneHelper : MonoBehaviour {
 		//this.InitByPath ();
 		instance = this;
 		this.InitByWidget ();
+	}
+
+	void OnEnable() {
+		if (this.dymWidgets == null) {
+			this.dymWidgets = new Dictionary<string, UIRootHelper> ();
+		}
+
+		UIRootHelper[] urhs = Transform.FindObjectsOfType<UIRootHelper> ();
+		foreach (UIRootHelper urh in urhs) {
+			this.dymWidgets [urh.name] = urh;
+		}
 	}
 
 	void OnDestory() {
@@ -62,14 +75,18 @@ public class UISceneHelper : MonoBehaviour {
 	/// </summary>
 	/// <param name="uiName">User interface name.</param>
 	public void ShowUi(string uiName, string aniName = null) {
-		Transform t = this.transform.Find (uiName);
-		if (t == null || t.gameObject == null) {
+		if (this.dymWidgets == null) {
 			return;
 		}
 
-		UIPhaseBase upb = t.gameObject.GetComponent<UIPhaseBase> ();
+		UIRootHelper urh = this.dymWidgets [uiName];
+		if (urh == null) {
+			return;
+		}
+
+		UIPhaseBase upb = urh.gameObject.GetComponent<UIPhaseBase> ();
 		if (upb == null) {
-			t.gameObject.SetActive (true);
+			urh.gameObject.SetActive (true);
 			return;
 		}
 
@@ -77,14 +94,18 @@ public class UISceneHelper : MonoBehaviour {
 	}
 
 	public void HideUi(string uiName, string aniName = null) {
-		Transform t = this.transform.Find (uiName);
-		if (t == null || t.gameObject == null) {
+		if (this.dymWidgets == null) {
 			return;
 		}
 
-		UIPhaseBase upb = t.gameObject.GetComponent<UIPhaseBase> ();
+		UIRootHelper urh = this.dymWidgets [uiName];
+		if (urh == null) {
+			return;
+		}
+
+		UIPhaseBase upb = urh.GetComponent<UIPhaseBase> ();
 		if (upb == null) {
-			t.gameObject.SetActive (false);
+			urh.gameObject.SetActive (false);
 			return;
 		}
 
@@ -92,12 +113,45 @@ public class UISceneHelper : MonoBehaviour {
 	}
 
 	public bool IsUiActive(string uiName) {
-		Transform t = this.transform.Find (uiName);
-		if (t == null || t.gameObject == null) {
+		if (this.dymWidgets == null) {
 			return false;
 		}
 
-		return t.gameObject.activeSelf;
+		UIRootHelper urh = this.dymWidgets [uiName];
+		if (urh == null) {
+			return false;
+		}
+
+		if (urh == null) {
+			return false;
+		}
+
+		return urh.gameObject.activeSelf;
+	}
+
+	public GameObject FindDymWidget(string uiName) {
+		if (this.dymWidgets == null) {
+			return null;
+		}
+
+		if (!this.dymWidgets.ContainsKey (uiName)) {
+			return null;
+		}
+
+		UIRootHelper urh = this.dymWidgets [uiName];
+		if (urh == null) {
+			return null;
+		}
+
+		return urh.gameObject;
+	}
+
+	public void RegDymWidget(string uiName, UIRootHelper urh) {
+		if (this.dymWidgets == null) {
+			this.dymWidgets = new Dictionary<string, UIRootHelper> ();
+		}
+
+		this.dymWidgets [uiName] = urh;
 	}
 
 	private void InitByWidget() {
@@ -105,6 +159,7 @@ public class UISceneHelper : MonoBehaviour {
 			return;
 		}
 
+		UIRootHelper[] urhs = Transform.FindObjectsOfType<UIRootHelper> ();
 		// 加载配置好的界面perfab，并按照配置指示是否加载即显示
 		for (int i = 0; i < this.widgets.Count; i++) {
 			UnityEngine.Object origObj = this.widgets [i];
@@ -114,9 +169,14 @@ public class UISceneHelper : MonoBehaviour {
 			}
 
 			GameObject instObj = null;
-			if (this.gameObject.transform.Find (origObj.name) != null) {
-				instObj = this.gameObject.transform.Find (origObj.name).gameObject;
-			} else {
+			foreach (UIRootHelper urh in urhs) {
+				if (urh.gameObject.name == origObj.name) {
+					instObj = urh.gameObject;
+					break;
+				}
+			}
+
+			if (instObj == null) {
 				instObj = GameObject.Instantiate (origObj) as GameObject;
 			}
 
@@ -126,15 +186,15 @@ public class UISceneHelper : MonoBehaviour {
 			}
 
 			instObj.name = origObj.name;
-			instObj.transform.parent = this.gameObject.transform;
+			//instObj.transform.parent = this.gameObject.transform;
 
-			UIRootHelper urh = instObj.GetComponent<UIRootHelper> ();
-			if (urh == null) {
+			UIRootHelper _urh = instObj.GetComponent<UIRootHelper> ();
+			if (_urh == null) {
 				Debug.Log ("Instance of ui perfab " + instObj.name + " has no UIRootHelper.");
 				continue;
 			}
 
-			if (!urh.isShowOnLoaded) {
+			if (!_urh.isShowOnLoaded) {
 				instObj.SetActive (false);
 				continue;
 			}

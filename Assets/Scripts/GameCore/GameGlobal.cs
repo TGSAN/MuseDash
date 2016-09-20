@@ -20,6 +20,16 @@ namespace GameLogic {
 			}
 		}
 
+		public static int DEBUG_CLOTH_UID {
+			get {
+				if (AdminData.Instance == null) {
+					return 0;
+				}
+
+				return (int)AdminData.Instance.DefaultClothUid;
+			}
+		}
+
 		public const int LIMITE_INT = 999999;
 		public const float TIME_SCALE = 1f;
 		public const decimal DEFAULT_MUSIC_LEN = 240m;
@@ -108,6 +118,8 @@ namespace GameLogic {
 		public const uint NODE_TYPE_PRESS = 6;
 		//boss
 		public const uint NODE_TYPE_BOSS = 7;
+		//空中打击
+		public const uint NODE_TYPE_AIR_BEAT = 8;
 
 		//miss不处理类型
 		public static List<uint> NODE_TYPES_NO_MISS = new List<uint> (){NODE_TYPE_GOLD, NODE_TYPE_HP, NODE_TYPE_MUSIC, NODE_TYPE_HIDE};
@@ -206,6 +218,7 @@ public struct ACTION_KEYS {
 	public const string COMEOUT3 = "note_out_p";
 
 	public const string STAND = "standby";
+	//public const string AIR_STAND = "airstandby";
 	public const string HURT = "char_hurt";
 	public const string RUN = "char_run";
 	public const string ATTACK_PERFECT = "char_atk_p";

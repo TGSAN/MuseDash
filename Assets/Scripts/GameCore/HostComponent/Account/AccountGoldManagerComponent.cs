@@ -65,8 +65,8 @@ namespace FormulaBase {
 				return;
 			}
 
-			Messenger.Broadcast (MainMenuPanel.BroadcastChangeMoney);
-			Messenger.Broadcast (MainMenuPanel.Broadcast_MainMenuChangeMoney);
+			//Messenger.Broadcast (MainMenuPanel.BroadcastChangeMoney);
+			//Messenger.Broadcast (MainMenuPanel.Broadcast_MainMenuChangeMoney);
 			CommonPanel.GetInstance ().ShowWaittingPanel (false);
 		}
 	}

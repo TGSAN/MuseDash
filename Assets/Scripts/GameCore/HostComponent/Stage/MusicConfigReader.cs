@@ -5,15 +5,26 @@ using LitJson;
 namespace GameLogic {
 	public struct NodeConfigData {
 		public static uint[] NODE_TYPE_IS_ADD_COMBO = new uint[]{
-			1,5,6,7
+			GameGlobal.NODE_TYPE_MONSTER,
+			GameGlobal.NODE_TYPE_HIDE,
+			GameGlobal.NODE_TYPE_PRESS,
+			GameGlobal.NODE_TYPE_BOSS,
+			GameGlobal.NODE_TYPE_AIR_BEAT
 		};
 
 		public static uint[] NODE_TYPE_IS_MISS_COMBO = new uint[]{
-			1,6,7
+			GameGlobal.NODE_TYPE_MONSTER,
+			GameGlobal.NODE_TYPE_PRESS,
+			GameGlobal.NODE_TYPE_BOSS,
+			GameGlobal.NODE_TYPE_AIR_BEAT
 		};
 
 		public static uint[] NODE_TYPE_IS_SHOW_PLAY_EFFECT = new uint[]{
-			1,5,6,7
+			GameGlobal.NODE_TYPE_MONSTER,
+			GameGlobal.NODE_TYPE_HIDE,
+			GameGlobal.NODE_TYPE_PRESS,
+			GameGlobal.NODE_TYPE_BOSS,
+			GameGlobal.NODE_TYPE_AIR_BEAT
 		};
 
 		public const string JUMP_ACTION = "char_jump";

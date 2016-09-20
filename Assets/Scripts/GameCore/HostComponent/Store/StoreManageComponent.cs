@@ -63,7 +63,7 @@ namespace FormulaBase {
 					}
 
 					this.GetRes (_getStyel, _getNumber);
-					Messenger.Broadcast (MainMenuPanel.Broadcast_MainMenuChangeDiamond);
+					//Messenger.Broadcast (MainMenuPanel.Broadcast_MainMenuChangeDiamond);
 				})));
 
 				if (!_result) {
@@ -79,7 +79,7 @@ namespace FormulaBase {
 					}
 
 					this.GetRes (_getStyel, _getNumber);
-					Messenger.Broadcast (MainMenuPanel.Broadcast_MainMenuChangeMoney);
+					//Messenger.Broadcast (MainMenuPanel.Broadcast_MainMenuChangeMoney);
 				})));
 
 				if (!_result) {
@@ -88,9 +88,9 @@ namespace FormulaBase {
 				break;
 			}
 
-			Messenger.Broadcast (MainMenuPanel.BroadcastChangeMoney);
-			Messenger.Broadcast (MainMenuPanel.BroadcastChangeDiamond);
-			Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
+			//Messenger.Broadcast (MainMenuPanel.BroadcastChangeMoney);
+			//Messenger.Broadcast (MainMenuPanel.BroadcastChangeDiamond);
+			//Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
 			CommonPanel.GetInstance ().ShowWaittingPanel (true);
 		}
 
@@ -103,19 +103,19 @@ namespace FormulaBase {
 				_money += _getNumber;
 				_money = Math.Min (AccountGoldManagerComponent.Instance.GetMaxMoney (), _money);
 				AccountGoldManagerComponent.Instance.SetMoney (_money);
-				Messenger.Broadcast (MainMenuPanel.Broadcast_MainMenuChangeMoney);
+				//Messenger.Broadcast (MainMenuPanel.Broadcast_MainMenuChangeMoney);
 				break;
 			case STORE_COST_TYPE_DIAMOND:
 				int _diamond = AccountCrystalManagerComponent.Instance.GetDiamond ();
 				_diamond += _getNumber;
 				AccountCrystalManagerComponent.Instance.SetDiamond (_diamond);
-				Messenger.Broadcast (MainMenuPanel.Broadcast_MainMenuChangeDiamond);
+				//Messenger.Broadcast (MainMenuPanel.Broadcast_MainMenuChangeDiamond);
 				break;
 			case STORE_COST_TYPE_GOLD:
 				int Physical = (int)(account.GetDynamicDataByKey (SignKeys.PHYSICAL));
 				int _result = Physical + _getNumber;
 				account.SetDynamicData (SignKeys.PHYSICAL, _result);
-				Messenger.Broadcast (MainMenuPanel.Broadcast_MainMenuChangePhysical);
+				//Messenger.Broadcast (MainMenuPanel.Broadcast_MainMenuChangePhysical);
 				break;
 			}
 

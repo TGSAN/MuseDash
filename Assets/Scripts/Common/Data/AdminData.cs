@@ -10,6 +10,7 @@ public class AdminData : MonoBehaviour {
 	[SerializeField]
 	public int DefaultStage;
 	public int DefaultRoleIdx;
+	public int DefaultClothUid;
 	public List<int> DefaultSkills;
 	public int DefaultPetSkill;
 

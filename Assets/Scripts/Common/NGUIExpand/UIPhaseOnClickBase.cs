@@ -83,7 +83,7 @@ public class UIPhaseOnClickBase {
 			}
 		}
 
-		if (uph.root == null || uph.root.transform.parent == null) {
+		if (uph.root == null || UISceneHelper.Instance == null) {
 			return;
 		}
 
@@ -91,6 +91,10 @@ public class UIPhaseOnClickBase {
 			int _idx = -1;
 			foreach (string _name in uph.clickResponseParentNames) {
 				_idx += 1;
+				if (_name == null || _name == string.Empty) {
+					continue;
+				}
+
 				bool _isShow = true;
 				string _showAnimation = string.Empty;
 				if (_idx < uph.clickResponseParentNamesIsShow.Count) {
@@ -102,22 +106,22 @@ public class UIPhaseOnClickBase {
 				}
 
 				// root object find under the same parent.
-				Transform _trs = uph.root.transform.parent.Find (_name);
+				GameObject _trs = UISceneHelper.Instance.FindDymWidget (_name);
 				if (_trs == null) {
 					Debug.Log (_name + " not in scene.");
 					continue;
 				}
 
-				GameObject instanceObject = _trs.gameObject;
+				GameObject instanceObject = _trs;
 				UIRootHelper _urh = instanceObject.GetComponent<UIRootHelper> ();
 				if (_urh != null) {
-					Transform t = uph.root.transform.parent.Find (instanceObject.name);
+					GameObject t = UISceneHelper.Instance.FindDymWidget (instanceObject.name);
 					if (t == null) {
 						Debug.Log (instanceObject.name + " not in scene.");
 						continue;
 					}
 
-					instanceObject = t.gameObject;
+					instanceObject = t;
 				}
 
 				if (instanceObject == null) {

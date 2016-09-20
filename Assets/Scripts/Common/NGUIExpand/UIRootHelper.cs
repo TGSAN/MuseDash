@@ -86,6 +86,16 @@ public class UIRootHelper : MonoBehaviour {
 
 			_s.Init ();
 		}
+
+		if (UISceneHelper.Instance != null) {
+			UISceneHelper.Instance.RegDymWidget (this.gameObject.name, this);
+		}
+	}
+
+	void OnEnable() {
+		if (UISceneHelper.Instance != null) {
+			UISceneHelper.Instance.RegDymWidget (this.gameObject.name, this);
+		}
 	}
 
 	public Type GetModule(string moduleName) {
