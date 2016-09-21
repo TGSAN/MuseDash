@@ -34,10 +34,12 @@ public class UISceneHelper : MonoBehaviour {
 		//this.InitByPath ();
 		instance = this;
 		this.InitCamera ();
-		this.HideWidget ();
 		if (this.isStartScene) {
-			this.Show ();
+			Debug.Log ("This is the start scene.");
+			return;
 		}
+
+		this.HideWidget ();
 	}
 
 	void OnDestory() {
