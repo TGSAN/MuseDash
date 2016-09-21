@@ -28,12 +28,16 @@ public class UISceneHelper : MonoBehaviour {
 		}
 	}
 
+	public bool isStartScene;
+
 	void Start() {
 		//this.InitByPath ();
 		instance = this;
 		this.InitCamera ();
 		this.HideWidget ();
-		// this.InitByWidget ();
+		if (this.isStartScene) {
+			this.Show ();
+		}
 	}
 
 	void OnDestory() {
@@ -79,6 +83,7 @@ public class UISceneHelper : MonoBehaviour {
 				continue;
 			}
 
+			Debug.Log ("----->> " + upb.gameObject.name);
 			upb.Show ();
 		}
 		/*
