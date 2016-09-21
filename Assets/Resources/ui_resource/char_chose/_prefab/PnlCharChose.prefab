@@ -90,7 +90,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3023
+  startingRenderQueue: 3036
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -403,6 +403,7 @@ GameObject:
   - 65: {fileID: 65000011010690810}
   - 114: {fileID: 114000013646545750}
   - 114: {fileID: 114000012098673290}
+  - 114: {fileID: 114000013767138050}
   m_Layer: 5
   m_Name: BtnRight
   m_TagString: Untagged
@@ -1052,6 +1053,7 @@ GameObject:
   - 114: {fileID: 114000010802848034}
   - 114: {fileID: 114000013422777380}
   - 114: {fileID: 114000010468951680}
+  - 114: {fileID: 114000013739079482}
   m_Layer: 5
   m_Name: BtnPurchase
   m_TagString: Untagged
@@ -1103,6 +1105,7 @@ GameObject:
   - 65: {fileID: 65000012999585952}
   - 114: {fileID: 114000012030541262}
   - 114: {fileID: 114000013242669656}
+  - 114: {fileID: 114000012628229486}
   m_Layer: 5
   m_Name: BtnLeft
   m_TagString: Untagged
@@ -3782,7 +3785,10 @@ MonoBehaviour:
   - {fileID: 114000011509966358}
   - {fileID: 114000011441000376}
   - {fileID: 114000012598091198}
+  - {fileID: 114000013767138050}
+  - {fileID: 114000012628229486}
   - {fileID: 114000013524337502}
+  - {fileID: 114000013739079482}
   - {fileID: 114000012471175482}
   - {fileID: 114000013542652796}
   - {fileID: 114000012693278138}
@@ -4791,6 +4797,44 @@ MonoBehaviour:
   isNeedTranslate: 0
   onClickModuleName: OnClickBtnCos08
   onTweenAniFinishedModuleName: 
+  onSliderModuleName: 
+  scrollerTableDataModuleName: 
+--- !u!114 &114000012628229486
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013685548296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 175578}
+  clickResponseObjects: []
+  clickResponseParentNames: []
+  clickResponseObjectsIsShow: 
+  clickResponseParentNamesIsShow: 
+  clickResponseObjectAnimations: []
+  clickResponseParentAnimations: []
+  isFoldObjs: 0
+  isFoldParentObjs: 0
+  isForceKeep: 0
+  isClickHideSelf: 0
+  isClickHideParent: 0
+  des: "\u672A\u6709\u63CF\u8FF0"
+  activeHostKeyId: 0
+  activeCondiction: 
+  activeValue: 
+  labelHostKeyId: 0
+  labelMatchSign: 
+  labelMatchSelfDefineSign: 
+  sliderHostKeyId: 0
+  sliderMatchSign: 
+  sliderMaxSign: 
+  isNeedTranslate: 0
+  onClickModuleName: OnClickBtnLeft
+  onTweenAniFinishedModuleName: OnTweenFinishedBtnLeft
   onSliderModuleName: 
   scrollerTableDataModuleName: 
 --- !u!114 &114000012644438182
@@ -6095,7 +6139,7 @@ MonoBehaviour:
   sliderMatchSign: 
   sliderMaxSign: 
   isNeedTranslate: 0
-  onClickModuleName: 
+  onClickModuleName: OnClickBtnBack
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
@@ -6414,6 +6458,82 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _AtrrNameLable: {fileID: 0}
   _AtrrValueLabel: {fileID: 0}
+--- !u!114 &114000013739079482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013637688262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 175578}
+  clickResponseObjects: []
+  clickResponseParentNames: []
+  clickResponseObjectsIsShow: 
+  clickResponseParentNamesIsShow: 
+  clickResponseObjectAnimations: []
+  clickResponseParentAnimations: []
+  isFoldObjs: 0
+  isFoldParentObjs: 0
+  isForceKeep: 0
+  isClickHideSelf: 0
+  isClickHideParent: 0
+  des: "\u672A\u6709\u63CF\u8FF0"
+  activeHostKeyId: 0
+  activeCondiction: 
+  activeValue: 
+  labelHostKeyId: 0
+  labelMatchSign: 
+  labelMatchSelfDefineSign: 
+  sliderHostKeyId: 0
+  sliderMatchSign: 
+  sliderMaxSign: 
+  isNeedTranslate: 0
+  onClickModuleName: OnClickBtnPurchase
+  onTweenAniFinishedModuleName: 
+  onSliderModuleName: 
+  scrollerTableDataModuleName: 
+--- !u!114 &114000013767138050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011349118800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 175578}
+  clickResponseObjects: []
+  clickResponseParentNames: []
+  clickResponseObjectsIsShow: 
+  clickResponseParentNamesIsShow: 
+  clickResponseObjectAnimations: []
+  clickResponseParentAnimations: []
+  isFoldObjs: 0
+  isFoldParentObjs: 0
+  isForceKeep: 0
+  isClickHideSelf: 0
+  isClickHideParent: 0
+  des: "\u672A\u6709\u63CF\u8FF0"
+  activeHostKeyId: 0
+  activeCondiction: 
+  activeValue: 
+  labelHostKeyId: 0
+  labelMatchSign: 
+  labelMatchSelfDefineSign: 
+  sliderHostKeyId: 0
+  sliderMatchSign: 
+  sliderMaxSign: 
+  isNeedTranslate: 0
+  onClickModuleName: OnClickBtnRight
+  onTweenAniFinishedModuleName: OnTweenFinishedBtnRight
+  onSliderModuleName: 
+  scrollerTableDataModuleName: 
 --- !u!114 &114000013876451184
 MonoBehaviour:
   m_ObjectHideFlags: 1
