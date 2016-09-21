@@ -95,7 +95,7 @@ namespace Assets.Scripts.NGUI
         private Sequence m_SlideSeq;
         private Sequence m_DlySeq;
         private float m_ZAngle = 0.0f;
-        private static int m_CurrentIdx = 0;
+        private static int m_CurrentIdx = 2;
         private bool m_IsSliding = false;
         private ResourceRequest m_Request;
         private Coroutine m_Coroutine;
@@ -103,6 +103,7 @@ namespace Assets.Scripts.NGUI
 
         private readonly Dictionary<int, GameObject> m_CellGroup = new Dictionary<int, GameObject>();
         private readonly List<StageInfo> m_StageInfos = new List<StageInfo>();
+        private readonly List<float> m_Angles = new List<float>();
 
         public float offsetX { get; private set; }
 
@@ -131,7 +132,6 @@ namespace Assets.Scripts.NGUI
         {
             OnScrolling();
             OnSongInfoChange();
-            UpdatePos();
         }
 
         #region 初始化
@@ -268,7 +268,7 @@ namespace Assets.Scripts.NGUI
         {
             var numPerRound = 360f / angle;
             var count = Mathf.CeilToInt(m_StageInfos.Count / numPerRound) * numPerRound;
-            count = 20;
+            //count = 20;
             // 读取关卡数量生成disk元件
             for (int i = 0; i < count; i++)
             {
@@ -281,11 +281,7 @@ namespace Assets.Scripts.NGUI
                     sd.SetStageId(i + 1);
                 }
                 var myAngle = angleOffset + angle * i;
-                if (i > count / 2)
-                {
-                    var idx = (count - i);
-                    myAngle = angleOffset - angle * idx;
-                }
+                m_Angles.Add(myAngle);
                 item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
                        Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
                 item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
@@ -295,37 +291,33 @@ namespace Assets.Scripts.NGUI
 
         private void UpdatePos()
         {
-            /* var idx = currentSongIdx - 1;
-             var startAngle = angleOffset + angle * idx;
-             var count1 = 0;
-             for (int i = idx; ; i--)
+            /* var currentAngle = m_Angles[m_CurrentIdx];
+             for (int i = 0; i < m_CellGroup.Count; i++)
              {
-                 if (idx - i > m_CellGroup.Count / 2)
+                 var item = m_CellGroup[i];
+                 var myAngle = 0.0f;
+                 var idx = i;
+                 var distanceIdx = Mathf.Abs(idx - m_CurrentIdx);
+                 if (distanceIdx < m_CellGroup.Count / 2)
                  {
-                     break;
+                     if (m_CurrentIdx > idx)
+                     {
+                         myAngle = currentAngle - Mathf.Abs(i - m_CurrentIdx) * angle;
+                     }
+                     else
+                     {
+                         myAngle = currentAngle + Mathf.Abs(i - m_CurrentIdx) * angle;
+                     }
                  }
-                 var myIdx = i < 0 ? m_CellGroup.Count + i : i;
-                 var item = m_CellGroup[myIdx];
-                 var myAngle = startAngle + (count1--) * angle;
+                 else
+                 {
+                 }
+                 print(i + ":" + myAngle);
+                 m_Angles[i] = myAngle;
                  item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
-                            Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
+                        Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
                  item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
              }*/
-            /*var count2 = 0;
-            idx = currentSongIdx;
-            for (int i = idx; ; i++)
-            {
-                if (i - idx > m_CellGroup.Count / 2)
-                {
-                    break;
-                }
-                var myIdx = i > m_CellGroup.Count - 1 ? i - m_CellGroup.Count : i;
-                var item = m_CellGroup[myIdx];
-                var myAngle = startAngle + (count2++) * angle;
-                item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
-                           Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
-                item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
-            }*/
         }
 
         #endregion 初始化
@@ -337,6 +329,7 @@ namespace Assets.Scripts.NGUI
             m_IsSliding = false;
             onSongChange(m_CurrentIdx + 1);
             OnEnergyInfoChange(true);
+            UpdatePos();
         }
 
         public void OnEnergyInfoChange(bool change)
@@ -451,7 +444,6 @@ namespace Assets.Scripts.NGUI
             fourth = fourth > m_CellGroup.Count - 1 ? fourth - m_CellGroup.Count : fourth;
             var fifth = midIdx + 2;
             fifth = fifth > m_CellGroup.Count - 1 ? fifth - m_CellGroup.Count : fifth;
-
             foreach (var pair in m_CellGroup)
             {
                 var go = pair.Value;
