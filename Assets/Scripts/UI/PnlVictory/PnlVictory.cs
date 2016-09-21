@@ -24,6 +24,10 @@ namespace PnlVictory {
 			this.SetTxrByCharacter ();
 		}
 
+		void OnEnable() {
+			this.SetTxrByCharacter ();
+		}
+
 		public override void OnShow () {
 			SoundEffectComponent.Instance.SayByCurrentRole (GameGlobal.SOUND_TYPE_LAST_NODE);
 		}

@@ -98,6 +98,52 @@ public class UIRootHelper : MonoBehaviour {
 		}
 	}
 
+	public void InitByNotifyHost() {
+		if (!this.isSingleInstanceUI || this.widgets == null || this.widgets.Count <= 0) {
+			return;
+		}
+
+		foreach (UIPhaseHelper uph in this.widgets) {
+			uph.Init ();
+			string activeHostFileName = FomulaHostManager.Instance.GetFileNameByHostType (uph.activeHostKeyId);
+			string labelHostFileName = FomulaHostManager.Instance.GetFileNameByHostType (uph.labelHostKeyId);
+			string sliderHostFileName = FomulaHostManager.Instance.GetFileNameByHostType (uph.sliderHostKeyId);
+			if (activeHostFileName != null && activeHostFileName != string.Empty && uph.activeValue != null && uph.activeValue != string.Empty) {
+				FormulaHost host = FomulaHostManager.Instance.GetNotifyUiHostByFileName (activeHostFileName, uph.gameObject.name);
+				if (host != null) {
+					uph.SetActiveHost (host);
+					string value = host.GetDynamicStrByKey (uph.activeCondiction);
+					uph.OnNotifyDynamicDataChange (host, uph.activeCondiction, value);
+				}
+			}
+
+			if (labelHostFileName != null && labelHostFileName != string.Empty) {
+				FormulaHost host = FomulaHostManager.Instance.GetNotifyUiHostByFileName (labelHostFileName, uph.gameObject.name);
+				if (host != null) {
+					uph.SetLabelHost (host);
+					string signKey = uph.labelMatchSign;
+					if (uph.labelMatchSelfDefineSign != null && uph.labelMatchSelfDefineSign != string.Empty) {
+						signKey = uph.labelMatchSelfDefineSign;
+					}
+
+					string value = host.GetDynamicStrByKey (signKey);
+					uph.OnNotifyDynamicDataChange (host, signKey, value);
+				}
+			}
+
+			if (sliderHostFileName != null && sliderHostFileName != string.Empty) {
+				FormulaHost host = FomulaHostManager.Instance.GetNotifyUiHostByFileName (sliderHostFileName, uph.gameObject.name);
+				if (host != null) {
+					uph.SetSliderHost (host);
+					string value = host.GetDynamicStrByKey (uph.sliderMatchSign);
+					string valuemax = host.GetDynamicStrByKey (uph.sliderMaxSign);
+					uph.OnNotifyDynamicDataChange (host, uph.sliderMaxSign, valuemax);
+					uph.OnNotifyDynamicDataChange (host, uph.sliderMatchSign, value);
+				}
+			}
+		}
+	}
+
 	public Type GetModule(string moduleName) {
 		string _moduleName = this.gameObject.name + "." + moduleName;
 		//Debug.Log ("Init ui module " + _moduledName);

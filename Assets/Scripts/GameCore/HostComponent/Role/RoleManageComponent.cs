@@ -220,6 +220,7 @@ namespace FormulaBase {
 				if (_index == _role.GetDynamicIntByKey (SignKeys.ID)) {
 					_role.SetDynamicData (SignKeys.FIGHTHERO, 1);
 					this.Host = _role;
+					this.Host.SetAsUINotifyInstance ();
 				} else {
 					_role.SetDynamicData (SignKeys.FIGHTHERO, 0);
 				}

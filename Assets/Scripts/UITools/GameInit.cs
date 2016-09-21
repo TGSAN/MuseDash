@@ -6,7 +6,7 @@ using FormulaBase;
 using GameLogic;
 
 public class GameInit : MonoBehaviour {
-	static bool once=true ;
+	private static bool once = true ;
 	// Use this for initialization
 	void OnEnable () {
 		//	Debug.Log("path:"+Application.persistentDataPath+"Game Init");
@@ -15,12 +15,9 @@ public class GameInit : MonoBehaviour {
 			this.Init ();
 			once = false;
 		}
-
-		CommonPanel.GetInstance ().SetMask (false);
 	}
 
-	void OnDisable()
-	{
+	void OnDisable() {
 		CancelInvoke ();
 	}
 	
@@ -38,8 +35,6 @@ public class GameInit : MonoBehaviour {
 	void Update () {
 		TimeWork.g_Instace.CheckTime ();		//时间检测
 	}
-
-
 
 	// Use this for initialization
 	void Start () {
@@ -64,5 +59,15 @@ public class GameInit : MonoBehaviour {
 		FormulaBase.materialManageComponent.Instance.Init ();	//初始化材料
 		FormulaBase.PetManageComponent.Instance.Init ();//初始化宠物
 		FormulaBase.ItemManageComponent.Instance.Init ();//背包初始化 放在所有道具之后
+
+		this.StartCoroutine (this.__Init ());
+	}
+
+	private IEnumerator __Init() {
+		yield return new WaitForSeconds (0.5f);
+
+		// 所有数据 对象准备完毕后才展示ui
+		UISceneHelper.Instance.Show ();
+		CommonPanel.GetInstance ().SetMask (false);
 	}
 }

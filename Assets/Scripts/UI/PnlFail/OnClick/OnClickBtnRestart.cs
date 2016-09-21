@@ -7,9 +7,8 @@ using DYUnityLib;
 using GameLogic;
 using FormulaBase;
 
-
-namespace result_fail {
-	public class OnClickrestart_label : UIPhaseOnClickBase {
+namespace PnlFail {
+	public class OnClickBtnRestart : UIPhaseOnClickBase {
 		public static void Do(GameObject gameObject) {
 			OnDo (gameObject);
 			Revive ();

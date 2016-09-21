@@ -6,10 +6,10 @@ using UnityEngine;
 using FormulaBase;
 using DYUnityLib;
 
-namespace result_fail {
-	public class result_fail : UIPhaseBase {
-		private static result_fail instance = null;
-		public static result_fail Instance {
+namespace PnlFail {
+	public class PnlFail : UIPhaseBase {
+		private static PnlFail instance = null;
+		public static PnlFail Instance {
 			get {
 					return instance;
 			}
@@ -19,6 +19,10 @@ namespace result_fail {
 
 		void Start() {
 			instance = this;
+			this.SetTxrByCharacter ();
+		}
+
+		void OnEnable() {
 			this.SetTxrByCharacter ();
 		}
 
@@ -56,7 +60,7 @@ namespace result_fail {
 			if (t == null) {
 				int heroIndex = BattleRoleAttributeComponent.Instance.Host.GetDynamicIntByKey (SignKeys.ID);
 				string txrName = ConfigPool.Instance.GetConfigStringValue ("character", heroIndex.ToString (), "image_fail");
-				Debug.Log ("Load character " + heroIndex + " result_fail texture failed : " + txrName);
+				Debug.Log ("Load character " + heroIndex + " PnlFail texture failed : " + txrName);
 			}
 
 			this.txrCharact.mainTexture = t;

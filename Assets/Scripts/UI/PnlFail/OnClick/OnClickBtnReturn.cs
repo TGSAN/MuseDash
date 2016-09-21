@@ -5,11 +5,10 @@ using System;
 using UnityEngine;
 using FormulaBase;
 
-
-namespace result_fail {
-	public class OnClickreturn_label : UIPhaseOnClickBase {
+namespace PnlFail {
+	public class OnClickBtnReturn : UIPhaseOnClickBase {
 		public static void Do(GameObject gameObject) {
-			OnDo(gameObject);
+				OnDo(gameObject);
 			StageBattleComponent.Instance.Exit ();
 		}
 	}
