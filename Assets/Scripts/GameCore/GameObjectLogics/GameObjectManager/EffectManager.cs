@@ -10,6 +10,7 @@ public class EffectManager : MonoBehaviour {
 	public const int COMBO_CHANGE_LIM = 20;
 
 	private GameObject[] playResult;
+	private float[] playResultOffset;
 	private GameObject pressEffect;
 	private GameObject ferverScene;
 
@@ -105,6 +106,8 @@ public class EffectManager : MonoBehaviour {
 
 			_playResult.SetActive (false);
 		}
+
+		this.InitAttackFxOffset ();
 	}
 
 	public void ShowPressGirlEffect(bool isShow) {
@@ -160,6 +163,19 @@ public class EffectManager : MonoBehaviour {
 		}
 	}
 
+	private void InitAttackFxOffset() {
+		Vector3 pos = GirlManager.Instance.GetCurrentGirlPositon ();
+		this.playResultOffset = new float[(int)GameMusic.CRITICAL + 1];
+		for (int i = 0; i < this.playResultOffset.Length; i++) {
+			GameObject fx = this.playResult [i];
+			if (fx == null) {
+				continue;
+			}
+
+			this.playResultOffset [i] = pos.y - fx.transform.position.y;
+		}
+	}
+
 	public void ShowPlayResult(uint resultCode) {
 		for (int i = 0; i < this.playResult.Length; i++) {
 			GameObject _playResult = this.playResult [i];
@@ -175,12 +191,18 @@ public class EffectManager : MonoBehaviour {
 			resultCode = GameMusic.CRITICAL;
 		}
 
-		GameObject pResult = this.playResult [(int)resultCode];
+		int _result = (int)resultCode;
+		GameObject pResult = this.playResult [_result];
 		if (pResult == null) {
 			return;
 		}
 
 		pResult.SetActive (true);
 		SpineActionController.Play (ACTION_KEYS.COMEIN, pResult);
+
+		// Attack effect follow y of girl.
+		float offset = this.playResultOffset [_result];
+		Vector3 pos = GirlManager.Instance.GetCurrentGirlPositon ();
+		pResult.transform.position = new Vector3 (pResult.transform.position.x, pos.y - offset, pResult.transform.position.z);
 	}
 }

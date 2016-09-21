@@ -422,4 +422,17 @@ public class GirlManager : MonoBehaviour {
 			}
 		}
 	}
+
+	public Vector3 GetCurrentGirlPositon() {
+		if (this.girls == null || this.girls.Length <= 0) {
+			return Vector3.zero;
+		}
+
+		GameObject girl = this.girls [0];
+		if (girl == null) {
+			return Vector3.zero;
+		}
+
+		return girl.transform.position;
+	}
 }

@@ -23,8 +23,8 @@ public class TestAssetEdit : EditorWindow {
 	private const string DES_3 = "宠物测试技能ID";
 	private const string DES_4 = "角色血量百分比";
 	private const string DES_5 = "游戏速度";
-	private const string DES_6 = "角色";
-	private const string DES_7 = "角色测试服装UID";
+	private const string DES_6 = "角色数据id";
+	private const string DES_7 = "角色形象uid";
 
 	private float debugTimeScale = 1f;
 	private float debugHpRate = 1f;

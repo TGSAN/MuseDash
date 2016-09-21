@@ -140,10 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53816134a58264bc7994c41c368cc47f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intensity: 0
+  intensity: 10
   colorMix: {r: 0.5808823, g: 0.17084773, b: 0.17084773, a: 0.49019608}
-  colorMixBlend: 0
-  agonyTint: 0
+  colorMixBlend: 10
+  agonyTint: 10
 --- !u!114 &283160125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,6 +608,11 @@ Prefab:
     - target: {fileID: 114000012207105308, guid: 99ef4c8adf3d7469b920329d5529bde9,
         type: 2}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000011344018168, guid: 99ef4c8adf3d7469b920329d5529bde9,
+        type: 2}
+      propertyPath: m_Pitch
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
