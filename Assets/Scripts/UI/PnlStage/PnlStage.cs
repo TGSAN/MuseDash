@@ -61,8 +61,6 @@ namespace PnlStage
             }
 
             StageBattleComponent.Instance.InitById(idx);
-            StageBattleComponent.Instance.Host.SetAsUINotifyInstance();
-            TaskStageTarget.Instance.Host.SetAsUINotifyInstance();
             /*
 			SceneAudioManager.Instance.bgm.clip = null;
 			PnlScrollCircle.instance.ResetPos();

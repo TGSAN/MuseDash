@@ -61,6 +61,8 @@ namespace FormulaBase {
 			int targetScore = (int)this.Host.Result (FormulaKeys.FORMULA_329);
 			task.SetDynamicData (TaskStageTarget.TASK_SIGNKEY_SCORE + TaskStageTarget.TASK_SIGNKEY_COUNT_TARGET_TAIL, targetScore);
 			this.Host.SetDynamicData (TaskStageTarget.TASK_SIGNKEY_SCORE + TaskStageTarget.TASK_SIGNKEY_COUNT_TARGET_TAIL, targetScore);
+
+			this.Host.SetAsUINotifyInstance ();
 		}
 
 		public int GetStageId() {
@@ -534,12 +536,6 @@ namespace FormulaBase {
 		/// 关卡初始化入口
 		/// </summary>
 		public void Init(){
-			#if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
-			if (this.Host == null) {
-				this.InitById((int)GameGlobal.DEBUG_DEFAULT_STAGE);
-			}
-			#endif
-
 			StageTeachComponent.Instance.Init ();
 
 			Time.timeScale = GameGlobal.TIME_SCALE;

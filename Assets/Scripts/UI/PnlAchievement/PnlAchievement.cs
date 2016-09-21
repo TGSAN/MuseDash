@@ -50,8 +50,6 @@ namespace PnlAchievement {
 		private IEnumerator __OnShow(float sec) {
 			yield return new WaitForSeconds (sec);
 
-			StageBattleComponent.Instance.Host.SetAsUINotifyInstance ();
-			TaskStageTarget.Instance.Host.SetAsUINotifyInstance ();
 			int rank = TaskStageTarget.Instance.GetStageEvluateMax ();
 			for (int i = 0; i < rank; i++) {
 				GameObject t = this.trophys [i];
