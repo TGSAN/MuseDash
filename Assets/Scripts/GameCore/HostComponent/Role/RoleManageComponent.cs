@@ -17,7 +17,6 @@ namespace FormulaBase {
 			}
 		}
 
-
 		// -----------------
 		public static int RoleIndexToId(int idx) {
 			return idx;
@@ -54,6 +53,7 @@ namespace FormulaBase {
 					}
 
 					this.Host = _role;
+					this.Host.SetAsUINotifyInstance ();
 					break;
 				}
 
@@ -77,6 +77,7 @@ namespace FormulaBase {
 			this.GetList ("Role");
 			// 初始化默认战斗角色
 			this.Host = this.GetHostByKeyValue (SignKeys.ID, 1);
+			this.SetFightGirlIndex (1);
 		}
 
 		public void GetExpAndCost(ref int Exp,ref int Cost) {
@@ -99,30 +100,30 @@ namespace FormulaBase {
 		/// 获取升级后的host
 		/// </summary>
 		public FormulaHost GetLevelUpHost(FormulaHost _host) {
-			int Exp = 0;
-			int Cost = 0;
-			GetExpAndCost (ref Exp, ref Cost);
+			int exp = 0;
+			int cost = 0;
+			GetExpAndCost (ref exp, ref cost);
 			FormulaHost thost = new FormulaHost (HOST_IDX);
 			thost.SetDynamicData (SignKeys.ID, _host.GetDynamicIntByKey (SignKeys.ID));
 			thost.SetDynamicData (SignKeys.LEVEL_STAR, _host.GetDynamicIntByKey (SignKeys.LEVEL_STAR));
 			thost.SetDynamicData (SignKeys.LEVEL, _host.GetDynamicIntByKey (SignKeys.LEVEL));
-			Exp += _host.GetDynamicIntByKey (SignKeys.EXP);
+			exp += _host.GetDynamicIntByKey (SignKeys.EXP);
 
-			int LevelUpExp = (int)_host.Result (FormulaKeys.FORMULA_15);
-			int Level = _host.GetDynamicIntByKey (SignKeys.LEVEL);
-			while (LevelUpExp <= Exp) {
-				Level++;
-				Exp -= LevelUpExp;
-				thost.SetDynamicData (SignKeys.LEVEL, Level);
-				LevelUpExp = (int)thost.Result (FormulaKeys.FORMULA_15);
-				if (Level == (int)thost.Result (FormulaKeys.FORMULA_14)) {
+			int levelUpExp = (int)_host.Result (FormulaKeys.FORMULA_15);
+			int level = _host.GetDynamicIntByKey (SignKeys.LEVEL);
+			while (levelUpExp <= exp) {
+				level++;
+				exp -= levelUpExp;
+				thost.SetDynamicData (SignKeys.LEVEL, level);
+				levelUpExp = (int)thost.Result (FormulaKeys.FORMULA_15);
+				if (level == (int)thost.Result (FormulaKeys.FORMULA_14)) {
 					NGUIDebug.Log ("到达等级上限");
 					return thost;
 				}
 			}
 
 			//thost.SetDynamicData(SignKeys.LEVEL,Level);
-			thost.SetDynamicData (SignKeys.EXP, Exp);
+			thost.SetDynamicData (SignKeys.EXP, exp);
 			return thost;
 		}
 
