@@ -77,7 +77,9 @@ namespace FormulaBase {
 			this.GetList ("Role");
 			// 初始化默认战斗角色
 			this.Host = this.GetHostByKeyValue (SignKeys.ID, 1);
-			this.SetFightGirlIndex (1);
+			this.SetFightGirlIndex (1, () => {
+				this.SetFightGirlCallBack (null);
+			});
 		}
 
 		public void GetExpAndCost(ref int Exp,ref int Cost) {

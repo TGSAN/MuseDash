@@ -116,9 +116,10 @@ public class ChoseHeroManager
 	/// <returns><c>true</c>, if chose herp was set, <c>false</c> otherwise.</returns>XX
 	public  void SetChoseHero(ChoseHeroDefine.PLAYR_TYPE _type,Callback _callBack=null)
 	{
-		RoleManageComponent.Instance.SetFightGirlIndex((int)_type,_callBack);
+		RoleManageComponent.Instance.SetFightGirlIndex ((int)_type, _callBack);
 	//	_ChosePlayer=_type;
 	}
+
 	private Dictionary<ChoseHeroDefine.PLAYR_TYPE,GameObject> _PlayerModleDic = new Dictionary<ChoseHeroDefine.PLAYR_TYPE, GameObject> ();
 	public GameObject LoadPlayerActor(ChoseHeroDefine.PLAYR_TYPE _type)
 	{

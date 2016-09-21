@@ -42,8 +42,6 @@ public class GameInit : MonoBehaviour {
 		thc.enabled = true;
 		// 成功登陆次数计数，顺便可以初始化账号
 		AccountManagerComponent.Instance.AddLoginCount (1);
-		// 定时恢复体力
-		AccountPhysicsManagerComponent.Instance.AutoPhysicalRecover ();
 	}
 
 	public void Init() {
@@ -65,6 +63,9 @@ public class GameInit : MonoBehaviour {
 
 	private IEnumerator __Init() {
 		yield return new WaitForSeconds (0.5f);
+
+		// 定时恢复体力
+		AccountPhysicsManagerComponent.Instance.AutoPhysicalRecover ();
 
 		// 所有数据 对象准备完毕后才展示ui
 		UISceneHelper.Instance.Show ();
