@@ -15,11 +15,17 @@ public class GameSceneMainController : MonoBehaviour {
 
 	void Start () {
 		//this.InitCommonObject ();
-		this.ScreenFit ();
+		this._ScreenFit ();
 
 		this.secondCounter = 0f;
 		Application.targetFrameRate = 60;
 		GameGlobal.gCamera = this;
+
+		#if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
+		if (StageBattleComponent.Instance.Host == null) {
+			StageBattleComponent.Instance.InitById((int)GameGlobal.DEBUG_DEFAULT_STAGE);
+		}
+		#endif
 
 		this.StartCoroutine (this.__OnStart ());
 		//this.__OnStart ();
@@ -56,6 +62,9 @@ public class GameSceneMainController : MonoBehaviour {
 			SettingComponent.Instance.Init ();
 			SettingComponent.Instance.Host.SetAsUINotifyInstance ();
 		}
+
+		// 所有数据 对象准备完毕后才展示ui
+		UISceneHelper.Instance.Show ();
 	}
 
 	private void InitCommonObject() {
@@ -83,13 +92,13 @@ public class GameSceneMainController : MonoBehaviour {
 		SettingComponent.Instance.Host.SetDynamicData (SignKeys.SMALLlTYPE, fpsShow);
 	}
 
-	private void ScreenFit() {
+	private void _ScreenFit() {
 		this.gameCamera = GameObject.Find ("GameCamera").gameObject;
-		if (this.gameCamera) {
-			Camera cam = this.gameCamera.GetComponent<Camera> ();
-			float _srate = cam.rect.height / cam.rect.width;
-			float _wrate = Screen.height / (float)Screen.width;
-			cam.fieldOfView *= 1 + (_wrate - _srate);
+		if (this.gameCamera == null) {
+			return;
 		}
+
+		Camera cam = this.gameCamera.GetComponent<Camera> ();
+		ScreenFit.CameraFit (cam);
 	}
 }

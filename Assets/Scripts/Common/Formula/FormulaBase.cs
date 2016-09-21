@@ -128,6 +128,7 @@ namespace FormulaBase {
 		private FormulaHost[] catchObjects;
 
 		private Dictionary<string, UIPhaseHelper> catchUiHelper;
+		private Dictionary<string, FormulaHost> catchUiHost;
 
 		/// <summary>
 		/// The host pool.
@@ -492,11 +493,31 @@ namespace FormulaBase {
 			_data.Remove (host.objectID);
 		}
 
+		public FormulaHost GetNotifyUiHostByFileName(string fileName, string widgetName = "") {
+			if (this.catchUiHost == null) {
+				Debug.Log ("FomulaHostManager.catchUiHost is null");
+				return null;
+			}
+
+			if (!this.catchUiHost.ContainsKey (fileName)) {
+				Debug.Log ("No suche notify host : " + fileName + " to match " + widgetName);
+				return null;
+			}
+
+			return this.catchUiHost [fileName];
+		}
+
 		public void SetNotifyUiHost(FormulaHost host) {
 			if (host == null) {
 				return;
 			}
 
+			if (this.catchUiHost == null) {
+				this.catchUiHost = new Dictionary<string, FormulaHost> ();
+			}
+
+			this.catchUiHost [host.GetFileName ()] = host;
+			/*
 			if (this.catchUiHelper == null) {
 				return;
 			}
@@ -510,6 +531,7 @@ namespace FormulaBase {
 				uph.SetLabelHost (host);
 				uph.SetSliderHost (host);
 			}
+			*/
 		}
 
 		public void SetNotifyUiHelper(string uid, UIPhaseHelper uph) {

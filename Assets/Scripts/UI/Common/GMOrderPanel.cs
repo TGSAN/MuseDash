@@ -198,40 +198,36 @@ public class GMOrderPanel : MonoBehaviour {
 	{
 		m_SureRestBox.SetActive(false);
 	}
-	public void ClickOkInRest()
-	{
-		DeleteAccountData();
-		m_SureRestBox.SetActive(false);
-		Application.Quit();
+	public void ClickOkInRest() {
+		DeleteAccountData ();
+		m_SureRestBox.SetActive (false);
+		Application.Quit ();
 	}
-	public void ClickCancelInUnlockStages()
-	{
+
+	public void ClickCancelInUnlockStages() {
 		m_SureUnLockStagesButton.SetActive(false);
 	}
-	public void ClickOKInUnlockStages()
-	{
+
+	public void ClickOKInUnlockStages() {
 		//Debug.Log("暂未开放");
 		UNLockAllStages ();
 	}
-	public void  GmRobotShow(bool _show)
-	{
-		m_GMOrderPanel.SetActive(!_show);
-		if(_show)
-		{
-			this.gameObject.layer=5;
-			CommonPanel.GetInstance().CloseBlur(null);
-		}
-		else 
-		{
-			this.gameObject.layer=17;
-			CommonPanel.GetInstance().SetBlurSub(null);
+
+	public void  GmRobotShow(bool _show) {
+		m_GMOrderPanel.SetActive (!_show);
+		if (_show) {
+			this.gameObject.layer = 5;
+			//CommonPanel.GetInstance().CloseBlur(null);
+		} else {
+			this.gameObject.layer = 17;
+			//CommonPanel.GetInstance().SetBlurSub(null);
 		}
 	}
-	public void ClickGMOtherPlease(UIToggle m_toggle)
-	{
+
+	public void ClickGMOtherPlease(UIToggle m_toggle) {
 		CloseGMpanel();
 		m_toggle.value=!m_toggle.value;
 		this.gameObject.layer=5;
-		CommonPanel.GetInstance().CloseBlur(null);
+		// CommonPanel.GetInstance().CloseBlur(null);
 	}
 }

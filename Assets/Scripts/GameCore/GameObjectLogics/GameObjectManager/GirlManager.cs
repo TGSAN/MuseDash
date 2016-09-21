@@ -360,17 +360,6 @@ public class GirlManager : MonoBehaviour {
 		}
 	}
 
-	public void PlayGirlReviveAnimation() {
-		foreach (var girl in this.girls) {
-			if (girl != null) {
-				SpineActionController.ClearProtectLevel (girl);
-				SpineActionController.Play (ACTION_KEYS.COMEIN, girl);
-			}
-		}
-
-		ActerChangeColore.Instance.PlayWuDiAnimation (true, (float)GameMusic.MISS_AVOID_TIME);
-	}
-
 	public void StopPhysicDetect() {
 		foreach (var girl in this.girls) {
 			if (girl == null) {
@@ -421,5 +410,18 @@ public class GirlManager : MonoBehaviour {
 				detect.EnableDetect ();
 			}
 		}
+	}
+
+	public Vector3 GetCurrentGirlPositon() {
+		if (this.girls == null || this.girls.Length <= 0) {
+			return Vector3.zero;
+		}
+
+		GameObject girl = this.girls [0];
+		if (girl == null) {
+			return Vector3.zero;
+		}
+
+		return girl.transform.position;
 	}
 }

@@ -160,6 +160,7 @@ namespace FormulaBase {
 		/// <param name="stageId">Stage identifier.</param>
 		private void OnInit(int stageId) {
 			//this.OnTargetCheck (0);
+			this.Host.SetAsUINotifyInstance ();
 		}
 
 		/// <summary>
