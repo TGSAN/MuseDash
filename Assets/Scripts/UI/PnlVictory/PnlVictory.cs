@@ -38,6 +38,10 @@ namespace PnlVictory {
 		private void SetTxrByCharacter() {
 			int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex ();
 			string txrName = ConfigPool.Instance.GetConfigStringValue ("character", heroIndex.ToString (), "image_victory");
+			if (txrName == null || ResourceLoader.Instance == null) {
+				return;
+			}
+
 			ResourceLoader.Instance.Load (txrName, this.__LoadTxr);
 		}
 

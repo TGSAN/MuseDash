@@ -15,7 +15,7 @@ namespace GameLogic {
 		public override void Do (Spine.AnimationState state, int trackIndex, int loopCount) {
 			// Air run.
 			if (GirlManager.Instance.IsJumpingAction ()) {
-				//SpineActionController.Play (ACTION_KEYS.AIR_STAND, this.gameObject);
+				SpineActionController.Play (ACTION_KEYS.STAND, this.gameObject);
 				return;
 			}
 

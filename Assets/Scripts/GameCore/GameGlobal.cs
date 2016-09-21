@@ -218,6 +218,7 @@ public struct ACTION_KEYS {
 	public const string COMEOUT3 = "note_out_p";
 
 	public const string STAND = "standby";
+	public const string PRESS = "char_press";
 	//public const string AIR_STAND = "airstandby";
 	public const string HURT = "char_hurt";
 	public const string RUN = "char_run";

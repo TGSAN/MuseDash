@@ -85,7 +85,6 @@ public class UISceneHelper : MonoBehaviour {
 				continue;
 			}
 
-			Debug.Log ("----->> " + upb.gameObject.name);
 			upb.Show ();
 		}
 		/*
