@@ -198,40 +198,119 @@ public class GMOrderPanel : MonoBehaviour {
 	{
 		m_SureRestBox.SetActive(false);
 	}
-	public void ClickOkInRest()
-	{
-		DeleteAccountData();
-		m_SureRestBox.SetActive(false);
-		Application.Quit();
+	public void ClickOkInRest() {
+		DeleteAccountData ();
+		m_SureRestBox.SetActive (false);
+		Application.Quit ();
 	}
-	public void ClickCancelInUnlockStages()
-	{
+
+	public void ClickCancelInUnlockStages() {
 		m_SureUnLockStagesButton.SetActive(false);
 	}
-	public void ClickOKInUnlockStages()
-	{
+
+	public void ClickOKInUnlockStages() {
 		//Debug.Log("暂未开放");
 		UNLockAllStages ();
 	}
-	public void  GmRobotShow(bool _show)
-	{
-		m_GMOrderPanel.SetActive(!_show);
-		if(_show)
-		{
-			this.gameObject.layer=5;
-			CommonPanel.GetInstance().CloseBlur(null);
-		}
-		else 
-		{
-			this.gameObject.layer=17;
-			CommonPanel.GetInstance().SetBlurSub(null);
+
+	public void  GmRobotShow(bool _show) {
+		m_GMOrderPanel.SetActive (!_show);
+		if (_show) {
+			this.gameObject.layer = 5;
+			//CommonPanel.GetInstance().CloseBlur(null);
+		} else {
+			this.gameObject.layer = 17;
+			//CommonPanel.GetInstance().SetBlurSub(null);
 		}
 	}
-	public void ClickGMOtherPlease(UIToggle m_toggle)
-	{
+
+	public void ClickGMOtherPlease(UIToggle m_toggle) {
 		CloseGMpanel();
 		m_toggle.value=!m_toggle.value;
 		this.gameObject.layer=5;
-		CommonPanel.GetInstance().CloseBlur(null);
+		// CommonPanel.GetInstance().CloseBlur(null);
+	}
+
+	public void ClickSetCharacter(UILabel btnLabel) {
+		if (RoleManageComponent.Instance.HostList == null) {
+			Debug.Log ("Role empty.");
+			return;
+		}
+
+		int setIdx = 1;
+		FormulaHost role = RoleManageComponent.Instance.GetRole (btnLabel.text);
+		if (role != null) {
+			int idx = role.GetDynamicIntByKey (SignKeys.ID);
+			setIdx = idx + 1;
+			if (setIdx > RoleManageComponent.Instance.HostList.Count) {
+				setIdx = 1;
+			}
+		}
+
+		Debug.Log ("Gm set battle role " + setIdx);
+		FormulaHost setRole = RoleManageComponent.Instance.GetRole (setIdx);
+		btnLabel.text = setRole.GetDynamicStrByKey (SignKeys.NAME);
+		RoleManageComponent.Instance.SetFightGirlIndex (setIdx);
+		CommonPanel.GetInstance ().ShowWaittingPanel (false);
+	}
+
+	public void ClickSetCloth(UILabel btnLabel) {
+		if (RoleManageComponent.Instance.HostList == null) {
+			Debug.Log ("Role empty.");
+			return;
+		}
+
+		int idx = RoleManageComponent.Instance.GetFightGirlIndex ();
+		if (idx <= 0) {
+			Debug.Log ("No fight role.");
+			return;
+		}
+
+		FormulaHost role = RoleManageComponent.Instance.GetRole (idx);
+		string name = role.GetDynamicStrByKey (SignKeys.NAME);
+		int clothId = role.GetDynamicIntByKey (SignKeys.CLOTH);
+		LitJson.JsonData jd = ConfigPool.Instance.GetConfigByName ("clothing");
+		foreach (string key in jd.Keys) {
+			int cid = int.Parse (key);
+			if (cid <= clothId) {
+				continue;
+			}
+
+			string ownername = ConfigPool.Instance.GetConfigStringValue ("clothing", key, "owner");
+			if (ownername != name) {
+				continue;
+			}
+
+			role.SetDynamicData (SignKeys.CLOTH, cid);
+			break;
+		}
+
+		int setClothId = role.GetDynamicIntByKey (SignKeys.CLOTH);
+		if (setClothId != clothId) {
+			btnLabel.text = ("cloth " + setClothId);
+			return;
+		}
+
+		clothId = 0;
+		foreach (string key in jd.Keys) {
+			int cid = int.Parse (key);
+			if (cid <= clothId) {
+				continue;
+			}
+
+			string ownername = ConfigPool.Instance.GetConfigStringValue ("clothing", key, "owner");
+			if (ownername != name) {
+				continue;
+			}
+
+			role.SetDynamicData (SignKeys.CLOTH, cid);
+			break;
+		}
+
+		setClothId = role.GetDynamicIntByKey (SignKeys.CLOTH);
+		if (setClothId != clothId) {
+			btnLabel.text = ("cloth " + setClothId);
+			return;
+		}
 	}
 }

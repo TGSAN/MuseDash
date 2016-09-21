@@ -120,11 +120,21 @@ public class GirlManager : MonoBehaviour {
 		}
 
 		Debug.Log ("Battle with hero : " + heroIndex);
-		int clothIdx = ConfigPool.Instance.GetConfigIntValue ("character", heroIndex.ToString (), "character");
-		string clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", "uid", "path", clothIdx);
+		FormulaHost hero = RoleManageComponent.Instance.GetRole (heroIndex);
+		int clothIdx = 0;
+		string clothPath = null;
+		if (hero != null) {
+			clothIdx = hero.GetDynamicIntByKey (SignKeys.CLOTH);
+			clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", clothIdx.ToString (), "path");
+		}
+
 #if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
-		if (GameGlobal.DEBUG_CLOTH_UID > 0) {
-			clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", "uid", "path", GameGlobal.DEBUG_CLOTH_UID);
+		if (clothPath == null || clothPath == string.Empty) {
+			clothIdx = ConfigPool.Instance.GetConfigIntValue ("character", heroIndex.ToString (), "character");
+			clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", "uid", "path", clothIdx);
+			if (GameGlobal.DEBUG_CLOTH_UID > 0) {
+				clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", "uid", "path", GameGlobal.DEBUG_CLOTH_UID);
+			}
 		}
 #endif
 		this.girlnames [0] = clothPath;
@@ -358,17 +368,6 @@ public class GirlManager : MonoBehaviour {
 
 			SpineActionController.Play (ACTION_KEYS.CHAR_DEAD, girl);
 		}
-	}
-
-	public void PlayGirlReviveAnimation() {
-		foreach (var girl in this.girls) {
-			if (girl != null) {
-				SpineActionController.ClearProtectLevel (girl);
-				SpineActionController.Play (ACTION_KEYS.COMEIN, girl);
-			}
-		}
-
-		ActerChangeColore.Instance.PlayWuDiAnimation (true, (float)GameMusic.MISS_AVOID_TIME);
 	}
 
 	public void StopPhysicDetect() {

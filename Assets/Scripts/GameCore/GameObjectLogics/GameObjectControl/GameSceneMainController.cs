@@ -21,6 +21,12 @@ public class GameSceneMainController : MonoBehaviour {
 		Application.targetFrameRate = 60;
 		GameGlobal.gCamera = this;
 
+		#if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
+		if (StageBattleComponent.Instance.Host == null) {
+			StageBattleComponent.Instance.InitById((int)GameGlobal.DEBUG_DEFAULT_STAGE);
+		}
+		#endif
+
 		this.StartCoroutine (this.__OnStart ());
 		//this.__OnStart ();
 	}
@@ -56,6 +62,9 @@ public class GameSceneMainController : MonoBehaviour {
 			SettingComponent.Instance.Init ();
 			SettingComponent.Instance.Host.SetAsUINotifyInstance ();
 		}
+
+		// 所有数据 对象准备完毕后才展示ui
+		UISceneHelper.Instance.Show ();
 	}
 
 	private void InitCommonObject() {

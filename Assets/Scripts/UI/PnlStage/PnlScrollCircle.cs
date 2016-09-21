@@ -75,11 +75,10 @@ namespace Assets.Scripts.NGUI
 
         public GameObject cell;
         public GameObject leftButton, rightButton;
-        public UILabel txtNameNext, txtAuthorNext;
         public UILabel txtNameLast, txtAuthorLast, txtEnergyLast;
-        public UISprite sprBkgNext, sprBkgLast;
         public UISprite sprEnergy;
         public GameObject energy, difficulty;
+        public GameObject btnStart;
 
         [Header("音频")]
         public int resolution = 1024;
@@ -97,14 +96,15 @@ namespace Assets.Scripts.NGUI
         private Sequence m_SlideSeq;
         private Sequence m_DlySeq;
         private float m_ZAngle = 0.0f;
-        private static int m_CurrentIdx = 0;
+        private static int m_CurrentIdx = 2;
         private bool m_IsSliding = false;
         private ResourceRequest m_Request;
         private Coroutine m_Coroutine;
         private AudioClip m_CatchClip;
-
         private readonly Dictionary<int, GameObject> m_CellGroup = new Dictionary<int, GameObject>();
         private readonly List<StageInfo> m_StageInfos = new List<StageInfo>();
+        private readonly List<float> m_Angles = new List<float>();
+        private bool m_FinishEnter = false;
 
         public float offsetX { get; private set; }
 
@@ -133,6 +133,7 @@ namespace Assets.Scripts.NGUI
         {
             OnScrolling();
             OnSongInfoChange();
+            UpdatePos();
         }
 
         #region 初始化
@@ -162,6 +163,25 @@ namespace Assets.Scripts.NGUI
 
         private void InitEvent()
         {
+            UIEventListener.VoidDelegate onDragStart = go =>
+            {
+                m_IsSliding = true;
+                if (m_SlideTweener != null)
+                {
+                    m_SlideTweener.Complete();
+                }
+            };
+
+            UIEventListener.VectorDelegate onDrag = (go, delta) =>
+            {
+                offsetX = delta.x * -sensitivity;
+                offsetX = offsetX < 0
+                    ? Mathf.Clamp(offsetX, -minMaxSlide.y, -minMaxSlide.x)
+                    : Mathf.Clamp(offsetX, minMaxSlide.x, minMaxSlide.y);
+
+                pivot.localEulerAngles += new Vector3(0, 0, offsetX);
+                m_ZAngle += offsetX;
+            };
             UIEventListener.VoidDelegate onDragEnd = go =>
             {
                 var endAngles = pivot.localEulerAngles +
@@ -227,7 +247,6 @@ namespace Assets.Scripts.NGUI
                         m_SlideSeq.Kill();
                         m_SlideSeq = null;
                     }
-
                     if (m_DlySeq != null)
                     {
                         m_DlySeq.Kill();
@@ -235,33 +254,41 @@ namespace Assets.Scripts.NGUI
                     }
                 }
             };
-            UIEventListener.Get(gameObject).onDragStart = go =>
+            UIEventListener.Get(btnStart).onDragStart = onDragStart;
+            UIEventListener.Get(btnStart).onDrag = onDrag;
+            UIEventListener.Get(btnStart).onDragEnd = onDragEnd;
+            UIEventListener.Get(btnStart).onClick = (go) =>
             {
-                m_IsSliding = true;
-                if (m_SlideTweener != null)
+                PnlStage.PnlStage.Instance.gameObject.SetActive(false);
+                var widgets = UISceneHelper.Instance.widgets;
+				foreach (UIRootHelper w in widgets.Values)
                 {
-                    m_SlideTweener.Complete();
+					if (w.gameObject.name == "PnlAchievement")
+                    {
+						w.gameObject.SetActive(true);
+                        break;
+                    }
                 }
             };
-            UIEventListener.Get(gameObject).onDrag = (go, delta) =>
-            {
-                offsetX = delta.x * -sensitivity;
-                offsetX = offsetX < 0
-                    ? Mathf.Clamp(offsetX, -minMaxSlide.y, -minMaxSlide.x)
-                    : Mathf.Clamp(offsetX, minMaxSlide.x, minMaxSlide.y);
 
-                pivot.localEulerAngles += new Vector3(0, 0, offsetX);
-                m_ZAngle += offsetX;
-            };
+            UIEventListener.Get(gameObject).onDragStart = onDragStart;
+            UIEventListener.Get(gameObject).onDrag = onDrag;
             UIEventListener.Get(gameObject).onDragEnd = onDragEnd;
 
-            UIEventListener.Get(leftButton).onPress = (go, isPressing) =>
+            UIEventListener.Get(leftButton).onDragStart = onDragStart;
+            UIEventListener.Get(leftButton).onDrag = onDrag;
+            UIEventListener.Get(leftButton).onDragEnd = onDragEnd;
+            UIEventListener.Get(leftButton).onClick = (go) =>
             {
-                onSlide(go, isPressing, 1);
+                OnChangeOffset(new Vector3(0, 0, angle * -1), nextPageTime);
             };
-            UIEventListener.Get(rightButton).onPress = (go, isPressing) =>
+
+            UIEventListener.Get(rightButton).onDragStart = onDragStart;
+            UIEventListener.Get(rightButton).onDrag = onDrag;
+            UIEventListener.Get(rightButton).onDragEnd = onDragEnd;
+            UIEventListener.Get(rightButton).onClick = (go) =>
             {
-                onSlide(go, isPressing, -1);
+                OnChangeOffset(new Vector3(0, 0, angle * 1), nextPageTime);
             };
         }
 
@@ -280,12 +307,42 @@ namespace Assets.Scripts.NGUI
                 {
                     sd.SetStageId(i + 1);
                 }
-
                 var myAngle = angleOffset + angle * i;
+                m_Angles.Add(myAngle);
                 item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
-                    Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
+                       Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
                 item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
                 m_CellGroup.Add(i, item);
+            }
+        }
+
+        private void UpdatePos()
+        {
+            if (!m_FinishEnter)
+            {
+                return;
+            }
+            var currentIdx = m_CurrentIdx;
+            var startAngle = m_Angles[currentIdx];
+            for (int i = currentIdx; i < (m_CellGroup.Count) / 2 + currentIdx; i++)
+            {
+                var idx = i > m_CellGroup.Count - 1 ? i - m_CellGroup.Count : i;
+                var item = m_CellGroup[idx];
+                var myAngle = startAngle + (i - currentIdx) * angle;
+                item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
+                   Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
+                item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
+                m_Angles[idx] = myAngle;
+            }
+            for (int i = currentIdx; i > currentIdx - (m_CellGroup.Count) / 2; i--)
+            {
+                var idx = i < 0 ? i + m_CellGroup.Count : i;
+                var item = m_CellGroup[idx];
+                var myAngle = startAngle - (currentIdx - i) * angle;
+                item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
+                   Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
+                item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
+                m_Angles[idx] = myAngle;
             }
         }
 
@@ -317,7 +374,6 @@ namespace Assets.Scripts.NGUI
                 var cost = StageBattleComponent.Instance.Host.Result(FormulaKeys.FORMULA_330);
                 txtEnergyLast.text = cost.ToString();
                 var diff = StageBattleComponent.Instance.Host.GetDynamicIntByKey(SignKeys.DIFFCULT);
-                print(cost);
                 for (int i = 0; i < difficulty.transform.childCount; i++)
                 {
                     var child = difficulty.transform.GetChild(i);
@@ -383,23 +439,13 @@ namespace Assets.Scripts.NGUI
         {
             if (m_CurrentIdx < m_StageInfos.Count)
             {
-                var offsetForInfo = new Vector3(offsetX < 0 ? txtOffsetX : -txtOffsetX, 0, 0);
+                var offsetForInfo = new Vector3(offsetX < 0 ? txtOffsetX : -txtOffsetX, 220f, 0);
                 txtNameLast.text = m_StageInfos[m_CurrentIdx].idx + " " + m_StageInfos[m_CurrentIdx].musicName;
                 txtAuthorLast.text = "Music by " + m_StageInfos[m_CurrentIdx].musicAuthor;
                 var lerpNumLast = 1 - scale * (Mathf.Abs(pivot.transform.position.x - m_CellGroup[m_CurrentIdx].transform.position.x)) / (Mathf.Sin(angle * Mathf.Deg2Rad) * radius);
                 txtNameLast.alpha = lerpNumLast;
                 txtAuthorLast.alpha = lerpNumLast;
-                sprBkgLast.alpha = Mathf.Lerp(maxMinAlpha.x, maxMinAlpha.y, lerpNumLast); ;
-                txtNameLast.transform.parent.localPosition = Vector3.Lerp(offsetForInfo, Vector3.zero, lerpNumLast);
-
-                var nextIdx = offsetX > 0 ? m_CurrentIdx - 1 < 0 ? m_StageInfos.Count - 1 : m_CurrentIdx - 1 : m_CurrentIdx + 1 > m_StageInfos.Count - 1 ? 0 : m_CurrentIdx + 1;
-                txtNameNext.text = m_StageInfos[nextIdx].idx + " " + m_StageInfos[nextIdx].musicName;
-                txtAuthorNext.text = "Music by " + m_StageInfos[nextIdx].musicAuthor;
-                var lerpNumNext = 1 - lerpNumLast;
-                txtNameNext.alpha = lerpNumNext;
-                txtAuthorNext.alpha = lerpNumNext;
-                sprBkgNext.alpha = Mathf.Lerp(maxMinAlpha.x, maxMinAlpha.y, lerpNumNext);
-                txtNameNext.transform.parent.localPosition = Vector3.Lerp(new Vector3(-offsetForInfo.x, 0.0f, 0.0f), Vector3.zero, lerpNumNext);
+                txtNameLast.transform.parent.localPosition = Vector3.Lerp(offsetForInfo, new Vector3(0, 220, 0), lerpNumLast);
             }
         }
 
@@ -423,7 +469,6 @@ namespace Assets.Scripts.NGUI
             fourth = fourth > m_CellGroup.Count - 1 ? fourth - m_CellGroup.Count : fourth;
             var fifth = midIdx + 2;
             fifth = fifth > m_CellGroup.Count - 1 ? fifth - m_CellGroup.Count : fifth;
-
             foreach (var pair in m_CellGroup)
             {
                 var go = pair.Value;
@@ -449,8 +494,8 @@ namespace Assets.Scripts.NGUI
                 {
                     if (go.transform.localScale.x >= maxScale - 0.01f)
                     {
-                        OnMusicPlayAction(go);
                         m_CurrentIdx = idx;
+                        OnMusicPlayAction(go);
                     }
                 }
                 else
@@ -463,9 +508,9 @@ namespace Assets.Scripts.NGUI
                     var x = (go.transform.position.x - pivot.transform.position.x) * scale;
                     var absX = Mathf.Abs(x);
                     var myAngleOffset = angleOffset + 2 * angle;
-                    var x0 = radius * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * (myAngleOffset)));
-                    var x1 = radius * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * (myAngleOffset - angle)));
-                    var x2 = radius * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * (myAngleOffset - angle * 2)));
+                    var x0 = radius * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * (myAngleOffset))) + offset0.x;
+                    var x1 = radius * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * (myAngleOffset - angle))) + offset1.x;
+                    var x2 = radius * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * (myAngleOffset - angle * 2))) + +offset2.x;
                     var distance0 = x1 - x0;
                     var ditance1 = x2 - x1;
                     var distance2 = radius - x2;
@@ -562,8 +607,16 @@ namespace Assets.Scripts.NGUI
             pivot.localEulerAngles = Vector3.zero;
         }
 
-        public void JumpToSong(int idx, float dt = 0.8f)
+        public void JumpToSong(int idx)
         {
+            /* var seq = DOTween.Sequence();
+             seq.AppendInterval(animDuration);
+             seq.AppendCallback(() =>
+             {
+                 m_FinishEnter = true;
+             });
+             seq.Play();*/
+
             idx -= 1;
             m_ZAngle -= angle * (idx - 2 - numFrom);
             var angleAxis = new Vector3(0, 0, m_ZAngle);
@@ -573,5 +626,11 @@ namespace Assets.Scripts.NGUI
         }
 
         #endregion 操作
+
+        private void OnDisable()
+        {
+			m_FinishEnter = false;
+			StopAllCoroutines ();
+        }
     }
 }

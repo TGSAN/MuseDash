@@ -53,8 +53,8 @@ public class UIPhaseHelper : MonoBehaviour {
 	// host相关
 	public int activeHostKeyId;
 	public string activeCondiction;
-
 	public string activeValue;
+
 	public int labelHostKeyId;
 	public string labelMatchSign;
 	public string labelMatchSelfDefineSign;
@@ -353,6 +353,10 @@ public class UIPhaseHelper : MonoBehaviour {
 	}
 
 	private void __NotifyForSlider(string key, object value) {
+		if (this._slider == null) {
+			return;
+		}
+
 		if (this.hostSlider == null) {
 			return;
 		}
@@ -414,6 +418,11 @@ public class UIPhaseHelper : MonoBehaviour {
 		}
 
 		if (this._label == null) {
+			return;
+		}
+
+		bool isNoConfig = (this.labelHostKeyId == 0 && this.labelMatchSign == SignKeys.LEVEL && (this.labelMatchSelfDefineSign == null || this.labelMatchSelfDefineSign == string.Empty));
+		if (isNoConfig) {
 			return;
 		}
 

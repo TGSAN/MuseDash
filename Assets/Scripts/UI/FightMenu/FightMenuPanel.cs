@@ -41,8 +41,6 @@ public class FightMenuPanel : MonoBehaviour {
 		yield return new WaitForSeconds (1.8f);
 
 		m_ReGoAni.SetActive (true);
-		StageBattleComponent.Instance.Host.SetAsUINotifyInstance ();
-		TaskStageTarget.Instance.Host.SetAsUINotifyInstance ();
 	}
 
 	//bool tttttt=true;

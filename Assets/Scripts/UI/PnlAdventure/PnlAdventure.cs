@@ -24,15 +24,9 @@ namespace PnlAdventure
         private const string SHOW_CHILD_UI = "PnlStage";
         public static bool backFromBattle = false;
 
-        private void Start()
+        void Start()
         {
             instance = this;
-            this.PlayBgm();
-            if (backFromBattle)
-            {
-                UISceneHelper.Instance.HideUi(this.gameObject.name);
-                UISceneHelper.Instance.ShowUi(SHOW_CHILD_UI);
-            }
         }
 
         private void Update()
@@ -48,8 +42,17 @@ namespace PnlAdventure
             }
         }
 
-        public override void OnShow()
-        {
+        public override void OnShow() {
+			if (backFromBattle) {
+				Debug.Log ("backFromBattle");
+				UISceneHelper.Instance.HideUi (this.gameObject.name);
+				//UISceneHelper.Instance.ShowUi (SHOW_CHILD_UI);
+				UISceneHelper.Instance.MarkShowOnLoad(this.gameObject.name, false);
+				UISceneHelper.Instance.MarkShowOnLoad(SHOW_CHILD_UI, true);
+				backFromBattle = false;
+			} else {
+				this.PlayBgm();
+			}
         }
 
         public override void OnHide()
