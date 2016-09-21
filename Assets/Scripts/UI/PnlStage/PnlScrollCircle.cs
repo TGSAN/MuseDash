@@ -75,9 +75,7 @@ namespace Assets.Scripts.NGUI
 
         public GameObject cell;
         public GameObject leftButton, rightButton;
-        public UILabel txtNameNext, txtAuthorNext;
         public UILabel txtNameLast, txtAuthorLast, txtEnergyLast;
-        public UISprite sprBkgNext, sprBkgLast;
         public UISprite sprEnergy;
         public GameObject energy, difficulty;
 
@@ -297,17 +295,36 @@ namespace Assets.Scripts.NGUI
 
         private void UpdatePos()
         {
-            /*for (int i = 0; i < m_CellGroup.Count; i++)
+            /* var idx = currentSongIdx - 1;
+             var startAngle = angleOffset + angle * idx;
+             var count1 = 0;
+             for (int i = idx; ; i--)
+             {
+                 if (idx - i > m_CellGroup.Count / 2)
+                 {
+                     break;
+                 }
+                 var myIdx = i < 0 ? m_CellGroup.Count + i : i;
+                 var item = m_CellGroup[myIdx];
+                 var myAngle = startAngle + (count1--) * angle;
+                 item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
+                            Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
+                 item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
+             }*/
+            /*var count2 = 0;
+            idx = currentSongIdx;
+            for (int i = idx; ; i++)
             {
-                if (offsetX > 0)
+                if (i - idx > m_CellGroup.Count / 2)
                 {
-                    var item = m_CellGroup[i];
-                    var idx = (m_CellGroup.Count - i);
-                    var myAngle = angleOffset - angle * idx;
-                    item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
-                           Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
-                    item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
+                    break;
                 }
+                var myIdx = i > m_CellGroup.Count - 1 ? i - m_CellGroup.Count : i;
+                var item = m_CellGroup[myIdx];
+                var myAngle = startAngle + (count2++) * angle;
+                item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
+                           Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
+                item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
             }*/
         }
 
@@ -404,23 +421,13 @@ namespace Assets.Scripts.NGUI
         {
             if (m_CurrentIdx < m_StageInfos.Count)
             {
-                var offsetForInfo = new Vector3(offsetX < 0 ? txtOffsetX : -txtOffsetX, 0, 0);
+                var offsetForInfo = new Vector3(offsetX < 0 ? txtOffsetX : -txtOffsetX, 220f, 0);
                 txtNameLast.text = m_StageInfos[m_CurrentIdx].idx + " " + m_StageInfos[m_CurrentIdx].musicName;
                 txtAuthorLast.text = "Music by " + m_StageInfos[m_CurrentIdx].musicAuthor;
                 var lerpNumLast = 1 - scale * (Mathf.Abs(pivot.transform.position.x - m_CellGroup[m_CurrentIdx].transform.position.x)) / (Mathf.Sin(angle * Mathf.Deg2Rad) * radius);
                 txtNameLast.alpha = lerpNumLast;
                 txtAuthorLast.alpha = lerpNumLast;
-                sprBkgLast.alpha = Mathf.Lerp(maxMinAlpha.x, maxMinAlpha.y, lerpNumLast); ;
-                txtNameLast.transform.parent.localPosition = Vector3.Lerp(offsetForInfo, Vector3.zero, lerpNumLast);
-
-                var nextIdx = offsetX > 0 ? m_CurrentIdx - 1 < 0 ? m_StageInfos.Count - 1 : m_CurrentIdx - 1 : m_CurrentIdx + 1 > m_StageInfos.Count - 1 ? 0 : m_CurrentIdx + 1;
-                txtNameNext.text = m_StageInfos[nextIdx].idx + " " + m_StageInfos[nextIdx].musicName;
-                txtAuthorNext.text = "Music by " + m_StageInfos[nextIdx].musicAuthor;
-                var lerpNumNext = 1 - lerpNumLast;
-                txtNameNext.alpha = lerpNumNext;
-                txtAuthorNext.alpha = lerpNumNext;
-                sprBkgNext.alpha = Mathf.Lerp(maxMinAlpha.x, maxMinAlpha.y, lerpNumNext);
-                txtNameNext.transform.parent.localPosition = Vector3.Lerp(new Vector3(-offsetForInfo.x, 0.0f, 0.0f), Vector3.zero, lerpNumNext);
+                txtNameLast.transform.parent.localPosition = Vector3.Lerp(offsetForInfo, new Vector3(0, 220, 0), lerpNumLast);
             }
         }
 
