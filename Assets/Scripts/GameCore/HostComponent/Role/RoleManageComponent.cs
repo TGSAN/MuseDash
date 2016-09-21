@@ -31,6 +31,10 @@ namespace FormulaBase {
 			return this.GetHostByKeyValue (SignKeys.ID, idx);
 		}
 
+		public FormulaHost GetRole(string name) {
+			return this.GetHostByKeyValue (SignKeys.NAME, name);
+		}
+
 		public void BuyHeroCallBack(cn.bmob.response.EndPointCallbackData<Hashtable> response) {
 			CommonPanel.GetInstance ().ShowWaittingPanel (false);
 		}
@@ -67,19 +71,19 @@ namespace FormulaBase {
 			}
 
 			foreach (string key in roleCfg.Keys) {
-				FormulaHost _role = FomulaHostManager.Instance.LoadHost ("Role");
+				FormulaHost _role = FomulaHostManager.Instance.CreateHost ("Role");
 				_role.SetDynamicData (SignKeys.ID, int.Parse (key));
 				_role.Result (FormulaKeys.FORMULA_178);
 				FomulaHostManager.Instance.AddHost (_role);
+				this.HostList [key] = _role;
 			}
 
-			// 初始化本模块缓存表
-			this.GetList ("Role");
 			// 初始化默认战斗角色
 			this.Host = this.GetHostByKeyValue (SignKeys.ID, 1);
 			this.SetFightGirlIndex (1, () => {
 				this.SetFightGirlCallBack (null);
 			});
+			CommonPanel.GetInstance ().ShowWaittingPanel (false);
 		}
 
 		public void GetExpAndCost(ref int Exp,ref int Cost) {
@@ -224,14 +228,18 @@ namespace FormulaBase {
 					_role.SetDynamicData (SignKeys.FIGHTHERO, 1);
 					this.Host = _role;
 					this.Host.SetAsUINotifyInstance ();
+					Debugger.Log ("Set " + _role.GetDynamicStrByKey (SignKeys.NAME) + "(" + _index + ") for fight.");
 				} else {
 					_role.SetDynamicData (SignKeys.FIGHTHERO, 0);
 				}
 			}
 
-			_callBack ();
+			if (_callBack != null) {
+				_callBack ();
+			}
+
 			//Messenger.Broadcast (AdvenTure5.AdvenTure5BraodChangeHero);
-			FormulaHost.SaveList (new List<FormulaHost>(this.HostList.Values), new HttpEndResponseDelegate (SetFightGirlCallBack));
+			FormulaHost.SaveList (new List<FormulaHost> (this.HostList.Values), new HttpEndResponseDelegate (SetFightGirlCallBack));
 			CommonPanel.GetInstance ().ShowWaittingPanel ();
 		}
 
