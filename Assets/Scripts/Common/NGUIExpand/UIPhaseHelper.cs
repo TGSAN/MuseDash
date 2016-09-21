@@ -421,6 +421,11 @@ public class UIPhaseHelper : MonoBehaviour {
 			return;
 		}
 
+		bool isNoConfig = (this.labelHostKeyId == 0 && this.labelMatchSign == SignKeys.LEVEL && (this.labelMatchSelfDefineSign == null || this.labelMatchSelfDefineSign == string.Empty));
+		if (isNoConfig) {
+			return;
+		}
+
 		// 优先处理自定义匹配关键字
 		// Debug.Log(key + "\t\t\t" + this.labelMatchSelfDefineSign + "  /// ------ /// " + this.labelMatchSign);
 		if (this.labelMatchSelfDefineSign != null && this.labelMatchSelfDefineSign != string.Empty) {
