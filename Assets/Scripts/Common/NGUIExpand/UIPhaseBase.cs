@@ -57,6 +57,7 @@ public class UIPhaseBase : MonoBehaviour {
 		}
 
 		this.gameObject.SetActive (true);
+		this._urh.InitByNotifyHost ();
 		this._urh.AutoSetLabelHostForTable ();
 		string _showAni = showAnimation;
 		if (_showAni == null || _showAni == string.Empty) {
