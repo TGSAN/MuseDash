@@ -88,12 +88,12 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010060308354}
   - 114: {fileID: 114000013090393692}
-  - 65: {fileID: 65000013074937488}
   - 114: {fileID: 114000010389099620}
   - 114: {fileID: 114000012292964908}
   - 114: {fileID: 114000012707715300}
   - 114: {fileID: 114000010613956588}
   - 114: {fileID: 114000010749595124}
+  - 65: {fileID: 65000014156160478}
   m_Layer: 5
   m_Name: BtnSlideL
   m_TagString: Untagged
@@ -323,7 +323,6 @@ GameObject:
   - 114: {fileID: 114000011484584448}
   - 114: {fileID: 114000013462202548}
   - 114: {fileID: 114000013249452780}
-  - 114: {fileID: 114000012109252534}
   - 114: {fileID: 114000010659329496}
   m_Layer: 5
   m_Name: BtnSlideR
@@ -391,7 +390,6 @@ GameObject:
   - 114: {fileID: 114000011960541650}
   - 114: {fileID: 114000013749693332}
   - 114: {fileID: 114000013739472044}
-  - 114: {fileID: 114000010143324430}
   - 65: {fileID: 65000012094913034}
   m_Layer: 5
   m_Name: TxtTouchToStart
@@ -2259,8 +2257,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 190, y: 380, z: 0}
-  m_Center: {x: -50, y: 33.100006, z: 0}
+  m_Size: {x: 305.9, y: 474.1, z: 0}
+  m_Center: {x: -115.8, y: -12.8, z: 0}
 --- !u!65 &65000011759717158
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2271,8 +2269,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1100, y: 440, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1200, y: 550, z: 0}
+  m_Center: {x: 0, y: -100, z: 0}
 --- !u!65 &65000012094913034
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2283,8 +2281,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 500, y: 150, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 350, y: 350, z: 1}
+  m_Center: {x: 0, y: 120, z: 0}
 --- !u!65 &65000012838356624
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2297,7 +2295,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 220, y: 72, z: 0}
   m_Center: {x: -110, y: -36, z: 0}
---- !u!65 &65000013074937488
+--- !u!65 &65000014156160478
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2307,8 +2305,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 190, y: 380, z: 0}
-  m_Center: {x: -50, y: -30.4, z: 0}
+  m_Size: {x: 305.9, y: 474.1, z: 0}
+  m_Center: {x: -115.8, y: 10.63, z: 0}
 --- !u!114 &114000010003352196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2392,16 +2390,13 @@ MonoBehaviour:
   cell: {fileID: 1000013396040682, guid: 3b156c2fb3d1bb74a989ad57e73c200d, type: 2}
   leftButton: {fileID: 1000010325325654}
   rightButton: {fileID: 1000011207080700}
-  txtNameNext: {fileID: 0}
-  txtAuthorNext: {fileID: 0}
   txtNameLast: {fileID: 114000012512793212}
   txtAuthorLast: {fileID: 114000014114681784}
   txtEnergyLast: {fileID: 114000014216878604}
-  sprBkgNext: {fileID: 0}
-  sprBkgLast: {fileID: 0}
   sprEnergy: {fileID: 114000010887531950}
   energy: {fileID: 1000013469105228}
   difficulty: {fileID: 1000014227668906}
+  btnStart: {fileID: 1000011444358426}
   resolution: 1024
   lowFreqThreshold: 14700
   lowEnhance: 1
@@ -2567,31 +2562,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 65f66dd2f3cd949b28da34f9929d6faf, type: 2}
   mSpriteName: difficulty_4
   mFillCenter: 1
---- !u!114 &114000010143324430
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011444358426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweenTarget: {fileID: 1000011444358426}
-  hover: {r: 1, g: 1, b: 1, a: 1}
-  pressed: {r: 1, g: 1, b: 1, a: 1}
-  disabledColor: {r: 1, g: 1, b: 1, a: 1}
-  duration: 0.2
-  dragHighlight: 0
-  hoverSprite: 
-  pressedSprite: 
-  disabledSprite: 
-  hoverSprite2D: {fileID: 0}
-  pressedSprite2D: {fileID: 0}
-  disabledSprite2D: {fileID: 0}
-  pixelSnap: 0
-  onClick: []
 --- !u!114 &114000010232357762
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3209,7 +3179,7 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
@@ -4623,22 +4593,6 @@ MonoBehaviour:
   mSortingOrder: 0
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
---- !u!114 &114000012109252534
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011207080700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15cc9c62605319f4a9b20b15918913fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweenTarget: {fileID: 1000011207080700}
-  hover: {r: 1, g: 1, b: 1, a: 1}
-  pressed: {r: 1, g: 1, b: 1, a: 0.78431374}
-  disabledColor: {r: 1, g: 1, b: 1, a: 0.654902}
-  duration: 0.2
 --- !u!114 &114000012143969070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5103,7 +5057,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 0.23529412}
+  mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 56
   mHeight: 100
@@ -5125,7 +5079,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11405424, guid: 65f66dd2f3cd949b28da34f9929d6faf, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: switch_button
   mFillCenter: 1
 --- !u!114 &114000013062935246
@@ -5247,7 +5201,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 0.23529412}
+  mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 56
   mHeight: 100
@@ -5269,7 +5223,7 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11405424, guid: 65f66dd2f3cd949b28da34f9929d6faf, type: 2}
+  mAtlas: {fileID: 0}
   mSpriteName: switch_button
   mFillCenter: 1
 --- !u!114 &114000013094287474
