@@ -260,11 +260,11 @@ namespace Assets.Scripts.NGUI
             {
                 PnlStage.PnlStage.Instance.gameObject.SetActive(false);
                 var widgets = UISceneHelper.Instance.widgets;
-                foreach (var w in widgets)
+				foreach (UIRootHelper w in widgets.Values)
                 {
-                    if (w.name == "PnlAchievement")
+					if (w.gameObject.name == "PnlAchievement")
                     {
-                        ((GameObject)w).SetActive(true);
+						w.gameObject.SetActive(true);
                         break;
                     }
                 }
@@ -624,7 +624,4 @@ namespace Assets.Scripts.NGUI
              var angleAxis = new Vector3(0, 0, m_ZAngle);
              pivot.transform.localEulerAngles = angleAxis;*/
         }
-
-        #endregion 操作
-    }
 }

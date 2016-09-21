@@ -15,6 +15,8 @@ public class GameInit : MonoBehaviour {
 			this.Init ();
 			once = false;
 		}
+
+		this.StartCoroutine (this.__Init ());
 	}
 
 	void OnDisable() {
@@ -57,8 +59,6 @@ public class GameInit : MonoBehaviour {
 		FormulaBase.materialManageComponent.Instance.Init ();	//初始化材料
 		FormulaBase.PetManageComponent.Instance.Init ();//初始化宠物
 		FormulaBase.ItemManageComponent.Instance.Init ();//背包初始化 放在所有道具之后
-
-		this.StartCoroutine (this.__Init ());
 	}
 
 	private IEnumerator __Init() {

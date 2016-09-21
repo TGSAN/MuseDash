@@ -36,7 +36,7 @@ namespace PnlVictory {
 		}
 
 		private void SetTxrByCharacter() {
-			int heroIndex = BattleRoleAttributeComponent.Instance.Host.GetDynamicIntByKey (SignKeys.ID);
+			int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex ();
 			string txrName = ConfigPool.Instance.GetConfigStringValue ("character", heroIndex.ToString (), "image_victory");
 			ResourceLoader.Instance.Load (txrName, this.__LoadTxr);
 		}
@@ -44,7 +44,7 @@ namespace PnlVictory {
 		private void __LoadTxr(UnityEngine.Object resObj) {
 			Texture t = resObj as Texture;
 			if (t == null) {
-				int heroIndex = BattleRoleAttributeComponent.Instance.Host.GetDynamicIntByKey (SignKeys.ID);
+				int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex ();
 				string txrName = ConfigPool.Instance.GetConfigStringValue ("character", heroIndex.ToString (), "image_victory");
 				Debug.Log ("Load character " + heroIndex + " PnlVictory texture failed : " + txrName);
 			}

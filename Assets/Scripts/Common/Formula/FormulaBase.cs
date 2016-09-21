@@ -500,7 +500,7 @@ namespace FormulaBase {
 			}
 
 			if (!this.catchUiHost.ContainsKey (fileName)) {
-				Debug.Log ("No suche notify host : " + fileName + " to match " + widgetName);
+				Debug.Log ("No such notify host : " + fileName + " to match " + widgetName);
 				return null;
 			}
 
