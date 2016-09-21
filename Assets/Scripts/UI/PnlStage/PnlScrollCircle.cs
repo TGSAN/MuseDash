@@ -261,11 +261,11 @@ namespace Assets.Scripts.NGUI
             {
                 PnlStage.PnlStage.Instance.gameObject.SetActive(false);
                 var widgets = UISceneHelper.Instance.widgets;
-                foreach (var w in widgets)
+				foreach (UIRootHelper w in widgets.Values)
                 {
-                    if (w.name == "PnlAchievement")
+					if (w.gameObject.name == "PnlAchievement")
                     {
-                        ((GameObject)w).SetActive(true);
+						w.gameObject.SetActive(true);
                         break;
                     }
                 }
@@ -629,7 +629,8 @@ namespace Assets.Scripts.NGUI
 
         private void OnDisable()
         {
-            m_FinishEnter = false;
+			m_FinishEnter = false;
+			StopAllCoroutines ();
         }
     }
 }

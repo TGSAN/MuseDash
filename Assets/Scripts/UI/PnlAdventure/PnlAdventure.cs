@@ -46,7 +46,9 @@ namespace PnlAdventure
 			if (backFromBattle) {
 				Debug.Log ("backFromBattle");
 				UISceneHelper.Instance.HideUi (this.gameObject.name);
-				UISceneHelper.Instance.ShowUi (SHOW_CHILD_UI);
+				//UISceneHelper.Instance.ShowUi (SHOW_CHILD_UI);
+				UISceneHelper.Instance.MarkShowOnLoad(this.gameObject.name, false);
+				UISceneHelper.Instance.MarkShowOnLoad(SHOW_CHILD_UI, true);
 				backFromBattle = false;
 			} else {
 				this.PlayBgm();

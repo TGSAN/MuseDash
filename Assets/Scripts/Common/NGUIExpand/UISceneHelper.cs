@@ -22,6 +22,12 @@ public class UISceneHelper : MonoBehaviour {
 	private Camera sceneUiCamera;
 	private Dictionary<string, UIRootHelper> dymWidgets;
 
+	public Dictionary<string, UIRootHelper> widgets {
+		get {
+			return this.dymWidgets;
+		}
+	}
+
 	void Start() {
 		//this.InitByPath ();
 		instance = this;
@@ -169,6 +175,23 @@ public class UISceneHelper : MonoBehaviour {
 		}
 
 		upb.Hide (aniName);
+	}
+
+	public void MarkShowOnLoad(string uiName, bool value) {
+		if (this.dymWidgets == null) {
+			return;
+		}
+
+		if (!this.dymWidgets.ContainsKey (uiName)) {
+			return;
+		}
+
+		UIRootHelper urh = this.dymWidgets [uiName];
+		if (urh == null) {
+			return;
+		}
+
+		urh.isShowOnLoaded = value;
 	}
 
 	public bool IsUiActive(string uiName) {
