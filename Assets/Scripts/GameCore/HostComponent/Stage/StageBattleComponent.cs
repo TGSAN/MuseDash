@@ -461,6 +461,7 @@ namespace FormulaBase {
 			// TODO : 结算UI表现
 			EffectManager.Instance.StopCombo ();
 			FightMenuPanel.Instance.OnStageEnd ();
+			UISceneHelper.Instance.HideUi ("PnlBattle");
 			UISceneHelper.Instance.ShowUi ("PnlVictory");
 		}
 
