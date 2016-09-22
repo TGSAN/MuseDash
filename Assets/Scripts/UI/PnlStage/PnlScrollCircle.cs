@@ -101,6 +101,7 @@ namespace Assets.Scripts.NGUI
         private ResourceRequest m_Request;
         private Coroutine m_Coroutine;
         private AudioClip m_CatchClip;
+        private bool m_LoadFinished = true;
         private bool m_FinishEnter = false;
         private readonly Dictionary<int, GameObject> m_CellGroup = new Dictionary<int, GameObject>();
         private readonly List<StageInfo> m_StageInfos = new List<StageInfo>();
@@ -128,6 +129,7 @@ namespace Assets.Scripts.NGUI
 
         private void Update()
         {
+            print(m_FinishEnter);
             OnScrolling();
             OnSongInfoChange();
             UpdatePos();
@@ -162,6 +164,10 @@ namespace Assets.Scripts.NGUI
         {
             UIEventListener.VoidDelegate onDragStart = go =>
             {
+                if (!m_FinishEnter)
+                {
+                    return;
+                }
                 m_IsSliding = true;
                 if (m_SlideTweener != null)
                 {
@@ -171,6 +177,10 @@ namespace Assets.Scripts.NGUI
 
             UIEventListener.VectorDelegate onDrag = (go, delta) =>
             {
+                if (!m_FinishEnter)
+                {
+                    return;
+                }
                 offsetX = delta.x * -sensitivity;
                 offsetX = offsetX < 0
                     ? Mathf.Clamp(offsetX, -minMaxSlide.y, -minMaxSlide.x)
@@ -181,6 +191,10 @@ namespace Assets.Scripts.NGUI
             };
             UIEventListener.VoidDelegate onDragEnd = go =>
             {
+                if (!m_FinishEnter)
+                {
+                    return;
+                }
                 var endAngles = pivot.localEulerAngles +
                                 new Vector3(0, 0, offsetX * Mathf.Max(maxMoveDistance, minMoveDistance));
                 endAngles = new Vector3(endAngles.x, endAngles.y, Mathf.RoundToInt(endAngles.z / angle) * angle);
@@ -259,6 +273,14 @@ namespace Assets.Scripts.NGUI
             UIEventListener.Get(btnStart).onDragEnd = onDragEnd;
             UIEventListener.Get(btnStart).onClick = (go) =>
             {
+                if (!m_FinishEnter)
+                {
+                    return;
+                }
+                if (!m_LoadFinished)
+                {
+                    return;
+                }
                 PnlStage.PnlStage.Instance.gameObject.SetActive(false);
                 var widgets = UISceneHelper.Instance.widgets;
                 foreach (UIRootHelper w in widgets.Values)
@@ -280,6 +302,10 @@ namespace Assets.Scripts.NGUI
             UIEventListener.Get(leftButton).onDragEnd = onDragEnd;
             UIEventListener.Get(leftButton).onClick = (go) =>
             {
+                if (!m_FinishEnter)
+                {
+                    return;
+                }
                 if (m_IsSliding)
                 {
                     return;
@@ -292,6 +318,10 @@ namespace Assets.Scripts.NGUI
             UIEventListener.Get(rightButton).onDragEnd = onDragEnd;
             UIEventListener.Get(rightButton).onClick = (go) =>
             {
+                if (!m_FinishEnter)
+                {
+                    return;
+                }
                 if (m_IsSliding)
                 {
                     return;
@@ -530,6 +560,7 @@ namespace Assets.Scripts.NGUI
 
         private IEnumerator LoadCoroutine()
         {
+            m_LoadFinished = false;
             while (m_Request.isDone)
             {
                 yield return null;
@@ -558,6 +589,7 @@ namespace Assets.Scripts.NGUI
             {
                 yield return null;
             }
+            m_LoadFinished = true;
             var audioSource = SceneAudioManager.Instance.bgm;
             if (audioSource.clip != newClip)
             {
@@ -629,6 +661,7 @@ namespace Assets.Scripts.NGUI
         {
             idx--;
             m_CurrentIdx = idx;
+            m_FinishEnter = false;
             if (idx - 2 >= m_CellGroup.Count / 2)
             {
                 idx = (idx - (m_CellGroup.Count - 1)) - 1;
@@ -638,6 +671,10 @@ namespace Assets.Scripts.NGUI
             {
                 OnChangeOffset(offset, Mathf.Abs(idx - 2) * 0.15f);
             }, 0.1f);
+            DOTweenUtil.Delay(() =>
+            {
+                m_FinishEnter = true;
+            }, 0.1f + Mathf.Abs(idx - 2) * 0.15f);
         }
 
         #endregion 操作
