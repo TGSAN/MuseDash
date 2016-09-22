@@ -294,9 +294,8 @@ namespace Assets.Scripts.NGUI
         {
             var numPerRound = 360f / angle;
             var count = Mathf.CeilToInt(m_StageInfos.Count / numPerRound) * numPerRound;
-            count = 20;
             // 读取关卡数量生成disk元件
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < m_StageInfos.Count; i++)
             {
                 GameObject item = GameObject.Instantiate(cell) as GameObject;
                 item.transform.parent = pivot.transform;
@@ -496,8 +495,8 @@ namespace Assets.Scripts.NGUI
                 {
                     if (go.transform.localScale.x >= maxScale - 0.01f)
                     {
-                        OnMusicPlayAction(go);
                         m_CurrentIdx = idx;
+                        OnMusicPlayAction(go);
                     }
                 }
                 else
@@ -623,11 +622,6 @@ namespace Assets.Scripts.NGUI
                 OnChangeOffset(offset, animDuration);
             });
             seq.Play();
-
-            /* idx -= 1;
-             m_ZAngle -= angle * (idx - 2 - numFrom);
-             var angleAxis = new Vector3(0, 0, m_ZAngle);
-             pivot.transform.localEulerAngles = angleAxis;*/
         }
 
         #endregion 操作
