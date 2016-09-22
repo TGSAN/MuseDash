@@ -101,6 +101,7 @@ namespace Assets.Scripts.NGUI
         private ResourceRequest m_Request;
         private Coroutine m_Coroutine;
         private AudioClip m_CatchClip;
+        private bool m_FinishEnter = false;
         private readonly Dictionary<int, GameObject> m_CellGroup = new Dictionary<int, GameObject>();
         private readonly List<StageInfo> m_StageInfos = new List<StageInfo>();
         private readonly List<float> m_Angles = new List<float>();
@@ -292,8 +293,6 @@ namespace Assets.Scripts.NGUI
 
         private void InitUI()
         {
-            var numPerRound = 360f / angle;
-            var count = Mathf.CeilToInt(m_StageInfos.Count / numPerRound) * numPerRound;
             // 读取关卡数量生成disk元件
             for (int i = 0; i < m_StageInfos.Count; i++)
             {
@@ -314,32 +313,6 @@ namespace Assets.Scripts.NGUI
             }
         }
 
-        private void UpdatePos()
-        {
-            var currentIdx = m_CurrentIdx;
-            var startAngle = m_Angles[currentIdx];
-            for (int i = currentIdx; i < (m_CellGroup.Count) / 2 + currentIdx; i++)
-            {
-                var idx = i > m_CellGroup.Count - 1 ? i - m_CellGroup.Count : i;
-                var item = m_CellGroup[idx];
-                var myAngle = startAngle + (i - currentIdx) * angle;
-                item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
-                    Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
-                item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
-                m_Angles[idx] = myAngle;
-            }
-            for (int i = currentIdx; i > currentIdx - (m_CellGroup.Count) / 2; i--)
-            {
-                var idx = i < 0 ? i + m_CellGroup.Count : i;
-                var item = m_CellGroup[idx];
-                var myAngle = startAngle - (currentIdx - i) * angle;
-                item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
-                    Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
-                item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
-                m_Angles[idx] = myAngle;
-            }
-        }
-
         #endregion 初始化
 
         #region 事件
@@ -347,7 +320,7 @@ namespace Assets.Scripts.NGUI
         private void OnScrollEnd()
         {
             m_IsSliding = false;
-			onSongChange(PnlScrollCircle.currentSongIdx);
+            onSongChange(m_CurrentIdx + 1);
             OnEnergyInfoChange(true);
         }
 
@@ -591,6 +564,32 @@ namespace Assets.Scripts.NGUI
 
         #region 操作
 
+        private void UpdatePos()
+        {
+            var currentIdx = m_CurrentIdx;
+            var startAngle = m_Angles[currentIdx];
+            for (int i = currentIdx; i < (m_CellGroup.Count) / 2 + currentIdx; i++)
+            {
+                var idx = i > m_CellGroup.Count - 1 ? i - m_CellGroup.Count : i;
+                var item = m_CellGroup[idx];
+                var myAngle = startAngle + (i - currentIdx) * angle;
+                item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
+                    Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
+                item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
+                m_Angles[idx] = myAngle;
+            }
+            for (int i = currentIdx; i > currentIdx - (m_CellGroup.Count) / 2; i--)
+            {
+                var idx = i < 0 ? i + m_CellGroup.Count : i;
+                var item = m_CellGroup[idx];
+                var myAngle = startAngle - (currentIdx - i) * angle;
+                item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
+                    Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
+                item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
+                m_Angles[idx] = myAngle;
+            }
+        }
+
         public void PlayMusic(int idx)
         {
             idx -= 1;
@@ -606,22 +605,32 @@ namespace Assets.Scripts.NGUI
         {
             m_ZAngle = 0;
             pivot.localEulerAngles = Vector3.zero;
+            for (int i = 0; i < m_CellGroup.Count; i++)
+            {
+                var item = m_CellGroup[i];
+                var myAngle = angleOffset + i * angle;
+                item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
+                    Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
+                item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
+                m_Angles[i] = myAngle;
+            }
         }
 
         public void JumpToSong(int idx)
         {
-            var offset = new Vector3(0, 0, -numFrom * angle);
+            idx--;
+            m_CurrentIdx = idx;
+            if (idx - 2 >= m_CellGroup.Count / 2)
+            {
+                idx = (idx - (m_CellGroup.Count - 1)) - 1;
+            }
+            var offset = new Vector3(0, 0, (idx - 2) * -angle);
             var seq = DOTween.Sequence();
+            seq.AppendInterval(0.1f);
             seq.AppendCallback(() =>
             {
-                OnChangeOffset(-offset, 0.1f).SetEase(Ease.Linear);
+                OnChangeOffset(offset, Mathf.Abs(idx - 2) * 0.15f);
             });
-            seq.AppendInterval(0.2f);
-            seq.AppendCallback(() =>
-            {
-                OnChangeOffset(offset, animDuration);
-            });
-            seq.Play();
         }
 
         #endregion 操作
