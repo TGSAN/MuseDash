@@ -129,7 +129,6 @@ namespace Assets.Scripts.NGUI
 
         private void Update()
         {
-            print(m_FinishEnter);
             OnScrolling();
             OnSongInfoChange();
             UpdatePos();
@@ -609,7 +608,7 @@ namespace Assets.Scripts.NGUI
         {
             var currentIdx = m_CurrentIdx;
             var startAngle = m_Angles[currentIdx];
-            for (int i = currentIdx; i < (m_CellGroup.Count) / 2 + currentIdx; i++)
+            for (int i = currentIdx; i <= (m_CellGroup.Count) / 2 + currentIdx; i++)
             {
                 var idx = i > m_CellGroup.Count - 1 ? i - m_CellGroup.Count : i;
                 var item = m_CellGroup[idx];
