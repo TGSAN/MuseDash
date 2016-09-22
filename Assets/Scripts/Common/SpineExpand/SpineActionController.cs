@@ -187,6 +187,7 @@ public class SpineActionController : MonoBehaviour {
 			}
 		}
 		*/
+
 		if (!ani.HasState (0, Animator.StringToHash (actionKey))) {
 			return;
 		}
@@ -195,33 +196,6 @@ public class SpineActionController : MonoBehaviour {
 		ani.Stop ();
 		ani.Rebind ();
 		ani.Play (actionKey);
-	}
-
-	private static AnimationClip GetClipInAnimator(Animator animator, string animateName) {
-		if (animator == null) {
-			return null;
-		}
-
-		AnimationClip ac = null;
-		for (int i = 0; i < animator.layerCount; i++) {
-			AnimatorClipInfo[] acInfos = animator.GetCurrentAnimatorClipInfo (i);
-			if (acInfos == null || acInfos.Length <= 0) {
-				return null;
-			}
-
-			foreach (AnimatorClipInfo _acInfo in acInfos) {
-				if (_acInfo.clip.name == animateName) {
-					ac = _acInfo.clip;
-					break;
-				}
-			}
-
-			if (ac != null) {
-				return ac;
-			}
-		}
-
-		return null;
 	}
 
 	/// <summary>

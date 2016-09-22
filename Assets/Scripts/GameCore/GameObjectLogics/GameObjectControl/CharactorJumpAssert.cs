@@ -40,7 +40,7 @@ public class CharactorJumpAssert : MonoBehaviour {
 	private IEnumerator __DoDelay() {
 		yield return new WaitForSeconds (this.delay);
 
-		this._animator.speed = GameGlobal.TIME_SCALE;
 		this._coroutine = null;
+		this._animator.speed = GameGlobal.TIME_SCALE;
 	}
 }
