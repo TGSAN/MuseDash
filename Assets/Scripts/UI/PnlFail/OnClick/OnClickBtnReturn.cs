@@ -8,8 +8,8 @@ using FormulaBase;
 namespace PnlFail {
 	public class OnClickBtnReturn : UIPhaseOnClickBase {
 		public static void Do(GameObject gameObject) {
+				OnDo(gameObject);
 			StageBattleComponent.Instance.Exit ();
-			OnDo(gameObject);
 		}
 	}
 }

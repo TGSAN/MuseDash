@@ -28,18 +28,12 @@ public class UISceneHelper : MonoBehaviour {
 		}
 	}
 
-	public bool isStartScene;
-
 	void Start() {
 		//this.InitByPath ();
 		instance = this;
 		this.InitCamera ();
-		if (this.isStartScene) {
-			Debug.Log ("This is the start scene.");
-			return;
-		}
-
 		this.HideWidget ();
+		// this.InitByWidget ();
 	}
 
 	void OnDestory() {

@@ -52,14 +52,13 @@ namespace FormulaBase {
 						continue;
 					}
 
-					// 初始化配置属性
-					_role.Result (FormulaKeys.FORMULA_178);
 					if (_role.GetDynamicIntByKey (SignKeys.FIGHTHERO) < 1) {
 						continue;
 					}
 
 					this.Host = _role;
 					this.Host.SetAsUINotifyInstance ();
+					break;
 				}
 
 				return;

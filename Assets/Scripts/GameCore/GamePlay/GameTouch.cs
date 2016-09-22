@@ -16,9 +16,11 @@ namespace GameLogic {
 		private readonly int WIDTH_MID = Screen.width / 2;
 
 		private const decimal PRESS_HARD_TIME = 0.15m;
+		private const decimal JUMP_HARD_TIME = 1m;
 
 		// touch play about(cd)
 		private decimal pressHardTime = -1m;
+		private decimal jumpHardTime = -1m;
 		// touch slide about
 		private decimal beginTouchTick = -1m;
 		private float touchTempY = 0;
@@ -34,6 +36,7 @@ namespace GameLogic {
 
 		public void Init() {
 			this.pressHardTime = -1m;
+			this.jumpHardTime = -1m;
 
 			gTrigger.UnRegEvent(GameGlobal.MUSIC_TOUCH_EVENT);
 			// Touch event for play
@@ -84,7 +87,8 @@ namespace GameLogic {
 
 			if (this.IsJump ()) {
 				// jump about.
-				//GirlManager.Instance.SetJumpingAction (true);
+				this.jumpHardTime = JUMP_HARD_TIME;
+				GirlManager.Instance.SetJumpingAction (true);
 				TaskStageTarget.Instance.AddJumpCount (1);
 				BattleRoleAttributeComponent.Instance.FireSkill (GameMusic.JUMPOVER);
 			}
@@ -124,9 +128,17 @@ namespace GameLogic {
 			this.pressHardTime = t;
 		}
 
+		public void SetJumpHardTime(decimal t) {
+			this.jumpHardTime = t;
+		}
+
 		public void TimeStep() {
 			if (this.pressHardTime > 0) {
 				this.pressHardTime -= oTimer.dInterval;
+			}
+
+			if (this.jumpHardTime > 0) {
+				this.jumpHardTime -= oTimer.dInterval;
 			}
 		}
 
@@ -208,7 +220,7 @@ namespace GameLogic {
 				return;
 			}
 
-			if (_tempState == GameGlobal.PRESS_STATE_JUMP && GirlManager.Instance.IsJumpingAction ()) {
+			if (_tempState == GameGlobal.PRESS_STATE_JUMP && this.jumpHardTime > 0) {
 				return;
 			}
 
@@ -310,6 +322,8 @@ namespace GameLogic {
 
 		public void TouchResult(int idx, uint resultCode, uint actionType) {
 			this.pressHardTime = -1m;
+			//this.jumpHardTime = -1m;
+
 			if (resultCode > GameMusic.MISS && resultCode < GameMusic.JUMPOVER) {
 				BattleEnemyManager.Instance.SetPlayResult (idx, resultCode);
 			}

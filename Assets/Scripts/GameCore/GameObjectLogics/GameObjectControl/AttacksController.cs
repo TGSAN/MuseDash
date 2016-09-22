@@ -170,7 +170,7 @@ public class AttacksController : MonoBehaviour {
 
 	private void PlayRandomHitNothingAnim() {
 		string actKey = ACTION_KEYS.ATTACK_MISS;
-		if (GameGlobal.gGameTouchPlay.IsJump () && !GirlManager.Instance.IsJumpingAction ()) {
+		if (GameGlobal.gGameTouchPlay.IsJump ()) {
 			actKey = ACTION_KEYS.JUMP;
 		}
 

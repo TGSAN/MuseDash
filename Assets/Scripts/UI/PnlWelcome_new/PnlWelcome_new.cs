@@ -224,9 +224,6 @@ namespace PnlWelcome_new {
 
 			//		Debug.Log("加载成功"+ExpandBmobLogin.ServerTime+"int Time"+);
 			CommonPanel.GetInstance ().ShowText (LOAD_DATA_OK);
-			if (this == null) {
-				return;
-			}
 
 			if (this.waitCoroutine != null) {
 				this.StopCoroutine (this.waitCoroutine);
