@@ -264,13 +264,22 @@ public class UISceneHelper : MonoBehaviour {
 	public void HideWidget() {
 		this.dymWidgets = new Dictionary<string, UIRootHelper> ();
 		UIRootHelper[] urhs = Transform.FindObjectsOfType<UIRootHelper> ();
+		// First reg
+		foreach (UIRootHelper urh in urhs) {
+			if (urh == null) {
+				continue;
+			}
+
+			this.RegDymWidget (urh.gameObject.name, urh);
+		}
+
+		// Then catch and hide;
 		foreach (UIRootHelper urh in urhs) {
 			if (urh == null) {
 				continue;
 			}
 
 			Debug.Log ("Catch ui : " + urh.gameObject.name);
-			this.RegDymWidget (urh.gameObject.name, urh);
 			UIPhaseBase upb = urh.gameObject.GetComponent<UIPhaseBase> ();
 			if (upb != null) {
 				upb.BeCatched ();

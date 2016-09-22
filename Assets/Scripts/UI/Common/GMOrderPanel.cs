@@ -31,7 +31,6 @@ public class GMOrderPanel : MonoBehaviour {
 
 	public void DeleteAccountData()
 	{
-		
 		BagManageComponent.Instance.DeleteBagData();
 		ItemManageComponent.Instance.DeleteAllItem();
 		ChestManageComponent.Instance.GetChestList.Clear();
