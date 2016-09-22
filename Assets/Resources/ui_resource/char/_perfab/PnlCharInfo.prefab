@@ -401,7 +401,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012887665344}
   - 114: {fileID: 114000013427627862}
-  - 114: {fileID: 114000012588526216}
   m_Layer: 5
   m_Name: PnlCosChangeBack
   m_TagString: Untagged
@@ -519,7 +518,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011469549246}
   - 114: {fileID: 114000010943569044}
-  - 114: {fileID: 114000011820539240}
   m_Layer: 5
   m_Name: PnlItemChooseBack
   m_TagString: Untagged
@@ -911,7 +909,7 @@ GameObject:
   - 65: {fileID: 65000013594816334}
   - 114: {fileID: 114000013303232194}
   - 114: {fileID: 114000011751443788}
-  - 114: {fileID: 114000012142402170}
+  - 114: {fileID: 114000010160034834}
   m_Layer: 5
   m_Name: BtnBack
   m_TagString: Untagged
@@ -1188,7 +1186,7 @@ GameObject:
   - 65: {fileID: 65000013548789778}
   - 114: {fileID: 114000010481514818}
   - 114: {fileID: 114000010250548088}
-  - 114: {fileID: 114000013994312624}
+  - 114: {fileID: 114000012854323516}
   m_Layer: 5
   m_Name: BtnBack
   m_TagString: Untagged
@@ -1337,7 +1335,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014203852580}
   - 114: {fileID: 114000011670509372}
-  - 114: {fileID: 114000014089302182}
+  - 114: {fileID: 114000010621716136}
   m_Layer: 5
   m_Name: TxtBack
   m_TagString: Untagged
@@ -1408,7 +1406,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012815608156}
   - 114: {fileID: 114000013852525248}
-  - 114: {fileID: 114000011162479496}
+  - 114: {fileID: 114000013395389636}
   m_Layer: 5
   m_Name: TxtBack
   m_TagString: Untagged
@@ -1523,13 +1521,14 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010475752372}
+  - 114: {fileID: 114000013793977950}
   m_Layer: 5
   m_Name: CharacterUpgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000013743841090
 GameObject:
   m_ObjectHideFlags: 1
@@ -3831,7 +3830,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010107735780}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07c4de3b4b6fe9045b059ee627c100df, type: 3}
   m_Name: 
@@ -4018,7 +4017,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 0}
   mPivot: 4
   mWidth: 32
   mHeight: 32
@@ -4080,6 +4079,54 @@ MonoBehaviour:
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 1
+--- !u!114 &114000010160034834
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012178789172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 1000012608187012}
+  clickResponseObjects:
+  - {fileID: 0}
+  clickResponseParentNames:
+  - PnlCharInfo
+  - PnlChar
+  - PnlSuitcase
+  - 
+  clickResponseObjectsIsShow: 01
+  clickResponseParentNamesIsShow: 01010001
+  clickResponseObjectAnimations:
+  - 
+  clickResponseParentAnimations:
+  - cos_change_out
+  - 
+  - 
+  - 
+  isFoldObjs: 1
+  isFoldParentObjs: 1
+  isForceKeep: 0
+  isClickHideSelf: 0
+  isClickHideParent: 0
+  des: "\u672A\u6709\u63CF\u8FF0"
+  activeHostKeyId: 0
+  activeCondiction: LEVEL
+  activeValue: 
+  labelHostKeyId: 0
+  labelMatchSign: 
+  labelMatchSelfDefineSign: 
+  sliderHostKeyId: 0
+  sliderMatchSign: 
+  sliderMaxSign: 
+  isNeedTranslate: 0
+  onClickModuleName: OnClickBtnBack
+  onTweenAniFinishedModuleName: 
+  onSliderModuleName: 
+  scrollerTableDataModuleName: 
 --- !u!114 &114000010211849924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4356,7 +4403,13 @@ MonoBehaviour:
   duration: 1
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000011883617786}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: 0
@@ -4433,7 +4486,13 @@ MonoBehaviour:
   duration: 1
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000011821303836}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: 0
@@ -4563,7 +4622,13 @@ MonoBehaviour:
   duration: 1
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000011817346142}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: 0
@@ -4655,7 +4720,13 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnClickCommon
+    mParameters:
+    - obj: {fileID: 1000014056310482}
+      field: 
+    oneShot: 0
 --- !u!114 &114000010383319864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4700,7 +4771,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013610334882}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07c4de3b4b6fe9045b059ee627c100df, type: 3}
   m_Name: 
@@ -4917,7 +4988,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 0}
   mPivot: 4
   mWidth: 32
   mHeight: 32
@@ -5203,7 +5274,13 @@ MonoBehaviour:
   duration: 1
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000013257083906}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: 0
@@ -5357,7 +5434,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.89411765, g: 0, b: 0.49803922, a: 1}
+  mColor: {r: 0.89411765, g: 0, b: 0.49803922, a: 0.00062139286}
   mPivot: 3
   mWidth: 14
   mHeight: 36
@@ -5435,6 +5512,44 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000010621716136
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013162143056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 1000012608187012}
+  clickResponseObjects: []
+  clickResponseParentNames: []
+  clickResponseObjectsIsShow: 
+  clickResponseParentNamesIsShow: 
+  clickResponseObjectAnimations: []
+  clickResponseParentAnimations: []
+  isFoldObjs: 0
+  isFoldParentObjs: 0
+  isForceKeep: 0
+  isClickHideSelf: 0
+  isClickHideParent: 0
+  des: "\u672A\u6709\u63CF\u8FF0"
+  activeHostKeyId: 0
+  activeCondiction: LEVEL
+  activeValue: 
+  labelHostKeyId: 0
+  labelMatchSign: LEVEL
+  labelMatchSelfDefineSign: 
+  sliderHostKeyId: 0
+  sliderMatchSign: 
+  sliderMaxSign: 
+  isNeedTranslate: 0
+  onClickModuleName: 
+  onTweenAniFinishedModuleName: 
+  onSliderModuleName: 
+  scrollerTableDataModuleName: 
 --- !u!114 &114000010627631986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5469,7 +5584,13 @@ MonoBehaviour:
   duration: 1
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000013822571846}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: 0
@@ -5740,7 +5861,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 0.7764706, b: 0, a: 1}
+  mColor: {r: 1, g: 0.7764706, b: 0, a: 0.00062139286}
   mPivot: 3
   mWidth: 14
   mHeight: 36
@@ -5950,7 +6071,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3021
+  startingRenderQueue: 3023
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6065,8 +6186,8 @@ MonoBehaviour:
   isSingleInstanceUI: 1
   isShowOnLoaded: 0
   widgets:
-  - {fileID: 114000013994312624}
-  - {fileID: 114000011162479496}
+  - {fileID: 114000012854323516}
+  - {fileID: 114000013395389636}
   - {fileID: 114000011488291908}
   - {fileID: 114000013685661020}
   - {fileID: 114000013326473346}
@@ -6106,8 +6227,8 @@ MonoBehaviour:
   - {fileID: 114000012557989478}
   - {fileID: 114000010383319864}
   - {fileID: 114000014104460586}
-  - {fileID: 114000012142402170}
-  - {fileID: 114000014089302182}
+  - {fileID: 114000010160034834}
+  - {fileID: 114000010621716136}
 --- !u!114 &114000011086231796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6174,7 +6295,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 0.7764706, b: 0, a: 1}
+  mColor: {r: 1, g: 0.7764706, b: 0, a: 0.00062139286}
   mPivot: 3
   mWidth: 390
   mHeight: 10
@@ -6233,49 +6354,17 @@ MonoBehaviour:
   duration: 1
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000010927063636}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: 0
   to: 1
---- !u!114 &114000011162479496
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013293989550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  root: {fileID: 1000012608187012}
-  clickResponseObjects: []
-  clickResponseParentNames: []
-  clickResponseObjectsIsShow: 
-  clickResponseParentNamesIsShow: 
-  clickResponseObjectAnimations: []
-  clickResponseParentAnimations: []
-  isFoldObjs: 0
-  isFoldParentObjs: 0
-  isForceKeep: 0
-  isClickHideSelf: 0
-  isClickHideParent: 0
-  des: "\u672A\u6709\u63CF\u8FF0"
-  activeHostKeyId: 0
-  activeCondiction: LEVEL
-  activeValue: 
-  labelHostKeyId: 0
-  labelMatchSign: LEVEL
-  labelMatchSelfDefineSign: 
-  sliderHostKeyId: 0
-  sliderMatchSign: 
-  sliderMaxSign: 
-  isNeedTranslate: 0
-  onClickModuleName: 
-  onTweenAniFinishedModuleName: 
-  onSliderModuleName: 
-  scrollerTableDataModuleName: 
 --- !u!114 &114000011171609626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6439,7 +6528,13 @@ MonoBehaviour:
   duration: 1
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000013901024162}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: 0
@@ -6578,7 +6673,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0, g: 1, b: 0, a: 1}
+  mColor: {r: 0, g: 1, b: 0, a: 0.00062139286}
   mPivot: 3
   mWidth: 24
   mHeight: 36
@@ -6646,7 +6741,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 0}
   mPivot: 4
   mWidth: 32
   mHeight: 32
@@ -7030,7 +7125,7 @@ MonoBehaviour:
     relative: 1
     absolute: -8
   updateAnchors: 1
-  mColor: {r: 1, g: 0.7764706, b: 0, a: 1}
+  mColor: {r: 1, g: 0.7764706, b: 0, a: 0.00062139286}
   mPivot: 4
   mWidth: 40
   mHeight: 20
@@ -7204,7 +7299,7 @@ MonoBehaviour:
     relative: 1
     absolute: -8
   updateAnchors: 1
-  mColor: {r: 0.13725491, g: 0.47058824, b: 0.49019608, a: 1}
+  mColor: {r: 0.13725491, g: 0.47058824, b: 0.49019608, a: 0.00062139286}
   mPivot: 4
   mWidth: 40
   mHeight: 20
@@ -7525,7 +7620,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0, g: 1, b: 0, a: 1}
+  mColor: {r: 0, g: 1, b: 0, a: 0.00062139286}
   mPivot: 3
   mWidth: 390
   mHeight: 10
@@ -7550,27 +7645,13 @@ MonoBehaviour:
   mAtlas: {fileID: 114000014215409208, guid: 065a9f9a2625e1e46b008ee2236c6541, type: 2}
   mSpriteName: exp_bar
   mFillCenter: 1
---- !u!114 &114000011820539240
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011403049482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 333b72c1cacfd46ea9ae37a7574390ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSingleInstanceUI: 0
-  isShowOnLoaded: 0
-  widgets: []
 --- !u!114 &114000011825007204
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011543077984}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07c4de3b4b6fe9045b059ee627c100df, type: 3}
   m_Name: 
@@ -7613,7 +7694,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 0}
   mPivot: 4
   mWidth: 32
   mHeight: 32
@@ -7666,7 +7747,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.13725491, g: 0.47058824, b: 0.49019608, a: 1}
+  mColor: {r: 0.13725491, g: 0.47058824, b: 0.49019608, a: 0.00062139286}
   mPivot: 3
   mWidth: 390
   mHeight: 4
@@ -7725,7 +7806,13 @@ MonoBehaviour:
   duration: 1
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000011124691336}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: 0
@@ -7849,7 +7936,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0, g: 0.63529414, b: 1, a: 1}
+  mColor: {r: 0, g: 0.63529414, b: 1, a: 0.00062139286}
   mPivot: 3
   mWidth: 390
   mHeight: 10
@@ -7908,7 +7995,13 @@ MonoBehaviour:
   duration: 1
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000012445209866}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: 0
@@ -8136,50 +8229,6 @@ MonoBehaviour:
   mAtlas: {fileID: 114000014215409208, guid: 065a9f9a2625e1e46b008ee2236c6541, type: 2}
   mSpriteName: select_item
   mFillCenter: 1
---- !u!114 &114000012142402170
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012178789172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  root: {fileID: 1000012608187012}
-  clickResponseObjects:
-  - {fileID: 0}
-  clickResponseParentNames:
-  - PnlCharInfo
-  - 
-  clickResponseObjectsIsShow: 01
-  clickResponseParentNamesIsShow: 0100
-  clickResponseObjectAnimations:
-  - 
-  clickResponseParentAnimations:
-  - cos_change_out
-  - 
-  isFoldObjs: 1
-  isFoldParentObjs: 1
-  isForceKeep: 0
-  isClickHideSelf: 0
-  isClickHideParent: 0
-  des: "\u672A\u6709\u63CF\u8FF0"
-  activeHostKeyId: 0
-  activeCondiction: LEVEL
-  activeValue: 
-  labelHostKeyId: 0
-  labelMatchSign: 
-  labelMatchSelfDefineSign: 
-  sliderHostKeyId: 0
-  sliderMatchSign: 
-  sliderMaxSign: 
-  isNeedTranslate: 0
-  onClickModuleName: OnClickBtnBack
-  onTweenAniFinishedModuleName: 
-  onSliderModuleName: 
-  scrollerTableDataModuleName: 
 --- !u!114 &114000012160537448
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8272,7 +8321,7 @@ MonoBehaviour:
     relative: 1
     absolute: -8
   updateAnchors: 1
-  mColor: {r: 0, g: 1, b: 0, a: 1}
+  mColor: {r: 0, g: 1, b: 0, a: 0.00062139286}
   mPivot: 4
   mWidth: 40
   mHeight: 20
@@ -8352,15 +8401,17 @@ MonoBehaviour:
   - {fileID: 0}
   clickResponseParentNames:
   - PnlCharInfo
-  - 
+  - PnlSuitcase
+  - PnlChar
   - 
   clickResponseObjectsIsShow: 0101
-  clickResponseParentNamesIsShow: 010000
+  clickResponseParentNamesIsShow: 01010001
   clickResponseObjectAnimations:
   - 
   - 
   clickResponseParentAnimations:
   - cos_change
+  - 
   - 
   - 
   isFoldObjs: 1
@@ -8411,7 +8462,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 0}
   mPivot: 4
   mWidth: 32
   mHeight: 32
@@ -8570,7 +8621,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0, g: 0.63529414, b: 1, a: 1}
+  mColor: {r: 0, g: 0.63529414, b: 1, a: 0.00062139286}
   mPivot: 3
   mWidth: 14
   mHeight: 36
@@ -8793,7 +8844,7 @@ MonoBehaviour:
     relative: 1
     absolute: -8
   updateAnchors: 1
-  mColor: {r: 0.89411765, g: 0, b: 0.49803922, a: 1}
+  mColor: {r: 0.89411765, g: 0, b: 0.49803922, a: 0.00062139286}
   mPivot: 4
   mWidth: 40
   mHeight: 20
@@ -8943,7 +8994,13 @@ MonoBehaviour:
   duration: 1
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000012821916988}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: 0
@@ -9156,7 +9213,13 @@ MonoBehaviour:
   duration: 1
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000012317273730}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: 0
@@ -9275,20 +9338,6 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
---- !u!114 &114000012588526216
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011044076730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 333b72c1cacfd46ea9ae37a7574390ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSingleInstanceUI: 0
-  isShowOnLoaded: 0
-  widgets: []
 --- !u!114 &114000012606259496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9350,7 +9399,13 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnClickCommon
+    mParameters:
+    - obj: {fileID: 1000011733903458}
+      field: 
+    oneShot: 0
 --- !u!114 &114000012645029526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9502,7 +9557,7 @@ MonoBehaviour:
     relative: 1
     absolute: -8
   updateAnchors: 1
-  mColor: {r: 0, g: 0.63529414, b: 1, a: 1}
+  mColor: {r: 0, g: 0.63529414, b: 1, a: 0.00062139286}
   mPivot: 4
   mWidth: 40
   mHeight: 20
@@ -9614,7 +9669,13 @@ MonoBehaviour:
   duration: 1
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000011670713572}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: 0
@@ -9759,11 +9820,61 @@ MonoBehaviour:
   duration: 1
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000010847023810}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: 0
   to: 1
+--- !u!114 &114000012854323516
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012704541106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 1000012608187012}
+  clickResponseObjects:
+  - {fileID: 0}
+  clickResponseParentNames:
+  - PnlCharInfo
+  - 
+  clickResponseObjectsIsShow: 01
+  clickResponseParentNamesIsShow: 0101
+  clickResponseObjectAnimations:
+  - 
+  clickResponseParentAnimations:
+  - pnl_items_choose_out
+  - 
+  isFoldObjs: 0
+  isFoldParentObjs: 1
+  isForceKeep: 0
+  isClickHideSelf: 0
+  isClickHideParent: 0
+  des: "\u672A\u6709\u63CF\u8FF0"
+  activeHostKeyId: 0
+  activeCondiction: LEVEL
+  activeValue: 
+  labelHostKeyId: 0
+  labelMatchSign: 
+  labelMatchSelfDefineSign: 
+  sliderHostKeyId: 0
+  sliderMatchSign: 
+  sliderMaxSign: 
+  isNeedTranslate: 0
+  onClickModuleName: OnClickBtnBack
+  onTweenAniFinishedModuleName: 
+  onSliderModuleName: 
+  scrollerTableDataModuleName: 
 --- !u!114 &114000012881016296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9931,7 +10042,13 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnClickCommon
+    mParameters:
+    - obj: {fileID: 1000014009397380}
+      field: 
+    oneShot: 0
 --- !u!114 &114000013024651600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10163,7 +10280,13 @@ MonoBehaviour:
   duration: 1
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000013642742316}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: 0
@@ -10328,7 +10451,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 0}
   mPivot: 4
   mWidth: 32
   mHeight: 32
@@ -10389,7 +10512,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3001
+  startingRenderQueue: 3006
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -10565,7 +10688,13 @@ MonoBehaviour:
   duration: 1
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000014084451074}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: 0
@@ -10659,7 +10788,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3023
+  startingRenderQueue: 3034
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -10877,7 +11006,13 @@ MonoBehaviour:
   duration: 1
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000010020112362}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: 0
@@ -10988,6 +11123,44 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 7813e9a99211745c984b111b3f050312, type: 2}
   mSpriteName: menu_button_back
   mFillCenter: 1
+--- !u!114 &114000013395389636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013293989550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 1000012608187012}
+  clickResponseObjects: []
+  clickResponseParentNames: []
+  clickResponseObjectsIsShow: 
+  clickResponseParentNamesIsShow: 
+  clickResponseObjectAnimations: []
+  clickResponseParentAnimations: []
+  isFoldObjs: 0
+  isFoldParentObjs: 0
+  isForceKeep: 0
+  isClickHideSelf: 0
+  isClickHideParent: 0
+  des: "\u672A\u6709\u63CF\u8FF0"
+  activeHostKeyId: 0
+  activeCondiction: 
+  activeValue: 
+  labelHostKeyId: 0
+  labelMatchSign: 
+  labelMatchSelfDefineSign: 
+  sliderHostKeyId: 0
+  sliderMatchSign: 
+  sliderMaxSign: 
+  isNeedTranslate: 0
+  onClickModuleName: 
+  onTweenAniFinishedModuleName: 
+  onSliderModuleName: 
+  scrollerTableDataModuleName: 
 --- !u!114 &114000013418741870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11105,7 +11278,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3019
+  startingRenderQueue: 3021
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -11265,7 +11438,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013870172188}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07c4de3b4b6fe9045b059ee627c100df, type: 3}
   m_Name: 
@@ -11410,7 +11583,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0, g: 1, b: 0, a: 1}
+  mColor: {r: 0, g: 1, b: 0, a: 0.00062139286}
   mPivot: 3
   mWidth: 20
   mHeight: 36
@@ -11556,6 +11729,43 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: OnTweenFinishedSprArrow
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000013793977950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013644414250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858a20c1b21a3f94bb5b2d3b901c9aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 100
+  mHeight: 100
+  mDepth: 0
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
 --- !u!114 &114000013798218852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11637,7 +11847,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.13725491, g: 0.47058824, b: 0.49019608, a: 1}
+  mColor: {r: 0.13725491, g: 0.47058824, b: 0.49019608, a: 0.00062139286}
   mPivot: 3
   mWidth: 38
   mHeight: 36
@@ -11705,7 +11915,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.13725491, g: 0.47058824, b: 0.49019608, a: 1}
+  mColor: {r: 0.13725491, g: 0.47058824, b: 0.49019608, a: 0.00062139286}
   mPivot: 3
   mWidth: 38
   mHeight: 36
@@ -11905,7 +12115,13 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnClickCommon
+    mParameters:
+    - obj: {fileID: 1000012178789172}
+      field: 
+    oneShot: 0
 --- !u!114 &114000013866551884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11966,7 +12182,13 @@ MonoBehaviour:
   duration: 1
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000014039907470}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: 0
@@ -12052,7 +12274,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 0}
   mPivot: 4
   mWidth: 32
   mHeight: 32
@@ -12198,50 +12420,6 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
---- !u!114 &114000013994312624
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012704541106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  root: {fileID: 1000012608187012}
-  clickResponseObjects:
-  - {fileID: 0}
-  clickResponseParentNames:
-  - PnlCharInfo
-  - 
-  clickResponseObjectsIsShow: 01
-  clickResponseParentNamesIsShow: 0100
-  clickResponseObjectAnimations:
-  - 
-  clickResponseParentAnimations:
-  - pnl_items_choose_out
-  - 
-  isFoldObjs: 1
-  isFoldParentObjs: 1
-  isForceKeep: 0
-  isClickHideSelf: 0
-  isClickHideParent: 0
-  des: "\u672A\u6709\u63CF\u8FF0"
-  activeHostKeyId: 0
-  activeCondiction: LEVEL
-  activeValue: 
-  labelHostKeyId: 0
-  labelMatchSign: 
-  labelMatchSelfDefineSign: 
-  sliderHostKeyId: 0
-  sliderMatchSign: 
-  sliderMaxSign: 
-  isNeedTranslate: 0
-  onClickModuleName: OnClickBtnBack
-  onTweenAniFinishedModuleName: 
-  onSliderModuleName: 
-  scrollerTableDataModuleName: 
 --- !u!114 &114000014060384408
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12266,45 +12444,13 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
---- !u!114 &114000014089302182
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013162143056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  root: {fileID: 1000012608187012}
-  clickResponseObjects: []
-  clickResponseParentNames: []
-  clickResponseObjectsIsShow: 
-  clickResponseParentNamesIsShow: 
-  clickResponseObjectAnimations: []
-  clickResponseParentAnimations: []
-  isFoldObjs: 0
-  isFoldParentObjs: 0
-  isForceKeep: 0
-  isClickHideSelf: 0
-  isClickHideParent: 0
-  des: "\u672A\u6709\u63CF\u8FF0"
-  activeHostKeyId: 0
-  activeCondiction: LEVEL
-  activeValue: 
-  labelHostKeyId: 0
-  labelMatchSign: LEVEL
-  labelMatchSelfDefineSign: 
-  sliderHostKeyId: 0
-  sliderMatchSign: 
-  sliderMaxSign: 
-  isNeedTranslate: 0
-  onClickModuleName: 
-  onTweenAniFinishedModuleName: 
-  onSliderModuleName: 
-  scrollerTableDataModuleName: 
+  onClick:
+  - mTarget: {fileID: 114000011070731462}
+    mMethodName: OnClickCommon
+    mParameters:
+    - obj: {fileID: 1000012704541106}
+      field: 
+    oneShot: 0
 --- !u!114 &114000014104460586
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12397,7 +12543,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 0}
   mPivot: 4
   mWidth: 32
   mHeight: 32
@@ -12544,7 +12690,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.89411765, g: 0, b: 0.49803922, a: 1}
+  mColor: {r: 0.89411765, g: 0, b: 0.49803922, a: 0.00062139286}
   mPivot: 3
   mWidth: 390
   mHeight: 10
