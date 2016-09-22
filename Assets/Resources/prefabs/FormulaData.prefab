@@ -109,6 +109,10 @@ MonoBehaviour:
   - FULL_STAR
   - UnlockTrophy
   - CLOTH
+  - LVL_LIMIT
+  - STATIC_CTR
+  - GOLD_EXTRA
+  - VIT_LIMIT
   ConfigNames:
   - character
   - stage
@@ -4509,7 +4513,8 @@ MonoBehaviour:
   - idx: 178
     typeIdx: 0
     name: "\u89D2\u8272\u4FE1\u606F"
-    formula: ( DESCRIPTION + NAME )
+    formula: ( DESCRIPTION + NAME + LVL_LIMIT + STATIC_CTR + GOLD_EXTRA + VIT_LIMIT
+      )
     fparams:
     - idx: 0
       dataSourceType: 1
@@ -4531,6 +4536,58 @@ MonoBehaviour:
       dataSourceName: character.name
       collapsed: 1
       paramname: NAME
+      condictions:
+      - condictionType: 1
+        condictionKeyIndex: 2
+        condictionKey: ID
+        condictionValue: 0
+        plus: 1
+    - idx: 2
+      dataSourceType: 1
+      dataSourceIndex: 0
+      dataSourceValue: 0
+      dataSourceName: character.level_max_add
+      collapsed: 1
+      paramname: LVL_LIMIT
+      condictions:
+      - condictionType: 1
+        condictionKeyIndex: 2
+        condictionKey: ID
+        condictionValue: 0
+        plus: 1
+    - idx: 3
+      dataSourceType: 1
+      dataSourceIndex: 0
+      dataSourceValue: 0
+      dataSourceName: character.luck
+      collapsed: 1
+      paramname: STATIC_CTR
+      condictions:
+      - condictionType: 1
+        condictionKeyIndex: 2
+        condictionKey: ID
+        condictionValue: 0
+        plus: 1
+    - idx: 4
+      dataSourceType: 1
+      dataSourceIndex: 0
+      dataSourceValue: 0
+      dataSourceName: character.extra_coin
+      collapsed: 1
+      paramname: GOLD_EXTRA
+      condictions:
+      - condictionType: 1
+        condictionKeyIndex: 2
+        condictionKey: ID
+        condictionValue: 0
+        plus: 1
+    - idx: 5
+      dataSourceType: 1
+      dataSourceIndex: 0
+      dataSourceValue: 0
+      dataSourceName: character.extra_energy_max
+      collapsed: 1
+      paramname: VIT_LIMIT
       condictions:
       - condictionType: 1
         condictionKeyIndex: 2
@@ -8442,7 +8499,7 @@ MonoBehaviour:
     collapsedSign: 1
     collapsedComponent: 1
     formulaSet: b200000004000000030000000e0000000f00000000000000b7000000b8000000ba000000bb000000bc000000fb000000fc000000fd000000fe000000
-    singSet: 00000000020000000f000000170000001a00000010000000200000003900000042000000
+    singSet: 00000000020000000f000000170000001a0000001000000020000000390000004200000043000000440000004500000046000000
     signValueSet:
     - 1
     - 1
@@ -8451,6 +8508,10 @@ MonoBehaviour:
     - 0
     - 0
     - 1
+    - 0
+    - 0
+    - 0
+    - 0
     - 0
     - 0
     componentNames:
