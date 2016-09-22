@@ -195,6 +195,7 @@ namespace Assets.Scripts.NGUI
                     {
                         m_ZAngle += Vector3.Angle(up, pivot.up) * isPositive;
                         up = pivot.up;
+                        m_IsSliding = true;
                     }).OnComplete(() =>
                     {
                         if (angleBetween / angle < 0.5f)
@@ -279,6 +280,10 @@ namespace Assets.Scripts.NGUI
             UIEventListener.Get(leftButton).onDragEnd = onDragEnd;
             UIEventListener.Get(leftButton).onClick = (go) =>
             {
+                if (m_IsSliding)
+                {
+                    return;
+                }
                 OnChangeOffset(new Vector3(0, 0, angle * -1), nextPageTime);
             };
 
@@ -287,6 +292,10 @@ namespace Assets.Scripts.NGUI
             UIEventListener.Get(rightButton).onDragEnd = onDragEnd;
             UIEventListener.Get(rightButton).onClick = (go) =>
             {
+                if (m_IsSliding)
+                {
+                    return;
+                }
                 OnChangeOffset(new Vector3(0, 0, angle * 1), nextPageTime);
             };
         }
@@ -625,12 +634,10 @@ namespace Assets.Scripts.NGUI
                 idx = (idx - (m_CellGroup.Count - 1)) - 1;
             }
             var offset = new Vector3(0, 0, (idx - 2) * -angle);
-            var seq = DOTween.Sequence();
-            seq.AppendInterval(0.1f);
-            seq.AppendCallback(() =>
+            DOTweenUtil.Delay(() =>
             {
                 OnChangeOffset(offset, Mathf.Abs(idx - 2) * 0.15f);
-            });
+            }, 0.1f);
         }
 
         #endregion 操作
