@@ -65,6 +65,10 @@ public class CommonPanel : MonoBehaviour {
 		//this.m_UIMask.Reset ();
 	}
 
+	public void ResetMask() {
+		this.m_UIMask.Reset ();
+	}
+
 	private void SignltonCheck() {
 		if (CommonPanel.GetInstance () == this) {
 			return;

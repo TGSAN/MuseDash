@@ -34,7 +34,7 @@ namespace PnlStage
         public override void OnShow()
         {
             StageDisc.StageDisc.LoadAllDiscCover();
-            this.OnSongChanged(PnlScrollCircle.currentSongIdx);
+            //this.OnSongChanged(PnlScrollCircle.currentSongIdx);
             SceneAudioManager.Instance.bgm.clip = null;
             PnlScrollCircle.instance.ResetPos();
             PnlScrollCircle.instance.JumpToSong(PnlScrollCircle.currentSongIdx);

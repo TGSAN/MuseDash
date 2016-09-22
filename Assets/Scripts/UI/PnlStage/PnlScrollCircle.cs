@@ -96,7 +96,7 @@ namespace Assets.Scripts.NGUI
         private Sequence m_SlideSeq;
         private Sequence m_DlySeq;
         private float m_ZAngle = 0.0f;
-        private static int m_CurrentIdx = 2;
+        private static int m_CurrentIdx = 1;
         private bool m_IsSliding = false;
         private ResourceRequest m_Request;
         private Coroutine m_Coroutine;
@@ -129,7 +129,7 @@ namespace Assets.Scripts.NGUI
 
         private void Update()
         {
-            print(m_FinishEnter);
+            //print(m_FinishEnter);
             OnScrolling();
             OnSongInfoChange();
             UpdatePos();
@@ -359,7 +359,7 @@ namespace Assets.Scripts.NGUI
         private void OnScrollEnd()
         {
             m_IsSliding = false;
-            onSongChange(m_CurrentIdx + 1);
+            onSongChange(m_CurrentIdx);
             OnEnergyInfoChange(true);
         }
 
@@ -598,7 +598,7 @@ namespace Assets.Scripts.NGUI
             audioSource.clip = newClip;
             audioSource.Play();
             audioSource.loop = true;
-            PnlStage.PnlStage.Instance.OnSongChanged(currentSongIdx);
+			PnlStage.PnlStage.Instance.OnSongChanged(m_CurrentIdx);
         }
 
         #endregion 资源加载

@@ -36,6 +36,8 @@ public class UIPhaseBase : MonoBehaviour {
 	/// </summary>
 	public virtual void OnHide (){}
 
+	public virtual void BeCatched(){}
+
 	private void Init() {
 		if (this._urh == null) {
 			this._urh = this.gameObject.GetComponent<UIRootHelper> ();

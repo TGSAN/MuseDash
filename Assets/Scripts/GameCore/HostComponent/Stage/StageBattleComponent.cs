@@ -516,6 +516,7 @@ namespace FormulaBase {
 		// Exit stage.
 		public void Exit(string sceneName = "ChooseSongs") {
 			Debug.Log ("Stage Exit.");
+			UISceneHelper.Instance.HideUi ("PnlBattle");
 			GameGlobal.gGameMusic.Stop ();
 			GameGlobal.gGameMusicScene.Stop ();
 			gTrigger.ClearEvent ();
