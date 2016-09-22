@@ -104,16 +104,12 @@ namespace Assets.Scripts.NGUI
         private readonly Dictionary<int, GameObject> m_CellGroup = new Dictionary<int, GameObject>();
         private readonly List<StageInfo> m_StageInfos = new List<StageInfo>();
         private readonly List<float> m_Angles = new List<float>();
-        private bool m_FinishEnter = false;
 
         public float offsetX { get; private set; }
 
         public AudioClip CatchClip
         {
-            get
-            {
-                return this.m_CatchClip;
-            }
+            get { return this.m_CatchClip; }
         }
 
         public static int currentSongIdx
@@ -192,21 +188,23 @@ namespace Assets.Scripts.NGUI
                 var angleBetween = Mathf.Abs(pivot.localEulerAngles.z - endAngles.z);
                 var t = angleBetween / elasticSpeed;
                 var originZAngle = m_ZAngle;
-                m_SlideTweener = pivot.DORotate(endAngles, t, RotateMode.FastBeyond360).SetEase(Ease.OutSine).OnUpdate(() =>
-                {
-                    m_ZAngle += Vector3.Angle(up, pivot.up) * isPositive;
-                    up = pivot.up;
-                }).OnComplete(() =>
-                {
-                    if (angleBetween / angle < 0.5f)
+                m_SlideTweener = pivot.DORotate(endAngles, t, RotateMode.FastBeyond360)
+                    .SetEase(Ease.OutSine)
+                    .OnUpdate(() =>
                     {
-                        m_ZAngle = originZAngle;
-                    }
-                    m_ZAngle = Mathf.RoundToInt(m_ZAngle / angle) * angle;
-                    var angleAxis = new Vector3(0, 0, m_ZAngle);
-                    pivot.transform.localEulerAngles = angleAxis;
-                    OnScrollEnd();
-                });
+                        m_ZAngle += Vector3.Angle(up, pivot.up) * isPositive;
+                        up = pivot.up;
+                    }).OnComplete(() =>
+                    {
+                        if (angleBetween / angle < 0.5f)
+                        {
+                            m_ZAngle = originZAngle;
+                        }
+                        m_ZAngle = Mathf.RoundToInt(m_ZAngle / angle) * angle;
+                        var angleAxis = new Vector3(0, 0, m_ZAngle);
+                        pivot.transform.localEulerAngles = angleAxis;
+                        OnScrollEnd();
+                    });
             };
 
             Action<GameObject, bool, float> onSlide = (go, isPressing, mul) =>
@@ -261,11 +259,11 @@ namespace Assets.Scripts.NGUI
             {
                 PnlStage.PnlStage.Instance.gameObject.SetActive(false);
                 var widgets = UISceneHelper.Instance.widgets;
-				foreach (UIRootHelper w in widgets.Values)
+                foreach (UIRootHelper w in widgets.Values)
                 {
-					if (w.gameObject.name == "PnlAchievement")
+                    if (w.gameObject.name == "PnlAchievement")
                     {
-						w.gameObject.SetActive(true);
+                        w.gameObject.SetActive(true);
                         break;
                     }
                 }
@@ -297,7 +295,7 @@ namespace Assets.Scripts.NGUI
             var numPerRound = 360f / angle;
             var count = Mathf.CeilToInt(m_StageInfos.Count / numPerRound) * numPerRound;
             // 读取关卡数量生成disk元件
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < m_StageInfos.Count; i++)
             {
                 GameObject item = GameObject.Instantiate(cell) as GameObject;
                 item.transform.parent = pivot.transform;
@@ -310,7 +308,7 @@ namespace Assets.Scripts.NGUI
                 var myAngle = angleOffset + angle * i;
                 m_Angles.Add(myAngle);
                 item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
-                       Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
+                    Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
                 item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
                 m_CellGroup.Add(i, item);
             }
@@ -318,10 +316,6 @@ namespace Assets.Scripts.NGUI
 
         private void UpdatePos()
         {
-            if (!m_FinishEnter)
-            {
-                return;
-            }
             var currentIdx = m_CurrentIdx;
             var startAngle = m_Angles[currentIdx];
             for (int i = currentIdx; i < (m_CellGroup.Count) / 2 + currentIdx; i++)
@@ -330,7 +324,7 @@ namespace Assets.Scripts.NGUI
                 var item = m_CellGroup[idx];
                 var myAngle = startAngle + (i - currentIdx) * angle;
                 item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
-                   Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
+                    Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
                 item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
                 m_Angles[idx] = myAngle;
             }
@@ -340,7 +334,7 @@ namespace Assets.Scripts.NGUI
                 var item = m_CellGroup[idx];
                 var myAngle = startAngle - (currentIdx - i) * angle;
                 item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
-                   Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
+                    Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
                 item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
                 m_Angles[idx] = myAngle;
             }
@@ -353,7 +347,7 @@ namespace Assets.Scripts.NGUI
         private void OnScrollEnd()
         {
             m_IsSliding = false;
-            onSongChange(m_CurrentIdx + 1);
+			onSongChange(PnlScrollCircle.currentSongIdx);
             OnEnergyInfoChange(true);
         }
 
@@ -369,7 +363,8 @@ namespace Assets.Scripts.NGUI
             }
             if (change)
             {
-                m_EnergyTweener1 = DOTween.To(() => sprEnergy.fillAmount, x => sprEnergy.fillAmount = x, 1.0f, eneryAnimDurationEnter);
+                m_EnergyTweener1 = DOTween.To(() => sprEnergy.fillAmount, x => sprEnergy.fillAmount = x, 1.0f,
+                    eneryAnimDurationEnter);
                 m_EnergyTweener2 = energy.transform.DOScale(1.0f, eneryAnimDurationEnter);
                 var cost = StageBattleComponent.Instance.Host.Result(FormulaKeys.FORMULA_330);
                 txtEnergyLast.text = cost.ToString();
@@ -382,7 +377,8 @@ namespace Assets.Scripts.NGUI
             }
             else
             {
-                m_EnergyTweener1 = DOTween.To(() => sprEnergy.fillAmount, x => sprEnergy.fillAmount = x, 0.0f, eneryAnimDurationLeave);
+                m_EnergyTweener1 = DOTween.To(() => sprEnergy.fillAmount, x => sprEnergy.fillAmount = x, 0.0f,
+                    eneryAnimDurationLeave);
                 m_EnergyTweener2 = energy.transform.DOScale(0.0f, eneryAnimDurationLeave);
             }
         }
@@ -410,13 +406,13 @@ namespace Assets.Scripts.NGUI
             go.transform.localScale = handleValue * Vector3.one * maxScale;
         }
 
-        private void OnChangeOffset(Vector3 offset, float dt)
+        private Tweener OnChangeOffset(Vector3 offset, float dt)
         {
             if (m_NextTweener != null)
             {
                 if (m_NextTweener.Elapsed(false) != 0)
                 {
-                    return;
+                    return null;
                 }
             }
             var endValue = pivot.localEulerAngles + offset;
@@ -433,6 +429,7 @@ namespace Assets.Scripts.NGUI
                 pivot.transform.localEulerAngles = new Vector3(0, 0, m_ZAngle);
                 OnScrollEnd();
             }).SetEase(Ease.OutSine);
+            return m_NextTweener;
         }
 
         private void OnSongInfoChange()
@@ -442,10 +439,14 @@ namespace Assets.Scripts.NGUI
                 var offsetForInfo = new Vector3(offsetX < 0 ? txtOffsetX : -txtOffsetX, 220f, 0);
                 txtNameLast.text = m_StageInfos[m_CurrentIdx].idx + " " + m_StageInfos[m_CurrentIdx].musicName;
                 txtAuthorLast.text = "Music by " + m_StageInfos[m_CurrentIdx].musicAuthor;
-                var lerpNumLast = 1 - scale * (Mathf.Abs(pivot.transform.position.x - m_CellGroup[m_CurrentIdx].transform.position.x)) / (Mathf.Sin(angle * Mathf.Deg2Rad) * radius);
+                var lerpNumLast = 1 -
+                                  scale *
+                                  (Mathf.Abs(pivot.transform.position.x - m_CellGroup[m_CurrentIdx].transform.position.x)) /
+                                  (Mathf.Sin(angle * Mathf.Deg2Rad) * radius);
                 txtNameLast.alpha = lerpNumLast;
                 txtAuthorLast.alpha = lerpNumLast;
-                txtNameLast.transform.parent.localPosition = Vector3.Lerp(offsetForInfo, new Vector3(0, 220, 0), lerpNumLast);
+                txtNameLast.transform.parent.localPosition = Vector3.Lerp(offsetForInfo, new Vector3(0, 220, 0),
+                    lerpNumLast);
             }
         }
 
@@ -483,7 +484,7 @@ namespace Assets.Scripts.NGUI
                     go.SetActive(false);
                 }
                 go.transform.localScale = Vector3.Lerp(Vector3.one * minScale, Vector3.one * maxScale,
-                1 - xOffset / distanceToChangeScale);
+                    1 - xOffset / distanceToChangeScale);
                 var texs = go.GetComponentsInChildren<UITexture>();
                 foreach (var tex in texs)
                 {
@@ -609,28 +610,20 @@ namespace Assets.Scripts.NGUI
 
         public void JumpToSong(int idx)
         {
-            /* var seq = DOTween.Sequence();
-             seq.AppendInterval(animDuration);
-             seq.AppendCallback(() =>
-             {
-                 m_FinishEnter = true;
-             });
-             seq.Play();*/
-
-            idx -= 1;
-            m_ZAngle -= angle * (idx - 2 - numFrom);
-            var angleAxis = new Vector3(0, 0, m_ZAngle);
-            pivot.transform.localEulerAngles = angleAxis;
             var offset = new Vector3(0, 0, -numFrom * angle);
-            OnChangeOffset(offset, animDuration);
+            var seq = DOTween.Sequence();
+            seq.AppendCallback(() =>
+            {
+                OnChangeOffset(-offset, 0.1f).SetEase(Ease.Linear);
+            });
+            seq.AppendInterval(0.2f);
+            seq.AppendCallback(() =>
+            {
+                OnChangeOffset(offset, animDuration);
+            });
+            seq.Play();
         }
 
         #endregion 操作
-
-        private void OnDisable()
-        {
-			m_FinishEnter = false;
-			StopAllCoroutines ();
-        }
     }
 }

@@ -24,22 +24,23 @@ namespace PnlStage
         }
 
         private Coroutine _loadMusicCoroutine;
-        public AudioSource diskAudioSource;
+        //public AudioSource diskAudioSource;
 
         private void Start()
         {
             instance = this;
         }
 
-        public override void OnShow() {
+        public override void OnShow()
+        {
             StageDisc.StageDisc.LoadAllDiscCover();
             this.OnSongChanged(PnlScrollCircle.currentSongIdx);
             SceneAudioManager.Instance.bgm.clip = null;
-            PnlScrollCircle.instance.ResetPos();
             PnlScrollCircle.instance.JumpToSong(PnlScrollCircle.currentSongIdx);
         }
 
-        public override void OnHide() {
+        public override void OnHide()
+        {
         }
 
         public void OnSongChanged(int idx)

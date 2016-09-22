@@ -48,7 +48,7 @@ namespace PnlFail {
 
 			int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex ();
 			string txrName = ConfigPool.Instance.GetConfigStringValue ("character", heroIndex.ToString (), "image_fail");
-			if (this.txrCharact != null && txrName.Contains (this.txrCharact.name)) {
+			if (ResourceLoader.Instance == null || txrName == null || (this.txrCharact != null && txrName.Contains (this.txrCharact.name))) {
 				return;
 			}
 
