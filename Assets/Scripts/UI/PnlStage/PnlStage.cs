@@ -24,7 +24,7 @@ namespace PnlStage
         }
 
         private Coroutine _loadMusicCoroutine;
-        public AudioSource diskAudioSource;
+        //public AudioSource diskAudioSource;
 
         private void Start()
         {
