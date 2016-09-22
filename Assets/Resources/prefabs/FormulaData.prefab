@@ -25,10 +25,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11416448
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,6 +109,10 @@ MonoBehaviour:
   - FULL_STAR
   - UnlockTrophy
   - CLOTH
+  - LVL_LIMIT
+  - STATIC_CTR
+  - GOLD_EXTRA
+  - param
   ConfigNames:
   - character
   - stage
@@ -8442,7 +8446,7 @@ MonoBehaviour:
     collapsedSign: 1
     collapsedComponent: 1
     formulaSet: b200000004000000030000000e0000000f00000000000000b7000000b8000000ba000000bb000000bc000000fb000000fc000000fd000000fe000000
-    singSet: 00000000020000000f000000170000001a00000010000000200000003900000042000000
+    singSet: 00000000020000000f000000170000001a0000001000000020000000390000004200000043000000
     signValueSet:
     - 1
     - 1
@@ -8451,6 +8455,7 @@ MonoBehaviour:
     - 0
     - 0
     - 1
+    - 0
     - 0
     - 0
     componentNames:

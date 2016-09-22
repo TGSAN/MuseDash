@@ -270,6 +270,10 @@ namespace FormulaBase {
 		/// CLOTH
 		///
 		public const string CLOTH = "CLOTH";
+		///
+		/// LVL_LIMIT
+		///
+		public const string LVL_LIMIT = "LVL_LIMIT";
 
 	}
 }
