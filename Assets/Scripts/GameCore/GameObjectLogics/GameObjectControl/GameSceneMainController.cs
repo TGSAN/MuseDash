@@ -14,7 +14,6 @@ public class GameSceneMainController : MonoBehaviour {
 	private GameObject gameCamera;
 
 	void Start () {
-		//this.InitCommonObject ();
 		this._ScreenFit ();
 
 		this.secondCounter = 0f;
@@ -28,7 +27,6 @@ public class GameSceneMainController : MonoBehaviour {
 		#endif
 
 		this.StartCoroutine (this.__OnStart ());
-		//this.__OnStart ();
 	}
 
 	//void OnEnable() {
@@ -65,14 +63,6 @@ public class GameSceneMainController : MonoBehaviour {
 
 		// 所有数据 对象准备完毕后才展示ui
 		UISceneHelper.Instance.Show ();
-	}
-
-	private void InitCommonObject() {
-		if (GameObject.Find ("CommonObjcet") != null) {
-			return;
-		}
-
-		GameObject.Instantiate (Resources.Load (GameGlobal.PREFABS_PATH + "ui/NGUI/CommonObjcet") as GameObject);
 	}
 
 	private void FpsMemoryShowUpdate() {

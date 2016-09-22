@@ -216,7 +216,6 @@ public class GirlManager : MonoBehaviour {
 
 	public void ComeOut() {
 		GameGlobal.gGameTouchPlay.SetPressHardTime (COMEOUT_HARD_TIME);
-		GameGlobal.gGameTouchPlay.SetJumpHardTime (COMEOUT_HARD_TIME);
 		this.StartCoroutine (this.AfterComeOut ());
 	}
 
@@ -336,9 +335,6 @@ public class GirlManager : MonoBehaviour {
 
 	public void SetJumpingAction(bool value) {
 		this.isJumpingAction = value;
-		if (this.isJumpingAction == false) {
-			GameGlobal.gGameTouchPlay.SetJumpHardTime (-1m);
-		}
 	}
 
 	public bool IsJumpingAction() {
