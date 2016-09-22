@@ -187,7 +187,6 @@ public class SpineActionController : MonoBehaviour {
 			}
 		}
 		*/
-
 		if (!ani.HasState (0, Animator.StringToHash (actionKey))) {
 			return;
 		}
