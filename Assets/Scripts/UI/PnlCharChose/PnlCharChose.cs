@@ -69,6 +69,7 @@ namespace PnlCharChose
             if (template)
             {
                 var go = GameObject.Instantiate(Resources.Load(path)) as GameObject;
+                //var SkeleAnim = go.GetComponent<SkeletonAnimation>()
                 go.transform.SetParent(spiParent, false);
                 go.SetActive(true);
                 //go.transform.localScale = Vector3.one;
