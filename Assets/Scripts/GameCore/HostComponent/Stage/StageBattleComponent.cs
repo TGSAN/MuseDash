@@ -461,6 +461,7 @@ namespace FormulaBase {
 			// TODO : 结算UI表现
 			EffectManager.Instance.StopCombo ();
 			FightMenuPanel.Instance.OnStageEnd ();
+			UISceneHelper.Instance.HideUi ("PnlBattle");
 			UISceneHelper.Instance.ShowUi ("PnlVictory");
 		}
 
@@ -515,6 +516,7 @@ namespace FormulaBase {
 		// Exit stage.
 		public void Exit(string sceneName = "ChooseSongs") {
 			Debug.Log ("Stage Exit.");
+			UISceneHelper.Instance.HideUi ("PnlBattle");
 			GameGlobal.gGameMusic.Stop ();
 			GameGlobal.gGameMusicScene.Stop ();
 			gTrigger.ClearEvent ();

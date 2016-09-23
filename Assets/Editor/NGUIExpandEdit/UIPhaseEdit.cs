@@ -121,6 +121,11 @@ public class UIPhaseEdit : EditorWindow {
 
 		this.scorllVecAction = EditorGUILayout.BeginScrollView (this.scorllVecAction);
 		foreach (UIPhaseHelper s in _phaser) {
+			if (s == null || s.gameObject == null) {
+				Debug.Log (this._uiObject.name + " phase found null UIPhaseHelper.");
+				continue;
+			}
+
 			EditorGUILayout.BeginVertical ();
 
 			EditorGUILayout.BeginHorizontal ();

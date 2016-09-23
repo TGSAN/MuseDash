@@ -94,6 +94,10 @@ public class UIRootHelper : MonoBehaviour {
 		}
 
 		foreach (UIPhaseHelper uph in this.widgets) {
+			if (uph == null || uph.gameObject == null) {
+				continue;
+			}
+
 			uph.Init ();
 			string activeHostFileName = FomulaHostManager.Instance.GetFileNameByHostType (uph.activeHostKeyId);
 			string labelHostFileName = FomulaHostManager.Instance.GetFileNameByHostType (uph.labelHostKeyId);

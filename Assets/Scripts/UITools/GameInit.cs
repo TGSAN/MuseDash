@@ -16,6 +16,7 @@ public class GameInit : MonoBehaviour {
 			once = false;
 		}
 
+		CommonPanel.GetInstance ().ResetMask ();
 		this.StartCoroutine (this.__Init ());
 	}
 
@@ -62,11 +63,14 @@ public class GameInit : MonoBehaviour {
 	}
 
 	private IEnumerator __Init() {
-		yield return new WaitForSeconds (0.5f);
+		if (UISceneHelper.Instance == null || UISceneHelper.Instance.widgets == null || UISceneHelper.Instance.widgets.Count <= 0) {
+			yield return 0;
+		}
 
 		// 定时恢复体力
 		AccountPhysicsManagerComponent.Instance.AutoPhysicalRecover ();
 
+		Debug.Log ("Show main sceen ui.");
 		// 所有数据 对象准备完毕后才展示ui
 		UISceneHelper.Instance.Show ();
 		CommonPanel.GetInstance ().SetMask (false);
