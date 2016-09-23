@@ -101,7 +101,6 @@ namespace Assets.Scripts.NGUI
         private ResourceRequest m_Request;
         private Coroutine m_Coroutine;
         private AudioClip m_CatchClip;
-        private bool m_LoadFinished = true;
         private bool m_FinishEnter = false;
         private readonly Dictionary<int, GameObject> m_CellGroup = new Dictionary<int, GameObject>();
         private readonly List<StageInfo> m_StageInfos = new List<StageInfo>();
@@ -137,7 +136,6 @@ namespace Assets.Scripts.NGUI
             InitInfo();
             InitUI();
             InitEvent();
-            InitResoruce();
         }
 
         private void Update()
@@ -148,16 +146,6 @@ namespace Assets.Scripts.NGUI
         }
 
         #region 初始化
-
-        private void InitResoruce()
-        {
-            for (int i = 0; i < m_StageInfos.Count; i++)
-            {
-                var item = m_StageInfos[i];
-                var musicPath = item.musicPath;
-            }
-            this.onSongChange += PlayMusic;
-        }
 
         private void InitInfo()
         {
@@ -294,24 +282,8 @@ namespace Assets.Scripts.NGUI
                 {
                     return;
                 }
-                if (!m_LoadFinished)
-                {
-                    return;
-                }
-                //PnlStage.PnlStage.Instance.gameObject.SetActive(false);
                 m_FinishEnter = false;
                 UISceneHelper.Instance.ShowUi("PnlAchievement");
-                /*
-                var widgets = UISceneHelper.Instance.widgets;
-                foreach (UIRootHelper w in widgets.Values)
-                {
-                    if (w.gameObject.name == "PnlAchievement")
-                    {
-                        w.gameObject.SetActive(true);
-                        break;
-                    }
-                }
-                */
             };
 
             UIEventListener.Get(gameObject).onDragStart = onDragStart;
@@ -349,6 +321,7 @@ namespace Assets.Scripts.NGUI
                 }
                 OnChangeOffset(new Vector3(0, 0, angle * 1), nextPageTime);
             };
+            this.onSongChange += PlayMusic;
         }
 
         private void InitUI()
@@ -358,17 +331,11 @@ namespace Assets.Scripts.NGUI
             {
                 GameObject item = GameObject.Instantiate(cell) as GameObject;
                 item.transform.parent = pivot.transform;
-                item.transform.localScale = Vector3.one;
                 StageDisc.StageDisc sd = item.GetComponent<StageDisc.StageDisc>();
                 if (sd != null)
                 {
                     sd.SetStageId(i + 1);
                 }
-                var myAngle = angleOffset + angle * i;
-                m_Angles.Add(myAngle);
-                item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
-                    Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
-                item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
                 m_CellGroup.Add(i, item);
             }
         }
@@ -556,22 +523,26 @@ namespace Assets.Scripts.NGUI
                     var x = (go.transform.position.x - pivot.transform.position.x) * scale;
                     var absX = Mathf.Abs(x);
                     var myAngleOffset = angleOffset + 2 * angle;
-                    var x0 = radius * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * (myAngleOffset))) + offset0.x;
-                    var x1 = radius * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * (myAngleOffset - angle))) + offset1.x;
-                    var x2 = radius * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * (myAngleOffset - angle * 2))) + +offset2.x;
+                    var x0 = radius * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * (myAngleOffset)));
+                    var x1 = radius * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * (myAngleOffset - angle)));
+                    var x2 = radius * Mathf.Abs(Mathf.Cos(Mathf.Deg2Rad * (myAngleOffset - angle * 2)));
                     var distance0 = x1 - x0;
                     var ditance1 = x2 - x1;
                     var distance2 = radius - x2;
                     var offset = Vector3.zero;
-                    if (absX < x1)
+                    if (absX <= x1)
                     {
                         offset = Vector3.Lerp(offset0, offset1, (absX - x0) / distance0);
                     }
-                    else if (absX < x2)
+                    else if (absX <= x2)
                     {
                         offset = Vector3.Lerp(offset1, offset2, (absX - x1) / ditance1);
+                        if (idx == m_CurrentIdx + 1)
+                        {
+                            print(offset);
+                        }
                     }
-                    else if (absX < radius)
+                    else if (absX <= radius)
                     {
                         offset = Vector3.Lerp(offset2, Vector3.zero, (absX - radius) / distance2);
                     }
@@ -580,6 +551,7 @@ namespace Assets.Scripts.NGUI
                         offset = new Vector3(-offset.x, offset.y, offset.z);
                     }
                     offset = go.transform.InverseTransformVector(offset) / scale;
+
                     for (int i = 0; i < go.transform.childCount; i++)
                     {
                         var child = go.transform.GetChild(i);
@@ -595,7 +567,6 @@ namespace Assets.Scripts.NGUI
 
         private IEnumerator LoadCoroutine()
         {
-            m_LoadFinished = false;
             while (m_Request.isDone)
             {
                 yield return null;
@@ -624,7 +595,6 @@ namespace Assets.Scripts.NGUI
             {
                 yield return null;
             }
-            m_LoadFinished = true;
             var audioSource = SceneAudioManager.Instance.bgm;
             if (audioSource.clip != newClip)
             {
@@ -698,6 +668,7 @@ namespace Assets.Scripts.NGUI
 
         public void ResetPos()
         {
+            m_Angles.Clear();
             m_ZAngle = 0;
             pivot.localEulerAngles = new Vector3(0, 0, m_ZAngle);
             for (int i = 0; i < m_CellGroup.Count; i++)
@@ -707,7 +678,7 @@ namespace Assets.Scripts.NGUI
                 item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
                     Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
                 item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
-                m_Angles[i] = myAngle;
+                m_Angles.Add(myAngle);
             }
         }
 
