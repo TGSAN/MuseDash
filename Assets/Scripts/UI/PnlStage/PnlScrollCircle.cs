@@ -632,10 +632,17 @@ namespace Assets.Scripts.NGUI
 		private void LoadSync(UnityEngine.Object res) {
 			AudioClip newClip = res as AudioClip;
 			var audioSource = SceneAudioManager.Instance.bgm;
-			if (audioSource.clip != newClip) {
+			if (audioSource.clip != null) {
 				Resources.UnloadAsset (audioSource.clip);
+				audioSource.clip = null;
 			}
 
+			if (this.m_CatchClip != null) {
+				Resources.UnloadAsset (this.m_CatchClip);
+				this.m_CatchClip = null;
+			}
+
+			this.m_CatchClip = newClip;
 			audioSource.clip = newClip;
 			audioSource.Play ();
 			audioSource.loop = true;
