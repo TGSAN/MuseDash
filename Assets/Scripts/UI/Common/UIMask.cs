@@ -2,11 +2,53 @@
 using System.Collections;
 
 public class UIMask : MonoBehaviour {
-	Callback m_CallBack=null;
-	public TweenAlpha m_Mask;
+	private bool isWhiteToBlack;
+	private float reduce;
+	private UISprite m_Sprite;
+	private Callback m_CallBack = null;
+
+	public float time;
 
 	void Start() {
-		//this.m_Mask.enabled = false;
+		this.SetMask (false);
+	}
+
+	void Update() {
+		if (this.m_Sprite == null) {
+			return;
+		}
+
+		if (this.m_Sprite.alpha < 0) {
+			return;
+		}
+
+		this.m_Sprite.alpha += this.reduce;
+		if (this.isWhiteToBlack) {
+			if (this.m_Sprite.alpha >= 1f) {
+				this.m_Sprite.alpha = -1f;
+				if (this.m_CallBack != null) {
+					this.m_CallBack ();
+					this.m_CallBack = null;
+				}
+			}
+		} else {
+			if (this.m_Sprite.alpha <= 0f) {
+				this.m_Sprite.alpha = -1f;
+				if (this.m_CallBack != null) {
+					this.m_CallBack ();
+					this.m_CallBack = null;
+				}
+			}
+		}
+	}
+
+	private void InitSprite() {
+		if (this.m_Sprite != null) {
+			return;
+		}
+
+		//this.reduce = this.time / Application.targetFrameRate;
+		this.m_Sprite = this.gameObject.GetComponent<UISprite> ();
 	}
 
 	/// <summary>
@@ -14,30 +56,21 @@ public class UIMask : MonoBehaviour {
 	/// </summary>
 	/// <param name="_CallBack">Call.</param>
 	/// <param name="Blur">If set to <c>true</c> 是否在毛玻璃前面.</param>
-	public void SetMask(bool WhiteToBlack=true,Callback _CallBack=null,bool Blur=false) {
-		/*
-		if (Blur) {
-			this.gameObject.layer = 17;
-		} else {
-			this.gameObject.layer = 5;
-		}
-		*/
-		//	this.gameObject.SetActive(true);
-		this.m_CallBack = _CallBack;
-		this.m_Mask.enabled = true;
-		this.m_Mask.ResetToBeginning ();
-		if (WhiteToBlack) {
-			this.m_Mask.from = 0;
-			this.m_Mask.to = 1f;
-			//m_Mask.ResetToBeginning();
-			//m_Mask.PlayForward();
-		} else {
-			this.m_Mask.from = 1f;
-			this.m_Mask.to = 0;
-			//m_Mask.PlayReverse();
+	public void SetMask(bool WhiteToBlack = true, Callback _CallBack = null, bool Blur=false) {
+		this.InitSprite ();
+		if (this.m_Sprite == null) {
+			return;
 		}
 
-		this.m_Mask.Play ();
+		this.m_CallBack = _CallBack;
+		this.isWhiteToBlack = WhiteToBlack;
+		if (this.isWhiteToBlack) {
+			this.reduce = 0.02f;
+			this.m_Sprite.alpha = 0f;
+		} else {
+			this.reduce = -0.02f;
+			this.m_Sprite.alpha = 1f;
+		}
 	}
 
 	public void MaskAnimationFinish() {
@@ -47,11 +80,7 @@ public class UIMask : MonoBehaviour {
 	}
 
 	public void Reset() {
-		this.m_CallBack = null;
-		this.m_Mask.enabled = true;
-		this.m_Mask.from = 1f;
-		this.m_Mask.to = 0f;
-		this.m_Mask.ResetToBeginning ();
-		this.m_Mask.PlayForward ();
+		this.InitSprite ();
+		this.m_Sprite.alpha = 1f;
 	}
 }

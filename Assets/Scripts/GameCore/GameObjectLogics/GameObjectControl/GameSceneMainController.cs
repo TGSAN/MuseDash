@@ -26,6 +26,8 @@ public class GameSceneMainController : MonoBehaviour {
 		}
 		#endif
 
+		CommonPanel.GetInstance ().SetMask (false);
+
 		this.StartCoroutine (this.__OnStart ());
 	}
 

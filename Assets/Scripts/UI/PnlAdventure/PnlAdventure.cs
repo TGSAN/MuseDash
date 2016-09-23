@@ -43,21 +43,27 @@ namespace PnlAdventure
         }
 
         public override void OnShow() {
-			if (backFromBattle) {
-				Debug.Log ("backFromBattle");
-				UISceneHelper.Instance.HideUi (this.gameObject.name);
-				//UISceneHelper.Instance.ShowUi (SHOW_CHILD_UI);
-				UISceneHelper.Instance.MarkShowOnLoad(this.gameObject.name, false);
-				UISceneHelper.Instance.MarkShowOnLoad(SHOW_CHILD_UI, true);
-				backFromBattle = false;
-			} else {
-				this.PlayBgm();
+			if (!backFromBattle) {
+				this.PlayBgm ();
 			}
+
+			backFromBattle = false;
         }
 
         public override void OnHide()
         {
         }
+
+		public override void BeCatched () {
+			if (backFromBattle) {
+				Debug.Log ("backFromBattle");
+				UISceneHelper.Instance.HideUi (this.gameObject.name);
+				//UISceneHelper.Instance.ShowUi (SHOW_CHILD_UI);
+				UISceneHelper.Instance.MarkShowOnLoad (this.gameObject.name, false);
+				UISceneHelper.Instance.MarkShowOnLoad (SHOW_CHILD_UI, true);
+				return;
+			}
+		}
 
         private void PlayBgm()
         {

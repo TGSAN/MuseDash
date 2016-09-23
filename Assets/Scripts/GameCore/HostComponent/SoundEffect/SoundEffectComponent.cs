@@ -236,11 +236,11 @@ namespace FormulaBase {
 		}
 
 		public void SayByCurrentRole(string effectType) {
-			if (BattleRoleAttributeComponent.Instance.Host == null) {
+			if (RoleManageComponent.Instance.Host == null) {
 				return;
 			}
 
-			string name = BattleRoleAttributeComponent.Instance.Host.GetDynamicStrByKey (SignKeys.NAME);
+			string name = RoleManageComponent.Instance.Host.GetDynamicStrByKey (SignKeys.NAME);
 			SoundEffectComponent.Instance.Say (name, effectType);
 		}
 

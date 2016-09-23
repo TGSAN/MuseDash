@@ -16,6 +16,8 @@ namespace PnlVictory {
 			}
 		}
 
+		private bool isSaid = false;
+
 		public UISprite sprGrade;
 		public UITexture txrCharact;
 
@@ -29,6 +31,11 @@ namespace PnlVictory {
 		}
 
 		public override void OnShow () {
+			if (isSaid) {
+				return;
+			}
+
+			this.isSaid = true;
 			SoundEffectComponent.Instance.SayByCurrentRole (GameGlobal.SOUND_TYPE_LAST_NODE);
 		}
 

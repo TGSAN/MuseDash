@@ -169,6 +169,10 @@ public class UISceneHelper : MonoBehaviour {
 			return;
 		}
 
+		if (!this.dymWidgets.ContainsKey (uiName)) {
+			return;
+		}
+
 		UIRootHelper urh = this.dymWidgets [uiName];
 		if (urh == null) {
 			return;
@@ -258,13 +262,29 @@ public class UISceneHelper : MonoBehaviour {
 	}
 
 	public void HideWidget() {
+		this.dymWidgets = new Dictionary<string, UIRootHelper> ();
 		UIRootHelper[] urhs = Transform.FindObjectsOfType<UIRootHelper> ();
+		// First reg
 		foreach (UIRootHelper urh in urhs) {
 			if (urh == null) {
 				continue;
 			}
 
 			this.RegDymWidget (urh.gameObject.name, urh);
+		}
+
+		// Then catch and hide;
+		foreach (UIRootHelper urh in urhs) {
+			if (urh == null) {
+				continue;
+			}
+
+			Debug.Log ("Catch ui : " + urh.gameObject.name);
+			UIPhaseBase upb = urh.gameObject.GetComponent<UIPhaseBase> ();
+			if (upb != null) {
+				upb.BeCatched ();
+			}
+
 			urh.gameObject.SetActive (false);
 		}
 	}

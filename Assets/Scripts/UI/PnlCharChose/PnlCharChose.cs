@@ -29,8 +29,6 @@ namespace PnlCharChose
         private void Start()
         {
             instance = this;
-            InitData();
-            InitEvent();
         }
 
         private void InitData()
@@ -74,8 +72,9 @@ namespace PnlCharChose
             return null;
         }
 
-        public override void OnShow()
-        {
+        public override void OnShow() {
+			this.InitData();
+			this.InitEvent();
         }
 
         public override void OnHide()
