@@ -95,29 +95,17 @@ public class VerificationScript : MonoBehaviour {
 	}
 
 	public void SetVerificationCodeOwner(string userName) {
+		if (this.verificateCode == null || this.verificateCode == string.Empty) {
+			Debug.Log ("Verification is Empty, or login with out Verification code.");
+			return;
+		}
+
 		Debug.Log ("Verification code " + this.verificateCode + " is owned by " + userName);
 		VerificationBmobObject vObj = new VerificationBmobObject ();
 		vObj.is_used = true;
 		vObj.owner = userName;
 
 		ExpandBmobData.Instance.UpdateRow (TABLE_NAME, this.vCodeOid, vObj, null);
-	}
-
-	/// <summary>
-	/// Uses the verification code.
-	/// 
-	/// 使用验证码
-	/// </summary>
-	/// <param name="objectId">Object identifier.</param>
-	/// <param name="phoneNumber">Phone number.</param>
-	private void UseVerificationCode(string objectId, string phoneNumber) {
-		this.vCodeOid = objectId;
-		HttpResponseDelegate rsp = new HttpResponseDelegate (this.UseVerificationCodeResponse);
-		VerificationBmobObject vObj = new VerificationBmobObject ();
-		vObj.is_used = true;
-		vObj.phone_number = this.phoneNumber;
-
-		ExpandBmobData.Instance.UpdateRow (TABLE_NAME, objectId, vObj, rsp);
 	}
 
 	private void GetVerificationCodeResponse(cn.bmob.response.EndPointCallbackData<Hashtable> resp) {
@@ -164,6 +152,23 @@ public class VerificationScript : MonoBehaviour {
 		Debug.Log ("Get Verification Code " + _vcode);
 
 		this.UseVerificationCode (vOid, this.phoneNumber);
+	}
+
+	/// <summary>
+	/// Uses the verification code.
+	/// 
+	/// 使用验证码
+	/// </summary>
+	/// <param name="objectId">Object identifier.</param>
+	/// <param name="phoneNumber">Phone number.</param>
+	private void UseVerificationCode(string objectId, string phoneNumber) {
+		this.vCodeOid = objectId;
+		HttpResponseDelegate rsp = new HttpResponseDelegate (this.UseVerificationCodeResponse);
+		VerificationBmobObject vObj = new VerificationBmobObject ();
+		vObj.is_used = true;
+		vObj.phone_number = this.phoneNumber;
+
+		ExpandBmobData.Instance.UpdateRow (TABLE_NAME, objectId, vObj, rsp);
 	}
 
 	private void UseVerificationCodeResponse(bool result) {
