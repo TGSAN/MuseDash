@@ -608,7 +608,7 @@ namespace Assets.Scripts.NGUI
         {
             var currentIdx = m_CurrentIdx;
             var startAngle = m_Angles[currentIdx];
-            for (int i = currentIdx; i <= (m_CellGroup.Count) / 2 + currentIdx; i++)
+            for (int i = currentIdx; i < (m_CellGroup.Count) / 2 + currentIdx; i++)
             {
                 var idx = i > m_CellGroup.Count - 1 ? i - m_CellGroup.Count : i;
                 var item = m_CellGroup[idx];
@@ -644,7 +644,7 @@ namespace Assets.Scripts.NGUI
         public void ResetPos()
         {
             m_ZAngle = 0;
-            pivot.localEulerAngles = Vector3.zero;
+            pivot.localEulerAngles = new Vector3(0, 0, m_ZAngle);
             for (int i = 0; i < m_CellGroup.Count; i++)
             {
                 var item = m_CellGroup[i];
@@ -658,9 +658,9 @@ namespace Assets.Scripts.NGUI
 
         public void JumpToSong(int idx)
         {
+            m_FinishEnter = false;
             idx--;
             m_CurrentIdx = idx;
-            m_FinishEnter = false;
             if (idx - 2 >= m_CellGroup.Count / 2)
             {
                 idx = (idx - (m_CellGroup.Count - 1)) - 1;
