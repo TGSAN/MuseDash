@@ -38,6 +38,11 @@ namespace PnlStage
             SceneAudioManager.Instance.bgm.clip = null;
             PnlScrollCircle.instance.ResetPos();
             PnlScrollCircle.instance.JumpToSong(PnlScrollCircle.currentSongIdx);
+            PnlScrollCircle.instance.enabled = false;
+            DOTweenUtil.Delay(() =>
+            {
+                PnlScrollCircle.instance.enabled = true;
+            }, Time.deltaTime);
         }
 
         public override void OnHide()
