@@ -16,7 +16,10 @@ public class GameInit : MonoBehaviour {
 			once = false;
 		}
 
-		CommonPanel.GetInstance ().ResetMask ();
+		if (CommonPanel.GetInstance () != null) {
+			CommonPanel.GetInstance ().ResetMask ();
+		}
+
 		this.StartCoroutine (this.__Init ());
 	}
 

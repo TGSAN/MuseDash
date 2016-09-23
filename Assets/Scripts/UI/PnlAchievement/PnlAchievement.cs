@@ -56,7 +56,10 @@ namespace PnlAchievement
         {
 			if (PnlScrollCircle.instance != null) {
 				PnlScrollCircle.instance.FinishEnter = true;
+				Debug.Log ("Back to PnlScrollCircle.");
 			}
+
+			this.gameObject.SetActive (false);
         }
 
         private IEnumerator __OnShow(float sec)
