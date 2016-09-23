@@ -325,14 +325,14 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: {x: 40, y: 40, z: 40}
+        value: {x: 100, y: 100, z: 100}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
       - time: 0.16666667
         value: {x: 1, y: 1, z: 1}
-        inSlope: {x: -612.13446, y: -600.5555, z: -613.0077}
-        outSlope: {x: -612.13446, y: -600.5555, z: -613.0077}
+        inSlope: {x: -1399.4597, y: -1492.757, z: -1288.8193}
+        outSlope: {x: -1399.4597, y: -1492.757, z: -1288.8193}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -342,14 +342,14 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: {x: 50, y: 50, z: 50}
+        value: {x: 100, y: 100, z: 100}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
       - time: 0.16666667
         value: {x: 1, y: 1, z: 1}
-        inSlope: {x: -793.6397, y: -791.4168, z: -793.6397}
-        outSlope: {x: -793.6397, y: -791.4168, z: -793.6397}
+        inSlope: {x: -1461.6578, y: -1461.6578, z: -1523.8561}
+        outSlope: {x: -1461.6578, y: -1461.6578, z: -1523.8561}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -398,6 +398,18 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
+        value: {x: 0.9, y: 0.9, z: 0.9}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: PnlScore1/PlayerValue/Grade
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
         value: {x: 1.3, y: 1.3, z: 1.3}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -430,19 +442,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: PnlScore2/TrophyTaskTrue/SprTrophyScoreBase/SprTrophyTrue1
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: {x: 0.9, y: 0.9, z: 0.9}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: PnlScore1/PlayerValue/Grade
+    path: PnlScore2/TrophyTaskTrue/SprTrophyScoreBase/PnlTrophyTrue1/SprTrophyTrue1
   m_FloatCurves:
   - curve:
       serializedVersion: 2
@@ -1098,31 +1098,6 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      - time: 0.8333333
-        value: 0
-        inSlope: 29.999922
-        outSlope: 29.999922
-        tangentMode: 10
-      - time: 0.85
-        value: 1
-        inSlope: 59.999844
-        outSlope: 59.999844
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: mColor.a
-    path: PnlScore2/TrophyTaskTrue/SprTrophyScoreBase/SprTrophyTrue1
-    classID: 114
-    script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
         value: 1
         inSlope: 0
         outSlope: 0
@@ -1644,6 +1619,31 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.8333333
+        value: 0
+        inSlope: 29.999922
+        outSlope: 29.999922
+        tangentMode: 10
+      - time: 0.85
+        value: 1
+        inSlope: 59.999844
+        outSlope: 59.999844
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: mColor.a
+    path: PnlScore2/TrophyTaskTrue/SprTrophyScoreBase/PnlTrophyTrue1/SprTrophyTrue1
+    classID: 114
+    script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 31
@@ -1656,7 +1656,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: PnlScore2/TrophyTaskTrue/SprTrophyScoreBase/TrophyFx/ParticleSystem
+    path: PnlScore2/TrophyTaskTrue/SprTrophyScoreBase/PnlTrophyFx/ParticleSystem
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -1813,7 +1813,7 @@ AnimationClip:
       classID: 4
       customType: 0
       isPPtrCurve: 0
-    - path: 4081892460
+    - path: 868975509
       attribute: 3
       script: {fileID: 0}
       classID: 4
@@ -1957,12 +1957,6 @@ AnimationClip:
       classID: 114
       customType: 0
       isPPtrCurve: 0
-    - path: 4081892460
-      attribute: 4224524717
-      script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
-      classID: 114
-      customType: 0
-      isPPtrCurve: 0
     - path: 1159241533
       attribute: 4224524717
       script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
@@ -1975,7 +1969,13 @@ AnimationClip:
       classID: 114
       customType: 0
       isPPtrCurve: 0
-    - path: 1562958403
+    - path: 868975509
+      attribute: 4224524717
+      script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+      classID: 114
+      customType: 0
+      isPPtrCurve: 0
+    - path: 3487748084
       attribute: 2086281974
       script: {fileID: 0}
       classID: 1
@@ -2429,14 +2429,14 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 40
+        value: 100
         inSlope: 0
         outSlope: 0
         tangentMode: 0
       - time: 0.16666667
         value: 1
-        inSlope: -612.13446
-        outSlope: -612.13446
+        inSlope: -1399.4597
+        outSlope: -1399.4597
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -2449,14 +2449,14 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 40
+        value: 100
         inSlope: 0
         outSlope: 0
         tangentMode: 0
       - time: 0.16666667
         value: 1
-        inSlope: -600.5555
-        outSlope: -600.5555
+        inSlope: -1492.757
+        outSlope: -1492.757
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -2469,14 +2469,14 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 40
+        value: 100
         inSlope: 0
         outSlope: 0
         tangentMode: 0
       - time: 0.16666667
         value: 1
-        inSlope: -613.0077
-        outSlope: -613.0077
+        inSlope: -1288.8193
+        outSlope: -1288.8193
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -2509,14 +2509,14 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 50
+        value: 100
         inSlope: 0
         outSlope: 0
         tangentMode: 0
       - time: 0.16666667
         value: 1
-        inSlope: -793.6397
-        outSlope: -793.6397
+        inSlope: -1461.6578
+        outSlope: -1461.6578
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -2529,14 +2529,14 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 50
+        value: 100
         inSlope: 0
         outSlope: 0
         tangentMode: 0
       - time: 0.16666667
         value: 1
-        inSlope: -791.4168
-        outSlope: -791.4168
+        inSlope: -1461.6578
+        outSlope: -1461.6578
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -2549,14 +2549,14 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 50
+        value: 100
         inSlope: 0
         outSlope: 0
         tangentMode: 0
       - time: 0.16666667
         value: 1
-        inSlope: -793.6397
-        outSlope: -793.6397
+        inSlope: -1523.8561
+        outSlope: -1523.8561
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -3534,31 +3534,6 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      - time: 0.8333333
-        value: 0
-        inSlope: 29.999922
-        outSlope: 29.999922
-        tangentMode: 10
-      - time: 0.85
-        value: 1
-        inSlope: 59.999844
-        outSlope: 59.999844
-        tangentMode: 10
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: mColor.a
-    path: PnlScore2/TrophyTaskTrue/SprTrophyScoreBase/SprTrophyTrue1
-    classID: 114
-    script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
         value: 1
         inSlope: 0
         outSlope: 0
@@ -3655,126 +3630,6 @@ AnimationClip:
     path: PnlScore2/TrophyTaskTrue/SprTrophyScoreBase/SprTrophyFalse1
     classID: 114
     script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 1.3
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      - time: 0.85
-        value: 1.3
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1.05
-        value: 0.9
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1.1833333
-        value: 1.1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1.2833333
-        value: 0.95
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1.35
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalScale.x
-    path: PnlScore2/TrophyTaskTrue/SprTrophyScoreBase/SprTrophyTrue1
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 1.3
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      - time: 0.85
-        value: 1.3
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1.05
-        value: 0.9
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1.1833333
-        value: 1.1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1.2833333
-        value: 0.95
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1.35
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalScale.y
-    path: PnlScore2/TrophyTaskTrue/SprTrophyScoreBase/SprTrophyTrue1
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 1.3
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
-      - time: 0.85
-        value: 1.3
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1.05
-        value: 0.9
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1.1833333
-        value: 1.1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1.2833333
-        value: 0.95
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - time: 1.35
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalScale.z
-    path: PnlScore2/TrophyTaskTrue/SprTrophyScoreBase/SprTrophyTrue1
-    classID: 4
-    script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4884,6 +4739,151 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
+        value: 1.3
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.85
+        value: 1.3
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.05
+        value: 0.9
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.1833333
+        value: 1.1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.2833333
+        value: 0.95
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.35
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.x
+    path: PnlScore2/TrophyTaskTrue/SprTrophyScoreBase/PnlTrophyTrue1/SprTrophyTrue1
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1.3
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.85
+        value: 1.3
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.05
+        value: 0.9
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.1833333
+        value: 1.1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.2833333
+        value: 0.95
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.35
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.y
+    path: PnlScore2/TrophyTaskTrue/SprTrophyScoreBase/PnlTrophyTrue1/SprTrophyTrue1
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1.3
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.85
+        value: 1.3
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.05
+        value: 0.9
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.1833333
+        value: 1.1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.2833333
+        value: 0.95
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 1.35
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.z
+    path: PnlScore2/TrophyTaskTrue/SprTrophyScoreBase/PnlTrophyTrue1/SprTrophyTrue1
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.8333333
+        value: 0
+        inSlope: 29.999922
+        outSlope: 29.999922
+        tangentMode: 10
+      - time: 0.85
+        value: 1
+        inSlope: 59.999844
+        outSlope: 59.999844
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: mColor.a
+    path: PnlScore2/TrophyTaskTrue/SprTrophyScoreBase/PnlTrophyTrue1/SprTrophyTrue1
+    classID: 114
+    script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -4897,7 +4897,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: PnlScore2/TrophyTaskTrue/SprTrophyScoreBase/TrophyFx/ParticleSystem
+    path: PnlScore2/TrophyTaskTrue/SprTrophyScoreBase/PnlTrophyFx/ParticleSystem
     classID: 1
     script: {fileID: 0}
   - curve:
