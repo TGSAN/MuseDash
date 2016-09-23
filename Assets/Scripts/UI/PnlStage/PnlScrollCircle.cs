@@ -114,15 +114,18 @@ namespace Assets.Scripts.NGUI
             get { return this.m_CatchClip; }
         }
 
-		public bool FinishEnter {
-			get {
-				return this.m_FinishEnter;
-			}
+        public bool FinishEnter
+        {
+            get
+            {
+                return this.m_FinishEnter;
+            }
 
-			set {
-				this.m_FinishEnter = value;
-			}
-		}
+            set
+            {
+                this.m_FinishEnter = value;
+            }
+        }
 
         public static int currentSongIdx
         {
@@ -296,9 +299,9 @@ namespace Assets.Scripts.NGUI
                     return;
                 }
                 //PnlStage.PnlStage.Instance.gameObject.SetActive(false);
-				m_FinishEnter = false;
-				UISceneHelper.Instance.ShowUi ("PnlAchievement");
-				/*
+                m_FinishEnter = false;
+                UISceneHelper.Instance.ShowUi("PnlAchievement");
+                /*
                 var widgets = UISceneHelper.Instance.widgets;
                 foreach (UIRootHelper w in widgets.Values)
                 {
@@ -510,11 +513,16 @@ namespace Assets.Scripts.NGUI
             fourth = fourth > m_CellGroup.Count - 1 ? fourth - m_CellGroup.Count : fourth;
             var fifth = midIdx + 2;
             fifth = fifth > m_CellGroup.Count - 1 ? fifth - m_CellGroup.Count : fifth;
+            var maxCellScaleX = m_CellGroup[m_CurrentIdx].transform.localScale.x;
             foreach (var pair in m_CellGroup)
             {
                 var go = pair.Value;
                 var idx = pair.Key;
                 var xOffset = Mathf.Abs(go.transform.position.x - pivot.transform.position.x) * scale;
+                if (go.transform.localScale.x > maxCellScaleX)
+                {
+                    m_CurrentIdx = pair.Key;
+                }
                 if (idx == midIdx || idx == first || idx == second || idx == fourth || idx == fifth)
                 {
                     go.SetActive(true);
@@ -535,7 +543,6 @@ namespace Assets.Scripts.NGUI
                 {
                     if (go.transform.localScale.x >= maxScale - 0.01f)
                     {
-                        m_CurrentIdx = idx;
                         OnMusicPlayAction(go);
                     }
                 }
@@ -629,25 +636,20 @@ namespace Assets.Scripts.NGUI
             PnlStage.PnlStage.Instance.OnSongChanged(currentSongIdx);
         }
 
-		private void LoadSync(UnityEngine.Object res) {
-			AudioClip newClip = res as AudioClip;
-			var audioSource = SceneAudioManager.Instance.bgm;
-			if (audioSource.clip != null) {
-				Resources.UnloadAsset (audioSource.clip);
-				audioSource.clip = null;
-			}
+        private void LoadSync(UnityEngine.Object res)
+        {
+            AudioClip newClip = res as AudioClip;
+            var audioSource = SceneAudioManager.Instance.bgm;
+            if (audioSource.clip != newClip)
+            {
+                Resources.UnloadAsset(audioSource.clip);
+            }
 
-			if (this.m_CatchClip != null) {
-				Resources.UnloadAsset (this.m_CatchClip);
-				this.m_CatchClip = null;
-			}
-
-			this.m_CatchClip = newClip;
-			audioSource.clip = newClip;
-			audioSource.Play ();
-			audioSource.loop = true;
-			PnlStage.PnlStage.Instance.OnSongChanged (currentSongIdx);
-		}
+            audioSource.clip = newClip;
+            audioSource.Play();
+            audioSource.loop = true;
+            PnlStage.PnlStage.Instance.OnSongChanged(currentSongIdx);
+        }
 
         #endregion 资源加载
 
@@ -687,11 +689,11 @@ namespace Assets.Scripts.NGUI
                 StopCoroutine(m_Coroutine);
             }
 
-			//m_Request = Resources.LoadAsync(m_StageInfos[m_CurrentIdx].musicPath) as ResourceRequest;
+            //m_Request = Resources.LoadAsync(m_StageInfos[m_CurrentIdx].musicPath) as ResourceRequest;
             //m_Coroutine = StartCoroutine(LoadCoroutine());
-			string musicPath = m_StageInfos[m_CurrentIdx].musicPath;
-			Debug.Log ("Stage select load music : " + musicPath);
-			this.m_Coroutine = ResourceLoader.Instance.Load(musicPath, this.LoadSync);
+            string musicPath = m_StageInfos[m_CurrentIdx].musicPath;
+            Debug.Log("Stage select load music : " + musicPath);
+            this.m_Coroutine = ResourceLoader.Instance.Load(musicPath, this.LoadSync);
         }
 
         public void ResetPos()
