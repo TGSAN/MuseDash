@@ -81,6 +81,7 @@ namespace Assets.Scripts.NGUI
         public GameObject btnStart;
 
         [Header("音频")]
+		public float loadDelay = 0.5f;
         public int resolution = 1024;
 
         public float lowFreqThreshold = 14700;
@@ -561,6 +562,17 @@ namespace Assets.Scripts.NGUI
 
         #region 资源加载
 
+		private IEnumerator LoadCoroutine(float wait) {
+			yield return new WaitForSeconds (wait);
+			if (m_IsSliding) {
+				yield return null;
+			}
+
+			string musicPath = m_StageInfos[m_CurrentIdx].musicPath;
+			Debug.Log("Stage select load music : " + musicPath);
+			this.m_Coroutine = ResourceLoader.Instance.Load(musicPath, this.LoadSync);
+		}
+
         private IEnumerator LoadCoroutine()
         {
             while (m_Request.isDone)
@@ -648,19 +660,15 @@ namespace Assets.Scripts.NGUI
         }
 
         public void PlayMusic(int idx)
-        {
-            idx -= 1;
-            if (m_Coroutine != null)
-            {
-                StopCoroutine(m_Coroutine);
-            }
+		{
+			idx -= 1;
+			if (m_Coroutine != null) {
+				StopCoroutine (m_Coroutine);
+			}
 
-            //m_Request = Resources.LoadAsync(m_StageInfos[m_CurrentIdx].musicPath) as ResourceRequest;
-            //m_Coroutine = StartCoroutine(LoadCoroutine());
-            string musicPath = m_StageInfos[m_CurrentIdx].musicPath;
-            Debug.Log("Stage select load music : " + musicPath);
-            this.m_Coroutine = ResourceLoader.Instance.Load(musicPath, this.LoadSync);
-        }
+			//m_Request = Resources.LoadAsync(m_StageInfos[m_CurrentIdx].musicPath) as ResourceRequest;
+			m_Coroutine = StartCoroutine (LoadCoroutine (this.loadDelay));
+		}
 
         public void ResetPos()
         {

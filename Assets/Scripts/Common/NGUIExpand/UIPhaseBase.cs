@@ -187,7 +187,6 @@ public class UIPhaseBase : MonoBehaviour {
 			return null;
 		}
 
-		AnimationClip ac = null;
 		foreach(AnimationClip clip in this._animator.runtimeAnimatorController.animationClips) {
 			if (clip == null) {
 				continue;

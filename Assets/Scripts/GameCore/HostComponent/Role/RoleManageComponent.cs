@@ -84,7 +84,10 @@ namespace FormulaBase {
 			this.SetFightGirlIndex (1, () => {
 				this.SetFightGirlCallBack (null);
 			});
-			CommonPanel.GetInstance ().ShowWaittingPanel (false);
+
+			if (CommonPanel.GetInstance () != null) {
+				CommonPanel.GetInstance ().ShowWaittingPanel (false);
+			}
 		}
 
 		public void GetExpAndCost(ref int Exp,ref int Cost) {
@@ -241,11 +244,15 @@ namespace FormulaBase {
 
 			//Messenger.Broadcast (AdvenTure5.AdvenTure5BraodChangeHero);
 			FormulaHost.SaveList (new List<FormulaHost> (this.HostList.Values), new HttpEndResponseDelegate (SetFightGirlCallBack));
-			CommonPanel.GetInstance ().ShowWaittingPanel ();
+			if (CommonPanel.GetInstance () != null) {
+				CommonPanel.GetInstance ().ShowWaittingPanel ();
+			}
 		}
 
 		public void SetFightGirlCallBack(cn.bmob.response.EndPointCallbackData<Hashtable> response) {
-			CommonPanel.GetInstance ().ShowWaittingPanel (false);
+			if (CommonPanel.GetInstance () != null) {
+				CommonPanel.GetInstance ().ShowWaittingPanel (false);
+			}
 		}
 
 		public string GetName(int _index) {
