@@ -96,7 +96,7 @@ namespace Assets.Scripts.NGUI
         private Sequence m_SlideSeq;
         private Sequence m_DlySeq;
         private float m_ZAngle = 0.0f;
-        private static int m_CurrentIdx = 1;
+        private static int m_CurrentIdx = 0;
         private bool m_IsSliding = false;
         private ResourceRequest m_Request;
         private Coroutine m_Coroutine;
@@ -149,13 +149,14 @@ namespace Assets.Scripts.NGUI
         private void InitInfo()
         {
             var jData = ConfigPool.Instance.GetConfigByName("stage");
-			for (int i = 1; i < jData.Count; i++) {
-				var iconPath = ConfigPool.Instance.GetConfigStringValue ("stage", i.ToString (), "icon");
-				var musicPath = ConfigPool.Instance.GetConfigStringValue ("stage", i.ToString (), "FileName_1");
-				var musicName = ConfigPool.Instance.GetConfigStringValue ("stage", i.ToString (), "DisplayName");
-				var authorName = ConfigPool.Instance.GetConfigStringValue ("stage", i.ToString (), "Author");
-				m_StageInfos.Add (new StageInfo (i + 1, iconPath, musicPath, musicName, authorName, 0, 0));
-			}
+            for (int i = 1; i < jData.Count; i++)
+            {
+                var iconPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "icon");
+                var musicPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "FileName_1");
+                var musicName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "DisplayName");
+                var authorName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "Author");
+                m_StageInfos.Add(new StageInfo(i + 1, iconPath, musicPath, musicName, authorName, 0, 0));
+            }
         }
 
         private void InitEvent()
@@ -376,16 +377,18 @@ namespace Assets.Scripts.NGUI
                 m_EnergyTweener1 = DOTween.To(() => sprEnergy.fillAmount, x => sprEnergy.fillAmount = x, 1.0f,
                     eneryAnimDurationEnter);
                 m_EnergyTweener2 = energy.transform.DOScale(1.0f, eneryAnimDurationEnter);
-				var cost = 1f; 
-				var diff = 1;
-				if (StageBattleComponent.Instance.Host != null) {
-					diff = StageBattleComponent.Instance.Host.GetDynamicIntByKey (SignKeys.DIFFCULT);
-					if (diff > 0) {
-						cost = StageBattleComponent.Instance.Host.Result (FormulaKeys.FORMULA_330);
-					}
-				}
+                var cost = 1f;
+                var diff = 1;
+                if (StageBattleComponent.Instance.Host != null)
+                {
+                    diff = StageBattleComponent.Instance.Host.GetDynamicIntByKey(SignKeys.DIFFCULT);
+                    if (diff > 0)
+                    {
+                        cost = StageBattleComponent.Instance.Host.Result(FormulaKeys.FORMULA_330);
+                    }
+                }
 
-				txtEnergyLast.text = cost.ToString();
+                txtEnergyLast.text = cost.ToString();
 
                 for (int i = 0; i < difficulty.transform.childCount; i++)
                 {
@@ -455,7 +458,7 @@ namespace Assets.Scripts.NGUI
             if (m_CurrentIdx < m_StageInfos.Count)
             {
                 var offsetForInfo = new Vector3(offsetX < 0 ? txtOffsetX : -txtOffsetX, 220f, 0);
-				txtNameLast.text = (m_StageInfos[m_CurrentIdx].idx - 1) + " " + m_StageInfos[m_CurrentIdx].musicName;
+                txtNameLast.text = (m_StageInfos[m_CurrentIdx].idx - 1) + " " + m_StageInfos[m_CurrentIdx].musicName;
                 txtAuthorLast.text = "Music by " + m_StageInfos[m_CurrentIdx].musicAuthor;
                 var lerpNumLast = 1 -
                                   scale *
@@ -604,7 +607,7 @@ namespace Assets.Scripts.NGUI
             audioSource.clip = newClip;
             audioSource.Play();
             audioSource.loop = true;
-			PnlStage.PnlStage.Instance.OnSongChanged(currentSongIdx);
+            PnlStage.PnlStage.Instance.OnSongChanged(currentSongIdx);
         }
 
         #endregion 资源加载
@@ -644,7 +647,7 @@ namespace Assets.Scripts.NGUI
             {
                 StopCoroutine(m_Coroutine);
             }
-			m_Request = Resources.LoadAsync(m_StageInfos[m_CurrentIdx].musicPath) as ResourceRequest;
+            m_Request = Resources.LoadAsync(m_StageInfos[m_CurrentIdx].musicPath) as ResourceRequest;
             m_Coroutine = StartCoroutine(LoadCoroutine());
         }
 
@@ -668,19 +671,15 @@ namespace Assets.Scripts.NGUI
             m_FinishEnter = false;
             idx--;
             m_CurrentIdx = idx;
-            if (idx - 2 >= m_CellGroup.Count / 2)
-            {
-                idx = (idx - (m_CellGroup.Count - 1)) - 1;
-            }
-            var offset = new Vector3(0, 0, (idx - 2) * -angle);
-            DOTweenUtil.Delay(() =>
-            {
-                OnChangeOffset(offset, Mathf.Abs(idx - 2) * 0.15f);
-            }, 0.1f);
+            m_ZAngle -= angle * (idx - 2 - numFrom);
+            var angleAxis = new Vector3(0, 0, m_ZAngle);
+            pivot.transform.localEulerAngles = angleAxis;
+            var offset = new Vector3(0, 0, -numFrom * angle);
+            OnChangeOffset(offset, animDuration);
             DOTweenUtil.Delay(() =>
             {
                 m_FinishEnter = true;
-            }, 0.1f + Mathf.Abs(idx - 2) * 0.15f);
+            }, animDuration);
         }
 
         #endregion 操作
