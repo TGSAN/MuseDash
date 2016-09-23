@@ -537,10 +537,6 @@ namespace Assets.Scripts.NGUI
                     else if (absX <= x2)
                     {
                         offset = Vector3.Lerp(offset1, offset2, (absX - x1) / ditance1);
-                        if (idx == m_CurrentIdx + 1)
-                        {
-                            print(offset);
-                        }
                     }
                     else if (absX <= radius)
                     {
