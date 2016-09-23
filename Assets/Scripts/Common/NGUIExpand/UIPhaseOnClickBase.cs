@@ -110,48 +110,6 @@ public class UIPhaseOnClickBase {
 				} else {
 					UISceneHelper.Instance.HideUi (_name, _showAnimation);
 				}
-				/*
-				// root object find under the same parent.
-				GameObject _trs = UISceneHelper.Instance.FindDymWidget (_name);
-				if (_trs == null) {
-					Debug.Log (_name + " not in scene.");
-					continue;
-				}
-
-				GameObject instanceObject = _trs;
-				UIRootHelper _urh = instanceObject.GetComponent<UIRootHelper> ();
-				if (_urh != null) {
-					GameObject t = UISceneHelper.Instance.FindDymWidget (instanceObject.name);
-					if (t == null) {
-						Debug.Log (instanceObject.name + " not in scene.");
-						continue;
-					}
-
-					instanceObject = t;
-				}
-
-				if (instanceObject == null) {
-					Debug.Log (instanceObject.name + " not in scene.");
-					continue;
-				}
-
-				UISceneHelper ush = instanceObject.GetComponent<UISceneHelper> ();
-				if (ush != null) {
-					continue;
-				}
-
-				UIPhaseBase upb = instanceObject.GetComponent<UIPhaseBase> ();
-				if (upb == null) {
-					instanceObject.SetActive (_isShow);
-					continue;
-				}
-
-				if (_isShow) {
-					upb.Show (_showAnimation);
-				} else {
-					upb.Hide (_showAnimation);
-				}
-				*/
 			}
 		}
 	}
