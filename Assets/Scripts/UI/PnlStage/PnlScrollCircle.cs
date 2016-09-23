@@ -114,6 +114,16 @@ namespace Assets.Scripts.NGUI
             get { return this.m_CatchClip; }
         }
 
+		public bool FinishEnter {
+			get {
+				return this.m_FinishEnter;
+			}
+
+			set {
+				this.m_FinishEnter = value;
+			}
+		}
+
         public static int currentSongIdx
         {
             get { return m_CurrentIdx + 1; }
@@ -279,7 +289,10 @@ namespace Assets.Scripts.NGUI
                 {
                     return;
                 }
-                PnlStage.PnlStage.Instance.gameObject.SetActive(false);
+                //PnlStage.PnlStage.Instance.gameObject.SetActive(false);
+				m_FinishEnter = false;
+				UISceneHelper.Instance.ShowUi ("PnlAchievement");
+				/*
                 var widgets = UISceneHelper.Instance.widgets;
                 foreach (UIRootHelper w in widgets.Values)
                 {
@@ -289,6 +302,7 @@ namespace Assets.Scripts.NGUI
                         break;
                     }
                 }
+                */
             };
 
             UIEventListener.Get(gameObject).onDragStart = onDragStart;

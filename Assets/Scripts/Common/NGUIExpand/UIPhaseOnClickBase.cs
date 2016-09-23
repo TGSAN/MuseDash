@@ -105,6 +105,12 @@ public class UIPhaseOnClickBase {
 					_showAnimation = uph.clickResponseParentAnimations [_idx];
 				}
 
+				if (_isShow) {
+					UISceneHelper.Instance.ShowUi (_name, _showAnimation);
+				} else {
+					UISceneHelper.Instance.HideUi (_name, _showAnimation);
+				}
+				/*
 				// root object find under the same parent.
 				GameObject _trs = UISceneHelper.Instance.FindDymWidget (_name);
 				if (_trs == null) {
@@ -145,6 +151,7 @@ public class UIPhaseOnClickBase {
 				} else {
 					upb.Hide (_showAnimation);
 				}
+				*/
 			}
 		}
 	}
