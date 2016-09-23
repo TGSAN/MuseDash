@@ -114,6 +114,16 @@ namespace Assets.Scripts.NGUI
             get { return this.m_CatchClip; }
         }
 
+		public bool FinishEnter {
+			get {
+				return this.m_FinishEnter;
+			}
+
+			set {
+				this.m_FinishEnter = value;
+			}
+		}
+
         public static int currentSongIdx
         {
             get { return m_CurrentIdx + 1; }
@@ -285,7 +295,10 @@ namespace Assets.Scripts.NGUI
                 {
                     return;
                 }
-                PnlStage.PnlStage.Instance.gameObject.SetActive(false);
+                //PnlStage.PnlStage.Instance.gameObject.SetActive(false);
+				m_FinishEnter = false;
+				UISceneHelper.Instance.ShowUi ("PnlAchievement");
+				/*
                 var widgets = UISceneHelper.Instance.widgets;
                 foreach (UIRootHelper w in widgets.Values)
                 {
@@ -295,6 +308,7 @@ namespace Assets.Scripts.NGUI
                         break;
                     }
                 }
+                */
             };
 
             UIEventListener.Get(gameObject).onDragStart = onDragStart;
@@ -615,6 +629,19 @@ namespace Assets.Scripts.NGUI
             PnlStage.PnlStage.Instance.OnSongChanged(currentSongIdx);
         }
 
+		private void LoadSync(UnityEngine.Object res) {
+			AudioClip newClip = res as AudioClip;
+			var audioSource = SceneAudioManager.Instance.bgm;
+			if (audioSource.clip != newClip) {
+				Resources.UnloadAsset (audioSource.clip);
+			}
+
+			audioSource.clip = newClip;
+			audioSource.Play ();
+			audioSource.loop = true;
+			PnlStage.PnlStage.Instance.OnSongChanged (currentSongIdx);
+		}
+
         #endregion 资源加载
 
         #region 操作
@@ -652,8 +679,12 @@ namespace Assets.Scripts.NGUI
             {
                 StopCoroutine(m_Coroutine);
             }
-            m_Request = Resources.LoadAsync(m_StageInfos[m_CurrentIdx].musicPath) as ResourceRequest;
-            m_Coroutine = StartCoroutine(LoadCoroutine());
+
+			//m_Request = Resources.LoadAsync(m_StageInfos[m_CurrentIdx].musicPath) as ResourceRequest;
+            //m_Coroutine = StartCoroutine(LoadCoroutine());
+			string musicPath = m_StageInfos[m_CurrentIdx].musicPath;
+			Debug.Log ("Stage select load music : " + musicPath);
+			this.m_Coroutine = ResourceLoader.Instance.Load(musicPath, this.LoadSync);
         }
 
         public void ResetPos()

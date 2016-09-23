@@ -8,6 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.NGUI;
 
 namespace PnlAchievement
 {
@@ -53,6 +54,9 @@ namespace PnlAchievement
 
         public override void OnHide()
         {
+			if (PnlScrollCircle.instance != null) {
+				PnlScrollCircle.instance.FinishEnter = true;
+			}
         }
 
         private IEnumerator __OnShow(float sec)
