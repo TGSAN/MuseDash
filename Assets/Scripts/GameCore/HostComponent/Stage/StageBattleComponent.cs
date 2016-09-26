@@ -567,15 +567,15 @@ namespace FormulaBase {
 			TaskStageTarget.Instance.OnStageStarted ();
 			SkillComponent.Instance.Init ();
 			BattleRoleAttributeComponent.Instance.Init ();
+			this.SetTimeProgress ();
 		}
 
 		private void Load(ref string fileName, ref string sceneName, ref string audioName) {
 			int sid = this.Host.GetDynamicIntByKey (SignKeys.ID);
 			Debug.Log ("Load stage (" + sid + ") " + sceneName + " ===== " + fileName + " ===== " + audioName);
 			AudioManager.Instance.ReloadAllResource ();
-			//AudioManager.Instance.PlayingMusic = sceneName;
-			AudioManager.Instance.SetBackGroundMusic (audioName);
 			// For ensure music start with NO any delay.
+			AudioManager.Instance.SetBackGroundMusic (fileName);
 			AudioManager.Instance.ResetBackGroundMusic ();
 			GameGlobal.gGameMusic.LoadMusicDataByFileName (ref sceneName, ref audioName);
 

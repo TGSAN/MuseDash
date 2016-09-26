@@ -101,18 +101,12 @@ namespace Assets.Scripts.NGUI
         private bool m_IsSliding = false;
         private ResourceRequest m_Request;
         private Coroutine m_Coroutine;
-        private AudioClip m_CatchClip;
         private bool m_FinishEnter = false;
         private readonly Dictionary<int, GameObject> m_CellGroup = new Dictionary<int, GameObject>();
         private readonly List<StageInfo> m_StageInfos = new List<StageInfo>();
         private readonly List<float> m_Angles = new List<float>();
 
         public float offsetX { get; private set; }
-
-        public AudioClip CatchClip
-        {
-            get { return this.m_CatchClip; }
-        }
 
         public bool FinishEnter
         {
@@ -538,10 +532,6 @@ namespace Assets.Scripts.NGUI
                     else if (absX <= x2)
                     {
                         offset = Vector3.Lerp(offset1, offset2, (absX - x1) / ditance1);
-                        if (idx == m_CurrentIdx + 1)
-                        {
-                            print(offset);
-                        }
                     }
                     else if (absX <= radius)
                     {
@@ -593,14 +583,7 @@ namespace Assets.Scripts.NGUI
             var data = new float[length];
             var name = clip.name;
             clip.GetData(data, 0);
-            //Resources.UnloadAsset(clip);
-            if (this.m_CatchClip != null)
-            {
-                Resources.UnloadAsset(this.m_CatchClip);
-            }
-
-            this.m_CatchClip = clip;
-
+            Resources.UnloadAsset(clip);
             var newClip = AudioClip.Create(name, data.Length, 2, 44100, false);
             newClip.SetData(data, 0);
             while (!newClip.isReadyToPlay)
@@ -618,20 +601,20 @@ namespace Assets.Scripts.NGUI
             PnlStage.PnlStage.Instance.OnSongChanged(currentSongIdx);
         }
 
-        private void LoadSync(UnityEngine.Object res)
-        {
-            AudioClip newClip = res as AudioClip;
-            var audioSource = SceneAudioManager.Instance.bgm;
-            if (audioSource.clip != newClip)
-            {
-                Resources.UnloadAsset(audioSource.clip);
-            }
+        private void LoadSync(UnityEngine.Object res) {
+			AudioClip newClip = res as AudioClip;
+			if (SceneAudioManager.Instance.bgm.clip != newClip) {
+				AudioClip oldClip = SceneAudioManager.Instance.bgm.clip;
+				SceneAudioManager.Instance.bgm.clip = null;
 
-            audioSource.clip = newClip;
-            audioSource.Play();
-            audioSource.loop = true;
-            PnlStage.PnlStage.Instance.OnSongChanged(currentSongIdx);
-        }
+				Resources.UnloadAsset (oldClip);
+			}
+
+			SceneAudioManager.Instance.bgm.clip = newClip;
+			SceneAudioManager.Instance.bgm.Play ();
+			SceneAudioManager.Instance.bgm.loop = true;
+			PnlStage.PnlStage.Instance.OnSongChanged (currentSongIdx);
+		}
 
         #endregion 资源加载
 

@@ -105,5 +105,38 @@ namespace PnlAchievement
             slider.ResetToBeginning();
             slider.PlayForward();
         }
-    }
+
+		private AudioClip mCatchUnLoadClip;
+		public void EnterBattle() {
+			if (SceneAudioManager.Instance.bgm.clip == null) {
+				this.__AfterUnloadMusic ();
+				return;
+			}
+
+			this.mCatchUnLoadClip = SceneAudioManager.Instance.bgm.clip;
+			SceneAudioManager.Instance.bgm.clip = null;
+			this.mCatchUnLoadClip.UnloadAudioData ();
+			Resources.UnloadAsset (this.mCatchUnLoadClip);
+
+			this.StartCoroutine (this.AfterUnloadMusic ());
+		}
+
+		private IEnumerator AfterUnloadMusic() {
+			if (this.mCatchUnLoadClip != null && this.mCatchUnLoadClip.loadState != AudioDataLoadState.Unloaded) {
+				yield return null;
+			}
+			
+			this.__AfterUnloadMusic ();
+		}
+
+		private void __AfterUnloadMusic() {
+			int sid = StageBattleComponent.Instance.GetId ();
+			uint diff = StageBattleComponent.Instance.GetDiffcult ();
+			StageBattleComponent.Instance.Enter ((uint)sid, diff);
+
+			if (UISceneHelper.Instance != null) {
+				UISceneHelper.Instance.HideWidget ();
+			}
+		}
+	}
 }

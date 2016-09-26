@@ -13,6 +13,8 @@ public class GameSceneMainController : MonoBehaviour {
 	private float secondCounter = 0f;
 	private GameObject gameCamera;
 
+	public float waitForStartMusic = 5f;
+
 	void Start () {
 		this._ScreenFit ();
 
@@ -26,9 +28,8 @@ public class GameSceneMainController : MonoBehaviour {
 		}
 		#endif
 
-		CommonPanel.GetInstance ().SetMask (false);
-
-		this.StartCoroutine (this.__OnStart ());
+		string musicName = StageBattleComponent.Instance.GetMusicName ();
+		ResourceLoader.Instance.Load (musicName, this.__OnStartAfterMusicLoaded, ResourceLoader.RES_FROM_LOCAL);
 	}
 
 	//void OnEnable() {
@@ -52,9 +53,22 @@ public class GameSceneMainController : MonoBehaviour {
 		this.FpsMemoryShowUpdate ();
 	}
 
-	private IEnumerator __OnStart() {
-		yield return new WaitForSeconds (0.01f);
+	private void __OnStartAfterMusicLoaded(UnityEngine.Object obj) {
+		if (obj == null) {
+			return;
+		}
 
+		AudioManager.Instance.SetCatchClip (obj as AudioClip);
+		this.__OnStat ();
+	}
+
+	private IEnumerator __StageStart() {
+		yield return new WaitForSeconds (this.waitForStartMusic);
+
+		StageBattleComponent.Instance.GameStart (null, 0, null);
+	}
+
+	private void __OnStat() {
 		StageBattleComponent.Instance.Init ();
 
 		// for fps memory show
@@ -65,6 +79,11 @@ public class GameSceneMainController : MonoBehaviour {
 
 		// 所有数据 对象准备完毕后才展示ui
 		UISceneHelper.Instance.Show ();
+		this.StartCoroutine (this.__StageStart ());
+		FightMenuPanel.Instance.OnStageReady ();
+		if (CommonPanel.GetInstance () != null) {
+			CommonPanel.GetInstance ().SetMask (false);
+		}
 	}
 
 	private void FpsMemoryShowUpdate() {
@@ -85,12 +104,7 @@ public class GameSceneMainController : MonoBehaviour {
 	}
 
 	private void _ScreenFit() {
-		this.gameCamera = GameObject.Find ("GameCamera").gameObject;
-		if (this.gameCamera == null) {
-			return;
-		}
-
-		Camera cam = this.gameCamera.GetComponent<Camera> ();
+		Camera cam = this.gameObject.GetComponent<Camera> ();
 		ScreenFit.CameraFit (cam);
 	}
 }
