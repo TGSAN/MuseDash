@@ -54,6 +54,10 @@ public class GMOrderPanel : MonoBehaviour {
 	public void AddItem()
 	{
 		Debug.Log("GM命令添加物品");
+
+		FormulaHost equipItem = FomulaHostManager.Instance.CreateHost ("Equip");
+		ItemManageComponent.Instance.AddItem (equipItem);
+		/*
 		//所有装备
 		LitJson.JsonData cfg1 = ConfigPool.Instance.GetConfigByName ("Equipment_info");
 		Debug.Log("Equipment_info"+cfg1.Count);
@@ -99,6 +103,7 @@ public class GMOrderPanel : MonoBehaviour {
 		//ChestManageComponent.Instance.CreateItem(TempChestList);
 		//ChestManageComponent.Instance.CreateItem(TempChestList);
 		//ChestManageComponent.Instance.CreateItem(TempChestList);
+		*/
 	}
 
 	public void AddMaterials()

@@ -427,10 +427,13 @@ namespace FormulaBase {
 
 		public void SetAsUINotifyInstance(UIRootHelper urh) {
 			this._bindUiHelper = urh;
+			urh.SetActiveHost (this);
+			urh.SetLabelHost (this);
+			urh.SetSliderHost (this);
 			this.RefleshSigns ();
 		}
 
-		private void RefleshSigns() {
+		public void RefleshSigns() {
 			if (this.signs == null) {
 				return;
 			}

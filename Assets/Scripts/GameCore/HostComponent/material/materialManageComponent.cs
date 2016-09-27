@@ -16,12 +16,13 @@ namespace FormulaBase {
 		}
 
 		public  FormulaHost CreateItem(int idx) {
-				FormulaHost host = FomulaHostManager.Instance.CreateHost (HOST_IDX);
-				if (host != null) {
-					host.SetDynamicData("ID",idx);
-				}
-				return host;
+			FormulaHost host = FomulaHostManager.Instance.CreateHost (HOST_IDX);
+			if (host != null) {
+				host.SetDynamicData (SignKeys.ID, idx);
+			}
+			return host;
 		}
+
 		#region 升级相关
 		/// <summary>
 		/// 获取获得的经验个钱
@@ -30,15 +31,15 @@ namespace FormulaBase {
 		/// <param name="Cost">Cost.</param>
 		public void GetExpAndCost(ref int Exp,ref int Cost)
 		{
-			Exp=0;
-			Cost=0;
-			List<FormulaHost> tlist=ItemManageComponent.Instance.GetChosedItem;
-			for(int i=0,max=tlist.Count;i<max;i++)
-			{
-				Exp+=(int)tlist[i].Result(FormulaKeys.FORMULA_40)*tlist[i].GetDynamicIntByKey(SignKeys.CHOSED);
-				Cost+=(int)tlist[i].Result(FormulaKeys.FORMULA_41)*tlist[i].GetDynamicIntByKey(SignKeys.CHOSED);
+			Exp = 0;
+			Cost = 0;
+			List<FormulaHost> tlist = ItemManageComponent.Instance.GetChosedItem;
+			for (int i = 0, max = tlist.Count; i < max; i++) {
+				Exp += (int)tlist [i].Result (FormulaKeys.FORMULA_40) * tlist [i].GetDynamicIntByKey (SignKeys.CHOSED);
+				Cost += (int)tlist [i].Result (FormulaKeys.FORMULA_41) * tlist [i].GetDynamicIntByKey (SignKeys.CHOSED);
 			}
 		}
+
 		#endregion
 		#region 材料堆叠
 		/// <summary>
@@ -54,7 +55,7 @@ namespace FormulaBase {
 			int targetId = 0;
 			List<FormulaHost> templist = new List<FormulaHost> (this.HostList.Values);
 			for (int i = 0, max = templist.Count; i < max; i++) {
-				targetId = (int)templist [i].GetDynamicDataByKey ("ID");
+				targetId = (int)templist [i].GetDynamicDataByKey (SignKeys.ID);
 				if (_ID == targetId) {
 					if (templist [i].GetDynamicIntByKey (SignKeys.STACK_NUMBER) != 1) {//可以堆叠
 						int stackNumber = templist [i].GetDynamicIntByKey (SignKeys.STACKITEMNUMBER);
@@ -69,38 +70,33 @@ namespace FormulaBase {
 
 		public void CreateItem(List<int> _listIndex)
 		{
-
-		//	if(ItemManageComponent.Instance.GetMaterialList.f)
-			List<FormulaHost> TempListItem=new List<FormulaHost>();
-			for(int i=0;i<_listIndex.Count;i++)
-			{
-				FormulaHost temp=HaveTheSameID(_listIndex[i]);
-				if(temp==null)//没有相同的ID
-				{
+			List<FormulaHost> TempListItem = new List<FormulaHost> ();
+			for (int i = 0; i < _listIndex.Count; i++) {
+				FormulaHost temp = HaveTheSameID (_listIndex [i]);
+				if (temp == null) {//没有相同的ID
 					FormulaHost host = FomulaHostManager.Instance.CreateHost (HOST_IDX);
 					if (host != null) {
-						host.SetDynamicData("ID",_listIndex[i]);
+						host.SetDynamicData (SignKeys.ID, _listIndex [i]);
 						//	ItemManageComponent.Instance.AddItem(host);
 					}
-					TempListItem.Add(host);
-				}
-				else 
-				{
-					TempListItem.Add(temp);
+					TempListItem.Add (host);
+				} else {
+					TempListItem.Add (temp);
 				}
 			}
-			ItemManageComponent.Instance.AddItemList(TempListItem);
+			ItemManageComponent.Instance.AddItemList (TempListItem);
 		}
+
 		#endregion
 		public ushort GetRareType(FormulaHost _host)
 		{
-			return (ushort)_host.GetDynamicDataByKey("ID");
+			return (ushort)_host.GetDynamicDataByKey (SignKeys.ID);
 		}
 		#region 宝箱开启用
 		List<RewardData> m_AllMaterial=new List<RewardData>();//所有的素材
 
 		public void Init() {
-			this.GetList ("Equip");
+			this.GetList ("Material");
 			if (this.HostList != null) {
 				foreach (FormulaHost host in this.HostList.Values) {
 					host.Result (FormulaKeys.FORMULA_93);
@@ -124,40 +120,30 @@ namespace FormulaBase {
 
 		public List<RewardData> GetLimitItem(int _Quality=-1,int _Type=-1)
 		{
-
-			List<RewardData> temp=new List<RewardData>();
-
-			for(int i=0,max = m_AllMaterial.Count ;i<max;i++)
-			{
-				if(_Quality==-1&&_Type==-1)
-				{
-					temp.Add(m_AllMaterial[i]);
+			List<RewardData> temp = new List<RewardData> ();
+			for (int i = 0, max = m_AllMaterial.Count; i < max; i++) {
+				if (_Quality == -1 && _Type == -1) {
+					temp.Add (m_AllMaterial [i]);
 					continue;
 				}
 
-				if(_Quality==-1)
-				{
-					if(_Type==m_AllMaterial[i].type)
-					{
-						temp.Add(m_AllMaterial[i]);
+				if (_Quality == -1) {
+					if (_Type == m_AllMaterial [i].type) {
+						temp.Add (m_AllMaterial [i]);
 						continue;
 					}
 				}
-				if(_Type==-1)
-				{
-					if(_Quality==m_AllMaterial[i].Quality)
-					{
-						temp.Add(m_AllMaterial[i]);
+				if (_Type == -1) {
+					if (_Quality == m_AllMaterial [i].Quality) {
+						temp.Add (m_AllMaterial [i]);
 						continue;
 					}
 				}
-				if(_Quality==m_AllMaterial[i].Quality&&_Type==m_AllMaterial[i].type)
-				{
-					temp.Add(m_AllMaterial[i]);
+				if (_Quality == m_AllMaterial [i].Quality && _Type == m_AllMaterial [i].type) {
+					temp.Add (m_AllMaterial [i]);
 				}
 			}
 			return temp;
-
 		}
 
 		#endregion

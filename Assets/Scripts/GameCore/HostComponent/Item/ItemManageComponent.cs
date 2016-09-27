@@ -396,8 +396,11 @@ namespace FormulaBase {
 		public void CallBackAdditem(bool _temp) {
 			CommonPanel.GetInstance().ShowWaittingPanel(false);
 
-			Init();
-		//	NGUIDebug.Log("AdditemCallBack");
+			if (!UISceneHelper.Instance.IsUiActive ("PnlSuitcase")) {
+				return;
+			}
+
+			UISceneHelper.Instance.ReShowUi ("PnlSuitcase");
 		}
 
 		public void ItemLevelUp() {

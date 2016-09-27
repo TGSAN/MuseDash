@@ -85,6 +85,8 @@ namespace PnlCharChose
 
         private GameObject LoadSpiAnim(int idx)
         {
+			return null;
+			/*
             if (spiParent.childCount > 0)
             {
                 spiParent.DestroyChildren();
@@ -106,10 +108,15 @@ namespace PnlCharChose
                 Debug.LogError("加载未获得对象");
                 return null;
             }
+            */
         }
 
         private void LoadPoint(int idx)
         {
+			if (pointParent == null) {
+				return;
+			}
+
             if (pointParent.childCount > 0)
             {
                 pointParent.DestroyChildren();

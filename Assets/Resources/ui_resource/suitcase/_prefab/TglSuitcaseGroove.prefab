@@ -25,6 +25,7 @@ GameObject:
   - 114: {fileID: 114000011673455336}
   - 114: {fileID: 114000013337113994}
   - 114: {fileID: 114000012792640540}
+  - 114: {fileID: 114000011763576912}
   m_Layer: 5
   m_Name: TglSuitcaseGroove
   m_TagString: Untagged
@@ -309,6 +310,20 @@ MonoBehaviour:
   eventReceiver: {fileID: 0}
   functionName: OnActivate
   startsChecked: 0
+--- !u!114 &114000011763576912
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010317390994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f814084cd12445391e7d5d2a67a7ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowAnimation: 
+  HideAnimation: 
+  btn: {fileID: 114000012006505662}
 --- !u!114 &114000012006505662
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -121,6 +121,28 @@ public class UISceneHelper : MonoBehaviour {
 		upb.Hide (aniName);
 	}
 
+	public void ReShowUi(string uiName) {
+		if (this.dymWidgets == null) {
+			return;
+		}
+
+		if (!this.dymWidgets.ContainsKey (uiName)) {
+			return;
+		}
+
+		UIRootHelper urh = this.dymWidgets [uiName];
+		if (urh == null) {
+			return;
+		}
+
+		UIPhaseBase upb = urh.gameObject.GetComponent<UIPhaseBase> ();
+		if (upb == null) {
+			return;
+		}
+
+		upb.ReShow ();
+	}
+
 	public void MarkShowOnLoad(string uiName, bool value) {
 		if (this.dymWidgets == null) {
 			return;

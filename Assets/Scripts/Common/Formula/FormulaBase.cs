@@ -517,7 +517,6 @@ namespace FormulaBase {
 			}
 
 			this.catchUiHost [host.GetFileName ()] = host;
-			/*
 			if (this.catchUiHelper == null) {
 				return;
 			}
@@ -531,7 +530,6 @@ namespace FormulaBase {
 				uph.SetLabelHost (host);
 				uph.SetSliderHost (host);
 			}
-			*/
 		}
 
 		public void SetNotifyUiHelper(string uid, UIPhaseHelper uph) {
