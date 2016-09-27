@@ -51,9 +51,9 @@ public class LevelUpPanel : UIPanelBase {
 	{
 		Debug.Log("注册----------------------------------》》》》"+"ItemInfoChoseItem");
 		//Messenger.MarkAsPermanent(ItemInfoPanel.ItemInfoChoseItem);
-		Messenger.AddListener<bool>(ItemInfoPanel.ItemInfoChoseItem,ChoseItem);
+		//Messenger.AddListener<bool>(ItemInfoPanel.ItemInfoChoseItem,ChoseItem);
 
-		Messenger.AddListener<bool>(ItemInfoPanel.BroadUseItemtolevelup,SetSpecialBlur);
+		//Messenger.AddListener<bool>(ItemInfoPanel.BroadUseItemtolevelup,SetSpecialBlur);
 
 		Messenger.MarkAsPermanent(EquipAndPetLevelUpPanel.BroadEquipAnPetAnimationFinish);
 		Messenger.AddListener(EquipAndPetLevelUpPanel.BroadEquipAnPetAnimationFinish,LevelUpAnimationFinish);
@@ -63,8 +63,8 @@ public class LevelUpPanel : UIPanelBase {
 	void OnDisable()
 	{
 		Debug.Log("删除----------------------------------》》》》"+"ItemInfoChoseItem");
-		Messenger.RemoveListener<bool>(ItemInfoPanel.ItemInfoChoseItem,ChoseItem);
-		Messenger.RemoveListener<bool>(ItemInfoPanel.BroadUseItemtolevelup,SetSpecialBlur);
+		//Messenger.RemoveListener<bool>(ItemInfoPanel.ItemInfoChoseItem,ChoseItem);
+		//Messenger.RemoveListener<bool>(ItemInfoPanel.BroadUseItemtolevelup,SetSpecialBlur);
 		Messenger.RemoveListener(EquipAndPetLevelUpPanel.BroadEquipAnPetAnimationFinish,LevelUpAnimationFinish);
 	}
 	/// <summary>
@@ -241,14 +241,14 @@ public class LevelUpPanel : UIPanelBase {
 			switch(m_LevelUpPanelState)
 			{
 			case LevelUpPanelState.LevelUpPanelState_ChoseEquip:
-				Messenger.Broadcast<FormulaHost>(ItemInfoPanel.ItemRefreshItemInfo,null);
+				//Messenger.Broadcast<FormulaHost>(ItemInfoPanel.ItemRefreshItemInfo,null);
 
 				break;
 			case  LevelUpPanelState.LevelUpPanelState_ChoseHeroFood:
-				Messenger.Broadcast(CharactorPanel2.BroadCast_SetHeroData);
+				//Messenger.Broadcast(CharactorPanel2.BroadCast_SetHeroData);
 				break;
 			case  LevelUpPanelState.LevelUpPanelState_ChosePetFood:
-				Messenger.Broadcast<FormulaHost>(ItemInfoPanel.ItemRefreshItemInfo,null);
+				//Messenger.Broadcast<FormulaHost>(ItemInfoPanel.ItemRefreshItemInfo,null);
 				break;
 			}
 //			Messenger.Broadcast<FormulaHost>(ItemInfoPanel.ItemRefreshItemInfo,null);

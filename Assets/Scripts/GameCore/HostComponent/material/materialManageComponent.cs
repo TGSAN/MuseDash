@@ -46,26 +46,27 @@ namespace FormulaBase {
 		/// </summary>
 		/// <returns>The the same I.</returns>
 		/// <param name="_ID">I.</param>
-		public  FormulaHost HaveTheSameID(int  _ID)
-		{
-			int targetId=0;
-			List<FormulaHost> templist=ItemManageComponent.Instance.GetMaterialList;
-			for(int i=0,max=templist.Count;i<max;i++)
-			{
-				targetId=(int)templist[i].GetDynamicDataByKey("ID");
-				if(_ID==targetId)
-				{
-					if(templist[i].GetDynamicIntByKey(SignKeys.STACK_NUMBER)!=1)//可以堆叠
-					{
-						int stackNumber=templist[i].GetDynamicIntByKey(SignKeys.STACKITEMNUMBER);
+		public FormulaHost HaveTheSameID(int _ID) {
+			if (this.HostList == null) {
+				return null;
+			}
+
+			int targetId = 0;
+			List<FormulaHost> templist = new List<FormulaHost> (this.HostList.Values);
+			for (int i = 0, max = templist.Count; i < max; i++) {
+				targetId = (int)templist [i].GetDynamicDataByKey ("ID");
+				if (_ID == targetId) {
+					if (templist [i].GetDynamicIntByKey (SignKeys.STACK_NUMBER) != 1) {//可以堆叠
+						int stackNumber = templist [i].GetDynamicIntByKey (SignKeys.STACKITEMNUMBER);
 						stackNumber++;
-						templist[i].SetDynamicData(SignKeys.STACKITEMNUMBER,stackNumber);
-						return templist[i];
+						templist [i].SetDynamicData (SignKeys.STACKITEMNUMBER, stackNumber);
+						return templist [i];
 					}
 				}
 			}
 			return  null;
 		}
+
 		public void CreateItem(List<int> _listIndex)
 		{
 
@@ -99,6 +100,13 @@ namespace FormulaBase {
 		List<RewardData> m_AllMaterial=new List<RewardData>();//所有的素材
 
 		public void Init() {
+			this.GetList ("Equip");
+			if (this.HostList != null) {
+				foreach (FormulaHost host in this.HostList.Values) {
+					host.Result (FormulaKeys.FORMULA_93);
+				}
+			}
+			
 			LitJson.JsonData cfg = ConfigPool.Instance.GetConfigByName ("item");
 			if (cfg == null) {
 				return;

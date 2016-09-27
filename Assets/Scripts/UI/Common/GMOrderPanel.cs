@@ -33,8 +33,8 @@ public class GMOrderPanel : MonoBehaviour {
 	{
 		BagManageComponent.Instance.DeleteBagData();
 		ItemManageComponent.Instance.DeleteAllItem();
-		ChestManageComponent.Instance.GetChestList.Clear();
-		ChestManageComponent.Instance.GetTimeDownChest.Clear();
+		//ChestManageComponent.Instance.GetChestList.Clear();
+		//ChestManageComponent.Instance.GetTimeDownChest.Clear();
 		//RoleManageComponent.Instance.CreateRoles();
 		AccountManagerComponent.Instance.DeletePlayerData(new HttpEndResponseDelegate(DeleteAccountCallBack));//(120,true);
 	
@@ -96,9 +96,9 @@ public class GMOrderPanel : MonoBehaviour {
 			TempChestList.Add(int.Parse(temp));
 		}
 
-		ChestManageComponent.Instance.CreateItem(TempChestList);
-		ChestManageComponent.Instance.CreateItem(TempChestList);
-		ChestManageComponent.Instance.CreateItem(TempChestList);
+		//ChestManageComponent.Instance.CreateItem(TempChestList);
+		//ChestManageComponent.Instance.CreateItem(TempChestList);
+		//ChestManageComponent.Instance.CreateItem(TempChestList);
 	}
 
 	public void AddMaterials()
@@ -170,7 +170,7 @@ public class GMOrderPanel : MonoBehaviour {
 			TempEquipList.Add(int.Parse(temp));
 		}
 
-		ChestManageComponent.Instance.CreateItem(TempEquipList);
+		//ChestManageComponent.Instance.CreateItem(TempEquipList);
 	}
 	public void UNLockAllStages()
 	{

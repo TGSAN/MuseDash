@@ -149,33 +149,34 @@ namespace FormulaBase {
 		/// </summary>
 		/// <returns>The the same I.</returns>
 		/// <param name="_ID">I.</param>
-		public  FormulaHost HaveTheSameID(int  _ID)
-		{
-			int targetId=0;
-			List<FormulaHost> templist=ItemManageComponent.Instance.GetPetList;
-			for(int i=0,max=templist.Count;i<max;i++)
-			{
-				targetId=(int)templist[i].GetDynamicDataByKey("ID");
-				if(_ID==targetId)
-				{
-					if(templist[i].GetDynamicIntByKey(SignKeys.STACK_NUMBER)!=1)//可以堆叠
-					{
-						int stackNumber=templist[i].GetDynamicIntByKey(SignKeys.STACKITEMNUMBER);
+		public  FormulaHost HaveTheSameID(int _ID) {
+			if (this.HostList == null) {
+				return null;
+			}
+
+			int targetId = 0;
+			List<FormulaHost> templist = new List<FormulaHost> (this.HostList.Values);
+			for (int i = 0, max = templist.Count; i < max; i++) {
+				targetId = (int)templist [i].GetDynamicDataByKey ("ID");
+				if (_ID == targetId) {
+					if (templist [i].GetDynamicIntByKey (SignKeys.STACK_NUMBER) != 1) {//可以堆叠
+						int stackNumber = templist [i].GetDynamicIntByKey (SignKeys.STACKITEMNUMBER);
 						stackNumber++;
-						templist[i].SetDynamicData(SignKeys.STACKITEMNUMBER,stackNumber);
-						return templist[i];
+						templist [i].SetDynamicData (SignKeys.STACKITEMNUMBER, stackNumber);
+						return templist [i];
 					}
 				}
 			}
 			return  null;
 		}
-		public  FormulaHost CreateItem(int idx) {
-				FormulaHost host = FomulaHostManager.Instance.CreateHost (HOST_IDX);
-				if (host != null) {
-					host.SetDynamicData("ID",idx);
-					//ItemManageComponent.Instance.AddItem(host);
-				}
-				return host;
+
+		public FormulaHost CreateItem(int idx) {
+			FormulaHost host = FomulaHostManager.Instance.CreateHost (HOST_IDX);
+			if (host != null) {
+				host.SetDynamicData ("ID", idx);
+				//ItemManageComponent.Instance.AddItem(host);
+			}
+			return host;
 		}
 
 		public void CreateItem(List<int> _listIndex)
@@ -204,18 +205,25 @@ namespace FormulaBase {
 		}
 		#region 宝箱开启用
 		List<RewardData> m_AllPet=new List<RewardData>();
-		public void Init()
-		{
-			LitJson.JsonData cfg =ConfigPool.Instance.GetConfigByName("pet");
-			foreach(string id in cfg.Keys) {
-				LitJson.JsonData _data = cfg[id];
-				RewardData temp=new RewardData();
-				temp.id=int.Parse(id);
-				temp.type=int.Parse(_data["smallType"].ToString());
-				temp.Quality=int.Parse(_data["Quality"].ToString());
-				m_AllPet.Add(temp);
+		public void Init() {
+			this.GetList ("Pet");
+			if (this.HostList != null) {
+				foreach (FormulaHost host in this.HostList.Values) {
+					host.Result (FormulaKeys.FORMULA_268);
+				}
+			}
+
+			LitJson.JsonData cfg = ConfigPool.Instance.GetConfigByName ("pet");
+			foreach (string id in cfg.Keys) {
+				LitJson.JsonData _data = cfg [id];
+				RewardData temp = new RewardData ();
+				temp.id = int.Parse (id);
+				temp.type = int.Parse (_data ["smallType"].ToString ());
+				temp.Quality = int.Parse (_data ["Quality"].ToString ());
+				m_AllPet.Add (temp);
 			}
 		}
+
 		public List<RewardData> GetLimitItem(int _Quality=-1,int _Type=-1)
 		{
 			List<RewardData> temp=new List<RewardData>();
