@@ -52,6 +52,7 @@ namespace Assets.Scripts.NGUI
 
         public Vector2 maxMinAlpha;
         public float eneryAnimDurationEnter, eneryAnimDurationLeave;
+        public AnimationCurve energyCurve;
 
         [Header("缩放")]
         public float distanceToChangeScale;
@@ -70,18 +71,24 @@ namespace Assets.Scripts.NGUI
 
         public Color min, max;
 
+        [Header("难度")]
+        public float animDT;
+
         [Header("对象")]
         public Transform pivot;
 
         public GameObject cell;
         public GameObject leftButton, rightButton;
+        public UILabel txtNameNext, txtAuthorNext;
         public UILabel txtNameLast, txtAuthorLast, txtEnergyLast;
         public UISprite sprEnergy;
         public GameObject energy, difficulty;
         public GameObject btnStart;
+        public UISprite sprSongProgress, sprSongBkg;
 
         [Header("音频")]
-		public float loadDelay = 0.5f;
+        public float loadDelay = 0.5f;
+
         public int resolution = 1024;
 
         public float lowFreqThreshold = 14700;
@@ -96,6 +103,8 @@ namespace Assets.Scripts.NGUI
         private Tweener m_EnergyTweener1, m_EnergyTweener2;
         private Sequence m_SlideSeq;
         private Sequence m_DlySeq;
+        private Sequence m_DiffSeq;
+        private int m_PreDiff = 30;
         private float m_ZAngle = 0.0f;
         private static int m_CurrentIdx = 0;
         private bool m_IsSliding = false;
@@ -147,24 +156,6 @@ namespace Assets.Scripts.NGUI
         }
 
         #region 初始化
-
-        private void InitInfo()
-        {
-            var jData = ConfigPool.Instance.GetConfigByName("stage");
-            for (int i = 1; i < jData.Count; i++)
-            {
-                var iconPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "icon");
-                var musicPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "FileName_1");
-                var musicName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "DisplayName");
-                var authorName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "Author");
-                m_StageInfos.Add(new StageInfo(i + 1, iconPath, musicPath, musicName, authorName, 0, 0));
-            }
-#if UNITY_IPHONE
-    minMaxSlide.y *= 2;
-#elif UNITY_ANDROID
-    minMaxSlide.y *= 2;
-#endif
-        }
 
         private void InitEvent()
         {
@@ -325,6 +316,24 @@ namespace Assets.Scripts.NGUI
             this.onSongChange += PlayMusic;
         }
 
+        private void InitInfo()
+        {
+            var jData = ConfigPool.Instance.GetConfigByName("stage");
+            for (int i = 1; i < jData.Count; i++)
+            {
+                var iconPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "icon");
+                var musicPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "FileName_1");
+                var musicName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "DisplayName");
+                var authorName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "Author");
+                m_StageInfos.Add(new StageInfo(i, iconPath, musicPath, musicName, authorName, 0, 0));
+            }
+#if UNITY_IPHONE
+    minMaxSlide.y *= 2;
+#elif UNITY_ANDROID
+    minMaxSlide.y *= 2;
+#endif
+        }
+
         private void InitUI()
         {
             // 读取关卡数量生成disk元件
@@ -365,8 +374,8 @@ namespace Assets.Scripts.NGUI
             if (change)
             {
                 m_EnergyTweener1 = DOTween.To(() => sprEnergy.fillAmount, x => sprEnergy.fillAmount = x, 1.0f,
-                    eneryAnimDurationEnter);
-                m_EnergyTweener2 = energy.transform.DOScale(1.0f, eneryAnimDurationEnter);
+                    eneryAnimDurationEnter).SetEase(energyCurve);
+                m_EnergyTweener2 = energy.transform.DOScale(1.0f, eneryAnimDurationEnter).SetEase(energyCurve);
                 var cost = 1f;
                 var diff = 1;
                 if (StageBattleComponent.Instance.Host != null)
@@ -380,11 +389,44 @@ namespace Assets.Scripts.NGUI
 
                 txtEnergyLast.text = cost.ToString();
 
-                for (int i = 0; i < difficulty.transform.childCount; i++)
+                if (m_DiffSeq != null)
                 {
-                    var child = difficulty.transform.GetChild(i);
-                    child.gameObject.SetActive(i < diff);
+                    m_DiffSeq.Complete();
                 }
+                m_DiffSeq = DOTween.Sequence();
+                var dt = animDT / difficulty.transform.childCount;
+                if (m_PreDiff < diff)
+                {
+                    for (int i = m_PreDiff; i < difficulty.transform.childCount; i++)
+                    {
+                        var isVisiable = i < diff;
+                        var idx = i;
+                        m_DiffSeq.AppendCallback(() =>
+                        {
+                            var child = difficulty.transform.GetChild(idx);
+                            child.gameObject.SetActive(isVisiable);
+                        });
+                        m_DiffSeq.AppendInterval(dt);
+                    }
+                }
+                else if (m_PreDiff > diff)
+                {
+                    for (int i = m_PreDiff; i >= 0; i--)
+                    {
+                        var isVisiable = i < diff;
+                        var idx = i;
+                        m_DiffSeq.AppendCallback(() =>
+                        {
+                            var child = difficulty.transform.GetChild(idx);
+                            child.gameObject.SetActive(isVisiable);
+                        });
+                        m_DiffSeq.AppendInterval(dt);
+                    }
+                }
+                m_DiffSeq.Play().OnComplete(() =>
+                {
+                    m_PreDiff = diff;
+                });
             }
             else
             {
@@ -447,17 +489,33 @@ namespace Assets.Scripts.NGUI
         {
             if (m_CurrentIdx < m_StageInfos.Count)
             {
-                var offsetForInfo = new Vector3(offsetX < 0 ? txtOffsetX : -txtOffsetX, 220f, 0);
-                txtNameLast.text = (m_StageInfos[m_CurrentIdx].idx - 1) + " " + m_StageInfos[m_CurrentIdx].musicName;
+                var offsetForInfo = new Vector3(offsetX < 0 ? txtOffsetX : -txtOffsetX, 220, 0);
+                txtNameLast.text = m_StageInfos[m_CurrentIdx].idx + " " + m_StageInfos[m_CurrentIdx].musicName;
                 txtAuthorLast.text = "Music by " + m_StageInfos[m_CurrentIdx].musicAuthor;
-                var lerpNumLast = 1 -
-                                  scale *
-                                  (Mathf.Abs(pivot.transform.position.x - m_CellGroup[m_CurrentIdx].transform.position.x)) /
-                                  (Mathf.Sin(angle * Mathf.Deg2Rad) * radius);
+                var lerpNumLast = 1 - scale * Mathf.Abs(pivot.transform.position.x - m_CellGroup[m_CurrentIdx].transform.position.x) / ((Mathf.Sin(angle * Mathf.Deg2Rad) * radius));
                 txtNameLast.alpha = lerpNumLast;
                 txtAuthorLast.alpha = lerpNumLast;
-                txtNameLast.transform.parent.localPosition = Vector3.Lerp(offsetForInfo, new Vector3(0, 220, 0),
-                    lerpNumLast);
+                txtNameLast.transform.parent.localPosition = Vector3.Lerp(offsetForInfo, new Vector3(0, 220, 0), lerpNumLast);
+
+                /*var nextIdx = offsetX > 0 ? m_CurrentIdx - 1 < 0 ? m_StageInfos.Count - 1 : m_CurrentIdx - 1 : m_CurrentIdx + 1 > m_StageInfos.Count - 1 ? 0 : m_CurrentIdx + 1;
+                txtNameNext.text = m_StageInfos[nextIdx].idx + " " + m_StageInfos[nextIdx].musicName;
+                txtAuthorNext.text = "Music by " + m_StageInfos[nextIdx].musicAuthor;
+                var lerpNumNext = 1 - scale * ((Mathf.Abs(pivot.transform.position.x - m_CellGroup[nextIdx].transform.position.x)) / ((Mathf.Sin(angle * Mathf.Deg2Rad) / 2) * radius));
+                txtNameNext.alpha = lerpNumNext;
+                txtAuthorNext.alpha = lerpNumNext;
+                txtNameNext.transform.parent.localPosition = Vector3.Lerp(new Vector3(-offsetForInfo.x, 220.0f, 0.0f), new Vector3(0, 220, 0), lerpNumNext);*/
+
+                var startX = -570;
+                var endX = 535;
+                var progressPercent = ((m_ZAngle / angle + 2) % (m_CellGroup.Count)) / (m_CellGroup.Count - 1);
+                if (m_ZAngle < -80.0f)
+                {
+                    progressPercent = 1 + ((m_ZAngle / angle + 3) % (m_CellGroup.Count)) / (m_CellGroup.Count - 1);
+                }
+                var pos = Vector3.Lerp(new Vector3(startX, 12, 0), new Vector3(endX, 12, 0), progressPercent);
+                sprSongProgress.transform.localPosition = Vector3.Lerp(sprSongProgress.transform.localPosition, pos, Time.deltaTime * 5.0f);
+                var width = Mathf.Lerp(sprSongBkg.localSize.x, (endX - startX) * progressPercent + 10, Time.deltaTime * 5.0f);
+                sprSongBkg.SetRect(startX, 6, width, 12);
             }
         }
 
@@ -468,7 +526,7 @@ namespace Assets.Scripts.NGUI
                 OnEnergyInfoChange(false);
                 SceneAudioManager.Instance.bgm.Stop();
             }
-            var midIdx = Mathf.RoundToInt(-m_ZAngle / angle + 2);
+            var midIdx = Mathf.RoundToInt(m_ZAngle / angle + 2);
             midIdx %= m_CellGroup.Count;
             midIdx = midIdx < 0
                 ? midIdx + m_CellGroup.Count
@@ -489,15 +547,18 @@ namespace Assets.Scripts.NGUI
                 var xOffset = Mathf.Abs(go.transform.position.x - pivot.transform.position.x) * scale;
                 if (go.transform.localScale.x > maxCellScaleX)
                 {
-                    m_CurrentIdx = pair.Key;
+                    m_CurrentIdx = m_StageInfos[pair.Key].idx - 1;
                 }
-                if (idx == midIdx || idx == first || idx == second || idx == fourth || idx == fifth)
+                if (m_FinishEnter)
                 {
-                    go.SetActive(true);
-                }
-                else
-                {
-                    go.SetActive(false);
+                    if (idx == midIdx || idx == first || idx == second || idx == fourth || idx == fifth)
+                    {
+                        go.SetActive(true);
+                    }
+                    else
+                    {
+                        go.SetActive(false);
+                    }
                 }
                 go.transform.localScale = Vector3.Lerp(Vector3.one * minScale, Vector3.one * maxScale,
                     1 - xOffset / distanceToChangeScale);
@@ -538,10 +599,6 @@ namespace Assets.Scripts.NGUI
                     else if (absX <= x2)
                     {
                         offset = Vector3.Lerp(offset1, offset2, (absX - x1) / ditance1);
-                        if (idx == m_CurrentIdx + 1)
-                        {
-                            print(offset);
-                        }
                     }
                     else if (absX <= radius)
                     {
@@ -566,16 +623,18 @@ namespace Assets.Scripts.NGUI
 
         #region 资源加载
 
-		private IEnumerator LoadCoroutine(float wait) {
-			yield return new WaitForSeconds (wait);
-			if (m_IsSliding) {
-				yield return null;
-			}
+        private IEnumerator LoadCoroutine(float wait)
+        {
+            yield return new WaitForSeconds(wait);
+            if (m_IsSliding)
+            {
+                yield return null;
+            }
 
-			string musicPath = m_StageInfos[m_CurrentIdx].musicPath;
-			Debug.Log("Stage select load music : " + musicPath);
-			this.m_Coroutine = ResourceLoader.Instance.Load(musicPath, this.LoadSync);
-		}
+            string musicPath = m_StageInfos[m_CurrentIdx].musicPath;
+            Debug.Log("Stage select load music : " + musicPath);
+            this.m_Coroutine = ResourceLoader.Instance.Load(musicPath, this.LoadSync);
+        }
 
         private IEnumerator LoadCoroutine()
         {
@@ -645,7 +704,7 @@ namespace Assets.Scripts.NGUI
             {
                 var idx = i > m_CellGroup.Count - 1 ? i - m_CellGroup.Count : i;
                 var item = m_CellGroup[idx];
-                var myAngle = startAngle + (i - currentIdx) * angle;
+                var myAngle = startAngle - (i - currentIdx) * angle;
                 item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
                     Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
                 item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
@@ -655,7 +714,7 @@ namespace Assets.Scripts.NGUI
             {
                 var idx = i < 0 ? i + m_CellGroup.Count : i;
                 var item = m_CellGroup[idx];
-                var myAngle = startAngle - (currentIdx - i) * angle;
+                var myAngle = startAngle + (currentIdx - i) * angle;
                 item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
                     Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
                 item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
@@ -664,15 +723,15 @@ namespace Assets.Scripts.NGUI
         }
 
         public void PlayMusic(int idx)
-		{
-			idx -= 1;
-			if (m_Coroutine != null) {
-				StopCoroutine (m_Coroutine);
-			}
+        {
+            idx -= 1;
+            if (m_Coroutine != null)
+            {
+                StopCoroutine(m_Coroutine);
+            }
 
-			//m_Request = Resources.LoadAsync(m_StageInfos[m_CurrentIdx].musicPath) as ResourceRequest;
-			m_Coroutine = StartCoroutine (LoadCoroutine (this.loadDelay));
-		}
+            m_Coroutine = StartCoroutine(LoadCoroutine(this.loadDelay));
+        }
 
         public void ResetPos()
         {
@@ -682,7 +741,7 @@ namespace Assets.Scripts.NGUI
             for (int i = 0; i < m_CellGroup.Count; i++)
             {
                 var item = m_CellGroup[i];
-                var myAngle = angleOffset + i * angle;
+                var myAngle = angleOffset - i * angle;
                 item.transform.localPosition = radius * new Vector3(Mathf.Cos(myAngle * Mathf.Deg2Rad),
                     Mathf.Sin(myAngle * Mathf.Deg2Rad), 0.0f);
                 item.transform.up = Vector3.Normalize(item.transform.position - pivot.transform.position);
@@ -695,15 +754,36 @@ namespace Assets.Scripts.NGUI
             m_FinishEnter = false;
             idx--;
             m_CurrentIdx = idx;
-            m_ZAngle -= angle * (idx - 2 - numFrom);
+            m_ZAngle += angle * (idx - 2 - numFrom);
             var angleAxis = new Vector3(0, 0, m_ZAngle);
             pivot.transform.localEulerAngles = angleAxis;
-            var offset = new Vector3(0, 0, -numFrom * angle);
+            var offset = new Vector3(0, 0, numFrom * angle);
             OnChangeOffset(offset, animDuration);
             DOTweenUtil.Delay(() =>
             {
                 m_FinishEnter = true;
             }, animDuration);
+
+            var first = idx - 2;
+            first = first < 0 ? first + m_CellGroup.Count : first;
+            var second = idx - 1;
+            second = second < 0 ? m_CellGroup.Count + second : second;
+            var fourth = idx + 1;
+            fourth = fourth > m_CellGroup.Count - 1 ? fourth - m_CellGroup.Count : fourth;
+            var fifth = idx + 2;
+            fifth = fifth > m_CellGroup.Count - 1 ? fifth - m_CellGroup.Count : fifth;
+            foreach (var cell in m_CellGroup)
+            {
+                var i = cell.Key;
+                if (i == first || i == second || i == fourth || i == fifth || i == idx)
+                {
+                    cell.Value.SetActive(true);
+                }
+                else
+                {
+                    cell.Value.SetActive(false);
+                }
+            }
         }
 
         #endregion 操作
