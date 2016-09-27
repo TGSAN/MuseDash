@@ -431,22 +431,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1000011512447536
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 4000014014045252}
-  - 114: {fileID: 114000013075525744}
-  m_Layer: 5
-  m_Name: Sprite
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1000011517087344
 GameObject:
   m_ObjectHideFlags: 1
@@ -458,6 +442,22 @@ GameObject:
   - 114: {fileID: 114000014069581124}
   m_Layer: 5
   m_Name: Diffculty15
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000011521911502
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010463457242}
+  - 114: {fileID: 114000013898956236}
+  m_Layer: 5
+  m_Name: SprBkg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -746,6 +746,22 @@ GameObject:
   - 114: {fileID: 114000013094287474}
   m_Layer: 5
   m_Name: Diffculty25
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000012832778706
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000014078211870}
+  - 114: {fileID: 114000011093335780}
+  m_Layer: 5
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1117,7 +1133,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012061963846}
-  - 114: {fileID: 114000010795697256}
   - 114: {fileID: 114000013242891554}
   m_Layer: 5
   m_Name: PnlStageChose
@@ -1370,6 +1385,19 @@ Transform:
   - {fileID: 4000011384645592}
   m_Father: {fileID: 4000011998230846}
   m_RootOrder: 2
+--- !u!4 &4000010463457242
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011521911502}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -570, y: 12, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000011336359064}
+  m_RootOrder: 0
 --- !u!4 &4000010475318072
 Transform:
   m_ObjectHideFlags: 1
@@ -1613,7 +1641,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 4000014014045252}
+  - {fileID: 4000010463457242}
+  - {fileID: 4000014078211870}
   m_Father: {fileID: 4000010314800212}
   m_RootOrder: 1
 --- !u!4 &4000011373991512
@@ -2182,19 +2211,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000010578673506}
   m_RootOrder: 27
---- !u!4 &4000014014045252
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011512447536}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -569.81, y: 12, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 4000011336359064}
-  m_RootOrder: 0
 --- !u!4 &4000014015474882
 Transform:
   m_ObjectHideFlags: 1
@@ -2221,6 +2237,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000011646852960}
   m_RootOrder: 0
+--- !u!4 &4000014078211870
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012832778706}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -570, y: 12, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000011336359064}
+  m_RootOrder: 1
 --- !u!4 &4000014138669132
 Transform:
   m_ObjectHideFlags: 1
@@ -2454,7 +2483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 500
   angle: 40
-  angleOffset: 10
+  angleOffset: 170
   sensitivity: 0.2
   elasticSpeed: 200
   maxMoveDistance: 5
@@ -2462,13 +2491,34 @@ MonoBehaviour:
   nextPageTime: 0.15
   slideSpeed: 200
   delaySlideTime: 0.2
-  minMaxSlide: {x: 0.01, y: 20}
-  numFrom: 5
-  animDuration: 1
+  minMaxSlide: {x: 0.01, y: 10}
+  numFrom: -5
+  animDuration: 0.8
   txtOffsetX: 100
   maxMinAlpha: {x: 0, y: 0.6}
   eneryAnimDurationEnter: 0.2
   eneryAnimDurationLeave: 0.1
+  energyCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0.7966701
+      outSlope: 0.7966701
+      tangentMode: 10
+    - time: 0.9528846
+      value: 0.75913465
+      inSlope: 2.954457
+      outSlope: 2.954457
+      tangentMode: 10
+    - time: 1
+      value: 1
+      inSlope: 5.112244
+      outSlope: 5.112244
+      tangentMode: 10
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
   distanceToChangeScale: 200
   minScale: 0.7
   maxScale: 1
@@ -2478,10 +2528,13 @@ MonoBehaviour:
   distanceToChangeColor: 400
   min: {r: 0.38235295, g: 0.38235295, b: 0.38235295, a: 1}
   max: {r: 1, g: 1, b: 1, a: 1}
+  animDT: 0.6
   pivot: {fileID: 4000010164591494}
   cell: {fileID: 1000013396040682, guid: 3b156c2fb3d1bb74a989ad57e73c200d, type: 2}
   leftButton: {fileID: 1000010325325654}
   rightButton: {fileID: 1000011207080700}
+  txtNameNext: {fileID: 114000012512793212}
+  txtAuthorNext: {fileID: 114000014114681784}
   txtNameLast: {fileID: 114000011783523926}
   txtAuthorLast: {fileID: 114000010417483050}
   txtEnergyLast: {fileID: 114000014216878604}
@@ -2489,6 +2542,8 @@ MonoBehaviour:
   energy: {fileID: 1000013469105228}
   difficulty: {fileID: 1000014227668906}
   btnStart: {fileID: 1000011444358426}
+  sprSongProgress: {fileID: 114000011093335780}
+  sprSongBkg: {fileID: 114000013898956236}
   loadDelay: 0.5
   resolution: 1024
   lowFreqThreshold: 14700
@@ -3399,17 +3454,6 @@ MonoBehaviour:
   mSortingOrder: 12
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
---- !u!114 &114000010795697256
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013704530930}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000010813864358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3850,6 +3894,59 @@ MonoBehaviour:
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
   mBorder: {x: 0, y: 0, z: 0, w: 0}
   mFixedAspect: 0
+--- !u!114 &114000011093335780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012832778706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 0.42019895, g: 0.37673008, b: 0.49264705, a: 1}
+  mPivot: 3
+  mWidth: 32
+  mHeight: 12
+  mDepth: 135
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 2.6666667
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11405424, guid: 65f66dd2f3cd949b28da34f9929d6faf, type: 2}
+  mSpriteName: sld_stage_progress
+  mFillCenter: 1
 --- !u!114 &114000011230672060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4850,7 +4947,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3010
+  startingRenderQueue: 3005
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -5386,59 +5483,6 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
---- !u!114 &114000013075525744
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011512447536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  bottomAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 0.296}
-  mPivot: 3
-  mWidth: 32
-  mHeight: 12
-  mDepth: 132
-  autoResizeBoxCollider: 0
-  hideIfOffScreen: 0
-  keepAspectRatio: 0
-  aspectRatio: 2.6666667
-  mType: 1
-  mFillDirection: 4
-  mFillAmount: 1
-  mInvert: 0
-  mFlip: 0
-  mApplyGradient: 0
-  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  centerType: 1
-  leftType: 1
-  rightType: 1
-  bottomType: 1
-  topType: 1
-  mAtlas: {fileID: 11405424, guid: 65f66dd2f3cd949b28da34f9929d6faf, type: 2}
-  mSpriteName: sld_stage_progress
-  mFillCenter: 1
 --- !u!114 &114000013090393692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5672,7 +5716,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3005
+  startingRenderQueue: 3007
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6464,6 +6508,59 @@ MonoBehaviour:
   topType: 1
   mAtlas: {fileID: 11405424, guid: 65f66dd2f3cd949b28da34f9929d6faf, type: 2}
   mSpriteName: difficulty_5
+  mFillCenter: 1
+--- !u!114 &114000013898956236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011521911502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 0.72794116, g: 0.88022304, b: 0.9705882, a: 1}
+  mPivot: 3
+  mWidth: 10
+  mHeight: 12
+  mDepth: 132
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 0.8333333
+  mType: 1
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11405424, guid: 65f66dd2f3cd949b28da34f9929d6faf, type: 2}
+  mSpriteName: sld_stage_progress
   mFillCenter: 1
 --- !u!114 &114000014069581124
 MonoBehaviour:
