@@ -492,18 +492,18 @@ namespace Assets.Scripts.NGUI
                 var offsetForInfo = new Vector3(offsetX < 0 ? txtOffsetX : -txtOffsetX, 220, 0);
                 txtNameLast.text = m_StageInfos[m_CurrentIdx].idx + " " + m_StageInfos[m_CurrentIdx].musicName;
                 txtAuthorLast.text = "Music by " + m_StageInfos[m_CurrentIdx].musicAuthor;
-                var lerpNumLast = 1 - scale * Mathf.Abs(pivot.transform.position.x - m_CellGroup[m_CurrentIdx].transform.position.x) / ((Mathf.Sin(angle * Mathf.Deg2Rad) * radius));
+                var lerpNumLast = 1 - scale * Mathf.Abs(pivot.transform.position.x - m_CellGroup[m_CurrentIdx].transform.position.x) / (((Mathf.Sin(angle * Mathf.Deg2Rad) * radius)) / 2);
                 txtNameLast.alpha = lerpNumLast;
                 txtAuthorLast.alpha = lerpNumLast;
                 txtNameLast.transform.parent.localPosition = Vector3.Lerp(offsetForInfo, new Vector3(0, 220, 0), lerpNumLast);
 
-                /*var nextIdx = offsetX > 0 ? m_CurrentIdx - 1 < 0 ? m_StageInfos.Count - 1 : m_CurrentIdx - 1 : m_CurrentIdx + 1 > m_StageInfos.Count - 1 ? 0 : m_CurrentIdx + 1;
+                var nextIdx = offsetX > 0 ? m_CurrentIdx - 1 < 0 ? m_StageInfos.Count - 1 : m_CurrentIdx - 1 : m_CurrentIdx + 1 > m_StageInfos.Count - 1 ? 0 : m_CurrentIdx + 1;
                 txtNameNext.text = m_StageInfos[nextIdx].idx + " " + m_StageInfos[nextIdx].musicName;
                 txtAuthorNext.text = "Music by " + m_StageInfos[nextIdx].musicAuthor;
-                var lerpNumNext = 1 - scale * ((Mathf.Abs(pivot.transform.position.x - m_CellGroup[nextIdx].transform.position.x)) / ((Mathf.Sin(angle * Mathf.Deg2Rad) / 2) * radius));
+                var lerpNumNext = 1 - scale * Mathf.Abs(pivot.transform.position.x - m_CellGroup[nextIdx].transform.position.x) / (((Mathf.Sin(angle * Mathf.Deg2Rad) * radius)) / 2);
                 txtNameNext.alpha = lerpNumNext;
                 txtAuthorNext.alpha = lerpNumNext;
-                txtNameNext.transform.parent.localPosition = Vector3.Lerp(new Vector3(-offsetForInfo.x, 220.0f, 0.0f), new Vector3(0, 220, 0), lerpNumNext);*/
+                txtNameNext.transform.parent.localPosition = Vector3.Lerp(new Vector3(-offsetForInfo.x, 220.0f, 0.0f), new Vector3(0, 220, 0), lerpNumNext);
 
                 var startX = -570;
                 var endX = 535;

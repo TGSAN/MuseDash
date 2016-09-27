@@ -180,6 +180,8 @@ namespace PnlCharChose
 
         public override void OnShow()
         {
+            choseType = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
+            OnCharacterChange(choseType);
         }
 
         public override void OnHide()
