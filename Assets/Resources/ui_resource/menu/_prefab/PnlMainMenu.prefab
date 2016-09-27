@@ -1879,7 +1879,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011219755856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -92, y: -50, z: -40}
+  m_LocalPosition: {x: -92, y: -50, z: 0}
   m_LocalScale: {x: 25, y: 25, z: 25}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1921,7 +1921,7 @@ Transform:
   m_GameObject: {fileID: 1000010954278780}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -40}
-  m_LocalScale: {x: 70, y: 70, z: 70}
+  m_LocalScale: {x: 38, y: 38, z: 38}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011498676062}
@@ -2206,7 +2206,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014220641278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -207, y: 0, z: 0}
+  m_LocalPosition: {x: -207, y: 0, z: 11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2429,7 +2429,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013446493068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -40}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 70, y: 70, z: 70}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -2455,7 +2455,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012607842920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -92, y: -50, z: -40}
+  m_LocalPosition: {x: -92, y: -50, z: 0}
   m_LocalScale: {x: 25, y: 25, z: 25}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -3022,7 +3022,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011677975194}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -92, y: -50, z: -40}
+  m_LocalPosition: {x: -92, y: -50, z: 0}
   m_LocalScale: {x: 25, y: 25, z: 25}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -3152,7 +3152,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010783003374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -92, y: -50, z: -40}
+  m_LocalPosition: {x: -92, y: -50, z: 0}
   m_LocalScale: {x: 25, y: 25, z: 25}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -3576,10 +3576,10 @@ MeshRenderer:
   m_GameObject: {fileID: 1000010954278780}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 0
-  m_MotionVectors: 0
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: a05848bc1d2ab41f7a1fab99de0e8d42, type: 2}
   m_SubsetIndices: 
@@ -3755,7 +3755,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010954278780}
-  m_Mesh: {fileID: 4300000, guid: c9d3995486eb68546a1b982da4b86e79, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 81925dc9a2e774938885b705e88d4703, type: 3}
 --- !u!33 &33000010916755600
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -4518,32 +4518,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: -0.0031322837
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - time: 0.36
-      value: -0.0031322837
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.393
-      value: -0.043132283
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.496
-      value: 1.033
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - time: 0.53
-      value: 0.9968677
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - time: 1
-      value: 0.9968677
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -6330,7 +6320,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3035
+  startingRenderQueue: 3028
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -7030,16 +7020,6 @@ MonoBehaviour:
       value: 0
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
-    - time: 0.423
-      value: -0.04
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.54
-      value: 1
-      inSlope: 5.337894
-      outSlope: 5.337894
       tangentMode: 0
     - time: 0.5754386
       value: 1
@@ -7857,32 +7837,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: -0.0031322837
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 0.33300614
-      value: -0.0031322837
+    - time: 0.333
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 0.36600614
-      value: -0.043132283
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.46900612
-      value: 1.033
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.5030061
-      value: 0.9968677
+    - time: 0.5
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - time: 1
-      value: 0.9968677
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
