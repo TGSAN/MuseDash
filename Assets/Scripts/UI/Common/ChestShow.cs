@@ -42,7 +42,7 @@ public class ChestShow : MonoBehaviour {
 		if (m_host.GetDynamicIntByKey (SignKeys.CHESTREMAINING_TIME) == 0) {
 			ClickExitMask (null);
 		} else {
-			//m_ChestLeftTime.text = ChestManageComponent.Instance.GetChestAllTime (m_host);
+			m_ChestLeftTime.text = ChestManageComponent.Instance.GetChestAllTime (m_host);
 		}
 	}
 
@@ -111,7 +111,7 @@ public class ChestShow : MonoBehaviour {
 		//设置空闲那句话
 		//m_RightMoneyIcon.gameObject.SetActive(false);
 		//在队列中进入
-		//m_ChestLeftTime.text = ChestManageComponent.Instance.GetChestAllTime (m_host);
+		m_ChestLeftTime.text = ChestManageComponent.Instance.GetChestAllTime (m_host);
 		//	m_RightButton.text="Sale";
 		//RightButton.onClick.Add(new EventDelegate( SaleChestInGridCell));
 		if (_Queue) {
@@ -171,7 +171,7 @@ public class ChestShow : MonoBehaviour {
 			m_Show3DCube.ShowCube ((int)m_host.GetDynamicDataByKey (SignKeys.QUALITY));
 		}
 		//剩余时间换金钱
-		//m_CostMoney.text = ChestManageComponent.Instance.GetOpenChestMoney (m_host).ToString ();
+		m_CostMoney.text = ChestManageComponent.Instance.GetOpenChestMoney (m_host).ToString ();
 		//m_Show3DCube.ShowCube((int)m_host.GetDynamicDataByKey(SignKeys.QUALITY));
 		Debug.Log ("设置宝箱的信息");
 	}
@@ -204,9 +204,9 @@ public class ChestShow : MonoBehaviour {
 		//ChestManageComponent.Instance
 
 		//	this.gameObject.SetActive(false);
-		//m_host.SetDynamicData (SignKeys.CHESTQUEUE, ChestManageComponent.Instance.GetOwnedChestNumber () + 1);
-		//ChestManageComponent.Instance.GetChestList.Add (m_host);
-		//ItemManageComponent.Instance.GetChestList.Remove (m_host);
+		m_host.SetDynamicData (SignKeys.CHESTQUEUE, ChestManageComponent.Instance.GetOwnedChestNumber () + 1);
+		ChestManageComponent.Instance.GetChestList.Add (m_host);
+		ItemManageComponent.Instance.GetChestList.Remove (m_host);
 		m_host.Save (new HttpResponseDelegate (ClickCostMoneyBuyGridCallBack));
 	}
 
@@ -216,7 +216,7 @@ public class ChestShow : MonoBehaviour {
 		ClickExitMask (null);
 		if (_success) {
 			//Messenger.Broadcast(LevelPrepaerPanel.BraodCast_RestChestEmpty);
-			//Messenger.Broadcast (bagPanel2.BroadcastBagItem);
+			Messenger.Broadcast (bagPanel2.BroadcastBagItem);
 			//Messenger.Broadcast (MainMenuPanel.BroadcastChangeDiamond);
 			Debug.Log ("删除UI");
 			UIManageSystem.g_Instance.RomoveUI ();
@@ -260,9 +260,9 @@ public class ChestShow : MonoBehaviour {
 			
 			//	UIManageSystem.g_Instance.RomoveUI();
 			//刷新背包
-			//Messenger.Broadcast (bagPanel2.BroadcastBagItem);
+			Messenger.Broadcast (bagPanel2.BroadcastBagItem);
 			//Messenger.Broadcast (MainMenuPanel.BroadcastChangeMoney);
-			//Messenger.Broadcast (bagPanel2.BroadcastBagUpSize);
+			Messenger.Broadcast (bagPanel2.BroadcastBagUpSize);
 
 		} else {
 			NGUIDebug.Log ("connet is fail");
@@ -336,7 +336,7 @@ public class ChestShow : MonoBehaviour {
 	public void ChestMoveCallBack(bool _success)
 	{
 		if (_success) {
-			//Messenger.Broadcast (bagPanel2.BroadcastBagItem);
+			Messenger.Broadcast (bagPanel2.BroadcastBagItem);
 			//CommonPanel.GetInstance().CloseBlur(this.gameObject);
 			CommonPanel.GetInstance ().CloseBlur (null);
 			Debug.Log ("删除UI");
@@ -349,8 +349,7 @@ public class ChestShow : MonoBehaviour {
 	public RewardPanel m_RewardPanel;
 	public void CLickOPenNowButton() {
 		//int money2=(int)ChestManageComponent.Instance.GetOpenChestMoney(m_host2);
-		//int money = (int)ChestManageComponent.Instance.GetOpenChestMoney (m_host);
-		int money = 0;
+		int money = (int)ChestManageComponent.Instance.GetOpenChestMoney (m_host);
 		//=_host;
 		bool _result = AccountCrystalManagerComponent.Instance.ChangeDiamond (-money, true, new HttpResponseDelegate (((bool result) => {
 			if (!result) {

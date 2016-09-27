@@ -17,7 +17,6 @@ namespace FormulaBase {
 			{ "items", "items/_config/"},
 			{ "notedata", "note/_config/"},
 			{ "pet", "servant/_config/"},
-			{ "stage", "stage/_config/"},
 			{ "tutorial_new1", "stage/stage_0/"},
 			{ "shall_we_meet1", "stage/stage_1/"},
 			{ "shall_we_meet2", "stage/stage_1/"},
@@ -80,6 +79,7 @@ namespace FormulaBase {
 			{ "test_s041", "stage/stage_test/"},
 			{ "test_s051", "stage/stage_test/"},
 			{ "test_scene_event1", "stage/stage_test/"},
+			{ "stage", "stage/_config/"},
 		};
 	}
 }

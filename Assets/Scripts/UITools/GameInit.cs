@@ -62,7 +62,6 @@ public class GameInit : MonoBehaviour {
 		FormulaBase.EquipManageComponent.Instance.Init ();//初始化装s备
 		FormulaBase.materialManageComponent.Instance.Init ();	//初始化材料
 		FormulaBase.PetManageComponent.Instance.Init ();//初始化宠物
-		FormulaBase.ChestManageComponent.Instance.Init ();
 		FormulaBase.ItemManageComponent.Instance.Init ();//背包初始化 放在所有道具之后
 	}
 

@@ -18,16 +18,16 @@ public class StrengthenItem : MonoBehaviour {
 		switch(LevelUpPanel.m_LevelUpPanelState)
 		{
 		case LevelUpPanelState.LevelUpPanelState_ChoseEquip:
-			//UIManageSystem.g_Instance.AddUI(UIManageSystem.UIBAGPANEL,(int)BagPanel2State.BagPanel2_ShowEquip*10+(int)BagPanelState2.BagPanelState2_Chosed,m_LevelUpPanel.m_host,true);
+			UIManageSystem.g_Instance.AddUI(UIManageSystem.UIBAGPANEL,(int)BagPanel2State.BagPanel2_ShowEquip*10+(int)BagPanelState2.BagPanelState2_Chosed,m_LevelUpPanel.m_host,true);
 			break;
 		case LevelUpPanelState.LevelUpPanelState_ChoseHeroFood:
 		case LevelUpPanelState.LevelUpPanelState_ChosePetFood:
 
 			Debug.Log("显示食物");
-			//UIManageSystem.g_Instance.AddUI(UIManageSystem.UIBAGPANEL,(int)BagPanel2State.BagPanel2_ShowFood*10+(int)BagPanelState2.BagPanelState2_Chosed,m_LevelUpPanel.m_host,true);
+			UIManageSystem.g_Instance.AddUI(UIManageSystem.UIBAGPANEL,(int)BagPanel2State.BagPanel2_ShowFood*10+(int)BagPanelState2.BagPanelState2_Chosed,m_LevelUpPanel.m_host,true);
 			break;
 		}
-		//Messenger.Broadcast<bool>(ItemInfoPanel.ItemInfoChoseItem,true);
+		Messenger.Broadcast<bool>(ItemInfoPanel.ItemInfoChoseItem,true);
 		//m_LevelUpPanel.ChoseItem(true);
 		StartCoroutine("ShowBag");
 //		if(m_host==null)

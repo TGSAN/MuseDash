@@ -25,10 +25,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11405424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -57,7 +57,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: button_cancel_s
     x: 342
-    y: 124
+    y: 74
     width: 80
     height: 70
     borderLeft: 28
@@ -82,8 +82,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: button_confirm_s
-    x: 424
-    y: 124
+    x: 342
+    y: 2
     width: 80
     height: 70
     borderLeft: 28
@@ -148,7 +148,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: tag_base
     x: 342
-    y: 196
+    y: 146
     width: 156
     height: 40
     borderLeft: 0
@@ -160,12 +160,38 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: text_base
-    x: 342
-    y: 52
+    x: 424
+    y: 74
     width: 80
     height: 70
     borderLeft: 26
     borderRight: 26
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: tip_base
+    x: 424
+    y: 27
+    width: 60
+    height: 45
+    borderLeft: 15
+    borderRight: 15
+    borderTop: 32
+    borderBottom: 10
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: tip_title
+    x: 342
+    y: 188
+    width: 166
+    height: 48
+    borderLeft: 0
+    borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0

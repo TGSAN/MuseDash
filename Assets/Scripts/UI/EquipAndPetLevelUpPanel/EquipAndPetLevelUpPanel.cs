@@ -196,7 +196,7 @@ public class EquipAndPetLevelUpPanel : UIPanelBase {
 	{
 		Debug.Log("CloseUIAnimationFinishFinish>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		Messenger.Broadcast(BroadEquipAnPetAnimationFinish);
-		//Messenger.Broadcast(ItemInfoPanel.BroadUseItemtolevelupBallAni);
+		Messenger.Broadcast(ItemInfoPanel.BroadUseItemtolevelupBallAni);
 		//Messenger.Broadcast(BroadEquipAnPetAnimationFinish2);
 		UIManageSystem.g_Instance.RomoveUI();
 	

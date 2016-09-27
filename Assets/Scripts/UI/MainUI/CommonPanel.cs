@@ -170,9 +170,9 @@ public class CommonPanel : MonoBehaviour {
 
 	void CountChestTime()
 	{
-		//if(ChestManageComponent.Instance.GetOwnedChestNumber()==0)
-		//	return ;
-		//Debug.Log("减宝箱激活时间");
+		if(ChestManageComponent.Instance.GetOwnedChestNumber()==0)
+			return ;
+		Debug.Log("减宝箱激活时间");
 //		int time=(int)ChestManageComponent.Instance.GetChestList[0].GetDynamicDataByKey(SignKeys.CHESTREMAINING_TIME);
 //		time--;
 //

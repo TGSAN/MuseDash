@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000013921830188}
-  - 114: {fileID: 114000011031826120}
   m_Layer: 5
   m_Name: ItemImage
   m_TagString: Untagged
@@ -102,10 +101,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013921830188}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000012657005402
 Transform:
   m_ObjectHideFlags: 1
@@ -115,10 +114,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.000030517578, y: -84.00003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013921830188}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000013921830188
 Transform:
   m_ObjectHideFlags: 1
@@ -128,6 +127,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000010134629694}
   - {fileID: 4000013979474182}
@@ -135,7 +135,6 @@ Transform:
   - {fileID: 4000012657005402}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000013979474182
 Transform:
   m_ObjectHideFlags: 1
@@ -145,10 +144,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013921830188}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000014245163888
 Transform:
   m_ObjectHideFlags: 1
@@ -158,10 +157,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013921830188}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114000010951344378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -215,22 +214,6 @@ MonoBehaviour:
   mAtlas: {fileID: 114000014215409208, guid: 065a9f9a2625e1e46b008ee2236c6541, type: 2}
   mSpriteName: groove_space
   mFillCenter: 1
---- !u!114 &114000011031826120
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011386559160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 333b72c1cacfd46ea9ae37a7574390ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSingleInstanceUI: 0
-  isShowOnLoaded: 1
-  widgets:
-  - {fileID: 114000011746889584}
-  - {fileID: 114000013395762626}
 --- !u!114 &114000011746889584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -242,13 +225,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  root: {fileID: 1000011386559160}
+  root: {fileID: 0}
   clickResponseObjects: []
   clickResponseParentNames: []
   clickResponseObjectsIsShow: 
   clickResponseParentNamesIsShow: 
-  clickResponseObjectAnimations: []
-  clickResponseParentAnimations: []
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
@@ -401,13 +382,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  root: {fileID: 1000011386559160}
+  root: {fileID: 0}
   clickResponseObjects: []
   clickResponseParentNames: []
   clickResponseObjectsIsShow: 
   clickResponseParentNamesIsShow: 
-  clickResponseObjectAnimations: []
-  clickResponseParentAnimations: []
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0

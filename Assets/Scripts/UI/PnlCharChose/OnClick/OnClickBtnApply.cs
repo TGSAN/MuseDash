@@ -3,8 +3,8 @@
 /// 
 using System;
 using UnityEngine;
-namespace PnlAchievementInfo {
-	public class OnClickBtnMask : UIPhaseOnClickBase {
+namespace PnlCharChose {
+	public class OnClickBtnApply : UIPhaseOnClickBase {
 		public static void Do(GameObject gameObject) {
 				OnDo(gameObject);
 		}

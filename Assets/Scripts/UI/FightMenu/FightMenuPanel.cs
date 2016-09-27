@@ -92,11 +92,26 @@ public class FightMenuPanel : MonoBehaviour {
 		this.m_HpNewBlack.Play (true);
 	}
 
+	private IEnumerator WaitForFiveS() {
+		yield return new WaitForSeconds (5f);
+
+		StageBattleComponent.Instance.GameStart (null, 0, null);
+	}
+
 	void OnEnable() {
 		instance = this;
 		//m_pause.enabled = false;
 		this.PlayHeartAnimation = false;
 		m_MusicInfo.SetActive (true);
+
+		this.StartCoroutine (this.FullHp ());
+		this.StartCoroutine (this.ReadygoAniPlay ());
+		this.StartCoroutine (this.ShowTopInfo ());
+		this.StartCoroutine (this.ShowSongInfo ());
+		this.StartCoroutine (this.WaitForFiveS ());
+		this.StartCoroutine (this.HeroComeOut ());
+
+		this.StartCoroutine (this.__OnEnable ());
 	}
 
 	void Start () {
@@ -108,20 +123,26 @@ public class FightMenuPanel : MonoBehaviour {
 
 		this.m_UpGround.gameObject.SetActive (false);
 		this.m_DownGround.gameObject.SetActive (false);
+		/*
+		this.InitScore ();
+		m_MusicName.text = (string)FormulaBase.StageBattleComponent.Instance.GetStageDesName ();
+		m_MusicAuthor.text = (string)FormulaBase.StageBattleComponent.Instance.GetStageAuthorName ();
+		this.SetScore (0);
+		this.SetProgressBar (0);
+		this.ChangeSongProgress (0f);
+		this.m_SongSilder.onDragFinished = this.OnChangeSongProgress;
+		this.m_SongSilder.gameObject.SetActive (GameGlobal.IS_DEBUG);
+
+		showFullHp = false;
+		this.m_UpGround.gameObject.SetActive (false);
+		this.m_DownGround.gameObject.SetActive (false);
+
+		StartCoroutine ("FullHp");
+		*/
 	}
 
 	public void UnShow() {
 		this.gameObject.SetActive (false);
-	}
-
-	public void OnStageReady() {
-		this.StartCoroutine (this.FullHp ());
-		this.StartCoroutine (this.ReadygoAniPlay ());
-		this.StartCoroutine (this.ShowTopInfo ());
-		this.StartCoroutine (this.ShowSongInfo ());
-		this.StartCoroutine (this.HeroComeOut ());
-
-		this.StartCoroutine (this.__OnEnable ());
 	}
 
 	public void OnStageEnd() {

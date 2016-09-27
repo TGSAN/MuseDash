@@ -65,7 +65,7 @@ public class SaleBoxPanel : MonoBehaviour {
 	public void ClickAddSpaceButton()
 	{
 		BagManageComponent.Instance.UpBag();
-		//Messenger.Broadcast(bagPanel2.BroadcastBagUpSize);
+		Messenger.Broadcast(bagPanel2.BroadcastBagUpSize);
 
 
 		HideAll();
