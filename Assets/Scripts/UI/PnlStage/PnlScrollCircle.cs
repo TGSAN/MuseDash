@@ -338,7 +338,9 @@ namespace Assets.Scripts.NGUI
             var hosts = TaskStageTarget.Instance.GetList("Task");
             foreach (var host in hosts)
             {
-                trophySum += host.Value.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_CRT_COUNT);
+                trophySum +=
+                    host.Value.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_EVLUATE +
+                                                  TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
             }
             txtTrophySum.text = trophySum.ToString();
         }
@@ -366,8 +368,21 @@ namespace Assets.Scripts.NGUI
         private void OnScrollEnd()
         {
             m_IsSliding = false;
-            onSongChange(m_CurrentIdx);
+            PnlStage.PnlStage.Instance.OnSongChanged(currentSongIdx);
             OnEnergyInfoChange(true);
+            OnTrophyChange();
+            onSongChange(m_CurrentIdx);
+        }
+
+        public void OnTrophyChange()
+        {
+            var trophyNum = TaskStageTarget.Instance.GetXMax(TaskStageTarget.TASK_SIGNKEY_STAGE_EVLUATE);
+            print(trophyNum);
+            for (int i = 0; i < trophyParent.childCount; i++)
+            {
+                var child = trophyParent.GetChild(i);
+                child.GetChild(0).gameObject.SetActive(i < trophyNum);
+            }
         }
 
         public void OnEnergyInfoChange(bool change)
@@ -387,7 +402,7 @@ namespace Assets.Scripts.NGUI
                 m_EnergyTweener2 = energy.transform.DOScale(1.0f, eneryAnimDurationEnter).SetEase(energyCurve);
                 var cost = 1f;
                 var diff = 1;
-                var trophyNum = TaskStageTarget.Instance.GetStageEvluateMax();
+
                 if (StageBattleComponent.Instance.Host != null)
                 {
                     diff = StageBattleComponent.Instance.Host.GetDynamicIntByKey(SignKeys.DIFFCULT);
@@ -438,11 +453,6 @@ namespace Assets.Scripts.NGUI
                 {
                     m_PreDiff = diff;
                 });
-                for (int i = 0; i < trophyParent.childCount; i++)
-                {
-                    var child = trophyParent.GetChild(i);
-                    child.GetChild(0).gameObject.SetActive(i < trophyNum);
-                }
             }
             else
             {
@@ -648,46 +658,46 @@ namespace Assets.Scripts.NGUI
             this.m_Coroutine = ResourceLoader.Instance.Load(musicPath, this.LoadSync);
         }
 
-        private IEnumerator LoadCoroutine()
-        {
-            while (m_Request.isDone)
-            {
-                yield return null;
-            }
-            var clip = m_Request.asset as AudioClip;
-            while (!clip.isReadyToPlay)
-            {
-                yield return null;
-            }
-            var percent = 15.0f / clip.length;
-            var length = Mathf.RoundToInt((float)(clip.channels * clip.samples) * percent);
-            var data = new float[length];
-            var name = clip.name;
-            clip.GetData(data, 0);
-            //Resources.UnloadAsset(clip);
-            if (this.m_CatchClip != null)
-            {
-                Resources.UnloadAsset(this.m_CatchClip);
-            }
+        /*        private IEnumerator LoadCoroutine()
+                {
+                    while (m_Request.isDone)
+                    {
+                        yield return null;
+                    }
+                    var clip = m_Request.asset as AudioClip;
+                    while (!clip.isReadyToPlay)
+                    {
+                        yield return null;
+                    }
+                    var percent = 15.0f / clip.length;
+                    var length = Mathf.RoundToInt((float)(clip.channels * clip.samples) * percent);
+                    var data = new float[length];
+                    var name = clip.name;
+                    clip.GetData(data, 0);
+                    //Resources.UnloadAsset(clip);
+                    if (this.m_CatchClip != null)
+                    {
+                        Resources.UnloadAsset(this.m_CatchClip);
+                    }
 
-            this.m_CatchClip = clip;
+                    this.m_CatchClip = clip;
 
-            var newClip = AudioClip.Create(name, data.Length, 2, 44100, false);
-            newClip.SetData(data, 0);
-            while (!newClip.isReadyToPlay)
-            {
-                yield return null;
-            }
-            var audioSource = SceneAudioManager.Instance.bgm;
-            if (audioSource.clip != newClip)
-            {
-                Destroy(audioSource.clip);
-            }
-            audioSource.clip = newClip;
-            audioSource.Play();
-            audioSource.loop = true;
-            PnlStage.PnlStage.Instance.OnSongChanged(currentSongIdx);
-        }
+                    var newClip = AudioClip.Create(name, data.Length, 2, 44100, false);
+                    newClip.SetData(data, 0);
+                    while (!newClip.isReadyToPlay)
+                    {
+                        yield return null;
+                    }
+                    var audioSource = SceneAudioManager.Instance.bgm;
+                    if (audioSource.clip != newClip)
+                    {
+                        Destroy(audioSource.clip);
+                    }
+                    audioSource.clip = newClip;
+                    audioSource.Play();
+                    audioSource.loop = true;
+                    PnlStage.PnlStage.Instance.OnSongChanged(currentSongIdx);
+                }*/
 
         private void LoadSync(UnityEngine.Object res)
         {
@@ -701,7 +711,6 @@ namespace Assets.Scripts.NGUI
             audioSource.clip = newClip;
             audioSource.Play();
             audioSource.loop = true;
-            PnlStage.PnlStage.Instance.OnSongChanged(currentSongIdx);
         }
 
         #endregion 资源加载
