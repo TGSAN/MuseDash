@@ -36,6 +36,8 @@ public class UIPhaseBase : MonoBehaviour {
 	/// </summary>
 	public virtual void OnHide (){}
 
+	public virtual void BeCatched(){}
+
 	private void Init() {
 		if (this._urh == null) {
 			this._urh = this.gameObject.GetComponent<UIRootHelper> ();
@@ -75,10 +77,6 @@ public class UIPhaseBase : MonoBehaviour {
 		}
 
 		if (this._animator != null) {
-			this._animator.Stop ();
-			this._animator.Rebind ();
-			this._animator.Play (_showAni);
-
 			AnimationClip ac = this.GetClipInAnimator (_showAni);
 			if (ac == null) {
 				this.gameObject.SetActive (true);
@@ -92,6 +90,10 @@ public class UIPhaseBase : MonoBehaviour {
 				ae.functionName = "OnShow";
 				ac.AddEvent (ae);
 			}
+
+			this._animator.Stop ();
+			this._animator.Rebind ();
+			this._animator.Play (_showAni);
 
 			return;
 		}
@@ -140,10 +142,6 @@ public class UIPhaseBase : MonoBehaviour {
 		}
 
 		if (this._animator != null) {
-			this._animator.Stop ();
-			this._animator.Rebind ();
-			this._animator.Play (_hideAni);
-
 			AnimationClip ac = this.GetClipInAnimator (_hideAni);
 			if (ac == null) {
 				this.OnHide ();
@@ -157,6 +155,10 @@ public class UIPhaseBase : MonoBehaviour {
 				ae.functionName = "OnHide";
 				ac.AddEvent (ae);
 			}
+
+			this._animator.Stop ();
+			this._animator.Rebind ();
+			this._animator.Play (_hideAni);
 
 			return;
 		}
@@ -181,26 +183,17 @@ public class UIPhaseBase : MonoBehaviour {
 	}
 
 	private AnimationClip GetClipInAnimator(string animateName) {
-		if (this._animator == null) {
+		if (this._animator == null || this._animator.runtimeAnimatorController == null || this._animator.runtimeAnimatorController.animationClips == null) {
 			return null;
 		}
 
-		AnimationClip ac = null;
-		for (int i = 0; i < this._animator.layerCount; i++) {
-			AnimatorClipInfo[] acInfos = this._animator.GetCurrentAnimatorClipInfo (i);
-			if (acInfos == null || acInfos.Length <= 0) {
-				return null;
+		foreach(AnimationClip clip in this._animator.runtimeAnimatorController.animationClips) {
+			if (clip == null) {
+				continue;
 			}
 
-			foreach (AnimatorClipInfo _acInfo in acInfos) {
-				if (_acInfo.clip.name == animateName) {
-					ac = _acInfo.clip;
-					break;
-				}
-			}
-
-			if (ac != null) {
-				return ac;
+			if (clip.name == animateName) {
+				return clip;
 			}
 		}
 

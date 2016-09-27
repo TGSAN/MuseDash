@@ -22,104 +22,46 @@ public class UISceneHelper : MonoBehaviour {
 	private Camera sceneUiCamera;
 	private Dictionary<string, UIRootHelper> dymWidgets;
 
-	[SerializeField]
-	/// <summary>
-	/// The widgets.
-	/// 各个带UIRootHelper的界面perfab
-	/// </summary>
-	public List<UnityEngine.Object> widgets;
-	//public List<string> widgetPaths;
-
-	void Start() {
-		//this.InitByPath ();
-		instance = this;
-		this.InitCamera ();
-		this.HideWidget ();
-		// this.InitByWidget ();
+	public Dictionary<string, UIRootHelper> widgets {
+		get {
+			return this.dymWidgets;
+		}
 	}
 
-	void OnEnable() {
-		if (this.dymWidgets == null) {
-			this.dymWidgets = new Dictionary<string, UIRootHelper> ();
+	public bool isStartScene;
+
+	void Start() {
+		instance = this;
+		this.InitCamera ();
+		if (this.isStartScene) {
+			Debug.Log ("This is the start scene.");
+			return;
 		}
 
-		UIRootHelper[] urhs = Transform.FindObjectsOfType<UIRootHelper> ();
-		foreach (UIRootHelper urh in urhs) {
-			this.RegDymWidget (urh.name, urh);
-		}
+		this.HideWidget ();
 	}
 
 	void OnDestory() {
 	}
 
-	/*
-	private void InitByPath() {
-		if (this.widgetPaths == null || this.widgetPaths.Count <= 0) {
-			return;
-		}
-
-		// 加载配置好的界面perfab，并按照配置指示是否加载即显示
-		for (int i = 0; i < this.widgetPaths.Count; i++) {
-			string path = this.widgetPaths [i];
-			if (path == null) {
-				Debug.Log ("UISceneHelper of " + this.gameObject.name + " lost a widget at " + i);
-				continue;
-			}
-
-
-		}
-	}
-	*/
-
 	public void Show() {
-		if (this.widgets == null || this.widgets.Count <= 0) {
+		if (this.dymWidgets == null || this.dymWidgets.Count <= 0) {
+			Debug.Log (this.gameObject.name + " not reg ui in dymWidgets.");
 			return;
 		}
 
-		UIRootHelper[] urhs = Transform.FindObjectsOfType<UIRootHelper> ();
-		// 加载配置好的界面perfab，并按照配置指示是否加载即显示
-		for (int i = 0; i < this.widgets.Count; i++) {
-			UnityEngine.Object origObj = this.widgets [i];
-			if (origObj == null) {
-				Debug.Log ("UISceneHelper of " + this.gameObject.name + " lost a widget at " + i);
+		foreach (UIRootHelper urh in this.dymWidgets.Values) {
+			if (urh == null) {
 				continue;
 			}
 
-			GameObject instObj = null;
-			foreach (UIRootHelper urh in urhs) {
-				if (urh.gameObject.name == origObj.name) {
-					instObj = urh.gameObject;
-					break;
-				}
-			}
-
-			if (instObj == null) {
-				instObj = GameObject.Instantiate (origObj) as GameObject;
-			}
-
-			if (instObj == null) {
-				Debug.Log ("Instance of ui perfab " + origObj.name + " has some problem.");
-				continue;
-			}
-
-			instObj.name = origObj.name;
-			//instObj.transform.parent = this.gameObject.transform;
-
-			UIRootHelper _urh = instObj.GetComponent<UIRootHelper> ();
-			if (_urh == null) {
-				Debug.Log ("Instance of ui perfab " + instObj.name + " has no UIRootHelper.");
-				continue;
-			}
-
-			if (!_urh.isShowOnLoaded) {
-				instObj.SetActive (false);
-				continue;
-			}
-
-			UIPhaseBase upb = instObj.GetComponent<UIPhaseBase> ();
+			UIPhaseBase upb = urh.gameObject.GetComponent<UIPhaseBase> ();
 			if (upb == null) {
-				Debug.Log ("Instance of ui perfab " + instObj.name + " has no UIPhaseBase.");
-				instObj.SetActive (true);
+				continue;
+			}
+
+			if (!urh.isShowOnLoaded) {
+				urh.gameObject.SetActive (false);
 				continue;
 			}
 
@@ -135,6 +77,10 @@ public class UISceneHelper : MonoBehaviour {
 	/// <param name="uiName">User interface name.</param>
 	public void ShowUi(string uiName, string aniName = null) {
 		if (this.dymWidgets == null) {
+			return;
+		}
+
+		if (!this.dymWidgets.ContainsKey (uiName)) {
 			return;
 		}
 
@@ -157,6 +103,10 @@ public class UISceneHelper : MonoBehaviour {
 			return;
 		}
 
+		if (!this.dymWidgets.ContainsKey (uiName)) {
+			return;
+		}
+
 		UIRootHelper urh = this.dymWidgets [uiName];
 		if (urh == null) {
 			return;
@@ -171,8 +121,29 @@ public class UISceneHelper : MonoBehaviour {
 		upb.Hide (aniName);
 	}
 
+	public void MarkShowOnLoad(string uiName, bool value) {
+		if (this.dymWidgets == null) {
+			return;
+		}
+
+		if (!this.dymWidgets.ContainsKey (uiName)) {
+			return;
+		}
+
+		UIRootHelper urh = this.dymWidgets [uiName];
+		if (urh == null) {
+			return;
+		}
+
+		urh.isShowOnLoaded = value;
+	}
+
 	public bool IsUiActive(string uiName) {
 		if (this.dymWidgets == null) {
+			return false;
+		}
+
+		if (!this.dymWidgets.ContainsKey (uiName)) {
 			return false;
 		}
 
@@ -228,39 +199,31 @@ public class UISceneHelper : MonoBehaviour {
 		ScreenFit.CameraFit (this.sceneUiCamera);
 	}
 
-	private void HideWidget() {
-		if (this.widgets == null || this.widgets.Count <= 0) {
-			return;
+	public void HideWidget() {
+		this.dymWidgets = new Dictionary<string, UIRootHelper> ();
+		UIRootHelper[] urhs = Transform.FindObjectsOfType<UIRootHelper> ();
+		// First reg
+		foreach (UIRootHelper urh in urhs) {
+			if (urh == null) {
+				continue;
+			}
+
+			this.RegDymWidget (urh.gameObject.name, urh);
 		}
 
-		UIRootHelper[] urhs = Transform.FindObjectsOfType<UIRootHelper> ();
-		// 加载配置好的界面perfab，并按照配置指示是否加载即显示
-		for (int i = 0; i < this.widgets.Count; i++) {
-			UnityEngine.Object origObj = this.widgets [i];
-			if (origObj == null) {
-				Debug.Log ("UISceneHelper of " + this.gameObject.name + " lost a widget at " + i);
+		// Then catch and hide;
+		foreach (UIRootHelper urh in urhs) {
+			if (urh == null) {
 				continue;
 			}
 
-			GameObject instObj = null;
-			foreach (UIRootHelper urh in urhs) {
-				if (urh.gameObject.name == origObj.name) {
-					instObj = urh.gameObject;
-					break;
-				}
+			Debug.Log ("Catch ui : " + urh.gameObject.name);
+			UIPhaseBase upb = urh.gameObject.GetComponent<UIPhaseBase> ();
+			if (upb != null) {
+				upb.BeCatched ();
 			}
 
-			if (instObj == null) {
-				instObj = GameObject.Instantiate (origObj) as GameObject;
-			}
-
-			if (instObj == null) {
-				Debug.Log ("Instance of ui perfab " + origObj.name + " has some problem.");
-				continue;
-			}
-
-			instObj.name = origObj.name;
-			instObj.SetActive (false);
+			urh.gameObject.SetActive (false);
 		}
 	}
 }

@@ -47,7 +47,6 @@ public class FightMenuPanel : MonoBehaviour {
 	private IEnumerator __OnEnable() {
 		yield return new WaitForSeconds (0.01f);
 
-		CommonPanel.GetInstance ().SetMask (false);
 		SoundEffectComponent.Instance.SayByCurrentRole (GameGlobal.SOUND_TYPE_STAGE_START);
 	}
 

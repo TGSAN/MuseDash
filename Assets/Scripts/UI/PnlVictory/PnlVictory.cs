@@ -16,6 +16,8 @@ namespace PnlVictory {
 			}
 		}
 
+		private bool isSaid = false;
+
 		public UISprite sprGrade;
 		public UITexture txrCharact;
 
@@ -29,6 +31,11 @@ namespace PnlVictory {
 		}
 
 		public override void OnShow () {
+			if (isSaid) {
+				return;
+			}
+
+			this.isSaid = true;
 			SoundEffectComponent.Instance.SayByCurrentRole (GameGlobal.SOUND_TYPE_LAST_NODE);
 		}
 
@@ -36,15 +43,19 @@ namespace PnlVictory {
 		}
 
 		private void SetTxrByCharacter() {
-			int heroIndex = BattleRoleAttributeComponent.Instance.Host.GetDynamicIntByKey (SignKeys.ID);
+			int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex ();
 			string txrName = ConfigPool.Instance.GetConfigStringValue ("character", heroIndex.ToString (), "image_victory");
+			if (txrName == null || ResourceLoader.Instance == null) {
+				return;
+			}
+
 			ResourceLoader.Instance.Load (txrName, this.__LoadTxr);
 		}
 
 		private void __LoadTxr(UnityEngine.Object resObj) {
 			Texture t = resObj as Texture;
 			if (t == null) {
-				int heroIndex = BattleRoleAttributeComponent.Instance.Host.GetDynamicIntByKey (SignKeys.ID);
+				int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex ();
 				string txrName = ConfigPool.Instance.GetConfigStringValue ("character", heroIndex.ToString (), "image_victory");
 				Debug.Log ("Load character " + heroIndex + " PnlVictory texture failed : " + txrName);
 			}

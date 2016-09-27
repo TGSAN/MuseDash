@@ -99,6 +99,10 @@ namespace DYUnityLib {
 		}
 
 		public static void FireEvent(uint eventIndex, params object[] args){
+			if (!es.ContainsKey (eventIndex)) {
+				return;
+			}
+
 			System.Object esObj = es [eventIndex];
 			if (esObj == null) {
 				return;

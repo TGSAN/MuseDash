@@ -27,6 +27,8 @@ public class AssetBundleFileMangager {
 	public static readonly string FileCreateResPath = Application.streamingAssetsPath;
 #elif UNITY_IOS
 	public static readonly string FileCreateResPath = Application.persistentDataPath;
+#else
+	public static readonly string FileCreateResPath = Application.persistentDataPath;
 #endif
 
 	/// <summary>

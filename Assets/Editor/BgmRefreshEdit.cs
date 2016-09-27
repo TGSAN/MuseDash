@@ -43,9 +43,15 @@ public class BgmRefreshEdit : EditorWindow {
 			return;
 		}
 
+		AudioImporterSampleSettings aiss = new AudioImporterSampleSettings ();
+		aiss.compressionFormat = AudioCompressionFormat.ADPCM;
+		aiss.loadType = AudioClipLoadType.DecompressOnLoad;
+		aiss.sampleRateSetting = AudioSampleRateSetting.PreserveSampleRate;
+		sda.defaultSampleSettings = aiss;
 		if (sda.loadInBackground == this.isLoadInBackground) {
 			return;
 		}
+
 
 		sda.loadInBackground = this.isLoadInBackground;
 		sda.SaveAndReimport ();

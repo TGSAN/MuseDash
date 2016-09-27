@@ -120,11 +120,21 @@ public class GirlManager : MonoBehaviour {
 		}
 
 		Debug.Log ("Battle with hero : " + heroIndex);
-		int clothIdx = ConfigPool.Instance.GetConfigIntValue ("character", heroIndex.ToString (), "character");
-		string clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", "uid", "path", clothIdx);
+		FormulaHost hero = RoleManageComponent.Instance.GetRole (heroIndex);
+		int clothIdx = 0;
+		string clothPath = null;
+		if (hero != null) {
+			clothIdx = hero.GetDynamicIntByKey (SignKeys.CLOTH);
+			clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", clothIdx.ToString (), "path");
+		}
+
 #if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
-		if (GameGlobal.DEBUG_CLOTH_UID > 0) {
-			clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", "uid", "path", GameGlobal.DEBUG_CLOTH_UID);
+		if (clothPath == null || clothPath == string.Empty) {
+			clothIdx = ConfigPool.Instance.GetConfigIntValue ("character", heroIndex.ToString (), "character");
+			clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", "uid", "path", clothIdx);
+			if (GameGlobal.DEBUG_CLOTH_UID > 0) {
+				clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", "uid", "path", GameGlobal.DEBUG_CLOTH_UID);
+			}
 		}
 #endif
 		this.girlnames [0] = clothPath;
@@ -206,7 +216,6 @@ public class GirlManager : MonoBehaviour {
 
 	public void ComeOut() {
 		GameGlobal.gGameTouchPlay.SetPressHardTime (COMEOUT_HARD_TIME);
-		GameGlobal.gGameTouchPlay.SetJumpHardTime (COMEOUT_HARD_TIME);
 		this.StartCoroutine (this.AfterComeOut ());
 	}
 
@@ -326,9 +335,6 @@ public class GirlManager : MonoBehaviour {
 
 	public void SetJumpingAction(bool value) {
 		this.isJumpingAction = value;
-		if (this.isJumpingAction == false) {
-			GameGlobal.gGameTouchPlay.SetJumpHardTime (-1m);
-		}
 	}
 
 	public bool IsJumpingAction() {

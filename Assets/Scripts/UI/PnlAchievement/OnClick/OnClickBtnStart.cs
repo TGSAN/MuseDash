@@ -12,6 +12,10 @@ namespace PnlAchievement {
 		public static void Do(GameObject gameObject) {
 			OnDo (gameObject);
 
+			if (UISceneHelper.Instance != null) {
+				UISceneHelper.Instance.HideWidget ();
+			}
+
 			int sid = StageBattleComponent.Instance.GetId ();
 			uint diff = StageBattleComponent.Instance.GetDiffcult ();
 			SceneAudioManager.Instance.bgm.clip = PnlScrollCircle.instance.CatchClip;

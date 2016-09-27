@@ -24,7 +24,7 @@ namespace PnlStage
         }
 
         private Coroutine _loadMusicCoroutine;
-        public AudioSource diskAudioSource;
+        //public AudioSource diskAudioSource;
 
         private void Start()
         {
@@ -34,10 +34,15 @@ namespace PnlStage
         public override void OnShow()
         {
             StageDisc.StageDisc.LoadAllDiscCover();
-            this.OnSongChanged(PnlScrollCircle.currentSongIdx);
+            //this.OnSongChanged(PnlScrollCircle.currentSongIdx);
             SceneAudioManager.Instance.bgm.clip = null;
             PnlScrollCircle.instance.ResetPos();
             PnlScrollCircle.instance.JumpToSong(PnlScrollCircle.currentSongIdx);
+            PnlScrollCircle.instance.enabled = false;
+            DOTweenUtil.Delay(() =>
+            {
+                PnlScrollCircle.instance.enabled = true;
+            }, Time.deltaTime);
         }
 
         public override void OnHide()

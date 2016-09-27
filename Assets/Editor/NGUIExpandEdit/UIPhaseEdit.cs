@@ -18,7 +18,7 @@ public class UIPhaseEdit : EditorWindow {
 	private static System.Reflection.Assembly assembly = System.Reflection.Assembly.Load("Assembly-CSharp");
 
 	private const string CODE_PATH = "/Scripts/UI/";
-	private const string DES_1 = "UI分析工具(任意编辑后点Apply保存) 相关代码路径 : ";
+	private const string DES_1 = "Fq Maker(任意编辑后点Apply保存) 相关代码路径 : ";
 	private const string DES_2 = "UI分析";
 	private const string DES_3 = "未有描述";
 	private const string DES_4 = "支持多语言";
@@ -35,7 +35,7 @@ public class UIPhaseEdit : EditorWindow {
 	private GameObject _uiObject = null;
 	private string _moduleName = null;
 
-	[MenuItem("RHY/UI分析工具")]
+	[MenuItem("RHY/Fq Maker")]
 	static void Init () {
 		UIPhaseEdit window = (UIPhaseEdit)EditorWindow.GetWindow (typeof(UIPhaseEdit));
 		window.Show ();
@@ -121,6 +121,11 @@ public class UIPhaseEdit : EditorWindow {
 
 		this.scorllVecAction = EditorGUILayout.BeginScrollView (this.scorllVecAction);
 		foreach (UIPhaseHelper s in _phaser) {
+			if (s == null || s.gameObject == null) {
+				Debug.Log (this._uiObject.name + " phase found null UIPhaseHelper.");
+				continue;
+			}
+
 			EditorGUILayout.BeginVertical ();
 
 			EditorGUILayout.BeginHorizontal ();
