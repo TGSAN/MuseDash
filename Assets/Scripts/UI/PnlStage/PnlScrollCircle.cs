@@ -84,7 +84,9 @@ namespace Assets.Scripts.NGUI
         public UISprite sprEnergy;
         public GameObject energy, difficulty;
         public GameObject btnStart;
-        public UISprite sprSongProgress, sprSongBkg;
+        public UISprite sprSongProgress;
+        public Transform trophyParent;
+        public UILabel txtTrophySum;
 
         [Header("音频")]
         public float loadDelay = 0.5f;
@@ -332,6 +334,13 @@ namespace Assets.Scripts.NGUI
 #elif UNITY_ANDROID
     minMaxSlide.y *= 2;
 #endif
+            var trophySum = 0;
+            var hosts = TaskStageTarget.Instance.GetList("Task");
+            foreach (var host in hosts)
+            {
+                trophySum += host.Value.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_CRT_COUNT);
+            }
+            txtTrophySum.text = trophySum.ToString();
         }
 
         private void InitUI()
@@ -378,9 +387,11 @@ namespace Assets.Scripts.NGUI
                 m_EnergyTweener2 = energy.transform.DOScale(1.0f, eneryAnimDurationEnter).SetEase(energyCurve);
                 var cost = 1f;
                 var diff = 1;
+                var trophyNum = TaskStageTarget.Instance.GetStageEvluateMax();
                 if (StageBattleComponent.Instance.Host != null)
                 {
                     diff = StageBattleComponent.Instance.Host.GetDynamicIntByKey(SignKeys.DIFFCULT);
+
                     if (diff > 0)
                     {
                         cost = StageBattleComponent.Instance.Host.Result(FormulaKeys.FORMULA_330);
@@ -427,6 +438,11 @@ namespace Assets.Scripts.NGUI
                 {
                     m_PreDiff = diff;
                 });
+                for (int i = 0; i < trophyParent.childCount; i++)
+                {
+                    var child = trophyParent.GetChild(i);
+                    child.GetChild(0).gameObject.SetActive(i < trophyNum);
+                }
             }
             else
             {
@@ -512,10 +528,6 @@ namespace Assets.Scripts.NGUI
                 {
                     progressPercent = 1 + ((m_ZAngle / angle + 3) % (m_CellGroup.Count)) / (m_CellGroup.Count - 1);
                 }
-                var pos = Vector3.Lerp(new Vector3(startX, 12, 0), new Vector3(endX, 12, 0), progressPercent);
-                sprSongProgress.transform.localPosition = Vector3.Lerp(sprSongProgress.transform.localPosition, pos, Time.deltaTime * 5.0f);
-                var width = Mathf.Lerp(sprSongBkg.localSize.x, (endX - startX) * progressPercent + 10, Time.deltaTime * 5.0f);
-                sprSongBkg.SetRect(startX, 6, width, 12);
             }
         }
 
