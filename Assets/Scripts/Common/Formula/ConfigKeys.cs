@@ -17,7 +17,6 @@ namespace FormulaBase {
 			{ "items", "items/_config/"},
 			{ "notedata", "note/_config/"},
 			{ "pet", "servant/_config/"},
-			{ "stage", "stage/_config/"},
 			{ "tutorial_new1", "stage/stage_0/"},
 			{ "shall_we_meet1", "stage/stage_1/"},
 			{ "shall_we_meet2", "stage/stage_1/"},
@@ -29,8 +28,6 @@ namespace FormulaBase {
 			{ "greed2", "stage/stage_11/"},
 			{ "greed3", "stage/stage_11/"},
 			{ "bgm_maoudamashii_cyber121", "stage/stage_13/"},
-			{ "bgm_maoudamashii_cyber122", "stage/stage_13/"},
-			{ "bgm_maoudamashii_cyber123", "stage/stage_13/"},
 			{ "delvge1", "stage/stage_14/"},
 			{ "delvge2", "stage/stage_14/"},
 			{ "delvge3", "stage/stage_14/"},
@@ -71,6 +68,7 @@ namespace FormulaBase {
 			{ "monkey_song1", "stage/stage_old/"},
 			{ "ikz1", "stage/stage_test/"},
 			{ "telekinesis1", "stage/stage_test/"},
+			{ "telekinesis2", "stage/stage_test/"},
 			{ "test_fire1", "stage/stage_test/"},
 			{ "test_item1", "stage/stage_test/"},
 			{ "test_jump_hit1", "stage/stage_test/"},
@@ -81,6 +79,7 @@ namespace FormulaBase {
 			{ "test_s041", "stage/stage_test/"},
 			{ "test_s051", "stage/stage_test/"},
 			{ "test_scene_event1", "stage/stage_test/"},
+			{ "stage", "stage/_config/"},
 		};
 	}
 }

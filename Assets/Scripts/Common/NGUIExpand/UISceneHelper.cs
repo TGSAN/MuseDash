@@ -1,9 +1,9 @@
-﻿using System;
-using System.Reflection;
+﻿using FormulaBase;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
-using FormulaBase;
 
 /// <summary>
 /// User interface scene helper.
@@ -11,219 +11,298 @@ using FormulaBase;
 /// 该根节点应该包含UICamera
 /// 同时包含各个带UIRootHelper的界面perfab
 /// </summary>
-public class UISceneHelper : MonoBehaviour {
-	private static UISceneHelper instance = null;
-	public static UISceneHelper Instance {
-		get {
-			return instance;
-		}
-	}
+public class UISceneHelper : MonoBehaviour
+{
+    private static UISceneHelper instance = null;
 
-	private Camera sceneUiCamera;
-	private Dictionary<string, UIRootHelper> dymWidgets;
+    public static UISceneHelper Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
 
-	public Dictionary<string, UIRootHelper> widgets {
-		get {
-			return this.dymWidgets;
-		}
-	}
+    private Camera sceneUiCamera;
+    private Dictionary<string, UIRootHelper> dymWidgets;
 
-	public bool isStartScene;
+    public Dictionary<string, UIRootHelper> widgets
+    {
+        get
+        {
+            return this.dymWidgets;
+        }
+    }
 
-	void Start() {
-		instance = this;
-		this.InitCamera ();
-		if (this.isStartScene) {
-			Debug.Log ("This is the start scene.");
-			return;
-		}
+    public bool isStartScene;
 
-		this.HideWidget ();
-	}
+    private void Start()
+    {
+        instance = this;
+        this.InitCamera();
+        if (this.isStartScene)
+        {
+            Debug.Log("This is the start scene.");
+            return;
+        }
 
-	void OnDestory() {
-	}
+        this.HideWidget();
+    }
 
-	public void Show() {
-		if (this.dymWidgets == null || this.dymWidgets.Count <= 0) {
-			Debug.Log (this.gameObject.name + " not reg ui in dymWidgets.");
-			return;
-		}
+    private void OnDestory()
+    {
+    }
 
-		foreach (UIRootHelper urh in this.dymWidgets.Values) {
-			if (urh == null) {
-				continue;
-			}
+    public void Show()
+    {
+        if (this.dymWidgets == null || this.dymWidgets.Count <= 0)
+        {
+            Debug.Log(this.gameObject.name + " not reg ui in dymWidgets.");
+            return;
+        }
 
-			UIPhaseBase upb = urh.gameObject.GetComponent<UIPhaseBase> ();
-			if (upb == null) {
-				continue;
-			}
+        foreach (UIRootHelper urh in this.dymWidgets.Values)
+        {
+            if (urh == null)
+            {
+                continue;
+            }
 
-			if (!urh.isShowOnLoaded) {
-				urh.gameObject.SetActive (false);
-				continue;
-			}
+            UIPhaseBase upb = urh.gameObject.GetComponent<UIPhaseBase>();
+            if (upb == null)
+            {
+                continue;
+            }
 
-			upb.Show ();
-		}
-	}
+            if (!urh.isShowOnLoaded)
+            {
+                urh.gameObject.SetActive(false);
+                continue;
+            }
 
-	/// <summary>
-	/// Shows the user interface.
-	/// 
-	/// 根据prefab名显示某个ui
-	/// </summary>
-	/// <param name="uiName">User interface name.</param>
-	public void ShowUi(string uiName, string aniName = null) {
-		if (this.dymWidgets == null) {
-			return;
-		}
+            upb.Show();
+        }
+    }
 
-		if (!this.dymWidgets.ContainsKey (uiName)) {
-			return;
-		}
+    /// <summary>
+    /// Shows the user interface.
+    ///
+    /// 根据prefab名显示某个ui
+    /// </summary>
+    /// <param name="uiName">User interface name.</param>
+    public void ShowUi(string uiName, string aniName = null)
+    {
+        if (this.dymWidgets == null)
+        {
+            return;
+        }
 
-		UIRootHelper urh = this.dymWidgets [uiName];
-		if (urh == null) {
-			return;
-		}
+        if (!this.dymWidgets.ContainsKey(uiName))
+        {
+            return;
+        }
 
-		UIPhaseBase upb = urh.gameObject.GetComponent<UIPhaseBase> ();
-		if (upb == null) {
-			urh.gameObject.SetActive (true);
-			return;
-		}
+        UIRootHelper urh = this.dymWidgets[uiName];
+        if (urh == null)
+        {
+            return;
+        }
 
-		upb.Show (aniName);
-	}
+        UIPhaseBase upb = urh.gameObject.GetComponent<UIPhaseBase>();
+        if (upb == null)
+        {
+            urh.gameObject.SetActive(true);
+            return;
+        }
 
-	public void HideUi(string uiName, string aniName = null) {
-		if (this.dymWidgets == null) {
-			return;
-		}
+        upb.Show(aniName);
+    }
 
-		if (!this.dymWidgets.ContainsKey (uiName)) {
-			return;
-		}
+    public void HideUi(string uiName, string aniName = null)
+    {
+        if (this.dymWidgets == null)
+        {
+            return;
+        }
 
-		UIRootHelper urh = this.dymWidgets [uiName];
-		if (urh == null) {
-			return;
-		}
+        if (!this.dymWidgets.ContainsKey(uiName))
+        {
+            return;
+        }
 
-		UIPhaseBase upb = urh.GetComponent<UIPhaseBase> ();
-		if (upb == null) {
-			urh.gameObject.SetActive (false);
-			return;
-		}
+        UIRootHelper urh = this.dymWidgets[uiName];
+        if (urh == null)
+        {
+            return;
+        }
 
-		upb.Hide (aniName);
-	}
+        UIPhaseBase upb = urh.GetComponent<UIPhaseBase>();
+        if (upb == null)
+        {
+            urh.gameObject.SetActive(false);
+            return;
+        }
 
-	public void MarkShowOnLoad(string uiName, bool value) {
-		if (this.dymWidgets == null) {
-			return;
-		}
+        upb.Hide(aniName);
+    }
 
-		if (!this.dymWidgets.ContainsKey (uiName)) {
-			return;
-		}
+    public void ReShowUi(string uiName)
+    {
+        if (this.dymWidgets == null)
+        {
+            return;
+        }
 
-		UIRootHelper urh = this.dymWidgets [uiName];
-		if (urh == null) {
-			return;
-		}
+        if (!this.dymWidgets.ContainsKey(uiName))
+        {
+            return;
+        }
 
-		urh.isShowOnLoaded = value;
-	}
+        UIRootHelper urh = this.dymWidgets[uiName];
+        if (urh == null)
+        {
+            return;
+        }
 
-	public bool IsUiActive(string uiName) {
-		if (this.dymWidgets == null) {
-			return false;
-		}
+        UIPhaseBase upb = urh.gameObject.GetComponent<UIPhaseBase>();
+        if (upb == null)
+        {
+            return;
+        }
 
-		if (!this.dymWidgets.ContainsKey (uiName)) {
-			return false;
-		}
+        upb.ReShow();
+    }
 
-		UIRootHelper urh = this.dymWidgets [uiName];
-		if (urh == null) {
-			return false;
-		}
+    public void MarkShowOnLoad(string uiName, bool value)
+    {
+        if (this.dymWidgets == null)
+        {
+            return;
+        }
 
-		if (urh == null) {
-			return false;
-		}
+        if (!this.dymWidgets.ContainsKey(uiName))
+        {
+            return;
+        }
 
-		return urh.gameObject.activeSelf;
-	}
+        UIRootHelper urh = this.dymWidgets[uiName];
+        if (urh == null)
+        {
+            return;
+        }
 
-	public GameObject FindDymWidget(string uiName) {
-		if (this.dymWidgets == null) {
-			return null;
-		}
+        urh.isShowOnLoaded = value;
+    }
 
-		if (!this.dymWidgets.ContainsKey (uiName)) {
-			return null;
-		}
+    public bool IsUiActive(string uiName)
+    {
+        if (this.dymWidgets == null)
+        {
+            return false;
+        }
 
-		UIRootHelper urh = this.dymWidgets [uiName];
-		if (urh == null) {
-			return null;
-		}
+        if (!this.dymWidgets.ContainsKey(uiName))
+        {
+            return false;
+        }
 
-		return urh.gameObject;
-	}
+        UIRootHelper urh = this.dymWidgets[uiName];
+        if (urh == null)
+        {
+            return false;
+        }
 
-	public void RegDymWidget(string uiName, UIRootHelper urh) {
-		if (this.dymWidgets == null) {
-			this.dymWidgets = new Dictionary<string, UIRootHelper> ();
-		}
+        if (urh == null)
+        {
+            return false;
+        }
 
-		this.dymWidgets [uiName] = urh;
-	}
+        return urh.gameObject.activeSelf;
+    }
 
-	private void InitCamera() {
-		if (this.transform.childCount <= 0) {
-			return;
-		}
+    public GameObject FindDymWidget(string uiName)
+    {
+        if (this.dymWidgets == null)
+        {
+            return null;
+        }
 
-		Transform camTransform = this.transform.GetChild (0);
-		if (camTransform == null) {
-			return;
-		}
+        if (!this.dymWidgets.ContainsKey(uiName))
+        {
+            return null;
+        }
 
-		this.sceneUiCamera = camTransform.gameObject.GetComponent<Camera> ();
-		// Auto UIRoot for auto screen alignment 自动设置UIRoot作为屏幕对齐
-		ScreenFit.CameraFit (this.sceneUiCamera);
-	}
+        UIRootHelper urh = this.dymWidgets[uiName];
+        if (urh == null)
+        {
+            return null;
+        }
 
-	public void HideWidget() {
-		this.dymWidgets = new Dictionary<string, UIRootHelper> ();
-		UIRootHelper[] urhs = Transform.FindObjectsOfType<UIRootHelper> ();
-		// First reg
-		foreach (UIRootHelper urh in urhs) {
-			if (urh == null) {
-				continue;
-			}
+        return urh.gameObject;
+    }
 
-			this.RegDymWidget (urh.gameObject.name, urh);
-		}
+    public void RegDymWidget(string uiName, UIRootHelper urh)
+    {
+        if (this.dymWidgets == null)
+        {
+            this.dymWidgets = new Dictionary<string, UIRootHelper>();
+        }
 
-		// Then catch and hide;
-		foreach (UIRootHelper urh in urhs) {
-			if (urh == null) {
-				continue;
-			}
+        this.dymWidgets[uiName] = urh;
+    }
 
-			Debug.Log ("Catch ui : " + urh.gameObject.name);
-			UIPhaseBase upb = urh.gameObject.GetComponent<UIPhaseBase> ();
-			if (upb != null) {
-				upb.BeCatched ();
-			}
+    private void InitCamera()
+    {
+        if (this.transform.childCount <= 0)
+        {
+            return;
+        }
 
-			urh.gameObject.SetActive (false);
-		}
-	}
+        Transform camTransform = this.transform.GetChild(0);
+        if (camTransform == null)
+        {
+            return;
+        }
+
+        this.sceneUiCamera = camTransform.gameObject.GetComponent<Camera>();
+        // Auto UIRoot for auto screen alignment 自动设置UIRoot作为屏幕对齐
+        ScreenFit.CameraFit(this.sceneUiCamera);
+    }
+
+    public void HideWidget()
+    {
+        this.dymWidgets = new Dictionary<string, UIRootHelper>();
+        UIRootHelper[] urhs = Transform.FindObjectsOfType<UIRootHelper>();
+        // First reg
+        foreach (UIRootHelper urh in urhs)
+        {
+            if (urh == null)
+            {
+                continue;
+            }
+
+            this.RegDymWidget(urh.gameObject.name, urh);
+        }
+
+        // Then catch and hide;
+        foreach (UIRootHelper urh in urhs)
+        {
+            if (urh == null)
+            {
+                continue;
+            }
+
+            //Debug.Log ("Catch ui : " + urh.gameObject.name);
+            UIPhaseBase upb = urh.gameObject.GetComponent<UIPhaseBase>();
+            if (upb != null)
+            {
+                upb.BeCatched();
+            }
+
+            if (urh.isSingleInstanceUI)
+            {
+                urh.gameObject.SetActive(false);
+            }
+        }
+    }
 }

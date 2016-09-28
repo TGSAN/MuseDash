@@ -22,6 +22,7 @@ GameObject:
   - 33: {fileID: 33000010233789398}
   - 23: {fileID: 23000012410579798}
   - 114: {fileID: 114000010328908196}
+  - 114: {fileID: 114000011948216650}
   m_Layer: 5
   m_Name: marija_show
   m_TagString: Untagged
@@ -70,7 +71,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 71
 --- !u!33 &33000010233789398
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -102,3 +103,28 @@ MonoBehaviour:
   timeScale: 1
   loop: 1
   _animationName: 1stand
+--- !u!114 &114000011948216650
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010479892998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437c8c5f12a3449ee91f447c2447bdc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objController: {fileID: 0}
+  actionData:
+  - collapsed: 1
+    isEndLoop: 1
+    isRandomSequence: 0
+    isSelfProtect: 0
+    name: standby
+    protectLevel: 0
+    arrayCount: 1
+    spineActionKeyIndex: 2
+    actionIdx: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+    actionEventIdx: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  actionMode: 0
+  startDelay: 0
