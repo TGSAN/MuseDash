@@ -239,7 +239,7 @@ public class UISceneHelper : MonoBehaviour {
 				continue;
 			}
 
-			Debug.Log ("Catch ui : " + urh.gameObject.name);
+			//Debug.Log ("Catch ui : " + urh.gameObject.name);
 			UIPhaseBase upb = urh.gameObject.GetComponent<UIPhaseBase> ();
 			if (upb != null) {
 				upb.BeCatched ();

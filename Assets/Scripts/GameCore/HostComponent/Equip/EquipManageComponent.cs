@@ -123,6 +123,7 @@ namespace FormulaBase {
 		/// 获取所有装备
 		/// </summary>
 		public void Init() {
+			this.GetList ("Equip");
 			LitJson.JsonData cfg = ConfigPool.Instance.GetConfigByName ("Equipment_info");
 			if (cfg == null) {
 				return;
