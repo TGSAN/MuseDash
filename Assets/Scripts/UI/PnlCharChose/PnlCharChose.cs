@@ -48,7 +48,12 @@ namespace PnlCharChose
         private void InitData()
         {
             choseType = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
-            FormulaBase.RoleManageComponent.Instance.GetRole(choseType).SetAsUINotifyInstance();
+			FormulaBase.FormulaHost role = FormulaBase.RoleManageComponent.Instance.GetRole (choseType);
+			if (role == null) {
+				return;
+			}
+
+			role.SetAsUINotifyInstance();
             for (int i = 1; i <= FormulaBase.RoleManageComponent.Instance.HostList.Count; i++)
             {
                 var path = ConfigPool.Instance.GetConfigStringValue("character", i.ToString(), "char_show");
@@ -117,8 +122,6 @@ namespace PnlCharChose
         /// <returns></returns>
         private GameObject OnSpiAnimLoaded(int idx)
         {
-			return null;
-			/*
             if (spiParent.childCount > 0)
             {
                 spiParent.DestroyChildren();
@@ -139,7 +142,6 @@ namespace PnlCharChose
                 Debug.LogError("加载未获得对象");
                 return null;
             }
-            */
         }
 
         /// <summary>
@@ -174,6 +176,10 @@ namespace PnlCharChose
         private void OnCharacterChange(int curType)
         {
             FormulaBase.FormulaHost role = FormulaBase.RoleManageComponent.Instance.GetRole(curType);
+			if (role == null) {
+				return;
+			}
+
             role.SetAsUINotifyInstance();
             Debug.Log("Selected role " + curType + " : " + role.GetDynamicStrByKey(FormulaBase.SignKeys.NAME));
             OnSpiAnimLoaded(curType);
