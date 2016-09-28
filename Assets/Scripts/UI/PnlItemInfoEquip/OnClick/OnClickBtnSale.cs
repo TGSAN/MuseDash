@@ -3,10 +3,13 @@
 /// 
 using System;
 using UnityEngine;
+using FormulaBase;
+
 namespace PnlItemInfoEquip {
 	public class OnClickBtnSale : UIPhaseOnClickBase {
 		public static void Do(GameObject gameObject) {
-				OnDo(gameObject);
+			OnDo (gameObject);
+			//PnlItemInfoEquip.Instance.Sale ();
 		}
 	}
 }

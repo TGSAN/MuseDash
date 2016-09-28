@@ -166,6 +166,12 @@ namespace FormulaBase
         public void Init()
         {
             this.GetList("Equip");
+			if (this.HostList != null) {
+				foreach (FormulaHost host in this.HostList.Values) {
+					host.Result (FormulaKeys.FORMULA_19);
+				}
+			}
+
             LitJson.JsonData cfg = ConfigPool.Instance.GetConfigByName("Equipment_info");
             if (cfg == null)
             {
