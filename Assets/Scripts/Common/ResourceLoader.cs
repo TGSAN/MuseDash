@@ -51,7 +51,7 @@ public class ResourceLoader : MonoBehaviour {
 		if (resFrom == RES_FROM_LOCAL) {
 			ResourceRequest loadRequest = Resources.LoadAsync<UnityEngine.Object> (path);
 			while (!loadRequest.isDone) {
-				yield return 0;
+				yield return null;
 			}
 
 			resObj = loadRequest.asset as UnityEngine.Object;
@@ -62,10 +62,19 @@ public class ResourceLoader : MonoBehaviour {
 			resObj = streamRes.assetBundle.LoadAsset<UnityEngine.Object> (path);
 		}
 
+		if (resObj.GetType () == typeof(AudioClip)) {
+			AudioClip ac = resObj as AudioClip;
+			if (ac.loadState != AudioDataLoadState.Loaded) {
+				yield return null;
+			}
+
+			Debug.Log ("==== : Load audioclip " + path + " ok.");
+		}
+
 		if (handler != null) {
 			handler (resObj);
 		}
 
-		yield return 0;
+		yield return 1;
 	}
 }

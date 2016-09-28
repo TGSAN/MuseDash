@@ -3,6 +3,8 @@
 /// 
 using System;
 using UnityEngine;
+using FormulaBase;
+
 namespace PnlItemInfo {
 	public class PnlItemInfo : UIPhaseBase {
 		private static PnlItemInfo instance = null;
@@ -11,6 +13,9 @@ namespace PnlItemInfo {
 					return instance;
 			}
 		}
+
+		FormulaHost hostCurrent;
+		FormulaHost hostNext;
 
 		void Start() {
 			instance = this;
