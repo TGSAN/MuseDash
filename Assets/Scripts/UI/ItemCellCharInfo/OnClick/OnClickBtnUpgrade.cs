@@ -3,8 +3,8 @@
 /// 
 using System;
 using UnityEngine;
-namespace CellItem {
-	public class OnClickBtnApply : UIPhaseOnClickBase {
+namespace ItemCellCharInfo {
+	public class OnClickBtnUpgrade : UIPhaseOnClickBase {
 		public static void Do(GameObject gameObject) {
 				OnDo(gameObject);
 		}

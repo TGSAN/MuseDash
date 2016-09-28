@@ -3,10 +3,9 @@
 /// 
 using System;
 using UnityEngine;
-namespace CellItem {
-	public class OnClickBtnUpgrade : UIPhaseOnClickBase {
+namespace ItemCellCharInfo {
+	public class OnTweenFinishedTxtUpgrade {
 		public static void Do(GameObject gameObject) {
-				OnDo(gameObject);
 		}
 	}
 }

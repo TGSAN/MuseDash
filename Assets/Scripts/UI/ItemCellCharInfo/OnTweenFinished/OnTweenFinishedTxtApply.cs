@@ -3,7 +3,7 @@
 /// 
 using System;
 using UnityEngine;
-namespace CellItem {
+namespace ItemCellCharInfo {
 	public class OnTweenFinishedTxtApply {
 		public static void Do(GameObject gameObject) {
 		}

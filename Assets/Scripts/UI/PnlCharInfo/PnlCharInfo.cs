@@ -37,9 +37,10 @@ namespace PnlCharInfo
         private void InitPnlItemsChoose()
         {
             var allEquipments = FormulaBase.EquipManageComponent.Instance.HostList;
-            foreach (var equipment in allEquipments)
+            foreach (var equipment in allEquipments.Values)
             {
                 var cell = GameObject.Instantiate(cellItem) as GameObject;
+                cell.GetComponent<ItemCellCharInfo.ItemCellCharInfo>().OnShow(equipment);
                 cell.transform.SetParent(cellItemParent, false);
             }
         }
