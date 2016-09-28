@@ -65,6 +65,13 @@ namespace FormulaBase
 
 					// 初始化配置属性
 					_role.Result (FormulaKeys.FORMULA_178);
+					int cloth = _role.GetDynamicIntByKey (SignKeys.CLOTH);
+					if (cloth <= 0) {
+						int idx = _role.GetDynamicIntByKey (SignKeys.ID);
+						cloth = ConfigPool.Instance.GetConfigIntValue ("character", idx.ToString (), "character");
+						_role.SetDynamicData (SignKeys.CLOTH, cloth);
+					}
+
 					if (_role.GetDynamicIntByKey (SignKeys.FIGHTHERO) < 1) {
 						continue;
 					}
