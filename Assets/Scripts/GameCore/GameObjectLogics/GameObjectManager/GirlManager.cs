@@ -125,7 +125,8 @@ public class GirlManager : MonoBehaviour {
 		string clothPath = null;
 		if (hero != null) {
 			clothIdx = hero.GetDynamicIntByKey (SignKeys.CLOTH);
-			clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", clothIdx.ToString (), "path");
+			//clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", clothIdx.ToString (), "path");
+			clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", "uid", "path", clothIdx);
 		}
 
 #if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
