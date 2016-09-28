@@ -10,6 +10,7 @@ namespace PnlItemInfoEquip {
 		public static void Do(GameObject gameObject) {
 			OnDo (gameObject);
 			//PnlItemInfoEquip.Instance.Sale ();
+			ItemManageComponent.Instance.SaleSelectedItem("Equip");
 		}
 	}
 }

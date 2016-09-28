@@ -300,6 +300,8 @@ namespace FormulaBase {
 				cHost.SetDynamicData (key, signKeys [key]);
 			}
 
+			cHost.CopySource = host;
+
 			return cHost;
 		}
 
