@@ -60,23 +60,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1000013558107174
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 4000010890342194}
-  - 114: {fileID: 114000010915795218}
-  - 114: {fileID: 114000010227866866}
-  m_Layer: 5
-  m_Name: TxtItemLevel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1000013730719342
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,19 +77,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000010890342194
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013558107174}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -45, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 4000013676331474}
-  m_RootOrder: 2
 --- !u!4 &4000011524480854
 Transform:
   m_ObjectHideFlags: 1
@@ -133,7 +103,6 @@ Transform:
   m_Children:
   - {fileID: 4000011524480854}
   - {fileID: 4000013971616664}
-  - {fileID: 4000010890342194}
   - {fileID: 4000014092458780}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -162,7 +131,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013676331474}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!114 &114000010105014616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -204,112 +173,6 @@ MonoBehaviour:
   mTrueTypeFont: {fileID: 12800000, guid: bb22fb5beacef47a6816ba69bce73b56, type: 3}
   mFont: {fileID: 0}
   mText: Type
-  mFontSize: 30
-  mFontStyle: 0
-  mAlignment: 0
-  mEncoding: 1
-  mMaxLineCount: 0
-  mEffectStyle: 0
-  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
-  mSymbols: 1
-  mEffectDistance: {x: 1, y: 1}
-  mOverflow: 2
-  mMaterial: {fileID: 0}
-  mApplyGradient: 0
-  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  mSpacingX: 0
-  mSpacingY: 0
-  mUseFloatSpacing: 0
-  mFloatSpacingX: 0
-  mFloatSpacingY: 0
-  mOverflowEllipsis: 0
-  mOverflowWidth: 0
-  mModifier: 0
-  mShrinkToFit: 0
-  mMaxLineWidth: 0
-  mMaxLineHeight: 0
-  mLineWidth: 0
-  mMultiline: 1
---- !u!114 &114000010227866866
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013558107174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  root: {fileID: 1000011292838824}
-  clickResponseObjects: []
-  clickResponseParentNames: []
-  clickResponseObjectsIsShow: 
-  clickResponseParentNamesIsShow: 
-  clickResponseObjectAnimations: []
-  clickResponseParentAnimations: []
-  isFoldObjs: 0
-  isFoldParentObjs: 0
-  isForceKeep: 0
-  isClickHideSelf: 0
-  isClickHideParent: 0
-  des: "\u672A\u6709\u63CF\u8FF0"
-  activeHostKeyId: 0
-  activeCondiction: LEVEL
-  activeValue: 
-  labelHostKeyId: 6
-  labelMatchSign: QUALITY
-  labelMatchSelfDefineSign: 
-  sliderHostKeyId: 0
-  sliderMatchSign: 
-  sliderMaxSign: 
-  isNeedTranslate: 0
-  onClickModuleName: 
-  onTweenAniFinishedModuleName: 
-  onSliderModuleName: 
-  scrollerTableDataModuleName: 
---- !u!114 &114000010915795218
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013558107174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 13
-  rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 71
-  bottomAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
-  mPivot: 4
-  mWidth: 66
-  mHeight: 30
-  mDepth: 104
-  autoResizeBoxCollider: 0
-  hideIfOffScreen: 0
-  keepAspectRatio: 0
-  aspectRatio: 2.2
-  keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 12800000, guid: bb22fb5beacef47a6816ba69bce73b56, type: 3}
-  mFont: {fileID: 0}
-  mText: LV.99
   mFontSize: 30
   mFontStyle: 0
   mAlignment: 0
@@ -465,7 +328,7 @@ MonoBehaviour:
   isSingleInstanceUI: 0
   isShowOnLoaded: 1
   widgets:
-  - {fileID: 114000010227866866}
+  - {fileID: 0}
   - {fileID: 114000014038710896}
 --- !u!114 &114000014038710896
 MonoBehaviour:
