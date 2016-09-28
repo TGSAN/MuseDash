@@ -76,6 +76,10 @@ public class UIPhaseHelper : MonoBehaviour {
 		this.Init ();
 	}
 
+	void Awake() {
+		this.Init ();
+	}
+
 	void OnDestory() {
 		FomulaHostManager.Instance.RemoveNotifyUiHelper (this._dymUid);
 	}

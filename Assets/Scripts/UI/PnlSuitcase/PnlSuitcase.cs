@@ -156,6 +156,7 @@ namespace PnlSuitcase {
 			}
 
 			grid.SetActive (true);
+			TglSuitcaseGroove.TglSuitcaseGroove tgl = grid.GetComponent<TglSuitcaseGroove.TglSuitcaseGroove> ();
 			for (int i = 0; i < grid.transform.childCount; i++) {
 				Transform t = grid.transform.GetChild (i);
 				if (t == null) {
@@ -174,6 +175,10 @@ namespace PnlSuitcase {
 					UIPhaseBase upb = t.gameObject.GetComponent<UIPhaseBase> ();
 					if (upb != null) {
 						upb.OnShow (host);
+					}
+
+					if (tgl != null) {
+						tgl.SetItemHost (host);
 					}
 				}
 			}

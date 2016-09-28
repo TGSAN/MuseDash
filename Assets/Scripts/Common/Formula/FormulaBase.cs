@@ -280,6 +280,29 @@ namespace FormulaBase {
 			return this.CreateHost(fileName);
 		}
 
+		public FormulaHost CopyHost(FormulaHost host) {
+			string fileName = host.GetFileName ();
+			if (fileName == null) {
+				return null;
+			}
+
+			Dictionary<string, object> signKeys = host.GetSigns ();
+			if (signKeys == null) {
+				return null;
+			}
+
+			FormulaHost cHost = this.CreateHost (fileName);
+			if (cHost == null) {
+				return null;
+			}
+
+			foreach (string key in signKeys.Keys) {
+				cHost.SetDynamicData (key, signKeys [key]);
+			}
+
+			return cHost;
+		}
+
 		public void InitHostPool() {
 			if (this.hostPool != null) {
 				return;

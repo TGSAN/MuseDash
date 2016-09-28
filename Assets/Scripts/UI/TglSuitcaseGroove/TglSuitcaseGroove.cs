@@ -3,6 +3,8 @@
 /// 
 using System;
 using UnityEngine;
+using FormulaBase;
+
 namespace TglSuitcaseGroove {
 	public class TglSuitcaseGroove : UIPhaseBase {
 		private static TglSuitcaseGroove instance = null;
@@ -12,6 +14,7 @@ namespace TglSuitcaseGroove {
 			}
 		}
 
+		private FormulaHost itemHost;
 		public UIButton btn;
 
 		void Start() {
@@ -30,6 +33,17 @@ namespace TglSuitcaseGroove {
 		}
 
 		/// <summary>
+		/// Sets the item host.
+		/// 
+		/// 缓存格子所用的物品数据
+		/// 可用于显示详细信息界面
+		/// </summary>
+		/// <param name="host">Host.</param>
+		public void SetItemHost(FormulaHost host) {
+			this.itemHost = host;
+		}
+
+		/// <summary>
 		/// Ons the click.
 		/// 
 		/// btn挂载在uiroot上不受fq editor常规按钮处理流程控制
@@ -40,12 +54,12 @@ namespace TglSuitcaseGroove {
 				return;
 			}
 
+			this.__ItemDataForShow ();
 			for (int i = 0; i < this.gameObject.transform.childCount; i++) {
 				Transform t = this.gameObject.transform.GetChild (i);
 				if (t == null || !t.gameObject.activeSelf) {
 					continue;
 				}
-
 
 				ItemImageEquip.ItemImageEquip iie = t.gameObject.GetComponent<ItemImageEquip.ItemImageEquip> ();
 				if (iie != null) {
@@ -65,6 +79,21 @@ namespace TglSuitcaseGroove {
 					continue;
 				}
 			}
+		}
+
+		/// <summary>
+		/// Items the data for show.
+		/// 
+		/// 设置数据展示用的临时host
+		/// </summary>
+		private void __ItemDataForShow() {
+			if (this.itemHost == null) {
+				Debug.Log ("This grid has no item data.");
+				return;
+			}
+
+			FormulaHost showHost = FomulaHostManager.Instance.CopyHost (this.itemHost);
+			showHost.SetAsUINotifyInstance ();
 		}
 	}
 }
