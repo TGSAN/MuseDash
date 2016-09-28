@@ -150,9 +150,10 @@ namespace PnlCharChose
         /// <param name="idx"></param>
         private void OnPointLoaded(int idx)
         {
-			if (pointParent == null) {
-				return;
-			}
+            if (pointParent == null)
+            {
+                return;
+            }
 
             if (pointParent.childCount > 0)
             {

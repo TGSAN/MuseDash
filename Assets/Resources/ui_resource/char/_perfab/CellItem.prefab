@@ -76,6 +76,7 @@ GameObject:
   - 4: {fileID: 4000011817033374}
   - 114: {fileID: 114000012034101466}
   - 65: {fileID: 65000012309626690}
+  - 114: {fileID: 114000010399771078}
   m_Layer: 5
   m_Name: CellItem
   m_TagString: Untagged
@@ -475,6 +476,27 @@ MonoBehaviour:
   mAtlas: {fileID: 114000014215409208, guid: 065a9f9a2625e1e46b008ee2236c6541, type: 2}
   mSpriteName: groove_space
   mFillCenter: 1
+--- !u!114 &114000010399771078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011561235806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 333b72c1cacfd46ea9ae37a7574390ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSingleInstanceUI: 0
+  isShowOnLoaded: 0
+  widgets:
+  - {fileID: 114000014079731690}
+  - {fileID: 114000012652816606}
+  - {fileID: 114000010758902378}
+  - {fileID: 114000010428991356}
+  - {fileID: 114000013707295712}
+  - {fileID: 114000011852986166}
+  - {fileID: 114000013515314790}
 --- !u!114 &114000010420254282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -539,7 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  root: {fileID: 0}
+  root: {fileID: 1000011561235806}
   clickResponseObjects: []
   clickResponseParentNames: []
   clickResponseObjectsIsShow: 
@@ -630,7 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  root: {fileID: 0}
+  root: {fileID: 1000011561235806}
   clickResponseObjects: []
   clickResponseParentNames: []
   clickResponseObjectsIsShow: 
@@ -749,13 +771,7 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick:
-  - mTarget: {fileID: 0}
-    mMethodName: OnClickCommon
-    mParameters:
-    - obj: {fileID: 1000010656937274}
-      field: 
-    oneShot: 0
+  onClick: []
 --- !u!114 &114000011313162550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -888,7 +904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  root: {fileID: 0}
+  root: {fileID: 1000011561235806}
   clickResponseObjects:
   - {fileID: 0}
   clickResponseParentNames:
@@ -1104,7 +1120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  root: {fileID: 0}
+  root: {fileID: 1000011561235806}
   clickResponseObjects: []
   clickResponseParentNames: []
   clickResponseObjectsIsShow: 
@@ -1128,7 +1144,7 @@ MonoBehaviour:
   sliderMaxSign: 
   isNeedTranslate: 0
   onClickModuleName: 
-  onTweenAniFinishedModuleName: 
+  onTweenAniFinishedModuleName: OnTweenFinishedTxtUpgrade
   onSliderModuleName: 
   scrollerTableDataModuleName: 
 --- !u!114 &114000013372526870
@@ -1241,7 +1257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  root: {fileID: 0}
+  root: {fileID: 1000011561235806}
   clickResponseObjects: []
   clickResponseParentNames: []
   clickResponseObjectsIsShow: 
@@ -1265,7 +1281,7 @@ MonoBehaviour:
   sliderMaxSign: 
   isNeedTranslate: 0
   onClickModuleName: 
-  onTweenAniFinishedModuleName: 
+  onTweenAniFinishedModuleName: OnTweenFinishedTxtApply
   onSliderModuleName: 
   scrollerTableDataModuleName: 
 --- !u!114 &114000013707295712
@@ -1279,7 +1295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  root: {fileID: 0}
+  root: {fileID: 1000011561235806}
   clickResponseObjects: []
   clickResponseParentNames: []
   clickResponseObjectsIsShow: 
@@ -1425,7 +1441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  root: {fileID: 0}
+  root: {fileID: 1000011561235806}
   clickResponseObjects:
   - {fileID: 0}
   clickResponseParentNames:
