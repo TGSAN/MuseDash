@@ -6,6 +6,8 @@ using GameLogic;
 ///
 using System;
 using UnityEngine;
+using FormulaBase;
+using System.Collections;
 
 namespace PnlAdventure
 {
@@ -21,8 +23,13 @@ namespace PnlAdventure
             }
         }
 
+		private const int SHOW_GIRL_LAYER_ORDER = 2;
         private const string SHOW_CHILD_UI = "PnlStage";
         public static bool backFromBattle = false;
+
+		private GameObject currentSprite;
+
+		public Transform spiParent;
 
         void Start()
         {
@@ -48,6 +55,7 @@ namespace PnlAdventure
 			}
 
 			backFromBattle = false;
+			this.ShowRole ();
         }
 
         public override void OnHide()
@@ -62,6 +70,45 @@ namespace PnlAdventure
 				UISceneHelper.Instance.MarkShowOnLoad (this.gameObject.name, false);
 				UISceneHelper.Instance.MarkShowOnLoad (SHOW_CHILD_UI, true);
 				return;
+			}
+		}
+
+		public void ShowRole() {
+			int defaultIdx = 1;
+			int roleIdx = RoleManageComponent.Instance.GetFightGirlIndex();
+			if (roleIdx < 0) {
+				roleIdx = defaultIdx;
+				RoleManageComponent.Instance.SetFightGirlIndex (roleIdx);
+			}
+
+			this.OnSpiAnimLoaded (roleIdx);
+		}
+
+		private void OnSpiAnimLoaded(int idx) {
+			if (spiParent.childCount > 0) {
+				spiParent.DestroyChildren ();
+			}
+
+			this.currentSprite = null;
+			string path = ConfigPool.Instance.GetConfigStringValue ("character", idx.ToString (), "char_show");
+			var template = Resources.Load (path) as GameObject;
+			if (template) {
+				var go = GameObject.Instantiate (Resources.Load (path)) as GameObject;
+				go.transform.SetParent (spiParent, false);
+				go.SetActive (true);
+				go.transform.localPosition = Vector3.zero;
+				go.transform.localEulerAngles = Vector3.zero;
+				this.currentSprite = go;
+
+				// 设置sort order以适应界面需求
+				SpineActionController sac = this.currentSprite.GetComponent<SpineActionController> ();
+				if (sac) {
+					sac.Init (-1);
+					SpineActionController.Play (ACTION_KEYS.STAND, this.currentSprite);
+					SpineActionController.SetSkeletonOrder (SHOW_GIRL_LAYER_ORDER, this.currentSprite);
+				}
+			} else {
+				Debug.LogError ("加载未获得对象");
 			}
 		}
 

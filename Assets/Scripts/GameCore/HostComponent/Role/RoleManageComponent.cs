@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameLogic;
 
 namespace FormulaBase
 {
@@ -49,65 +50,57 @@ namespace FormulaBase
         }
 
         public void InitRole()
-        {
-            Debugger.Log("初始化角色数据");
-            if (this.HostList == null)
-            {
-                this.GetList("Role");
-            }
+		{
+			Debugger.Log ("初始化角色数据");
+			if (this.HostList == null) {
+				this.GetList ("Role");
+			}
 
-            // 如果有服务器数据,设置当前战斗角色
-            if (this.HostList != null && this.HostList.Count > 0)
-            {
-                foreach (FormulaHost _role in this.HostList.Values)
-                {
-                    if (_role == null)
-                    {
-                        continue;
-                    }
+			// 如果有服务器数据,设置当前战斗角色
+			if (this.HostList != null && this.HostList.Count > 0) {
+				foreach (FormulaHost _role in this.HostList.Values) {
+					if (_role == null) {
+						continue;
+					}
 
-                    // 初始化配置属性
-                    _role.Result(FormulaKeys.FORMULA_178);
-                    if (_role.GetDynamicIntByKey(SignKeys.FIGHTHERO) < 1)
-                    {
-                        continue;
-                    }
+					// 初始化配置属性
+					_role.Result (FormulaKeys.FORMULA_178);
+					if (_role.GetDynamicIntByKey (SignKeys.FIGHTHERO) < 1) {
+						continue;
+					}
 
-                    this.Host = _role;
-                    this.Host.SetAsUINotifyInstance();
-                }
+					this.Host = _role;
+					this.Host.SetAsUINotifyInstance ();
+				}
 
-                return;
-            }
+				return;
+			}
 
-            // 如果没有服务器数据,用配置生成本地对象
-            LitJson.JsonData roleCfg = ConfigPool.Instance.GetConfigByName("character");
-            if (roleCfg == null)
-            {
-                return;
-            }
+			// 如果没有服务器数据,用配置生成本地对象
+			LitJson.JsonData roleCfg = ConfigPool.Instance.GetConfigByName ("character");
+			if (roleCfg == null) {
+				return;
+			}
 
-            foreach (string key in roleCfg.Keys)
-            {
-                FormulaHost _role = FomulaHostManager.Instance.CreateHost("Role");
-                _role.SetDynamicData(SignKeys.ID, int.Parse(key));
-                _role.Result(FormulaKeys.FORMULA_178);
-                FomulaHostManager.Instance.AddHost(_role);
-                this.HostList[key] = _role;
-            }
+			foreach (string key in roleCfg.Keys) {
+				FormulaHost _role = FomulaHostManager.Instance.CreateHost ("Role");
+				_role.SetDynamicData (SignKeys.ID, int.Parse (key));
+				_role.Result (FormulaKeys.FORMULA_178);
+				FomulaHostManager.Instance.AddHost (_role);
+				this.HostList [key] = _role;
+			}
 
-            // 初始化默认战斗角色
-            this.Host = this.GetHostByKeyValue(SignKeys.ID, 1);
-            this.SetFightGirlIndex(1, () =>
-            {
-                this.SetFightGirlCallBack(null);
-            });
+			// 初始化默认战斗角色
+			this.Host = this.GetHostByKeyValue (SignKeys.ID, 1);
+			this.Host.SetDynamicData (SignKeys.LOCKED, 0);
+			this.SetFightGirlIndex (1, () => {
+				this.SetFightGirlCallBack (null);
+			});
 
-            if (CommonPanel.GetInstance() != null)
-            {
-                CommonPanel.GetInstance().ShowWaittingPanel(false);
-            }
-        }
+			if (CommonPanel.GetInstance () != null) {
+				CommonPanel.GetInstance ().ShowWaittingPanel (false);
+			}
+		}
 
         public void GetExpAndCost(ref int Exp, ref int Cost)
         {
@@ -163,67 +156,58 @@ namespace FormulaBase
         }
 
         public void UnlockRole(int _index, Callback _callBack = null)
-        {
-            int ttype = 0;
-            int tcost = 0;
-            bool _result = true;
-            GetUnLockRoleMoeny(_index, ref ttype, ref tcost);
-            if (ttype == 1)
-            {
-                _result = AccountGoldManagerComponent.Instance.ChangeMoney(tcost, true, new HttpResponseDelegate(((bool result) =>
-                {
-                    if (!result)
-                    {
-                        CommonPanel.GetInstance().ShowTextLackDiamond();
-                        return;
-                    }
+		{
+			int ttype = 0;
+			int tcost = 0;
+			bool _result = true;
+			GetUnLockRoleMoeny (_index, ref ttype, ref tcost);
+			if (ttype == GameGlobal.RESOURCE_TYPE_GOLD) {
+				_result = AccountGoldManagerComponent.Instance.ChangeMoney (tcost, true, new HttpResponseDelegate (((bool result) => {
+					if (!result) {
+						CommonPanel.GetInstance ().ShowTextLackMoney ();
+						return;
+					}
 
-                    FormulaHost thost = GetRole(_index);
-                    thost.SetDynamicData(SignKeys.LOCKED, 0);
-                    //Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
-                    thost.Save(new HttpResponseDelegate(UnlockedHeroCallBack));
-                    _callBack();
-                    CommonPanel.GetInstance().ShowWaittingPanel();
-                })));
-            }
-            else if (ttype == 2)
-            {
-                _result = AccountCrystalManagerComponent.Instance.ChangeDiamond(tcost, true, new HttpResponseDelegate(((bool result) =>
-                {
-                    if (!result)
-                    {
-                        CommonPanel.GetInstance().ShowTextLackDiamond();
-                        return;
-                    }
+					FormulaHost host = GetRole (_index);
+					host.SetDynamicData (SignKeys.LOCKED, 0);
+					//Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
+					host.Save (new HttpResponseDelegate (this.UnlockedHeroCallBack));
+					if (_callBack != null) {
+						_callBack ();
+					}
 
-                    FormulaHost thost = GetRole(_index);
-                    thost.SetDynamicData(SignKeys.LOCKED, 0);
-                    //Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
-                    thost.Save(new HttpResponseDelegate(UnlockedHeroCallBack));
-                    _callBack();
-                    CommonPanel.GetInstance().ShowWaittingPanel();
-                })));
-            }
+					CommonPanel.GetInstance ().ShowWaittingPanel ();
+				})));
+			} else if (ttype == GameGlobal.RESOURCE_TYPE_DIAMOND) {
+				_result = AccountCrystalManagerComponent.Instance.ChangeDiamond (tcost, true, new HttpResponseDelegate (((bool result) => {
+					if (!result) {
+						CommonPanel.GetInstance ().ShowTextLackDiamond ();
+						return;
+					}
 
-            if (!_result)
-            {
-                CommonPanel.GetInstance().ShowTextLackDiamond();
-            }
-        }
+					FormulaHost host = GetRole (_index);
+					host.SetDynamicData (SignKeys.LOCKED, 0);
+					//Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
+					host.Save (new HttpResponseDelegate (this.UnlockedHeroCallBack));
+					if (_callBack != null) {
+						_callBack ();
+					}
+
+					CommonPanel.GetInstance ().ShowWaittingPanel ();
+				})));
+			}
+		}
 
         public void UnlockedHeroCallBack(bool _success)
-        {
-            if (_success)
-            {
-                CommonPanel.GetInstance().ShowWaittingPanel(false);
-            }
-            else
-            {
-                CommonPanel.GetInstance().ShowText("connect is fail");
-            }
+		{
+			if (_success) {
+				CommonPanel.GetInstance ().ShowWaittingPanel (false);
+			} else {
+				CommonPanel.GetInstance ().ShowText ("connect is fail");
+			}
 
-            CommonPanel.GetInstance().ShowWaittingPanel(false);
-        }
+			CommonPanel.GetInstance ().ShowWaittingPanel (false);
+		}
 
         /// <summary>
         /// Gets the state of the role locked.

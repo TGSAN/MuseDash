@@ -522,7 +522,7 @@ namespace Assets.Scripts.NGUI
                 txtAuthorLast.alpha = lerpNumLast;
                 txtNameLast.transform.parent.localPosition = Vector3.Lerp(offsetForInfo, new Vector3(0, 220, 0), lerpNumLast);
 
-                txtNameNext.transform.parent.gameObject.SetActive(false);
+                //txtNameNext.transform.parent.gameObject.SetActive(false);
                 /*var nextIdx = offsetX > 0 ? m_CurrentIdx - 1 < 0 ? m_StageInfos.Count - 1 : m_CurrentIdx - 1 : m_CurrentIdx + 1 > m_StageInfos.Count - 1 ? 0 : m_CurrentIdx + 1;
                 txtNameNext.text = m_StageInfos[nextIdx].idx + " " + m_StageInfos[nextIdx].musicName;
                 txtAuthorNext.text = "Music by " + m_StageInfos[nextIdx].musicAuthor;
