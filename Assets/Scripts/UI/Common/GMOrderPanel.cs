@@ -33,8 +33,8 @@ public class GMOrderPanel : MonoBehaviour {
 	{
 		BagManageComponent.Instance.DeleteBagData();
 		ItemManageComponent.Instance.DeleteAllItem();
-		ChestManageComponent.Instance.GetChestList.Clear();
-		ChestManageComponent.Instance.GetTimeDownChest.Clear();
+		//ChestManageComponent.Instance.GetChestList.Clear();
+		//ChestManageComponent.Instance.GetTimeDownChest.Clear();
 		//RoleManageComponent.Instance.CreateRoles();
 		AccountManagerComponent.Instance.DeletePlayerData(new HttpEndResponseDelegate(DeleteAccountCallBack));//(120,true);
 	
@@ -54,6 +54,10 @@ public class GMOrderPanel : MonoBehaviour {
 	public void AddItem()
 	{
 		Debug.Log("GM命令添加物品");
+
+		FormulaHost equipItem = FomulaHostManager.Instance.CreateHost ("Equip");
+		ItemManageComponent.Instance.AddItem (equipItem);
+		/*
 		//所有装备
 		LitJson.JsonData cfg1 = ConfigPool.Instance.GetConfigByName ("Equipment_info");
 		Debug.Log("Equipment_info"+cfg1.Count);
@@ -96,9 +100,10 @@ public class GMOrderPanel : MonoBehaviour {
 			TempChestList.Add(int.Parse(temp));
 		}
 
-		ChestManageComponent.Instance.CreateItem(TempChestList);
-		ChestManageComponent.Instance.CreateItem(TempChestList);
-		ChestManageComponent.Instance.CreateItem(TempChestList);
+		//ChestManageComponent.Instance.CreateItem(TempChestList);
+		//ChestManageComponent.Instance.CreateItem(TempChestList);
+		//ChestManageComponent.Instance.CreateItem(TempChestList);
+		*/
 	}
 
 	public void AddMaterials()
@@ -170,7 +175,7 @@ public class GMOrderPanel : MonoBehaviour {
 			TempEquipList.Add(int.Parse(temp));
 		}
 
-		ChestManageComponent.Instance.CreateItem(TempEquipList);
+		//ChestManageComponent.Instance.CreateItem(TempEquipList);
 	}
 	public void UNLockAllStages()
 	{

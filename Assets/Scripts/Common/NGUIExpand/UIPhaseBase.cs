@@ -28,6 +28,7 @@ public class UIPhaseBase : MonoBehaviour {
 	/// 重载方法，在Show完成显示操作后调用
 	/// </summary>
 	public virtual void OnShow (){}
+	public virtual void OnShow (FormulaHost host){}
 
 	/// <summary>
 	/// Raises the hide event.
@@ -36,6 +37,26 @@ public class UIPhaseBase : MonoBehaviour {
 	/// </summary>
 	public virtual void OnHide (){}
 
+	/// <summary>
+	/// Res the show.
+	/// 
+	/// 灵活功能接口，可用于刷新界面
+	/// </summary>
+	public virtual void ReShow(){}
+
+	/// <summary>
+	/// Bes the catched.
+	/// 
+	/// 重载方法，在该界面被UISceneHelp缓存后
+	/// 缓存只在进入Scene时做一次
+	/// UISceneHelp会自动搜索继承UIPhaseBase的对象进行缓存并初始化
+	/// 此时会自动调用BeCatched
+	/// 
+	/// 重载的BeCatched可用于界面的预初始化
+	/// 
+	/// 在该Scene内数据准备完毕后
+	/// 则需要手动调用 UISceneHelper.Instance.Show () 正式显示所有界面
+	/// </summary>
 	public virtual void BeCatched(){}
 
 	private void Init() {

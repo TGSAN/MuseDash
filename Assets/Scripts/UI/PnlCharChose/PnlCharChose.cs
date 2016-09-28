@@ -13,6 +13,8 @@ namespace PnlCharChose
         public UIButton btnLeft, btnRight;
         public GameObject pointPrefab;
         public Transform spiParent, pointParent;
+        public UIButton btnApply, btnPurchase;
+        public UILabel txtApplying;
         private readonly List<string> m_ActionPaths = new List<string>();
         private List<UIToggle> m_Points = new List<UIToggle>();
 
@@ -33,8 +35,16 @@ namespace PnlCharChose
         private void Start()
         {
             instance = this;
+            this.InitData();
+            this.InitUI();
+            this.InitEvent();
         }
 
+        #region Init
+
+        /// <summary>
+        /// 初始化数据
+        /// </summary>
         private void InitData()
         {
             choseType = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
@@ -46,6 +56,9 @@ namespace PnlCharChose
             }
         }
 
+        /// <summary>
+        /// 初始化点击事件
+        /// </summary>
         private void InitEvent()
         {
             var count = FormulaBase.RoleManageComponent.Instance.HostList.Count;
@@ -58,8 +71,7 @@ namespace PnlCharChose
                 }
                 else
                 {
-                    FormulaBase.RoleManageComponent.Instance.GetRole(choseType).SetAsUINotifyInstance();
-                    LoadSpiAnim(choseType);
+                    OnCharacterChange(choseType);
                 }
             }));
             btnRight.onClick.Add(new EventDelegate(() =>
@@ -71,25 +83,46 @@ namespace PnlCharChose
                 }
                 else
                 {
-                    FormulaBase.RoleManageComponent.Instance.GetRole(choseType).SetAsUINotifyInstance();
-                    LoadSpiAnim(choseType);
+                    OnCharacterChange(choseType);
                 }
             }));
+            btnApply.onClick.Add(new EventDelegate(() =>
+            {
+                FormulaBase.RoleManageComponent.Instance.SetFightGirlIndex(choseType);
+            }));
+            btnPurchase.onClick.Add(new EventDelegate(() =>
+            {
+                FormulaBase.RoleManageComponent.Instance.UnlockRole(choseType);
+            }));
+            OnCharacterChange(choseType);
         }
 
+        /// <summary>
+        /// 初始化UI
+        /// </summary>
         private void InitUI()
         {
-            LoadPoint(choseType);
-            LoadSpiAnim(choseType);
+            OnPointLoaded(choseType);
+            OnCharacterChange(choseType);
         }
 
-        private GameObject LoadSpiAnim(int idx)
+        #endregion Init
+
+        #region OnEvent
+
+        /// <summary>
+        /// 同步读取Spi动画
+        /// </summary>
+        /// <param name="idx"></param>
+        /// <returns></returns>
+        private GameObject OnSpiAnimLoaded(int idx)
         {
+			return null;
+			/*
             if (spiParent.childCount > 0)
             {
                 spiParent.DestroyChildren();
             }
-            m_Points[idx - 1].value = true;
             var path = m_ActionPaths[idx - 1];
             var template = Resources.Load(path) as GameObject;
             if (template)
@@ -106,10 +139,19 @@ namespace PnlCharChose
                 Debug.LogError("加载未获得对象");
                 return null;
             }
+            */
         }
 
-        private void LoadPoint(int idx)
+        /// <summary>
+        /// 读取下方点的预制
+        /// </summary>
+        /// <param name="idx"></param>
+        private void OnPointLoaded(int idx)
         {
+			if (pointParent == null) {
+				return;
+			}
+
             if (pointParent.childCount > 0)
             {
                 pointParent.DestroyChildren();
@@ -125,15 +167,34 @@ namespace PnlCharChose
             }
         }
 
+        /// <summary>
+        /// 更换人物的事件
+        /// </summary>
+        /// <param name="curType"></param>
+        private void OnCharacterChange(int curType)
+        {
+            FormulaBase.FormulaHost role = FormulaBase.RoleManageComponent.Instance.GetRole(curType);
+            role.SetAsUINotifyInstance();
+            Debug.Log("Selected role " + curType + " : " + role.GetDynamicStrByKey(FormulaBase.SignKeys.NAME));
+            OnSpiAnimLoaded(curType);
+            var isLocked = FormulaBase.RoleManageComponent.Instance.GetRoleLockedState(curType);
+            var isCurCharacter = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex() == curType;
+            btnApply.gameObject.SetActive(!isLocked && !isCurCharacter);
+            btnPurchase.gameObject.SetActive(isLocked && !isCurCharacter);
+            txtApplying.gameObject.SetActive(isCurCharacter);
+            m_Points[curType - 1].value = true;
+        }
+
         public override void OnShow()
         {
-            this.InitData();
-            this.InitUI();
-            this.InitEvent();
+            choseType = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
+            OnCharacterChange(choseType);
         }
 
         public override void OnHide()
         {
         }
+
+        #endregion OnEvent
     }
 }
