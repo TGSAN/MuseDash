@@ -329,9 +329,7 @@ namespace Assets.Scripts.NGUI
                 var authorName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "Author");
                 m_StageInfos.Add(new StageInfo(i, iconPath, musicPath, musicName, authorName, 0, 0));
             }
-#if UNITY_IPHONE
-    minMaxSlide.y *= 2;
-#elif UNITY_ANDROID
+#if UNITY_IPHONE || UNITY_ANDROID
     minMaxSlide.y *= 2;
 #endif
             var trophySum = 0;
@@ -411,7 +409,6 @@ namespace Assets.Scripts.NGUI
                         cost = StageBattleComponent.Instance.Host.Result(FormulaKeys.FORMULA_330);
                     }
                 }
-
                 txtEnergyLast.text = cost.ToString();
 
                 if (m_DiffSeq != null)
