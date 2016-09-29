@@ -177,9 +177,14 @@ MonoBehaviour:
   - "\u6559\u5B66\u5173\u5361\u8282\u70B9node"
   - "\u5BF9\u8BDDnode"
   StageEvents:
-  - flodAction: 0
+  - flodAction: 1
     flodTime: 1
-    actionEvents: []
+    actionEvents:
+    - nodeIndex: 0
+      sceneObject: {fileID: 0}
+      bornActionIndex: 0
+      hittedActionIndex: 0
+      missActionIndex: 0
     timeEvents:
     - flod: 1
       time: 0
