@@ -5140,13 +5140,16 @@ MonoBehaviour:
   - PnlAchievement
   - PnlStage
   - PnlCharChose
-  - PnlItemInfo
+  - PnlItemInfoEquip
   - PnlChar
   - PnlCharInfo
   - PnlSuitcase
+  - PnlItemInfoServant
+  - PnlItemInfoFood
+  - PnlItemInfoServantSoul
   - 
   clickResponseObjectsIsShow: 010000000001
-  clickResponseParentNamesIsShow: 010000000000000000
+  clickResponseParentNamesIsShow: 010000000000000000000001
   clickResponseObjectAnimations:
   - 
   - 
@@ -5155,6 +5158,9 @@ MonoBehaviour:
   - 
   - 
   clickResponseParentAnimations:
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -5332,9 +5338,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   clickResponseParentNames:
+  - PnlItemInfoEquip
+  - PnlItemInfoServant
+  - PnlItemInfoFood
+  - PnlItemInfoServantSoul
   - 
   clickResponseObjectsIsShow: 010000000001
-  clickResponseParentNamesIsShow: 01
+  clickResponseParentNamesIsShow: 0000000001
   clickResponseObjectAnimations:
   - 
   - 
@@ -5342,9 +5352,14 @@ MonoBehaviour:
   - 
   - 
   - 
-  clickResponseParentAnimations: []
+  clickResponseParentAnimations:
+  - 
+  - 
+  - 
+  - 
+  - 
   isFoldObjs: 1
-  isFoldParentObjs: 0
+  isFoldParentObjs: 1
   isForceKeep: 0
   isClickHideSelf: 0
   isClickHideParent: 0
@@ -5882,9 +5897,13 @@ MonoBehaviour:
   - PnlCharChose
   - PnlChar
   - PnlCharInfo
+  - PnlItemInfoEquip
+  - PnlItemInfoServant
+  - PnlItemInfoFood
+  - PnlItemInfoServantSoul
   - 
   clickResponseObjectsIsShow: 010000000000
-  clickResponseParentNamesIsShow: 0100000000000000
+  clickResponseParentNamesIsShow: 010000000000000000000001
   clickResponseObjectAnimations:
   - 
   - 
@@ -5893,6 +5912,10 @@ MonoBehaviour:
   - 
   - 
   clickResponseParentAnimations:
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -6330,7 +6353,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3054
+  startingRenderQueue: 3014
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -7091,8 +7114,8 @@ MonoBehaviour:
   - PnlChar
   - PnlStage
   - PnlAchievement
-  - PnlItemInfo
-  - PnlCharChose
+  - 
+  - 
   - 
   clickResponseObjectsIsShow: 010000000000
   clickResponseParentNamesIsShow: 000001010000000000

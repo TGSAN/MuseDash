@@ -65,6 +65,13 @@ namespace FormulaBase
 
 					// 初始化配置属性
 					_role.Result (FormulaKeys.FORMULA_178);
+					int cloth = _role.GetDynamicIntByKey (SignKeys.CLOTH);
+					if (cloth <= 0) {
+						int idx = _role.GetDynamicIntByKey (SignKeys.ID);
+						cloth = ConfigPool.Instance.GetConfigIntValue ("character", idx.ToString (), "character");
+						_role.SetDynamicData (SignKeys.CLOTH, cloth);
+					}
+
 					if (_role.GetDynamicIntByKey (SignKeys.FIGHTHERO) < 1) {
 						continue;
 					}
@@ -291,6 +298,36 @@ namespace FormulaBase
                 CommonPanel.GetInstance().ShowWaittingPanel(false);
             }
         }
+
+		public void SetFightGirlClothByOrder(int order) {
+			int idx = this.GetFightGirlIndex ();
+			if (idx <= 0) {
+				Debugger.Log ("No fight girl selected.");
+				return;
+			}
+
+			FormulaHost role = this.GetRole (idx);
+			if (role == null) {
+				Debugger.Log ("Role " + idx + " has no data.");
+				return;
+			}
+
+			string name = role.GetDynamicStrByKey (SignKeys.NAME);
+			if (name == null || name == string.Empty) {
+				Debugger.Log ("Role " + idx + " has no NAME.");
+				return;
+			}
+
+			int clothUid = idx * 10 + (order - 1);
+			string clothName = ConfigPool.Instance.GetConfigStringValue ("clothing", "uid", "name", clothUid);
+			if (clothName == null) {
+				clothUid = idx * 10;
+			}
+
+			role.SetDynamicData (SignKeys.CLOTH, clothUid);
+			Debugger.Log ("Set " + name + " with cloth uid : " + clothUid);
+			CommonPanel.GetInstance ().ShowText ("换装:" + clothName);
+		}
 
         public string GetName(int _index)
         {

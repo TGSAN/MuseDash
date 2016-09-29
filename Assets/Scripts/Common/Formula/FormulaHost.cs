@@ -48,6 +48,8 @@ namespace FormulaBase {
 		private Dictionary<int, FormulaObject> formulasByIdx = null;
 		private Dictionary<string, object> signs = null;
 
+		private FormulaHost _copySource;
+
 		public String objectID {
 			get {
 				return this._objectId;
@@ -105,6 +107,16 @@ namespace FormulaBase {
 
 			set {
 				this._isDelete = value;
+			}
+		}
+
+		public FormulaHost CopySource {
+			get {
+				return this._copySource;
+			}
+
+			set {
+				this._copySource = value;
 			}
 		}
 		/// <summary>

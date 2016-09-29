@@ -164,9 +164,19 @@ namespace FormulaBase {
 			CommonPanel.GetInstance ().ShowWaittingPanel (false);
 		}
 
-		public void SaleItem(FormulaHost _host,HttpResponseDelegate _callback=null) {
-			string fileName = _host.GetFileName ();
+		public void SaleSelectedItem(string fileName) {
+			FormulaHost hostShow = FomulaHostManager.Instance.GetNotifyUiHostByFileName (fileName);
+			if (hostShow == null || hostShow.CopySource == null) {
+				Debug.Log ("No selected item type " + fileName + " for sale.");
+				return;
+			}
+
+			this.SaleItem (hostShow.CopySource, this.DeleteSelectedItemCallBack);
+		}
+
+		public void SaleItem(FormulaHost _host, HttpResponseDelegate _callback = null) {
 			int Monye = 0;
+			string fileName = _host.GetFileName ();
 			int StackitemNumber = _host.GetDynamicIntByKey (SignKeys.STACKITEMNUMBER);
 			if (StackitemNumber > 1) {
 				_host.SetDynamicData (SignKeys.STACKITEMNUMBER, StackitemNumber - 1);
@@ -197,7 +207,7 @@ namespace FormulaBase {
 		/// <summary>
 		/// 删除物品的反馈
 		/// </summary>
-		public void DeleteItemCallBack(bool _success) {
+		private void DeleteItemCallBack(bool _success) {
 			CommonPanel.GetInstance ().ShowWaittingPanel (false);
 			if (true) {
 				//	UIManageSystem.g_Instance.RomoveUI();
@@ -205,6 +215,15 @@ namespace FormulaBase {
 			} else {
 				NGUIDebug.Log ("connet is fail");
 			}
+		}
+
+		private void DeleteSelectedItemCallBack(bool _success) {
+			Debug.Log ("After deleted item then call ui update.");
+			if (PnlSuitcase.PnlSuitcase.Instance != null) {
+				PnlSuitcase.PnlSuitcase.Instance.ReShow ();
+			}
+
+			this.DeleteItemCallBack (_success);
 		}
 
 		public void LockItem(FormulaHost _host,bool _Locked) {
