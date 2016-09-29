@@ -93,11 +93,11 @@ namespace PnlCharChose
             }));
             btnApply.onClick.Add(new EventDelegate(() =>
             {
-                FormulaBase.RoleManageComponent.Instance.SetFightGirlIndex(choseType);
+					FormulaBase.RoleManageComponent.Instance.SetFightGirlIndex(choseType, this.SetFightGirlCallback);
             }));
             btnPurchase.onClick.Add(new EventDelegate(() =>
             {
-                FormulaBase.RoleManageComponent.Instance.UnlockRole(choseType);
+					FormulaBase.RoleManageComponent.Instance.UnlockRole(choseType, this.UnLockRoleCallback);
             }));
             OnCharacterChange(choseType);
         }
@@ -139,7 +139,7 @@ namespace PnlCharChose
             }
             else
             {
-                Debug.LogError("加载未获得对象");
+				Debug.LogError ("加载未获得对象 : " + path);
                 return null;
             }
         }
@@ -203,5 +203,17 @@ namespace PnlCharChose
         }
 
         #endregion OnEvent
+
+		private void SetFightGirlCallback() {
+			btnApply.gameObject.SetActive(false);
+			btnPurchase.gameObject.SetActive(false);
+			txtApplying.gameObject.SetActive(true);
+		}
+
+		private void UnLockRoleCallback() {
+			btnApply.gameObject.SetActive(true);
+			btnPurchase.gameObject.SetActive(false);
+			txtApplying.gameObject.SetActive(false);
+		}
     }
 }

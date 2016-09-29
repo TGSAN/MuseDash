@@ -194,7 +194,7 @@ namespace FormulaBase
 
             int sid = this.GetId();
             uint diff = this.GetDiffcult();
-            string songKey = "FileName_" + diff;
+            string songKey = "FileName_" + 1;
             return ConfigPool.Instance.GetConfigStringValue("stage", sid.ToString(), songKey);
         }
 
@@ -758,6 +758,11 @@ namespace FormulaBase
             string cfgName = name + diff;
 
             this.musicTickData = MusicConfigReader.Instance.GetData(ref cfgName);
+			if (this.musicTickData == null || this.musicTickData.Count <= 0) {
+				Debug.Log ("Stage config is lost : " + cfgName);
+				cfgName = name + 1;
+				this.musicTickData = MusicConfigReader.Instance.GetData(ref cfgName);
+			}
         }
 
         public void AddGold(int value)
