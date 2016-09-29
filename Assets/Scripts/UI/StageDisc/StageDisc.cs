@@ -16,6 +16,8 @@ namespace StageDisc
         private static Dictionary<int, StageDisc> _discTable = null;
 
         private static StageDisc instance = null;
+        public GameObject lockGO;
+        public Color lockColor;
 
         public static StageDisc Instance
         {
@@ -87,6 +89,11 @@ namespace StageDisc
 
             _discTable[this.staegId] = this;
             //this.SetTxrByStage ();
+        }
+
+        public void Lock(bool isTo)
+        {
+            lockGO.SetActive(isTo);
         }
 
         private void InitStageInfo()

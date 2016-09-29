@@ -264,6 +264,11 @@ namespace FormulaBase
             return 0.5m;
         }
 
+        public int GetStageCount()
+        {
+            return ConfigPool.Instance.GetConfigByName("stage").Count;
+        }
+
         public uint GetPlayResultLock()
         {
             return 0;

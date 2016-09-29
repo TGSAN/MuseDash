@@ -178,10 +178,34 @@ namespace FormulaBase
                 this.Host.SetDynamicData(SignKeys.DIFFCULT, GameGlobal.DIFF_LEVEL_NORMAL);
             }
 
+            int lockValue = this.Host.GetDynamicIntByKey(SignKeys.LOCKED, -1);
+            if (lockValue < 0)
+            {
+                var isLock = IsLock() ? 1 : 0;
+                this.Host.SetDynamicData(SignKeys.LOCKED, isLock);
+            }
+
             this.targets = this.GetStageTargetsByStageId(stageId);
             this.Host.SetDynamicData(SignKeys.ID, stageId);
             this.Host.SetDynamicData(TASK_SIGNKEY_STAGEID, stageId);
             this.OnInit(stageId);
+        }
+
+        /// <summary>
+        /// 获取当前玩家获得的奖杯总数
+        /// </summary>
+        /// <returns></returns>
+        public int GetTotalTrophy()
+        {
+            var trophySum = 0;
+            var hosts = GetList("Task");
+            foreach (var host in hosts)
+            {
+                trophySum +=
+                    host.Value.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_EVLUATE +
+                                                  TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
+            }
+            return trophySum;
         }
 
         /// <summary>
@@ -208,24 +232,48 @@ namespace FormulaBase
             {
                 return false;
             }
-
-            return (this.GetXMax(TASK_SIGNKEY_STAGE_CLEAR_COUNT) < 1);
+            var unlockTrophy = Host.GetDynamicIntByKey(SignKeys.UnlockTrophy);
+            return unlockTrophy > GetTotalTrophy();
         }
 
+        /// <summary>
+        /// 根据所给索引遍历判断是否解锁，不要在遍历中使用
+        /// </summary>
+        /// <param name="stageId"></param>
+        /// <returns></returns>
         public bool IsLock(int stageId)
         {
             if (stageId <= 1)
             {
                 return false;
             }
-
-            this.Init(stageId);
-            if (this.Host == null)
+            var hosts = GetList("Task");
+            foreach (var formulaHost in hosts.Values)
             {
-                return false;
+                if (formulaHost.GetDynamicIntByKey(SignKeys.ID) == stageId)
+                {
+                    var unlockTrophy = formulaHost.GetDynamicIntByKey(SignKeys.UnlockTrophy);
+                    Debug.Log(unlockTrophy);
+                    return unlockTrophy > GetTotalTrophy();
+                }
             }
+            return true;
+        }
 
-            return this.IsNextLock();
+        /// <summary>
+        /// 获取解锁歌曲列表
+        /// </summary>
+        /// <returns></returns>
+        public bool[] GetLockList()
+        {
+            var idxs = new bool[StageBattleComponent.Instance.GetStageCount()];
+            var totalTrophy = GetTotalTrophy();
+            for (int i = 1; i < idxs.Length; i++)
+            {
+                var unlockTrophy = ConfigPool.Instance.GetConfigIntValue("stage", i.ToString(), "UnlockTrophy");
+                idxs[i] = unlockTrophy > totalTrophy;
+            }
+            return idxs;
         }
 
         /// <summary>

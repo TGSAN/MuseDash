@@ -16,8 +16,9 @@ namespace Assets.Scripts.NGUI
         public int musicEnergy;
         public int musicDifficulty;
         public int idx;
+        public bool isLock;
 
-        public StageInfo(int i, string icon, string music, string name, string author, int energy, int difficulty)
+        public StageInfo(int i, string icon, string music, string name, string author, int energy, int difficulty, bool isLocking)
         {
             idx = i;
             iconPath = icon;
@@ -26,6 +27,7 @@ namespace Assets.Scripts.NGUI
             musicAuthor = author;
             musicEnergy = energy;
             musicDifficulty = difficulty;
+            isLock = isLocking;
         }
     }
 
@@ -53,6 +55,7 @@ namespace Assets.Scripts.NGUI
         public Vector2 maxMinAlpha;
         public float eneryAnimDurationEnter, eneryAnimDurationLeave;
         public AnimationCurve energyCurve;
+        public float btnFadeTime = 0.3f;
 
         [Header("缩放")]
         public float distanceToChangeScale;
@@ -107,6 +110,7 @@ namespace Assets.Scripts.NGUI
         private Sequence m_DlySeq;
         private Sequence m_DiffSeq;
         private int m_PreDiff = 30;
+        private int m_TrophySum = 0;
         private float m_ZAngle = 0.0f;
         private static int m_CurrentIdx = 0;
         private bool m_IsSliding = false;
@@ -272,7 +276,7 @@ namespace Assets.Scripts.NGUI
             UIEventListener.Get(btnStart).onDragEnd = onDragEnd;
             UIEventListener.Get(btnStart).onClick = (go) =>
             {
-                if (!m_FinishEnter)
+                if (!m_FinishEnter || m_StageInfos[m_CurrentIdx].isLock)
                 {
                     return;
                 }
@@ -315,32 +319,33 @@ namespace Assets.Scripts.NGUI
                 }
                 OnChangeOffset(new Vector3(0, 0, angle * 1), nextPageTime);
             };
-            this.onSongChange += PlayMusic;
+            onSongChange += PlayMusic;
+            onSongChange += OnInfoChange;
+        }
+
+        public void UpdateInfo()
+        {
+            m_StageInfos.Clear();
+            InitInfo();
         }
 
         private void InitInfo()
         {
-            var jData = ConfigPool.Instance.GetConfigByName("stage");
-            for (int i = 1; i < jData.Count; i++)
+            var count = StageBattleComponent.Instance.GetStageCount();
+            var lockList = TaskStageTarget.Instance.GetLockList();
+            for (int i = 1; i < count; i++)
             {
                 var iconPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "icon");
                 var musicPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "FileName_1");
                 var musicName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "DisplayName");
                 var authorName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "Author");
-                m_StageInfos.Add(new StageInfo(i, iconPath, musicPath, musicName, authorName, 0, 0));
+                var isLock = lockList[i];
+                m_StageInfos.Add(new StageInfo(i, iconPath, musicPath, musicName, authorName, 0, 0, isLock));
             }
 #if UNITY_IPHONE || UNITY_ANDROID
     minMaxSlide.y *= 2;
 #endif
-            var trophySum = 0;
-            var hosts = TaskStageTarget.Instance.GetList("Task");
-            foreach (var host in hosts)
-            {
-                trophySum +=
-                    host.Value.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_EVLUATE +
-                                                  TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
-            }
-            txtTrophySum.text = trophySum.ToString();
+            m_TrophySum = TaskStageTarget.Instance.GetTotalTrophy();
         }
 
         private void InitUI()
@@ -351,12 +356,14 @@ namespace Assets.Scripts.NGUI
                 GameObject item = GameObject.Instantiate(cell) as GameObject;
                 item.transform.parent = pivot.transform;
                 StageDisc.StageDisc sd = item.GetComponent<StageDisc.StageDisc>();
+                sd.Lock(m_StageInfos[i].isLock);
                 if (sd != null)
                 {
                     sd.SetStageId(i + 1);
                 }
                 m_CellGroup.Add(i, item);
             }
+            txtTrophySum.text = m_TrophySum.ToString();
         }
 
         #endregion 初始化
@@ -366,13 +373,16 @@ namespace Assets.Scripts.NGUI
         private void OnScrollEnd()
         {
             m_IsSliding = false;
-            PnlStage.PnlStage.Instance.OnSongChanged(currentSongIdx);
-            OnEnergyInfoChange(true);
-            OnTrophyChange();
             onSongChange(m_CurrentIdx);
         }
 
-        public void OnTrophyChange()
+        private void OnInfoChange(int idx)
+        {
+            OnEnergyInfoChange(true);
+            OnTrophyChange();
+        }
+
+        private void OnTrophyChange()
         {
             var trophyNum = TaskStageTarget.Instance.GetXMax(TaskStageTarget.TASK_SIGNKEY_STAGE_EVLUATE);
             for (int i = 0; i < trophyParent.childCount; i++)
@@ -382,7 +392,7 @@ namespace Assets.Scripts.NGUI
             }
         }
 
-        public void OnEnergyInfoChange(bool change)
+        private void OnEnergyInfoChange(bool change)
         {
             if (m_EnergyTweener1 != null)
             {
@@ -547,6 +557,10 @@ namespace Assets.Scripts.NGUI
                 OnEnergyInfoChange(false);
                 SceneAudioManager.Instance.bgm.Stop();
             }
+
+            var alphaTo = m_StageInfos[m_CurrentIdx].isLock ? 0.0f : 1.0f;
+            DOTweenUtil.TweenAllAlphaTo(btnStart, alphaTo, btnFadeTime, 0.1f);
+            btnStart.GetComponent<TweenAlpha>().enabled = !m_StageInfos[m_CurrentIdx].isLock;
             var midIdx = Mathf.RoundToInt(m_ZAngle / angle + 2);
             midIdx %= m_CellGroup.Count;
             midIdx = midIdx < 0
@@ -583,11 +597,17 @@ namespace Assets.Scripts.NGUI
                 }
                 go.transform.localScale = Vector3.Lerp(Vector3.one * minScale, Vector3.one * maxScale,
                     1 - xOffset / distanceToChangeScale);
+
                 var texs = go.GetComponentsInChildren<UITexture>();
                 foreach (var tex in texs)
                 {
-                    tex.color = Color.Lerp(min, max,
+                    var color = Color.Lerp(min, max,
                         1 - xOffset / distanceToChangeColor);
+                    if (m_StageInfos[idx].isLock)
+                    {
+                        color = min;
+                    }
+                    tex.color = color;
                 }
                 if (xOffset <= distanceToChangeScale && go.activeSelf)
                 {
@@ -656,47 +676,6 @@ namespace Assets.Scripts.NGUI
             Debug.Log("Stage select load music : " + musicPath);
             this.m_Coroutine = ResourceLoader.Instance.Load(musicPath, this.LoadSync);
         }
-
-        /*        private IEnumerator LoadCoroutine()
-                {
-                    while (m_Request.isDone)
-                    {
-                        yield return null;
-                    }
-                    var clip = m_Request.asset as AudioClip;
-                    while (!clip.isReadyToPlay)
-                    {
-                        yield return null;
-                    }
-                    var percent = 15.0f / clip.length;
-                    var length = Mathf.RoundToInt((float)(clip.channels * clip.samples) * percent);
-                    var data = new float[length];
-                    var name = clip.name;
-                    clip.GetData(data, 0);
-                    //Resources.UnloadAsset(clip);
-                    if (this.m_CatchClip != null)
-                    {
-                        Resources.UnloadAsset(this.m_CatchClip);
-                    }
-
-                    this.m_CatchClip = clip;
-
-                    var newClip = AudioClip.Create(name, data.Length, 2, 44100, false);
-                    newClip.SetData(data, 0);
-                    while (!newClip.isReadyToPlay)
-                    {
-                        yield return null;
-                    }
-                    var audioSource = SceneAudioManager.Instance.bgm;
-                    if (audioSource.clip != newClip)
-                    {
-                        Destroy(audioSource.clip);
-                    }
-                    audioSource.clip = newClip;
-                    audioSource.Play();
-                    audioSource.loop = true;
-                    PnlStage.PnlStage.Instance.OnSongChanged(currentSongIdx);
-                }*/
 
         private void LoadSync(UnityEngine.Object res)
         {
