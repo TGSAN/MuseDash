@@ -29,6 +29,7 @@ public class GameSceneMainController : MonoBehaviour {
 		#endif
 
 		string musicName = StageBattleComponent.Instance.GetMusicName ();
+		Debug.Log ("Enter stage " + StageBattleComponent.Instance.GetId () + " with preload music : " + musicName);
 		ResourceLoader.Instance.Load (musicName, this.__OnStartAfterMusicLoaded, ResourceLoader.RES_FROM_LOCAL);
 	}
 

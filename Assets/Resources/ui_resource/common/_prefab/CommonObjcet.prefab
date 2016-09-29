@@ -255,12 +255,12 @@ GameObject:
   - 65: {fileID: 65000012760101124}
   - 114: {fileID: 114000013632586212}
   m_Layer: 5
-  m_Name: BtnSetChar
+  m_Name: BtnAutoPlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000010612108306
 GameObject:
   m_ObjectHideFlags: 1
@@ -928,7 +928,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000013428431962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,7 +1056,7 @@ GameObject:
   - 4: {fileID: 4000011243791388}
   - 114: {fileID: 114000010691762482}
   m_Layer: 5
-  m_Name: TxtSetChar
+  m_Name: TxtAutoPlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4062,17 +4062,17 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0.07450981, g: 0.49411768, b: 0.67058825, a: 1}
   mPivot: 4
-  mWidth: 54
+  mWidth: 112
   mHeight: 30
   mDepth: 22
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.8
+  aspectRatio: 3.7333333
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: bb22fb5beacef47a6816ba69bce73b56, type: 3}
   mFont: {fileID: 0}
-  mText: GIRL
+  mText: Auto Play
   mFontSize: 30
   mFontStyle: 0
   mAlignment: 0
@@ -7460,10 +7460,8 @@ MonoBehaviour:
   pixelSnap: 0
   onClick:
   - mTarget: {fileID: 114000011558368440}
-    mMethodName: ClickSetCharacter
-    mParameters:
-    - obj: {fileID: 114000010691762482}
-      field: 
+    mMethodName: ClickAutoPlay
+    mParameters: []
     oneShot: 0
 --- !u!114 &114000013753068436
 MonoBehaviour:

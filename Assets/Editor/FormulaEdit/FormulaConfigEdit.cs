@@ -81,6 +81,10 @@ public class FormulaConfigEdit : EditorWindow
                                 {
                                     myPath += tmpSplit[i] + "/";
                                 }
+#else
+								//myPath = myPath.Replace(_fShortName, "");
+								int _ridx = myPath.LastIndexOf('/');
+								myPath = myPath.Substring(0, _ridx + 1);
 #endif
                                 _nameToPath[_fShortName] = myPath;
                                 Debug.Log(file, AssetDatabase.LoadAssetAtPath<Object>(GetRelativeAssetsPath(file)));
