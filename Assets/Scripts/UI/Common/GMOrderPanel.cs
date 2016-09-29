@@ -258,6 +258,10 @@ public class GMOrderPanel : MonoBehaviour {
 		CommonPanel.GetInstance ().ShowWaittingPanel (false);
 	}
 
+	public void ClickAutoPlay() {
+		StageBattleComponent.Instance.SetAutoPlay (!StageBattleComponent.Instance.IsAutoPlay ());
+	}
+
 	public void ClickSetCloth(UILabel btnLabel) {
 		if (RoleManageComponent.Instance.HostList == null) {
 			Debug.Log ("Role empty.");

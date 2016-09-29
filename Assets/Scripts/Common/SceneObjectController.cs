@@ -156,8 +156,7 @@ public class SceneObjectController : MonoBehaviour {
 
 		for (int i = 0; i < this.eventData.actionEvents.Length; i++) {
 			StageActionEvent _event = this.eventData.actionEvents [i];
-			string _nid = ConfigPool.Instance.GetConfigStringValue ("notedata", _event.nodeIndex.ToString (), "uid");
-			if (_nid != nodeId) {
+			if (_event.nodeUid != nodeId) {
 				continue;
 			}
 
@@ -184,8 +183,7 @@ public class SceneObjectController : MonoBehaviour {
 
 		for (int i = 0; i < this.eventData.actionEvents.Length; i++) {
 			StageActionEvent _event = this.eventData.actionEvents [i];
-			string _nid = ConfigPool.Instance.GetConfigStringValue ("notedata", _event.nodeIndex.ToString (), "uid");
-			if (_nid != nodeId) {
+			if (_event.nodeUid != nodeId) {
 				continue;
 			}
 			
@@ -212,8 +210,7 @@ public class SceneObjectController : MonoBehaviour {
 
 		for (int i = 0; i < this.eventData.actionEvents.Length; i++) {
 			StageActionEvent _event = this.eventData.actionEvents [i];
-			string _nid = ConfigPool.Instance.GetConfigStringValue ("notedata", _event.nodeIndex.ToString (), "uid");
-			if (_nid != nodeId) {
+			if (_event.nodeUid != nodeId) {
 				continue;
 			}
 

@@ -151,7 +151,8 @@ public class SceneEventEdit : EditorWindow {
 		}
 
 		EditorGUILayout.BeginHorizontal ();
-		eData.nodeIndex = EditorGUILayout.Popup (eData.nodeIndex, text);
+		//eData.nodeIndex = EditorGUILayout.Popup (eData.nodeIndex, text);
+		eData.nodeUid = EditorGUILayout.TextField (eData.nodeUid);
 		eData.sceneObject = (GameObject)EditorGUILayout.ObjectField (eData.sceneObject, typeof(GameObject), true);
 		eData.bornActionIndex = EditorGUILayout.Popup (LIST_DES, eData.bornActionIndex, EditorData.Instance.SpineActionDes);
 		eData.hittedActionIndex = EditorGUILayout.Popup (LIST_DES2, eData.hittedActionIndex, EditorData.Instance.SpineActionDes);

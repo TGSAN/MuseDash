@@ -50,6 +50,14 @@ namespace PnlAdventure
         }
 
         public override void OnShow() {
+			if (SceneAudioManager.Instance != null) {
+				if (SceneAudioManager.Instance.bgm != null) {
+					SceneAudioManager.Instance.bgm.Stop ();
+				}
+
+				SceneAudioManager.Instance.bgm.clip = null;
+			}
+
 			if (!backFromBattle) {
 				this.PlayBgm ();
 			}
@@ -127,8 +135,9 @@ namespace PnlAdventure
                 return;
             }
 
+			FormulaHost role = RoleManageComponent.Instance.GetRole (heroIndex);
             string _speaker = SoundEffectComponent.Instance.SpeakerOfType(GameGlobal.SOUND_TYPE_UI_BGM);
-            string name = ConfigPool.Instance.GetConfigStringValue("character", (RoleManageComponent.RoleIndexToId(heroIndex)).ToString(), "name");
+			string name = role.GetDynamicStrByKey (SignKeys.NAME);
             if (SoundEffectComponent.Instance.IsPlaying(GameGlobal.SOUND_TYPE_UI_BGM) && _speaker == name)
             {
                 return;
