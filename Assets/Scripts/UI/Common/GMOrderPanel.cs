@@ -307,8 +307,9 @@ public class GMOrderPanel : MonoBehaviour {
 				continue;
 			}
 
-			int cuid = ConfigPool.Instance.GetConfigIntValue ("clothing", cid, "uid");
+			int cuid = ConfigPool.Instance.GetConfigIntValue ("clothing", cid.ToString (), "uid");
 			role.SetDynamicData (SignKeys.CLOTH, cuid);
+			Debug.Log ("Gm set role " + idx + " cloth uid : " + cuid); 
 			break;
 		}
 

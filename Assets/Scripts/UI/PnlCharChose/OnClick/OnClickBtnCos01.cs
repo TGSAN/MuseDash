@@ -3,10 +3,12 @@
 /// 
 using System;
 using UnityEngine;
+using FormulaBase;
 namespace PnlCharChose {
 	public class OnClickBtnCos01 : UIPhaseOnClickBase {
 		public static void Do(GameObject gameObject) {
-				OnDo(gameObject);
+			RoleManageComponent.Instance.SetFightGirlClothByOrder (1);
+			OnDo(gameObject);
 		}
 	}
 }

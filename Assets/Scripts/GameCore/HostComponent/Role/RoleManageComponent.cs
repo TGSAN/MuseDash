@@ -299,6 +299,36 @@ namespace FormulaBase
             }
         }
 
+		public void SetFightGirlClothByOrder(int order) {
+			int idx = this.GetFightGirlIndex ();
+			if (idx <= 0) {
+				Debugger.Log ("No fight girl selected.");
+				return;
+			}
+
+			FormulaHost role = this.GetRole (idx);
+			if (role == null) {
+				Debugger.Log ("Role " + idx + " has no data.");
+				return;
+			}
+
+			string name = role.GetDynamicStrByKey (SignKeys.NAME);
+			if (name == null || name == string.Empty) {
+				Debugger.Log ("Role " + idx + " has no NAME.");
+				return;
+			}
+
+			int clothUid = idx * 10 + (order - 1);
+			string clothName = ConfigPool.Instance.GetConfigStringValue ("clothing", "uid", "name", clothUid);
+			if (clothName == null) {
+				clothUid = idx * 10;
+			}
+
+			role.SetDynamicData (SignKeys.CLOTH, clothUid);
+			Debugger.Log ("Set " + name + " with cloth uid : " + clothUid);
+			CommonPanel.GetInstance ().ShowText ("换装:" + clothName);
+		}
+
         public string GetName(int _index)
         {
             FormulaHost thost = GetRole(_index);
