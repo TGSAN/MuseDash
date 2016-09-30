@@ -170,7 +170,7 @@ public class RewardPanel : MonoBehaviour {
 	public void DeleteChest()
 	{
 		
-		//ChestManageComponent.Instance.ReomoveChest(m_nowChest);//.Remove();
+		ChestManageComponent.Instance.ReomoveChest(m_nowChest);//.Remove();
 
 	//	Messenger.Broadcast(bagPanel2.BroadcastBagItem);
 	}

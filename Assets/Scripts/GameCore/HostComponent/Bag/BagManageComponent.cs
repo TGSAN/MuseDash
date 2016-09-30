@@ -65,7 +65,7 @@ namespace FormulaBase {
 				host.SetDynamicData (SignKeys.ID, current);
 				host.Save ();
 
-				//Messenger.Broadcast (bagPanel2.BroadcastBagEmptyReSet);
+				Messenger.Broadcast (bagPanel2.BroadcastBagEmptyReSet);
 			})));
 		}
 

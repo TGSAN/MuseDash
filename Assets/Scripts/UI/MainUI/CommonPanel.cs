@@ -6,10 +6,12 @@ using UnityStandardAssets.ImageEffects;
 
 
 public class CommonPanel : MonoBehaviour {
-	public OKCancelBox m_OkCanclebox;
-	public ShowText m_ShowText;
+	public  OkBox m_Okbox;
+	public 	ShowText m_ShowText;
 	//public  UseResBox m_UseResBox;
 	public GameObject m_WaittingPanel;
+	public TweenAlpha m_Mask;
+	public TweenAlpha m_BlurMask;				//毛玻璃的黑色遮罩
 	public GameObject m_GMRobot;				//GM机器人
 	public UIMask m_UIMask;						//各界面间的渐黑
 
@@ -17,7 +19,7 @@ public class CommonPanel : MonoBehaviour {
 	public static CommonPanel GetInstance() {
 		return instance;
 	}
-	/*
+
 	public UnityStandardAssets.ImageEffects.BlurOptimized m_UICamera=null;
 	public UnityStandardAssets.ImageEffects.BlurOptimized GetUICamera {
 		get {
@@ -37,12 +39,21 @@ public class CommonPanel : MonoBehaviour {
 			return m_BlurCamera;
 		}
 	}
-	*/
+
+	public UIPanel m_mainmenu=null;
+	public UIPanel GetMainmenu {
+		get {
+			if (m_mainmenu == null) {
+				m_mainmenu = GameObject.Find ("UI Root").transform.FindChild ("MainMenuPanel").gameObject.GetComponent<UIPanel> ();
+			}
+			return m_mainmenu;
+		}
+	}
 	//public BlurPanel m_blurPanel;
 	//public GameObject m_CommonObjcet;
 
 	//public delegate void CallBackFun();
-	OKCancelBox.CallBackFun m_CallBack=null;
+	Callback m_CallBack=null;
 
 	void Start() {
 		this.SignltonCheck ();
@@ -87,10 +98,28 @@ public class CommonPanel : MonoBehaviour {
 	/// </summary>
 	/// <param name="_str">String.</param>
 	/// <param name="_callBack">Call back.</param>
-	public void ShowOkBox(string _str= "", OKCancelBox.CallBackFun _callBack=null) {
+	public void ShowOkBox(string _str="",Callback _callBack=null) {
 		m_CallBack = _callBack;
 		this.gameObject.SetActive (true);
-		this.m_OkCanclebox.ShowOkCancelBox (_str, m_CallBack);
+		m_Okbox.showBox (_str, m_CallBack);
+	}
+
+	/// <summary>
+	/// 播放遮罩
+	/// </summary>
+	/// <param name="_FromA">From a.</param>
+	/// <param name="_ToA">To a.</param>
+	/// <param name="_duration">Duration.</param>
+	/// <param name="_delay">Delay.</param>
+	public void PlayMask(float _FromA,float _ToA,float _duration,float _delay)
+	{
+		m_Mask.gameObject.SetActive (true);
+		m_Mask.ResetToBeginning ();
+		m_Mask.from = _FromA;
+		m_Mask.to = _ToA;
+		m_Mask.duration = _duration;
+		m_Mask.delay = _delay;
+		m_Mask.Play ();
 	}
 
 	/// <summary>
@@ -141,9 +170,9 @@ public class CommonPanel : MonoBehaviour {
 
 	void CountChestTime()
 	{
-		//if(ChestManageComponent.Instance.GetOwnedChestNumber()==0)
-		//	return ;
-		//Debug.Log("减宝箱激活时间");
+		if(ChestManageComponent.Instance.GetOwnedChestNumber()==0)
+			return ;
+		Debug.Log("减宝箱激活时间");
 //		int time=(int)ChestManageComponent.Instance.GetChestList[0].GetDynamicDataByKey(SignKeys.CHESTREMAINING_TIME);
 //		time--;
 //
@@ -163,11 +192,9 @@ public class CommonPanel : MonoBehaviour {
 //		
 //	}
 	//----------------------------------------------------过程
-	/*
 	public float  alltime=0.12f;
 	public float BtweenChange=0.02f;
 	public float LaterTime=0.0f;
-	*/
 	int realTime=0;
 	int allTimes=0;
 	public static int todownsample=3;
@@ -175,7 +202,6 @@ public class CommonPanel : MonoBehaviour {
 	public static int toblurIterations=2;
 	public void BeginBlur()
 	{
-		/*
 		CancelInvoke("ChangeBlur");
 		allTimes=(int)(alltime/BtweenChange);
 		GetUICamera.GetComponent<BlurOptimized>().blurIterations=1;
@@ -183,9 +209,8 @@ public class CommonPanel : MonoBehaviour {
 		GetUICamera.GetComponent<BlurOptimized>().downsample=0;
 		realTime=1;
 		StartCoroutine("LaterPlay");
-		*/
 	}
-	/*
+
 	IEnumerator LaterPlay()
 	{
 		yield return new WaitForSeconds(LaterTime);
@@ -197,13 +222,13 @@ public class CommonPanel : MonoBehaviour {
 		yield return new WaitForSeconds(LaterTime);
 		InvokeRepeating("SubBlur",BtweenChange,BtweenChange);
 	}
-*/
+
 	/// <summary>
 	/// 改变毛玻璃数值增加
 	/// </summary>
 	public void ChangeBlur()
 	{
-		/*
+		
 		GetUICamera.GetComponent<BlurOptimized>().blurIterations=1+(toblurIterations-1)*realTime/allTimes;
 		GetUICamera.GetComponent<BlurOptimized>().blurSize=toblurSize*realTime/allTimes;
 		GetUICamera.GetComponent<BlurOptimized>().downsample=todownsample*realTime/allTimes;
@@ -212,7 +237,6 @@ public class CommonPanel : MonoBehaviour {
 		{
 			CancelInvoke("ChangeBlur");
 		}
-		*/
 	}
 
 	/// <summary>
@@ -220,12 +244,10 @@ public class CommonPanel : MonoBehaviour {
 	/// </summary>
 	public void CloseBlur()
 	{
-		/*
 		realTime=allTimes;
 		CancelInvoke("SubBlur");
 
 		StartCoroutine("LaterPlay2");
-		*/
 	}
 
 	/// <summary>
@@ -233,7 +255,7 @@ public class CommonPanel : MonoBehaviour {
 	/// </summary>
 	public void SubBlur()
 	{
-		/*
+		
 		GetUICamera.GetComponent<BlurOptimized>().blurIterations=1+(toblurIterations-1)*realTime/allTimes;
 		GetUICamera.GetComponent<BlurOptimized>().blurSize=toblurSize*realTime/allTimes;
 		GetUICamera.GetComponent<BlurOptimized>().downsample=todownsample*realTime/allTimes;
@@ -250,13 +272,11 @@ public class CommonPanel : MonoBehaviour {
 			GetUICamera.GetComponent<UICamera>().enabled=true;
 			GetBlurCamera.SetActive(false);
 		}
-		*/
 	}
 
 	//----------------------------------------------------过程
 	public void SetBlurSub(UIPanel _Panel,bool containMainMenu=false)
 	{
-		/*
 		GetBlurCamera.GetComponent<UICamera> ().enabled = true;
 		GetUICamera.GetComponent<UICamera> ().enabled = false;
 		GetBlurCamera.SetActive (true);
@@ -271,9 +291,8 @@ public class CommonPanel : MonoBehaviour {
 			SetMainMenuBlur (false);
 		}
 		BeginBlur ();
-		//m_BlurMask.ResetToBeginning ();
-		//m_BlurMask.PlayForward ();
-		*/
+		m_BlurMask.ResetToBeginning ();
+		m_BlurMask.PlayForward ();
 	}
 
 	/// <summary>
@@ -282,7 +301,6 @@ public class CommonPanel : MonoBehaviour {
 	/// <param name="_Blur">If set to <c>true</c> blur.</param>
 	public void SetMainMenuBlur(bool _Blur=true)
 	{
-		/*
 		if (_Blur) {
 			GetMainmenu.gameObject.layer = 5;
 			//GetMainmenu.GetComponent<MainMenuPanel> ().SetModelLayer (false);
@@ -290,7 +308,6 @@ public class CommonPanel : MonoBehaviour {
 			GetMainmenu.gameObject.layer = 17;
 			//GetMainmenu.GetComponent<MainMenuPanel> ().SetModelLayer (true);
 		}
-		*/
 	}
 
 	/// <summary>
@@ -304,7 +321,7 @@ public class CommonPanel : MonoBehaviour {
 			_ob.layer=5;
 		}
 		CloseBlur();
-		//m_BlurMask.PlayReverse();
+		m_BlurMask.PlayReverse();
 	//	m_blurPanel.CloseBlur();
 	}
 

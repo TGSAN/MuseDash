@@ -12,7 +12,7 @@ public struct StageTimeEventItem {
 
 [System.Serializable]
 public struct StageActionEvent{
-	public string nodeUid;
+	public int nodeIndex;
 	public GameObject sceneObject;
 	public int bornActionIndex;
 	public int hittedActionIndex;
