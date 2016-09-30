@@ -211,6 +211,7 @@ GameObject:
   - 114: {fileID: 114000013433002184}
   - 114: {fileID: 114000012510504660}
   - 95: {fileID: 95000013144488238}
+  - 114: {fileID: 114000010395075688}
   m_Layer: 0
   m_Name: 050201_boss_100
   m_TagString: Untagged
@@ -562,6 +563,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010395075688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013001942876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b311cb1bd6b6490593cd37dca814586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mountData:
+  - actionId: 2
+    instance: {fileID: 146938, guid: 799353a6bc4ba4629a1f1eed1572fec9, type: 2}
+    moduleId: 8
 --- !u!114 &114000012510504660
 MonoBehaviour:
   m_ObjectHideFlags: 1
