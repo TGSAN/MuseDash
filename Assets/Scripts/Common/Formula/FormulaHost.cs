@@ -48,8 +48,6 @@ namespace FormulaBase {
 		private Dictionary<int, FormulaObject> formulasByIdx = null;
 		private Dictionary<string, object> signs = null;
 
-		private FormulaHost _copySource;
-
 		public String objectID {
 			get {
 				return this._objectId;
@@ -107,16 +105,6 @@ namespace FormulaBase {
 
 			set {
 				this._isDelete = value;
-			}
-		}
-
-		public FormulaHost CopySource {
-			get {
-				return this._copySource;
-			}
-
-			set {
-				this._copySource = value;
 			}
 		}
 		/// <summary>
@@ -439,13 +427,10 @@ namespace FormulaBase {
 
 		public void SetAsUINotifyInstance(UIRootHelper urh) {
 			this._bindUiHelper = urh;
-			urh.SetActiveHost (this);
-			urh.SetLabelHost (this);
-			urh.SetSliderHost (this);
 			this.RefleshSigns ();
 		}
 
-		public void RefleshSigns() {
+		private void RefleshSigns() {
 			if (this.signs == null) {
 				return;
 			}

@@ -8,7 +8,6 @@ public class AudioManager {
 	
 	private static AudioManager instance = null;
 
-	private AudioClip catchClip;
 	private AudioSource backGroundMusic;
 	private AudioSource girlEffect;
 	private AudioSource nodeEffect;
@@ -89,18 +88,13 @@ public class AudioManager {
 			return;
 		}
 
-		if (this.backGroundMusic.clip != null) {
-			return;
+		//this.backGroundMusic.clip.LoadAudioData ();
+		if (this.backGroundMusic.clip == null) {
+			this.backGroundMusic.clip = null;
+			//SceneAudioManager.Instance.Load (pathName + ".ogg", this.backGroundMusic);
+			this.backGroundMusic.clip = Resources.Load<AudioClip> (this.PlayingMusic);
+			Debug.Log ("Load battle bgm " + this.PlayingMusic + " succeed.");
 		}
-
-		//SceneAudioManager.Instance.Load (pathName + ".ogg", this.backGroundMusic);
-		//this.backGroundMusic.clip = Resources.Load<AudioClip> (this.PlayingMusic);
-		this.backGroundMusic.clip = this.catchClip;
-		Debug.Log ("Load battle bgm " + this.PlayingMusic + " succeed.");
-	}
-
-	public void SetCatchClip(AudioClip ac) {
-		this.catchClip = ac;
 	}
 
 	public void SetEffectVolume(float volume) {
@@ -203,7 +197,7 @@ public class AudioManager {
 			return;
 		}
 
-		this.backGroundMusic.Play (0);
+		this.backGroundMusic.Play ();
 		Debug.Log ("play background music " + this.backGroundMusic.clip.length);
 	}
 

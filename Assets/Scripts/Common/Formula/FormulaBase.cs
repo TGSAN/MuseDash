@@ -280,31 +280,6 @@ namespace FormulaBase {
 			return this.CreateHost(fileName);
 		}
 
-		public FormulaHost CopyHost(FormulaHost host) {
-			string fileName = host.GetFileName ();
-			if (fileName == null) {
-				return null;
-			}
-
-			Dictionary<string, object> signKeys = host.GetSigns ();
-			if (signKeys == null) {
-				return null;
-			}
-
-			FormulaHost cHost = this.CreateHost (fileName);
-			if (cHost == null) {
-				return null;
-			}
-
-			foreach (string key in signKeys.Keys) {
-				cHost.SetDynamicData (key, signKeys [key]);
-			}
-
-			cHost.CopySource = host;
-
-			return cHost;
-		}
-
 		public void InitHostPool() {
 			if (this.hostPool != null) {
 				return;
@@ -525,7 +500,7 @@ namespace FormulaBase {
 			}
 
 			if (!this.catchUiHost.ContainsKey (fileName)) {
-				//Debug.Log ("No such notify host : " + fileName + " to match " + widgetName);
+				Debug.Log ("No such notify host : " + fileName + " to match " + widgetName);
 				return null;
 			}
 
@@ -542,6 +517,7 @@ namespace FormulaBase {
 			}
 
 			this.catchUiHost [host.GetFileName ()] = host;
+			/*
 			if (this.catchUiHelper == null) {
 				return;
 			}
@@ -555,6 +531,7 @@ namespace FormulaBase {
 				uph.SetLabelHost (host);
 				uph.SetSliderHost (host);
 			}
+			*/
 		}
 
 		public void SetNotifyUiHelper(string uid, UIPhaseHelper uph) {

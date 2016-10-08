@@ -47,12 +47,6 @@ namespace PnlFail {
 			}
 
 			int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex ();
-			#if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
-			if (heroIndex < 0) {
-				heroIndex = AdminData.Instance.DefaultRoleIdx;
-			}
-			#endif
-
 			string txrName = ConfigPool.Instance.GetConfigStringValue ("character", heroIndex.ToString (), "image_fail");
 			if (ResourceLoader.Instance == null || txrName == null || (this.txrCharact != null && txrName.Contains (this.txrCharact.name))) {
 				return;
