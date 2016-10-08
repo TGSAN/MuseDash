@@ -729,8 +729,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012653148198}
   - 114: {fileID: 114000010885151476}
+  - 65: {fileID: 65000010729359602}
+  - 114: {fileID: 114000010861105566}
+  - 114: {fileID: 114000013074528176}
   m_Layer: 5
-  m_Name: SprOption
+  m_Name: BtnOption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1879,7 +1882,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011219755856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -92, y: -50, z: 0}
+  m_LocalPosition: {x: -92, y: -50, z: -40}
   m_LocalScale: {x: 25, y: 25, z: 25}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1921,7 +1924,7 @@ Transform:
   m_GameObject: {fileID: 1000010954278780}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -40}
-  m_LocalScale: {x: 38, y: 38, z: 38}
+  m_LocalScale: {x: 65, y: 65, z: 65}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011498676062}
@@ -2429,7 +2432,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013446493068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -40}
   m_LocalScale: {x: 70, y: 70, z: 70}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -2455,7 +2458,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012607842920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -92, y: -50, z: 0}
+  m_LocalPosition: {x: -92, y: -50, z: -40}
   m_LocalScale: {x: 25, y: 25, z: 25}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -3022,7 +3025,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011677975194}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -92, y: -50, z: 0}
+  m_LocalPosition: {x: -92, y: -50, z: -40}
   m_LocalScale: {x: 25, y: 25, z: 25}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -3152,7 +3155,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010783003374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -92, y: -50, z: 0}
+  m_LocalPosition: {x: -92, y: -50, z: -40}
   m_LocalScale: {x: 25, y: 25, z: 25}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -3755,7 +3758,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010954278780}
-  m_Mesh: {fileID: 4300000, guid: 81925dc9a2e774938885b705e88d4703, type: 3}
+  m_Mesh: {fileID: 4300000, guid: c9d3995486eb68546a1b982da4b86e79, type: 3}
 --- !u!33 &33000010916755600
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -3890,6 +3893,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65000010729359602
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011613130270}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 80, y: 80, z: 1}
+  m_Center: {x: 40, y: -40, z: 0}
 --- !u!65 &65000010818607198
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4976,6 +4991,7 @@ MonoBehaviour:
   - {fileID: 114000013652439822}
   - {fileID: 114000013165312026}
   - {fileID: 114000010005510860}
+  - {fileID: 114000013074528176}
   - {fileID: 114000012554005680}
   - {fileID: 114000012971916480}
   - {fileID: 114000014138969710}
@@ -4985,6 +5001,31 @@ MonoBehaviour:
   - {fileID: 114000013533093570}
   - {fileID: 114000010503025238}
   - {fileID: 114000011230969184}
+--- !u!114 &114000010861105566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011613130270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 1000011613130270}
+  hover: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 0.78431374, g: 0.5254902, b: 0.7764706, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: 1}
+  duration: 0.02
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick: []
 --- !u!114 &114000010885151476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6320,7 +6361,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3028
+  startingRenderQueue: 3052
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -7242,6 +7283,50 @@ MonoBehaviour:
   isNeedTranslate: 0
   onClickModuleName: 
   onTweenAniFinishedModuleName: OnTweenFinishedEnergy
+  onSliderModuleName: 
+  scrollerTableDataModuleName: 
+--- !u!114 &114000013074528176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011613130270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 1000010732742502}
+  clickResponseObjects:
+  - {fileID: 0}
+  clickResponseParentNames:
+  - PnlDailyTask
+  - 
+  clickResponseObjectsIsShow: 00
+  clickResponseParentNamesIsShow: 0101
+  clickResponseObjectAnimations:
+  - 
+  clickResponseParentAnimations:
+  - 
+  - 
+  isFoldObjs: 1
+  isFoldParentObjs: 1
+  isForceKeep: 0
+  isClickHideSelf: 0
+  isClickHideParent: 0
+  des: "\u672A\u6709\u63CF\u8FF0"
+  activeHostKeyId: 0
+  activeCondiction: LEVEL
+  activeValue: 
+  labelHostKeyId: 0
+  labelMatchSign: 
+  labelMatchSelfDefineSign: 
+  sliderHostKeyId: 0
+  sliderMatchSign: 
+  sliderMaxSign: 
+  isNeedTranslate: 0
+  onClickModuleName: OnClickBtnOption
+  onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
 --- !u!114 &114000013126240658
