@@ -25,10 +25,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11405424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -43,8 +43,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 30ea3c04117ad4e3eab93162fbe14646, type: 2}
   mSprites:
   - name: bg_bright
-    x: 53
-    y: 52
+    x: 55
+    y: 49
     width: 30
     height: 30
     borderLeft: 4
@@ -56,8 +56,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: bg_dark
-    x: 53
-    y: 20
+    x: 55
+    y: 15
     width: 30
     height: 30
     borderLeft: 2
@@ -69,8 +69,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: button_apply
-    x: 0
-    y: 84
+    x: 93
+    y: 176
     width: 90
     height: 80
     borderLeft: 40
@@ -82,7 +82,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: button_left
-    x: 184
+    x: 187
     y: 194
     width: 52
     height: 62
@@ -95,8 +95,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: button_purchase
-    x: 92
-    y: 176
+    x: 0
+    y: 83
     width: 90
     height: 80
     borderLeft: 40
@@ -109,7 +109,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: button_right
     x: 0
-    y: 20
+    y: 17
     width: 51
     height: 62
     borderLeft: 0
@@ -120,22 +120,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: CharacteristicBase
+  - name: characteristic_base
     x: 0
-    y: 166
-    width: 90
-    height: 90
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
+    y: 167
+    width: 89
+    height: 89
+    borderLeft: 10
+    borderRight: 10
+    borderTop: 10
+    borderBottom: 10
+    paddingLeft: 1
     paddingRight: 0
     paddingTop: 0
-    paddingBottom: 0
+    paddingBottom: 1
   - name: point_bright
-    x: 184
-    y: 174
+    x: 187
+    y: 172
     width: 18
     height: 18
     borderLeft: 0
@@ -147,8 +147,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: point_dark
-    x: 204
-    y: 174
+    x: 209
+    y: 172
     width: 18
     height: 18
     borderLeft: 0
