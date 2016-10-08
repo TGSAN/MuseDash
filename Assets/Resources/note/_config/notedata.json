@@ -241,7 +241,7 @@
     "value": 100,
     "enable_jump": "FALSE",
     "effect": 0,
-    "key_audio": "note/audio/item",
+    "key_audio": "note/audio/hp",
     "char_action": "char_jump",
     "perfect_range": 0.001,
     "great_range": 0.001
@@ -260,7 +260,7 @@
     "value": 100,
     "enable_jump": "TRUE",
     "effect": 0,
-    "key_audio": "note/audio/item",
+    "key_audio": "note/audio/hp",
     "char_action": "char_atk",
     "perfect_range": 0.001,
     "great_range": 0.001
@@ -279,7 +279,7 @@
     "value": 100,
     "enable_jump": "FALSE",
     "effect": 0,
-    "key_audio": "note/audio/item",
+    "key_audio": "note/audio/hp",
     "char_action": "char_jump",
     "perfect_range": 0.001,
     "great_range": 0.001
@@ -298,7 +298,7 @@
     "value": 100,
     "enable_jump": "TRUE",
     "effect": 0,
-    "key_audio": "note/audio/item",
+    "key_audio": "note/audio/hp",
     "char_action": "char_atk",
     "perfect_range": 0.001,
     "great_range": 0.001
@@ -317,7 +317,7 @@
     "value": 100,
     "enable_jump": "FALSE",
     "effect": 0,
-    "key_audio": "note/audio/item",
+    "key_audio": "note/audio/hp",
     "char_action": "char_jump",
     "perfect_range": 0.001,
     "great_range": 0.001
@@ -336,7 +336,7 @@
     "value": 100,
     "enable_jump": "TRUE",
     "effect": 0,
-    "key_audio": "note/audio/item",
+    "key_audio": "note/audio/hp",
     "char_action": "char_atk",
     "perfect_range": 0.001,
     "great_range": 0.001
@@ -355,7 +355,7 @@
     "value": 100,
     "enable_jump": "FALSE",
     "effect": 0,
-    "key_audio": "note/audio/item",
+    "key_audio": "note/audio/hp",
     "char_action": "char_jump",
     "perfect_range": 0.001,
     "great_range": 0.001
@@ -374,7 +374,7 @@
     "value": 100,
     "enable_jump": "TRUE",
     "effect": 0,
-    "key_audio": "note/audio/item",
+    "key_audio": "note/audio/hp",
     "char_action": "char_atk",
     "perfect_range": 0.001,
     "great_range": 0.001
@@ -393,7 +393,7 @@
     "value": 1000,
     "enable_jump": "FALSE",
     "effect": 0,
-    "key_audio": "note/audio/item",
+    "key_audio": "note/audio/score",
     "char_action": "char_jump",
     "perfect_range": 0.001,
     "great_range": 0.001
@@ -412,7 +412,7 @@
     "value": 1000,
     "enable_jump": "TRUE",
     "effect": 0,
-    "key_audio": "note/audio/item",
+    "key_audio": "note/audio/score",
     "char_action": "char_atk",
     "perfect_range": 0.001,
     "great_range": 0.001
@@ -431,7 +431,7 @@
     "value": 500,
     "enable_jump": "FALSE",
     "effect": 0,
-    "key_audio": "note/audio/item",
+    "key_audio": "note/audio/score",
     "char_action": "char_jump",
     "perfect_range": 0.001,
     "great_range": 0.001
@@ -450,7 +450,7 @@
     "value": 500,
     "enable_jump": "TRUE",
     "effect": 0,
-    "key_audio": "note/audio/item",
+    "key_audio": "note/audio/score",
     "char_action": "char_atk",
     "perfect_range": 0.001,
     "great_range": 0.001
@@ -469,7 +469,7 @@
     "value": 1000,
     "enable_jump": "FALSE",
     "effect": 0,
-    "key_audio": "note/audio/item",
+    "key_audio": "note/audio/score",
     "char_action": "char_jump",
     "perfect_range": 0.001,
     "great_range": 0.001
@@ -488,7 +488,7 @@
     "value": 500,
     "enable_jump": "TRUE",
     "effect": 0,
-    "key_audio": "note/audio/item",
+    "key_audio": "note/audio/score",
     "char_action": "char_atk",
     "perfect_range": 0.001,
     "great_range": 0.001
@@ -507,7 +507,7 @@
     "value": 500,
     "enable_jump": "FALSE",
     "effect": 0,
-    "key_audio": "note/audio/item",
+    "key_audio": "note/audio/score",
     "char_action": "char_jump",
     "perfect_range": 0.001,
     "great_range": 0.001
@@ -526,7 +526,7 @@
     "value": 500,
     "enable_jump": "TRUE",
     "effect": 0,
-    "key_audio": "note/audio/item",
+    "key_audio": "note/audio/score",
     "char_action": "char_atk",
     "perfect_range": 0.001,
     "great_range": 0.001
@@ -1619,7 +1619,7 @@
     "uid": "s011405",
     "des": "圆形机器人_平移_0.6",
     "prefab_path": "note/s01/0114/011405_nor_060",
-    "type": 1,
+    "type": 0,
     "boss_action": 0,
     "boss_hurt": 0,
     "damage": 50,
@@ -1673,63 +1673,6 @@
   },
   "89": {
     "scene": "s01",
-    "uid": "s011408",
-    "des": "圆形机器人_上升跳打_0.8",
-    "prefab_path": "note/s01/0114/011408_jumphit_up_080",
-    "type": 8,
-    "boss_action": 0,
-    "boss_hurt": 0,
-    "damage": 50,
-    "damage_growth": 1,
-    "duration": -1,
-    "value": 0,
-    "enable_jump": "FALSE",
-    "effect": 1,
-    "key_audio": "note/audio/beat_easy",
-    "char_action": "char_atk",
-    "perfect_range": 0.1,
-    "great_range": 0.1
-  },
-  "90": {
-    "scene": "s01",
-    "uid": "s011409",
-    "des": "圆形机器人_下落跳打_0.7",
-    "prefab_path": "note/s01/0114/011409_jumphit_down_070",
-    "type": 8,
-    "boss_action": 0,
-    "boss_hurt": 0,
-    "damage": 50,
-    "damage_growth": 1,
-    "duration": -1,
-    "value": 0,
-    "enable_jump": "FALSE",
-    "effect": 1,
-    "key_audio": "note/audio/beat_easy",
-    "char_action": "char_atk",
-    "perfect_range": 0.1,
-    "great_range": 0.1
-  },
-  "91": {
-    "scene": "s01",
-    "uid": "s011410",
-    "des": "圆形机器人_平移_0.8",
-    "prefab_path": "note/s01/0114/011410_nor_080",
-    "type": 1,
-    "boss_action": 0,
-    "boss_hurt": 0,
-    "damage": 50,
-    "damage_growth": 1,
-    "duration": -1,
-    "value": 0,
-    "enable_jump": "FALSE",
-    "effect": 1,
-    "key_audio": "note/audio/beat_easy",
-    "char_action": "char_atk",
-    "perfect_range": 0.1,
-    "great_range": 0.1
-  },
-  "92": {
-    "scene": "s01",
     "uid": "s011501",
     "des": "壮汉机器人_平移_1.2",
     "prefab_path": "note/s01/0115/011501_nor_120",
@@ -1747,7 +1690,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "93": {
+  "90": {
     "scene": "s01",
     "uid": "s011502",
     "des": "壮汉机器人_平移_1.0",
@@ -1766,7 +1709,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "94": {
+  "91": {
     "scene": "s01",
     "uid": "s011503",
     "des": "壮汉机器人_平移_0.8",
@@ -1785,7 +1728,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "95": {
+  "92": {
     "scene": "s03",
     "uid": "s030100",
     "des": "boss03_场外",
@@ -1804,7 +1747,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "96": {
+  "93": {
     "scene": "s03",
     "uid": "s030101",
     "des": "boss03_进场_2.0",
@@ -1823,7 +1766,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "97": {
+  "94": {
     "scene": "s03",
     "uid": "s030102",
     "des": "boss03_出场_2.66",
@@ -1842,7 +1785,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "98": {
+  "95": {
     "scene": "s03",
     "uid": "s030103",
     "des": "boss03_近战1_1.2",
@@ -1861,7 +1804,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "99": {
+  "96": {
     "scene": "s03",
     "uid": "s030104",
     "des": "boss03_近战2_0.7",
@@ -1880,7 +1823,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "100": {
+  "97": {
     "scene": "s03",
     "uid": "s030105",
     "des": "boss03_远程1_开始_1.66",
@@ -1899,7 +1842,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "101": {
+  "98": {
     "scene": "s03",
     "uid": "s030106",
     "des": "boss03_远程2_开始_2.66",
@@ -1918,7 +1861,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "102": {
+  "99": {
     "scene": "s03",
     "uid": "s030201",
     "des": "火焰_boss_0.7",
@@ -1937,7 +1880,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "103": {
+  "100": {
     "scene": "s03",
     "uid": "s030301",
     "des": "南瓜_bpm_1.4",
@@ -1956,7 +1899,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "104": {
+  "101": {
     "scene": "s03",
     "uid": "s030302",
     "des": "南瓜_bpm_1.0",
@@ -1975,7 +1918,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "105": {
+  "102": {
     "scene": "s03",
     "uid": "s030401",
     "des": "幽灵_1.4",
@@ -1994,7 +1937,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "106": {
+  "103": {
     "scene": "s03",
     "uid": "s030402",
     "des": "幽灵_1.3",
@@ -2013,7 +1956,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "107": {
+  "104": {
     "scene": "s03",
     "uid": "s030403",
     "des": "幽灵_下落加速_1.1",
@@ -2032,7 +1975,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "108": {
+  "105": {
     "scene": "s03",
     "uid": "s030404",
     "des": "幽灵_0.8",
@@ -2051,7 +1994,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "109": {
+  "106": {
     "scene": "s03",
     "uid": "s030405",
     "des": "幽灵_跳打_1.4",
@@ -2070,7 +2013,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "110": {
+  "107": {
     "scene": "s03",
     "uid": "s030406",
     "des": "幽灵_跳打_1.0",
@@ -2089,7 +2032,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "111": {
+  "108": {
     "scene": "s03",
     "uid": "s030407",
     "des": "幽灵_跳打_0.8",
@@ -2108,7 +2051,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "112": {
+  "109": {
     "scene": "s03",
     "uid": "s030501",
     "des": "晴天娃娃_上升_0.8",
@@ -2127,7 +2070,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "113": {
+  "110": {
     "scene": "s03",
     "uid": "s030601",
     "des": "雨天娃娃_下落_0.8",
@@ -2146,7 +2089,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "114": {
+  "111": {
     "scene": "s03",
     "uid": "s030701",
     "des": "蝙蝠_下落加速_1.4",
@@ -2165,7 +2108,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "115": {
+  "112": {
     "scene": "s03",
     "uid": "s030702",
     "des": "蝙蝠_下落_0.9",
@@ -2184,7 +2127,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "116": {
+  "113": {
     "scene": "s03",
     "uid": "s030703",
     "des": "蝙蝠_跳打_1.4",
@@ -2203,7 +2146,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "117": {
+  "114": {
     "scene": "s03",
     "uid": "s030704",
     "des": "蝙蝠_跳打_1.2",
@@ -2222,7 +2165,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "118": {
+  "115": {
     "scene": "s03",
     "uid": "s030705",
     "des": "蝙蝠_跳打_0.8",
@@ -2241,7 +2184,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "119": {
+  "116": {
     "scene": "s03",
     "uid": "s030706",
     "des": "蝙蝠_跳打_0.7",
@@ -2260,7 +2203,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "120": {
+  "117": {
     "scene": "s03",
     "uid": "s030801",
     "des": "吸血鬼_1.4",
@@ -2279,7 +2222,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "121": {
+  "118": {
     "scene": "s03",
     "uid": "s030802",
     "des": "吸血鬼_变速_1.3",
@@ -2298,7 +2241,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "122": {
+  "119": {
     "scene": "s03",
     "uid": "s030901",
     "des": "骷髅骑士_1.4",
@@ -2317,7 +2260,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "123": {
+  "120": {
     "scene": "s03",
     "uid": "s030902",
     "des": "骷髅骑士_1.2",
@@ -2336,7 +2279,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "124": {
+  "121": {
     "scene": "s03",
     "uid": "s030903",
     "des": "骷髅骑士变速_1.3",
@@ -2355,7 +2298,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "125": {
+  "122": {
     "scene": "s03",
     "uid": "s031001",
     "des": "木乃伊_1.4",
@@ -2374,7 +2317,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "126": {
+  "123": {
     "scene": "s03",
     "uid": "s031002",
     "des": "木乃伊_下落_1.1",
@@ -2393,7 +2336,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "127": {
+  "124": {
     "scene": "s03",
     "uid": "s031101",
     "des": "小蝙蝠1A_boss_1.3",
@@ -2412,7 +2355,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "128": {
+  "125": {
     "scene": "s03",
     "uid": "s031102",
     "des": "小蝙蝠1B_boss_1.4",
@@ -2431,7 +2374,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "129": {
+  "126": {
     "scene": "s03",
     "uid": "s031103",
     "des": "小蝙蝠1C_boss_1.5",
@@ -2450,7 +2393,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "130": {
+  "127": {
     "scene": "s03",
     "uid": "s031104",
     "des": "小蝙蝠2A_boss_0.7",
@@ -2469,7 +2412,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "131": {
+  "128": {
     "scene": "s03",
     "uid": "s031105",
     "des": "小蝙蝠2B_boss_0.7",
@@ -2488,7 +2431,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "132": {
+  "129": {
     "scene": "s04",
     "uid": "s040100",
     "des": "boss04_场外",
@@ -2507,7 +2450,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "133": {
+  "130": {
     "scene": "s04",
     "uid": "s040101",
     "des": "boss04_入场_3.0",
@@ -2526,7 +2469,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "134": {
+  "131": {
     "scene": "s04",
     "uid": "s040102",
     "des": "boss04_出场_1.0",
@@ -2545,7 +2488,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "135": {
+  "132": {
     "scene": "s04",
     "uid": "s040103",
     "des": "boss04_近战1_1.1",
@@ -2564,7 +2507,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "136": {
+  "133": {
     "scene": "s04",
     "uid": "s040104",
     "des": "boss04_远程1_开始_1.0",
@@ -2583,7 +2526,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "137": {
+  "134": {
     "scene": "s04",
     "uid": "s040105",
     "des": "boss04_远程1_结束_1.0",
@@ -2602,7 +2545,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "138": {
+  "135": {
     "scene": "s04",
     "uid": "s040106",
     "des": "boss04_远程2_开始_1.0",
@@ -2621,7 +2564,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "139": {
+  "136": {
     "scene": "s04",
     "uid": "s040107",
     "des": "boss04_远程2_结束_1.0",
@@ -2640,7 +2583,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "140": {
+  "137": {
     "scene": "s04",
     "uid": "s040301",
     "des": "黑衣骑士_1.4",
@@ -2659,7 +2602,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "141": {
+  "138": {
     "scene": "s04",
     "uid": "s040302",
     "des": "黑衣骑士_变速_1.3",
@@ -2678,7 +2621,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "142": {
+  "139": {
     "scene": "s04",
     "uid": "s040401",
     "des": "火箭_加速_1.1",
@@ -2697,7 +2640,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "143": {
+  "140": {
     "scene": "s04",
     "uid": "s040402",
     "des": "火箭_下落加速_1.4",
@@ -2716,7 +2659,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "144": {
+  "141": {
     "scene": "s04",
     "uid": "s040403",
     "des": "火箭_跳打_1.0",
@@ -2735,7 +2678,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "145": {
+  "142": {
     "scene": "s04",
     "uid": "s040404",
     "des": "火箭_跳打_0.8",
@@ -2754,7 +2697,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "146": {
+  "143": {
     "scene": "s04",
     "uid": "s040405",
     "des": "火箭_下落跳打_0.7",
@@ -2773,7 +2716,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "147": {
+  "144": {
     "scene": "s04",
     "uid": "s040501",
     "des": "电视机男_变速_1.33",
@@ -2792,7 +2735,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "148": {
+  "145": {
     "scene": "s04",
     "uid": "s040502",
     "des": "电视机男_1.1",
@@ -2811,7 +2754,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "149": {
+  "146": {
     "scene": "s04",
     "uid": "s040601",
     "des": "壮汉_1.2",
@@ -2830,7 +2773,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "150": {
+  "147": {
     "scene": "s04",
     "uid": "s040602",
     "des": "壮汉_平移_1.0",
@@ -2849,7 +2792,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "151": {
+  "148": {
     "scene": "s04",
     "uid": "s040603",
     "des": "壮汉_平移_0.8",
@@ -2868,7 +2811,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "152": {
+  "149": {
     "scene": "s04",
     "uid": "s040701",
     "des": "伞_下落_0.8",
@@ -2887,7 +2830,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "153": {
+  "150": {
     "scene": "s04",
     "uid": "s040801",
     "des": "火箭男_1.1",
@@ -2906,7 +2849,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "154": {
+  "151": {
     "scene": "s04",
     "uid": "s040802",
     "des": "火箭_上升_1.2",
@@ -2925,7 +2868,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "155": {
+  "152": {
     "scene": "s04",
     "uid": "s040901",
     "des": "鳄鱼_上升_1.4",
@@ -2944,7 +2887,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "156": {
+  "153": {
     "scene": "s04",
     "uid": "s041001",
     "des": "导弹_boss_0.6",
@@ -2963,7 +2906,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "157": {
+  "154": {
     "scene": "s04",
     "uid": "s041002",
     "des": "导弹_跳打_1.0",
@@ -2982,7 +2925,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "158": {
+  "155": {
     "scene": "s04",
     "uid": "s041003",
     "des": "导弹_跳打_0.8",
@@ -3001,7 +2944,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "159": {
+  "156": {
     "scene": "s04",
     "uid": "s041101",
     "des": "炸弹_boss_0.7",
@@ -3020,7 +2963,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "160": {
+  "157": {
     "scene": "s04",
     "uid": "s041102",
     "des": "炸弹_bpm_1.1",
@@ -3039,7 +2982,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "161": {
+  "158": {
     "scene": "s04",
     "uid": "s041103",
     "des": "炸弹_bpm_1.2",
@@ -3058,7 +3001,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "162": {
+  "159": {
     "scene": "s05",
     "uid": "s050100",
     "des": "boss05_场外",
@@ -3077,7 +3020,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "163": {
+  "160": {
     "scene": "s05",
     "uid": "s050101",
     "des": "boss05_进场_1.33",
@@ -3096,7 +3039,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "164": {
+  "161": {
     "scene": "s05",
     "uid": "s050102",
     "des": "boss05_退场_1.6",
@@ -3115,7 +3058,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "165": {
+  "162": {
     "scene": "s05",
     "uid": "s050103",
     "des": "boss05_近战1_1.1",
@@ -3134,7 +3077,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "166": {
+  "163": {
     "scene": "s05",
     "uid": "s050104",
     "des": "boss05_近战2_1.6",
@@ -3153,7 +3096,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "167": {
+  "164": {
     "scene": "s05",
     "uid": "s050105",
     "des": "boss05_远程2_开始_1.067",
@@ -3172,7 +3115,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "168": {
+  "165": {
     "scene": "s05",
     "uid": "s050106",
     "des": "boss05_远程2_结束_1.067",
@@ -3191,7 +3134,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "169": {
+  "166": {
     "scene": "s05",
     "uid": "s050201",
     "des": "火焰_boss_1.0",
@@ -3210,7 +3153,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "170": {
+  "167": {
     "scene": "s05",
     "uid": "s050301",
     "des": "果冻_bpm_1.4",
@@ -3229,7 +3172,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "171": {
+  "168": {
     "scene": "s05",
     "uid": "s050302",
     "des": "果冰_bpm_1.0",
@@ -3248,7 +3191,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "172": {
+  "169": {
     "scene": "s05",
     "uid": "s050401",
     "des": "棉花糖_1.0",
@@ -3267,7 +3210,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "173": {
+  "170": {
     "scene": "s05",
     "uid": "s050501",
     "des": "伞_下落_0.8",
@@ -3286,7 +3229,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "174": {
+  "171": {
     "scene": "s05",
     "uid": "s050601",
     "des": "蜗牛_1.4",
@@ -3305,7 +3248,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "175": {
+  "172": {
     "scene": "s05",
     "uid": "s050602",
     "des": "蜗牛_0.8",
@@ -3324,7 +3267,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "176": {
+  "173": {
     "scene": "s05",
     "uid": "s050701",
     "des": "甜筒_1.1",
@@ -3343,7 +3286,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "177": {
+  "174": {
     "scene": "s05",
     "uid": "s050702",
     "des": "甜筒_下落_1.4",
@@ -3362,7 +3305,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "178": {
+  "175": {
     "scene": "s05",
     "uid": "s050703",
     "des": "甜筒_跳打_1.0",
@@ -3381,7 +3324,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "179": {
+  "176": {
     "scene": "s05",
     "uid": "s050704",
     "des": "甜筒_跳打_0.8",
@@ -3400,7 +3343,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "180": {
+  "177": {
     "scene": "s05",
     "uid": "s050801",
     "des": "干脆面_1.4",
@@ -3419,7 +3362,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "181": {
+  "178": {
     "scene": "s05",
     "uid": "s050901",
     "des": "小boss1_上升_1.4",
@@ -3438,7 +3381,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "182": {
+  "179": {
     "scene": "s05",
     "uid": "s050902",
     "des": "小boss1_上升跳打_1.4",
@@ -3457,7 +3400,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "183": {
+  "180": {
     "scene": "s05",
     "uid": "s051001",
     "des": "小boss2_boss_0.8",
@@ -3476,7 +3419,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "184": {
+  "181": {
     "scene": "s05",
     "uid": "s051101",
     "des": "甜甜圈_bpm_1.1",
@@ -3495,7 +3438,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "185": {
+  "182": {
     "scene": "s05",
     "uid": "s051102",
     "des": "甜甜圈_boss_0.8",
@@ -3514,7 +3457,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "186": {
+  "183": {
     "scene": "s05",
     "uid": "s051201",
     "des": "硬糖_下落_0.8",
@@ -3533,7 +3476,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "187": {
+  "184": {
     "scene": "s05",
     "uid": "s051202",
     "des": "硬糖_boss_0.6",
@@ -3552,7 +3495,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "188": {
+  "185": {
     "scene": "s05",
     "uid": "s051301",
     "des": "西瓜_0.8",
@@ -3571,7 +3514,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "189": {
+  "186": {
     "scene": "s05",
     "uid": "s051302",
     "des": "西瓜_boss_0.6",
@@ -3590,7 +3533,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "190": {
+  "187": {
     "scene": "s05",
     "uid": "s051401",
     "des": "棒棒糖_下落_0.8",
@@ -3609,7 +3552,7 @@
     "perfect_range": 0.1,
     "great_range": 0.1
   },
-  "191": {
+  "188": {
     "scene": "s05",
     "uid": "s051402",
     "des": "棒棒糖_boss_0.6",
