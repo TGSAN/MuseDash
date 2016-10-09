@@ -26,23 +26,11 @@ namespace PnlStage
         private void Start()
         {
             instance = this;
-            PnlScrollCircle.instance.onSongChange += OnSongChanged;
         }
 
         public override void OnShow()
         {
-            StageDisc.StageDisc.LoadAllDiscCover();
-            //this.OnSongChanged(PnlScrollCircle.currentSongIdx);
-            SceneAudioManager.Instance.bgm.clip = null;
-            PnlScrollCircle.instance.ResetPos();
-            PnlScrollCircle.instance.JumpToSong(PnlScrollCircle.currentSongIdx);
-            PnlScrollCircle.instance.UpdateInfo();
-            PnlScrollCircle.instance.enabled = false;
-
-            DOTweenUtil.Delay(() =>
-            {
-                PnlScrollCircle.instance.enabled = true;
-            }, Time.deltaTime);
+            PnlScrollCircle.instance.OnShow();
         }
 
         public override void OnHide()

@@ -12,6 +12,8 @@ namespace FormulaBase
     {
         private static TaskStageTarget instance = null;
         private const int HOST_IDX = 14;
+        public static bool isNextUnlock = false;
+        public static int nextUnlockIdx = 1;
 
         public static TaskStageTarget Instance
         {
@@ -160,6 +162,27 @@ namespace FormulaBase
         /// </summary>
         public const string TASK_SIGNKEY_HIDE_NODE_COUNT = "TASK_SIGNKEY_HIDE_NODE_COUNT";
 
+        /// <summary>
+        /// 歌曲解锁事件
+        /// </summary>
+        public static Action<int> onSongUnlock;
+
+        /// <summary>
+        /// 获取解锁下一首歌曲所需奖杯值
+        /// </summary>
+        /// <returns></returns>
+        public int GetNextUnlockTrophy(ref int idx)
+        {
+            var trophyTotal = GetTotalTrophy();
+            var trophyRequest = 0;
+            for (int i = 1; trophyRequest <= trophyTotal; i++)
+            {
+                trophyRequest = ConfigPool.Instance.GetConfigIntValue("stage", i.ToString(), "UnlockTrophy");
+                idx = i;
+            }
+            return trophyRequest;
+        }
+
         private Target[] targets = null;
 
         public void Init(int stageId)
@@ -253,7 +276,6 @@ namespace FormulaBase
                 if (formulaHost.GetDynamicIntByKey(SignKeys.ID) == stageId)
                 {
                     var unlockTrophy = formulaHost.GetDynamicIntByKey(SignKeys.UnlockTrophy);
-                    Debug.Log(unlockTrophy);
                     return unlockTrophy > GetTotalTrophy();
                 }
             }
@@ -358,8 +380,15 @@ namespace FormulaBase
                 this.Host.SetDynamicData(SignKeys.DIFFCULT, targetIdx);
 
                 int evlua = this.GetStageEvluateMax();
-                this.AddStageEvluateMax(evlua + 1);
-
+                var nextIdx = 1;
+                var trophyNext = GetNextUnlockTrophy(ref nextUnlockIdx);
+                bool change = this.SetStageEvluateMax(evlua + 1);
+                var trophyTotal = GetTotalTrophy();
+                if (change)
+                {
+                    trophyTotal++;
+                }
+                isNextUnlock = trophyTotal >= trophyNext;
                 return true;
             }
 
@@ -1364,24 +1393,25 @@ namespace FormulaBase
         }
 
         /// <summary>
-        /// Adds the stage evluate max.
+        /// Set the stage evluate max.
         /// </summary>
         /// <param name="value">Value.</param>
-        public void AddStageEvluateMax(int value)
+        public bool SetStageEvluateMax(int value)
         {
             if (this.Host == null)
             {
-                return;
+                return false;
             }
 
             int cmax = this.Host.GetDynamicIntByKey(TASK_SIGNKEY_STAGE_EVLUATE);
             Debug.Log("Add stage evluate : " + value + " / " + cmax);
             if (value < cmax)
             {
-                return;
+                return false;
             }
 
             this.SetCount(TASK_SIGNKEY_STAGE_EVLUATE, value);
+            return true;
         }
 
         /// <summary>

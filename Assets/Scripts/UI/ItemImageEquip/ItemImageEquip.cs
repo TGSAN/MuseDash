@@ -1,49 +1,81 @@
 /// UI分析工具自动生成代码
 /// ItemImageEquipUI主模块
-/// 
+///
 using System;
 using UnityEngine;
-namespace ItemImageEquip {
-	public class ItemImageEquip : UIPhaseBase {
-		private static ItemImageEquip instance = null;
-		public static ItemImageEquip Instance {
-			get {
-					return instance;
-			}
-		}
 
-		public UITexture txrIcon;
-		public string infoPanelName;
+namespace ItemImageEquip
+{
+    public class ItemImageEquip : UIPhaseBase
+    {
+        private static ItemImageEquip instance = null;
 
-		void Start() {
-			instance = this;
-		}
+        public static ItemImageEquip Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
 
-		public override void OnShow () {
-		}
+        public UILabel txtLvl;
+        public UITexture texIcon;
+        public UILabel txtType;
 
-		public override void OnHide () {
-		}
+        public string infoPanelName;
 
-		public override void OnShow (FormulaBase.FormulaHost host) {
-			this.SetTxrByHost (host);
-		}
+        private void Start()
+        {
+            instance = this;
+        }
 
-		private void SetTxrByHost(FormulaBase.FormulaHost host) {
-			string txrName = host.GetDynamicStrByKey (FormulaBase.SignKeys.ICON);
-			if (txrName == null || ResourceLoader.Instance == null) {
-				return;
-			}
+        public override void OnShow()
+        {
+        }
 
-			ResourceLoader.Instance.Load (txrName, this.__LoadTxr);
-		}
+        public override void OnHide()
+        {
+        }
 
-		private void __LoadTxr(UnityEngine.Object resObj) {
-			Texture t = resObj as Texture;
-			if (t == null) {
-			}
+        public override void OnShow(FormulaBase.FormulaHost host)
+        {
+            SetTexByHost(host);
+            SetTxtByHost(host);
+        }
 
-			this.txrIcon.mainTexture = t;
-		}
-	}
+        private void SetTxtByHost(FormulaBase.FormulaHost host)
+        {
+            if (host == null)
+            {
+                txtLvl.text = "Level";
+                txtType.text = "Type";
+                return;
+            }
+            var lvl = host.GetDynamicIntByKey(FormulaBase.SignKeys.LEVEL);
+            var type = host.GetDynamicStrByKey(FormulaBase.SignKeys.TYPE);
+            txtLvl.text = "LV." + lvl.ToString();
+            txtType.text = type;
+        }
+
+        private void SetTexByHost(FormulaBase.FormulaHost host)
+        {
+            if (host == null)
+            {
+                texIcon.mainTexture = null;
+                return;
+            }
+            string texName = host.GetDynamicStrByKey(FormulaBase.SignKeys.ICON);
+            if (texName == null || ResourceLoader.Instance == null)
+            {
+                return;
+            }
+            ResourceLoader.Instance.Load(texName, resObj =>
+            {
+                if (resObj != null)
+                {
+                    texIcon.mainTexture = resObj as Texture;
+                }
+            });
+        }
+    }
 }

@@ -763,11 +763,12 @@ namespace FormulaBase
             string cfgName = name + diff;
 
             this.musicTickData = MusicConfigReader.Instance.GetData(ref cfgName);
-			if (this.musicTickData == null || this.musicTickData.Count <= 0) {
-				Debug.Log ("Stage config is lost : " + cfgName);
-				cfgName = name + 1;
-				this.musicTickData = MusicConfigReader.Instance.GetData(ref cfgName);
-			}
+            if (this.musicTickData == null || this.musicTickData.Count <= 0)
+            {
+                Debug.Log("Stage config is lost : " + cfgName);
+                cfgName = name + 1;
+                this.musicTickData = MusicConfigReader.Instance.GetData(ref cfgName);
+            }
         }
 
         public void AddGold(int value)

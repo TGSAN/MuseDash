@@ -53,6 +53,77 @@ namespace FormulaBase
         }
 
         /// <summary>
+        /// 获取指定角色的装备 idx为角色id pos为类型 0时代表所有装备 isEquiping为false则所有装备 true代表仅装备的装备
+        /// </summary>
+        /// <param name="idx"></param>
+        /// <returns></returns>
+        public FormulaHost[] GetGirlEquipHosts(int idx, int typePos = 0, bool isEquiping = false)
+        {
+            var equipHosts = new List<FormulaHost>();
+            var equipTypeList = new List<string>(GetGirlEquipTypes(idx));
+            foreach (var formulaHost in HostList.Values)
+            {
+                var equipID = formulaHost.GetDynamicIntByKey(SignKeys.ID);
+                var equipInfo = ConfigPool.Instance.GetConfigValue("items", equipID.ToString());
+                if (equipInfo == null)
+                {
+                    continue;
+                }
+                var typeName = equipInfo["Type"].ToString();
+                if (equipTypeList.Contains(typeName))
+                {
+                    var index = equipTypeList.IndexOf(typeName) + 1;
+                    if (index == typePos || typePos == 0)
+                    {
+                        if (isEquiping)
+                        {
+                            if (formulaHost.GetDynamicIntByKey(SignKeys.WHO) != 0)
+                            {
+                                equipHosts.Add(formulaHost);
+                            }
+                        }
+                        else
+                        {
+                            equipHosts.Add(formulaHost);
+                        }
+                    }
+                }
+            }
+            return equipHosts.ToArray();
+        }
+
+        /// <summary>
+        /// 获取指定角色装备类型的字符串
+        /// </summary>
+        /// <param name="idx"></param>
+        /// <returns></returns>
+        public string[] GetGirlEquipTypes(int idx)
+        {
+            var str = new string[3];
+            var characterInfo = ConfigPool.Instance.GetConfigValue("character", idx.ToString());
+            for (int i = 1; i < 4; i++)
+            {
+                str[i - 1] = characterInfo["weapon_" + i.ToString()].ToString();
+            }
+            return str;
+        }
+
+        public int GetEquipOwnerIdx(int id)
+        {
+            var itemInfo = ConfigPool.Instance.GetConfigValue("items", id.ToString());
+            var typeName = itemInfo["Type"].ToString();
+            for (int i = 1; i <= RoleManageComponent.Instance.GetRoleCount(); i++)
+            {
+                var tpyeList = new List<string>(GetGirlEquipTypes(i));
+                if (tpyeList.Contains(typeName))
+                {
+                    return i;
+                }
+            }
+            return 0;
+        }
+
+        /// <summary>
         /// 获取指定装备的装备
         /// </summary>
         /// <returns>The equiped equip.</returns>
@@ -70,7 +141,38 @@ namespace FormulaBase
         }
 
         /// <summary>
-        /// 计算选择物品的经验r
+        /// 装备,isTo为true装备，false卸妆
+        /// </summary>
+        /// <param name="equipID"></param>
+        /// <param name="isTo"></param>
+        public void Equip(int equipID, bool isTo = true)
+        {
+            FormulaHost host = null;
+            foreach (var value in HostList.Values)
+            {
+                var id = value.GetDynamicIntByKey(SignKeys.ID);
+                if (id == equipID)
+                {
+                    host = value;
+                    break;
+                }
+            }
+
+            if (isTo)
+            {
+                var owner = GetEquipOwnerIdx(equipID);
+                host.SetDynamicData(SignKeys.WHO, owner);
+                AddEquipedItem(host);
+            }
+            else
+            {
+                host.SetDynamicData(SignKeys.WHO, 0);
+                RemoveEquipItem(host);
+            }
+        }
+
+        /// <summary>
+        /// 计算选择物品的经验
         /// </summary>
         public void CountExp()
         {
@@ -133,24 +235,6 @@ namespace FormulaBase
             }
         }
 
-        public List<FormulaHost> GetRoleEquipedItem(int idx)
-        {
-            var list = new List<FormulaHost>();
-            foreach (var host in HostList.Values)
-            {
-                var who = host.GetDynamicIntByKey(SignKeys.WHO);
-                if (who == idx)
-                {
-                    list.Add(host);
-                    if (list.Count == 3)
-                    {
-                        break;
-                    }
-                }
-            }
-            return list;
-        }
-
         /// <summary>
         /// 添加装备了的装备
         /// </summary>
@@ -161,16 +245,27 @@ namespace FormulaBase
         }
 
         /// <summary>
+        /// 移除装备了的装备
+        /// </summary>
+        /// <param name="h"></param>
+        public void RemoveEquipItem(FormulaHost h)
+        {
+            m_EquipedEquipment.Remove(h);
+        }
+
+        /// <summary>
         /// 获取所有装备
         /// </summary>
         public void Init()
         {
             this.GetList("Equip");
-			if (this.HostList != null) {
-				foreach (FormulaHost host in this.HostList.Values) {
-					host.Result (FormulaKeys.FORMULA_19);
-				}
-			}
+            if (this.HostList != null)
+            {
+                foreach (FormulaHost host in this.HostList.Values)
+                {
+                    host.Result(FormulaKeys.FORMULA_19);
+                }
+            }
 
             LitJson.JsonData cfg = ConfigPool.Instance.GetConfigByName("Equipment_info");
             if (cfg == null)

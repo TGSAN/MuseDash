@@ -11,6 +11,14 @@ namespace ItemCellCharInfo
         public GameObject cellBaseSelected;
         public UILabel txtName, txtEffect, txtLvl;
         public UITexture texIcon;
+        public UIButton btnApply, btnUpgrade;
+
+        public FormulaBase.FormulaHost host
+        {
+            private set;
+            get;
+        }
+
         private static ItemCellCharInfo instance = null;
 
         public static ItemCellCharInfo Instance
@@ -23,11 +31,15 @@ namespace ItemCellCharInfo
 
         public void SetSelected(bool isTo)
         {
-            cellBaseSelected.SetActive(isTo);
+            if (cellBaseSelected != null)
+            {
+                cellBaseSelected.SetActive(isTo);
+            }
         }
 
         public override void OnShow()
         {
+            InitEvent();
         }
 
         public override void OnHide()
@@ -36,8 +48,27 @@ namespace ItemCellCharInfo
 
         public override void OnShow(FormulaBase.FormulaHost host)
         {
+            this.host = host;
             SetTexByHost(host);
             SetTxtByHost(host);
+        }
+
+        private void InitEvent()
+        {
+            btnApply.onClick.Clear();
+            btnApply.onClick.Add(new EventDelegate(() =>
+            {
+                var id = host.GetDynamicIntByKey(FormulaBase.SignKeys.ID);
+                var curEquipList = FormulaBase.EquipManageComponent.Instance.GetGirlEquipHosts(PnlChar.PnlChar.Instance.curRoleIdx, PnlChar.PnlChar.Instance.curEquipTypeIdx, true);
+                if (curEquipList.Length > 0)
+                {
+                    FormulaBase.EquipManageComponent.Instance.Equip(curEquipList[0].GetDynamicIntByKey(FormulaBase.SignKeys.ID), false);
+                }
+                FormulaBase.EquipManageComponent.Instance.Equip(id);
+                PnlChar.PnlChar.Instance.OnEquipLoad(PnlChar.PnlChar.Instance.curRoleIdx);
+                PnlCharInfo.PnlCharInfo.Instance.UpdateItemList(id);
+                PnlCharInfo.PnlCharInfo.Instance.GetComponent<Animator>().Play("pnl_items_choose_out");
+            }));
         }
 
         private void SetTexByHost(FormulaBase.FormulaHost host)
@@ -63,6 +94,7 @@ namespace ItemCellCharInfo
         private void Start()
         {
             instance = this;
+            InitEvent();
         }
     }
 }

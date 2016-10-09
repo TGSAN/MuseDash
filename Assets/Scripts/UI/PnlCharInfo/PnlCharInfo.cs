@@ -2,6 +2,7 @@
 /// PnlCharInfoUI主模块
 ///
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace PnlCharInfo
@@ -11,6 +12,7 @@ namespace PnlCharInfo
         private static PnlCharInfo instance = null;
         public Transform cellItemParent;
         public GameObject cellItem;
+        private List<ItemCellCharInfo.ItemCellCharInfo> m_ItemList = new List<ItemCellCharInfo.ItemCellCharInfo>();
 
         public static PnlCharInfo Instance
         {
@@ -23,24 +25,51 @@ namespace PnlCharInfo
         private void Start()
         {
             instance = this;
-            InitPnlItemsChoose();
         }
 
         public override void OnShow()
         {
+            UpdateUI();
         }
 
         public override void OnHide()
         {
         }
 
+        public void UpdateItemList(int selectID)
+        {
+            for (int i = 0; i < m_ItemList.Count; i++)
+            {
+                var item = m_ItemList[i];
+                var itemID = item.host.GetDynamicIntByKey(FormulaBase.SignKeys.ID);
+                item.SetSelected(selectID == itemID);
+            }
+        }
+
+        private void UpdateUI()
+        {
+            InitUI();
+        }
+
+        private void InitUI()
+        {
+            InitPnlItemsChoose();
+        }
+
         private void InitPnlItemsChoose()
         {
-            var allEquipments = FormulaBase.EquipManageComponent.Instance.HostList;
-            foreach (var equipment in allEquipments.Values)
+            cellItemParent.GetComponent<UIGrid>().enabled = true;
+            cellItemParent.DestroyChildren();
+            var allEquipments =
+                FormulaBase.EquipManageComponent.Instance.GetGirlEquipHosts(PnlChar.PnlChar.Instance.curRoleIdx,
+                    PnlChar.PnlChar.Instance.curEquipTypeIdx);
+            foreach (var equipment in allEquipments)
             {
                 var cell = GameObject.Instantiate(cellItem) as GameObject;
-                cell.GetComponent<ItemCellCharInfo.ItemCellCharInfo>().OnShow(equipment);
+                var itemCellCharInfo = cell.GetComponent<ItemCellCharInfo.ItemCellCharInfo>();
+                m_ItemList.Add(itemCellCharInfo);
+                itemCellCharInfo.OnShow(equipment);
+                itemCellCharInfo.SetSelected(equipment.GetDynamicIntByKey(FormulaBase.SignKeys.WHO) != 0);
                 cell.transform.SetParent(cellItemParent, false);
             }
         }

@@ -90,6 +90,7 @@ namespace Assets.Scripts.NGUI
         public UISprite sprSongProgress;
         public Transform trophyParent;
         public UILabel txtTrophySum;
+        public GameObject goPnlUnlockSong;
 
         [Header("音频")]
         public float loadDelay = 0.5f;
@@ -370,9 +371,35 @@ namespace Assets.Scripts.NGUI
 
         #region 事件
 
+        public void OnShow()
+        {
+            StageDisc.StageDisc.LoadAllDiscCover();
+            SceneAudioManager.Instance.bgm.clip = null;
+            ResetPos();
+            JumpToSong(PnlScrollCircle.currentSongIdx);
+            UpdateInfo();
+            enabled = false;
+            DOTweenUtil.Delay(() =>
+            {
+                enabled = true;
+            }, Time.deltaTime);
+            // 新歌曲解锁
+            if (TaskStageTarget.isNextUnlock)
+            {
+                var pnl = GameObject.Instantiate<GameObject>(goPnlUnlockSong);
+                pnl.GetComponent<PnlUnlockSong.PnlUnlockSong>().OnShow(TaskStageTarget.nextUnlockIdx);
+                TaskStageTarget.isNextUnlock = false;
+            }
+        }
+
+        public void OnHide()
+        {
+        }
+
         private void OnScrollEnd()
         {
             m_IsSliding = false;
+            PnlStage.PnlStage.Instance.OnSongChanged(m_CurrentIdx + 1);
             onSongChange(m_CurrentIdx);
         }
 

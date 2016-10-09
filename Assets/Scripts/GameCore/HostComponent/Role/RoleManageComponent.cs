@@ -1,8 +1,9 @@
+using GameLogic;
+
 ///自定义模块，可定制模块具体行为
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using GameLogic;
 
 namespace FormulaBase
 {
@@ -39,6 +40,24 @@ namespace FormulaBase
             return this.GetHostByKeyValue(SignKeys.ID, idx);
         }
 
+        public int GetRoleCount()
+        {
+            return HostList.Count;
+        }
+
+        public int GetUnlockRoleCount()
+        {
+            var count = 0;
+            for (int i = 1; i <= GetRoleCount(); i++)
+            {
+                if (!GetRoleLockedState(i))
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
         public FormulaHost GetRole(string name)
         {
             return this.GetHostByKeyValue(SignKeys.NAME, name);
@@ -50,64 +69,75 @@ namespace FormulaBase
         }
 
         public void InitRole()
-		{
-			Debugger.Log ("初始化角色数据");
-			if (this.HostList == null) {
-				this.GetList ("Role");
-			}
+        {
+            Debugger.Log("初始化角色数据");
+            if (this.HostList == null)
+            {
+                this.GetList("Role");
+            }
 
-			// 如果有服务器数据,设置当前战斗角色
-			if (this.HostList != null && this.HostList.Count > 0) {
-				foreach (FormulaHost _role in this.HostList.Values) {
-					if (_role == null) {
-						continue;
-					}
+            // 如果有服务器数据,设置当前战斗角色
+            if (this.HostList != null && this.HostList.Count > 0)
+            {
+                foreach (FormulaHost _role in this.HostList.Values)
+                {
+                    if (_role == null)
+                    {
+                        continue;
+                    }
 
-					// 初始化配置属性
-					_role.Result (FormulaKeys.FORMULA_178);
-					int cloth = _role.GetDynamicIntByKey (SignKeys.CLOTH);
-					if (cloth <= 0) {
-						int idx = _role.GetDynamicIntByKey (SignKeys.ID);
-						cloth = ConfigPool.Instance.GetConfigIntValue ("character", idx.ToString (), "character");
-						_role.SetDynamicData (SignKeys.CLOTH, cloth);
-					}
+                    // 初始化配置属性
+                    _role.Result(FormulaKeys.FORMULA_178);
+                    int cloth = _role.GetDynamicIntByKey(SignKeys.CLOTH);
+                    int idx = _role.GetDynamicIntByKey(SignKeys.ID);
+                    if (cloth <= 0)
+                    {
+                        cloth = ConfigPool.Instance.GetConfigIntValue("character", idx.ToString(), "character");
+                        _role.SetDynamicData(SignKeys.CLOTH, cloth);
+                    }
 
-					if (_role.GetDynamicIntByKey (SignKeys.FIGHTHERO) < 1) {
-						continue;
-					}
+                    if (_role.GetDynamicIntByKey(SignKeys.FIGHTHERO) < 1)
+                    {
+                        continue;
+                    }
 
-					this.Host = _role;
-					this.Host.SetAsUINotifyInstance ();
-				}
+                    this.Host = _role;
+                    this.Host.SetAsUINotifyInstance();
+                }
 
-				return;
-			}
+                return;
+            }
 
-			// 如果没有服务器数据,用配置生成本地对象
-			LitJson.JsonData roleCfg = ConfigPool.Instance.GetConfigByName ("character");
-			if (roleCfg == null) {
-				return;
-			}
+            // 如果没有服务器数据,用配置生成本地对象
+            LitJson.JsonData roleCfg = ConfigPool.Instance.GetConfigByName("character");
+            if (roleCfg == null)
+            {
+                return;
+            }
 
-			foreach (string key in roleCfg.Keys) {
-				FormulaHost _role = FomulaHostManager.Instance.CreateHost ("Role");
-				_role.SetDynamicData (SignKeys.ID, int.Parse (key));
-				_role.Result (FormulaKeys.FORMULA_178);
-				FomulaHostManager.Instance.AddHost (_role);
-				this.HostList [key] = _role;
-			}
+            foreach (string key in roleCfg.Keys)
+            {
+                FormulaHost _role = FomulaHostManager.Instance.CreateHost("Role");
+                var idx = int.Parse(key);
+                _role.SetDynamicData(SignKeys.ID, idx);
+                _role.Result(FormulaKeys.FORMULA_178);
+                FomulaHostManager.Instance.AddHost(_role);
+                this.HostList[key] = _role;
+            }
 
-			// 初始化默认战斗角色
-			this.Host = this.GetHostByKeyValue (SignKeys.ID, 1);
-			this.Host.SetDynamicData (SignKeys.LOCKED, 0);
-			this.SetFightGirlIndex (1, () => {
-				this.SetFightGirlCallBack (null);
-			});
+            // 初始化默认战斗角色
+            this.Host = this.GetHostByKeyValue(SignKeys.ID, 1);
+            this.Host.SetDynamicData(SignKeys.LOCKED, 0);
+            this.SetFightGirlIndex(1, () =>
+            {
+                this.SetFightGirlCallBack(null);
+            });
 
-			if (CommonPanel.GetInstance () != null) {
-				CommonPanel.GetInstance ().ShowWaittingPanel (false);
-			}
-		}
+            if (CommonPanel.GetInstance() != null)
+            {
+                CommonPanel.GetInstance().ShowWaittingPanel(false);
+            }
+        }
 
         public void GetExpAndCost(ref int Exp, ref int Cost)
         {
@@ -163,58 +193,70 @@ namespace FormulaBase
         }
 
         public void UnlockRole(int _index, Callback _callBack = null)
-		{
-			int ttype = 0;
-			int tcost = 0;
-			bool _result = true;
-			GetUnLockRoleMoeny (_index, ref ttype, ref tcost);
-			if (ttype == GameGlobal.RESOURCE_TYPE_GOLD) {
-				_result = AccountGoldManagerComponent.Instance.ChangeMoney (tcost, true, new HttpResponseDelegate (((bool result) => {
-					if (!result) {
-						CommonPanel.GetInstance ().ShowTextLackMoney ();
-						return;
-					}
+        {
+            int ttype = 0;
+            int tcost = 0;
+            bool _result = true;
+            GetUnLockRoleMoeny(_index, ref ttype, ref tcost);
+            if (ttype == GameGlobal.RESOURCE_TYPE_GOLD)
+            {
+                _result = AccountGoldManagerComponent.Instance.ChangeMoney(tcost, true, new HttpResponseDelegate(((bool result) =>
+                {
+                    if (!result)
+                    {
+                        CommonPanel.GetInstance().ShowTextLackMoney();
+                        return;
+                    }
 
-					FormulaHost host = GetRole (_index);
-					host.SetDynamicData (SignKeys.LOCKED, 0);
-					//Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
-					host.Save (new HttpResponseDelegate (this.UnlockedHeroCallBack));
-					if (_callBack != null) {
-						_callBack ();
-					}
+                    FormulaHost host = GetRole(_index);
+                    host.SetDynamicData(SignKeys.LOCKED, 0);
+                    //Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
+                    host.Save(new HttpResponseDelegate(this.UnlockedHeroCallBack));
+                    if (_callBack != null)
+                    {
+                        _callBack();
+                    }
 
-					CommonPanel.GetInstance ().ShowWaittingPanel ();
-				})));
-			} else if (ttype == GameGlobal.RESOURCE_TYPE_DIAMOND) {
-				_result = AccountCrystalManagerComponent.Instance.ChangeDiamond (tcost, true, new HttpResponseDelegate (((bool result) => {
-					if (!result) {
-						CommonPanel.GetInstance ().ShowTextLackDiamond ();
-						return;
-					}
+                    CommonPanel.GetInstance().ShowWaittingPanel();
+                })));
+            }
+            else if (ttype == GameGlobal.RESOURCE_TYPE_DIAMOND)
+            {
+                _result = AccountCrystalManagerComponent.Instance.ChangeDiamond(tcost, true, new HttpResponseDelegate(((bool result) =>
+                {
+                    if (!result)
+                    {
+                        CommonPanel.GetInstance().ShowTextLackDiamond();
+                        return;
+                    }
 
-					FormulaHost host = GetRole (_index);
-					host.SetDynamicData (SignKeys.LOCKED, 0);
-					//Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
-					host.Save (new HttpResponseDelegate (this.UnlockedHeroCallBack));
-					if (_callBack != null) {
-						_callBack ();
-					}
+                    FormulaHost host = GetRole(_index);
+                    host.SetDynamicData(SignKeys.LOCKED, 0);
+                    //Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
+                    host.Save(new HttpResponseDelegate(this.UnlockedHeroCallBack));
+                    if (_callBack != null)
+                    {
+                        _callBack();
+                    }
 
-					CommonPanel.GetInstance ().ShowWaittingPanel ();
-				})));
-			}
-		}
+                    CommonPanel.GetInstance().ShowWaittingPanel();
+                })));
+            }
+        }
 
         public void UnlockedHeroCallBack(bool _success)
-		{
-			if (_success) {
-				CommonPanel.GetInstance ().ShowWaittingPanel (false);
-			} else {
-				CommonPanel.GetInstance ().ShowText ("connect is fail");
-			}
+        {
+            if (_success)
+            {
+                CommonPanel.GetInstance().ShowWaittingPanel(false);
+            }
+            else
+            {
+                CommonPanel.GetInstance().ShowText("connect is fail");
+            }
 
-			CommonPanel.GetInstance ().ShowWaittingPanel (false);
-		}
+            CommonPanel.GetInstance().ShowWaittingPanel(false);
+        }
 
         /// <summary>
         /// Gets the state of the role locked.
@@ -299,35 +341,40 @@ namespace FormulaBase
             }
         }
 
-		public void SetFightGirlClothByOrder(int order) {
-			int idx = this.GetFightGirlIndex ();
-			if (idx <= 0) {
-				Debugger.Log ("No fight girl selected.");
-				return;
-			}
+        public void SetFightGirlClothByOrder(int order)
+        {
+            int idx = this.GetFightGirlIndex();
+            if (idx <= 0)
+            {
+                Debugger.Log("No fight girl selected.");
+                return;
+            }
 
-			FormulaHost role = this.GetRole (idx);
-			if (role == null) {
-				Debugger.Log ("Role " + idx + " has no data.");
-				return;
-			}
+            FormulaHost role = this.GetRole(idx);
+            if (role == null)
+            {
+                Debugger.Log("Role " + idx + " has no data.");
+                return;
+            }
 
-			string name = role.GetDynamicStrByKey (SignKeys.NAME);
-			if (name == null || name == string.Empty) {
-				Debugger.Log ("Role " + idx + " has no NAME.");
-				return;
-			}
+            string name = role.GetDynamicStrByKey(SignKeys.NAME);
+            if (name == null || name == string.Empty)
+            {
+                Debugger.Log("Role " + idx + " has no NAME.");
+                return;
+            }
 
-			int clothUid = idx * 10 + (order - 1);
-			string clothName = ConfigPool.Instance.GetConfigStringValue ("clothing", "uid", "name", clothUid);
-			if (clothName == null) {
-				clothUid = idx * 10;
-			}
+            int clothUid = idx * 10 + (order - 1);
+            string clothName = ConfigPool.Instance.GetConfigStringValue("clothing", "uid", "name", clothUid);
+            if (clothName == null)
+            {
+                clothUid = idx * 10;
+            }
 
-			role.SetDynamicData (SignKeys.CLOTH, clothUid);
-			Debugger.Log ("Set " + name + " with cloth uid : " + clothUid);
-			CommonPanel.GetInstance ().ShowText ("换装:" + clothName);
-		}
+            role.SetDynamicData(SignKeys.CLOTH, clothUid);
+            Debugger.Log("Set " + name + " with cloth uid : " + clothUid);
+            CommonPanel.GetInstance().ShowText("换装:" + clothName);
+        }
 
         public string GetName(int _index)
         {

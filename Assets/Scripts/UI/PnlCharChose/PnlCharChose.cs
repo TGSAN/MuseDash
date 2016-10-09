@@ -48,13 +48,14 @@ namespace PnlCharChose
         private void InitData()
         {
             choseType = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
-			FormulaBase.FormulaHost role = FormulaBase.RoleManageComponent.Instance.GetRole (choseType);
-			if (role == null) {
-				return;
-			}
+            FormulaBase.FormulaHost role = FormulaBase.RoleManageComponent.Instance.GetRole(choseType);
+            if (role == null)
+            {
+                return;
+            }
 
-			role.SetAsUINotifyInstance();
-            for (int i = 1; i <= FormulaBase.RoleManageComponent.Instance.HostList.Count; i++)
+            role.SetAsUINotifyInstance();
+            for (int i = 1; i <= FormulaBase.RoleManageComponent.Instance.GetRoleCount(); i++)
             {
                 var path = ConfigPool.Instance.GetConfigStringValue("character", i.ToString(), "char_show");
                 m_ActionPaths.Add(path);
@@ -93,11 +94,11 @@ namespace PnlCharChose
             }));
             btnApply.onClick.Add(new EventDelegate(() =>
             {
-					FormulaBase.RoleManageComponent.Instance.SetFightGirlIndex(choseType, this.SetFightGirlCallback);
+                FormulaBase.RoleManageComponent.Instance.SetFightGirlIndex(choseType, this.SetFightGirlCallback);
             }));
             btnPurchase.onClick.Add(new EventDelegate(() =>
             {
-					FormulaBase.RoleManageComponent.Instance.UnlockRole(choseType, this.UnLockRoleCallback);
+                FormulaBase.RoleManageComponent.Instance.UnlockRole(choseType, this.UnLockRoleCallback);
             }));
             OnCharacterChange(choseType);
         }
@@ -139,7 +140,7 @@ namespace PnlCharChose
             }
             else
             {
-				Debug.LogError ("加载未获得对象 : " + path);
+                Debug.LogError("加载未获得对象 : " + path);
                 return null;
             }
         }
@@ -161,7 +162,7 @@ namespace PnlCharChose
                 m_Points.Clear();
             }
             pointParent.GetComponent<UIGrid>().enabled = true;
-            for (int i = 0; i < FormulaBase.RoleManageComponent.Instance.HostList.Count; i++)
+            for (int i = 0; i < FormulaBase.RoleManageComponent.Instance.GetRoleCount(); i++)
             {
                 var p = GameObject.Instantiate(pointPrefab) as GameObject;
                 p.transform.SetParent(pointParent, false);
@@ -177,9 +178,10 @@ namespace PnlCharChose
         private void OnCharacterChange(int curType)
         {
             FormulaBase.FormulaHost role = FormulaBase.RoleManageComponent.Instance.GetRole(curType);
-			if (role == null) {
-				return;
-			}
+            if (role == null)
+            {
+                return;
+            }
 
             role.SetAsUINotifyInstance();
             Debug.Log("Selected role " + curType + " : " + role.GetDynamicStrByKey(FormulaBase.SignKeys.NAME));
@@ -204,16 +206,18 @@ namespace PnlCharChose
 
         #endregion OnEvent
 
-		private void SetFightGirlCallback() {
-			btnApply.gameObject.SetActive(false);
-			btnPurchase.gameObject.SetActive(false);
-			txtApplying.gameObject.SetActive(true);
-		}
+        private void SetFightGirlCallback()
+        {
+            btnApply.gameObject.SetActive(false);
+            btnPurchase.gameObject.SetActive(false);
+            txtApplying.gameObject.SetActive(true);
+        }
 
-		private void UnLockRoleCallback() {
-			btnApply.gameObject.SetActive(true);
-			btnPurchase.gameObject.SetActive(false);
-			txtApplying.gameObject.SetActive(false);
-		}
+        private void UnLockRoleCallback()
+        {
+            btnApply.gameObject.SetActive(true);
+            btnPurchase.gameObject.SetActive(false);
+            txtApplying.gameObject.SetActive(false);
+        }
     }
 }
