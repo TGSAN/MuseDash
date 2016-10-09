@@ -357,10 +357,10 @@ namespace Assets.Scripts.NGUI
                 GameObject item = GameObject.Instantiate(cell) as GameObject;
                 item.transform.parent = pivot.transform;
                 StageDisc.StageDisc sd = item.GetComponent<StageDisc.StageDisc>();
-                sd.Lock(m_StageInfos[i].isLock);
                 if (sd != null)
                 {
                     sd.SetStageId(i + 1);
+                    sd.Lock(m_StageInfos[i].isLock);
                 }
                 m_CellGroup.Add(i, item);
             }

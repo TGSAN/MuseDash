@@ -143,7 +143,7 @@ public class SpineMountController : MonoBehaviour {
 				continue;
 			}
 
-			obj.SetActive(true);
+			//obj.SetActive(true);
 			BaseSpineObjectController mb = obj.GetComponent<BaseSpineObjectController>();
 			if (mb != null) {
 				mb.OnControllerStart();

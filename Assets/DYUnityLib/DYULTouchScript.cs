@@ -148,10 +148,6 @@ namespace DYUnityLib {
 
 			#if !UNITY_EDITOR && !UNITY_EDITOR_OSX && !UNITY_EDITOR_64
 			int tc = Input.touchCount;
-			if (tc <= 0) {
-				return;
-			}
-
 			Ray ray = this.uiCamera.cachedCamera.ScreenPointToRay (Input.GetTouch(tc - 1).position);
 			#else
 			if (this.uiCamera == null || this.uiCamera.cachedCamera == null) {

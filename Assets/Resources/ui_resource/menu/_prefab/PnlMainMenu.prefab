@@ -729,8 +729,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012653148198}
   - 114: {fileID: 114000010885151476}
+  - 65: {fileID: 65000010729359602}
+  - 114: {fileID: 114000010861105566}
+  - 114: {fileID: 114000013074528176}
   m_Layer: 5
-  m_Name: SprOption
+  m_Name: BtnOption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1921,7 +1924,7 @@ Transform:
   m_GameObject: {fileID: 1000010954278780}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -40}
-  m_LocalScale: {x: 70, y: 70, z: 70}
+  m_LocalScale: {x: 65, y: 65, z: 65}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011498676062}
@@ -2206,7 +2209,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014220641278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -207, y: 0, z: 0}
+  m_LocalPosition: {x: -207, y: 0, z: 11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -3576,10 +3579,10 @@ MeshRenderer:
   m_GameObject: {fileID: 1000010954278780}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 0
-  m_MotionVectors: 0
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: a05848bc1d2ab41f7a1fab99de0e8d42, type: 2}
   m_SubsetIndices: 
@@ -3890,6 +3893,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65000010729359602
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011613130270}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 80, y: 80, z: 1}
+  m_Center: {x: 40, y: -40, z: 0}
 --- !u!65 &65000010818607198
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4518,32 +4533,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: -0.0031322837
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - time: 0.36
-      value: -0.0031322837
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.393
-      value: -0.043132283
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.496
-      value: 1.033
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - time: 0.53
-      value: 0.9968677
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - time: 1
-      value: 0.9968677
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4986,6 +4991,7 @@ MonoBehaviour:
   - {fileID: 114000013652439822}
   - {fileID: 114000013165312026}
   - {fileID: 114000010005510860}
+  - {fileID: 114000013074528176}
   - {fileID: 114000012554005680}
   - {fileID: 114000012971916480}
   - {fileID: 114000014138969710}
@@ -4995,6 +5001,31 @@ MonoBehaviour:
   - {fileID: 114000013533093570}
   - {fileID: 114000010503025238}
   - {fileID: 114000011230969184}
+--- !u!114 &114000010861105566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011613130270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 1000011613130270}
+  hover: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 0.78431374, g: 0.5254902, b: 0.7764706, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: 1}
+  duration: 0.02
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick: []
 --- !u!114 &114000010885151476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5140,16 +5171,13 @@ MonoBehaviour:
   - PnlAchievement
   - PnlStage
   - PnlCharChose
-  - PnlItemInfoEquip
+  - PnlItemInfo
   - PnlChar
   - PnlCharInfo
   - PnlSuitcase
-  - PnlItemInfoServant
-  - PnlItemInfoFood
-  - PnlItemInfoServantSoul
   - 
   clickResponseObjectsIsShow: 010000000001
-  clickResponseParentNamesIsShow: 010000000000000000000001
+  clickResponseParentNamesIsShow: 010000000000000000
   clickResponseObjectAnimations:
   - 
   - 
@@ -5158,9 +5186,6 @@ MonoBehaviour:
   - 
   - 
   clickResponseParentAnimations:
-  - 
-  - 
-  - 
   - 
   - 
   - 
@@ -5338,13 +5363,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   clickResponseParentNames:
-  - PnlItemInfoEquip
-  - PnlItemInfoServant
-  - PnlItemInfoFood
-  - PnlItemInfoServantSoul
   - 
   clickResponseObjectsIsShow: 010000000001
-  clickResponseParentNamesIsShow: 0000000001
+  clickResponseParentNamesIsShow: 01
   clickResponseObjectAnimations:
   - 
   - 
@@ -5352,14 +5373,9 @@ MonoBehaviour:
   - 
   - 
   - 
-  clickResponseParentAnimations:
-  - 
-  - 
-  - 
-  - 
-  - 
+  clickResponseParentAnimations: []
   isFoldObjs: 1
-  isFoldParentObjs: 1
+  isFoldParentObjs: 0
   isForceKeep: 0
   isClickHideSelf: 0
   isClickHideParent: 0
@@ -5897,13 +5913,9 @@ MonoBehaviour:
   - PnlCharChose
   - PnlChar
   - PnlCharInfo
-  - PnlItemInfoEquip
-  - PnlItemInfoServant
-  - PnlItemInfoFood
-  - PnlItemInfoServantSoul
   - 
   clickResponseObjectsIsShow: 010000000000
-  clickResponseParentNamesIsShow: 010000000000000000000001
+  clickResponseParentNamesIsShow: 0100000000000000
   clickResponseObjectAnimations:
   - 
   - 
@@ -5912,10 +5924,6 @@ MonoBehaviour:
   - 
   - 
   clickResponseParentAnimations:
-  - 
-  - 
-  - 
-  - 
   - 
   - 
   - 
@@ -6353,7 +6361,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3014
+  startingRenderQueue: 3052
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -7054,16 +7062,6 @@ MonoBehaviour:
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 0.423
-      value: -0.04
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.54
-      value: 1
-      inSlope: 5.337894
-      outSlope: 5.337894
-      tangentMode: 0
     - time: 0.5754386
       value: 1
       inSlope: 0
@@ -7114,8 +7112,8 @@ MonoBehaviour:
   - PnlChar
   - PnlStage
   - PnlAchievement
-  - 
-  - 
+  - PnlItemInfo
+  - PnlCharChose
   - 
   clickResponseObjectsIsShow: 010000000000
   clickResponseParentNamesIsShow: 000001010000000000
@@ -7285,6 +7283,50 @@ MonoBehaviour:
   isNeedTranslate: 0
   onClickModuleName: 
   onTweenAniFinishedModuleName: OnTweenFinishedEnergy
+  onSliderModuleName: 
+  scrollerTableDataModuleName: 
+--- !u!114 &114000013074528176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011613130270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 1000010732742502}
+  clickResponseObjects:
+  - {fileID: 0}
+  clickResponseParentNames:
+  - PnlDailyTask
+  - 
+  clickResponseObjectsIsShow: 00
+  clickResponseParentNamesIsShow: 0101
+  clickResponseObjectAnimations:
+  - 
+  clickResponseParentAnimations:
+  - 
+  - 
+  isFoldObjs: 1
+  isFoldParentObjs: 1
+  isForceKeep: 0
+  isClickHideSelf: 0
+  isClickHideParent: 0
+  des: "\u672A\u6709\u63CF\u8FF0"
+  activeHostKeyId: 0
+  activeCondiction: LEVEL
+  activeValue: 
+  labelHostKeyId: 0
+  labelMatchSign: 
+  labelMatchSelfDefineSign: 
+  sliderHostKeyId: 0
+  sliderMatchSign: 
+  sliderMaxSign: 
+  isNeedTranslate: 0
+  onClickModuleName: OnClickBtnOption
+  onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
 --- !u!114 &114000013126240658
@@ -7880,32 +7922,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: -0.0031322837
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 0.33300614
-      value: -0.0031322837
+    - time: 0.333
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 0.36600614
-      value: -0.043132283
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.46900612
-      value: 1.033
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.5030061
-      value: 0.9968677
+    - time: 0.5
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - time: 1
-      value: 0.9968677
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

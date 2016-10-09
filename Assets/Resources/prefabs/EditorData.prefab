@@ -177,14 +177,9 @@ MonoBehaviour:
   - "\u6559\u5B66\u5173\u5361\u8282\u70B9node"
   - "\u5BF9\u8BDDnode"
   StageEvents:
-  - flodAction: 1
+  - flodAction: 0
     flodTime: 1
-    actionEvents:
-    - nodeUid: 
-      sceneObject: {fileID: 0}
-      bornActionIndex: 0
-      hittedActionIndex: 0
-      missActionIndex: 0
+    actionEvents: []
     timeEvents:
     - flod: 1
       time: 0
@@ -379,18 +374,18 @@ MonoBehaviour:
   - flodAction: 1
     flodTime: 1
     actionEvents:
-    - nodeUid: s031104
+    - nodeIndex: 120
       sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
       bornActionIndex: 21
       hittedActionIndex: 2
       missActionIndex: 2
-    - nodeUid: s031105
+    - nodeIndex: 121
       sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
       bornActionIndex: 21
       hittedActionIndex: 2
       missActionIndex: 2
-    - nodeUid: s030201
-      sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
+    - nodeIndex: 92
+      sceneObject: {fileID: 0}
       bornActionIndex: 21
       hittedActionIndex: 2
       missActionIndex: 2
@@ -422,17 +417,17 @@ MonoBehaviour:
   - flodAction: 1
     flodTime: 1
     actionEvents:
-    - nodeUid: 
+    - nodeIndex: 114
       sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
       bornActionIndex: 21
       hittedActionIndex: 2
       missActionIndex: 2
-    - nodeUid: 
+    - nodeIndex: 113
       sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
       bornActionIndex: 21
       hittedActionIndex: 2
       missActionIndex: 2
-    - nodeUid: 
+    - nodeIndex: 89
       sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
       bornActionIndex: 21
       hittedActionIndex: 2
@@ -485,7 +480,7 @@ MonoBehaviour:
   - flodAction: 1
     flodTime: 1
     actionEvents:
-    - nodeUid: 
+    - nodeIndex: 0
       sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
       bornActionIndex: 8
       hittedActionIndex: 0
@@ -580,7 +575,7 @@ MonoBehaviour:
   - flodAction: 1
     flodTime: 1
     actionEvents:
-    - nodeUid: 
+    - nodeIndex: 237
       sceneObject: {fileID: 191332, guid: 05246bd81f5d79343a7454fb4f66f225, type: 2}
       bornActionIndex: 8
       hittedActionIndex: 0

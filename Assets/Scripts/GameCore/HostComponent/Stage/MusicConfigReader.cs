@@ -247,10 +247,6 @@ namespace GameLogic {
 			NodeConfigReader.Instance.Init ();
 			ArrayList nodeData = NodeConfigReader.Instance.GetData ();
 			JsonData _data = ConfigPool.Instance.GetConfigByName (filename);
-			if (_data == null) {
-				return;
-			}
-
 			// Start from 1
 			this.Add (new MusicData ());
 			for (int i = 0; i < _data.Count; i++) {

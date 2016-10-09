@@ -44,12 +44,6 @@ namespace PnlVictory {
 
 		private void SetTxrByCharacter() {
 			int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex ();
-			#if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
-			if (heroIndex < 0) {
-				heroIndex = AdminData.Instance.DefaultRoleIdx;
-			}
-			#endif
-
 			string txrName = ConfigPool.Instance.GetConfigStringValue ("character", heroIndex.ToString (), "image_victory");
 			if (txrName == null || ResourceLoader.Instance == null) {
 				return;
