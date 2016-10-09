@@ -35,7 +35,7 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
                 m_Instance = FindObjectOfType<T>();
                 if (m_Instance == null)
                 {
-                    Debug.LogErrorFormat("There is no a {0} in the scene", typeof(T).ToString());
+                    Debug.LogFormat("There is no a {0} in the scene", typeof(T).ToString());
                     //m_Instance = new GameObject(typeof(T).Name).AddComponent<T>();
                 }
             }

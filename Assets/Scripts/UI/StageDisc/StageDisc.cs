@@ -16,6 +16,9 @@ namespace StageDisc
         private static Dictionary<int, StageDisc> _discTable = null;
 
         private static StageDisc instance = null;
+        public GameObject lockGO;
+        public Color lockColor;
+        public UILabel txtTrophyToUnlock;
 
         public static StageDisc Instance
         {
@@ -86,7 +89,19 @@ namespace StageDisc
             }
 
             _discTable[this.staegId] = this;
+            SetUnlockTrophyAmount(idx);
             //this.SetTxrByStage ();
+        }
+
+        public void SetUnlockTrophyAmount(int idx)
+        {
+            var amount = ConfigPool.Instance.GetConfigStringValue("stage", this.staegId.ToString(), "UnlockTrophy");
+            txtTrophyToUnlock.text = amount.ToString();
+        }
+
+        public void Lock(bool isTo)
+        {
+            lockGO.SetActive(isTo);
         }
 
         private void InitStageInfo()
