@@ -231,6 +231,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011778007992}
+  - 114: {fileID: 114000012258112018}
   m_Layer: 0
   m_Name: Task3
   m_TagString: Untagged
@@ -370,6 +371,7 @@ GameObject:
   - 54: {fileID: 54000013274219806}
   - 95: {fileID: 95000013483453540}
   - 114: {fileID: 114000013085889912}
+  - 114: {fileID: 114000010458991742}
   m_Layer: 0
   m_Name: PnlDailyTask
   m_TagString: Untagged
@@ -659,22 +661,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1000013407196608
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 4000011281714000}
-  - 114: {fileID: 114000011513633418}
-  m_Layer: 0
-  m_Name: Grid
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1000013430825864
 GameObject:
   m_ObjectHideFlags: 1
@@ -716,6 +702,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010877725828}
+  - 114: {fileID: 114000012746020748}
   m_Layer: 0
   m_Name: Task2
   m_TagString: Untagged
@@ -731,6 +718,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000014126115252}
+  - 114: {fileID: 114000012711477112}
   m_Layer: 0
   m_Name: Task1
   m_TagString: Untagged
@@ -835,15 +823,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010129060542}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -55, y: -40, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -55, y: -39.999985, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000014211259270}
   - {fileID: 4000013221597156}
   m_Father: {fileID: 4000012221223336}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &4000010316969650
 Transform:
   m_ObjectHideFlags: 1
@@ -969,7 +957,7 @@ Transform:
   - {fileID: 4000013936558744}
   - {fileID: 4000010533121330}
   - {fileID: 4000012325527720}
-  m_Father: {fileID: 4000011281714000}
+  m_Father: {fileID: 4000012596295954}
   m_RootOrder: 1
 --- !u!4 &4000010995979146
 Transform:
@@ -1025,22 +1013,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000010995979146}
   m_RootOrder: 0
---- !u!4 &4000011281714000
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013407196608}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 4000014126115252}
-  - {fileID: 4000010877725828}
-  - {fileID: 4000011778007992}
-  m_Father: {fileID: 4000012596295954}
-  m_RootOrder: 0
 --- !u!4 &4000011329158578
 Transform:
   m_ObjectHideFlags: 1
@@ -1084,7 +1056,7 @@ Transform:
   - {fileID: 4000011142004736}
   - {fileID: 4000013791591708}
   - {fileID: 4000012327826862}
-  m_Father: {fileID: 4000011281714000}
+  m_Father: {fileID: 4000012596295954}
   m_RootOrder: 2
 --- !u!4 &4000012026219226
 Transform:
@@ -1111,10 +1083,10 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000012504241104}
-  - {fileID: 4000010273632464}
   - {fileID: 4000013454305936}
+  - {fileID: 4000010273632464}
   m_Father: {fileID: 4000012596295954}
-  m_RootOrder: 1
+  m_RootOrder: 3
 --- !u!4 &4000012225738998
 Transform:
   m_ObjectHideFlags: 1
@@ -1195,7 +1167,7 @@ Transform:
   m_Children:
   - {fileID: 4000010801531298}
   m_Father: {fileID: 4000012596295954}
-  m_RootOrder: 2
+  m_RootOrder: 4
 --- !u!4 &4000012477743160
 Transform:
   m_ObjectHideFlags: 1
@@ -1235,7 +1207,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 4000011281714000}
+  - {fileID: 4000014126115252}
+  - {fileID: 4000010877725828}
+  - {fileID: 4000011778007992}
   - {fileID: 4000012221223336}
   - {fileID: 4000012395796234}
   m_Father: {fileID: 4000010778372384}
@@ -1319,7 +1293,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000012221223336}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &4000013603410438
 Transform:
   m_ObjectHideFlags: 1
@@ -1404,8 +1378,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013728081868}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1415,7 +1389,7 @@ Transform:
   - {fileID: 4000011732193706}
   - {fileID: 4000010474837228}
   - {fileID: 4000013603410438}
-  m_Father: {fileID: 4000011281714000}
+  m_Father: {fileID: 4000012596295954}
   m_RootOrder: 0
 --- !u!4 &4000014211259270
 Transform:
@@ -1881,6 +1855,19 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000010458991742
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011936764556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aaedcccbfc5f7948a242a9cb143ab6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowAnimation: 
+  HideAnimation: 
 --- !u!114 &114000010668169382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2274,12 +2261,14 @@ MonoBehaviour:
   clickResponseObjects:
   - {fileID: 0}
   clickResponseParentNames:
+  - PnlDailyTask
   - 
   clickResponseObjectsIsShow: 01
-  clickResponseParentNamesIsShow: 01
+  clickResponseParentNamesIsShow: 0001
   clickResponseObjectAnimations:
   - 
   clickResponseParentAnimations:
+  - daily_task_out
   - 
   isFoldObjs: 1
   isFoldParentObjs: 1
@@ -2614,10 +2603,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -2627,27 +2616,6 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
---- !u!114 &114000011513633418
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013407196608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07c4de3b4b6fe9045b059ee627c100df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrangement: 1
-  sorting: 0
-  pivot: 1
-  maxPerLine: 0
-  cellWidth: 200
-  cellHeight: 100
-  animateSmoothly: 0
-  hideInactive: 0
-  keepWithinPanel: 0
-  sorted: 0
 --- !u!114 &114000011593592996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2900,10 +2868,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -3223,6 +3191,43 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000012258112018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011174231592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858a20c1b21a3f94bb5b2d3b901c9aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 100
+  mHeight: 100
+  mDepth: 0
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
 --- !u!114 &114000012302316042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3647,6 +3652,43 @@ MonoBehaviour:
   mAtlas: {fileID: 114000010633619806, guid: b689dcdfa73517c4082d675658fbb83c, type: 2}
   mSpriteName: blue_bar
   mFillCenter: 1
+--- !u!114 &114000012711477112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013728081868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858a20c1b21a3f94bb5b2d3b901c9aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 100
+  mHeight: 100
+  mDepth: 0
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
 --- !u!114 &114000012723116854
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3759,7 +3801,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3062
+  startingRenderQueue: 3026
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -3769,6 +3811,43 @@ MonoBehaviour:
   mSortingOrder: 71
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
+--- !u!114 &114000012746020748
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013658914660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858a20c1b21a3f94bb5b2d3b901c9aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 100
+  mHeight: 100
+  mDepth: 0
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
 --- !u!114 &114000012766521538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4113,7 +4192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 333b72c1cacfd46ea9ae37a7574390ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSingleInstanceUI: 0
+  isSingleInstanceUI: 1
   isShowOnLoaded: 0
   widgets:
   - {fileID: 114000010915652684}
@@ -4132,10 +4211,10 @@ MonoBehaviour:
   - {fileID: 114000011700019878}
   - {fileID: 114000010979463746}
   - {fileID: 114000010452821680}
+  - {fileID: 114000011512004502}
   - {fileID: 114000011796073220}
   - {fileID: 114000014188479008}
   - {fileID: 114000013635739602}
-  - {fileID: 114000011512004502}
   - {fileID: 114000014018376780}
 --- !u!114 &114000013488360538
 MonoBehaviour:
