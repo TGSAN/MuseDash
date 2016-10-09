@@ -103,6 +103,7 @@ GameObject:
   - 114: {fileID: 114000011399524648}
   - 65: {fileID: 65000011203044440}
   - 114: {fileID: 114000010897307714}
+  - 114: {fileID: 114000011142895270}
   m_Layer: 5
   m_Name: BtnMask
   m_TagString: Untagged
@@ -1985,6 +1986,50 @@ MonoBehaviour:
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 1
+--- !u!114 &114000011142895270
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010380968266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 1000011862606182}
+  clickResponseObjects:
+  - {fileID: 0}
+  clickResponseParentNames:
+  - PnlAchievementInfo
+  - 
+  clickResponseObjectsIsShow: 01
+  clickResponseParentNamesIsShow: 0000
+  clickResponseObjectAnimations:
+  - 
+  clickResponseParentAnimations:
+  - achievement_info_out
+  - 
+  isFoldObjs: 1
+  isFoldParentObjs: 1
+  isForceKeep: 0
+  isClickHideSelf: 0
+  isClickHideParent: 0
+  des: "\u672A\u6709\u63CF\u8FF0"
+  activeHostKeyId: 0
+  activeCondiction: LEVEL
+  activeValue: 
+  labelHostKeyId: 0
+  labelMatchSign: 
+  labelMatchSelfDefineSign: 
+  sliderHostKeyId: 0
+  sliderMatchSign: 
+  sliderMaxSign: 
+  isNeedTranslate: 0
+  onClickModuleName: OnClickBtnMask
+  onTweenAniFinishedModuleName: 
+  onSliderModuleName: 
+  scrollerTableDataModuleName: 
 --- !u!114 &114000011157022224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2214,6 +2259,7 @@ MonoBehaviour:
   isSingleInstanceUI: 1
   isShowOnLoaded: 0
   widgets:
+  - {fileID: 114000011142895270}
   - {fileID: 114000013317285140}
   - {fileID: 114000014034012900}
   - {fileID: 114000010636980122}
@@ -3544,7 +3590,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3020
+  startingRenderQueue: 3048
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
