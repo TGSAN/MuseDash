@@ -17,10 +17,7 @@ namespace PnlStage
 
         public static PnlStage Instance
         {
-            get
-            {
-                return instance;
-            }
+            get { return instance; }
         }
 
         private Coroutine _loadMusicCoroutine;
@@ -33,16 +30,7 @@ namespace PnlStage
 
         public override void OnShow()
         {
-            StageDisc.StageDisc.LoadAllDiscCover();
-            //this.OnSongChanged(PnlScrollCircle.currentSongIdx);
-            SceneAudioManager.Instance.bgm.clip = null;
-            PnlScrollCircle.instance.ResetPos();
-            PnlScrollCircle.instance.JumpToSong(PnlScrollCircle.currentSongIdx);
-            PnlScrollCircle.instance.enabled = false;
-            DOTweenUtil.Delay(() =>
-            {
-                PnlScrollCircle.instance.enabled = true;
-            }, Time.deltaTime);
+            PnlScrollCircle.instance.OnShow();
         }
 
         public override void OnHide()
@@ -66,40 +54,6 @@ namespace PnlStage
             }
 
             StageBattleComponent.Instance.InitById(idx);
-            /*
-			SceneAudioManager.Instance.bgm.clip = null;
-			PnlScrollCircle.instance.ResetPos();
-			PnlScrollCircle.instance.JumpToSong(idx);
-			if (this.diskAudioSource == null) {
-				this.diskAudioSource = SceneAudioManager.Instance.bgm;
-			}
-
-			if (this.diskAudioSource == null) {
-				return;
-			}
-
-			AudioClip oldClip = this.diskAudioSource.clip;
-			this.diskAudioSource.clip = null;
-			if (oldClip != null) {
-				Resources.UnloadAsset (oldClip);
-			}
-
-			if (this._loadMusicCoroutine != null) {
-				ResourceLoader.Instance.StopCoroutine (this._loadMusicCoroutine);
-				this._loadMusicCoroutine = null;
-			}
-
-			//StageDisc.StageDisc.OnSongChanged (idx);
-
-			string musicPath = ConfigPool.Instance.GetConfigStringValue ("stage", idx.ToString (), "FileName_1");
-			this._loadMusicCoroutine = ResourceLoader.Instance.Load (musicPath, this.__OnLoadMusic, ResourceLoader.RES_FROM_LOCAL);*/
         }
-
-        /*private void __OnLoadMusic(UnityEngine.Object musicRes) {
-			AudioClip clip = musicRes as AudioClip;
-			this.diskAudioSource.loop = true;
-			this.diskAudioSource.clip = clip;
-			this.diskAudioSource.Play ();
-		}*/
     }
 }

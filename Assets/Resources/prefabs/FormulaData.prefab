@@ -25,10 +25,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11416448
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,6 +113,10 @@ MonoBehaviour:
   - STATIC_CTR
   - GOLD_EXTRA
   - VIT_LIMIT
+  - 
+  - 
+  - 
+  - 
   ConfigNames:
   - character
   - stage
@@ -161,7 +165,7 @@ MonoBehaviour:
     typeIdx: 0
     name: "\u89D2\u8272\u8840\u91CF\u5C5E\u6027"
     formula: "( \u57FA\u7840\u503C + ( \u7B49\u7EA7 - 1 ) * \u6210\u957F\u503C + 400
-      \ )"
+      \ ) +100"
     fparams:
     - idx: 0
       dataSourceType: 1
@@ -8606,7 +8610,7 @@ MonoBehaviour:
     collapsedSign: 1
     collapsedComponent: 1
     formulaSet: 13000000160000002400000025000000590000009b000000ff0000000101000002010000030100000401000005010000060100000701000008010000
-    singSet: 0200000000000000110000001e000000210000002a000000200000002b0000001a0000000f000000
+    singSet: 0200000000000000110000001e000000210000002a000000200000002b0000001a0000000f00000010000000
     signValueSet:
     - 81010
     - 1
@@ -8616,6 +8620,7 @@ MonoBehaviour:
     - 0
     - 0
     - 1
+    - 0
     - 0
     - 0
     componentNames:
