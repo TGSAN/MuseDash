@@ -101,10 +101,6 @@ namespace PnlChar
 
         private void InitEvent()
         {
-            foreach (var itemImageEquip in items)
-            {
-                var btn = itemImageEquip.transform.parent.GetComponent<UIButton>();
-            }
             var maxCount = FormulaBase.RoleManageComponent.Instance.GetRoleCount();
             Action onLeftClick = null;
             onLeftClick = () =>
@@ -160,6 +156,10 @@ namespace PnlChar
             var unlockCount = FormulaBase.RoleManageComponent.Instance.GetUnlockRoleCount();
             btnLeft.gameObject.SetActive(unlockCount > 1);
             btnRight.gameObject.SetActive(unlockCount > 1);
+            foreach (var item in items)
+            {
+                item.gameObject.SetActive(true);
+            }
             OnRoleChange(curRoleIdx);
         }
 

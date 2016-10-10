@@ -618,7 +618,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012293276052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 97, y: -3, z: 0}
+  m_LocalPosition: {x: 686, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -688,7 +688,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011627785520}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -450, z: 0}
+  m_LocalPosition: {x: -23, y: -589.50055, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -814,7 +814,7 @@ Transform:
   m_GameObject: {fileID: 1000012843169304}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3, y: 178, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 0.9223718, y: 0.9251757, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 224000012827489954}
@@ -882,7 +882,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012262477378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 104, y: 0, z: 0}
+  m_LocalPosition: {x: 172, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -967,7 +967,7 @@ Transform:
   m_GameObject: {fileID: 1000011856035876}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3, y: 178, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.9986952, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 224000012827489954}
@@ -1288,7 +1288,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: 4fd14487917a19b46971f89f965e6383, type: 3}
   mFont: {fileID: 0}
-  mText: 55
+  mText: 19
   mFontSize: 45
   mFontStyle: 0
   mAlignment: 2
@@ -1355,7 +1355,7 @@ MonoBehaviour:
   aspectRatio: 11.75
   mType: 3
   mFillDirection: 0
-  mFillAmount: 1
+  mFillAmount: 0.38983306
   mInvert: 0
   mFlip: 0
   mApplyGradient: 0
@@ -1399,17 +1399,17 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0, g: 0.91764706, b: 1, a: 1}
   mPivot: 4
-  mWidth: 196
+  mWidth: 350
   mHeight: 36
   mDepth: 8
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 5.4444447
+  aspectRatio: 9.722222
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: bb22fb5beacef47a6816ba69bce73b56, type: 3}
   mFont: {fileID: 0}
-  mText: Night wander
+  mText: An Unfortunate Incident
   mFontSize: 36
   mFontStyle: 0
   mAlignment: 0
@@ -1476,7 +1476,7 @@ MonoBehaviour:
   aspectRatio: 222.33333
   mType: 3
   mFillDirection: 0
-  mFillAmount: 0.07162516
+  mFillAmount: 0.51411754
   mInvert: 0
   mFlip: 0
   mApplyGradient: 0
@@ -2134,7 +2134,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014217454798}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ba7f59a1f412544f85ac3e66f0b5227, type: 3}
   m_Name: 
@@ -2162,11 +2162,17 @@ MonoBehaviour:
   duration: 0.1
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000010964915288}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000014217454798}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: 0
-  to: 1
+  from: 0.390625
+  to: 0.3875
 --- !u!114 &114000011644444710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2241,7 +2247,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 0}
+  mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 1334
   mHeight: 750
@@ -2280,7 +2286,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013745638914}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ba7f59a1f412544f85ac3e66f0b5227, type: 3}
   m_Name: 
@@ -2308,11 +2314,17 @@ MonoBehaviour:
   duration: 0.5
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000010964915288}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000013745638914}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: 0
-  to: 1
+  from: 0.7538141
+  to: 0.78
 --- !u!114 &114000011845806862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2353,7 +2365,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: 4fd14487917a19b46971f89f965e6383, type: 3}
   mFont: {fileID: 0}
-  mText: 0
+  mText: 7495
   mFontSize: 60
   mFontStyle: 0
   mAlignment: 0
@@ -2436,7 +2448,7 @@ MonoBehaviour:
   aspectRatio: 11.65
   mType: 3
   mFillDirection: 0
-  mFillAmount: 1
+  mFillAmount: 0.38904113
   mInvert: 0
   mFlip: 0
   mApplyGradient: 0
@@ -2838,7 +2850,7 @@ MonoBehaviour:
   aspectRatio: 12.5
   mType: 3
   mFillDirection: 0
-  mFillAmount: 0.668
+  mFillAmount: 0.7640323
   mInvert: 0
   mFlip: 0
   mApplyGradient: 0
@@ -3152,7 +3164,7 @@ MonoBehaviour:
   thumb: {fileID: 4000010272702796}
   mBG: {fileID: 114000010233501128}
   mFG: {fileID: 114000012745277376}
-  mValue: 0.07162516
+  mValue: 0.51411754
   mFill: 0
   numberOfSteps: 0
   onChange:
@@ -3316,7 +3328,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013508585120}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ba7f59a1f412544f85ac3e66f0b5227, type: 3}
   m_Name: 
@@ -3344,11 +3356,17 @@ MonoBehaviour:
   duration: 0.2
   steeperCurves: 0
   tweenGroup: 0
-  onFinished: []
+  onFinished:
+  - mTarget: {fileID: 114000010964915288}
+    mMethodName: OnAnimationFinishCommon
+    mParameters:
+    - obj: {fileID: 1000013508585120}
+      field: 
+    oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: 0
-  to: 1
+  from: 0.390625
+  to: 0.3875
 --- !u!114 &114000013098383388
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3448,13 +3466,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 5
-  mWidth: 120
+  mWidth: 188
   mHeight: 36
   mDepth: 8
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 3.3333333
+  aspectRatio: 5.2222223
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -3565,18 +3583,18 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 0.9137255, b: 0.19607843, a: 1}
   mPivot: 4
-  mWidth: 74
-  mHeight: 58
+  mWidth: 68
+  mHeight: 54
   mDepth: 203
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.2758621
+  aspectRatio: 1.2592592
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: 4fd14487917a19b46971f89f965e6383, type: 3}
   mFont: {fileID: 0}
-  mText: 55
-  mFontSize: 58
+  mText: 50
+  mFontSize: 53
   mFontStyle: 0
   mAlignment: 2
   mEncoding: 1
@@ -3584,7 +3602,7 @@ MonoBehaviour:
   mEffectStyle: 3
   mEffectColor: {r: 0.99607843, g: 0.58431375, b: 0, a: 1}
   mSymbols: 1
-  mEffectDistance: {x: 5, y: 5}
+  mEffectDistance: {x: 4, y: 4}
   mOverflow: 2
   mMaterial: {fileID: 0}
   mApplyGradient: 0
@@ -3902,17 +3920,17 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 3
-  mWidth: 24
+  mWidth: 92
   mHeight: 36
   mDepth: 10
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 0.6666667
+  aspectRatio: 2.5555556
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: 4fd14487917a19b46971f89f965e6383, type: 3}
   mFont: {fileID: 0}
-  mText: 0
+  mText: 1000
   mFontSize: 36
   mFontStyle: 0
   mAlignment: 0
@@ -4094,17 +4112,17 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0, g: 0.91764706, b: 1, a: 1}
   mPivot: 4
-  mWidth: 186
+  mWidth: 92
   mHeight: 30
   mDepth: 8
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 6.2
+  aspectRatio: 3.0666666
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: bb22fb5beacef47a6816ba69bce73b56, type: 3}
   mFont: {fileID: 0}
-  mText: cnsouka Remix
+  mText: Simons
   mFontSize: 30
   mFontStyle: 0
   mAlignment: 0
@@ -4175,7 +4193,7 @@ MonoBehaviour:
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 3
-  mSortingOrder: 0
+  mSortingOrder: 1
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
 --- !u!224 &224000012827489954
