@@ -95,7 +95,6 @@ public class EffectManager : MonoBehaviour
         this.playResult = new GameObject[(int)GameMusic.CRITICAL + 1];
         this.playResult[GameMusic.COOL] = GameObject.Instantiate(Resources.Load(atkFxGreat)) as GameObject;
         this.playResult[GameMusic.GREAT] = GameObject.Instantiate(Resources.Load(atkFxGreat)) as GameObject;
-        Debug.Log(atkFxPerfect + "=============123" + heroIndex);
         this.playResult[GameMusic.PERFECT] = GameObject.Instantiate(Resources.Load(atkFxPerfect)) as GameObject;
         this.playResult[GameMusic.CRITICAL] = GameObject.Instantiate(Resources.Load(atkFxCrit)) as GameObject;
         for (int i = 0; i < this.playResult.Length; i++)
