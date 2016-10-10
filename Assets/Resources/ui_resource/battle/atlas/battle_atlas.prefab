@@ -25,10 +25,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11405424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -42,48 +42,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: cf819e7b060cf48e185ad8964e188316, type: 2}
   mSprites:
-  - name: 1
-    x: 127
-    y: 254
-    width: 62
-    height: 110
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: 2
-    x: 97
-    y: 134
-    width: 94
-    height: 106
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: 3
-    x: 0
-    y: 127
-    width: 95
-    height: 113
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
   - name: battle_hp_redbar
-    x: 202
-    y: 603
+    x: 204
+    y: 573
     width: 469
     height: 39
     borderLeft: 0
@@ -94,11 +55,63 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: board
+    x: 0
+    y: 859
+    width: 436
+    height: 165
+    borderLeft: 210
+    borderRight: 210
+    borderTop: 50
+    borderBottom: 100
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: button_green
+    x: 204
+    y: 419
+    width: 272
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: button_red
+    x: 802
+    y: 791
+    width: 200
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: button_restart
     x: 0
-    y: 366
+    y: 437
     width: 138
     height: 120
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: button_restart_icon
+    x: 142
+    y: 501
+    width: 56
+    height: 56
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -109,9 +122,22 @@ MonoBehaviour:
     paddingBottom: 0
   - name: button_resume
     x: 0
-    y: 488
+    y: 313
     width: 138
     height: 120
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: button_resume_icon
+    x: 142
+    y: 441
+    width: 50
+    height: 56
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -122,7 +148,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: button_return
     x: 0
-    y: 610
+    y: 189
     width: 138
     height: 120
     borderLeft: 0
@@ -133,9 +159,35 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: button_return_icon
+    x: 142
+    y: 377
+    width: 50
+    height: 56
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: crystal
+    x: 913
+    y: 874
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: fever
-    x: 420
-    y: 750
+    x: 440
+    y: 942
     width: 498
     height: 39
     borderLeft: 0
@@ -147,8 +199,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: fever_bar
-    x: 420
-    y: 791
+    x: 440
+    y: 985
     width: 500
     height: 39
     borderLeft: 0
@@ -161,7 +213,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: fever_bubble_fx
     x: 0
-    y: 242
+    y: 63
     width: 125
     height: 122
     borderLeft: 0
@@ -173,8 +225,8 @@ MonoBehaviour:
     paddingTop: 5
     paddingBottom: 1
   - name: fever_icon_fx
-    x: 958
-    y: 956
+    x: 944
+    y: 1004
     width: 63
     height: 20
     borderLeft: 0
@@ -185,22 +237,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: go
-    x: 202
-    y: 726
-    width: 216
-    height: 104
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
   - name: hp
-    x: 202
-    y: 562
+    x: 204
+    y: 487
     width: 465
     height: 39
     borderLeft: 15
@@ -212,8 +251,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: hp_bar
-    x: 202
-    y: 644
+    x: 204
+    y: 616
     width: 469
     height: 39
     borderLeft: 0
@@ -225,8 +264,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: hp_icon
-    x: 140
-    y: 641
+    x: 610
+    y: 864
     width: 34
     height: 31
     borderLeft: 0
@@ -238,8 +277,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: hp_icon_fx
-    x: 140
-    y: 674
+    x: 572
+    y: 864
     width: 34
     height: 31
     borderLeft: 0
@@ -251,8 +290,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: hp2
-    x: 202
-    y: 521
+    x: 204
+    y: 530
     width: 465
     height: 39
     borderLeft: 0
@@ -264,8 +303,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: jump_sign
-    x: 202
-    y: 465
+    x: 204
+    y: 361
     width: 250
     height: 54
     borderLeft: 242
@@ -278,7 +317,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: music_info_base
     x: 0
-    y: 934
+    y: 765
     width: 798
     height: 90
     borderLeft: 0
@@ -291,7 +330,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: pause_base
     x: 0
-    y: 732
+    y: 561
     width: 200
     height: 200
     borderLeft: 74
@@ -303,8 +342,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: pause_button
-    x: 958
-    y: 978
+    x: 142
+    y: 327
     width: 46
     height: 46
     borderLeft: 0
@@ -316,8 +355,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: pause_tag_base
-    x: 800
-    y: 984
+    x: 808
+    y: 721
     width: 156
     height: 40
     borderLeft: 0
@@ -329,8 +368,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: progress_bar
-    x: 420
-    y: 744
+    x: 480
+    y: 479
     width: 500
     height: 4
     borderLeft: 0
@@ -342,8 +381,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: progress_base
-    x: 826
-    y: 946
+    x: 944
+    y: 996
     width: 32
     height: 4
     borderLeft: 2
@@ -355,8 +394,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: progress_button
-    x: 140
-    y: 707
+    x: 942
+    y: 958
     width: 46
     height: 23
     borderLeft: 0
@@ -368,8 +407,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: punch_sign
-    x: 202
-    y: 410
+    x: 204
+    y: 304
     width: 250
     height: 53
     borderLeft: 0
@@ -381,21 +420,21 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: score_cube
-    x: 140
-    y: 576
+    x: 648
+    y: 863
     width: 32
     height: 32
-    borderLeft: 2
-    borderRight: 2
-    borderTop: 2
-    borderBottom: 2
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
     paddingLeft: 0
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
   - name: Score_fx
-    x: 800
-    y: 934
+    x: 992
+    y: 965
     width: 24
     height: 16
     borderLeft: 0
@@ -407,8 +446,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: status_bar_bg
-    x: 202
-    y: 881
+    x: 204
+    y: 710
     width: 600
     height: 51
     borderLeft: 0
@@ -420,8 +459,8 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 0
   - name: status_bar_bg2
-    x: 202
-    y: 832
+    x: 204
+    y: 659
     width: 600
     height: 47
     borderLeft: 0
@@ -433,8 +472,8 @@ MonoBehaviour:
     paddingTop: 3
     paddingBottom: 2
   - name: trophy_base
-    x: 800
-    y: 952
+    x: 440
+    y: 865
     width: 128
     height: 30
     borderLeft: 0
@@ -446,8 +485,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Whitehp_fx
-    x: 202
-    y: 685
+    x: 440
+    y: 899
     width: 469
     height: 39
     borderLeft: 0

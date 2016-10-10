@@ -1,208 +1,241 @@
-﻿using UnityEngine;
+﻿using FormulaBase;
+using GameLogic;
 using System.Collections;
 using System.Collections.Generic;
-using GameLogic;
-using FormulaBase;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class EffectManager : MonoBehaviour {
-	private const int EX_IDX = 999;
-	public const int COMBO_CHANGE_LIM = 20;
+public class EffectManager : MonoBehaviour
+{
+    private const int EX_IDX = 999;
+    public const int COMBO_CHANGE_LIM = 20;
 
-	private GameObject[] playResult;
-	private float[] playResultOffset;
-	private GameObject pressEffect;
-	private GameObject ferverScene;
+    private GameObject[] playResult;
+    private float[] playResultOffset;
+    private GameObject pressEffect;
+    private GameObject ferverScene;
 
-	private Dictionary<string, GameObject> effectPool = null;
+    private Dictionary<string, GameObject> effectPool = null;
 
-	private static EffectManager instance = null;
+    private static EffectManager instance = null;
 
-	public GameObject comboAnimationNormal;
-	public GameObject comboAnimationHigh;
-	
-	public EffectManager() {
-		instance = this;
-	}
-	
-	public static EffectManager Instance {
-		get {
-			return instance;
-		}
-	}
+    public GameObject comboAnimationNormal;
+    public GameObject comboAnimationHigh;
 
-	private GameObject InitComboAnimationByName(string name) {
-		GameObject _comboAnimation = this.transform.Find (name).gameObject;
-		NodeInitController initController = _comboAnimation.GetComponent<NodeInitController> ();
-		if (initController == null) {
-			initController = _comboAnimation.AddComponent<NodeInitController> ();
-		}
-		
-		SpineActionController sac = _comboAnimation.GetComponent<SpineActionController> ();
-		sac.Init (EX_IDX);
-		
-		_comboAnimation.SetActive (false);
-		return _comboAnimation;
-	}
+    public EffectManager()
+    {
+        instance = this;
+    }
 
-	// Use this for initialization
-	void Start () {
-		this.comboAnimationNormal.SetActive (false);
-		this.comboAnimationHigh.SetActive (false);
-		this.Preload ();
-	}
+    public static EffectManager Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
 
-	public void Preload() {
-		this.effectPool = new Dictionary<string, GameObject> ();
-		// 零散特效预加载
-		string path = "Prefabs/skill/Skill_hp";
-		//(check) use this function to create new object
-		this.effectPool [path] = Resources.Load (path) as GameObject;
+    private GameObject InitComboAnimationByName(string name)
+    {
+        GameObject _comboAnimation = this.transform.Find(name).gameObject;
+        NodeInitController initController = _comboAnimation.GetComponent<NodeInitController>();
+        if (initController == null)
+        {
+            initController = _comboAnimation.AddComponent<NodeInitController>();
+        }
 
-		path = "Prefabs/arms/Arm_item";
-		this.effectPool [path] = Resources.Load (path) as GameObject;
-	}
+        SpineActionController sac = _comboAnimation.GetComponent<SpineActionController>();
+        sac.Init(EX_IDX);
 
-	public void SetEffectByCharact (int heroIndex) {
-		// Load press succeed effect.
-		string path = GirlManager.GetCharactPath (name);
+        _comboAnimation.SetActive(false);
+        return _comboAnimation;
+    }
 
-		string strHeroIndex = heroIndex.ToString ();
-		// Fever scene
-		string feverScene = ConfigPool.Instance.GetConfigStringValue ("character", strHeroIndex, "fever");
-		this.ferverScene = GameObject.Instantiate (Resources.Load (feverScene)) as GameObject;
+    // Use this for initialization
+    private void Start()
+    {
+        this.comboAnimationNormal.SetActive(false);
+        this.comboAnimationHigh.SetActive(false);
+        this.Preload();
+    }
 
-		string pressFxName = ConfigPool.Instance.GetConfigStringValue ("character", strHeroIndex, "fx_atk_press");
-		UnityEngine.Object _eff = Resources.Load (pressFxName);
-		if (_eff != null) {
-			this.pressEffect = GameObject.Instantiate (_eff) as GameObject;
-		}
+    public void Preload()
+    {
+        this.effectPool = new Dictionary<string, GameObject>();
+        // 零散特效预加载
+        string path = "Prefabs/skill/Skill_hp";
+        //(check) use this function to create new object
+        this.effectPool[path] = Resources.Load(path) as GameObject;
 
-		string atkFxGreat = ConfigPool.Instance.GetConfigStringValue ("character", strHeroIndex, "fx_atk_great");
-		string atkFxPerfect = ConfigPool.Instance.GetConfigStringValue ("character", strHeroIndex, "fx_atk_perfect");
-		string atkFxCrit = ConfigPool.Instance.GetConfigStringValue ("character", strHeroIndex, "fx_atk_crit");
-		// Load attack succeed effect.
-		this.playResult = new GameObject[(int)GameMusic.CRITICAL + 1];
-		this.playResult [GameMusic.COOL] = GameObject.Instantiate (Resources.Load (atkFxGreat)) as GameObject;
-		this.playResult [GameMusic.GREAT] = GameObject.Instantiate (Resources.Load (atkFxGreat)) as GameObject;
-		this.playResult [GameMusic.PERFECT] = GameObject.Instantiate (Resources.Load (atkFxPerfect)) as GameObject;
-		this.playResult [GameMusic.CRITICAL] = GameObject.Instantiate (Resources.Load (atkFxCrit)) as GameObject;
-		for (int i = 0; i < this.playResult.Length; i++) {
-			GameObject _playResult = this.playResult [i];
-			if (_playResult == null) {
-				continue;
-			}
+        path = "Prefabs/arms/Arm_item";
+        this.effectPool[path] = Resources.Load(path) as GameObject;
+    }
 
-			NodeInitController _initController = _playResult.GetComponent<NodeInitController> ();
-			if (_initController == null) {
-				_initController = _playResult.AddComponent<NodeInitController> ();
-			}
+    public void SetEffectByCharact(int heroIndex)
+    {
+        // Load press succeed effect.
+        string path = GirlManager.GetCharactPath(name);
 
-			SpineActionController _sac = this.comboAnimationNormal.GetComponent<SpineActionController> ();
-			_sac.Init (EX_IDX + i);
+        string strHeroIndex = heroIndex.ToString();
+        // Fever scene
+        string feverScene = ConfigPool.Instance.GetConfigStringValue("character", strHeroIndex, "fever");
+        this.ferverScene = GameObject.Instantiate(Resources.Load(feverScene)) as GameObject;
 
-			SpineActionController _sac2 = this.comboAnimationHigh.GetComponent<SpineActionController> ();
-			_sac2.Init (EX_IDX + i);
+        string pressFxName = ConfigPool.Instance.GetConfigStringValue("character", strHeroIndex, "fx_atk_press");
+        UnityEngine.Object _eff = Resources.Load(pressFxName);
+        if (_eff != null)
+        {
+            this.pressEffect = GameObject.Instantiate(_eff) as GameObject;
+        }
 
-			_playResult.SetActive (false);
-		}
+        string atkFxGreat = ConfigPool.Instance.GetConfigStringValue("character", strHeroIndex, "fx_atk_great");
+        string atkFxPerfect = ConfigPool.Instance.GetConfigStringValue("character", strHeroIndex, "fx_atk_perfect");
+        string atkFxCrit = ConfigPool.Instance.GetConfigStringValue("character", strHeroIndex, "fx_atk_crit");
+        // Load attack succeed effect.
+        this.playResult = new GameObject[(int)GameMusic.CRITICAL + 1];
+        this.playResult[GameMusic.COOL] = GameObject.Instantiate(Resources.Load(atkFxGreat)) as GameObject;
+        this.playResult[GameMusic.GREAT] = GameObject.Instantiate(Resources.Load(atkFxGreat)) as GameObject;
+        Debug.Log(atkFxPerfect + "=============123" + heroIndex);
+        this.playResult[GameMusic.PERFECT] = GameObject.Instantiate(Resources.Load(atkFxPerfect)) as GameObject;
+        this.playResult[GameMusic.CRITICAL] = GameObject.Instantiate(Resources.Load(atkFxCrit)) as GameObject;
+        for (int i = 0; i < this.playResult.Length; i++)
+        {
+            GameObject _playResult = this.playResult[i];
+            if (_playResult == null)
+            {
+                continue;
+            }
 
-		this.InitAttackFxOffset ();
-	}
+            NodeInitController _initController = _playResult.GetComponent<NodeInitController>();
+            if (_initController == null)
+            {
+                _initController = _playResult.AddComponent<NodeInitController>();
+            }
 
-	public void ShowPressGirlEffect(bool isShow) {
-		if (this.pressEffect == null) {
-			return;
-		}
+            SpineActionController _sac = this.comboAnimationNormal.GetComponent<SpineActionController>();
+            _sac.Init(EX_IDX + i);
 
-		this.pressEffect.SetActive (isShow);
-		Animator ani = this.pressEffect.GetComponent<Animator> ();
-		if (ani == null) {
-			return;
-		}
+            SpineActionController _sac2 = this.comboAnimationHigh.GetComponent<SpineActionController>();
+            _sac2.Init(EX_IDX + i);
 
-		ani.Stop ();
-		ani.Rebind ();
-		ani.Play ("press_succeed_fx");
-	}
+            _playResult.SetActive(false);
+        }
 
-	public void ShowCombo(int number,bool isPlayComboEffect = true) {
-		GameObject _comboAnimation = this.comboAnimationNormal;
-		if (number >= COMBO_CHANGE_LIM) {
-			if (number == COMBO_CHANGE_LIM) {
-				// SpineActionController.Play (ACTION_KEYS.COMEOUT, this.comboAnimationNormal);
-				this.comboAnimationNormal.SetActive (false);
-			}
+        this.InitAttackFxOffset();
+    }
 
-			_comboAnimation = this.comboAnimationHigh;
-		}
+    public void ShowPressGirlEffect(bool isShow)
+    {
+        if (this.pressEffect == null)
+        {
+            return;
+        }
 
-		if (!_comboAnimation.activeSelf) {
-			_comboAnimation.SetActive (true);
-			SpineActionController.Play (ACTION_KEYS.COMEIN, _comboAnimation);
-		}
+        this.pressEffect.SetActive(isShow);
+        Animator ani = this.pressEffect.GetComponent<Animator>();
+        if (ani == null)
+        {
+            return;
+        }
 
-		CharPanel.Instance.ShowCombo (number, isPlayComboEffect);
-	}
+        ani.Stop();
+        ani.Rebind();
+        ani.Play("press_succeed_fx");
+    }
 
-	public void StopCombo() {
-		this.StopCombo (this.comboAnimationNormal);
-		this.StopCombo (this.comboAnimationHigh);
-		CharPanel.Instance.IsShowingCombo = false;
-		CharPanel.Instance.StopCombo ();
-	}
+    public void ShowCombo(int number, bool isPlayComboEffect = true)
+    {
+        GameObject _comboAnimation = this.comboAnimationNormal;
+        if (number >= COMBO_CHANGE_LIM)
+        {
+            if (number == COMBO_CHANGE_LIM)
+            {
+                // SpineActionController.Play (ACTION_KEYS.COMEOUT, this.comboAnimationNormal);
+                this.comboAnimationNormal.SetActive(false);
+            }
 
-	private void StopCombo(GameObject comboAni) {
-		string actname = SpineActionController.CurrentAnimationName (comboAni);
-		if (comboAni.activeSelf && actname != "end") {	//
-			SpineActionController.Play (ACTION_KEYS.COMEOUT, comboAni);
-		}
+            _comboAnimation = this.comboAnimationHigh;
+        }
 
-		if (comboAni.activeSelf && actname == null) {
-			comboAni.SetActive (false);
-		}
-	}
+        if (!_comboAnimation.activeSelf)
+        {
+            _comboAnimation.SetActive(true);
+            SpineActionController.Play(ACTION_KEYS.COMEIN, _comboAnimation);
+        }
 
-	private void InitAttackFxOffset() {
-		Vector3 pos = GirlManager.Instance.GetCurrentGirlPositon ();
-		this.playResultOffset = new float[(int)GameMusic.CRITICAL + 1];
-		for (int i = 0; i < this.playResultOffset.Length; i++) {
-			GameObject fx = this.playResult [i];
-			if (fx == null) {
-				continue;
-			}
+        CharPanel.Instance.ShowCombo(number, isPlayComboEffect);
+    }
 
-			this.playResultOffset [i] = pos.y - fx.transform.position.y;
-		}
-	}
+    public void StopCombo()
+    {
+        this.StopCombo(this.comboAnimationNormal);
+        this.StopCombo(this.comboAnimationHigh);
+        CharPanel.Instance.IsShowingCombo = false;
+        CharPanel.Instance.StopCombo();
+    }
 
-	public void ShowPlayResult(uint resultCode) {
-		for (int i = 0; i < this.playResult.Length; i++) {
-			GameObject _playResult = this.playResult [i];
-			if (_playResult == null) {
-				continue;
-			}
+    private void StopCombo(GameObject comboAni)
+    {
+        string actname = SpineActionController.CurrentAnimationName(comboAni);
+        if (comboAni.activeSelf && actname != "end")
+        {   //
+            SpineActionController.Play(ACTION_KEYS.COMEOUT, comboAni);
+        }
 
-			_playResult.SetActive (false);
-		}
+        if (comboAni.activeSelf && actname == null)
+        {
+            comboAni.SetActive(false);
+        }
+    }
 
-		int ctr = BattleRoleAttributeComponent.Instance.Host.GetDynamicIntByKey (SignKeys.CTR);
-		if (ctr > 0) {
-			resultCode = GameMusic.CRITICAL;
-		}
+    private void InitAttackFxOffset()
+    {
+        Vector3 pos = GirlManager.Instance.GetCurrentGirlPositon();
+        this.playResultOffset = new float[(int)GameMusic.CRITICAL + 1];
+        for (int i = 0; i < this.playResultOffset.Length; i++)
+        {
+            GameObject fx = this.playResult[i];
+            if (fx == null)
+            {
+                continue;
+            }
 
-		int _result = (int)resultCode;
-		GameObject pResult = this.playResult [_result];
-		if (pResult == null) {
-			return;
-		}
+            this.playResultOffset[i] = pos.y - fx.transform.position.y;
+        }
+    }
 
-		pResult.SetActive (true);
-		SpineActionController.Play (ACTION_KEYS.COMEIN, pResult);
+    public void ShowPlayResult(uint resultCode)
+    {
+        for (int i = 0; i < this.playResult.Length; i++)
+        {
+            GameObject _playResult = this.playResult[i];
+            if (_playResult == null)
+            {
+                continue;
+            }
 
-		// Attack effect follow y of girl.
-		float offset = this.playResultOffset [_result];
-		Vector3 pos = GirlManager.Instance.GetCurrentGirlPositon ();
-		pResult.transform.position = new Vector3 (pResult.transform.position.x, pos.y - offset, pResult.transform.position.z);
-	}
+            _playResult.SetActive(false);
+        }
+
+        int ctr = BattleRoleAttributeComponent.Instance.Host.GetDynamicIntByKey(SignKeys.CTR);
+        if (ctr > 0)
+        {
+            resultCode = GameMusic.CRITICAL;
+        }
+
+        int _result = (int)resultCode;
+        GameObject pResult = this.playResult[_result];
+        if (pResult == null)
+        {
+            return;
+        }
+
+        pResult.SetActive(true);
+        SpineActionController.Play(ACTION_KEYS.COMEIN, pResult);
+
+        // Attack effect follow y of girl.
+        float offset = this.playResultOffset[_result];
+        Vector3 pos = GirlManager.Instance.GetCurrentGirlPositon();
+        pResult.transform.position = new Vector3(pResult.transform.position.x, pos.y - offset, pResult.transform.position.z);
+    }
 }
