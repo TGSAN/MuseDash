@@ -4,6 +4,7 @@ using GameLogic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FormulaBase
 {
@@ -58,6 +59,20 @@ namespace FormulaBase
             return count;
         }
 
+        public int GetChoseRoleIdx()
+        {
+            var idx = 1;
+            foreach (var formulaHost in HostList.Values)
+            {
+                if (formulaHost.GetDynamicIntByKey(SignKeys.FIGHTHERO) == 1)
+                {
+                    idx = formulaHost.GetDynamicIntByKey(SignKeys.ID);
+                    break;
+                }
+            }
+            return idx;
+        }
+
         public FormulaHost GetRole(string name)
         {
             return this.GetHostByKeyValue(SignKeys.NAME, name);
@@ -76,67 +91,80 @@ namespace FormulaBase
                 this.GetList("Role");
             }
 
-            // 如果有服务器数据,设置当前战斗角色
-            if (this.HostList != null && this.HostList.Count > 0)
-            {
-                foreach (FormulaHost _role in this.HostList.Values)
-                {
-                    if (_role == null)
-                    {
-                        continue;
-                    }
-
-                    // 初始化配置属性
-                    _role.Result(FormulaKeys.FORMULA_178);
-                    int cloth = _role.GetDynamicIntByKey(SignKeys.CLOTH);
-                    int idx = _role.GetDynamicIntByKey(SignKeys.ID);
-                    if (cloth <= 0)
-                    {
-                        cloth = ConfigPool.Instance.GetConfigIntValue("character", idx.ToString(), "character");
-                        _role.SetDynamicData(SignKeys.CLOTH, cloth);
-                    }
-
-                    if (_role.GetDynamicIntByKey(SignKeys.FIGHTHERO) < 1)
-                    {
-                        continue;
-                    }
-
-                    this.Host = _role;
-                    this.Host.SetAsUINotifyInstance();
-                }
-
-                return;
-            }
-
+            List<FormulaHost> hostList = null;
             // 如果没有服务器数据,用配置生成本地对象
-            LitJson.JsonData roleCfg = ConfigPool.Instance.GetConfigByName("character");
-            if (roleCfg == null)
+            if (this.HostList == null || this.HostList.Count <= 0)
             {
-                return;
-            }
+                hostList = new List<FormulaHost>();
 
-            foreach (string key in roleCfg.Keys)
-            {
-                FormulaHost _role = FomulaHostManager.Instance.CreateHost("Role");
-                var idx = int.Parse(key);
-                _role.SetDynamicData(SignKeys.ID, idx);
-                _role.Result(FormulaKeys.FORMULA_178);
-                FomulaHostManager.Instance.AddHost(_role);
-                this.HostList[key] = _role;
-            }
+                LitJson.JsonData roleCfg = ConfigPool.Instance.GetConfigByName("character");
 
-            // 初始化默认战斗角色
-            this.Host = this.GetHostByKeyValue(SignKeys.ID, 1);
-            this.Host.SetDynamicData(SignKeys.LOCKED, 0);
-            this.SetFightGirlIndex(1, () =>
+                foreach (string key in roleCfg.Keys)
+                {
+                    var role = FomulaHostManager.Instance.CreateHost("Role");
+                    role.SetDynamicData(SignKeys.ID, int.Parse(key));
+                    role.Result(FormulaKeys.FORMULA_178);
+                    FomulaHostManager.Instance.AddHost(role);
+                    this.HostList[key] = role;
+                    hostList.Add(role);
+                }
+            }
+            //初始化角色信息
+            UpdateRoleInfo(hostList);
+            // 初始化战斗角色
+            this.SetFightGirlIndex(GetChoseRoleIdx(), () =>
             {
                 this.SetFightGirlCallBack(null);
             });
+        }
 
-            if (CommonPanel.GetInstance() != null)
+        /// <summary>
+        /// 更新角色信息 hostList为空表示信息来源于服务器，不空则来源于本地Json
+        /// </summary>
+        /// <param name="hostList"></param>
+        public void UpdateRoleInfo(List<FormulaHost> hostList = null)
+        {
+            if (hostList != null)
             {
-                CommonPanel.GetInstance().ShowWaittingPanel(false);
+                foreach (var formulaHost in hostList)
+                {
+                    var id = formulaHost.GetDynamicIntByKey(SignKeys.ID).ToString();
+                    FomulaHostManager.Instance.AddHost(formulaHost);
+                    HostList[id] = formulaHost;
+                }
             }
+
+            foreach (FormulaHost role in HostList.Values)
+            {
+                if (role == null)
+                {
+                    continue;
+                }
+
+                // 基本配置属性
+                role.Result(FormulaKeys.FORMULA_178);
+                // 最终血量
+                var maxVigour = (int)role.Result(FormulaKeys.FORMULA_186);
+                role.SetDynamicData(SignKeys.MAX_VIGOUR, maxVigour);
+                //最终耐久
+                var maxStamina = (int)role.Result(FormulaKeys.FORMULA_188);
+                role.SetDynamicData(SignKeys.MAX_STAMINA, maxStamina);
+                //最终攻击
+                var maxAttack = (int)role.Result(FormulaKeys.FORMULA_187);
+                role.SetDynamicData(SignKeys.MAX_STRENGH, maxAttack);
+                //最终暴击率
+                var maxLuck = (int)role.Result(FormulaKeys.FORMULA_254);
+                role.SetDynamicData(SignKeys.MAX_LUCK, maxLuck);
+
+                // 更新化动态属性
+                var cloth = role.GetDynamicIntByKey(SignKeys.CLOTH);
+                if (cloth <= 0)
+                {
+                    cloth = ConfigPool.Instance.GetConfigIntValue("character", role.GetDynamicIntByKey(SignKeys.ID).ToString(), "character");
+                    role.SetDynamicData(SignKeys.CLOTH, cloth);
+                }
+            }
+            FormulaHost.SaveList(HostList.Values.ToList());
         }
 
         public void GetExpAndCost(ref int Exp, ref int Cost)

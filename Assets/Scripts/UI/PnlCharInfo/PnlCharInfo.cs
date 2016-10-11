@@ -13,7 +13,6 @@ namespace PnlCharInfo
         public Transform cellItemParent;
         public GameObject cellItem;
         private List<ItemCellCharInfo.ItemCellCharInfo> m_ItemList = new List<ItemCellCharInfo.ItemCellCharInfo>();
-        public UILabel txtCurName, txtCurLvl, txtCurVigour, txtCurStamina, txtCurStrengh, txtCurLuck;
         public UISprite sprArrowLvl, sprArrowVigour, sprArrowStramina, sprArrowStrengh, sprArrowLuck;
         public UILabel txtNextName, txtNextLvl, txtNextVigour, txtNextStamina, txtNextStrengh, txtNextLuck;
 
@@ -49,7 +48,7 @@ namespace PnlCharInfo
             }
         }
 
-        private void UpdateUI()
+        public void UpdateUI()
         {
             InitUI();
         }
