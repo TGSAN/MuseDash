@@ -25,10 +25,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11405424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -43,8 +43,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: c7bdb381324e449bda26480690ff0e68, type: 2}
   mSprites:
   - name: black_block
-    x: 328
-    y: 2
+    x: 544
+    y: 158
     width: 32
     height: 32
     borderLeft: 0
@@ -56,8 +56,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: button_GM_off
-    x: 172
-    y: 282
+    x: 174
+    y: 280
     width: 128
     height: 128
     borderLeft: 0
@@ -69,8 +69,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: button_GM_on
-    x: 168
-    y: 150
+    x: 170
+    y: 146
     width: 128
     height: 128
     borderLeft: 0
@@ -95,8 +95,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: id_base
-    x: 410
-    y: 16
+    x: 254
+    y: 42
     width: 60
     height: 100
     borderLeft: 10
@@ -108,8 +108,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: lv_icon_base
-    x: 210
-    y: 30
+    x: 214
+    y: 22
     width: 36
     height: 36
     borderLeft: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: menu_button_adv_n
     x: 0
-    y: 16
+    y: 144
     width: 166
     height: 130
     borderLeft: 0
@@ -134,8 +134,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: menu_button_adv_s
-    x: 328
-    y: 382
+    x: 0
+    y: 10
     width: 166
     height: 130
     borderLeft: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: menu_button_back
     x: 302
-    y: 382
+    y: 246
     width: 23
     height: 28
     borderLeft: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: menu_button_back_base
     x: 0
-    y: 280
+    y: 278
     width: 170
     height: 130
     borderLeft: 0
@@ -173,33 +173,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: menu_button_cha_n
-    x: 328
-    y: 250
-    width: 166
-    height: 130
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: menu_button_cha_s
-    x: 328
-    y: 118
-    width: 166
-    height: 130
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: menu_button_sto_n
-    x: 496
+    x: 330
     y: 382
     width: 166
     height: 130
@@ -211,8 +185,34 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: menu_button_cha_s
+    x: 330
+    y: 248
+    width: 166
+    height: 130
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: menu_button_sto_n
+    x: 330
+    y: 114
+    width: 166
+    height: 130
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: menu_button_sto_s
-    x: 664
+    x: 500
     y: 382
     width: 166
     height: 130
@@ -225,7 +225,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: menu_button_sui_n
-    x: 832
+    x: 670
     y: 382
     width: 166
     height: 130
@@ -238,8 +238,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: menu_button_sui_s
-    x: 0
-    y: 148
+    x: 840
+    y: 382
     width: 166
     height: 130
     borderLeft: 0
@@ -252,7 +252,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: menu_sign_new
     x: 302
-    y: 356
+    y: 218
     width: 24
     height: 24
     borderLeft: 0
@@ -264,8 +264,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: message_base
-    x: 250
-    y: 48
+    x: 500
+    y: 194
     width: 60
     height: 100
     borderLeft: 40
@@ -277,8 +277,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: message_icon
-    x: 168
-    y: 68
+    x: 330
+    y: 30
     width: 80
     height: 80
     borderLeft: 0
@@ -289,9 +289,61 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: message_icon_blue
+    x: 414
+    y: 30
+    width: 80
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: message_icon_red
+    x: 170
+    y: 62
+    width: 80
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: message_sign_new_blue
+    x: 500
+    y: 114
+    width: 32
+    height: 32
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: message_sign_new_red
+    x: 536
+    y: 114
+    width: 32
+    height: 32
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: option_button
-    x: 328
-    y: 36
+    x: 500
+    y: 298
     width: 80
     height: 80
     borderLeft: 0
@@ -303,8 +355,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: resourse_EnergyRecover_base
-    x: 292
-    y: 13
+    x: 254
+    y: 5
     width: 32
     height: 33
     borderLeft: 0
@@ -316,8 +368,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: resourse_EnergyRecover_spin
-    x: 496
-    y: 347
+    x: 290
+    y: 5
     width: 32
     height: 33
     borderLeft: 0
@@ -329,8 +381,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: sld_exp_base
-    x: 168
-    y: 26
+    x: 170
+    y: 18
     width: 40
     height: 40
     borderLeft: 10
@@ -342,8 +394,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: sld_exp_progress
-    x: 250
-    y: 6
+    x: 500
+    y: 150
     width: 40
     height: 40
     borderLeft: 0
