@@ -169,6 +169,7 @@ namespace FormulaBase
                 host.SetDynamicData(SignKeys.WHO, 0);
                 RemoveEquipItem(host);
             }
+            host.Save();
         }
 
         /// <summary>
