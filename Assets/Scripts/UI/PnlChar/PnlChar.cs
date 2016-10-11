@@ -14,6 +14,7 @@ namespace PnlChar
         public Transform spiAnimParent;
         public UIButton btnLeft, btnRight;
         public ItemImageEquip.ItemImageEquip[] items;
+        private Dictionary<int, GameObject> m_SpiAniGODic = new Dictionary<int, GameObject>();
 
         public int curRoleIdx
         {
@@ -198,28 +199,34 @@ namespace PnlChar
             }
         }
 
-        private GameObject OnSpiAnimLoad(int idx)
+        private void OnSpiAnimLoad(int idx)
         {
-            spiAnimParent.DestroyChildren();
-            var path = m_AnimPath[idx - 1];
-            var tmpGO = Resources.Load(path) as GameObject;
-            if (tmpGO)
+            if (!m_SpiAniGODic.ContainsKey(idx))
             {
-                var go = GameObject.Instantiate(tmpGO) as GameObject;
-                go.transform.SetParent(spiAnimParent, false);
-                go.SetActive(true);
-                go.transform.localPosition = Vector3.zero;
-                go.transform.localScale = Vector3.one * 140f;
-                go.transform.localEulerAngles = Vector3.zero;
-                var skeletonAnim = go.GetComponent<SkeletonAnimation>();
-                skeletonAnim.loop = true;
-                skeletonAnim.AnimationName = "standby";
-                return go;
+                var path = m_AnimPath[idx - 1];
+                var tmpGO = Resources.Load(path) as GameObject;
+                if (tmpGO)
+                {
+                    var go = GameObject.Instantiate(tmpGO) as GameObject;
+                    go.transform.SetParent(spiAnimParent, false);
+                    go.SetActive(true);
+                    go.transform.localPosition = Vector3.zero;
+                    go.transform.localScale = Vector3.one * 140f;
+                    go.transform.localEulerAngles = Vector3.zero;
+                    var skeletonAnim = go.GetComponent<SkeletonAnimation>();
+                    skeletonAnim.loop = true;
+                    skeletonAnim.AnimationName = "standby";
+                    m_SpiAniGODic.Add(idx, go);
+                }
+                else
+                {
+                    Debug.LogError("加载未获得对象 : " + path);
+                    return;
+                }
             }
-            else
+            foreach (var pair in m_SpiAniGODic)
             {
-                Debug.LogError("加载未获得对象 : " + path);
-                return null;
+                pair.Value.SetActive(pair.Key == idx);
             }
         }
 
