@@ -1,7 +1,7 @@
 {
-"skeleton": { "hash": "BVce3slv92sYWtRZO4PUXChekbc", "spine": "2.1.27", "width": 161, "height": 161, "images": "./Images/" },
+"skeleton": { "hash": "l4cM9wSlVfKyBQLlaGzirNzZFkk", "spine": "2.1.27", "width": 80.5, "height": 80.5, "images": "../../Fx/Skill/hp/" },
 "bones": [
-	{ "name": "root" },
+	{ "name": "root", "scaleX": 0.5, "scaleY": 0.5 },
 	{ "name": "fx", "parent": "root" },
 	{ "name": "Skill_1", "parent": "fx" },
 	{ "name": "A", "parent": "Skill_1" },
@@ -91,7 +91,7 @@
 	}
 },
 "animations": {
-	"Excution": {
+	"excution": {
 		"slots": {
 			"skill_1": {
 				"attachment": [
@@ -867,17 +867,14 @@
 			"root": {
 				"rotate": [
 					{ "time": 0, "angle": 0, "curve": "stepped" },
-					{ "time": 0.2333, "angle": 0, "curve": "stepped" },
 					{ "time": 0.8, "angle": 0 }
 				],
 				"translate": [
 					{ "time": 0, "x": 0, "y": 5.63, "curve": "stepped" },
-					{ "time": 0.2333, "x": 0, "y": 5.63, "curve": "stepped" },
 					{ "time": 0.8, "x": 0, "y": 5.63 }
 				],
 				"scale": [
 					{ "time": 0, "x": 1, "y": 1, "curve": "stepped" },
-					{ "time": 0.2333, "x": 1, "y": 1, "curve": "stepped" },
 					{ "time": 0.8, "x": 1, "y": 1 }
 				]
 			},
