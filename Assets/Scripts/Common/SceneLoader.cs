@@ -29,13 +29,16 @@ public class SceneLoader : MonoBehaviour {
 	// private static ArrayList __resoucesList = new ArrayList();
 	private AsyncOperation asyncOper = null;
 
-	public UISprite m_sprite;
+	//public UISprite m_sprite;
+	public UITexture m_Texture;
 	public TweenAlpha twAlpha;
 	public Camera camera;
 
 	void Start () {
+		var mainTexture = Resources.Load ("ui_resource/loading/atlas/" + _str [Random.Range (0, _str.Length - 1)]) as Texture;
+		m_Texture.mainTexture = mainTexture;
 		//	UIEventListener.Get(m_labelContinue).onClick=ClickContinueButton;
-		this.m_sprite.spriteName = _str [Random.Range (0, _str.Length - 1)];
+		//this.m_sprite.spriteName = _str [Random.Range (0, _str.Length - 1)];
 		/*
 		twAlpha.from = 0f;
 		twAlpha.to = 1f;
