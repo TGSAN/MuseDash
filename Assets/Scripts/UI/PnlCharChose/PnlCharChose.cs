@@ -17,6 +17,7 @@ namespace PnlCharChose
         public UILabel txtApplying;
         private readonly List<string> m_ActionPaths = new List<string>();
         private List<UIToggle> m_Points = new List<UIToggle>();
+        private Dictionary<int, GameObject> m_SpiAniGODic = new Dictionary<int, GameObject>();
 
         public int choseType
         {
@@ -121,27 +122,30 @@ namespace PnlCharChose
         /// </summary>
         /// <param name="idx"></param>
         /// <returns></returns>
-        private GameObject OnSpiAnimLoaded(int idx)
+        private void OnSpiAnimLoaded(int idx)
         {
-            if (spiParent.childCount > 0)
+            if (!m_SpiAniGODic.ContainsKey(idx))
             {
-                spiParent.DestroyChildren();
+                var path = m_ActionPaths[idx - 1];
+                var template = Resources.Load(path) as GameObject;
+                if (template)
+                {
+                    var go = GameObject.Instantiate(Resources.Load(path)) as GameObject;
+                    go.transform.SetParent(spiParent, false);
+                    go.SetActive(true);
+                    go.transform.localPosition = Vector3.zero;
+                    go.transform.localEulerAngles = Vector3.zero;
+                    m_SpiAniGODic.Add(idx, go);
+                }
+                else
+                {
+                    Debug.LogError("加载未获得对象 : " + path);
+                    return;
+                }
             }
-            var path = m_ActionPaths[idx - 1];
-            var template = Resources.Load(path) as GameObject;
-            if (template)
+            foreach (var pair in m_SpiAniGODic)
             {
-                var go = GameObject.Instantiate(Resources.Load(path)) as GameObject;
-                go.transform.SetParent(spiParent, false);
-                go.SetActive(true);
-                go.transform.localPosition = Vector3.zero;
-                go.transform.localEulerAngles = Vector3.zero;
-                return go;
-            }
-            else
-            {
-                Debug.LogError("加载未获得对象 : " + path);
-                return null;
+                pair.Value.SetActive(pair.Key == idx);
             }
         }
 
