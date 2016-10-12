@@ -12,7 +12,8 @@ namespace PnlCharInfo
         private static PnlCharInfo instance = null;
         public Transform cellItemParent;
         public GameObject cellItem;
-        private List<ItemCellCharInfo.ItemCellCharInfo> m_ItemList = new List<ItemCellCharInfo.ItemCellCharInfo>();
+        private readonly List<ItemCellCharInfo.ItemCellCharInfo> m_ItemList = new List<ItemCellCharInfo.ItemCellCharInfo>();
+        public UIButton btnComfirm, btnFeed, btnApply;
         public UISprite sprArrowLvl, sprArrowVigour, sprArrowStramina, sprArrowStrengh, sprArrowLuck;
         public UILabel txtNextName, txtNextLvl, txtNextVigour, txtNextStamina, txtNextStrengh, txtNextLuck;
 
@@ -48,7 +49,7 @@ namespace PnlCharInfo
             }
         }
 
-        public void UpdateUI()
+        private void UpdateUI()
         {
             InitUI();
         }
@@ -56,14 +57,6 @@ namespace PnlCharInfo
         private void InitUI()
         {
             InitPnlItemsChoose();
-        }
-
-        private void InitPlayerInfo()
-        {
-            var idx = PnlChar.PnlChar.Instance.curRoleIdx;
-            var roleStaticInfo = ConfigPool.Instance.GetConfigValue("character", idx.ToString());
-            var roleHost = FormulaBase.RoleManageComponent.Instance.GetRole(idx);
-            roleHost.SetAsUINotifyInstance();
         }
 
         private void InitPnlItemsChoose()
