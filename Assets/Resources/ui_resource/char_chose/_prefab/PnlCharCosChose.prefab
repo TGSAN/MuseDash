@@ -188,6 +188,8 @@ GameObject:
   - 114: {fileID: 114000013115708458}
   - 54: {fileID: 54000010072912766}
   - 114: {fileID: 114000013697871946}
+  - 95: {fileID: 95000013286768244}
+  - 114: {fileID: 114000010064271466}
   m_Layer: 0
   m_Name: PnlCharCosChose
   m_TagString: Untagged
@@ -866,6 +868,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 100, y: 100, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &95000013286768244
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012351950608}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a05c358569f4804c8237650f29233fe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000010036866180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -904,6 +923,19 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000010064271466
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012351950608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7129039c5d92a8347a0b5dfeeceac46c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowAnimation: 
+  HideAnimation: 
 --- !u!114 &114000010102844100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1282,8 +1314,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 1000013070830216}
-  hover: {r: 1, g: 1, b: 1, a: 1}
-  pressed: {r: 1, g: 1, b: 1, a: 1}
+  hover: {r: 1, g: 1, b: 1, a: 0.8}
+  pressed: {r: 1, g: 1, b: 1, a: 0.8}
   disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   duration: 0.02
   dragHighlight: 0
@@ -1581,7 +1613,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3105
+  startingRenderQueue: 3021
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -1685,7 +1717,7 @@ MonoBehaviour:
   isFoldParentObjs: 0
   isForceKeep: 0
   isClickHideSelf: 0
-  isClickHideParent: 0
+  isClickHideParent: 1
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
   activeCondiction: LEVEL
@@ -2404,7 +2436,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3080
+  startingRenderQueue: 3008
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -2876,7 +2908,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3107
+  startingRenderQueue: 3023
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
