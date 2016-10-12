@@ -160,7 +160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000010629183660
 GameObject:
   m_ObjectHideFlags: 1
@@ -311,6 +311,8 @@ GameObject:
   - 4: {fileID: 4000014283120122}
   - 114: {fileID: 114000010822926836}
   - 65: {fileID: 65000012791117868}
+  - 114: {fileID: 114000013862069064}
+  - 114: {fileID: 114000013270642566}
   m_Layer: 5
   m_Name: BtnID
   m_TagString: Untagged
@@ -5600,6 +5602,7 @@ MonoBehaviour:
   - {fileID: 114000014100906238}
   - {fileID: 114000010034814326}
   - {fileID: 114000013416120590}
+  - {fileID: 114000013270642566}
   - {fileID: 114000013262107208}
   - {fileID: 114000013652439822}
   - {fileID: 114000013165312026}
@@ -7321,7 +7324,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3007
+  startingRenderQueue: 3068
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -7458,13 +7461,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0.34509805, g: 0.19215688, b: 0.59607846, a: 1}
   mPivot: 4
-  mWidth: 122
-  mHeight: 30
+  mWidth: 108
+  mHeight: 24
   mDepth: 194
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 4.0666666
+  aspectRatio: 4.5
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: bb22fb5beacef47a6816ba69bce73b56, type: 3}
   mFont: {fileID: 0}
@@ -8724,6 +8727,50 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000013270642566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010781753788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 1000010732742502}
+  clickResponseObjects:
+  - {fileID: 0}
+  clickResponseParentNames:
+  - PnlUserInfo
+  - 
+  clickResponseObjectsIsShow: 01
+  clickResponseParentNamesIsShow: 0100
+  clickResponseObjectAnimations:
+  - 
+  clickResponseParentAnimations:
+  - user_info_in
+  - 
+  isFoldObjs: 0
+  isFoldParentObjs: 1
+  isForceKeep: 0
+  isClickHideSelf: 0
+  isClickHideParent: 0
+  des: "\u672A\u6709\u63CF\u8FF0"
+  activeHostKeyId: 0
+  activeCondiction: LEVEL
+  activeValue: 
+  labelHostKeyId: 0
+  labelMatchSign: 
+  labelMatchSelfDefineSign: 
+  sliderHostKeyId: 0
+  sliderMatchSign: 
+  sliderMaxSign: 
+  isNeedTranslate: 0
+  onClickModuleName: OnClickBtnID
+  onTweenAniFinishedModuleName: 
+  onSliderModuleName: 
+  scrollerTableDataModuleName: 
 --- !u!114 &114000013330858350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9329,6 +9376,31 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 7813e9a99211745c984b111b3f050312, type: 2}
   mSpriteName: capsule_base
   mFillCenter: 1
+--- !u!114 &114000013862069064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010781753788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 1000010781753788}
+  hover: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.02
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick: []
 --- !u!114 &114000013974068346
 MonoBehaviour:
   m_ObjectHideFlags: 1
