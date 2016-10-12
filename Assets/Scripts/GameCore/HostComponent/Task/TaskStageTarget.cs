@@ -388,8 +388,6 @@ namespace FormulaBase
                 {
                     trophyTotal++;
                 }
-                Debug.Log(trophyTotal + "===========trophyTotal");
-                Debug.Log(trophyNext + "============trophyNext");
                 isNextUnlock = trophyTotal >= trophyNext;
                 return true;
             }
