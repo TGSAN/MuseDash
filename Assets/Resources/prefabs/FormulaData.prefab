@@ -4836,8 +4836,9 @@ MonoBehaviour:
   - idx: 186
     typeIdx: 0
     name: "\u89D2\u8272\u6700\u7EC8\u8840\u91CF"
-    formula: "( \u89D2\u8272\u5C5E\u6027 + \u88C5\u5907\u5C5E\u6027 + \u50DA\u673A\u5C5E\u6027
-      + \u6280\u80FD\u52A0\u6210 )"
+    formula: "( \u89D2\u8272\u5C5E\u6027 + \u88C5\u5907\u5C5E\u6027 * \u62E5\u6709\u6807\u5FD7
+      * \u7C7B\u578B\u6807\u5FD7 + \u50DA\u673A\u5C5E\u6027 + \u6280\u80FD\u52A0\u6210
+      )"
     fparams:
     - idx: 0
       dataSourceType: 2
@@ -4849,26 +4850,62 @@ MonoBehaviour:
       condictions: []
     - idx: 1
       dataSourceType: 2
-      dataSourceIndex: 26
+      dataSourceIndex: 258
       dataSourceValue: 0
-      dataSourceName: del/123
+      dataSourceName: "\u88C5\u5907\u5B9E\u9645\u8840\u91CF"
       collapsed: 0
       paramname: "\u88C5\u5907\u5C5E\u6027"
       condictions: []
     - idx: 2
-      dataSourceType: 2
-      dataSourceIndex: 137
-      dataSourceValue: 0
-      dataSourceName: del/123
-      collapsed: 0
-      paramname: "\u50DA\u673A\u5C5E\u6027"
-      condictions: []
+      dataSourceType: 4
+      dataSourceIndex: 0
+      dataSourceValue: 1
+      dataSourceName: 
+      collapsed: 1
+      paramname: "\u62E5\u6709\u6807\u5FD7"
+      condictions:
+      - condictionType: 4
+        condictionKeyIndex: 16
+        condictionKey: WHO
+        condictionValue: 0
+        plus: -1
     - idx: 3
       dataSourceType: 4
       dataSourceIndex: 0
       dataSourceValue: 0
       dataSourceName: 
       collapsed: 1
+      paramname: "\u7C7B\u578B\u6807\u5FD7"
+      condictions:
+      - condictionType: 4
+        condictionKeyIndex: 20
+        condictionKey: TYPE
+        condictionValue: 1
+        plus: 1
+      - condictionType: 4
+        condictionKeyIndex: 20
+        condictionKey: TYPE
+        condictionValue: 4
+        plus: 1
+      - condictionType: 4
+        condictionKeyIndex: 20
+        condictionKey: TYPE
+        condictionValue: 7
+        plus: 1
+    - idx: 4
+      dataSourceType: 4
+      dataSourceIndex: 272
+      dataSourceValue: 0
+      dataSourceName: "\u4F7F\u9B54\u5B9E\u9645\u8840\u91CF"
+      collapsed: 0
+      paramname: "\u50DA\u673A\u5C5E\u6027"
+      condictions: []
+    - idx: 5
+      dataSourceType: 4
+      dataSourceIndex: 0
+      dataSourceValue: 0
+      dataSourceName: 
+      collapsed: 0
       paramname: "\u6280\u80FD\u52A0\u6210"
       condictions:
       - condictionType: 1
@@ -8496,6 +8533,11 @@ MonoBehaviour:
         condictionKey: ID
         condictionValue: 0
         plus: 1
+  - idx: 356
+    typeIdx: 0
+    name: del/123
+    formula: ()
+    fparams: []
   Hosts:
   - name: "\u89D2\u8272"
     fileName: Role
