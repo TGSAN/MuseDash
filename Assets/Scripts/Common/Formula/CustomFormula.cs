@@ -569,7 +569,7 @@ namespace FormulaBase
                     return (formulaObject.GetParamValue(0) + (formulaObject.GetParamValue(1) - 1) * (formulaObject.GetParamValue(2) + (formulaObject.GetParamValue(3) - formulaObject.GetParamValue(4)) * formulaObject.GetParamValue(5)));
 
                 case 186:
-                    return (formulaObject.GetParamValue(0) + formulaObject.GetParamValue(1) * formulaObject.GetParamValue(2) * formulaObject.GetParamValue(3) + formulaObject.GetParamValue(4) + formulaObject.GetParamValue(5));
+                    return (formulaObject.GetParamValue(0) + formulaObject.GetParamValue(1) + formulaObject.GetParamValue(2) + formulaObject.GetParamValue(3));
 
                 case 187:
                     return (formulaObject.GetParamValue(0) + formulaObject.GetParamValue(1) + formulaObject.GetParamValue(2) + formulaObject.GetParamValue(3));

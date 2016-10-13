@@ -148,8 +148,18 @@ namespace PnlChar
                 var idx = i + 1;
                 btn.onClick.Add(new EventDelegate(() =>
                 {
-                    PnlCharInfo.PnlCharInfo.Instance.cellItemParent.DestroyChildren();
-                    curEquipTypeIdx = idx;
+                    var animator = PnlCharInfo.PnlCharInfo.Instance.GetComponent<Animator>();
+                    var clipName = "pnl_items_choose_in";
+                    if (!animator.GetCurrentAnimatorStateInfo(0).IsName(clipName))
+                    {
+                        animator.Play(clipName);
+                    }
+                    if (curEquipTypeIdx != idx)
+                    {
+                        PnlCharInfo.PnlCharInfo.Instance.cellItemParent.DestroyChildren();
+                        curEquipTypeIdx = idx;
+                        PnlCharInfo.PnlCharInfo.Instance.OnShow();
+                    }
                 }));
             }
         }

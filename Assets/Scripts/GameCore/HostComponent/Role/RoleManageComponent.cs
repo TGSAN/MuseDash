@@ -164,7 +164,6 @@ namespace FormulaBase
                     role.SetDynamicData(SignKeys.CLOTH, cloth);
                 }
             }
-            FormulaHost.SaveList(HostList.Values.ToList());
         }
 
         public void GetExpAndCost(ref int Exp, ref int Cost)
