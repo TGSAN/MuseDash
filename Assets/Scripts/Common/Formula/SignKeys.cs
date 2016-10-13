@@ -306,6 +306,10 @@ namespace FormulaBase {
 		/// VIGOUR_FROM_EQUIP
 		///
 		public const string VIGOUR_FROM_EQUIP = "VIGOUR_FROM_EQUIP";
+		///
+		/// STAMINA_FROM_EQUIP
+		///
+		public const string STAMINA_FROM_EQUIP = "STAMINA_FROM_EQUIP";
 
 	}
 }

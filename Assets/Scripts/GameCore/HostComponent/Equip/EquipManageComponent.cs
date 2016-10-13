@@ -169,15 +169,14 @@ namespace FormulaBase
                 host.SetDynamicData(SignKeys.WHO, 0);
                 RemoveEquipItem(host);
             }
+
             host.Save();
+
             //装备最终血量
             var equipVigour = host.Result(FormulaKeys.FORMULA_258);
             RoleManageComponent.Instance.Host = RoleManageComponent.Instance.GetRole(ownerIdx);
             RoleManageComponent.Instance.Host.SetDynamicData(SignKeys.VIGOUR_FROM_EQUIP, equipVigour);
-            UnityEngine.Debug.Log(RoleManageComponent.Instance.Host.GetDynamicIntByKey(SignKeys.VIGOUR_FROM_EQUIP));
-            var roleVigour = RoleManageComponent.Instance.Host.Result(FormulaKeys.FORMULA_186);
-            UnityEngine.Debug.Log(equipVigour);
-            UnityEngine.Debug.Log(roleVigour);
+            RoleManageComponent.Instance.UpdateRoleInfo();
             RoleManageComponent.Instance.Host.Save();
         }
 
