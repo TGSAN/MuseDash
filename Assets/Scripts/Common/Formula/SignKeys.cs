@@ -302,6 +302,10 @@ namespace FormulaBase {
 		/// MAX_LUCK
 		///
 		public const string MAX_LUCK = "MAX_LUCK";
+		///
+		/// VIGOUR_FROM_EQUIP
+		///
+		public const string VIGOUR_FROM_EQUIP = "VIGOUR_FROM_EQUIP";
 
 	}
 }
