@@ -117,6 +117,7 @@ MonoBehaviour:
   - MAX_STAMINA
   - MAX_STRENGH
   - MAX_LUCK
+  - VIGOUR_FROM_EQUIP
   ConfigNames:
   - character
   - stage
@@ -4848,18 +4849,18 @@ MonoBehaviour:
       paramname: "\u89D2\u8272\u5C5E\u6027"
       condictions: []
     - idx: 1
-      dataSourceType: 2
-      dataSourceIndex: 26
-      dataSourceValue: 0
-      dataSourceName: del/123
-      collapsed: 0
+      dataSourceType: 3
+      dataSourceIndex: 75
+      dataSourceValue: 1
+      dataSourceName: VIGOUR_FROM_EQUIP
+      collapsed: 1
       paramname: "\u88C5\u5907\u5C5E\u6027"
       condictions: []
     - idx: 2
       dataSourceType: 2
-      dataSourceIndex: 137
+      dataSourceIndex: 272
       dataSourceValue: 0
-      dataSourceName: del/123
+      dataSourceName: "\u4F7F\u9B54\u5B9E\u9645\u8840\u91CF"
       collapsed: 0
       paramname: "\u50DA\u673A\u5C5E\u6027"
       condictions: []
@@ -4868,7 +4869,7 @@ MonoBehaviour:
       dataSourceIndex: 0
       dataSourceValue: 0
       dataSourceName: 
-      collapsed: 1
+      collapsed: 0
       paramname: "\u6280\u80FD\u52A0\u6210"
       condictions:
       - condictionType: 1
@@ -8496,6 +8497,11 @@ MonoBehaviour:
         condictionKey: ID
         condictionValue: 0
         plus: 1
+  - idx: 356
+    typeIdx: 0
+    name: del/123
+    formula: ()
+    fparams: []
   Hosts:
   - name: "\u89D2\u8272"
     fileName: Role
@@ -8503,15 +8509,15 @@ MonoBehaviour:
     collapsedSign: 1
     collapsedComponent: 1
     formulaSet: b200000004000000030000000e0000000f00000000000000b7000000b8000000ba000000bb000000bc000000fb000000fc000000fd000000fe000000
-    singSet: 00000000020000000f000000170000001a00000010000000200000003900000042000000430000004400000045000000460000004700000048000000490000004a000000
+    singSet: 00000000020000000f000000170000001a000000200000003900000042000000430000004400000045000000460000004700000048000000490000004a0000004b000000
     signValueSet:
     - 1
     - 1
     - 1
     - 0.36
     - 0
-    - 0
     - 1
+    - 0
     - 0
     - 0
     - 0

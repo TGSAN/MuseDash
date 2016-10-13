@@ -60,7 +60,7 @@ namespace FormulaBase
         public FormulaHost[] GetGirlEquipHosts(int idx, int typePos = 0, bool isEquiping = false)
         {
             var equipHosts = new List<FormulaHost>();
-            var equipTypeList = new List<string>(GetGirlEquipTypes(idx));
+            var equipTypeList = new List<int>(GetGirlEquipTypes(idx));
             foreach (var formulaHost in HostList.Values)
             {
                 var equipID = formulaHost.GetDynamicIntByKey(SignKeys.ID);
@@ -69,10 +69,10 @@ namespace FormulaBase
                 {
                     continue;
                 }
-                var typeName = equipInfo["Type"].ToString();
-                if (equipTypeList.Contains(typeName))
+                var typeID = (int)equipInfo["Type"];
+                if (equipTypeList.Contains(typeID))
                 {
-                    var index = equipTypeList.IndexOf(typeName) + 1;
+                    var index = equipTypeList.IndexOf(typeID) + 1;
                     if (index == typePos || typePos == 0)
                     {
                         if (isEquiping)
@@ -97,25 +97,25 @@ namespace FormulaBase
         /// </summary>
         /// <param name="idx"></param>
         /// <returns></returns>
-        public string[] GetGirlEquipTypes(int idx)
+        public int[] GetGirlEquipTypes(int idx)
         {
-            var str = new string[3];
+            var typeIDs = new int[3];
             var characterInfo = ConfigPool.Instance.GetConfigValue("character", idx.ToString());
             for (int i = 1; i < 4; i++)
             {
-                str[i - 1] = characterInfo["weapon_" + i.ToString()].ToString();
+                typeIDs[i - 1] = (int)characterInfo["weapon_" + i.ToString()];
             }
-            return str;
+            return typeIDs;
         }
 
         public int GetEquipOwnerIdx(int id)
         {
             var itemInfo = ConfigPool.Instance.GetConfigValue("items", id.ToString());
-            var typeName = itemInfo["Type"].ToString();
+            var typeID = (int)itemInfo["Type"];
             for (int i = 1; i <= RoleManageComponent.Instance.GetRoleCount(); i++)
             {
-                var tpyeList = new List<string>(GetGirlEquipTypes(i));
-                if (tpyeList.Contains(typeName))
+                var tpyeList = new List<int>(GetGirlEquipTypes(i));
+                if (tpyeList.Contains(typeID))
                 {
                     return i;
                 }
@@ -158,10 +158,10 @@ namespace FormulaBase
                 }
             }
 
+            var ownerIdx = GetEquipOwnerIdx(equipID);
             if (isTo)
             {
-                var owner = GetEquipOwnerIdx(equipID);
-                host.SetDynamicData(SignKeys.WHO, owner);
+                host.SetDynamicData(SignKeys.WHO, ownerIdx);
                 AddEquipedItem(host);
             }
             else
@@ -170,6 +170,15 @@ namespace FormulaBase
                 RemoveEquipItem(host);
             }
             host.Save();
+            //装备最终血量
+            var equipVigour = host.Result(FormulaKeys.FORMULA_258);
+            RoleManageComponent.Instance.Host = RoleManageComponent.Instance.GetRole(ownerIdx);
+            RoleManageComponent.Instance.Host.SetDynamicData(SignKeys.VIGOUR_FROM_EQUIP, equipVigour);
+            UnityEngine.Debug.Log(RoleManageComponent.Instance.Host.GetDynamicIntByKey(SignKeys.VIGOUR_FROM_EQUIP));
+            var roleVigour = RoleManageComponent.Instance.Host.Result(FormulaKeys.FORMULA_186);
+            UnityEngine.Debug.Log(equipVigour);
+            UnityEngine.Debug.Log(roleVigour);
+            RoleManageComponent.Instance.Host.Save();
         }
 
         /// <summary>

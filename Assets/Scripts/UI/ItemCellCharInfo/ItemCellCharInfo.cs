@@ -67,7 +67,6 @@ namespace ItemCellCharInfo
                 FormulaBase.EquipManageComponent.Instance.Equip(id);
                 PnlChar.PnlChar.Instance.OnEquipLoad(PnlChar.PnlChar.Instance.curRoleIdx);
                 PnlCharInfo.PnlCharInfo.Instance.UpdateItemList(id);
-                PnlCharInfo.PnlCharInfo.Instance.GetComponent<Animator>().Play("pnl_items_choose_out");
             }));
         }
 

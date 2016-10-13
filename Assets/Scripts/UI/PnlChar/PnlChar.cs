@@ -31,6 +31,7 @@ namespace PnlChar
         private int m_PreRoleIdx = 0;
         private List<FormulaBase.FormulaHost> m_Equipments = new List<FormulaBase.FormulaHost>();
         private List<string> m_AnimPath = new List<string>();
+        public Action<int> onRoleChange;
 
         public static PnlChar Instance
         {
@@ -102,6 +103,7 @@ namespace PnlChar
 
         private void InitEvent()
         {
+            onRoleChange += OnRoleChange;
             var maxCount = FormulaBase.RoleManageComponent.Instance.GetRoleCount();
             Action onLeftClick = null;
             onLeftClick = () =>
@@ -114,7 +116,7 @@ namespace PnlChar
                 {
                     onLeftClick();
                 }
-                OnRoleChange(curRoleIdx);
+                onRoleChange(curRoleIdx);
             };
 
             btnLeft.onClick.Add(new EventDelegate(() =>
@@ -133,7 +135,7 @@ namespace PnlChar
                 {
                     onRightClick();
                 }
-                OnRoleChange(curRoleIdx);
+                onRoleChange(curRoleIdx);
             };
             btnRight.onClick.Add(new EventDelegate(() =>
             {
@@ -146,8 +148,18 @@ namespace PnlChar
                 var idx = i + 1;
                 btn.onClick.Add(new EventDelegate(() =>
                 {
-                    PnlCharInfo.PnlCharInfo.Instance.cellItemParent.DestroyChildren();
-                    curEquipTypeIdx = idx;
+                    var animator = PnlCharInfo.PnlCharInfo.Instance.GetComponent<Animator>();
+                    var clipName = "pnl_items_choose_in";
+                    if (!animator.GetCurrentAnimatorStateInfo(0).IsName(clipName))
+                    {
+                        animator.Play(clipName);
+                    }
+                    if (curEquipTypeIdx != idx)
+                    {
+                        PnlCharInfo.PnlCharInfo.Instance.cellItemParent.DestroyChildren();
+                        curEquipTypeIdx = idx;
+                        PnlCharInfo.PnlCharInfo.Instance.OnShow();
+                    }
                 }));
             }
         }
@@ -176,6 +188,7 @@ namespace PnlChar
             }
             m_PreRoleIdx = roleIdx;
             curEquipTypeIdx = 0;
+            FormulaBase.RoleManageComponent.Instance.GetRole(roleIdx).SetAsUINotifyInstance();
             if (PnlCharInfo.PnlCharInfo.Instance != null)
             {
                 PnlCharInfo.PnlCharInfo.Instance.OnShow();

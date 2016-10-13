@@ -160,7 +160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000010629183660
 GameObject:
   m_ObjectHideFlags: 1
@@ -311,6 +311,8 @@ GameObject:
   - 4: {fileID: 4000014283120122}
   - 114: {fileID: 114000010822926836}
   - 65: {fileID: 65000012791117868}
+  - 114: {fileID: 114000013862069064}
+  - 114: {fileID: 114000013270642566}
   m_Layer: 5
   m_Name: BtnID
   m_TagString: Untagged
@@ -838,7 +840,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000011622494846
 GameObject:
   m_ObjectHideFlags: 1
@@ -1183,6 +1185,22 @@ GameObject:
   - 114: {fileID: 114000011798310952}
   m_Layer: 5
   m_Name: BtnMessageA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000012311348618
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013948430636}
+  - 114: {fileID: 114000010303266626}
+  m_Layer: 5
+  m_Name: SprCapsuleBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3048,6 +3066,7 @@ Transform:
   - {fileID: 4000012368668540}
   - {fileID: 4000012372357222}
   - {fileID: 4000010418110008}
+  - {fileID: 4000013948430636}
   m_Father: {fileID: 4000014181770460}
   m_RootOrder: 1
 --- !u!4 &4000013395695540
@@ -3273,6 +3292,19 @@ Transform:
   - {fileID: 4000012781712596}
   m_Father: {fileID: 4000011285537760}
   m_RootOrder: 0
+--- !u!4 &4000013948430636
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012311348618}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -398, y: -50, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013305231358}
+  m_RootOrder: 6
 --- !u!4 &4000013963463124
 Transform:
   m_ObjectHideFlags: 1
@@ -4495,10 +4527,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -4788,6 +4820,59 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000010303266626
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012311348618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 3
+  mWidth: 111
+  mHeight: 22
+  mDepth: 192
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 5.0454545
+  mType: 1
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11405424, guid: 7813e9a99211745c984b111b3f050312, type: 2}
+  mSpriteName: capsule_bar
+  mFillCenter: 1
 --- !u!114 &114000010379815074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5517,6 +5602,7 @@ MonoBehaviour:
   - {fileID: 114000014100906238}
   - {fileID: 114000010034814326}
   - {fileID: 114000013416120590}
+  - {fileID: 114000013270642566}
   - {fileID: 114000013262107208}
   - {fileID: 114000013652439822}
   - {fileID: 114000013165312026}
@@ -5987,7 +6073,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: bb22fb5beacef47a6816ba69bce73b56, type: 3}
   mFont: {fileID: 0}
-  mText: 99
+  mText: 3
   mFontSize: 18
   mFontStyle: 0
   mAlignment: 0
@@ -6252,10 +6338,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -6563,12 +6649,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 1000010732742502}
-  clickResponseObjects: []
-  clickResponseParentNames: []
-  clickResponseObjectsIsShow: 
-  clickResponseParentNamesIsShow: 
-  clickResponseObjectAnimations: []
-  clickResponseParentAnimations: []
+  clickResponseObjects:
+  - {fileID: 0}
+  clickResponseParentNames:
+  - 
+  clickResponseObjectsIsShow: 01
+  clickResponseParentNamesIsShow: 01
+  clickResponseObjectAnimations:
+  - 
+  clickResponseParentAnimations:
+  - 
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
@@ -6576,7 +6666,7 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
@@ -7234,7 +7324,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3010
+  startingRenderQueue: 3068
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -7311,12 +7401,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 1000010732742502}
-  clickResponseObjects: []
-  clickResponseParentNames: []
-  clickResponseObjectsIsShow: 
-  clickResponseParentNamesIsShow: 
-  clickResponseObjectAnimations: []
-  clickResponseParentAnimations: []
+  clickResponseObjects:
+  - {fileID: 0}
+  clickResponseParentNames:
+  - 
+  clickResponseObjectsIsShow: 01
+  clickResponseParentNamesIsShow: 01
+  clickResponseObjectAnimations:
+  - 
+  clickResponseParentAnimations:
+  - 
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
@@ -7324,7 +7418,7 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
@@ -7367,13 +7461,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0.34509805, g: 0.19215688, b: 0.59607846, a: 1}
   mPivot: 4
-  mWidth: 122
-  mHeight: 30
+  mWidth: 108
+  mHeight: 24
   mDepth: 194
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 4.0666666
+  aspectRatio: 4.5
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: bb22fb5beacef47a6816ba69bce73b56, type: 3}
   mFont: {fileID: 0}
@@ -7786,10 +7880,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -8633,6 +8727,50 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000013270642566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010781753788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 1000010732742502}
+  clickResponseObjects:
+  - {fileID: 0}
+  clickResponseParentNames:
+  - PnlUserInfo
+  - 
+  clickResponseObjectsIsShow: 01
+  clickResponseParentNamesIsShow: 0100
+  clickResponseObjectAnimations:
+  - 
+  clickResponseParentAnimations:
+  - user_info_in
+  - 
+  isFoldObjs: 0
+  isFoldParentObjs: 1
+  isForceKeep: 0
+  isClickHideSelf: 0
+  isClickHideParent: 0
+  des: "\u672A\u6709\u63CF\u8FF0"
+  activeHostKeyId: 0
+  activeCondiction: LEVEL
+  activeValue: 
+  labelHostKeyId: 0
+  labelMatchSign: 
+  labelMatchSelfDefineSign: 
+  sliderHostKeyId: 0
+  sliderMatchSign: 
+  sliderMaxSign: 
+  isNeedTranslate: 0
+  onClickModuleName: OnClickBtnID
+  onTweenAniFinishedModuleName: 
+  onSliderModuleName: 
+  scrollerTableDataModuleName: 
 --- !u!114 &114000013330858350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8779,7 +8917,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: bb22fb5beacef47a6816ba69bce73b56, type: 3}
   mFont: {fileID: 0}
-  mText: 99
+  mText: 6
   mFontSize: 18
   mFontStyle: 0
   mAlignment: 0
@@ -9238,6 +9376,31 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 7813e9a99211745c984b111b3f050312, type: 2}
   mSpriteName: capsule_base
   mFillCenter: 1
+--- !u!114 &114000013862069064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010781753788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 1000010781753788}
+  hover: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.02
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick: []
 --- !u!114 &114000013974068346
 MonoBehaviour:
   m_ObjectHideFlags: 1
