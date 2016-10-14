@@ -1426,10 +1426,6 @@ namespace FormulaBase {
 		/// 通关次数成就奖励数量
 		///
 		public const int FORMULA_355 = 355;
-		///
-		/// del/123
-		///
-		public const int FORMULA_356 = 356;
 
 	}
 }
