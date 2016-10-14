@@ -284,6 +284,7 @@ GameObject:
   - 65: {fileID: 65000010679181550}
   - 114: {fileID: 114000014131187184}
   - 114: {fileID: 114000010915652684}
+  - 114: {fileID: 114000011166203052}
   m_Layer: 0
   m_Name: BtnMask
   m_TagString: Untagged
@@ -1451,7 +1452,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011936764556}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: fa064acee7329374eae7ae82b14eed82, type: 2}
   m_CullingMode: 0
@@ -1580,7 +1581,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.26666668, g: 0.09019608, b: 0.41960785, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 7
   mWidth: 74
   mHeight: 74
@@ -1602,8 +1603,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 114000010633619806, guid: b689dcdfa73517c4082d675658fbb83c, type: 2}
-  mSpriteName: small_board
+  mAtlas: {fileID: 114000013309787588, guid: a4661d841cf853c48a831eeafa957478, type: 2}
+  mSpriteName: icon_star
   mFillCenter: 1
 --- !u!114 &114000010099843290
 MonoBehaviour:
@@ -2261,20 +2262,20 @@ MonoBehaviour:
   clickResponseObjects:
   - {fileID: 0}
   clickResponseParentNames:
-  - PnlDailyTask
+  - 
   - 
   clickResponseObjectsIsShow: 01
   clickResponseParentNamesIsShow: 0001
   clickResponseObjectAnimations:
   - 
   clickResponseParentAnimations:
-  - daily_task_out
+  - 
   - 
   isFoldObjs: 1
   isFoldParentObjs: 1
   isForceKeep: 0
   isClickHideSelf: 0
-  isClickHideParent: 1
+  isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
   activeCondiction: LEVEL
@@ -2404,6 +2405,29 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000011166203052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011624447888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animator: {fileID: 95000013483453540}
+  clipName: daily_task_out
+  trigger: 0
+  playDirection: 1
+  resetOnPlay: 0
+  clearSelection: 0
+  ifDisabledOnPlay: 0
+  disableWhenFinished: 1
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
 --- !u!114 &114000011283160320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3574,7 +3598,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.26666668, g: 0.09019608, b: 0.41960785, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 7
   mWidth: 74
   mHeight: 74
@@ -3596,8 +3620,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 114000010633619806, guid: b689dcdfa73517c4082d675658fbb83c, type: 2}
-  mSpriteName: small_board
+  mAtlas: {fileID: 114000013309787588, guid: a4661d841cf853c48a831eeafa957478, type: 2}
+  mSpriteName: icon_combo
   mFillCenter: 1
 --- !u!114 &114000012701428414
 MonoBehaviour:
@@ -3801,7 +3825,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3026
+  startingRenderQueue: 3093
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -4479,7 +4503,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.26666668, g: 0.09019608, b: 0.41960785, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 7
   mWidth: 74
   mHeight: 74
@@ -4501,8 +4525,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 114000010633619806, guid: b689dcdfa73517c4082d675658fbb83c, type: 2}
-  mSpriteName: small_board
+  mAtlas: {fileID: 114000013309787588, guid: a4661d841cf853c48a831eeafa957478, type: 2}
+  mSpriteName: icon_s
   mFillCenter: 1
 --- !u!114 &114000013887987070
 MonoBehaviour:

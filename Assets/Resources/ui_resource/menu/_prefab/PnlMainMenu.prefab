@@ -313,6 +313,7 @@ GameObject:
   - 65: {fileID: 65000012791117868}
   - 114: {fileID: 114000013862069064}
   - 114: {fileID: 114000013270642566}
+  - 114: {fileID: 114000013057589092}
   m_Layer: 5
   m_Name: BtnID
   m_TagString: Untagged
@@ -801,6 +802,7 @@ GameObject:
   - 65: {fileID: 65000010729359602}
   - 114: {fileID: 114000010861105566}
   - 114: {fileID: 114000013074528176}
+  - 114: {fileID: 114000013072638090}
   m_Layer: 5
   m_Name: BtnOption
   m_TagString: Untagged
@@ -1183,6 +1185,8 @@ GameObject:
   - 65: {fileID: 65000012330511768}
   - 114: {fileID: 114000011751143760}
   - 114: {fileID: 114000011798310952}
+  - 114: {fileID: 114000010969948436}
+  - 114: {fileID: 114000011149860054}
   m_Layer: 5
   m_Name: BtnMessageA
   m_TagString: Untagged
@@ -1317,6 +1321,11 @@ GameObject:
   - 114: {fileID: 114000013470290036}
   - 114: {fileID: 114000011672384426}
   - 114: {fileID: 114000010461432432}
+  - 114: {fileID: 114000014292889042}
+  - 114: {fileID: 114000011405519528}
+  - 114: {fileID: 114000011820110148}
+  - 114: {fileID: 114000011328367198}
+  - 114: {fileID: 114000011391557364}
   m_Layer: 5
   m_Name: BtnCapsule
   m_TagString: Untagged
@@ -5854,6 +5863,19 @@ MonoBehaviour:
   hover: {x: 1, y: 1, z: 1}
   pressed: {x: 0.9, y: 0.9, z: 0.9}
   duration: 0.02
+--- !u!114 &114000010969948436
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012308930320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a147c24165da4b8936f4a453da17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  state: 0
 --- !u!114 &114000010988918358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5982,6 +6004,29 @@ MonoBehaviour:
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 0.03846154
+--- !u!114 &114000011149860054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012308930320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animator: {fileID: 0}
+  clipName: announcement_in
+  trigger: 0
+  playDirection: 1
+  resetOnPlay: 0
+  clearSelection: 0
+  ifDisabledOnPlay: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
 --- !u!114 &114000011191581314
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6351,6 +6396,29 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000011328367198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012752426890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animator: {fileID: 0}
+  clipName: capsule_in
+  trigger: 0
+  playDirection: 1
+  resetOnPlay: 0
+  clearSelection: 0
+  ifDisabledOnPlay: 1
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
 --- !u!114 &114000011371527838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6366,6 +6434,29 @@ MonoBehaviour:
   hover: {x: 0, y: 0, z: 0}
   pressed: {x: 2, y: -3, z: 0}
   duration: 0.02
+--- !u!114 &114000011391557364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012752426890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animator: {fileID: 0}
+  clipName: capsule_in
+  trigger: 0
+  playDirection: 1
+  resetOnPlay: 0
+  clearSelection: 0
+  ifDisabledOnPlay: 1
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
 --- !u!114 &114000011404569304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6404,6 +6495,29 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000011405519528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012752426890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animator: {fileID: 0}
+  clipName: capsule_in
+  trigger: 0
+  playDirection: 1
+  resetOnPlay: 0
+  clearSelection: 0
+  ifDisabledOnPlay: 1
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
 --- !u!114 &114000011442420080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6443,7 +6557,7 @@ MonoBehaviour:
   thumb: {fileID: 0}
   mBG: {fileID: 114000012552522452}
   mFG: {fileID: 114000014136334354}
-  mValue: 1
+  mValue: 0.5
   mFill: 0
   numberOfSteps: 0
   onChange: []
@@ -6652,15 +6766,17 @@ MonoBehaviour:
   clickResponseObjects:
   - {fileID: 0}
   clickResponseParentNames:
+  - PnlAnnouncement
   - 
   clickResponseObjectsIsShow: 01
-  clickResponseParentNamesIsShow: 01
+  clickResponseParentNamesIsShow: 0100
   clickResponseObjectAnimations:
   - 
   clickResponseParentAnimations:
   - 
+  - 
   isFoldObjs: 0
-  isFoldParentObjs: 0
+  isFoldParentObjs: 1
   isForceKeep: 0
   isClickHideSelf: 0
   isClickHideParent: 0
@@ -6679,6 +6795,29 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000011820110148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012752426890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animator: {fileID: 0}
+  clipName: capsule_in
+  trigger: 0
+  playDirection: 1
+  resetOnPlay: 0
+  clearSelection: 0
+  ifDisabledOnPlay: 1
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
 --- !u!114 &114000011846399656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7324,7 +7463,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3068
+  startingRenderQueue: 3058
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -7405,14 +7544,16 @@ MonoBehaviour:
   - {fileID: 0}
   clickResponseParentNames:
   - 
+  - 
   clickResponseObjectsIsShow: 01
-  clickResponseParentNamesIsShow: 01
+  clickResponseParentNamesIsShow: 0101
   clickResponseObjectAnimations:
   - 
   clickResponseParentAnimations:
   - 
+  - 
   isFoldObjs: 0
-  isFoldParentObjs: 0
+  isFoldParentObjs: 1
   isForceKeep: 0
   isClickHideSelf: 0
   isClickHideParent: 0
@@ -8366,6 +8507,52 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000013057589092
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010781753788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animator: {fileID: 0}
+  clipName: user_info_in
+  trigger: 0
+  playDirection: 1
+  resetOnPlay: 0
+  clearSelection: 0
+  ifDisabledOnPlay: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+--- !u!114 &114000013072638090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011613130270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animator: {fileID: 0}
+  clipName: daily_task_in
+  trigger: 0
+  playDirection: 1
+  resetOnPlay: 0
+  clearSelection: 0
+  ifDisabledOnPlay: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
 --- !u!114 &114000013074528176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8388,7 +8575,7 @@ MonoBehaviour:
   clickResponseObjectAnimations:
   - 
   clickResponseParentAnimations:
-  - daily_task_in
+  - 
   - 
   isFoldObjs: 1
   isFoldParentObjs: 1
@@ -8749,7 +8936,7 @@ MonoBehaviour:
   clickResponseObjectAnimations:
   - 
   clickResponseParentAnimations:
-  - user_info_in
+  - 
   - 
   isFoldObjs: 0
   isFoldParentObjs: 1
@@ -9964,6 +10151,29 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 7813e9a99211745c984b111b3f050312, type: 2}
   mSpriteName: black_block
   mFillCenter: 1
+--- !u!114 &114000014292889042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012752426890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animator: {fileID: 0}
+  clipName: capsule_open_in
+  trigger: 0
+  playDirection: 1
+  resetOnPlay: 0
+  clearSelection: 0
+  ifDisabledOnPlay: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
 --- !u!198 &198000010275421424
 ParticleSystem:
   m_ObjectHideFlags: 1

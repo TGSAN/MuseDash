@@ -59,6 +59,7 @@ GameObject:
   - 114: {fileID: 114000013841003268}
   - 65: {fileID: 65000012943289108}
   - 114: {fileID: 114000010786294590}
+  - 114: {fileID: 114000013661395024}
   m_Layer: 5
   m_Name: BtnAchievemt
   m_TagString: Untagged
@@ -11158,6 +11159,29 @@ MonoBehaviour:
   mAtlas: {fileID: 114000011775949898, guid: 209b2d4a519d0fe42b6e99961af185d8, type: 2}
   mSpriteName: rank_label
   mFillCenter: 1
+--- !u!114 &114000013661395024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010074378346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animator: {fileID: 0}
+  clipName: achievement_info_in
+  trigger: 0
+  playDirection: 1
+  resetOnPlay: 0
+  clearSelection: 0
+  ifDisabledOnPlay: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
 --- !u!114 &114000013680409752
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -295,6 +295,7 @@ GameObject:
   - 114: {fileID: 114000010964014598}
   - 65: {fileID: 65000012129475548}
   - 114: {fileID: 114000011282681830}
+  - 114: {fileID: 114000012591502004}
   m_Layer: 0
   m_Name: BtnMask
   m_TagString: Untagged
@@ -875,7 +876,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012351950608}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5a05c358569f4804c8237650f29233fe, type: 2}
   m_CullingMode: 0
@@ -1613,7 +1614,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3021
+  startingRenderQueue: 3117
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -1713,11 +1714,11 @@ MonoBehaviour:
   - 
   clickResponseParentAnimations:
   - 
-  isFoldObjs: 0
-  isFoldParentObjs: 0
+  isFoldObjs: 1
+  isFoldParentObjs: 1
   isForceKeep: 0
   isClickHideSelf: 0
-  isClickHideParent: 1
+  isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
   activeCondiction: LEVEL
@@ -2233,6 +2234,29 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000012591502004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013070830216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animator: {fileID: 95000013286768244}
+  clipName: char_cos_chose_out
+  trigger: 0
+  playDirection: 1
+  resetOnPlay: 0
+  clearSelection: 0
+  ifDisabledOnPlay: 0
+  disableWhenFinished: 1
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
 --- !u!114 &114000012616413422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2436,7 +2460,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3008
+  startingRenderQueue: 3088
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -2846,12 +2870,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 1000012351950608}
-  clickResponseObjects: []
-  clickResponseParentNames: []
-  clickResponseObjectsIsShow: 
-  clickResponseParentNamesIsShow: 
-  clickResponseObjectAnimations: []
-  clickResponseParentAnimations: []
+  clickResponseObjects:
+  - {fileID: 0}
+  clickResponseParentNames:
+  - 
+  clickResponseObjectsIsShow: 01
+  clickResponseParentNamesIsShow: 01
+  clickResponseObjectAnimations:
+  - 
+  clickResponseParentAnimations:
+  - 
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
@@ -2859,7 +2887,7 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
@@ -2908,7 +2936,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3023
+  startingRenderQueue: 3115
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
