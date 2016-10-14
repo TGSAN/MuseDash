@@ -128,7 +128,7 @@ GameObject:
   - 65: {fileID: 65000012014245076}
   - 114: {fileID: 114000012009220248}
   - 114: {fileID: 114000013805654344}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: BtnItemBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -709,6 +709,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014280600312}
   - 114: {fileID: 114000011561782130}
+  - 65: {fileID: 65000011152187050}
   m_Layer: 5
   m_Name: SprBigBoard
   m_TagString: Untagged
@@ -5832,6 +5833,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 130, y: 100, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65000011152187050
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011064392064}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 760, y: 570, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65000011203044440
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -9736,7 +9749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tweenTarget: {fileID: 0}
+  tweenTarget: {fileID: 1000010126037160}
   hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
   pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
   disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -18514,7 +18527,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3084
+  startingRenderQueue: 3029
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
