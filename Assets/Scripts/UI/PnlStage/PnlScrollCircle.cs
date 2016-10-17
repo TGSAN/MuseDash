@@ -336,10 +336,10 @@ namespace Assets.Scripts.NGUI
             var lockList = TaskStageTarget.Instance.GetLockList();
             for (int i = 1; i < count; i++)
             {
-                var iconPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "icon");
-                var musicPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "FileName_1");
-                var musicName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "DisplayName");
-                var authorName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "Author");
+				var iconPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "cover");
+				var musicPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "music");
+				var musicName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "name");
+				var authorName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "author");
                 var isLock = lockList[i];
                 m_StageInfos.Add(new StageInfo(i, iconPath, musicPath, musicName, authorName, 0, 0, isLock));
             }
@@ -443,7 +443,7 @@ namespace Assets.Scripts.NGUI
 
                     if (diff > 0)
                     {
-                        cost = StageBattleComponent.Instance.Host.Result(FormulaKeys.FORMULA_330);
+						cost = StageBattleComponent.Instance.Host.Result(FormulaKeys.FORMULA_45);
                     }
                 }
                 txtEnergyLast.text = cost.ToString();

@@ -283,12 +283,12 @@ public class TestAssetEdit : EditorWindow {
 		}
 
 		foreach (string iid in jd.Keys) {
-			string stgCfgName = ConfigPool.Instance.GetConfigStringValue ("stage", iid, "JsonName");
-			string sceneCfgName = ConfigPool.Instance.GetConfigStringValue ("stage", iid, "Scene");
-			string iconCfgName = ConfigPool.Instance.GetConfigStringValue ("stage", iid, "icon");
+			string stgCfgName = ConfigPool.Instance.GetConfigStringValue ("stage", iid, "note_json");
+			string sceneCfgName = ConfigPool.Instance.GetConfigStringValue ("stage", iid, "scene");
+			string iconCfgName = ConfigPool.Instance.GetConfigStringValue ("stage", iid, "cover");
 			// 歌曲检查
 			for (int diff = 1; diff <= 3; diff++) {
-				string songCfgName = ConfigPool.Instance.GetConfigStringValue ("stage", iid, "FileName_" + diff, -1);
+				string songCfgName = ConfigPool.Instance.GetConfigStringValue ("stage", iid, "cover");
 				if (songCfgName == null) {
 					Debug.Log ("stage配置表" + iid + "没有file name " + diff + "配置");
 				} else {
@@ -340,7 +340,7 @@ public class TestAssetEdit : EditorWindow {
 		int clen = ConfigPool.Instance.GetConfigLenght ("notedata");
 		foreach (string i in __jd.Keys) {
 			int _nidx = -1;
-			string nodeIdx = ConfigPool.Instance.GetConfigStringValue (name, i, "CubeType");
+			string nodeIdx = ConfigPool.Instance.GetConfigStringValue (name, i, "note_uid");
 			for (int ii = 1; ii <= clen; ii++) {
 				string _nid = ConfigPool.Instance.GetConfigStringValue ("notedata", ii.ToString (), "id");
 				if (_nid == nodeIdx) {

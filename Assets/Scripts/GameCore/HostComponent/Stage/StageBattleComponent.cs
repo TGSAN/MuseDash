@@ -66,7 +66,7 @@ namespace FormulaBase
 
             this.Host.Result(FormulaKeys.FORMULA_9);
 
-            int energy = (int)this.Host.Result(FormulaKeys.FORMULA_330);
+			int energy = (int)this.Host.Result(FormulaKeys.FORMULA_45);
             this.Host.SetDynamicData(SignKeys.ENERGY, energy);
 
             int targetScore = (int)this.Host.Result(FormulaKeys.FORMULA_329);
@@ -193,9 +193,7 @@ namespace FormulaBase
             }
 
             int sid = this.GetId();
-            uint diff = this.GetDiffcult();
-            string songKey = "FileName_" + 1;
-            return ConfigPool.Instance.GetConfigStringValue("stage", sid.ToString(), songKey);
+			return ConfigPool.Instance.GetConfigStringValue("stage", sid.ToString(), "music");
         }
 
         public string GetSceneName()
