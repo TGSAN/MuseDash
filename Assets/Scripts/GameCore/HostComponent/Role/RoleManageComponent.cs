@@ -159,8 +159,8 @@ namespace FormulaBase
             var maxVigour = (int)role.Result(FormulaKeys.FORMULA_186);
             role.SetDynamicData(SignKeys.MAX_VIGOUR, maxVigour);
             //最终耐久
-            /* var maxStamina = (int)role.Result(FormulaKeys.FORMULA_188);
-             role.SetDynamicData(SignKeys.MAX_STAMINA, maxStamina);*/
+            var maxStamina = (int)role.Result(FormulaKeys.FORMULA_188);
+            role.SetDynamicData(SignKeys.MAX_STAMINA, maxStamina);
             //最终攻击
             var maxAttack = (int)role.Result(FormulaKeys.FORMULA_187);
             role.SetDynamicData(SignKeys.MAX_STRENGH, maxAttack);
