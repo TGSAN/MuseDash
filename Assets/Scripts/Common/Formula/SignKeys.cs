@@ -287,6 +287,14 @@ namespace FormulaBase {
 		///
 		public const string VIT_LIMIT = "VIT_LIMIT";
 		///
+		/// CHARM_EXTRA
+		///
+		public const string CHARM_EXTRA = "CHARM_EXTRA";
+		///
+		/// VIGOUR_FROM_EQUIP
+		///
+		public const string VIGOUR_FROM_EQUIP = "VIGOUR_FROM_EQUIP";
+		///
 		/// MAX_VIGOUR
 		///
 		public const string MAX_VIGOUR = "MAX_VIGOUR";
@@ -302,14 +310,6 @@ namespace FormulaBase {
 		/// MAX_LUCK
 		///
 		public const string MAX_LUCK = "MAX_LUCK";
-		///
-		/// VIGOUR_FROM_EQUIP
-		///
-		public const string VIGOUR_FROM_EQUIP = "VIGOUR_FROM_EQUIP";
-		///
-		/// STAMINA_FROM_EQUIP
-		///
-		public const string STAMINA_FROM_EQUIP = "STAMINA_FROM_EQUIP";
 
 	}
 }
