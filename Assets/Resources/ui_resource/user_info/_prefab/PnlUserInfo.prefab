@@ -279,6 +279,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012262109904}
   - 114: {fileID: 114000013515839002}
+  - 65: {fileID: 65000012326893332}
   m_Layer: 0
   m_Name: SprBigBoard
   m_TagString: Untagged
@@ -597,6 +598,18 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 215, y: 80, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65000012326893332
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013896302110}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 860, y: 384, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65000014012347704
 BoxCollider:
@@ -2251,7 +2264,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3103
+  startingRenderQueue: 3009
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
