@@ -119,6 +119,8 @@ MonoBehaviour:
   - MAX_LUCK
   - VIGOUR_FROM_EQUIP
   - STAMINA_FROM_EQUIP
+  - STRENGH_FROM_EQUIP
+  - LUCK_FROM_EQUIP
   ConfigNames:
   - character
   - stage
@@ -4853,7 +4855,7 @@ MonoBehaviour:
       dataSourceType: 4
       dataSourceIndex: 26
       dataSourceValue: 0
-      dataSourceName: del/123
+      dataSourceName: EXP
       collapsed: 1
       paramname: "\u88C5\u5907\u5C5E\u6027"
       condictions:
@@ -4875,7 +4877,7 @@ MonoBehaviour:
       dataSourceIndex: 0
       dataSourceValue: 0
       dataSourceName: 
-      collapsed: 1
+      collapsed: 0
       paramname: "\u6280\u80FD\u52A0\u6210"
       condictions:
       - condictionType: 1
@@ -4898,13 +4900,18 @@ MonoBehaviour:
       paramname: "\u89D2\u8272\u5C5E\u6027"
       condictions: []
     - idx: 1
-      dataSourceType: 2
+      dataSourceType: 4
       dataSourceIndex: 264
       dataSourceValue: 0
       dataSourceName: "\u88C5\u5907\u5B9E\u9645\u653B\u51FB"
-      collapsed: 0
+      collapsed: 1
       paramname: "\u88C5\u5907\u5C5E\u6027"
-      condictions: []
+      condictions:
+      - condictionType: 1
+        condictionKeyIndex: 77
+        condictionKey: STRENGH_FROM_EQUIP
+        condictionValue: 0
+        plus: 1
     - idx: 2
       dataSourceType: 2
       dataSourceIndex: 278
@@ -4918,7 +4925,7 @@ MonoBehaviour:
       dataSourceIndex: 0
       dataSourceValue: 0
       dataSourceName: 
-      collapsed: 1
+      collapsed: 0
       paramname: "\u6280\u80FD\u52A0\u6210"
       condictions:
       - condictionType: 1
@@ -4941,10 +4948,10 @@ MonoBehaviour:
       paramname: "\u89D2\u8272\u5C5E\u6027"
       condictions: []
     - idx: 1
-      dataSourceType: 2
+      dataSourceType: 4
       dataSourceIndex: 32
       dataSourceValue: 0
-      dataSourceName: "\u88C5\u5907\u6700\u7EC8\u9632\u5FA1"
+      dataSourceName: del/123
       collapsed: 1
       paramname: "\u88C5\u5907\u5C5E\u6027"
       condictions: []
@@ -4952,7 +4959,7 @@ MonoBehaviour:
       dataSourceType: 2
       dataSourceIndex: 173
       dataSourceValue: 0
-      dataSourceName: "\u5BA0\u7269\u7684\u6700\u7EC8\u9632\u5FA1"
+      dataSourceName: del/123
       collapsed: 1
       paramname: "\u50DA\u673A\u5C5E\u6027"
       condictions: []
@@ -4961,7 +4968,7 @@ MonoBehaviour:
       dataSourceIndex: 0
       dataSourceValue: 0
       dataSourceName: 
-      collapsed: 1
+      collapsed: 0
       paramname: "\u6280\u80FD\u52A0\u6210"
       condictions:
       - condictionType: 1
@@ -8510,7 +8517,7 @@ MonoBehaviour:
     collapsedSign: 1
     collapsedComponent: 1
     formulaSet: b200000004000000030000000e0000000f00000000000000b7000000b8000000ba000000bb000000bc000000fb000000fc000000fd000000fe000000
-    singSet: 00000000020000000f000000170000001a00000010000000200000003900000042000000430000004400000045000000460000004700000048000000490000004a0000004b000000
+    singSet: 00000000020000000f000000170000001a00000010000000200000003900000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e000000
     signValueSet:
     - 1
     - 1
@@ -8519,6 +8526,9 @@ MonoBehaviour:
     - 0
     - 0
     - 1
+    - 0
+    - 0
+    - 0
     - 0
     - 0
     - 0

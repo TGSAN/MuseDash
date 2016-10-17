@@ -310,6 +310,14 @@ namespace FormulaBase {
 		/// STAMINA_FROM_EQUIP
 		///
 		public const string STAMINA_FROM_EQUIP = "STAMINA_FROM_EQUIP";
+		///
+		/// STRENGH_FROM_EQUIP
+		///
+		public const string STRENGH_FROM_EQUIP = "STRENGH_FROM_EQUIP";
+		///
+		/// LUCK_FROM_EQUIP
+		///
+		public const string LUCK_FROM_EQUIP = "LUCK_FROM_EQUIP";
 
 	}
 }
