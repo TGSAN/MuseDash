@@ -95,7 +95,7 @@ namespace StageDisc
 
         public void SetUnlockTrophyAmount(int idx)
         {
-            var amount = ConfigPool.Instance.GetConfigStringValue("stage", this.staegId.ToString(), "UnlockTrophy");
+			var amount = ConfigPool.Instance.GetConfigStringValue("stage", this.staegId.ToString(), "cover");
             txtTrophyToUnlock.text = amount.ToString();
         }
 
@@ -115,13 +115,13 @@ namespace StageDisc
         private void SetTxrByStage()
         {
             //yield return new WaitForSeconds (0.1f);
-            string txrName = ConfigPool.Instance.GetConfigStringValue("stage", this.staegId.ToString(), "icon");
+			string txrName = ConfigPool.Instance.GetConfigStringValue("stage", this.staegId.ToString(), "cover");
             this._loadTxrCoroutine = ResourceLoader.Instance.Load(txrName, this.__LoadTxr);
         }
 
         private void SetTxrByOrder()
         {
-            string txrName = ConfigPool.Instance.GetConfigStringValue("stage", this.staegId.ToString(), "icon");
+			string txrName = ConfigPool.Instance.GetConfigStringValue("stage", this.staegId.ToString(), "cover");
             this._loadTxrCoroutine = ResourceLoader.Instance.Load(txrName, this.__LoadTxrByOrder);
         }
 
@@ -130,7 +130,7 @@ namespace StageDisc
             Texture t = resObj as Texture;
             if (t == null)
             {
-                string txrName = ConfigPool.Instance.GetConfigStringValue("stage", this.staegId.ToString(), "icon");
+				string txrName = ConfigPool.Instance.GetConfigStringValue("stage", this.staegId.ToString(), "cover");
                 Debug.Log("Load stage icon " + this.staegId + " StageDisc texture failed : " + txrName);
             }
 
@@ -142,7 +142,7 @@ namespace StageDisc
             Texture t = resObj as Texture;
             if (t == null)
             {
-                string txrName = ConfigPool.Instance.GetConfigStringValue("stage", this.staegId.ToString(), "icon");
+				string txrName = ConfigPool.Instance.GetConfigStringValue("stage", this.staegId.ToString(), "cover");
                 Debug.Log("Load stage icon " + this.staegId + " StageDisc texture failed : " + txrName);
             }
 

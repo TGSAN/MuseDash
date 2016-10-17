@@ -40,7 +40,7 @@ namespace FormulaBase
             public bool dymFailed;
         }
 
-        private const string CFG_HEAD_VALUE = "Trophy_";
+		private const string CFG_HEAD_VALUE = "goal_";
 
         // 下面所有统计值的历史最大值后缀
         public const string TASK_SIGNKEY_COUNT_MAX_TAIL = "_XMAX";
@@ -167,22 +167,6 @@ namespace FormulaBase
         /// </summary>
         public static Action<int> onSongUnlock;
 
-        /// <summary>
-        /// 获取解锁下一首歌曲所需奖杯值
-        /// </summary>
-        /// <returns></returns>
-        public int GetNextUnlockTrophy(ref int idx)
-        {
-            var trophyTotal = GetTotalTrophy();
-            var trophyRequest = 0;
-            for (int i = 1; trophyRequest <= trophyTotal; i++)
-            {
-                trophyRequest = ConfigPool.Instance.GetConfigIntValue("stage", i.ToString(), "UnlockTrophy");
-                idx = i;
-            }
-            return trophyRequest;
-        }
-
         private Target[] targets = null;
 
         public void Init(int stageId)
@@ -292,11 +276,27 @@ namespace FormulaBase
             var totalTrophy = GetTotalTrophy();
             for (int i = 1; i < idxs.Length; i++)
             {
-                var unlockTrophy = ConfigPool.Instance.GetConfigIntValue("stage", i.ToString(), "UnlockTrophy");
+				var unlockTrophy = ConfigPool.Instance.GetConfigIntValue("stage", i.ToString(), "unlock");
                 idxs[i] = unlockTrophy > totalTrophy;
             }
             return idxs;
         }
+
+		/// <summary>
+		/// 获取解锁下一首歌曲所需奖杯值
+		/// </summary>
+		/// <returns></returns>
+		public int GetNextUnlockTrophy(ref int idx)
+		{
+			var trophyTotal = GetTotalTrophy();
+			var trophyRequest = 0;
+			for (int i = 1; trophyRequest <= trophyTotal; i++)
+			{
+				trophyRequest = ConfigPool.Instance.GetConfigIntValue("stage", i.ToString(), "unlock");
+				idx = i;
+			}
+			return trophyRequest;
+		}
 
         /// <summary>
         /// Determines whether this instance is next lock.
@@ -678,7 +678,7 @@ namespace FormulaBase
 
                 Target _t = new Target();
                 int targetIdx = i + 1;
-                int goalValue = ConfigPool.Instance.GetConfigIntValue("stage", strStageId, CFG_HEAD_VALUE + targetIdx);
+				int goalValue = ConfigPool.Instance.GetConfigIntValue("stage_value", strStageId, CFG_HEAD_VALUE + targetIdx);
 
                 string maxSignKey = null;
                 bool isLessThan = false;

@@ -312,7 +312,7 @@ namespace FormulaBase {
 			this.SetCurrentPlayIndex (-1);
 			for (int i = 0; i < musicData.Count; i++) {
 				MusicData md = (MusicData)musicData [i];
-				if (md.configData.Timming < _tick) {
+				if (md.configData.time < _tick) {
 					this.SetCurrentPlayIndex (i);
 					continue;
 				}
