@@ -25,10 +25,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11416448
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,11 +114,14 @@ MonoBehaviour:
   - GOLD_EXTRA
   - VIT_LIMIT
   - CHARM_EXTRA
-  - VIGOUR_FROM_EQUIP
   - MAX_VIGOUR
   - MAX_STAMINA
   - MAX_STRENGH
   - MAX_LUCK
+  - VIGOUR_FROM_EQUIP
+  - STAMINA_FROM_EQUIP
+  - STRENGH_FROM_EQUIP
+  - LUCK_FROM_EQUIP
   ConfigNames:
   - character
   - stage
@@ -4863,13 +4866,18 @@ MonoBehaviour:
       paramname: "\u89D2\u8272\u5C5E\u6027"
       condictions: []
     - idx: 1
-      dataSourceType: 2
+      dataSourceType: 4
       dataSourceIndex: 258
       dataSourceValue: 0
       dataSourceName: "\u88C5\u5907\u5B9E\u9645\u8840\u91CF"
-      collapsed: 0
+      collapsed: 1
       paramname: "\u88C5\u5907\u5C5E\u6027"
-      condictions: []
+      condictions:
+      - condictionType: 1
+        condictionKeyIndex: 76
+        condictionKey: VIGOUR_FROM_EQUIP
+        condictionValue: 0
+        plus: 1
     - idx: 2
       dataSourceType: 2
       dataSourceIndex: 272
@@ -4906,13 +4914,18 @@ MonoBehaviour:
       paramname: "\u89D2\u8272\u5C5E\u6027"
       condictions: []
     - idx: 1
-      dataSourceType: 2
+      dataSourceType: 4
       dataSourceIndex: 264
       dataSourceValue: 0
       dataSourceName: "\u88C5\u5907\u5B9E\u9645\u653B\u51FB"
-      collapsed: 0
+      collapsed: 1
       paramname: "\u88C5\u5907\u5C5E\u6027"
-      condictions: []
+      condictions:
+      - condictionType: 1
+        condictionKeyIndex: 78
+        condictionKey: STRENGH_FROM_EQUIP
+        condictionValue: 0
+        plus: 1
     - idx: 2
       dataSourceType: 2
       dataSourceIndex: 278
@@ -4949,13 +4962,18 @@ MonoBehaviour:
       paramname: "\u89D2\u8272\u5C5E\u6027"
       condictions: []
     - idx: 1
-      dataSourceType: 2
+      dataSourceType: 4
       dataSourceIndex: 261
       dataSourceValue: 0
       dataSourceName: "\u88C5\u5907\u5B9E\u9645\u8010\u529B"
       collapsed: 1
       paramname: "\u88C5\u5907\u5C5E\u6027"
-      condictions: []
+      condictions:
+      - condictionType: 1
+        condictionKeyIndex: 77
+        condictionKey: STAMINA_FROM_EQUIP
+        condictionValue: 0
+        plus: 1
     - idx: 2
       dataSourceType: 2
       dataSourceIndex: 275
@@ -8554,7 +8572,7 @@ MonoBehaviour:
     collapsedSign: 1
     collapsedComponent: 1
     formulaSet: b200000004000000030000000e0000000f00000000000000b7000000b8000000ba000000bb000000bc000000fb000000fc000000fd000000fe000000
-    singSet: 00000000020000000f000000170000001a0000001000000020000000390000004200000043000000440000004500000046000000
+    singSet: 00000000020000000f000000170000001a000000100000002000000039000000420000004300000044000000450000004600000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000
     signValueSet:
     - 1
     - 1
@@ -8563,6 +8581,14 @@ MonoBehaviour:
     - 0
     - 0
     - 1
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
     - 0
     - 0
     - 0

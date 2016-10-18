@@ -589,7 +589,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011288292446}
   - 114: {fileID: 114000012793321954}
-  - 65: {fileID: 65000011065800396}
   m_Layer: 5
   m_Name: PnlNetworkConection
   m_TagString: Untagged
@@ -1670,7 +1669,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012009709208}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 613, y: 327, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2657,18 +2656,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 160, y: 70, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65000011065800396
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012009709208}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1334, y: 750, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65000011150327986
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -3338,7 +3325,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -6220,14 +6207,14 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3111
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 900
-  mSortingOrder: 10
+  mSortingOrder: 110
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
 --- !u!114 &114000012389190192
@@ -6266,7 +6253,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3112
+  startingRenderQueue: 3003
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -7776,7 +7763,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 13
+  aspectRatio: 15.133333
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: 4fd14487917a19b46971f89f965e6383, type: 3}
   mFont: {fileID: 0}

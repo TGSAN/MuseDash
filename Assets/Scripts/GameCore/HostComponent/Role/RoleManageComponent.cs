@@ -97,7 +97,7 @@ namespace FormulaBase
             {
                 hostList = new List<FormulaHost>();
 
-				LitJson.JsonData roleCfg = ConfigPool.Instance.GetConfigByName("char_info");
+                LitJson.JsonData roleCfg = ConfigPool.Instance.GetConfigByName("character");
 
                 foreach (string key in roleCfg.Keys)
                 {
@@ -105,7 +105,8 @@ namespace FormulaBase
                     role.SetDynamicData(SignKeys.ID, int.Parse(key));
                     role.Result(FormulaKeys.FORMULA_178);
                     FomulaHostManager.Instance.AddHost(role);
-                    this.HostList[key] = role;
+                    var formulaHosts = HostList;
+                    if (formulaHosts != null) formulaHosts[key] = role;
                     hostList.Add(role);
                 }
             }
@@ -140,30 +141,62 @@ namespace FormulaBase
                 {
                     continue;
                 }
-
+                if (role.GetDynamicDataByKey(SignKeys.ID) == 1)
+                {
+                    role.SetDynamicData(SignKeys.LOCKED, 0);
+                }
                 // 基本配置属性
                 role.Result(FormulaKeys.FORMULA_178);
-                // 最终血量
-                var maxVigour = (int)role.Result(FormulaKeys.FORMULA_186);
-                role.SetDynamicData(SignKeys.MAX_VIGOUR, maxVigour);
-                //最终耐久
-                var maxStamina = (int)role.Result(FormulaKeys.FORMULA_188);
-                role.SetDynamicData(SignKeys.MAX_STAMINA, maxStamina);
-                //最终攻击
-                var maxAttack = (int)role.Result(FormulaKeys.FORMULA_187);
-                role.SetDynamicData(SignKeys.MAX_STRENGH, maxAttack);
-                //最终暴击率
-                var maxLuck = (int)role.Result(FormulaKeys.FORMULA_254);
-                role.SetDynamicData(SignKeys.MAX_LUCK, maxLuck);
 
-                // 更新化动态属性
-                var cloth = role.GetDynamicIntByKey(SignKeys.CLOTH);
-                if (cloth <= 0)
-                {
-					cloth = ConfigPool.Instance.GetConfigIntValue("char_info", role.GetDynamicIntByKey(SignKeys.ID).ToString(), "character");
-                    role.SetDynamicData(SignKeys.CLOTH, cloth);
-                }
+                // 更新动态属性
+                UpdateProperty(role);
             }
+        }
+
+        public void UpdateProperty(FormulaHost role)
+        {
+            // 最终血量
+            var maxVigour = (int)role.Result(FormulaKeys.FORMULA_186);
+            role.SetDynamicData(SignKeys.MAX_VIGOUR, maxVigour);
+            //最终耐久
+            var maxStamina = (int)role.Result(FormulaKeys.FORMULA_188);
+            role.SetDynamicData(SignKeys.MAX_STAMINA, maxStamina);
+            //最终攻击
+            var maxAttack = (int)role.Result(FormulaKeys.FORMULA_187);
+            role.SetDynamicData(SignKeys.MAX_STRENGH, maxAttack);
+            //最终暴击率
+            var maxLuck = (int)role.Result(FormulaKeys.FORMULA_254);
+            role.SetDynamicData(SignKeys.MAX_LUCK, maxLuck);
+
+            //装备类型
+            var cloth = role.GetDynamicIntByKey(SignKeys.CLOTH);
+            if (cloth <= 0)
+            {
+                cloth = ConfigPool.Instance.GetConfigIntValue("character", role.GetDynamicIntByKey(SignKeys.ID).ToString(), "character");
+                role.SetDynamicData(SignKeys.CLOTH, cloth);
+            }
+        }
+
+        public void Equip(FormulaHost equipHost)
+        {
+            var equipType = equipHost.GetDynamicDataByKey(SignKeys.TYPE);
+            if (equipType == 1 || equipType == 4 || equipType == 7)
+            {
+                //仅1、4、7类型装备增加血量
+                Host.SetDynamicData(SignKeys.VIGOUR_FROM_EQUIP, (int)equipHost.Result(FormulaKeys.FORMULA_258));
+            }
+            else if (equipType == 2 || equipType == 5 || equipType == 8)
+            {
+                //仅2、5、8类型装备增加耐力
+                Host.SetDynamicData(SignKeys.STAMINA_FROM_EQUIP, (int)equipHost.Result(FormulaKeys.FORMULA_261));
+            }
+            else
+            {
+                //仅3、6、9类型装备增加攻击
+                Host.SetDynamicData(SignKeys.STRENGH_FROM_EQUIP, (int)equipHost.Result(FormulaKeys.FORMULA_264));
+            }
+            UpdateRoleInfo();
+            Host.Save();
         }
 
         public void GetExpAndCost(ref int Exp, ref int Cost)
@@ -392,7 +425,7 @@ namespace FormulaBase
             }
 
             int clothUid = idx * 10 + (order - 1);
-			string clothName = ConfigPool.Instance.GetConfigStringValue("char_cos", "uid", "name", clothUid);
+            string clothName = ConfigPool.Instance.GetConfigStringValue("clothing", "uid", "name", clothUid);
             if (clothName == null)
             {
                 clothUid = idx * 10;
