@@ -54,7 +54,7 @@ namespace GameLogic
         public int prop_value;
         public float damage_growth;
 
-        public bool enable_jump;
+		public int enable_jump;
 
         public bool missCombo;
         public bool addCombo;
@@ -140,7 +140,7 @@ namespace GameLogic
             //if (result < PERFECTINTERVAL) {
             //	return MISS;
             //}
-            if (this.nodeData.enable_jump && GameGlobal.gGameTouchPlay.IsJump())
+			if ((this.nodeData.enable_jump == 1) && GameGlobal.gGameTouchPlay.IsJump())
             {
                 return GameMusic.JUMPOVER;
             }

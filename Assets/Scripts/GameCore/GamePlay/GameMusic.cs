@@ -374,7 +374,7 @@ namespace GameLogic {
 		private void InitData() {
 			this.endHardTime = -1m;
 			// GameGlobal.gStage.InitData ();
-			Boss.Instance.SearchBoss ();
+			//Boss.Instance.SearchBoss ();
 			this.ResetMusicData ();
 		}
 

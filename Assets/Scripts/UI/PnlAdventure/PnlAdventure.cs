@@ -81,7 +81,7 @@ namespace PnlAdventure
             }
 
             string _speaker = SoundEffectComponent.Instance.SpeakerOfType(GameGlobal.SOUND_TYPE_UI_BGM);
-            string name = ConfigPool.Instance.GetConfigStringValue("character", (RoleManageComponent.RoleIndexToId(heroIndex)).ToString(), "name");
+			string name = ConfigPool.Instance.GetConfigStringValue("char_info", (RoleManageComponent.RoleIndexToId(heroIndex)).ToString(), "name");
             if (SoundEffectComponent.Instance.IsPlaying(GameGlobal.SOUND_TYPE_UI_BGM) && _speaker == name)
             {
                 return;

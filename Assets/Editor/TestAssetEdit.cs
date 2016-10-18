@@ -179,40 +179,40 @@ public class TestAssetEdit : EditorWindow {
 	}
 
 	private void CharacterConfigCheck() {
-		JsonData jd = ConfigPool.Instance.GetConfigByName ("character");
+		JsonData jd = ConfigPool.Instance.GetConfigByName ("char_info");
 		if (jd == null) {
-			Debug.Log ("没有character配置表");
+			Debug.Log ("没有char_info配置表");
 			return;
 		}
 
 		foreach (string iid in jd.Keys) {
-			string _name = ConfigPool.Instance.GetConfigStringValue ("character", iid, "name");
-			string _imgVictory = ConfigPool.Instance.GetConfigStringValue ("character", iid, "image_victory");
-			string _imgFail = ConfigPool.Instance.GetConfigStringValue ("character", iid, "image_fail");
+			string _name = ConfigPool.Instance.GetConfigStringValue ("char_info", iid, "name");
+			string _imgVictory = ConfigPool.Instance.GetConfigStringValue ("char_info", iid, "image_victory");
+			string _imgFail = ConfigPool.Instance.GetConfigStringValue ("char_info", iid, "image_fail");
 			//string _characterPrefab = ConfigPool.Instance.GetConfigStringValue ("character", iid, "character");
-			string _fxgreat = ConfigPool.Instance.GetConfigStringValue ("character", iid, "fx_atk_great");
-			string _fxperfect = ConfigPool.Instance.GetConfigStringValue ("character", iid, "fx_atk_perfect");
-			string _fxcrit = ConfigPool.Instance.GetConfigStringValue ("character", iid, "fx_atk_crit");
-			string _fever = ConfigPool.Instance.GetConfigStringValue ("character", iid, "fever");
+			string _fxgreat = ConfigPool.Instance.GetConfigStringValue ("char_info", iid, "fx_atk_great");
+			string _fxperfect = ConfigPool.Instance.GetConfigStringValue ("char_info", iid, "fx_atk_perfect");
+			string _fxcrit = ConfigPool.Instance.GetConfigStringValue ("char_info", iid, "fx_atk_crit");
+			string _fever = ConfigPool.Instance.GetConfigStringValue ("char_info", iid, "fever");
 
 			if (_name == null) {
-				Debug.Log ("character" + iid + "没有name配置");
+				Debug.Log ("char_info " + iid + "没有name配置");
 				continue;
 			}
 
 			if (_imgVictory == null) {
-				Debug.Log ("character" + iid + "没有 image_victory 配置");
+				Debug.Log ("char_info " + iid + "没有 image_victory 配置");
 			} else {
 				if (Resources.Load (_imgVictory) == null) {
-					Debug.Log ("character配置表" + iid + "没有 image_victory 资源 : " + _imgVictory);
+					Debug.Log ("char_info配置表" + iid + "没有 image_victory 资源 : " + _imgVictory);
 				}
 			}
 
 			if (_imgFail == null) {
-				Debug.Log ("character" + iid + "没有 image_fail 配置");
+				Debug.Log ("char_info " + iid + "没有 image_fail 配置");
 			} else {
 				if (Resources.Load (_imgFail) == null) {
-					Debug.Log ("character配置表" + iid + "没有 image_fail 资源 : " + _imgFail);
+					Debug.Log ("char_info 配置表" + iid + "没有 image_fail 资源 : " + _imgFail);
 				}
 			}
 			/*
@@ -225,51 +225,51 @@ public class TestAssetEdit : EditorWindow {
 			}
 */
 			if (_fxgreat == null) {
-				Debug.Log ("character" + iid + "没有 fx_atk_great 配置");
+				Debug.Log ("char_info " + iid + "没有 fx_atk_great 配置");
 			} else {
 				if (Resources.Load (_fxgreat) == null) {
-					Debug.Log ("character配置表" + iid + "没有 fx_atk_great 资源 : " + _fxgreat);
+					Debug.Log ("char_info 配置表" + iid + "没有 fx_atk_great 资源 : " + _fxgreat);
 				}
 			}
 
 			if (_fxperfect == null) {
-				Debug.Log ("character" + iid + "没有 fx_atk_perfect 配置");
+				Debug.Log ("char_info " + iid + "没有 fx_atk_perfect 配置");
 			} else {
 				if (Resources.Load (_fxperfect) == null) {
-					Debug.Log ("character配置表" + iid + "没有 fx_atk_perfect 资源 : " + _fxperfect);
+					Debug.Log ("char_info 配置表" + iid + "没有 fx_atk_perfect 资源 : " + _fxperfect);
 				}
 			}
 
 			if (_fxcrit == null) {
-				Debug.Log ("character" + iid + "没有 fx_atk_crit 配置");
+				Debug.Log ("char_info " + iid + "没有 fx_atk_crit 配置");
 			} else {
 				if (Resources.Load (_fxcrit) == null) {
-					Debug.Log ("character配置表" + iid + "没有 fx_atk_crit 资源 : " + _fxcrit);
+					Debug.Log ("char_info 配置表" + iid + "没有 fx_atk_crit 资源 : " + _fxcrit);
 				}
 			}
 
 			if (_fever == null) {
-				Debug.Log ("character" + iid + "没有 fever 配置");
+				Debug.Log ("char_info " + iid + "没有 fever 配置");
 			} else {
 				if (Resources.Load (_fever) == null) {
-					Debug.Log ("character配置表" + iid + "没有 fever 资源 : " + _fever);
+					Debug.Log ("char_info配置表" + iid + "没有 fever 资源 : " + _fever);
 				}
 			}
 		}
 
-		JsonData clothjd = ConfigPool.Instance.GetConfigByName ("clothing");
+		JsonData clothjd = ConfigPool.Instance.GetConfigByName ("char_cos");
 		if (clothjd == null) {
-			Debug.Log ("没有clothing配置表");
+			Debug.Log ("没有char_cos配置表");
 			return;
 		}
 
 		foreach (string iid in clothjd.Keys) {
-			string _path = ConfigPool.Instance.GetConfigStringValue ("clothing", iid.ToString (), "path");
+			string _path = ConfigPool.Instance.GetConfigStringValue ("char_cos", iid.ToString (), "path");
 			if (_path == null) {
-				Debug.Log ("clothing" + iid + "没有 path 配置");
+				Debug.Log ("char_cos" + iid + "没有 path 配置");
 			} else {
 				if (Resources.Load (_path) == null) {
-					Debug.Log ("clothing配置表" + iid + "没有 path 资源 : " + _path);
+					Debug.Log ("char_cos配置表" + iid + "没有 path 资源 : " + _path);
 				}
 			}
 		}

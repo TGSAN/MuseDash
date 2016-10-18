@@ -47,7 +47,7 @@ namespace PnlFail {
 			}
 
 			int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex ();
-			string txrName = ConfigPool.Instance.GetConfigStringValue ("character", heroIndex.ToString (), "image_fail");
+			string txrName = ConfigPool.Instance.GetConfigStringValue ("char_info", heroIndex.ToString (), "image_fail");
 			if (ResourceLoader.Instance == null || txrName == null || (this.txrCharact != null && txrName.Contains (this.txrCharact.name))) {
 				return;
 			}
@@ -59,8 +59,8 @@ namespace PnlFail {
 			Texture t = resObj as Texture;
 			if (t == null) {
 				int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex ();
-				string txrName = ConfigPool.Instance.GetConfigStringValue ("character", heroIndex.ToString (), "image_fail");
-				Debug.Log ("Load character " + heroIndex + " PnlFail texture failed : " + txrName);
+				string txrName = ConfigPool.Instance.GetConfigStringValue ("char_info", heroIndex.ToString (), "image_fail");
+				Debug.Log ("Load char_info " + heroIndex + " PnlFail texture failed : " + txrName);
 			}
 
 			this.txrCharact.mainTexture = t;

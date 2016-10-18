@@ -100,10 +100,15 @@ namespace FormulaBase
         public int[] GetGirlEquipTypes(int idx)
         {
             var typeIDs = new int[3];
-            var characterInfo = ConfigPool.Instance.GetConfigValue("character", idx.ToString());
+			var characterInfo = ConfigPool.Instance.GetConfigValue("char_info", idx.ToString());
             for (int i = 1; i < 4; i++)
             {
-                typeIDs[i - 1] = (int)characterInfo["weapon_" + i.ToString()];
+				string _weaponName = "weapon_" + i.ToString ();
+				if (!characterInfo.Keys.Contains (_weaponName)) {
+					continue;
+				}
+
+				typeIDs[i - 1] = (int)characterInfo[_weaponName];
             }
             return typeIDs;
         }

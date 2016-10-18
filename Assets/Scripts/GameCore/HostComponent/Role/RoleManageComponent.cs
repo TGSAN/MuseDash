@@ -97,7 +97,7 @@ namespace FormulaBase
             {
                 hostList = new List<FormulaHost>();
 
-                LitJson.JsonData roleCfg = ConfigPool.Instance.GetConfigByName("character");
+				LitJson.JsonData roleCfg = ConfigPool.Instance.GetConfigByName("char_info");
 
                 foreach (string key in roleCfg.Keys)
                 {
@@ -160,7 +160,7 @@ namespace FormulaBase
                 var cloth = role.GetDynamicIntByKey(SignKeys.CLOTH);
                 if (cloth <= 0)
                 {
-                    cloth = ConfigPool.Instance.GetConfigIntValue("character", role.GetDynamicIntByKey(SignKeys.ID).ToString(), "character");
+					cloth = ConfigPool.Instance.GetConfigIntValue("char_info", role.GetDynamicIntByKey(SignKeys.ID).ToString(), "character");
                     role.SetDynamicData(SignKeys.CLOTH, cloth);
                 }
             }
@@ -392,7 +392,7 @@ namespace FormulaBase
             }
 
             int clothUid = idx * 10 + (order - 1);
-            string clothName = ConfigPool.Instance.GetConfigStringValue("clothing", "uid", "name", clothUid);
+			string clothName = ConfigPool.Instance.GetConfigStringValue("char_cos", "uid", "name", clothUid);
             if (clothName == null)
             {
                 clothUid = idx * 10;
