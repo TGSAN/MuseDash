@@ -70,7 +70,7 @@ namespace FormulaBase
                 {
                     continue;
                 }
-                var typeID = (int)equipInfo["Type"];
+                var typeID = (int)equipInfo["type"];
                 if (equipTypeList.Contains(typeID))
                 {
                     var index = equipTypeList.IndexOf(typeID) + 1;
@@ -118,7 +118,7 @@ namespace FormulaBase
         public int GetEquipOwnerIdx(int id)
         {
             var itemInfo = ConfigPool.Instance.GetConfigValue("items", id.ToString());
-            var typeID = (int)itemInfo["Type"];
+            var typeID = (int)itemInfo["type"];
             for (int i = 1; i <= RoleManageComponent.Instance.GetRoleCount(); i++)
             {
                 var tpyeList = new List<int>(GetGirlEquipTypes(i));
@@ -152,7 +152,7 @@ namespace FormulaBase
         /// </summary>
         /// <param name="equipID"></param>
         /// <param name="isTo"></param>
-        public void Equip(int equipID, bool isTo = true)
+        public void Equip(int equipID, bool isTo = true, HttpResponseDelegate func = null)
         {
             FormulaHost host = (from value in HostList.Values let id = value.GetDynamicIntByKey(SignKeys.ID) where id == equipID select value).FirstOrDefault();
 
@@ -170,7 +170,7 @@ namespace FormulaBase
             {
                 host.Save();
                 RoleManageComponent.Instance.Host = RoleManageComponent.Instance.GetRole(ownerIdx);
-                RoleManageComponent.Instance.Equip(host);
+                RoleManageComponent.Instance.Equip(host, isTo, func);
             }
         }
 

@@ -97,8 +97,7 @@ namespace FormulaBase
             {
                 hostList = new List<FormulaHost>();
 
-                LitJson.JsonData roleCfg = ConfigPool.Instance.GetConfigByName("character");
-
+                LitJson.JsonData roleCfg = ConfigPool.Instance.GetConfigByName("char_info");
                 foreach (string key in roleCfg.Keys)
                 {
                     var role = FomulaHostManager.Instance.CreateHost("Role");
@@ -172,31 +171,34 @@ namespace FormulaBase
             var cloth = role.GetDynamicIntByKey(SignKeys.CLOTH);
             if (cloth <= 0)
             {
-                cloth = ConfigPool.Instance.GetConfigIntValue("character", role.GetDynamicIntByKey(SignKeys.ID).ToString(), "character");
+                cloth = ConfigPool.Instance.GetConfigIntValue("char_info", role.GetDynamicIntByKey(SignKeys.ID).ToString(), "char_info");
                 role.SetDynamicData(SignKeys.CLOTH, cloth);
             }
         }
 
-        public void Equip(FormulaHost equipHost)
+        public void Equip(FormulaHost equipHost, bool isTo, HttpResponseDelegate func = null)
         {
             var equipType = equipHost.GetDynamicDataByKey(SignKeys.TYPE);
             if (equipType == 1 || equipType == 4 || equipType == 7)
             {
                 //仅1、4、7类型装备增加血量
-                Host.SetDynamicData(SignKeys.VIGOUR_FROM_EQUIP, (int)equipHost.Result(FormulaKeys.FORMULA_258));
+                var value = isTo ? (int)equipHost.Result(FormulaKeys.FORMULA_258) : 0;
+                Host.SetDynamicData(SignKeys.VIGOUR_FROM_EQUIP, value);
             }
             else if (equipType == 2 || equipType == 5 || equipType == 8)
             {
                 //仅2、5、8类型装备增加耐力
-                Host.SetDynamicData(SignKeys.STAMINA_FROM_EQUIP, (int)equipHost.Result(FormulaKeys.FORMULA_261));
+                var value = isTo ? (int)equipHost.Result(FormulaKeys.FORMULA_261) : 0;
+                Host.SetDynamicData(SignKeys.STAMINA_FROM_EQUIP, value);
             }
             else
             {
                 //仅3、6、9类型装备增加攻击
-                Host.SetDynamicData(SignKeys.STRENGH_FROM_EQUIP, (int)equipHost.Result(FormulaKeys.FORMULA_264));
+                var value = isTo ? (int)equipHost.Result(FormulaKeys.FORMULA_264) : 0;
+                Host.SetDynamicData(SignKeys.STRENGH_FROM_EQUIP, value);
             }
             UpdateRoleInfo();
-            Host.Save();
+            Host.Save(func);
         }
 
         public void GetExpAndCost(ref int Exp, ref int Cost)
