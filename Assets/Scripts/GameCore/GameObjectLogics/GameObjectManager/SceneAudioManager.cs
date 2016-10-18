@@ -48,6 +48,7 @@ public class SceneAudioManager : MonoBehaviour {
 		defaultTypeSource [GameGlobal.SOUND_TYPE_UI] = this.ui;
 		defaultTypeSource [GameGlobal.SOUND_TYPE_UI_BGM] = this.bgm;
 		defaultTypeSource [GameGlobal.SOUND_TYPE_UI_ATTACK_MISS] = this.role;
+		defaultTypeSource [GameGlobal.SOUND_TYPE_UI_JUMP_MISS] = this.role;
 	}
 
 	void OnDestory() {
@@ -84,14 +85,14 @@ public class SceneAudioManager : MonoBehaviour {
 
 		if (this.buffClips.ContainsKey (pathname)) {
 			AudioClip ac = this.buffClips [pathname];
-			if (ac == null) {
+			if (ac != null) {
+				player.enabled = true;
+				player.clip = ac;
+				player.time = 0;
+				player.Play ();
+				Debug.Log (player.name + " : " + player.clip.name);
 				return;
 			}
-
-			player.enabled = true;
-			player.clip = ac;
-			player.Play ();
-			return;
 		}
 
 		AudioClip _ac = (AudioClip)Resources.Load (pathname);
@@ -103,7 +104,9 @@ public class SceneAudioManager : MonoBehaviour {
 		this.buffClips [pathname] = _ac;
 		player.enabled = true;
 		player.clip = _ac;
+		player.time = 0;
 		player.Play ();
+		Debug.Log (player.name + " : " + player.clip.name);
 	}
 
 	public void Play(AudioSource player) {

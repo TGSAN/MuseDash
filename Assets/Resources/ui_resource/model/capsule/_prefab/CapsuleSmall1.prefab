@@ -530,7 +530,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010356349240}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: a78950147c9daa4429964671d39f891d, type: 2}
   m_CullingMode: 0
@@ -2300,7 +2300,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013894013224}
   serializedVersion: 2
-  lengthInSec: 5
+  lengthInSec: 13.4
   startDelay:
     scalar: 0
     maxCurve:
@@ -2347,7 +2347,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 0.6
+      scalar: 0.3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2363,7 +2363,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 0.5
+          value: 0.6666666
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -2372,7 +2372,7 @@ ParticleSystem:
         m_RotationOrder: 0
       minMaxState: 3
     startSpeed:
-      scalar: 1.8
+      scalar: 0.4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2498,7 +2498,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       minMaxState: 0
     startSize:
-      scalar: 0.8
+      scalar: 0.2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2514,7 +2514,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 0.625
+          value: 0.5
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -2706,7 +2706,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     type: 0
-    radius: 1
+    radius: 0.56
     angle: 25
     length: 5
     boxX: 1
@@ -2727,7 +2727,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 20
+      scalar: 30
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3299,7 +3299,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
   ForceModule:
-    enabled: 1
+    enabled: 0
     x:
       scalar: 1
       maxCurve:
@@ -3488,7 +3488,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     magnitude:
-      scalar: 1
+      scalar: 0.63
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3524,7 +3524,7 @@ ParticleSystem:
       minMaxState: 0
     separateAxis: 0
     inWorldSpace: 0
-    dampen: 1
+    dampen: 0.9
   SizeBySpeedModule:
     enabled: 0
     curve:
@@ -10936,7 +10936,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 69cf8c3dcbece49fab5e34a9ef21949a, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}

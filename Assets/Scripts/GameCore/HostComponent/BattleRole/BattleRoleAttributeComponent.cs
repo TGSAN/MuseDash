@@ -233,7 +233,7 @@ namespace FormulaBase {
 				MimicParentController.Instance.OnControllerMiss (-1);
 			}
 
-			// StageBattleComponent.Instance.Dead ();
+			StageBattleComponent.Instance.Dead ();
 			CharPanel.Instance.HideCombo ();
 			UISceneHelper.Instance.ShowUi ("PnlFail");
 			//ResurgencePanelScript.Instance.Show ();
@@ -403,6 +403,12 @@ namespace FormulaBase {
 				return;
 			}
 
+			// 跳过普通note不应有分数（enable_jump）
+			MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx (idx);
+			if (md.nodeData.enable_jump == 1 && GirlManager.Instance.IsJumpingAction ()) {
+				return;
+			}
+
 			int combo = StageBattleComponent.Instance.GetCombo ();
 			battleRole.SetDynamicData (SignKeys.PLAY_EVALUATE, result);
 			battleRole.SetDynamicData (SignKeys.COMBO, combo);
@@ -412,7 +418,6 @@ namespace FormulaBase {
 			int score = this.CalcAttackDamage ();
 			TaskStageTarget.Instance.AddScore (score);
 
-			MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx (idx);
 			if (md.nodeData.isShowPlayEffect) {
 				CharPanel.Instance.SetScore ((uint)result, score + this.Host.GetDynamicIntByKey (SK_TEMP_ADD_SCORE));
 			}

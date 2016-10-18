@@ -2,6 +2,7 @@
 using System.Collections;
 using GameLogic;
 using System.Collections.Generic;
+using FormulaBase;
 
 
 public class AudioManager {
@@ -300,46 +301,33 @@ public class AudioManager {
 		this.girlEffect.Play ();
 	}
 
-	public void PlayNodeEffectByNodeAudioSourceWithPath(string path, string audioName) {
-		if (!this.nodeEffect) {
-			return;
-		}
-
-		if (!this.sceneObjectEffects.ContainsKey (path)) {
-			return;
-		}
-
-		var clip = this.sceneObjectEffects [path];
-		if (clip == null) {
-			return;
-		}
-
-		if (this.nodeEffect.clip == null || this.nodeEffect.clip.name != audioName) {
-			this.nodeEffect.clip = clip;
-		}
-
-		this.nodeEffect.Play ();
-	}
-
 	public void PlayHitNothing() {
-		this.girlEffect.clip = this.girlEffects [0];
-		this.girlEffect.Play ();
+		if (GameGlobal.gGameTouchPlay.IsJump ()) {
+			SoundEffectComponent.Instance.SayByCurrentRole (GameGlobal.SOUND_TYPE_UI_JUMP_MISS);
+			return;
+		}
+
+		SoundEffectComponent.Instance.SayByCurrentRole (GameGlobal.SOUND_TYPE_UI_ATTACK_MISS);
+
+		//this.girlEffect.clip = this.girlEffects [0];
+		//this.girlEffect.Play ();
 	}
 
 	public void PlayMissRandom() {
-		int randIdx = Random.Range (1, this.girlEffects.Length);
-		this.girlEffect.clip = this.girlEffects [randIdx];
-		this.girlEffect.Play ();
+		//int randIdx = Random.Range (1, this.girlEffects.Length);
+		//this.girlEffect.clip = this.girlEffects [randIdx];
+		//this.girlEffect.Play ();
 	}
 
 	public void PlayHurtEffect(){
-		if(this.hurtEffect == null){
-			return;
-		}else{
+		SoundEffectComponent.Instance.SayByCurrentRole (GameGlobal.SOUND_TYPE_HURT);
+		//if(this.hurtEffect == null){
+		//	return;
+		//}else{
 			// Debug.Log("Get hurt!");
-		}
-		this.girlEffect.clip = hurtEffect;
-		this.girlEffect.Play();
+		//}
+		//this.girlEffect.clip = hurtEffect;
+		//this.girlEffect.Play();
 	}
 
 	private void SetBgmSource() {
