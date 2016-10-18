@@ -118,6 +118,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012350111788}
   - 114: {fileID: 114000010229219470}
+  - 65: {fileID: 65000011885680882}
   m_Layer: 0
   m_Name: SprBigBoard
   m_TagString: Untagged
@@ -833,6 +834,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65000011885680882
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011543746014}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 650, y: 400, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65000012129475548
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -911,10 +924,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -1614,7 +1627,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3117
+  startingRenderQueue: 3011
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -2140,12 +2153,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 1000012351950608}
-  clickResponseObjects: []
-  clickResponseParentNames: []
-  clickResponseObjectsIsShow: 
-  clickResponseParentNamesIsShow: 
-  clickResponseObjectAnimations: []
-  clickResponseParentAnimations: []
+  clickResponseObjects:
+  - {fileID: 0}
+  clickResponseParentNames:
+  - 
+  clickResponseObjectsIsShow: 01
+  clickResponseParentNamesIsShow: 01
+  clickResponseObjectAnimations:
+  - 
+  clickResponseParentAnimations:
+  - 
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
@@ -2153,7 +2170,7 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
@@ -2460,7 +2477,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3088
+  startingRenderQueue: 3006
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -2936,7 +2953,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3115
+  startingRenderQueue: 3013
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
