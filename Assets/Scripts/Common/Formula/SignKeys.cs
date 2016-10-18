@@ -287,6 +287,10 @@ namespace FormulaBase {
 		///
 		public const string VIT_LIMIT = "VIT_LIMIT";
 		///
+		/// CHARM_EXTRA
+		///
+		public const string CHARM_EXTRA = "CHARM_EXTRA";
+		///
 		/// MAX_VIGOUR
 		///
 		public const string MAX_VIGOUR = "MAX_VIGOUR";
