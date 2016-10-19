@@ -176,6 +176,8 @@ public class GirlManager : MonoBehaviour {
 			Debug.Log (pathName + " is null.");
 			yield return null;
 		}
+
+		// 热更读取例子
 /*
 		WWW streamGirl = new WWW (AssetBundleFileMangager.FileLoadResPath + "/girl111.ab");
 		yield return streamGirl;
