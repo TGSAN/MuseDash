@@ -577,6 +577,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011288292446}
   - 114: {fileID: 114000012793321954}
+  - 65: {fileID: 65000011901592494}
   m_Layer: 5
   m_Name: PnlNetworkConection
   m_TagString: Untagged
@@ -665,7 +666,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000012319935610
 GameObject:
   m_ObjectHideFlags: 1
@@ -2688,6 +2689,18 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 320, y: 80, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65000011901592494
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012009709208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1334, y: 750, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65000012060579136
 BoxCollider:
@@ -6454,7 +6467,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3017
+  startingRenderQueue: 3136
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6500,7 +6513,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3021
+  startingRenderQueue: 3136
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6895,7 +6908,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012009709208}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 858a20c1b21a3f94bb5b2d3b901c9aaf, type: 3}
   m_Name: 
