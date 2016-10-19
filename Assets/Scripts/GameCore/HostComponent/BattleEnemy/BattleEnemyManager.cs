@@ -365,6 +365,10 @@ namespace FormulaBase {
 			FormulaHost _enemy = FomulaHostManager.Instance.CreateHost (HOST_IDX);
 			this.enemy [idx] = _enemy;
 
+			// 怪物配置等级
+			MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx (idx);
+			int level = md.configData.level;
+
 			string nodeId = BattleEnemyManager.Instance.GetNodeUidByIdx (idx);
 			int cfgIdx = NodeConfigReader.GetNodeIdxByNodeid (nodeId);
 			_enemy.SetDynamicData (SignKeys.ID, idx);
