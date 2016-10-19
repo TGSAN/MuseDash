@@ -225,6 +225,7 @@ namespace GameLogic {
 			}
 
 			obj.SetActive (true);
+			obj.name = obj.name.Replace ("(Clone)", "");
 			this.sceneObject = obj;
 
 			// add action event module
