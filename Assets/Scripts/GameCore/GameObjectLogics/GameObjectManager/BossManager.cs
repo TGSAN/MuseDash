@@ -85,13 +85,4 @@ public class Boss {
 
 		hc.ReinitMaterials ();
 	}
-
-
-	public void PullBack() {
-		if (this.bossObject == null) {
-			return;
-		}
-
-
-	}
 }

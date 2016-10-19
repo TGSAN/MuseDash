@@ -232,4 +232,5 @@ public struct ACTION_KEYS {
 	public const string JUMP = "char_jump";
 	public const string CHAR_DEAD = "char_die";
 	public const string PET_SKILL = "servant_skill";
+	public const string OUTSIDE = "outside";
 }

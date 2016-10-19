@@ -195,6 +195,11 @@ namespace GameLogic {
 				Boss.Instance.SetBoss (_path, _po);
 			}
 
+			//if (md.nodeData.type == GameGlobal.NODE_TYPE_PRESS) {
+			//	_po.SetActive (true);
+			//	SpineActionController.Play (ACTION_KEYS.COMEIN, _po);
+			//}
+
 			return _po;
 		}
 
@@ -225,6 +230,7 @@ namespace GameLogic {
 			}
 
 			obj.SetActive (true);
+			obj.name = obj.name.Replace ("(Clone)", "");
 			this.sceneObject = obj;
 
 			// add action event module

@@ -86,8 +86,8 @@ namespace PnlChar
         {
             for (int i = 1; i <= FormulaBase.RoleManageComponent.Instance.GetRoleCount(); i++)
             {
-				var pathIdx = ConfigPool.Instance.GetConfigStringValue("char_info", i.ToString(), "character");
-				var clothingConfig = ConfigPool.Instance.GetConfigByName("char_cos");
+                var pathIdx = ConfigPool.Instance.GetConfigStringValue("char_info", i.ToString(), "character");
+                var clothingConfig = ConfigPool.Instance.GetConfigByName("char_cos");
                 for (int j = 0; j < clothingConfig.Count; j++)
                 {
                     var jdata = clothingConfig[j];

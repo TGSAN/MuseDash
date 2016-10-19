@@ -1,6 +1,7 @@
 ///自定义模块，可定制模块具体行为
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FormulaBase
 {
@@ -69,7 +70,7 @@ namespace FormulaBase
                 {
                     continue;
                 }
-                var typeID = (int)equipInfo["Type"];
+                var typeID = (int)equipInfo["type"];
                 if (equipTypeList.Contains(typeID))
                 {
                     var index = equipTypeList.IndexOf(typeID) + 1;
@@ -100,15 +101,16 @@ namespace FormulaBase
         public int[] GetGirlEquipTypes(int idx)
         {
             var typeIDs = new int[3];
-			var characterInfo = ConfigPool.Instance.GetConfigValue("char_info", idx.ToString());
+            var characterInfo = ConfigPool.Instance.GetConfigValue("char_info", idx.ToString());
             for (int i = 1; i < 4; i++)
             {
-				string _weaponName = "weapon_" + i.ToString ();
-				if (!characterInfo.Keys.Contains (_weaponName)) {
-					continue;
-				}
+                string _weaponName = "weapon_" + i.ToString();
+                if (!characterInfo.Keys.Contains(_weaponName))
+                {
+                    continue;
+                }
 
-				typeIDs[i - 1] = (int)characterInfo[_weaponName];
+                typeIDs[i - 1] = (int)characterInfo[_weaponName];
             }
             return typeIDs;
         }
@@ -116,7 +118,7 @@ namespace FormulaBase
         public int GetEquipOwnerIdx(int id)
         {
             var itemInfo = ConfigPool.Instance.GetConfigValue("items", id.ToString());
-            var typeID = (int)itemInfo["Type"];
+            var typeID = (int)itemInfo["type"];
             for (int i = 1; i <= RoleManageComponent.Instance.GetRoleCount(); i++)
             {
                 var tpyeList = new List<int>(GetGirlEquipTypes(i));
@@ -146,43 +148,30 @@ namespace FormulaBase
         }
 
         /// <summary>
-        /// 装备,isTo为true装备，false卸妆
+        /// 装备, isTo为true装备，false卸妆
         /// </summary>
         /// <param name="equipID"></param>
         /// <param name="isTo"></param>
-        public void Equip(int equipID, bool isTo = true)
+        public void Equip(int equipID, bool isTo = true, HttpResponseDelegate func = null)
         {
-            FormulaHost host = null;
-            foreach (var value in HostList.Values)
-            {
-                var id = value.GetDynamicIntByKey(SignKeys.ID);
-                if (id == equipID)
-                {
-                    host = value;
-                    break;
-                }
-            }
+            FormulaHost host = (from value in HostList.Values let id = value.GetDynamicIntByKey(SignKeys.ID) where id == equipID select value).FirstOrDefault();
 
             var ownerIdx = GetEquipOwnerIdx(equipID);
             if (isTo)
             {
-                host.SetDynamicData(SignKeys.WHO, ownerIdx);
-                AddEquipedItem(host);
+                if (host != null) host.SetDynamicData(SignKeys.WHO, ownerIdx);
             }
             else
             {
-                host.SetDynamicData(SignKeys.WHO, 0);
-                RemoveEquipItem(host);
+                if (host != null) host.SetDynamicData(SignKeys.WHO, 0);
             }
 
-            host.Save();
-
-            //装备最终血量
-            var equipVigour = host.Result(FormulaKeys.FORMULA_258);
-            RoleManageComponent.Instance.Host = RoleManageComponent.Instance.GetRole(ownerIdx);
-            RoleManageComponent.Instance.Host.SetDynamicData(SignKeys.VIGOUR_FROM_EQUIP, equipVigour);
-            RoleManageComponent.Instance.UpdateRoleInfo();
-            RoleManageComponent.Instance.Host.Save();
+            if (host != null)
+            {
+                host.Save();
+                RoleManageComponent.Instance.Host = RoleManageComponent.Instance.GetRole(ownerIdx);
+                RoleManageComponent.Instance.Equip(host, isTo, func);
+            }
         }
 
         /// <summary>

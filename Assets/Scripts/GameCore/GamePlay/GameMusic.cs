@@ -55,7 +55,7 @@ namespace GameLogic {
 		// This is used for Fix update, with standard time is music time.
 		// When music time grow with unit 0.01, FixUpdateTimer.RollTimer is called.
 		public void GameMusicFixTimerUpdate(){
-			if (!AudioManager.Instance.IsBackGroundMusicPlaying ()) {
+			if (!AudioManager.Instance.IsBackGroundMusicPlaying () || GameKernel.Instance.IsUnderLongPress) {
 				FixUpdateTimer.RollTimer ();
 				return;
 			}
