@@ -62,6 +62,7 @@ namespace ItemCellCharInfo
                 var curEquipList = FormulaBase.EquipManageComponent.Instance.GetGirlEquipHosts(PnlChar.PnlChar.Instance.curRoleIdx, PnlChar.PnlChar.Instance.curEquipTypeIdx, true);
                 if (curEquipList.Length > 0)
                 {
+                    CommonPanel.GetInstance().ShowWaittingPanel(true);
                     FormulaBase.EquipManageComponent.Instance.Equip(curEquipList[0].GetDynamicIntByKey(FormulaBase.SignKeys.ID), false,
                         result =>
                         {
@@ -73,6 +74,7 @@ namespace ItemCellCharInfo
                                     {
                                         PnlChar.PnlChar.Instance.OnEquipLoad(PnlChar.PnlChar.Instance.curRoleIdx);
                                         PnlCharInfo.PnlCharInfo.Instance.UpdateItemList(id);
+                                        CommonPanel.GetInstance().ShowWaittingPanel(false);
                                     }
                                 });
                             }
