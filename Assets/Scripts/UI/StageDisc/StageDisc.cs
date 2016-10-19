@@ -95,7 +95,7 @@ namespace StageDisc
 
         public void SetUnlockTrophyAmount(int idx)
         {
-			var amount = ConfigPool.Instance.GetConfigStringValue("stage", this.staegId.ToString(), "cover");
+			var amount = ConfigPool.Instance.GetConfigStringValue("stage", this.staegId.ToString(), "unlock");
             txtTrophyToUnlock.text = amount.ToString();
         }
 

@@ -58,7 +58,7 @@ namespace PnlCharChose
             role.SetAsUINotifyInstance();
             for (int i = 1; i <= FormulaBase.RoleManageComponent.Instance.GetRoleCount(); i++)
             {
-                var path = ConfigPool.Instance.GetConfigStringValue("character", i.ToString(), "char_show");
+				var path = ConfigPool.Instance.GetConfigStringValue("char_info", i.ToString(), "char_show");
                 m_ActionPaths.Add(path);
             }
         }

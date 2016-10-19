@@ -67,7 +67,7 @@ public abstract class BaseEnemyObjectController : BaseSpineObjectController {
 			return false;
 		}
 
-		if (md.nodeData.enable_jump && isJumpping) {
+		if ((md.nodeData.enable_jump == 1) && isJumpping) {
 			return false;
 		}
 

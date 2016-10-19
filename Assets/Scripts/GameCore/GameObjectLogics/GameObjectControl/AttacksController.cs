@@ -96,7 +96,7 @@ public class AttacksController : MonoBehaviour {
 		this.sceneCameraAnimator.Rebind ();
 		this.sceneCameraAnimator.Play ("Shake");
 
-		AudioManager.Instance.PlayMissRandom ();
+		//AudioManager.Instance.PlayMissRandom ();
 	}
 
 	public void ShowHurtBloom(bool isShow) {
@@ -175,7 +175,6 @@ public class AttacksController : MonoBehaviour {
 		}
 
 		GirlManager.Instance.AttackWithExchange (GameMusic.NONE, actKey);
-		SoundEffectComponent.Instance.SayByCurrentRole (GameGlobal.SOUND_TYPE_UI_ATTACK_MISS);
 	}
 
 	private void PlayJumpAnim() {

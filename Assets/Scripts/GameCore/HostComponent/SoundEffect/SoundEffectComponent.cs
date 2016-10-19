@@ -24,7 +24,7 @@ namespace FormulaBase {
 		}
 
 		// -------------------------------------------------------
-		private const string CFG_NAME = "soundeffect";
+		private const string CFG_NAME = "system_sfx";
 		private const string SIGNKEY_EFFECTS = "SIGNKEY_EFFECTS";
 
 		private bool isPause = false;
@@ -48,7 +48,7 @@ namespace FormulaBase {
 			Dictionary<string, List<FormulaHost>> _effects = new Dictionary<string, List<FormulaHost>> ();
 			for (int i = 0; i < ConfigPool.Instance.GetConfigLenght (CFG_NAME); i++) {
 				string _i = (i + 1).ToString ();
-				string _speaker = ConfigPool.Instance.GetConfigStringValue (CFG_NAME, _i, "speaker");
+				string _speaker = ConfigPool.Instance.GetConfigStringValue (CFG_NAME, _i, "belong");
 				if (_speaker != speaker) {
 					continue;
 				}
@@ -180,7 +180,7 @@ namespace FormulaBase {
 				return;
 			}
 
-			string voice = ConfigPool.Instance.GetConfigStringValue (CFG_NAME, id.ToString (), "voice");
+			string voice = ConfigPool.Instance.GetConfigStringValue (CFG_NAME, id.ToString (), "audio");
 			if (voice == null) {
 				return;
 			}
@@ -211,32 +211,38 @@ namespace FormulaBase {
 
 			FormulaHost speakerHost = this.GetSpeaker (speaker);
 			if (speakerHost == null) {
+				Debug.Log ("Speaker " + speaker + " has no host data in SoundEffectComponent.");
 				return;
 			}
 
 			Dictionary<string, List<FormulaHost>> _effects = (Dictionary<string, List<FormulaHost>>)speakerHost.GetDynamicObjByKey (SIGNKEY_EFFECTS);
 			if (_effects == null || !_effects.ContainsKey (effectType)) {
+				Debug.Log ("Speaker " + speaker + " has no effect data in SoundEffectComponent.");
 				return;
 			}
 
 			List<FormulaHost> _effectByType = _effects [effectType];
 			if (_effectByType == null || _effectByType.Count <= 0) {
+				Debug.Log ("Speaker " + speaker + " has no effect data in SoundEffectComponent.");
 				return;
 			}
 
 			int idx = UnityEngine.Random.Range (0, _effectByType.Count);
 			FormulaHost seHost = _effectByType [idx];
 			if (seHost == null) {
+				Debug.Log ("Speaker " + speaker + " has no effect idx " + idx + " in SoundEffectComponent.");
 				return;
 			}
 
 			string voice = seHost.GetDynamicStrByKey (SignKeys.MUSIC_NAME);
 			_speakerOfType [effectType] = speaker;
+			Debug.Log (speaker + " with type " + effectType + " say : " + voice);
 			SceneAudioManager.Instance.Play (voice, effectType);
 		}
 
 		public void SayByCurrentRole(string effectType) {
 			if (RoleManageComponent.Instance.Host == null) {
+				Debug.Log ("No role data in RoleManageComponent.");
 				return;
 			}
 

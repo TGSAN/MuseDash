@@ -1,0 +1,506 @@
+{
+	"1": {
+		"description": "游戏开场BGM。",
+		"belong": "system",
+		"type": "ui_bgm",
+		"id": 1,
+		"audio": "audio/bgm_welcome1"
+	},
+	"2": {
+		"description": "游戏开场BGM备用。",
+		"belong": "system",
+		"type": "ui_bgm",
+		"id": 2,
+		"audio": "audio/bgm_welcome2"
+	},
+	"3": {
+		"description": "无专属音效的按钮，都用这个。",
+		"belong": "system",
+		"type": "ui_touch",
+		"id": 3,
+		"audio": "audio/sfx_button normal"
+	},
+	"4": {
+		"description": "各种情况下的确认按钮。",
+		"belong": "system",
+		"type": "ui_touch",
+		"id": 4,
+		"audio": "audio/sfx_button_confirm"
+	},
+	"5": {
+		"description": "弹出菜单的取消按钮音效。",
+		"belong": "system",
+		"type": "ui_touch",
+		"id": 5,
+		"audio": "audio/sfx_cancel"
+	},
+	"6": {
+		"description": "金币增加时，根据金币增加的数量或持续长度重叠播放。",
+		"belong": "system",
+		"type": "ui_touch",
+		"id": 6,
+		"audio": "audio/sfx_coin"
+	},
+	"7": {
+		"description": "水晶增加时，根据水晶增加的数量或持续长度重叠播放。",
+		"belong": "system",
+		"type": "ui_touch",
+		"id": 7,
+		"audio": "audio/sfx_crystal"
+	},
+	"8": {
+		"description": "装备和宠物升级的声音。",
+		"belong": "system",
+		"type": "ui_touch",
+		"id": 8,
+		"audio": "audio/sfx_levelup"
+	},
+	"9": {
+		"description": "失败界面情景音效。",
+		"belong": "system",
+		"type": "ui_touch",
+		"id": 9,
+		"audio": "audio/sfx_lost"
+	},
+	"10": {
+		"description": "选关界面切换关卡时的音效。",
+		"belong": "system",
+		"type": "ui_touch",
+		"id": 10,
+		"audio": "audio/sfx_slide"
+	},
+	"11": {
+		"description": "胜利界面情景音效。",
+		"belong": "system",
+		"type": "ui_touch",
+		"id": 11,
+		"audio": "audio/sfx_victory"
+	},
+	"12": {
+		"description": "各种无按键的小提示框通用警示音。",
+		"belong": "system",
+		"type": "ui_touch",
+		"id": 12,
+		"audio": "audio/sfx_warning"
+	},
+	"13": {
+		"description": "每达到10位数的Combo，随机播放。",
+		"belong": "system",
+		"type": "combo",
+		"id": 13,
+		"audio": "note/s01/audio/voice_sweet_combo_01"
+	},
+	"14": {
+		"description": "每达到10位数的Combo，随机播放。",
+		"belong": "system",
+		"type": "combo",
+		"id": 14,
+		"audio": "note/s01/audio/voice_sweet_combo_01"
+	},
+	"15": {
+		"description": "每达到10位数的Combo，随机播放。",
+		"belong": "system",
+		"type": "combo",
+		"id": 15,
+		"audio": "note/s01/audio/voice_sweet_combo_01"
+	},
+	"16": {
+		"description": "待机界面切换到玛丽亚的BGM。",
+		"belong": "marija",
+		"type": "ui_bgm",
+		"id": 16,
+		"audio": "char/marija/voice/bgm_marija"
+	},
+	"17": {
+		"description": "触发fever时，播放该音效。",
+		"belong": "marija",
+		"type": "fever",
+		"id": 17,
+		"audio": "char/marija/voice/voice_marija_fever"
+	},
+	"18": {
+		"description": "空挥音效。",
+		"belong": "marija",
+		"type": "attack_miss",
+		"id": 18,
+		"audio": "char/marija/voice/sfx_marija_hit_notthing_1"
+	},
+	"19": {
+		"description": "空跳音效。",
+		"belong": "marija",
+		"type": "jump_miss",
+		"id": 19,
+		"audio": "char/marija/voice/sfx_marija_hit_notthing_2"
+	},
+	"20": {
+		"description": "点击开始游戏按钮（进关卡）。",
+		"belong": "marija",
+		"type": "enter_stage",
+		"id": 20,
+		"audio": "char/marija/voice/voice_marija_start_01"
+	},
+	"21": {
+		"description": "点击开始游戏按钮（进关卡）。",
+		"belong": "marija",
+		"type": "enter_stage",
+		"id": 21,
+		"audio": "char/marija/voice/voice_marija_start_02"
+	},
+	"22": {
+		"description": "点击开始游戏按钮（进关卡）。",
+		"belong": "marija",
+		"type": "enter_stage",
+		"id": 22,
+		"audio": "char/marija/voice/voice_marija_start_03"
+	},
+	"23": {
+		"description": "点击开始游戏按钮（进关卡）。",
+		"belong": "marija",
+		"type": "enter_stage",
+		"id": 23,
+		"audio": "char/marija/voice/voice_marija_start_04"
+	},
+	"24": {
+		"description": "点击开始游戏按钮（进关卡）。",
+		"belong": "marija",
+		"type": "enter_stage",
+		"id": 24,
+		"audio": "char/marija/voice/voice_marija_start_05"
+	},
+	"25": {
+		"description": "关卡音乐播放前。",
+		"belong": "marija",
+		"type": "stage_start",
+		"id": 25,
+		"audio": "char/marija/voice/voice_marija_readygo"
+	},
+	"26": {
+		"description": "受伤，随机播放，设置一定时长的播放间隔，防止连续受伤发出鬼率呻吟。",
+		"belong": "marija",
+		"type": "hurt",
+		"id": 26,
+		"audio": "char/marija/voice/voice_marija_start_hurt_1"
+	},
+	"27": {
+		"description": "受伤，随机播放，设置一定时长的播放间隔，防止连续受伤发出鬼率呻吟。",
+		"belong": "marija",
+		"type": "hurt",
+		"id": 27,
+		"audio": "char/marija/voice/voice_marija_start_hurt_2"
+	},
+	"28": {
+		"description": "受伤，随机播放，设置一定时长的播放间隔，防止连续受伤发出鬼率呻吟。",
+		"belong": "marija",
+		"type": "hurt",
+		"id": 28,
+		"audio": "char/marija/voice/voice_marija_start_hurt_3"
+	},
+	"29": {
+		"description": "受伤，随机播放，设置一定时长的播放间隔，防止连续受伤发出鬼率呻吟。",
+		"belong": "marija",
+		"type": "hurt",
+		"id": 29,
+		"audio": "char/marija/voice/voice_marija_start_hurt_4"
+	},
+	"30": {
+		"description": "受伤，随机播放，设置一定时长的播放间隔，防止连续受伤发出鬼率呻吟。",
+		"belong": "marija",
+		"type": "hurt",
+		"id": 30,
+		"audio": "char/marija/voice/voice_marija_start_hurt_5"
+	},
+	"31": {
+		"description": "关卡最最后一个Note（包含音符，金币等）通过主角后，延时3秒（有可能调节时长）后播放。",
+		"belong": "marija",
+		"type": "final_note",
+		"id": 31,
+		"audio": "char/marija/voice/voice_marija_victory_c"
+	},
+	"32": {
+		"description": "关卡最最后一个Note（包含音符，金币等）通过主角后，延时3秒（有可能调节时长）后播放。",
+		"belong": "marija",
+		"type": "final_note",
+		"id": 32,
+		"audio": "char/marija/voice/voice_marija_victory_b"
+	},
+	"33": {
+		"description": "关卡最最后一个Note（包含音符，金币等）通过主角后，延时3秒（有可能调节时长）后播放。",
+		"belong": "marija",
+		"type": "final_note",
+		"id": 33,
+		"audio": "char/marija/voice/voice_marija_victory_a"
+	},
+	"34": {
+		"description": "关卡最最后一个Note（包含音符，金币等）通过主角后，延时3秒（有可能调节时长）后播放。",
+		"belong": "marija",
+		"type": "final_note",
+		"id": 34,
+		"audio": "char/marija/voice/voice_marija_victory_s"
+	},
+	"35": {
+		"description": "主角扑街倒地后随机播放其一。",
+		"belong": "marija",
+		"type": "dead",
+		"id": 35,
+		"audio": "char/marija/voice/voice_lost_1"
+	},
+	"36": {
+		"description": "主角扑街倒地后随机播放其一。",
+		"belong": "marija",
+		"type": "dead",
+		"id": 36,
+		"audio": "char/marija/voice/voice_lost_2"
+	},
+	"37": {
+		"description": "主角扑街倒地后随机播放其一。",
+		"belong": "marija",
+		"type": "dead",
+		"id": 37,
+		"audio": "char/marija/voice/voice_lost_3"
+	},
+	"38": {
+		"description": "主界面和角色界面点击主角后的反馈语音。",
+		"belong": "marija",
+		"type": "char_touch",
+		"id": 38,
+		"audio": "char/marija/voice/voice_marija_interactive_01"
+	},
+	"39": {
+		"description": "主界面和角色界面点击主角后的反馈语音。",
+		"belong": "marija",
+		"type": "char_touch",
+		"id": 39,
+		"audio": "char/marija/voice/voice_marija_interactive_02"
+	},
+	"40": {
+		"description": "主界面和角色界面点击主角后的反馈语音。",
+		"belong": "marija",
+		"type": "char_touch",
+		"id": 40,
+		"audio": "char/marija/voice/voice_marija_interactive_03"
+	},
+	"41": {
+		"description": "主界面和角色界面点击主角后的反馈语音。",
+		"belong": "marija",
+		"type": "char_touch",
+		"id": 41,
+		"audio": "char/marija/voice/voice_marija_interactive_04"
+	},
+	"42": {
+		"description": "主界面和角色界面点击主角后的反馈语音。",
+		"belong": "marija",
+		"type": "char_touch",
+		"id": 42,
+		"audio": "char/marija/voice/voice_marija_interactive_05"
+	},
+	"43": {
+		"description": "主界面和角色界面点击主角后的反馈语音。",
+		"belong": "marija",
+		"type": "char_touch",
+		"id": 43,
+		"audio": "char/marija/voice/voice_marija_interactive_06"
+	},
+	"44": {
+		"description": "主界面和角色界面点击主角后的反馈语音。",
+		"belong": "marija",
+		"type": "char_touch",
+		"id": 44,
+		"audio": "char/marija/voice/voice_marija_interactive_07"
+	},
+	"45": {
+		"description": "主界面和角色界面点击主角后的反馈语音。",
+		"belong": "marija",
+		"type": "char_touch",
+		"id": 45,
+		"audio": "char/marija/voice/voice_marija_interactive_08"
+	},
+	"46": {
+		"description": "主界面和角色界面点击主角后的反馈语音。",
+		"belong": "marija",
+		"type": "char_touch",
+		"id": 46,
+		"audio": "char/marija/voice/voice_marija_interactive_09"
+	},
+	"47": {
+		"description": "隐藏的反馈语音，小概率触发。",
+		"belong": "marija",
+		"type": "char_touch",
+		"id": 47,
+		"audio": "char/marija/voice/voice_marija_interactive_hidden_1"
+	},
+	"48": {
+		"description": "隐藏的反馈语音，小概率触发。",
+		"belong": "marija",
+		"type": "char_touch",
+		"id": 48,
+		"audio": "char/marija/voice/voice_marija_interactive_hidden_2"
+	},
+	"49": {
+		"description": "隐藏的反馈语音，小概率触发。",
+		"belong": "marija",
+		"type": "char_touch",
+		"id": 49,
+		"audio": "char/marija/voice/voice_marija_interactive_hidden_3"
+	},
+	"50": {
+		"description": "隐藏的反馈语音，小概率触发。",
+		"belong": "marija",
+		"type": "char_touch",
+		"id": 50,
+		"audio": "char/marija/voice/voice_marija_interactive_hidden_4"
+	},
+	"51": {
+		"description": "隐藏的反馈语音，小概率触发。",
+		"belong": "marija",
+		"type": "char_touch",
+		"id": 51,
+		"audio": "char/marija/voice/voice_marija_interactive_hidden_5"
+	},
+	"52": {
+		"description": "穿上不同品级的装备时。",
+		"belong": "marija",
+		"type": "equip",
+		"id": 52,
+		"audio": "char/marija/voice/voice_marija_equip_c"
+	},
+	"53": {
+		"description": "穿上不同品级的装备时。",
+		"belong": "marija",
+		"type": "equip",
+		"id": 53,
+		"audio": "char/marija/voice/voice_marija_equip_b"
+	},
+	"54": {
+		"description": "穿上不同品级的装备时。",
+		"belong": "marija",
+		"type": "equip",
+		"id": 54,
+		"audio": "char/marija/voice/voice_marija_equip_a"
+	},
+	"55": {
+		"description": "穿上不同品级的装备时。",
+		"belong": "marija",
+		"type": "equip",
+		"id": 55,
+		"audio": "char/marija/voice/voice_marija_equip_s"
+	},
+	"56": {
+		"description": "获得不同倍率的经验时，播放时机需要延时若干秒以配合动画表现。",
+		"belong": "marija",
+		"type": "exp",
+		"id": 56,
+		"audio": "char/marija/voice/voice_marija_exp_grow_less"
+	},
+	"57": {
+		"description": "获得不同倍率的经验时，播放时机需要延时若干秒以配合动画表现。",
+		"belong": "marija",
+		"type": "exp",
+		"id": 57,
+		"audio": "char/marija/voice/voice_marija_exp_grow_normal"
+	},
+	"58": {
+		"description": "获得不同倍率的经验时，播放时机需要延时若干秒以配合动画表现。",
+		"belong": "marija",
+		"type": "exp",
+		"id": 58,
+		"audio": "char/marija/voice/voice_marija_exp_grow_most"
+	},
+	"59": {
+		"description": "开启不同稀有度的魔方时。",
+		"belong": "marija",
+		"type": "capsule_open",
+		"id": 59,
+		"audio": "char/marija/voice/voice_marija_cube_opened_c"
+	},
+	"60": {
+		"description": "开启不同稀有度的魔方时。",
+		"belong": "marija",
+		"type": "capsule_open",
+		"id": 60,
+		"audio": "char/marija/voice/voice_marija_cube_opened_b"
+	},
+	"61": {
+		"description": "开启不同稀有度的魔方时。",
+		"belong": "marija",
+		"type": "capsule_open",
+		"id": 61,
+		"audio": "char/marija/voice/voice_marija_cube_opened_a"
+	},
+	"62": {
+		"description": "开启不同稀有度的魔方时。",
+		"belong": "marija",
+		"type": "capsule_open",
+		"id": 62,
+		"audio": "char/marija/voice/voice_marija_cube_opened_s"
+	},
+	"63": {
+		"description": "待机界面切换到艾琴的BGM。",
+		"belong": "urchin",
+		"type": "ui_bgm",
+		"id": 63,
+		"audio": "char/urchin/voice/bgm_urchin"
+	},
+	"64": {
+		"description": "关卡音乐播放前。",
+		"belong": "urchin",
+		"type": "stage_start",
+		"id": 64,
+		"audio": "char/marija/voice/voice_marija_readygo"
+	},
+	"65": {
+		"description": "触发fever时，播放该音效。",
+		"belong": "urchin",
+		"type": "fever",
+		"id": 65,
+		"audio": "char/urchin/voice/voice_urchin_fever"
+	},
+	"66": {
+		"description": "空挥音效。",
+		"belong": "urchin",
+		"type": "attack_miss",
+		"id": 66,
+		"audio": "char/urchin/voice/sfx_urchin_hit_notthing_1"
+	},
+	"67": {
+		"description": "空跳音效。",
+		"belong": "urchin",
+		"type": "jump_miss",
+		"id": 67,
+		"audio": "char/urchin/voice/sfx_urchin_hit_notthing_2"
+	},
+	"68": {
+		"description": "待机界面切换到布偌的BGM。",
+		"belong": "buro",
+		"type": "ui_bgm",
+		"id": 68,
+		"audio": "char/buro/voice/bgm_buro"
+	},
+	"69": {
+		"description": "关卡音乐播放前。",
+		"belong": "buro",
+		"type": "stage_start",
+		"id": 69,
+		"audio": "char/marija/voice/voice_marija_readygo"
+	},
+	"70": {
+		"description": "触发fever时，播放该音效。",
+		"belong": "buro",
+		"type": "fever",
+		"id": 70,
+		"audio": "char/buro/voice/voice_buro_fever"
+	},
+	"71": {
+		"description": "空挥音效。",
+		"belong": "buro",
+		"type": "attack_miss",
+		"id": 71,
+		"audio": "char/buro/voice/sfx_buro_hit_notthing_1"
+	},
+	"72": {
+		"description": "空跳音效。",
+		"belong": "buro",
+		"type": "jump_miss",
+		"id": 72,
+		"audio": "char/buro/voice/sfx_buro_hit_notthing_2"
+	}
+}

@@ -569,6 +569,7 @@ namespace FormulaBase
 
         public void Dead()
         {
+			Debug.Log ("Player dead.");
             int payBackPhysical = (int)(this.Host.Result(FormulaKeys.FORMULA_72) * 0.5);
             AccountPhysicsManagerComponent.Instance.ChangePhysical(payBackPhysical, false);
             EffectManager.Instance.StopCombo();
@@ -718,7 +719,7 @@ namespace FormulaBase
                     TimeNodeOrder _tno = new TimeNodeOrder();
                     _tno.idx = md.objId;
                     _tno.mustJump = md.nodeData.jump_note;
-                    _tno.enableJump = md.nodeData.enable_jump;
+					_tno.enableJump = (md.nodeData.enable_jump == 1);
                     _tno.result = GameMusic.PERFECT;
 
                     decimal _r = _i * FixUpdateTimer.dInterval;
@@ -756,9 +757,8 @@ namespace FormulaBase
 
         private void LoadMusicData()
         {
-            uint diff = this.GetDiffcult();
             string name = this.GetStageName();
-            string cfgName = name + diff;
+            string cfgName = name + 1;
 
             this.musicTickData = MusicConfigReader.Instance.GetData(ref cfgName);
             if (this.musicTickData == null || this.musicTickData.Count <= 0)

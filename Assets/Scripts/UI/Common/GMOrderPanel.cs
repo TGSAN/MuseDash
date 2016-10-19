@@ -268,14 +268,14 @@ public class GMOrderPanel : MonoBehaviour {
 		FormulaHost role = RoleManageComponent.Instance.GetRole (idx);
 		string name = role.GetDynamicStrByKey (SignKeys.NAME);
 		int clothId = role.GetDynamicIntByKey (SignKeys.CLOTH);
-		LitJson.JsonData jd = ConfigPool.Instance.GetConfigByName ("clothing");
+		LitJson.JsonData jd = ConfigPool.Instance.GetConfigByName ("char_cos");
 		foreach (string key in jd.Keys) {
 			int cid = int.Parse (key);
 			if (cid <= clothId) {
 				continue;
 			}
 
-			string ownername = ConfigPool.Instance.GetConfigStringValue ("clothing", key, "owner");
+			string ownername = ConfigPool.Instance.GetConfigStringValue ("char_cos", key, "owner");
 			if (ownername != name) {
 				continue;
 			}
@@ -297,7 +297,7 @@ public class GMOrderPanel : MonoBehaviour {
 				continue;
 			}
 
-			string ownername = ConfigPool.Instance.GetConfigStringValue ("clothing", key, "owner");
+			string ownername = ConfigPool.Instance.GetConfigStringValue ("char_cos", key, "owner");
 			if (ownername != name) {
 				continue;
 			}

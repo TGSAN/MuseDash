@@ -147,6 +147,10 @@ namespace GameLogic {
 				return;
 			}
 
+			if (GirlManager.Instance == null || GirlManager.Instance.isCommingOut) {
+				return;
+			}
+
 			ArrayList musicData = StageBattleComponent.Instance.GetMusicData ();
 			if (musicData == null || musicData.Count <= 0) {
 				return;
