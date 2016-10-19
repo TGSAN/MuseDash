@@ -250,6 +250,19 @@ namespace FormulaBase {
 			SoundEffectComponent.Instance.Say (name, effectType);
 		}
 
+		public void SayByCurrentScene(string effectType) {
+			if (GameLogic.GameGlobal.gGameMusicScene == null) {
+				return;
+			}
+
+			if (GameLogic.GameGlobal.gGameMusicScene.SecneObject == null) {
+				return;
+			}
+
+			string name = GameLogic.GameGlobal.gGameMusicScene.SecneObject.name;
+			SoundEffectComponent.Instance.Say (name, effectType);
+		}
+
 		/// <summary>
 		/// Say the specified speaker, effectType and containStr.
 		/// 

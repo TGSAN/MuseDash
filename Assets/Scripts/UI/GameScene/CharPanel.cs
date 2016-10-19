@@ -95,7 +95,8 @@ public class CharPanel : MonoBehaviour {
 		isShowingCombo = true;
 
 		if (number == GameGlobal.COMBO_INTERVAL || number % GameGlobal.COMBO_INTERVAL == 0) {
-			SoundEffectComponent.Instance.SayByCurrentRole (GameGlobal.SOUND_TYPE_ON_TEN_COMBO);
+			Debug.Log ("Play every " + GameGlobal.COMBO_INTERVAL + " combo sound ");
+			SoundEffectComponent.Instance.SayByCurrentScene (GameGlobal.SOUND_TYPE_ON_TEN_COMBO);
 		}
 	}
 
