@@ -116,6 +116,7 @@ namespace FormulaBase
             {
                 this.SetFightGirlCallBack(null);
             });
+            this.SetFightGirlClothByOrder(1);
         }
 
         /// <summary>
