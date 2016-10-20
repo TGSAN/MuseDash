@@ -17,11 +17,9 @@ public class FormulaConfigEdit : EditorWindow
     [MenuItem("RHY/配置表管理")]
     private static void FindAllConfig()
     {
-        /*
-        #if UNITY_STANDALONE_WIN
-                if (true) return;
-        #endif
-        */
+        /*#if UNITY_STANDALONE_WIN
+                        if (true) return;
+        #endif*/
 
         EditorSettings.serializationMode = SerializationMode.ForceText;
         //string path = AssetDatabase.GetAssetPath (Selection.activeObject);
@@ -67,6 +65,7 @@ public class FormulaConfigEdit : EditorWindow
 #endif
                     try
                     {
+                        Debug.Log(_finalPath);
                         TextAsset txt = (TextAsset)Resources.Load(_finalPath);
                         if (txt != null)
                         {
@@ -82,9 +81,9 @@ public class FormulaConfigEdit : EditorWindow
                                     myPath += tmpSplit[i] + "/";
                                 }
 #else
-								//myPath = myPath.Replace(_fShortName, "");
-								int _ridx = myPath.LastIndexOf('/');
-								myPath = myPath.Substring(0, _ridx + 1);
+                                //myPath = myPath.Replace(_fShortName, "");
+                                int _ridx = myPath.LastIndexOf('/');
+                                myPath = myPath.Substring(0, _ridx + 1);
 #endif
                                 _nameToPath[_fShortName] = myPath;
                                 Debug.Log(file, AssetDatabase.LoadAssetAtPath<Object>(GetRelativeAssetsPath(file)));

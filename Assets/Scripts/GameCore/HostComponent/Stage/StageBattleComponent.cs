@@ -66,7 +66,7 @@ namespace FormulaBase
 
             this.Host.Result(FormulaKeys.FORMULA_9);
 
-			int energy = (int)this.Host.Result(FormulaKeys.FORMULA_45);
+            int energy = (int)this.Host.Result(FormulaKeys.FORMULA_45);
             this.Host.SetDynamicData(SignKeys.ENERGY, energy);
 
             int targetScore = (int)this.Host.Result(FormulaKeys.FORMULA_329);
@@ -193,7 +193,7 @@ namespace FormulaBase
             }
 
             int sid = this.GetId();
-			return ConfigPool.Instance.GetConfigStringValue("stage", sid.ToString(), "music");
+            return ConfigPool.Instance.GetConfigStringValue("stage", sid.ToString(), "music");
         }
 
         public string GetSceneName()
@@ -569,7 +569,7 @@ namespace FormulaBase
 
         public void Dead()
         {
-			Debug.Log ("Player dead.");
+            Debug.Log("Player dead.");
             int payBackPhysical = (int)(this.Host.Result(FormulaKeys.FORMULA_72) * 0.5);
             AccountPhysicsManagerComponent.Instance.ChangePhysical(payBackPhysical, false);
             EffectManager.Instance.StopCombo();
@@ -719,7 +719,7 @@ namespace FormulaBase
                     TimeNodeOrder _tno = new TimeNodeOrder();
                     _tno.idx = md.objId;
                     _tno.mustJump = md.nodeData.jump_note;
-					_tno.enableJump = (md.nodeData.enable_jump == 1);
+                    _tno.enableJump = (md.nodeData.enable_jump == 1);
                     _tno.result = GameMusic.PERFECT;
 
                     decimal _r = _i * FixUpdateTimer.dInterval;
