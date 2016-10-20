@@ -124,6 +124,7 @@ GameObject:
   - 114: {fileID: 114000013882332604}
   - 114: {fileID: 114000010863585380}
   - 114: {fileID: 114000010545930948}
+  - 114: {fileID: 114000011337679542}
   m_Layer: 5
   m_Name: BtnNo
   m_TagString: Untagged
@@ -278,6 +279,7 @@ GameObject:
   - 114: {fileID: 114000011058891778}
   - 114: {fileID: 114000013092988086}
   - 114: {fileID: 114000013514863200}
+  - 114: {fileID: 114000012292726156}
   m_Layer: 5
   m_Name: BtnYes
   m_TagString: Untagged
@@ -1352,6 +1354,7 @@ GameObject:
   - 114: {fileID: 114000012072414622}
   - 65: {fileID: 65000014048610576}
   - 114: {fileID: 114000011222456520}
+  - 114: {fileID: 114000011864442556}
   m_Layer: 5
   m_Name: BtnMask
   m_TagString: Untagged
@@ -5015,6 +5018,21 @@ MonoBehaviour:
   callWhenFinished: 
   from: {r: 0.8407254, g: 0.7476419, b: 0.5614748, a: 1}
   to: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &114000011337679542
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010229035452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000011463616926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5764,6 +5782,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WAIT_COUNT: 1000
+--- !u!114 &114000011864442556
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014188075088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 0550bca35e6da174bbcb9f53494eae52, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000011875595828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6363,6 +6396,21 @@ MonoBehaviour:
   callWhenFinished: 
   from: 0
   to: 1
+--- !u!114 &114000012292726156
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010612108306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000012315129118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6467,7 +6515,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3136
+  startingRenderQueue: 3006
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6513,7 +6561,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3136
+  startingRenderQueue: 3006
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0

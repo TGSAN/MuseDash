@@ -60,6 +60,7 @@ GameObject:
   - 65: {fileID: 65000012943289108}
   - 114: {fileID: 114000010786294590}
   - 114: {fileID: 114000013661395024}
+  - 114: {fileID: 114000011348600540}
   m_Layer: 5
   m_Name: BtnAchievemt
   m_TagString: Untagged
@@ -225,6 +226,7 @@ GameObject:
   - 114: {fileID: 114000012321927390}
   - 114: {fileID: 114000013388335742}
   - 114: {fileID: 114000013482535336}
+  - 114: {fileID: 114000013305567974}
   m_Layer: 5
   m_Name: BtnStart
   m_TagString: Untagged
@@ -986,6 +988,7 @@ GameObject:
   - 114: {fileID: 114000012727747306}
   - 114: {fileID: 114000010855398656}
   - 114: {fileID: 114000010679183414}
+  - 114: {fileID: 114000014173721482}
   m_Layer: 5
   m_Name: BtnBack
   m_TagString: Untagged
@@ -1233,6 +1236,7 @@ GameObject:
   - 114: {fileID: 114000010315689108}
   - 114: {fileID: 114000013554142534}
   - 114: {fileID: 114000013367676938}
+  - 114: {fileID: 114000010848374534}
   m_Layer: 5
   m_Name: BtnTrophyInfo
   m_TagString: Untagged
@@ -1337,6 +1341,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010761580410}
   - 114: {fileID: 114000013191639454}
+  - 65: {fileID: 65000012542923664}
   m_Layer: 5
   m_Name: SprMask
   m_TagString: Untagged
@@ -3629,6 +3634,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 308, y: 80, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65000012542923664
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013130999112}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1164, y: 644, z: 1}
+  m_Center: {x: -582, y: 322, z: 0}
 --- !u!65 &65000012777997336
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -5934,6 +5951,21 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000010848374534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012959391686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000010855398656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6858,7 +6890,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3052
+  startingRenderQueue: 3016
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6881,6 +6913,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollView: {fileID: 0}
   draggablePanel: {fileID: 0}
+--- !u!114 &114000011348600540
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010074378346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000011350286886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7806,7 +7853,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3055
+  startingRenderQueue: 3019
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -8344,7 +8391,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3033
+  startingRenderQueue: 3005
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -10357,6 +10404,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollView: {fileID: 0}
   draggablePanel: {fileID: 0}
+--- !u!114 &114000013305567974
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010240594678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000013314068450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11800,6 +11862,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollView: {fileID: 0}
   draggablePanel: {fileID: 0}
+--- !u!114 &114000014173721482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012252958094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 0550bca35e6da174bbcb9f53494eae52, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000014175088160
 MonoBehaviour:
   m_ObjectHideFlags: 1

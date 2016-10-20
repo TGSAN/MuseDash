@@ -194,6 +194,7 @@ GameObject:
   - 114: {fileID: 114000011226542060}
   - 114: {fileID: 114000013728399376}
   - 114: {fileID: 114000013527677916}
+  - 114: {fileID: 114000011824669950}
   m_Layer: 5
   m_Name: BtnPause
   m_TagString: UI
@@ -2637,6 +2638,21 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 4640b1ebd3c074a66898a0e5f41d1371, type: 2}
   mSpriteName: hp_bar
   mFillCenter: 1
+--- !u!114 &114000011824669950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011015708350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000011889665868
 MonoBehaviour:
   m_ObjectHideFlags: 1

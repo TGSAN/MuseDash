@@ -39,6 +39,7 @@ GameObject:
   - 114: {fileID: 114000010516270484}
   - 65: {fileID: 65000012209792662}
   - 114: {fileID: 114000013729859806}
+  - 114: {fileID: 114000010003251472}
   m_Layer: 0
   m_Name: SprLittleTitle
   m_TagString: Untagged
@@ -145,6 +146,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 195, y: 48, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114000010003251472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012749467866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 3fa317b3db9e5f04ea0a2842663287b1, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000010238538256
 MonoBehaviour:
   m_ObjectHideFlags: 1

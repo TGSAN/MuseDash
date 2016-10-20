@@ -155,6 +155,7 @@ GameObject:
   - 114: {fileID: 114000011282681830}
   - 114: {fileID: 114000012591502004}
   - 114: {fileID: 114000012926959120}
+  - 114: {fileID: 114000013894072188}
   m_Layer: 0
   m_Name: BtnMask
   m_TagString: Untagged
@@ -175,6 +176,7 @@ GameObject:
   - 65: {fileID: 65000013951132040}
   - 114: {fileID: 114000011812747476}
   - 114: {fileID: 114000012493414706}
+  - 114: {fileID: 114000011105119200}
   m_Layer: 0
   m_Name: BtnLeft
   m_TagString: Untagged
@@ -231,6 +233,7 @@ GameObject:
   - 65: {fileID: 65000013383751400}
   - 114: {fileID: 114000013565297970}
   - 114: {fileID: 114000013884398722}
+  - 114: {fileID: 114000012270774154}
   m_Layer: 0
   m_Name: BtnRight
   m_TagString: Untagged
@@ -700,7 +703,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011543746014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 60, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1152,7 +1155,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 0.039215688}
   mPivot: 4
   mWidth: 650
   mHeight: 400
@@ -1621,6 +1624,21 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 116be5c75a4464937ab0c7775a335b18, type: 2}
   mSpriteName: button_left
   mFillCenter: 1
+--- !u!114 &114000011105119200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012119405048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 9ebd9acb4b24e464495f99a17463d984, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000011114846538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1657,7 +1675,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3015
+  startingRenderQueue: 3130
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -2103,6 +2121,21 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000012270774154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012361138234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 9ebd9acb4b24e464495f99a17463d984, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000012443258700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2544,7 +2577,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3009
+  startingRenderQueue: 3109
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -2931,6 +2964,21 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: OnTweenFinishedBtnRight
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000013894072188
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012014420118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 0550bca35e6da174bbcb9f53494eae52, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000013953837586
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2967,7 +3015,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3017
+  startingRenderQueue: 3132
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -3251,6 +3299,6 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 73
   m_Sprite: {fileID: 21300000, guid: f290462f2e2ccba4598f0bc491dd0663, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.8}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0

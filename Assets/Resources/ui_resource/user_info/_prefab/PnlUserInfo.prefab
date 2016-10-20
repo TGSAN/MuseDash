@@ -108,6 +108,7 @@ GameObject:
   - 114: {fileID: 114000013951729346}
   - 114: {fileID: 114000011678691334}
   - 114: {fileID: 114000012081551502}
+  - 114: {fileID: 114000011489735696}
   m_Layer: 0
   m_Name: BtnMask
   m_TagString: Untagged
@@ -178,6 +179,7 @@ GameObject:
   - 114: {fileID: 114000012832631384}
   - 114: {fileID: 114000010910703110}
   - 114: {fileID: 114000013727164710}
+  - 114: {fileID: 114000013836067076}
   m_Layer: 0
   m_Name: BtnChange
   m_TagString: Untagged
@@ -1018,6 +1020,21 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000011489735696
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011066386032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 0550bca35e6da174bbcb9f53494eae52, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000011542442904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2031,6 +2048,21 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000013836067076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012457261206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000013951729346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2278,7 +2310,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3009
+  startingRenderQueue: 3006
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
