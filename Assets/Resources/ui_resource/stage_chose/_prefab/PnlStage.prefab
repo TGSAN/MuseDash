@@ -317,6 +317,7 @@ GameObject:
   - 114: {fileID: 114000013908861322}
   - 114: {fileID: 114000012325646964}
   - 65: {fileID: 65000014085846986}
+  - 114: {fileID: 114000011822671842}
   m_Layer: 5
   m_Name: BtnSlideL
   m_TagString: Untagged
@@ -438,6 +439,7 @@ GameObject:
   - 114: {fileID: 114000011587014088}
   - 114: {fileID: 114000012725646772}
   - 114: {fileID: 114000010317226684}
+  - 114: {fileID: 114000011530567756}
   m_Layer: 5
   m_Name: BtnBack
   m_TagString: Untagged
@@ -1302,6 +1304,7 @@ GameObject:
   - 114: {fileID: 114000014288258310}
   - 114: {fileID: 114000011553016268}
   - 114: {fileID: 114000010973826690}
+  - 114: {fileID: 114000012546977874}
   m_Layer: 5
   m_Name: BtnSlideR
   m_TagString: Untagged
@@ -2697,7 +2700,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3015
+  startingRenderQueue: 3005
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -3205,7 +3208,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3010
+  startingRenderQueue: 3000
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -3620,7 +3623,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3046
+  startingRenderQueue: 3005
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -4110,6 +4113,21 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 65f66dd2f3cd949b28da34f9929d6faf, type: 2}
   mSpriteName: difficulty_1
   mFillCenter: 1
+--- !u!114 &114000011530567756
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011618583188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 0550bca35e6da174bbcb9f53494eae52, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000011553016268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4574,6 +4592,21 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 65f66dd2f3cd949b28da34f9929d6faf, type: 2}
   mSpriteName: energy_base
   mFillCenter: 1
+--- !u!114 &114000011822671842
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011295654032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 9ebd9acb4b24e464495f99a17463d984, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000011830454106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4657,13 +4690,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 7
-  mWidth: 1164
+  mWidth: 1166
   mHeight: 24
   mDepth: 131
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 48.5
+  aspectRatio: 48.583332
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -5140,7 +5173,7 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
@@ -5416,7 +5449,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3012
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -5426,6 +5459,21 @@ MonoBehaviour:
   mSortingOrder: 9
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
+--- !u!114 &114000012546977874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014194438616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 9ebd9acb4b24e464495f99a17463d984, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000012551691812
 MonoBehaviour:
   m_ObjectHideFlags: 1

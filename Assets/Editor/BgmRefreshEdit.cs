@@ -43,15 +43,20 @@ public class BgmRefreshEdit : EditorWindow {
 			return;
 		}
 
+		// Mac pc 平台的设置
 		AudioImporterSampleSettings aiss = new AudioImporterSampleSettings ();
 		aiss.compressionFormat = AudioCompressionFormat.ADPCM;
 		aiss.loadType = AudioClipLoadType.DecompressOnLoad;
 		aiss.sampleRateSetting = AudioSampleRateSetting.PreserveSampleRate;
 		sda.defaultSampleSettings = aiss;
-		if (sda.loadInBackground == this.isLoadInBackground) {
-			return;
-		}
 
+		// IOS 平台的设置
+		string platformIOS = "IOS";
+		AudioImporterSampleSettings aissIOS = new AudioImporterSampleSettings ();
+		aissIOS.compressionFormat = AudioCompressionFormat.PCM;
+		aissIOS.loadType = AudioClipLoadType.DecompressOnLoad;
+		aissIOS.sampleRateSetting = AudioSampleRateSetting.PreserveSampleRate;
+		sda.SetOverrideSampleSettings (platformIOS, aissIOS);
 
 		sda.loadInBackground = this.isLoadInBackground;
 		sda.SaveAndReimport ();

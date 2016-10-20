@@ -66,7 +66,7 @@ namespace FormulaBase
 
             this.Host.Result(FormulaKeys.FORMULA_9);
 
-            int energy = (int)this.Host.Result(FormulaKeys.FORMULA_330);
+            int energy = (int)this.Host.Result(FormulaKeys.FORMULA_45);
             this.Host.SetDynamicData(SignKeys.ENERGY, energy);
 
             int targetScore = (int)this.Host.Result(FormulaKeys.FORMULA_329);
@@ -193,9 +193,7 @@ namespace FormulaBase
             }
 
             int sid = this.GetId();
-            uint diff = this.GetDiffcult();
-            string songKey = "FileName_" + 1;
-            return ConfigPool.Instance.GetConfigStringValue("stage", sid.ToString(), songKey);
+            return ConfigPool.Instance.GetConfigStringValue("stage", sid.ToString(), "music");
         }
 
         public string GetSceneName()
@@ -571,6 +569,7 @@ namespace FormulaBase
 
         public void Dead()
         {
+            Debug.Log("Player dead.");
             int payBackPhysical = (int)(this.Host.Result(FormulaKeys.FORMULA_72) * 0.5);
             AccountPhysicsManagerComponent.Instance.ChangePhysical(payBackPhysical, false);
             EffectManager.Instance.StopCombo();
@@ -720,7 +719,7 @@ namespace FormulaBase
                     TimeNodeOrder _tno = new TimeNodeOrder();
                     _tno.idx = md.objId;
                     _tno.mustJump = md.nodeData.jump_note;
-                    _tno.enableJump = md.nodeData.enable_jump;
+                    _tno.enableJump = (md.nodeData.enable_jump == 1);
                     _tno.result = GameMusic.PERFECT;
 
                     decimal _r = _i * FixUpdateTimer.dInterval;
@@ -758,9 +757,8 @@ namespace FormulaBase
 
         private void LoadMusicData()
         {
-            uint diff = this.GetDiffcult();
             string name = this.GetStageName();
-            string cfgName = name + diff;
+            string cfgName = name + 1;
 
             this.musicTickData = MusicConfigReader.Instance.GetData(ref cfgName);
             if (this.musicTickData == null || this.musicTickData.Count <= 0)

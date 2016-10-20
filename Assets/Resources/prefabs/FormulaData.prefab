@@ -113,12 +113,15 @@ MonoBehaviour:
   - STATIC_CTR
   - GOLD_EXTRA
   - VIT_LIMIT
+  - CHARM_EXTRA
   - MAX_VIGOUR
   - MAX_STAMINA
   - MAX_STRENGH
   - MAX_LUCK
   - VIGOUR_FROM_EQUIP
   - STAMINA_FROM_EQUIP
+  - STRENGH_FROM_EQUIP
+  - LUCK_FROM_EQUIP
   ConfigNames:
   - character
   - stage
@@ -166,14 +169,14 @@ MonoBehaviour:
   - idx: 0
     typeIdx: 0
     name: "\u89D2\u8272\u8840\u91CF\u5C5E\u6027"
-    formula: "( \u57FA\u7840\u503C + ( \u7B49\u7EA7 - 1 ) * \u6210\u957F\u503C + 400
-      \ ) + 100"
+    formula: "( \u57FA\u7840\u503C + ( \u7B49\u7EA7 - 1 ) * \u6210\u957F\u503C + 300
+      \ )"
     fparams:
     - idx: 0
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 400
-      dataSourceName: character.vig
+      dataSourceName: char_info.vig
       collapsed: 1
       paramname: "\u57FA\u7840\u503C"
       condictions:
@@ -199,7 +202,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: character.vig_growth
+      dataSourceName: char_info.vig_growth
       collapsed: 1
       paramname: "\u6210\u957F\u503C"
       condictions:
@@ -231,7 +234,7 @@ MonoBehaviour:
       condictions: []
   - idx: 2
     typeIdx: 12
-    name: "\u89E3\u9501\u6B4C\u66F2\u6240\u9700\u7684\u676F\u6570"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -256,7 +259,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: character.unlock_count
+      dataSourceName: char_info.unlock_count
       collapsed: 1
       paramname: "\u914D\u7F6E\u5347\u7EA7\u91D1\u94B1"
       condictions:
@@ -274,7 +277,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: character.unlock_tpye
+      dataSourceName: char_info.unlock_tpye
       collapsed: 1
       paramname: "\u914D\u7F6E\u89E3\u9501\u7C7B\u578B"
       condictions:
@@ -292,7 +295,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: stage.Trophy_1
+      dataSourceName: stage_value.goal_1
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -310,7 +313,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: soundeffect.voice
+      dataSourceName: system_sfx.audio
       collapsed: 1
       paramname: MUSIC_NAME
       condictions:
@@ -323,7 +326,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: soundeffect.type
+      dataSourceName: system_sfx.type
       collapsed: 1
       paramname: TYPE
       condictions:
@@ -336,7 +339,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: soundeffect.speaker
+      dataSourceName: system_sfx.belong
       collapsed: 1
       paramname: WHO
       condictions:
@@ -461,7 +464,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: stage.JsonName
+      dataSourceName: stage.note_json
       collapsed: 1
       paramname: NAME
       condictions:
@@ -474,7 +477,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: stage.FileName
+      dataSourceName: stage.music
       collapsed: 1
       paramname: MUSIC_NAME
       condictions:
@@ -487,7 +490,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: stage.Author
+      dataSourceName: stage.author
       collapsed: 1
       paramname: AUTHOR
       condictions:
@@ -500,7 +503,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: stage.DisplayID
+      dataSourceName: stage.id
       collapsed: 1
       paramname: DISPLAY_ID
       condictions:
@@ -513,7 +516,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: stage.DisplayName
+      dataSourceName: stage.name
       collapsed: 1
       paramname: STAGE_NAME
       condictions:
@@ -539,7 +542,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: stage.Scene
+      dataSourceName: stage.scene
       collapsed: 1
       paramname: SCENE_NAME
       condictions:
@@ -552,7 +555,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: stage.icon
+      dataSourceName: stage.cover
       collapsed: 1
       paramname: MUSICICON
       condictions:
@@ -565,7 +568,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: stage.FullCombo
+      dataSourceName: stage.all_combo
       collapsed: 1
       paramname: FULL_COMBO
       condictions:
@@ -578,7 +581,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: stage.FullPerfect
+      dataSourceName: stage.all_perfect
       collapsed: 1
       paramname: FULL_PERFECT
       condictions:
@@ -591,7 +594,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: stage.FullStar
+      dataSourceName: stage.all_star
       collapsed: 1
       paramname: FULL_STAR
       condictions:
@@ -604,7 +607,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: stage.UnlockTrophy
+      dataSourceName: stage.unlock
       collapsed: 1
       paramname: UnlockTrophy
       condictions:
@@ -676,7 +679,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: stage.Trophy_2
+      dataSourceName: stage_value.goal_2
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -694,7 +697,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: character.level_max
+      dataSourceName: char_info.level_max_add
       collapsed: 1
       paramname: "\u7B49\u7EA7\u4E0A\u9650"
       condictions:
@@ -785,7 +788,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.Name
+      dataSourceName: items.name
       collapsed: 1
       paramname: NAME
       condictions:
@@ -798,7 +801,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.Icon
+      dataSourceName: items.icon
       collapsed: 1
       paramname: ICON
       condictions:
@@ -811,7 +814,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.Quality
+      dataSourceName: items.quality
       collapsed: 1
       paramname: QUALITY
       condictions:
@@ -824,7 +827,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.Type
+      dataSourceName: items.type
       collapsed: 1
       paramname: TYPE
       condictions:
@@ -837,7 +840,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.Desc
+      dataSourceName: items.description
       collapsed: 1
       paramname: DESCRIPTION
       condictions:
@@ -850,7 +853,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.StackNum
+      dataSourceName: items.stack_number
       collapsed: 1
       paramname: STACK_NUMBER
       condictions:
@@ -863,7 +866,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.EffectID
+      dataSourceName: items.effect_id
       collapsed: 1
       paramname: ITEMEFFECT1
       condictions:
@@ -876,7 +879,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.EffectDesc
+      dataSourceName: items.effect_description
       collapsed: 1
       paramname: EFFECT_DESC
       condictions:
@@ -930,7 +933,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.LevelMax
+      dataSourceName: items.level_max
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -1371,7 +1374,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.BaseExperience
+      dataSourceName: items.experience_base
       collapsed: 1
       paramname: "\u4E00\u7EA7\u88AB\u541E\u566C\u6240\u63D0\u4F9B\u7684\u7ECF\u9A8C"
       condictions:
@@ -1389,7 +1392,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.UpgradeCost
+      dataSourceName: items.upgrade_cost
       collapsed: 1
       paramname: "\u88AB\u541E\u566C\u6D88\u8017\u7684\u91D1\u5E01"
       condictions:
@@ -1425,7 +1428,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: stage.Trophy_3
+      dataSourceName: stage_value.goal_3
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -1478,17 +1481,17 @@ MonoBehaviour:
     fparams:
     - idx: 0
       dataSourceType: 2
-      dataSourceIndex: 189
+      dataSourceIndex: 154
       dataSourceValue: 0
-      dataSourceName: "\u89D2\u8272\u6700\u7EC8\u66B4\u51FB"
+      dataSourceName: del/123
       collapsed: 1
       paramname: "\u66B4\u51FB"
       condictions: []
     - idx: 1
       dataSourceType: 2
-      dataSourceIndex: 189
+      dataSourceIndex: 154
       dataSourceValue: 0
-      dataSourceName: "\u89D2\u8272\u6700\u7EC8\u66B4\u51FB"
+      dataSourceName: del/123
       collapsed: 1
       paramname: "\u66B4\u51FB"
       condictions: []
@@ -1552,14 +1555,14 @@ MonoBehaviour:
         plus: 0
   - idx: 45
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA61\u6240\u9700\u7684\u4F53\u529B"
+    name: "\u8FDB\u5165\u5173\u5361\u6D88\u8017\u7684\u4F53\u529B"
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: stage.EnergyCost_1
+      dataSourceName: stage_value.energy
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -1622,7 +1625,7 @@ MonoBehaviour:
         plus: 0
   - idx: 47
     typeIdx: 6
-    name: "\u80FD\u91CF\u74F6\u6062\u590D"
+    name: del/123
     formula: "( \u80FD\u91CF )"
     fparams:
     - idx: 0
@@ -1645,7 +1648,7 @@ MonoBehaviour:
         plus: 20
   - idx: 48
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA62\u6240\u9700\u7684\u4F53\u529B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -1717,7 +1720,7 @@ MonoBehaviour:
         plus: 1
   - idx: 52
     typeIdx: 4
-    name: "Perfect\u6210\u5C31\u8FBE\u5230S\uFF0C\u6240\u9700Perfect\u6570"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -1789,7 +1792,7 @@ MonoBehaviour:
         plus: 1
   - idx: 56
     typeIdx: 4
-    name: "Combo\u6210\u5C31\u8FBE\u5230S\uFF0C\u6240\u9700Combo\u6570"
+    name: del/123
     formula: "( \u8FDE\u51FB\u6210\u5C31S )"
     fparams:
     - idx: 0
@@ -1861,7 +1864,7 @@ MonoBehaviour:
         plus: 1
   - idx: 60
     typeIdx: 4
-    name: "\u661F\u661F\u6210\u5C31\u8FBE\u5230S\uFF0C\u6240\u9700\u7684\u661F\u661F\u51FB\u6253\u4E2A\u6570"
+    name: del/123
     formula: "( \u9690\u85CF\u6210\u5C31S )"
     fparams:
     - idx: 0
@@ -1933,7 +1936,7 @@ MonoBehaviour:
         plus: 1
   - idx: 64
     typeIdx: 4
-    name: "\u901A\u5173\u6210\u5C31\u8FBE\u5230S\uFF0C\u6240\u9700\u901A\u5173\u6B21\u6570"
+    name: del/123
     formula: "( \u901A\u5173\u6210\u5C31S )"
     fparams:
     - idx: 0
@@ -2095,7 +2098,7 @@ MonoBehaviour:
         plus: 1
   - idx: 73
     typeIdx: 6
-    name: "\u97F3\u7B26\u5206\u6570"
+    name: "\u7269\u54C1\u7684\u589E\u76CA\u6570\u503C\uFF08\u8840\u5305\u3001\u91D1\u5E01\u3001\u97F3\u7B26\uFF09"
     formula: "( \u9053\u5177\u6570\u636E )"
     fparams:
     - idx: 0
@@ -2113,7 +2116,7 @@ MonoBehaviour:
         plus: 1
   - idx: 74
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA63\u6240\u9700\u7684\u4F53\u529B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -2239,14 +2242,14 @@ MonoBehaviour:
         plus: 1
   - idx: 81
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u9B54\u80FDS"
+    name: "\u901A\u5173\u5956\u52B1\u7684\u9B54\u80FDS"
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
-      dataSourceType: 2
+      dataSourceType: 1
       dataSourceIndex: 45
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA61\u6240\u9700\u7684\u4F53\u529B"
+      dataSourceName: stage_value.charm
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -2293,7 +2296,7 @@ MonoBehaviour:
         plus: 1
   - idx: 84
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u9B54\u80FDS"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -2311,7 +2314,7 @@ MonoBehaviour:
         plus: 0
   - idx: 85
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA63\u5956\u52B1\u7684\u9B54\u80FDS"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -2329,7 +2332,7 @@ MonoBehaviour:
         plus: 0
   - idx: 86
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u91D1\u5E01S"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -2395,7 +2398,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.PriceCoin
+      dataSourceName: items.price_coin
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -2729,7 +2732,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.Name
+      dataSourceName: items.name
       collapsed: 1
       paramname: NAME
       condictions:
@@ -2742,7 +2745,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.Icon
+      dataSourceName: items.icon
       collapsed: 1
       paramname: ICON
       condictions:
@@ -2755,7 +2758,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.Quality
+      dataSourceName: items.quality
       collapsed: 1
       paramname: QUALITY
       condictions:
@@ -2768,7 +2771,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.Type
+      dataSourceName: items.type
       collapsed: 1
       paramname: TYPE
       condictions:
@@ -2781,7 +2784,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.Desc
+      dataSourceName: items.description
       collapsed: 1
       paramname: DESCRIPTION
       condictions:
@@ -2794,7 +2797,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.StackNum
+      dataSourceName: items.stack_number
       collapsed: 1
       paramname: STACK_NUMBER
       condictions:
@@ -2807,7 +2810,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.PriceCoin
+      dataSourceName: items.price_coin
       collapsed: 1
       paramname: SOLD
       condictions:
@@ -3016,7 +3019,7 @@ MonoBehaviour:
         plus: 1
   - idx: 105
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u91D1\u5E01S"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -3034,7 +3037,7 @@ MonoBehaviour:
         plus: 1
   - idx: 106
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA63\u5956\u52B1\u7684\u91D1\u5E01S"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -3322,7 +3325,7 @@ MonoBehaviour:
         plus: 1
   - idx: 122
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CS"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -4017,7 +4020,7 @@ MonoBehaviour:
         plus: 1
   - idx: 158
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CS"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -4519,14 +4522,14 @@ MonoBehaviour:
   - idx: 178
     typeIdx: 0
     name: "\u89D2\u8272\u4FE1\u606F"
-    formula: ( DESCRIPTION + NAME + LVL_LIMIT + STATIC_CTR + GOLD_EXTRA + VIT_LIMIT
-      )
+    formula: ( DESCRIPTION + NAME + LVL_LIMIT + STATIC_CTR + GOLD_EXTRA + CHARM_EXTRA
+      + VIT_LIMIT )
     fparams:
     - idx: 0
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: character.description
+      dataSourceName: char_info.description
       collapsed: 1
       paramname: DESCRIPTION
       condictions:
@@ -4539,7 +4542,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: character.name
+      dataSourceName: char_info.name
       collapsed: 1
       paramname: NAME
       condictions:
@@ -4552,7 +4555,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: character.level_max_add
+      dataSourceName: char_info.level_max_add
       collapsed: 1
       paramname: LVL_LIMIT
       condictions:
@@ -4565,7 +4568,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: character.luck
+      dataSourceName: char_info.luck
       collapsed: 1
       paramname: STATIC_CTR
       condictions:
@@ -4578,7 +4581,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: character.extra_coin
+      dataSourceName: char_info.extra_coin
       collapsed: 1
       paramname: GOLD_EXTRA
       condictions:
@@ -4591,7 +4594,20 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: character.extra_energy_max
+      dataSourceName: char_info.extra_charm
+      collapsed: 1
+      paramname: CHARM_EXTRA
+      condictions:
+      - condictionType: 1
+        condictionKeyIndex: 2
+        condictionKey: ID
+        condictionValue: 0
+        plus: 0
+    - idx: 6
+      dataSourceType: 1
+      dataSourceIndex: 0
+      dataSourceValue: 0
+      dataSourceName: char_info.extra_energy_max
       collapsed: 1
       paramname: VIT_LIMIT
       condictions:
@@ -4681,7 +4697,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 400
-      dataSourceName: character.sta
+      dataSourceName: char_info.sta
       collapsed: 1
       paramname: "\u57FA\u7840\u503C"
       condictions:
@@ -4707,7 +4723,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: character.sta_growth
+      dataSourceName: char_info.sta_growth
       collapsed: 1
       paramname: "\u6210\u957F\u503C"
       condictions:
@@ -4725,7 +4741,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 400
-      dataSourceName: character.str
+      dataSourceName: char_info.str
       collapsed: 1
       paramname: "\u57FA\u7840\u503C"
       condictions:
@@ -4751,7 +4767,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: character.str_growth
+      dataSourceName: char_info.str_growth
       collapsed: 1
       paramname: "\u6210\u957F\u503C"
       condictions:
@@ -4851,14 +4867,14 @@ MonoBehaviour:
       condictions: []
     - idx: 1
       dataSourceType: 4
-      dataSourceIndex: 26
+      dataSourceIndex: 258
       dataSourceValue: 0
-      dataSourceName: del/123
+      dataSourceName: "\u88C5\u5907\u5B9E\u9645\u8840\u91CF"
       collapsed: 1
       paramname: "\u88C5\u5907\u5C5E\u6027"
       condictions:
       - condictionType: 1
-        condictionKeyIndex: 75
+        condictionKeyIndex: 76
         condictionKey: VIGOUR_FROM_EQUIP
         condictionValue: 0
         plus: 1
@@ -4898,13 +4914,18 @@ MonoBehaviour:
       paramname: "\u89D2\u8272\u5C5E\u6027"
       condictions: []
     - idx: 1
-      dataSourceType: 2
+      dataSourceType: 4
       dataSourceIndex: 264
       dataSourceValue: 0
       dataSourceName: "\u88C5\u5907\u5B9E\u9645\u653B\u51FB"
-      collapsed: 0
+      collapsed: 1
       paramname: "\u88C5\u5907\u5C5E\u6027"
-      condictions: []
+      condictions:
+      - condictionType: 1
+        condictionKeyIndex: 78
+        condictionKey: STRENGH_FROM_EQUIP
+        condictionValue: 0
+        plus: 1
     - idx: 2
       dataSourceType: 2
       dataSourceIndex: 278
@@ -4941,18 +4962,23 @@ MonoBehaviour:
       paramname: "\u89D2\u8272\u5C5E\u6027"
       condictions: []
     - idx: 1
-      dataSourceType: 2
-      dataSourceIndex: 32
+      dataSourceType: 4
+      dataSourceIndex: 261
       dataSourceValue: 0
-      dataSourceName: "\u88C5\u5907\u6700\u7EC8\u9632\u5FA1"
+      dataSourceName: "\u88C5\u5907\u5B9E\u9645\u8010\u529B"
       collapsed: 1
       paramname: "\u88C5\u5907\u5C5E\u6027"
-      condictions: []
+      condictions:
+      - condictionType: 1
+        condictionKeyIndex: 77
+        condictionKey: STAMINA_FROM_EQUIP
+        condictionValue: 0
+        plus: 1
     - idx: 2
       dataSourceType: 2
-      dataSourceIndex: 173
+      dataSourceIndex: 275
       dataSourceValue: 0
-      dataSourceName: "\u5BA0\u7269\u7684\u6700\u7EC8\u9632\u5FA1"
+      dataSourceName: "\u4F7F\u9B54\u5B9E\u9645\u8010\u529B"
       collapsed: 1
       paramname: "\u50DA\u673A\u5C5E\u6027"
       condictions: []
@@ -5014,7 +5040,7 @@ MonoBehaviour:
         plus: 1
   - idx: 190
     typeIdx: 4
-    name: "Combo\u6210\u5C31\u8FBE\u5230C\u7684\u5956\u52B1\u7C7B\u578B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5032,7 +5058,7 @@ MonoBehaviour:
         plus: 1
   - idx: 191
     typeIdx: 4
-    name: "Combo\u6210\u5C31\u8FBE\u5230C\u7684\u5956\u52B1\u6570\u91CF"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5050,7 +5076,7 @@ MonoBehaviour:
         plus: 1
   - idx: 192
     typeIdx: 4
-    name: "Combo\u6210\u5C31\u8FBE\u5230B\u7684\u5956\u52B1\u7C7B\u578B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5068,7 +5094,7 @@ MonoBehaviour:
         plus: 1
   - idx: 193
     typeIdx: 4
-    name: "Combo\u6210\u5C31\u8FBE\u5230B\u7684\u5956\u52B1\u6570\u91CF"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5086,7 +5112,7 @@ MonoBehaviour:
         plus: 1
   - idx: 194
     typeIdx: 4
-    name: "Combo\u6210\u5C31\u8FBE\u5230A\u7684\u5956\u52B1\u7C7B\u578B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5104,7 +5130,7 @@ MonoBehaviour:
         plus: 1
   - idx: 195
     typeIdx: 4
-    name: "Combo\u6210\u5C31\u8FBE\u5230A\u7684\u5956\u52B1\u6570\u91CF"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5122,7 +5148,7 @@ MonoBehaviour:
         plus: 1
   - idx: 196
     typeIdx: 4
-    name: "Combo\u6210\u5C31\u8FBE\u5230S\u7684\u5956\u52B1\u7C7B\u578B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5140,7 +5166,7 @@ MonoBehaviour:
         plus: 1
   - idx: 197
     typeIdx: 4
-    name: "Combo\u6210\u5C31\u8FBE\u5230S\u7684\u5956\u52B1\u6570\u91CF"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5158,7 +5184,7 @@ MonoBehaviour:
         plus: 1
   - idx: 198
     typeIdx: 4
-    name: "Perfect\u6210\u5C31\u8FBE\u5230C\u7684\u5956\u52B1\u7C7B\u578B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5176,7 +5202,7 @@ MonoBehaviour:
         plus: 1
   - idx: 199
     typeIdx: 4
-    name: "Perfect\u6210\u5C31\u8FBE\u5230C\u7684\u5956\u52B1\u6570\u91CF"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5194,7 +5220,7 @@ MonoBehaviour:
         plus: 1
   - idx: 200
     typeIdx: 4
-    name: "Perfect\u6210\u5C31\u8FBE\u5230B\u7684\u5956\u52B1\u7C7B\u578B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5212,7 +5238,7 @@ MonoBehaviour:
         plus: 1
   - idx: 201
     typeIdx: 4
-    name: "Perfect\u6210\u5C31\u8FBE\u5230B\u7684\u5956\u52B1\u7C7B\u578B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5230,7 +5256,7 @@ MonoBehaviour:
         plus: 1
   - idx: 202
     typeIdx: 4
-    name: "Perfect\u6210\u5C31\u8FBE\u5230B\u7684\u5956\u52B1\u6570\u91CF"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5248,7 +5274,7 @@ MonoBehaviour:
         plus: 1
   - idx: 203
     typeIdx: 4
-    name: "Perfect\u6210\u5C31\u8FBE\u5230A\u7684\u5956\u52B1\u7C7B\u578B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5266,7 +5292,7 @@ MonoBehaviour:
         plus: 1
   - idx: 204
     typeIdx: 4
-    name: "Perfect\u6210\u5C31\u8FBE\u5230A\u7684\u5956\u52B1\u6570\u91CF"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5284,7 +5310,7 @@ MonoBehaviour:
         plus: 1
   - idx: 205
     typeIdx: 4
-    name: "Perfect\u6210\u5C31\u8FBE\u5230S\u7684\u5956\u52B1\u7C7B\u578B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5302,7 +5328,7 @@ MonoBehaviour:
         plus: 1
   - idx: 206
     typeIdx: 4
-    name: "Perfect\u6210\u5C31\u8FBE\u5230S\u7684\u5956\u52B1\u6570\u91CF"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5320,7 +5346,7 @@ MonoBehaviour:
         plus: 1
   - idx: 207
     typeIdx: 4
-    name: "Clear\u6210\u5C31\u8FBE\u5230C\u7684\u5956\u52B1\u7C7B\u578B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5338,7 +5364,7 @@ MonoBehaviour:
         plus: 1
   - idx: 208
     typeIdx: 4
-    name: "Clear\u6210\u5C31\u8FBE\u5230C\u7684\u5956\u52B1\u6570\u91CF"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5356,7 +5382,7 @@ MonoBehaviour:
         plus: 1
   - idx: 209
     typeIdx: 4
-    name: "Clear\u6210\u5C31\u8FBE\u5230B\u7684\u5956\u52B1\u7C7B\u578B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5374,7 +5400,7 @@ MonoBehaviour:
         plus: 1
   - idx: 210
     typeIdx: 4
-    name: "Clear\u6210\u5C31\u8FBE\u5230B\u7684\u5956\u52B1\u6570\u91CF"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5392,7 +5418,7 @@ MonoBehaviour:
         plus: 1
   - idx: 211
     typeIdx: 4
-    name: "Clear\u6210\u5C31\u8FBE\u5230A\u7684\u5956\u52B1\u7C7B\u578B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5410,7 +5436,7 @@ MonoBehaviour:
         plus: 1
   - idx: 212
     typeIdx: 4
-    name: "Clear\u6210\u5C31\u8FBE\u5230A\u7684\u5956\u52B1\u6570\u91CF"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5428,7 +5454,7 @@ MonoBehaviour:
         plus: 1
   - idx: 213
     typeIdx: 4
-    name: "Clear\u6210\u5C31\u8FBE\u5230S\u7684\u5956\u52B1\u7C7B\u578B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5446,7 +5472,7 @@ MonoBehaviour:
         plus: 1
   - idx: 214
     typeIdx: 4
-    name: "Clear\u6210\u5C31\u8FBE\u5230S\u7684\u5956\u52B1\u6570\u91CF"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -5688,14 +5714,14 @@ MonoBehaviour:
         plus: 1
   - idx: 226
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA63\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CS"
+    name: "\u901A\u5173\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CS"
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: stage.ExpS_3
+      dataSourceName: stage.exp
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -6154,7 +6180,7 @@ MonoBehaviour:
         plus: 1
   - idx: 243
     typeIdx: 4
-    name: "Star\u6210\u5C31\u8FBE\u5230C\u7684\u5956\u52B1\u7C7B\u578B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -6172,7 +6198,7 @@ MonoBehaviour:
         plus: 1
   - idx: 244
     typeIdx: 4
-    name: "Star\u6210\u5C31\u8FBE\u5230C\u7684\u5956\u52B1\u6570\u91CF"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -6190,7 +6216,7 @@ MonoBehaviour:
         plus: 1
   - idx: 245
     typeIdx: 4
-    name: "Star\u6210\u5C31\u8FBE\u5230B\u7684\u5956\u52B1\u7C7B\u578B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -6208,7 +6234,7 @@ MonoBehaviour:
         plus: 1
   - idx: 246
     typeIdx: 4
-    name: "Star\u6210\u5C31\u8FBE\u5230B\u7684\u5956\u52B1\u6570\u91CF"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -6226,7 +6252,7 @@ MonoBehaviour:
         plus: 1
   - idx: 247
     typeIdx: 4
-    name: "Star\u6210\u5C31\u8FBE\u5230A\u7684\u5956\u52B1\u7C7B\u578B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -6244,7 +6270,7 @@ MonoBehaviour:
         plus: 1
   - idx: 248
     typeIdx: 4
-    name: "Star\u6210\u5C31\u8FBE\u5230A\u7684\u5956\u52B1\u6570\u91CF"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -6262,7 +6288,7 @@ MonoBehaviour:
         plus: 1
   - idx: 249
     typeIdx: 4
-    name: "Star\u6210\u5C31\u8FBE\u5230S\u7684\u5956\u52B1\u7C7B\u578B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -6280,7 +6306,7 @@ MonoBehaviour:
         plus: 1
   - idx: 250
     typeIdx: 4
-    name: "Star\u6210\u5C31\u8FBE\u5230S\u7684\u5956\u52B1\u6570\u91CF"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -6305,7 +6331,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: character.extra_coin
+      dataSourceName: char_info.extra_coin
       collapsed: 1
       paramname: "\u7B49\u7EA7\u4E0A\u9650"
       condictions:
@@ -6323,7 +6349,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: character.extra_charm
+      dataSourceName: char_info.extra_charm
       collapsed: 1
       paramname: "\u7B49\u7EA7\u4E0A\u9650"
       condictions:
@@ -6341,7 +6367,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: character.extra_energy_max
+      dataSourceName: char_info.extra_energy_max
       collapsed: 1
       paramname: "\u7B49\u7EA7\u4E0A\u9650"
       condictions:
@@ -6359,7 +6385,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: character.luck
+      dataSourceName: char_info.luck
       collapsed: 1
       paramname: "\u7B49\u7EA7\u4E0A\u9650"
       condictions:
@@ -6377,7 +6403,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.VIG
+      dataSourceName: items.vig
       collapsed: 1
       paramname: "\u88C5\u5907\u90E8\u4F4D"
       condictions:
@@ -6413,7 +6439,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.VIGGrowth
+      dataSourceName: items.vig_growth
       collapsed: 1
       paramname: "\u88C5\u5907\u90E8\u4F4D"
       condictions:
@@ -6466,7 +6492,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.STA
+      dataSourceName: items.sta
       collapsed: 1
       paramname: "\u88C5\u5907\u90E8\u4F4D"
       condictions:
@@ -6484,7 +6510,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.STAGrowth
+      dataSourceName: items.sta_growth
       collapsed: 1
       paramname: "\u88C5\u5907\u90E8\u4F4D"
       condictions:
@@ -6537,7 +6563,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.STR
+      dataSourceName: items.str
       collapsed: 1
       paramname: "\u88C5\u5907\u90E8\u4F4D"
       condictions:
@@ -6555,7 +6581,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.STRGrowth
+      dataSourceName: items.str
       collapsed: 1
       paramname: "\u88C5\u5907\u90E8\u4F4D"
       condictions:
@@ -7073,7 +7099,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: cube.name
+      dataSourceName: items.name
       collapsed: 1
       paramname: NAME
       condictions:
@@ -7086,7 +7112,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: cube.Icon
+      dataSourceName: items.Icon
       collapsed: 1
       paramname: ICON
       condictions:
@@ -7099,7 +7125,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: cube.cube_id
+      dataSourceName: items.type
       collapsed: 1
       paramname: TYPE
       condictions:
@@ -7112,7 +7138,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: cube.description
+      dataSourceName: items.description
       collapsed: 1
       paramname: DESCRIPTION
       condictions:
@@ -7130,7 +7156,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.PriceCoin
+      dataSourceName: items.price_coin
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7148,7 +7174,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.PriceCrystal
+      dataSourceName: items.price_crystal
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7166,7 +7192,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.PriceCharm
+      dataSourceName: items.price charm
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7184,7 +7210,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: items.PriceEnergy
+      dataSourceName: items.price_energy
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7252,14 +7278,14 @@ MonoBehaviour:
         plus: 1
   - idx: 286
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u9B54\u80FDA"
+    name: "\u901A\u5173\u5956\u52B1\u7684\u9B54\u80FDA"
     formula: "( \u914D\u7F6E\u9879 * 0.8 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 81
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u9B54\u80FDS"
+      dataSourceName: "\u901A\u5173\u5956\u52B1\u7684\u9B54\u80FDS"
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7270,14 +7296,14 @@ MonoBehaviour:
         plus: 1
   - idx: 287
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u9B54\u80FDB"
+    name: "\u901A\u5173\u5956\u52B1\u7684\u9B54\u80FDB"
     formula: "( \u914D\u7F6E\u9879 * 0.6 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 81
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u9B54\u80FDS"
+      dataSourceName: "\u901A\u5173\u5956\u52B1\u7684\u9B54\u80FDS"
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7288,14 +7314,14 @@ MonoBehaviour:
         plus: 1
   - idx: 288
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u9B54\u80FDC"
+    name: "\u901A\u5173\u5956\u52B1\u7684\u9B54\u80FDC"
     formula: "( \u914D\u7F6E\u9879 * 0.4 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 81
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u9B54\u80FDS"
+      dataSourceName: "\u901A\u5173\u5956\u52B1\u7684\u9B54\u80FDS"
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7306,53 +7332,53 @@ MonoBehaviour:
         plus: 1
   - idx: 289
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u9B54\u80FDA"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.8 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 84
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u9B54\u80FDS"
+      dataSourceName: del/123
       collapsed: 0
       paramname: "\u914D\u7F6E\u9879"
       condictions: []
   - idx: 290
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u9B54\u80FDB"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.6 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 84
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u9B54\u80FDS"
+      dataSourceName: del/123
       collapsed: 0
       paramname: "\u914D\u7F6E\u9879"
       condictions: []
   - idx: 291
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u9B54\u80FDC"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.4 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 84
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u9B54\u80FDS"
+      dataSourceName: del/123
       collapsed: 0
       paramname: "\u914D\u7F6E\u9879"
       condictions: []
   - idx: 292
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA63\u5956\u52B1\u7684\u9B54\u80FDA"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.8 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 85
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA63\u5956\u52B1\u7684\u9B54\u80FDS"
+      dataSourceName: del/123
       collapsed: 1
       paramname: "\u914D\u7F6E"
       condictions:
@@ -7363,14 +7389,14 @@ MonoBehaviour:
         plus: 0
   - idx: 293
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA63\u5956\u52B1\u7684\u9B54\u80FDB"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.6 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 85
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA63\u5956\u52B1\u7684\u9B54\u80FDS"
+      dataSourceName: del/123
       collapsed: 1
       paramname: "\u914D\u7F6E"
       condictions:
@@ -7381,14 +7407,14 @@ MonoBehaviour:
         plus: 0
   - idx: 294
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA63\u5956\u52B1\u7684\u9B54\u80FDC"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.4 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 85
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA63\u5956\u52B1\u7684\u9B54\u80FDS"
+      dataSourceName: del/123
       collapsed: 1
       paramname: "\u914D\u7F6E"
       condictions:
@@ -7399,14 +7425,14 @@ MonoBehaviour:
         plus: 0
   - idx: 295
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u91D1\u5E01A"
+    name: "\u901A\u5173\u5956\u52B1\u7684\u91D1\u5E01A"
     formula: "( \u914D\u7F6E\u9879 * 0.8 )"
     fparams:
     - idx: 0
       dataSourceType: 2
-      dataSourceIndex: 86
+      dataSourceIndex: 357
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u91D1\u5E01S"
+      dataSourceName: "\u901A\u5173\u5956\u52B1\u7684\u91D1\u5E01S"
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7417,14 +7443,14 @@ MonoBehaviour:
         plus: 1
   - idx: 296
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u91D1\u5E01B"
+    name: "\u901A\u5173\u5956\u52B1\u7684\u91D1\u5E01B"
     formula: "( \u914D\u7F6E\u9879 * 0.6 )"
     fparams:
     - idx: 0
       dataSourceType: 2
-      dataSourceIndex: 86
+      dataSourceIndex: 357
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u91D1\u5E01S"
+      dataSourceName: "\u901A\u5173\u5956\u52B1\u7684\u91D1\u5E01S"
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7435,14 +7461,14 @@ MonoBehaviour:
         plus: 1
   - idx: 297
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u91D1\u5E01C"
+    name: "\u901A\u5173\u5956\u52B1\u7684\u91D1\u5E01C"
     formula: "( \u914D\u7F6E\u9879 * 0.4 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 86
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u91D1\u5E01S"
+      dataSourceName: del/123
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7453,14 +7479,14 @@ MonoBehaviour:
         plus: 1
   - idx: 298
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u91D1\u5E01A"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.8 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 105
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u91D1\u5E01S"
+      dataSourceName: del/123
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7471,14 +7497,14 @@ MonoBehaviour:
         plus: 1
   - idx: 299
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u91D1\u5E01B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.6 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 105
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u91D1\u5E01S"
+      dataSourceName: del/123
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7489,14 +7515,14 @@ MonoBehaviour:
         plus: 1
   - idx: 300
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u91D1\u5E01C"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.4 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 105
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u91D1\u5E01S"
+      dataSourceName: del/123
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7507,14 +7533,14 @@ MonoBehaviour:
         plus: 1
   - idx: 301
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA63\u5956\u52B1\u7684\u91D1\u5E01A"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.8 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 106
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA63\u5956\u52B1\u7684\u91D1\u5E01S"
+      dataSourceName: del/123
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7525,14 +7551,14 @@ MonoBehaviour:
         plus: 1
   - idx: 302
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA63\u5956\u52B1\u7684\u91D1\u5E01B"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.6 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 106
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA63\u5956\u52B1\u7684\u91D1\u5E01S"
+      dataSourceName: del/123
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7543,14 +7569,14 @@ MonoBehaviour:
         plus: 1
   - idx: 303
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA63\u5956\u52B1\u7684\u91D1\u5E01C"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.4 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 106
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA63\u5956\u52B1\u7684\u91D1\u5E01S"
+      dataSourceName: del/123
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7561,14 +7587,14 @@ MonoBehaviour:
         plus: 1
   - idx: 304
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CA"
+    name: "\u901A\u5173\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CA"
     formula: "( \u914D\u7F6E\u9879 * 0.8 )"
     fparams:
     - idx: 0
       dataSourceType: 2
-      dataSourceIndex: 122
+      dataSourceIndex: 226
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CS"
+      dataSourceName: "\u901A\u5173\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CS"
       collapsed: 1
       paramname: "\u654C\u914D\u7F6E\u653B\u51FB\u529B"
       condictions:
@@ -7579,14 +7605,14 @@ MonoBehaviour:
         plus: 1
   - idx: 305
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CB"
+    name: "\u901A\u5173\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CB"
     formula: "( \u914D\u7F6E\u9879 * 0.6 )"
     fparams:
     - idx: 0
       dataSourceType: 2
-      dataSourceIndex: 122
+      dataSourceIndex: 226
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CS"
+      dataSourceName: "\u901A\u5173\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CS"
       collapsed: 1
       paramname: "\u654C\u914D\u7F6E\u653B\u51FB\u529B"
       condictions:
@@ -7597,14 +7623,14 @@ MonoBehaviour:
         plus: 1
   - idx: 306
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CC"
+    name: "\u901A\u5173\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CC"
     formula: "( \u914D\u7F6E\u9879 * 0.5 )"
     fparams:
     - idx: 0
       dataSourceType: 2
-      dataSourceIndex: 122
+      dataSourceIndex: 226
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA61\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CS"
+      dataSourceName: "\u901A\u5173\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CS"
       collapsed: 1
       paramname: "\u654C\u914D\u7F6E\u653B\u51FB\u529B"
       condictions:
@@ -7615,14 +7641,14 @@ MonoBehaviour:
         plus: 1
   - idx: 307
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CS"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.8 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 158
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CS"
+      dataSourceName: del/123
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7633,14 +7659,14 @@ MonoBehaviour:
         plus: 1
   - idx: 308
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CA"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.8 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 158
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CS"
+      dataSourceName: del/123
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7651,14 +7677,14 @@ MonoBehaviour:
         plus: 1
   - idx: 309
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CB"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.6 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 158
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CS"
+      dataSourceName: del/123
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7669,14 +7695,14 @@ MonoBehaviour:
         plus: 1
   - idx: 310
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CC"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.4 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 158
       dataSourceValue: 0
-      dataSourceName: "\u6B4C\u66F2\u96BE\u5EA62\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CS"
+      dataSourceName: del/123
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -7687,7 +7713,7 @@ MonoBehaviour:
         plus: 1
   - idx: 311
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA63\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CA"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.8 )"
     fparams:
     - idx: 0
@@ -7705,7 +7731,7 @@ MonoBehaviour:
         plus: 1
   - idx: 312
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA63\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CB"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.6 )"
     fparams:
     - idx: 0
@@ -7723,7 +7749,7 @@ MonoBehaviour:
         plus: 1
   - idx: 313
     typeIdx: 12
-    name: "\u6B4C\u66F2\u96BE\u5EA63\u5956\u52B1\u7684\u8D26\u53F7\u7ECF\u9A8CC"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 * 0.4 )"
     fparams:
     - idx: 0
@@ -7741,7 +7767,7 @@ MonoBehaviour:
         plus: 1
   - idx: 314
     typeIdx: 4
-    name: "Perfect\u6210\u5C31\u8FBE\u5230A\uFF0C\u6240\u9700Perfect\u6570"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -7759,7 +7785,7 @@ MonoBehaviour:
         plus: 1
   - idx: 315
     typeIdx: 4
-    name: "Perfect\u6210\u5C31\u8FBE\u5230B\uFF0C\u6240\u9700Perfect\u6570"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -7777,7 +7803,7 @@ MonoBehaviour:
         plus: 1
   - idx: 316
     typeIdx: 4
-    name: "Perfect\u6210\u5C31\u8FBE\u5230C\uFF0C\u6240\u9700Perfect\u6570"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -7795,7 +7821,7 @@ MonoBehaviour:
         plus: 1
   - idx: 317
     typeIdx: 4
-    name: "\u5168Perfect"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -7813,7 +7839,7 @@ MonoBehaviour:
         plus: 1
   - idx: 318
     typeIdx: 4
-    name: "\u5168Combo"
+    name: del/123
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
@@ -7831,7 +7857,7 @@ MonoBehaviour:
         plus: 1
   - idx: 319
     typeIdx: 4
-    name: "Combo\u6210\u5C31\u8FBE\u5230A\uFF0C\u6240\u9700Combo\u6570"
+    name: del/123
     formula: "( \u8FDE\u51FB\u6210\u5C31S )"
     fparams:
     - idx: 0
@@ -7849,7 +7875,7 @@ MonoBehaviour:
         plus: 1
   - idx: 320
     typeIdx: 4
-    name: "Combo\u6210\u5C31\u8FBE\u5230B\uFF0C\u6240\u9700Combo\u6570"
+    name: del/123
     formula: "( \u8FDE\u51FB\u6210\u5C31S )"
     fparams:
     - idx: 0
@@ -7867,7 +7893,7 @@ MonoBehaviour:
         plus: 1
   - idx: 321
     typeIdx: 4
-    name: "Combo\u6210\u5C31\u8FBE\u5230C\uFF0C\u6240\u9700Combo\u6570"
+    name: del/123
     formula: "( \u8FDE\u51FB\u6210\u5C31S )"
     fparams:
     - idx: 0
@@ -7885,7 +7911,7 @@ MonoBehaviour:
         plus: 1
   - idx: 322
     typeIdx: 4
-    name: "\u661F\u661F\u6210\u5C31\u8FBE\u5230A\uFF0C\u6240\u9700\u7684\u661F\u661F\u51FB\u6253\u4E2A\u6570"
+    name: del/123
     formula: "( \u9690\u85CF\u6210\u5C31S )"
     fparams:
     - idx: 0
@@ -7903,7 +7929,7 @@ MonoBehaviour:
         plus: 1
   - idx: 323
     typeIdx: 4
-    name: "\u661F\u661F\u6210\u5C31\u8FBE\u5230B\uFF0C\u6240\u9700\u7684\u661F\u661F\u51FB\u6253\u4E2A\u6570"
+    name: del/123
     formula: "( \u9690\u85CF\u6210\u5C31S )"
     fparams:
     - idx: 0
@@ -7921,7 +7947,7 @@ MonoBehaviour:
         plus: 1
   - idx: 324
     typeIdx: 4
-    name: "\u661F\u661F\u6210\u5C31\u8FBE\u5230C\uFF0C\u6240\u9700\u7684\u661F\u661F\u51FB\u6253\u4E2A\u6570"
+    name: del/123
     formula: "( \u9690\u85CF\u6210\u5C31S )"
     fparams:
     - idx: 0
@@ -7939,7 +7965,7 @@ MonoBehaviour:
         plus: 1
   - idx: 325
     typeIdx: 4
-    name: "\u901A\u5173\u6210\u5C31\u8FBE\u5230A\uFF0C\u6240\u9700\u901A\u5173\u6B21\u6570"
+    name: del/123
     formula: "( \u901A\u5173\u6210\u5C31S )"
     fparams:
     - idx: 0
@@ -7957,7 +7983,7 @@ MonoBehaviour:
         plus: 1
   - idx: 326
     typeIdx: 4
-    name: "\u901A\u5173\u6210\u5C31\u8FBE\u5230B\uFF0C\u6240\u9700\u901A\u5173\u6B21\u6570"
+    name: del/123
     formula: "( \u901A\u5173\u6210\u5C31S )"
     fparams:
     - idx: 0
@@ -7975,7 +8001,7 @@ MonoBehaviour:
         plus: 1
   - idx: 327
     typeIdx: 4
-    name: "\u901A\u5173\u6210\u5173\u6B21\u6570"
+    name: del/123
     formula: "( \u901A\u5173\u6210\u5C31S )"
     fparams:
     - idx: 0
@@ -8503,6 +8529,42 @@ MonoBehaviour:
         condictionKey: ID
         condictionValue: 0
         plus: 1
+  - idx: 356
+    typeIdx: 12
+    name: "\u901A\u5173\u5956\u52B1\u7684\u9B54\u80FDC"
+    formula: "( \u914D\u7F6E\u9879 * 0.4 )"
+    fparams:
+    - idx: 0
+      dataSourceType: 2
+      dataSourceIndex: 81
+      dataSourceValue: 0
+      dataSourceName: "\u901A\u5173\u5956\u52B1\u7684\u9B54\u80FDS"
+      collapsed: 1
+      paramname: "\u914D\u7F6E\u9879"
+      condictions:
+      - condictionType: 1
+        condictionKeyIndex: 2
+        condictionKey: ID
+        condictionValue: 0
+        plus: 1
+  - idx: 357
+    typeIdx: 12
+    name: "\u901A\u5173\u5956\u52B1\u7684\u91D1\u5E01S"
+    formula: "( \u914D\u7F6E\u9879 )"
+    fparams:
+    - idx: 0
+      dataSourceType: 1
+      dataSourceIndex: 86
+      dataSourceValue: 0
+      dataSourceName: stage_value.coin
+      collapsed: 1
+      paramname: "\u914D\u7F6E\u9879"
+      condictions:
+      - condictionType: 1
+        condictionKeyIndex: 2
+        condictionKey: ID
+        condictionValue: 0
+        plus: 1
   Hosts:
   - name: "\u89D2\u8272"
     fileName: Role
@@ -8510,7 +8572,7 @@ MonoBehaviour:
     collapsedSign: 1
     collapsedComponent: 1
     formulaSet: b200000004000000030000000e0000000f00000000000000b7000000b8000000ba000000bb000000bc000000fb000000fc000000fd000000fe000000
-    singSet: 00000000020000000f000000170000001a00000010000000200000003900000042000000430000004400000045000000460000004700000048000000490000004a0000004b000000
+    singSet: 00000000020000000f000000170000001a000000100000002000000039000000420000004300000044000000450000004600000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000
     signValueSet:
     - 1
     - 1
@@ -8519,6 +8581,9 @@ MonoBehaviour:
     - 0
     - 0
     - 1
+    - 0
+    - 0
+    - 0
     - 0
     - 0
     - 0
@@ -8584,7 +8649,7 @@ MonoBehaviour:
     collapsedFormula: 1
     collapsedSign: 1
     collapsedComponent: 0
-    formulaSet: 090000000200000008000000ed000000490100004a0100004b0100004d0100004e0100004f0100004c0100005001000051010000520100005301000055010000560100005701000058010000590100005a0100005b0100005c0100005d0100005e0100005f01000060010000610100006201000063010000
+    formulaSet: 0900000008000000ed000000490100004a0100004b0100004d0100004e0100004f0100004c0100005001000051010000520100005301000055010000560100005701000058010000590100005a0100005b0100005c0100005d0100005e0100005f01000060010000610100006201000063010000
     singSet: 020000000700000008000000090000000a0000000b0000000c000000000000000e0000003c000000
     signValueSet:
     - 1
@@ -8605,7 +8670,7 @@ MonoBehaviour:
     collapsedFormula: 1
     collapsedSign: 1
     collapsedComponent: 1
-    formulaSet: 0a0000000b0000000c000000ee000000
+    formulaSet: 0a0000000c000000ee000000
     singSet: 0200000006000000050000000d000000000000000e000000
     signValueSet:
     - 0
@@ -8622,7 +8687,7 @@ MonoBehaviour:
     collapsedSign: 1
     collapsedComponent: 1
     formulaSet: 13000000160000002400000025000000590000009b000000ff0000000101000002010000030100000401000005010000060100000701000008010000
-    singSet: 0200000000000000110000001e000000210000002a000000200000002b0000001a0000000f00000010000000
+    singSet: 0200000000000000110000001e000000210000002a000000200000002b0000001a0000000f000000
     signValueSet:
     - 81010
     - 1
@@ -8632,7 +8697,6 @@ MonoBehaviour:
     - 0
     - 0
     - 1
-    - 0
     - 0
     - 0
     componentNames:
@@ -8657,7 +8721,7 @@ MonoBehaviour:
     collapsedFormula: 1
     collapsedSign: 1
     collapsedComponent: 1
-    formulaSet: 490000002f000000
+    formulaSet: 49000000
     singSet: 02000000
     signValueSet:
     - 94

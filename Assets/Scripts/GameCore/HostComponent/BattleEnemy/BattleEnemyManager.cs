@@ -312,7 +312,7 @@ namespace FormulaBase {
 			this.SetCurrentPlayIndex (-1);
 			for (int i = 0; i < musicData.Count; i++) {
 				MusicData md = (MusicData)musicData [i];
-				if (md.configData.Timming < _tick) {
+				if (md.configData.time < _tick) {
 					this.SetCurrentPlayIndex (i);
 					continue;
 				}
@@ -364,6 +364,10 @@ namespace FormulaBase {
 		public void CreateBattleEnemy(int idx) {
 			FormulaHost _enemy = FomulaHostManager.Instance.CreateHost (HOST_IDX);
 			this.enemy [idx] = _enemy;
+
+			// 怪物配置等级
+			MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx (idx);
+			int level = md.configData.level;
 
 			string nodeId = BattleEnemyManager.Instance.GetNodeUidByIdx (idx);
 			int cfgIdx = NodeConfigReader.GetNodeIdxByNodeid (nodeId);

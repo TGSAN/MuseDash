@@ -56,7 +56,7 @@ namespace PnlCharInfo
 
         private void InitUI()
         {
-            InitPnlItemsChoose();
+            DOTweenUtil.Delay(InitPnlItemsChoose, Time.deltaTime);
         }
 
         private void InitPnlItemsChoose()

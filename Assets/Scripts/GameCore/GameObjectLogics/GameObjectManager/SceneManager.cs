@@ -190,6 +190,16 @@ namespace GameLogic {
 			_po.name = _po.name + md.objId.ToString ();
 			_po.SetActive (false);
 			this.preLoads [idx] = _po;
+
+			if (md.nodeData.type == GameGlobal.NODE_TYPE_BOSS) {
+				Boss.Instance.SetBoss (_path, _po);
+			}
+
+			//if (md.nodeData.type == GameGlobal.NODE_TYPE_PRESS) {
+			//	_po.SetActive (true);
+			//	SpineActionController.Play (ACTION_KEYS.COMEIN, _po);
+			//}
+
 			return _po;
 		}
 
@@ -220,10 +230,11 @@ namespace GameLogic {
 			}
 
 			obj.SetActive (true);
+			obj.name = obj.name.Replace ("(Clone)", "");
 			this.sceneObject = obj;
 
 			// add action event module
-			int eventId = int.Parse (ConfigPool.Instance.GetConfigValue ("stage", idx.ToString (), "eventId").ToString ());
+			int eventId = int.Parse (ConfigPool.Instance.GetConfigValue ("stage", idx.ToString (), "event_id").ToString ());
 			this.sceneObjController = this.sceneObject.AddComponent<SceneObjectController> ();
 			this.sceneObjController.Init (eventId);
 		}

@@ -11,7 +11,7 @@ namespace FormulaBase {
 		///
 		public const int FORMULA_1 = 1;
 		///
-		/// 解锁歌曲所需的杯数
+		/// del/123
 		///
 		public const int FORMULA_2 = 2;
 		///
@@ -183,7 +183,7 @@ namespace FormulaBase {
 		///
 		public const int FORMULA_44 = 44;
 		///
-		/// 歌曲难度1所需的体力
+		/// 进入关卡消耗的体力
 		///
 		public const int FORMULA_45 = 45;
 		///
@@ -191,11 +191,11 @@ namespace FormulaBase {
 		///
 		public const int FORMULA_46 = 46;
 		///
-		/// 能量瓶恢复
+		/// del/123
 		///
 		public const int FORMULA_47 = 47;
 		///
-		/// 歌曲难度2所需的体力
+		/// del/123
 		///
 		public const int FORMULA_48 = 48;
 		///
@@ -211,7 +211,7 @@ namespace FormulaBase {
 		///
 		public const int FORMULA_51 = 51;
 		///
-		/// Perfect成就达到S，所需Perfect数
+		/// del/123
 		///
 		public const int FORMULA_52 = 52;
 		///
@@ -227,7 +227,7 @@ namespace FormulaBase {
 		///
 		public const int FORMULA_55 = 55;
 		///
-		/// Combo成就达到S，所需Combo数
+		/// del/123
 		///
 		public const int FORMULA_56 = 56;
 		///
@@ -243,7 +243,7 @@ namespace FormulaBase {
 		///
 		public const int FORMULA_59 = 59;
 		///
-		/// 星星成就达到S，所需的星星击打个数
+		/// del/123
 		///
 		public const int FORMULA_60 = 60;
 		///
@@ -259,7 +259,7 @@ namespace FormulaBase {
 		///
 		public const int FORMULA_63 = 63;
 		///
-		/// 通关成就达到S，所需通关次数
+		/// del/123
 		///
 		public const int FORMULA_64 = 64;
 		///
@@ -295,11 +295,11 @@ namespace FormulaBase {
 		///
 		public const int FORMULA_72 = 72;
 		///
-		/// 音符分数
+		/// 物品的增益数值（血包、金币、音符）
 		///
 		public const int FORMULA_73 = 73;
 		///
-		/// 歌曲难度3所需的体力
+		/// del/123
 		///
 		public const int FORMULA_74 = 74;
 		///
@@ -327,7 +327,7 @@ namespace FormulaBase {
 		///
 		public const int FORMULA_80 = 80;
 		///
-		/// 歌曲难度1奖励的魔能S
+		/// 通关奖励的魔能S
 		///
 		public const int FORMULA_81 = 81;
 		///
@@ -339,15 +339,15 @@ namespace FormulaBase {
 		///
 		public const int FORMULA_83 = 83;
 		///
-		/// 歌曲难度2奖励的魔能S
+		/// del/123
 		///
 		public const int FORMULA_84 = 84;
 		///
-		/// 歌曲难度3奖励的魔能S
+		/// del/123
 		///
 		public const int FORMULA_85 = 85;
 		///
-		/// 歌曲难度1奖励的金币S
+		/// del/123
 		///
 		public const int FORMULA_86 = 86;
 		///
@@ -423,11 +423,11 @@ namespace FormulaBase {
 		///
 		public const int FORMULA_104 = 104;
 		///
-		/// 歌曲难度2奖励的金币S
+		/// del/123
 		///
 		public const int FORMULA_105 = 105;
 		///
-		/// 歌曲难度3奖励的金币S
+		/// del/123
 		///
 		public const int FORMULA_106 = 106;
 		///
@@ -491,7 +491,7 @@ namespace FormulaBase {
 		///
 		public const int FORMULA_121 = 121;
 		///
-		/// 歌曲难度1奖励的账号经验S
+		/// del/123
 		///
 		public const int FORMULA_122 = 122;
 		///
@@ -635,7 +635,7 @@ namespace FormulaBase {
 		///
 		public const int FORMULA_157 = 157;
 		///
-		/// 歌曲难度2奖励的账号经验S
+		/// del/123
 		///
 		public const int FORMULA_158 = 158;
 		///
@@ -763,103 +763,103 @@ namespace FormulaBase {
 		///
 		public const int FORMULA_189 = 189;
 		///
-		/// Combo成就达到C的奖励类型
+		/// del/123
 		///
 		public const int FORMULA_190 = 190;
 		///
-		/// Combo成就达到C的奖励数量
+		/// del/123
 		///
 		public const int FORMULA_191 = 191;
 		///
-		/// Combo成就达到B的奖励类型
+		/// del/123
 		///
 		public const int FORMULA_192 = 192;
 		///
-		/// Combo成就达到B的奖励数量
+		/// del/123
 		///
 		public const int FORMULA_193 = 193;
 		///
-		/// Combo成就达到A的奖励类型
+		/// del/123
 		///
 		public const int FORMULA_194 = 194;
 		///
-		/// Combo成就达到A的奖励数量
+		/// del/123
 		///
 		public const int FORMULA_195 = 195;
 		///
-		/// Combo成就达到S的奖励类型
+		/// del/123
 		///
 		public const int FORMULA_196 = 196;
 		///
-		/// Combo成就达到S的奖励数量
+		/// del/123
 		///
 		public const int FORMULA_197 = 197;
 		///
-		/// Perfect成就达到C的奖励类型
+		/// del/123
 		///
 		public const int FORMULA_198 = 198;
 		///
-		/// Perfect成就达到C的奖励数量
+		/// del/123
 		///
 		public const int FORMULA_199 = 199;
 		///
-		/// Perfect成就达到B的奖励类型
+		/// del/123
 		///
 		public const int FORMULA_200 = 200;
 		///
-		/// Perfect成就达到B的奖励类型
+		/// del/123
 		///
 		public const int FORMULA_201 = 201;
 		///
-		/// Perfect成就达到B的奖励数量
+		/// del/123
 		///
 		public const int FORMULA_202 = 202;
 		///
-		/// Perfect成就达到A的奖励类型
+		/// del/123
 		///
 		public const int FORMULA_203 = 203;
 		///
-		/// Perfect成就达到A的奖励数量
+		/// del/123
 		///
 		public const int FORMULA_204 = 204;
 		///
-		/// Perfect成就达到S的奖励类型
+		/// del/123
 		///
 		public const int FORMULA_205 = 205;
 		///
-		/// Perfect成就达到S的奖励数量
+		/// del/123
 		///
 		public const int FORMULA_206 = 206;
 		///
-		/// Clear成就达到C的奖励类型
+		/// del/123
 		///
 		public const int FORMULA_207 = 207;
 		///
-		/// Clear成就达到C的奖励数量
+		/// del/123
 		///
 		public const int FORMULA_208 = 208;
 		///
-		/// Clear成就达到B的奖励类型
+		/// del/123
 		///
 		public const int FORMULA_209 = 209;
 		///
-		/// Clear成就达到B的奖励数量
+		/// del/123
 		///
 		public const int FORMULA_210 = 210;
 		///
-		/// Clear成就达到A的奖励类型
+		/// del/123
 		///
 		public const int FORMULA_211 = 211;
 		///
-		/// Clear成就达到A的奖励数量
+		/// del/123
 		///
 		public const int FORMULA_212 = 212;
 		///
-		/// Clear成就达到S的奖励类型
+		/// del/123
 		///
 		public const int FORMULA_213 = 213;
 		///
-		/// Clear成就达到S的奖励数量
+		/// del/123
 		///
 		public const int FORMULA_214 = 214;
 		///
@@ -907,7 +907,7 @@ namespace FormulaBase {
 		///
 		public const int FORMULA_225 = 225;
 		///
-		/// 歌曲难度3奖励的账号经验S
+		/// 通关奖励的账号经验S
 		///
 		public const int FORMULA_226 = 226;
 		///
@@ -975,35 +975,35 @@ namespace FormulaBase {
 		///
 		public const int FORMULA_242 = 242;
 		///
-		/// Star成就达到C的奖励类型
+		/// del/123
 		///
 		public const int FORMULA_243 = 243;
 		///
-		/// Star成就达到C的奖励数量
+		/// del/123
 		///
 		public const int FORMULA_244 = 244;
 		///
-		/// Star成就达到B的奖励类型
+		/// del/123
 		///
 		public const int FORMULA_245 = 245;
 		///
-		/// Star成就达到B的奖励数量
+		/// del/123
 		///
 		public const int FORMULA_246 = 246;
 		///
-		/// Star成就达到A的奖励类型
+		/// del/123
 		///
 		public const int FORMULA_247 = 247;
 		///
-		/// Star成就达到A的奖励数量
+		/// del/123
 		///
 		public const int FORMULA_248 = 248;
 		///
-		/// Star成就达到S的奖励类型
+		/// del/123
 		///
 		public const int FORMULA_249 = 249;
 		///
-		/// Star成就达到S的奖励数量
+		/// del/123
 		///
 		public const int FORMULA_250 = 250;
 		///
@@ -1147,171 +1147,171 @@ namespace FormulaBase {
 		///
 		public const int FORMULA_285 = 285;
 		///
-		/// 歌曲难度1奖励的魔能A
+		/// 通关奖励的魔能A
 		///
 		public const int FORMULA_286 = 286;
 		///
-		/// 歌曲难度1奖励的魔能B
+		/// 通关奖励的魔能B
 		///
 		public const int FORMULA_287 = 287;
 		///
-		/// 歌曲难度1奖励的魔能C
+		/// 通关奖励的魔能C
 		///
 		public const int FORMULA_288 = 288;
 		///
-		/// 歌曲难度2奖励的魔能A
+		/// del/123
 		///
 		public const int FORMULA_289 = 289;
 		///
-		/// 歌曲难度2奖励的魔能B
+		/// del/123
 		///
 		public const int FORMULA_290 = 290;
 		///
-		/// 歌曲难度2奖励的魔能C
+		/// del/123
 		///
 		public const int FORMULA_291 = 291;
 		///
-		/// 歌曲难度3奖励的魔能A
+		/// del/123
 		///
 		public const int FORMULA_292 = 292;
 		///
-		/// 歌曲难度3奖励的魔能B
+		/// del/123
 		///
 		public const int FORMULA_293 = 293;
 		///
-		/// 歌曲难度3奖励的魔能C
+		/// del/123
 		///
 		public const int FORMULA_294 = 294;
 		///
-		/// 歌曲难度1奖励的金币A
+		/// 通关奖励的金币A
 		///
 		public const int FORMULA_295 = 295;
 		///
-		/// 歌曲难度1奖励的金币B
+		/// 通关奖励的金币B
 		///
 		public const int FORMULA_296 = 296;
 		///
-		/// 歌曲难度1奖励的金币C
+		/// 通关奖励的金币C
 		///
 		public const int FORMULA_297 = 297;
 		///
-		/// 歌曲难度2奖励的金币A
+		/// del/123
 		///
 		public const int FORMULA_298 = 298;
 		///
-		/// 歌曲难度2奖励的金币B
+		/// del/123
 		///
 		public const int FORMULA_299 = 299;
 		///
-		/// 歌曲难度2奖励的金币C
+		/// del/123
 		///
 		public const int FORMULA_300 = 300;
 		///
-		/// 歌曲难度3奖励的金币A
+		/// del/123
 		///
 		public const int FORMULA_301 = 301;
 		///
-		/// 歌曲难度3奖励的金币B
+		/// del/123
 		///
 		public const int FORMULA_302 = 302;
 		///
-		/// 歌曲难度3奖励的金币C
+		/// del/123
 		///
 		public const int FORMULA_303 = 303;
 		///
-		/// 歌曲难度1奖励的账号经验A
+		/// 通关奖励的账号经验A
 		///
 		public const int FORMULA_304 = 304;
 		///
-		/// 歌曲难度1奖励的账号经验B
+		/// 通关奖励的账号经验B
 		///
 		public const int FORMULA_305 = 305;
 		///
-		/// 歌曲难度1奖励的账号经验C
+		/// 通关奖励的账号经验C
 		///
 		public const int FORMULA_306 = 306;
 		///
-		/// 歌曲难度2奖励的账号经验S
+		/// del/123
 		///
 		public const int FORMULA_307 = 307;
 		///
-		/// 歌曲难度2奖励的账号经验A
+		/// del/123
 		///
 		public const int FORMULA_308 = 308;
 		///
-		/// 歌曲难度2奖励的账号经验B
+		/// del/123
 		///
 		public const int FORMULA_309 = 309;
 		///
-		/// 歌曲难度2奖励的账号经验C
+		/// del/123
 		///
 		public const int FORMULA_310 = 310;
 		///
-		/// 歌曲难度3奖励的账号经验A
+		/// del/123
 		///
 		public const int FORMULA_311 = 311;
 		///
-		/// 歌曲难度3奖励的账号经验B
+		/// del/123
 		///
 		public const int FORMULA_312 = 312;
 		///
-		/// 歌曲难度3奖励的账号经验C
+		/// del/123
 		///
 		public const int FORMULA_313 = 313;
 		///
-		/// Perfect成就达到A，所需Perfect数
+		/// del/123
 		///
 		public const int FORMULA_314 = 314;
 		///
-		/// Perfect成就达到B，所需Perfect数
+		/// del/123
 		///
 		public const int FORMULA_315 = 315;
 		///
-		/// Perfect成就达到C，所需Perfect数
+		/// del/123
 		///
 		public const int FORMULA_316 = 316;
 		///
-		/// 全Perfect
+		/// del/123
 		///
 		public const int FORMULA_317 = 317;
 		///
-		/// 全Combo
+		/// del/123
 		///
 		public const int FORMULA_318 = 318;
 		///
-		/// Combo成就达到A，所需Combo数
+		/// del/123
 		///
 		public const int FORMULA_319 = 319;
 		///
-		/// Combo成就达到B，所需Combo数
+		/// del/123
 		///
 		public const int FORMULA_320 = 320;
 		///
-		/// Combo成就达到C，所需Combo数
+		/// del/123
 		///
 		public const int FORMULA_321 = 321;
 		///
-		/// 星星成就达到A，所需的星星击打个数
+		/// del/123
 		///
 		public const int FORMULA_322 = 322;
 		///
-		/// 星星成就达到B，所需的星星击打个数
+		/// del/123
 		///
 		public const int FORMULA_323 = 323;
 		///
-		/// 星星成就达到C，所需的星星击打个数
+		/// del/123
 		///
 		public const int FORMULA_324 = 324;
 		///
-		/// 通关成就达到A，所需通关次数
+		/// del/123
 		///
 		public const int FORMULA_325 = 325;
 		///
-		/// 通关成就达到B，所需通关次数
+		/// del/123
 		///
 		public const int FORMULA_326 = 326;
 		///
-		/// 通关成关次数
+		/// del/123
 		///
 		public const int FORMULA_327 = 327;
 		///
@@ -1426,6 +1426,14 @@ namespace FormulaBase {
 		/// 通关次数成就奖励数量
 		///
 		public const int FORMULA_355 = 355;
+		///
+		/// 通关奖励的魔能C
+		///
+		public const int FORMULA_356 = 356;
+		///
+		/// 通关奖励的金币S
+		///
+		public const int FORMULA_357 = 357;
 
 	}
 }

@@ -398,7 +398,7 @@ public class CharactorPanel2 : UIPanelBase {
 	public void ShowSelectHero()
 	{
 		int index = RoleManageComponent.Instance.GetFightGirlIndex ();
-		m_HeroName.text = ConfigPool.Instance.GetConfigStringValue ("character", index.ToString (), "name");
+		m_HeroName.text = ConfigPool.Instance.GetConfigStringValue ("char_info", index.ToString (), "name");
 		for (int i = 0; i < m_listHero.Count; i++) {
 			if (i == 0) {
 				_LumiMat.SetFloat ("_TextureColor", 0f);

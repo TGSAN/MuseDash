@@ -78,19 +78,19 @@ public class EffectManager : MonoBehaviour
 
         string strHeroIndex = heroIndex.ToString();
         // Fever scene
-        string feverScene = ConfigPool.Instance.GetConfigStringValue("character", strHeroIndex, "fever");
+		string feverScene = ConfigPool.Instance.GetConfigStringValue("char_info", strHeroIndex, "fever");
         this.ferverScene = GameObject.Instantiate(Resources.Load(feverScene)) as GameObject;
 
-        string pressFxName = ConfigPool.Instance.GetConfigStringValue("character", strHeroIndex, "fx_atk_press");
+		string pressFxName = ConfigPool.Instance.GetConfigStringValue("char_info", strHeroIndex, "fx_atk_press");
         UnityEngine.Object _eff = Resources.Load(pressFxName);
         if (_eff != null)
         {
             this.pressEffect = GameObject.Instantiate(_eff) as GameObject;
         }
 
-        string atkFxGreat = ConfigPool.Instance.GetConfigStringValue("character", strHeroIndex, "fx_atk_great");
-        string atkFxPerfect = ConfigPool.Instance.GetConfigStringValue("character", strHeroIndex, "fx_atk_perfect");
-        string atkFxCrit = ConfigPool.Instance.GetConfigStringValue("character", strHeroIndex, "fx_atk_crit");
+		string atkFxGreat = ConfigPool.Instance.GetConfigStringValue("char_info", strHeroIndex, "fx_atk_great");
+		string atkFxPerfect = ConfigPool.Instance.GetConfigStringValue("char_info", strHeroIndex, "fx_atk_perfect");
+		string atkFxCrit = ConfigPool.Instance.GetConfigStringValue("char_info", strHeroIndex, "fx_atk_crit");
         // Load attack succeed effect.
         this.playResult = new GameObject[(int)GameMusic.CRITICAL + 1];
         this.playResult[GameMusic.COOL] = GameObject.Instantiate(Resources.Load(atkFxGreat)) as GameObject;

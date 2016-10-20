@@ -56,6 +56,10 @@ public class SpineActionController : MonoBehaviour {
 #if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
 		SkeletonAnimation ska = this.gameObject.GetComponent<SkeletonAnimation> ();
 		MeshRenderer meshRender = this.gameObject.GetComponent<MeshRenderer> ();
+		if (ska == null || meshRender == null || ska.skeletonDataAsset == null) {
+			return;
+		}
+
 		if (meshRender != null && ska.skeletonDataAsset.atlasAssets != null) {
 			foreach(AtlasAsset _aa in ska.skeletonDataAsset.atlasAssets) {
 				foreach(Material _m in _aa.materials) {
@@ -139,7 +143,7 @@ public class SpineActionController : MonoBehaviour {
 			return;
 		}
 
-		if (this.skAnimation == null) {
+		if (this.skAnimation == null || this.skAnimation.skeletonDataAsset == null) {
 			return;
 		}
 
@@ -418,6 +422,10 @@ public class SpineActionController : MonoBehaviour {
 
 	public void PlayByData(SkeletActionData data) {
 		if (this.GetSkeletonAnimation () == null) {
+			return;
+		}
+
+		if (this.skAnimationsName == null) {
 			return;
 		}
 

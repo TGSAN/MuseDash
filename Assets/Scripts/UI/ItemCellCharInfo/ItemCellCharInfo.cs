@@ -62,11 +62,24 @@ namespace ItemCellCharInfo
                 var curEquipList = FormulaBase.EquipManageComponent.Instance.GetGirlEquipHosts(PnlChar.PnlChar.Instance.curRoleIdx, PnlChar.PnlChar.Instance.curEquipTypeIdx, true);
                 if (curEquipList.Length > 0)
                 {
-                    FormulaBase.EquipManageComponent.Instance.Equip(curEquipList[0].GetDynamicIntByKey(FormulaBase.SignKeys.ID), false);
+                    CommonPanel.GetInstance().ShowWaittingPanel(true);
+                    FormulaBase.EquipManageComponent.Instance.Equip(curEquipList[0].GetDynamicIntByKey(FormulaBase.SignKeys.ID), false,
+                        result =>
+                        {
+                            if (result)
+                            {
+                                FormulaBase.EquipManageComponent.Instance.Equip(id, true, r =>
+                                {
+                                    if (r)
+                                    {
+                                        PnlChar.PnlChar.Instance.OnEquipLoad(PnlChar.PnlChar.Instance.curRoleIdx);
+                                        PnlCharInfo.PnlCharInfo.Instance.UpdateItemList(id);
+                                        CommonPanel.GetInstance().ShowWaittingPanel(false);
+                                    }
+                                });
+                            }
+                        });
                 }
-                FormulaBase.EquipManageComponent.Instance.Equip(id);
-                PnlChar.PnlChar.Instance.OnEquipLoad(PnlChar.PnlChar.Instance.curRoleIdx);
-                PnlCharInfo.PnlCharInfo.Instance.UpdateItemList(id);
             }));
         }
 

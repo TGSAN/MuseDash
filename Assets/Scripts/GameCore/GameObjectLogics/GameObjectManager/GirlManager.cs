@@ -7,7 +7,7 @@ using DYUnityLib;
 public class GirlManager : MonoBehaviour {
 	private const string GILR_PATH = "char/";
 	private const string ARM_PATH = "servant/";
-	private const decimal COMEOUT_HARD_TIME = 2m;
+
 	private static GirlManager instacne = null;
 	private GameObject[] girls;
 	private GameObject[] arms;
@@ -27,6 +27,9 @@ public class GirlManager : MonoBehaviour {
 			return this.arms;
 		}
 	}
+
+	public float playWaitForComeOut;
+	public bool isCommingOut = true;
 
 	[SerializeField]
 	public string[] girlnames;
@@ -125,15 +128,15 @@ public class GirlManager : MonoBehaviour {
 		string clothPath = null;
 		if (hero != null) {
 			clothIdx = hero.GetDynamicIntByKey (SignKeys.CLOTH);
-			clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", clothIdx.ToString (), "path");
+			clothPath = ConfigPool.Instance.GetConfigStringValue ("char_cos", clothIdx.ToString (), "path");
 		}
 
 #if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
 		if (clothPath == null || clothPath == string.Empty) {
-			clothIdx = ConfigPool.Instance.GetConfigIntValue ("character", heroIndex.ToString (), "character");
-			clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", "uid", "path", clothIdx);
+			clothIdx = ConfigPool.Instance.GetConfigIntValue ("char_info", heroIndex.ToString (), "character");
+			clothPath = ConfigPool.Instance.GetConfigStringValue ("char_cos", "uid", "path", clothIdx);
 			if (GameGlobal.DEBUG_CLOTH_UID > 0) {
-				clothPath = ConfigPool.Instance.GetConfigStringValue ("clothing", "uid", "path", GameGlobal.DEBUG_CLOTH_UID);
+				clothPath = ConfigPool.Instance.GetConfigStringValue ("char_cos", "uid", "path", GameGlobal.DEBUG_CLOTH_UID);
 			}
 		}
 #endif
@@ -173,6 +176,8 @@ public class GirlManager : MonoBehaviour {
 			Debug.Log (pathName + " is null.");
 			yield return null;
 		}
+
+		// 热更读取例子
 /*
 		WWW streamGirl = new WWW (AssetBundleFileMangager.FileLoadResPath + "/girl111.ab");
 		yield return streamGirl;
@@ -215,8 +220,15 @@ public class GirlManager : MonoBehaviour {
 	}
 
 	public void ComeOut() {
-		GameGlobal.gGameTouchPlay.SetPressHardTime (COMEOUT_HARD_TIME);
+		this.isCommingOut = true;
 		this.StartCoroutine (this.AfterComeOut ());
+		this.StartCoroutine (this.ComeOutFinished ());
+	}
+
+	private IEnumerator ComeOutFinished() {
+		yield return new WaitForSeconds (this.playWaitForComeOut);
+
+		this.isCommingOut = false;
 	}
 
 	private IEnumerator AfterComeOut () {

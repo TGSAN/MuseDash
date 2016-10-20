@@ -133,6 +133,7 @@ namespace GameLogic {
 		/// <summary>
 		/// Touchs the trigger.
 		/// 
+		/// 游戏逻辑的触摸总入口
 		/// 触碰、键盘、鼠标操作检测函数
 		/// </summary>
 		/// <param name="sender">Sender.</param>
@@ -144,6 +145,10 @@ namespace GameLogic {
 			}
 
 			if (StageBattleComponent.Instance.IsEndSettlement ()) {
+				return;
+			}
+
+			if (GirlManager.Instance == null || GirlManager.Instance.isCommingOut) {
 				return;
 			}
 

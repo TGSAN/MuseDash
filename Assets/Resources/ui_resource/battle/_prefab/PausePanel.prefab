@@ -101,7 +101,7 @@ GameObject:
   - 4: {fileID: 4000013601993778}
   - 114: {fileID: 114000011505892324}
   - 114: {fileID: 114000011338361030}
-  - 54: {fileID: 54000012490666054}
+  - 54: {fileID: 54000012641577954}
   m_Layer: 5
   m_Name: PausePanel
   m_TagString: Untagged
@@ -155,6 +155,7 @@ GameObject:
   - 114: {fileID: 114000012186573204}
   - 114: {fileID: 114000010576952634}
   - 114: {fileID: 114000014205658464}
+  - 114: {fileID: 114000011259710692}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -175,6 +176,7 @@ GameObject:
   - 114: {fileID: 114000010929413130}
   - 114: {fileID: 114000014047455034}
   - 114: {fileID: 114000011843697788}
+  - 114: {fileID: 114000013658773786}
   m_Layer: 5
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -195,6 +197,7 @@ GameObject:
   - 114: {fileID: 114000013771850548}
   - 114: {fileID: 114000013921951136}
   - 114: {fileID: 114000013707948296}
+  - 114: {fileID: 114000011944200452}
   m_Layer: 5
   m_Name: ReturnButton
   m_TagString: Untagged
@@ -385,7 +388,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000011648760534}
   m_RootOrder: 0
---- !u!54 &54000012490666054
+--- !u!54 &54000012641577954
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -702,6 +705,21 @@ MonoBehaviour:
   hideInactive: 0
   keepWithinPanel: 0
   sorted: 0
+--- !u!114 &114000011259710692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012978332678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000011338361030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -756,7 +774,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3011
+  startingRenderQueue: 3012
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -834,6 +852,21 @@ MonoBehaviour:
   hover: {x: 0, y: 0, z: 0}
   pressed: {x: 2, y: -3, z: 0}
   duration: 0.02
+--- !u!114 &114000011944200452
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013612398720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000012176800248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1115,6 +1148,21 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 4640b1ebd3c074a66898a0e5f41d1371, type: 2}
   mSpriteName: button_resume_icon
   mFillCenter: 1
+--- !u!114 &114000013658773786
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013175933094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000013707948296
 MonoBehaviour:
   m_ObjectHideFlags: 1

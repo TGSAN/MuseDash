@@ -18,6 +18,7 @@ public class Boss {
 	}
 	
 	public Boss(){
+		this.bossObject = null;
 //		this.life = life;
 //		this.attack = attack;
 	}
@@ -47,6 +48,27 @@ public class Boss {
 		this.bossObject.SetActive (true);
 	}
 
+	public void SetBoss(string pathName, GameObject obj) {
+		if (this.bossObject) {
+			return;
+		}
+
+		GameObject bossLayer = GameObject.Find ("BossLayer");
+		this.bossName = pathName;
+		this.bossObject = obj;
+		if (this.bossObject == null) {
+			Debug.Log ("No such boss " + this.bossName);
+			return;
+		}
+
+		Debug.Log ("Load boss : " + this.bossName);
+		this.bossObject.transform.SetParent (bossLayer.transform, false);
+
+		SpineActionController sac = this.bossObject.GetComponent<SpineActionController> ();
+		sac.Init (-1);
+		this.bossObject.SetActive (true);
+	}
+
  	public bool IsDead() {
 		return false;
 	}
@@ -62,14 +84,5 @@ public class Boss {
 		}
 
 		hc.ReinitMaterials ();
-	}
-
-
-	public void PullBack() {
-		if (this.bossObject == null) {
-			return;
-		}
-
-
 	}
 }

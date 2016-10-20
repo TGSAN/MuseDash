@@ -287,6 +287,10 @@ namespace FormulaBase {
 		///
 		public const string VIT_LIMIT = "VIT_LIMIT";
 		///
+		/// CHARM_EXTRA
+		///
+		public const string CHARM_EXTRA = "CHARM_EXTRA";
+		///
 		/// MAX_VIGOUR
 		///
 		public const string MAX_VIGOUR = "MAX_VIGOUR";
@@ -310,6 +314,14 @@ namespace FormulaBase {
 		/// STAMINA_FROM_EQUIP
 		///
 		public const string STAMINA_FROM_EQUIP = "STAMINA_FROM_EQUIP";
+		///
+		/// STRENGH_FROM_EQUIP
+		///
+		public const string STRENGH_FROM_EQUIP = "STRENGH_FROM_EQUIP";
+		///
+		/// LUCK_FROM_EQUIP
+		///
+		public const string LUCK_FROM_EQUIP = "LUCK_FROM_EQUIP";
 
 	}
 }

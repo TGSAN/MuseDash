@@ -6,7 +6,7 @@ namespace FormulaBase {
 			FormulaStruct[] formulas = FormulaData.Instance.Formulas;
 			switch(idx) {
 				case 0:
-					return ( formulaObject.GetParamValue (0) + ( formulaObject.GetParamValue (1) - 1 ) * formulaObject.GetParamValue (2) + 400  ) + 100;
+					return ( formulaObject.GetParamValue (0) + ( formulaObject.GetParamValue (1) - 1 ) * formulaObject.GetParamValue (2) + 300  );
 				case 1:
 					return ( formulaObject.GetParamValue (0) / ( formulaObject.GetParamValue (1) + 1000 ) );
 				case 2:
@@ -362,7 +362,7 @@ namespace FormulaBase {
 				case 177:
 					return ( formulaObject.GetParamValue (0) );
 				case 178:
-					return ( formulaObject.GetParamValue (0) + formulaObject.GetParamValue (1) + formulaObject.GetParamValue (2) + formulaObject.GetParamValue (3) + formulaObject.GetParamValue (4) + formulaObject.GetParamValue (5) );
+					return ( formulaObject.GetParamValue (0) + formulaObject.GetParamValue (1) + formulaObject.GetParamValue (2) + formulaObject.GetParamValue (3) + formulaObject.GetParamValue (4) + formulaObject.GetParamValue (5) + formulaObject.GetParamValue (6) );
 				case 179:
 					return ( formulaObject.GetParamValue (0) );
 				case 180:
@@ -716,6 +716,10 @@ namespace FormulaBase {
 				case 354:
 					return ( formulaObject.GetParamValue (0) );
 				case 355:
+					return ( formulaObject.GetParamValue (0) );
+				case 356:
+					return ( formulaObject.GetParamValue (0) * 0.4f );
+				case 357:
 					return ( formulaObject.GetParamValue (0) );
 			}
 			return 0f;

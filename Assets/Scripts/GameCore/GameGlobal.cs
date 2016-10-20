@@ -126,21 +126,22 @@ namespace GameLogic {
 
 		public const string LANGUAGE_VERSION = "chs";
 
-		public const string SOUND_TYPE_HURT = "HURT";
-		public const string SOUND_TYPE_FEVER = "FEVER";
-		public const string SOUND_TYPE_MAIN_BOARD_TOUCH = "MAIN_BOARD_TOUCH";
-		public const string SOUND_TYPE_ENTER_STAGE = "ENTER_STAGE";
-		public const string SOUND_TYPE_STAGE_START = "STAGE_START";
-		public const string SOUND_TYPE_LAST_NODE = "LAST_NODE";
-		public const string SOUND_TYPE_DEAD = "DEAD";
-		public const string SOUND_TYPE_ON_EQUIP = "ON_EQUIP";
-		public const string SOUND_TYPE_ON_EXP = "ON_EXP";
-		public const string SOUND_TYPE_ON_CHEST = "ON_CHEST";
-		public const string SOUND_TYPE_ON_CHEST_OPEN = "ON_CHEST_OPEN";
-		public const string SOUND_TYPE_ON_TEN_COMBO = "ON_TEN_COMBO";
-		public const string SOUND_TYPE_UI = "UI";
-		public const string SOUND_TYPE_UI_BGM = "UI_BGM";
-		public const string SOUND_TYPE_UI_ATTACK_MISS = "ON_ATTACK_MISS";
+		public const string SOUND_TYPE_HURT = "hurt";
+		public const string SOUND_TYPE_FEVER = "fever";
+		public const string SOUND_TYPE_MAIN_BOARD_TOUCH = "char_touch";
+		public const string SOUND_TYPE_ENTER_STAGE = "enter_stage";
+		public const string SOUND_TYPE_STAGE_START = "stage_start";
+		public const string SOUND_TYPE_LAST_NODE = "final_note";
+		public const string SOUND_TYPE_DEAD = "dead";
+		public const string SOUND_TYPE_ON_EQUIP = "equip";
+		public const string SOUND_TYPE_ON_EXP = "exp";
+		public const string SOUND_TYPE_ON_CHEST = "capsule";
+		public const string SOUND_TYPE_ON_CHEST_OPEN = "capsule_open";
+		public const string SOUND_TYPE_ON_TEN_COMBO = "combo";
+		public const string SOUND_TYPE_UI = "ui_touch";
+		public const string SOUND_TYPE_UI_BGM = "ui_bgm";
+		public const string SOUND_TYPE_UI_ATTACK_MISS = "attack_miss";
+		public const string SOUND_TYPE_UI_JUMP_MISS = "jump_miss";
 
 		// Game logic event, from 129, in this project, >= 1000 is for buff
 		public const uint MUSIC_SINGLE_PRESS = 129;
@@ -231,4 +232,5 @@ public struct ACTION_KEYS {
 	public const string JUMP = "char_jump";
 	public const string CHAR_DEAD = "char_die";
 	public const string PET_SKILL = "servant_skill";
+	public const string OUTSIDE = "outside";
 }

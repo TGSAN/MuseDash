@@ -92,7 +92,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3066
+  startingRenderQueue: 3094
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -179,6 +179,7 @@ GameObject:
   - 114: {fileID: 114000013680608514}
   - 114: {fileID: 114000010328166158}
   - 114: {fileID: 114000013055582968}
+  - 114: {fileID: 114000010394376942}
   m_Layer: 5
   m_Name: BtnCos05
   m_TagString: Untagged
@@ -433,6 +434,7 @@ GameObject:
   - 114: {fileID: 114000013646545750}
   - 114: {fileID: 114000012098673290}
   - 114: {fileID: 114000013767138050}
+  - 114: {fileID: 114000013561270020}
   m_Layer: 5
   m_Name: BtnRight
   m_TagString: Untagged
@@ -520,6 +522,7 @@ GameObject:
   - 114: {fileID: 114000011243662452}
   - 114: {fileID: 114000013337400368}
   - 114: {fileID: 114000011509966358}
+  - 114: {fileID: 114000011693085522}
   m_Layer: 5
   m_Name: BtnCos06
   m_TagString: Untagged
@@ -557,6 +560,7 @@ GameObject:
   - 114: {fileID: 114000011118478134}
   - 114: {fileID: 114000013994717628}
   - 114: {fileID: 114000011098504936}
+  - 114: {fileID: 114000012817304284}
   m_Layer: 5
   m_Name: BtnCos04
   m_TagString: Untagged
@@ -747,6 +751,7 @@ GameObject:
   - 114: {fileID: 114000011465607982}
   - 114: {fileID: 114000013562141358}
   - 114: {fileID: 114000012657776838}
+  - 114: {fileID: 114000010417437296}
   m_Layer: 5
   m_Name: BtnCos03
   m_TagString: Untagged
@@ -834,6 +839,7 @@ GameObject:
   - 114: {fileID: 114000010953468480}
   - 114: {fileID: 114000012309378158}
   - 114: {fileID: 114000011441000376}
+  - 114: {fileID: 114000013075734042}
   m_Layer: 5
   m_Name: BtnCos07
   m_TagString: Untagged
@@ -869,6 +875,7 @@ GameObject:
   - 65: {fileID: 65000011187114826}
   - 114: {fileID: 114000011736759068}
   - 114: {fileID: 114000013296162194}
+  - 114: {fileID: 114000013459314200}
   m_Layer: 5
   m_Name: BtnBack
   m_TagString: Untagged
@@ -922,6 +929,7 @@ GameObject:
   - 114: {fileID: 114000013505734924}
   - 114: {fileID: 114000012922246432}
   - 114: {fileID: 114000010459648718}
+  - 114: {fileID: 114000012054670558}
   m_Layer: 5
   m_Name: BtnCos02
   m_TagString: Untagged
@@ -993,6 +1001,7 @@ GameObject:
   - 114: {fileID: 114000011424537974}
   - 114: {fileID: 114000010602283076}
   - 114: {fileID: 114000012598091198}
+  - 114: {fileID: 114000011115129490}
   m_Layer: 5
   m_Name: BtnCos08
   m_TagString: Untagged
@@ -1014,6 +1023,7 @@ GameObject:
   - 114: {fileID: 114000011645605722}
   - 114: {fileID: 114000011261679082}
   - 114: {fileID: 114000011854131376}
+  - 114: {fileID: 114000010890853748}
   m_Layer: 5
   m_Name: BtnCos01
   m_TagString: Untagged
@@ -1087,6 +1097,8 @@ GameObject:
   - 114: {fileID: 114000013422777380}
   - 114: {fileID: 114000010468951680}
   - 114: {fileID: 114000013739079482}
+  - 114: {fileID: 114000010896946548}
+  - 114: {fileID: 114000011504498576}
   m_Layer: 5
   m_Name: BtnPurchase
   m_TagString: Untagged
@@ -1107,6 +1119,7 @@ GameObject:
   - 114: {fileID: 114000012030541262}
   - 114: {fileID: 114000013242669656}
   - 114: {fileID: 114000012628229486}
+  - 114: {fileID: 114000011981728914}
   m_Layer: 5
   m_Name: BtnLeft
   m_TagString: Untagged
@@ -3128,6 +3141,36 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000010394376942
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010280702200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 8355a6909041c4a47ba33a8a20af2ce5, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
+--- !u!114 &114000010417437296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012449089914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 8355a6909041c4a47ba33a8a20af2ce5, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000010458358950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3914,6 +3957,44 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000010890853748
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013370524900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 8355a6909041c4a47ba33a8a20af2ce5, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
+--- !u!114 &114000010896946548
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013637688262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animator: {fileID: 0}
+  clipName: pnl_yes_or_no_in
+  trigger: 0
+  playDirection: 1
+  resetOnPlay: 0
+  clearSelection: 0
+  ifDisabledOnPlay: 1
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
 --- !u!114 &114000010909510570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4243,6 +4324,21 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000011115129490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013271735832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 8355a6909041c4a47ba33a8a20af2ce5, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000011118478134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4696,6 +4792,21 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick: []
+--- !u!114 &114000011504498576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013637688262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000011509966358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4907,6 +5018,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _CosIcon: {fileID: 0}
+--- !u!114 &114000011693085522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011539900450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 8355a6909041c4a47ba33a8a20af2ce5, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000011695066116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5157,6 +5283,21 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000011981728914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013685548296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 9ebd9acb4b24e464495f99a17463d984, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000012006688596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5303,6 +5444,21 @@ MonoBehaviour:
   from: {x: -605, y: -200, z: 0}
   to: {x: -601, y: -200, z: 0}
   worldSpace: 0
+--- !u!114 &114000012054670558
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012893029800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 8355a6909041c4a47ba33a8a20af2ce5, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000012098673290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5701,7 +5857,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3002
+  startingRenderQueue: 3000
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6057,6 +6213,21 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 116be5c75a4464937ab0c7775a335b18, type: 2}
   mSpriteName: characteristic_base
   mFillCenter: 1
+--- !u!114 &114000012817304284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011554770266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 8355a6909041c4a47ba33a8a20af2ce5, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000012823043830
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6431,6 +6602,21 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000013075734042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012693355920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 8355a6909041c4a47ba33a8a20af2ce5, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000013076130808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7066,6 +7252,21 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000013459314200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012779509668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 0550bca35e6da174bbcb9f53494eae52, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000013501412548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7265,6 +7466,21 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 116be5c75a4464937ab0c7775a335b18, type: 2}
   mSpriteName: bg_dark
   mFillCenter: 1
+--- !u!114 &114000013561270020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011349118800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 9ebd9acb4b24e464495f99a17463d984, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000013562141358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7604,8 +7820,8 @@ MonoBehaviour:
   - 
   clickResponseParentAnimations:
   - 
-  isFoldObjs: 0
-  isFoldParentObjs: 0
+  isFoldObjs: 1
+  isFoldParentObjs: 1
   isForceKeep: 0
   isClickHideSelf: 0
   isClickHideParent: 0
