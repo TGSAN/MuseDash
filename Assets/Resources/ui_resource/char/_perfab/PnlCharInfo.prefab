@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011534167548}
   - 114: {fileID: 114000013697720824}
-  - 114: {fileID: 114000013382419286}
   - 114: {fileID: 114000012260394446}
   m_Layer: 5
   m_Name: TxtLuckNumberAdd
@@ -41,6 +40,7 @@ GameObject:
   - 65: {fileID: 65000011522452060}
   - 114: {fileID: 114000013866551884}
   - 114: {fileID: 114000010359962126}
+  - 114: {fileID: 114000010829437016}
   m_Layer: 5
   m_Name: SprCos1
   m_TagString: Untagged
@@ -138,12 +138,12 @@ GameObject:
   - 4: {fileID: 4000013922563598}
   - 114: {fileID: 114000013956099102}
   m_Layer: 5
-  m_Name: SprLock
+  m_Name: SprSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000010206765554
 GameObject:
   m_ObjectHideFlags: 1
@@ -155,6 +155,24 @@ GameObject:
   - 114: {fileID: 114000010505246266}
   m_Layer: 5
   m_Name: SprOff
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000010281738294
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013278698296}
+  - 65: {fileID: 65000010880940146}
+  - 114: {fileID: 114000012803763052}
+  - 114: {fileID: 114000012419057552}
+  m_Layer: 5
+  m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,6 +239,7 @@ GameObject:
   - 65: {fileID: 65000013904777092}
   - 114: {fileID: 114000014202370620}
   - 114: {fileID: 114000012064582456}
+  - 114: {fileID: 114000011311541170}
   m_Layer: 5
   m_Name: SprCos6
   m_TagString: Untagged
@@ -254,12 +273,12 @@ GameObject:
   - 4: {fileID: 4000011493652592}
   - 114: {fileID: 114000013514366672}
   m_Layer: 5
-  m_Name: SprLock
+  m_Name: SprSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000010674816038
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,12 +305,12 @@ GameObject:
   - 4: {fileID: 4000010891721324}
   - 114: {fileID: 114000012116011370}
   m_Layer: 5
-  m_Name: SprLock
+  m_Name: SprSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000010847023810
 GameObject:
   m_ObjectHideFlags: 1
@@ -486,6 +505,7 @@ GameObject:
   - 65: {fileID: 65000011046430138}
   - 114: {fileID: 114000010683794536}
   - 114: {fileID: 114000012324400488}
+  - 114: {fileID: 114000012307257538}
   m_Layer: 5
   m_Name: SprCos4
   m_TagString: Untagged
@@ -566,7 +586,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013784027014}
   - 114: {fileID: 114000013825926310}
-  - 114: {fileID: 114000012764689184}
   - 114: {fileID: 114000010110837214}
   m_Layer: 5
   m_Name: TxtCharacterLvAdd
@@ -585,12 +604,12 @@ GameObject:
   - 4: {fileID: 4000012178489342}
   - 114: {fileID: 114000012135423894}
   m_Layer: 5
-  m_Name: SprLock
+  m_Name: SprSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000011717880406
 GameObject:
   m_ObjectHideFlags: 1
@@ -638,6 +657,7 @@ GameObject:
   - 114: {fileID: 114000012609309886}
   - 114: {fileID: 114000012410098538}
   - 114: {fileID: 114000012253961378}
+  - 114: {fileID: 114000011813833680}
   m_Layer: 5
   m_Name: BtnUpgrade
   m_TagString: Untagged
@@ -657,6 +677,7 @@ GameObject:
   - 65: {fileID: 65000010705766982}
   - 114: {fileID: 114000013627416546}
   - 114: {fileID: 114000011566379880}
+  - 114: {fileID: 114000013842068144}
   m_Layer: 5
   m_Name: SprCos2
   m_TagString: Untagged
@@ -706,7 +727,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012709508996}
   - 114: {fileID: 114000010612148282}
-  - 114: {fileID: 114000010331275122}
   - 114: {fileID: 114000012764941738}
   m_Layer: 5
   m_Name: TxtVigourNumberAdd
@@ -775,7 +795,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014263640094}
   - 114: {fileID: 114000011288328060}
-  - 114: {fileID: 114000010259815496}
   - 114: {fileID: 114000013450569104}
   m_Layer: 5
   m_Name: TxtLuckPercentAdd
@@ -910,6 +929,7 @@ GameObject:
   - 114: {fileID: 114000013303232194}
   - 114: {fileID: 114000011751443788}
   - 114: {fileID: 114000010160034834}
+  - 114: {fileID: 114000013253949872}
   m_Layer: 5
   m_Name: BtnBack
   m_TagString: Untagged
@@ -1150,6 +1170,7 @@ GameObject:
   - 65: {fileID: 65000012879660044}
   - 114: {fileID: 114000012657369060}
   - 114: {fileID: 114000014231241822}
+  - 114: {fileID: 114000011255947194}
   m_Layer: 5
   m_Name: SprCos5
   m_TagString: Untagged
@@ -1167,12 +1188,12 @@ GameObject:
   - 4: {fileID: 4000012303806578}
   - 114: {fileID: 114000013383968538}
   m_Layer: 5
-  m_Name: SprLock
+  m_Name: SprSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000012704541106
 GameObject:
   m_ObjectHideFlags: 1
@@ -1187,6 +1208,7 @@ GameObject:
   - 114: {fileID: 114000010481514818}
   - 114: {fileID: 114000010250548088}
   - 114: {fileID: 114000012854323516}
+  - 114: {fileID: 114000012639285132}
   m_Layer: 5
   m_Name: BtnBack
   m_TagString: Untagged
@@ -1252,7 +1274,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010577252638}
   - 114: {fileID: 114000012268522932}
-  - 114: {fileID: 114000012467930656}
   - 114: {fileID: 114000010469290176}
   m_Layer: 5
   m_Name: TxtStaminaNumberAdd
@@ -1287,12 +1308,12 @@ GameObject:
   - 4: {fileID: 4000010744060946}
   - 114: {fileID: 114000012524199382}
   m_Layer: 5
-  m_Name: SprLock
+  m_Name: SprSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000013098537314
 GameObject:
   m_ObjectHideFlags: 1
@@ -1355,6 +1376,7 @@ GameObject:
   - 65: {fileID: 65000010312391744}
   - 114: {fileID: 114000012966109758}
   - 114: {fileID: 114000013202646328}
+  - 114: {fileID: 114000010482982554}
   m_Layer: 5
   m_Name: SprCos8
   m_TagString: Untagged
@@ -1371,7 +1393,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012505735618}
   - 114: {fileID: 114000010814236768}
-  - 114: {fileID: 114000010577575596}
   - 114: {fileID: 114000010211849924}
   m_Layer: 5
   m_Name: TxtStrenghNumberAdd
@@ -1504,7 +1525,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013983162186}
   - 114: {fileID: 114000013798576484}
-  - 114: {fileID: 114000013107740438}
   - 114: {fileID: 114000013002354892}
   m_Layer: 5
   m_Name: TxtCharacterLevelAdd
@@ -1573,12 +1593,12 @@ GameObject:
   - 4: {fileID: 4000010582833840}
   - 114: {fileID: 114000013211679204}
   m_Layer: 5
-  m_Name: SprLock
+  m_Name: SprSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000013870172188
 GameObject:
   m_ObjectHideFlags: 1
@@ -1643,6 +1663,7 @@ GameObject:
   - 114: {fileID: 114000013011193758}
   - 114: {fileID: 114000010811829394}
   - 114: {fileID: 114000010939122720}
+  - 114: {fileID: 114000011895775970}
   m_Layer: 5
   m_Name: BtnApply
   m_TagString: Untagged
@@ -1714,6 +1735,7 @@ GameObject:
   - 114: {fileID: 114000010375101880}
   - 114: {fileID: 114000010561176044}
   - 114: {fileID: 114000011488291908}
+  - 114: {fileID: 114000014254608228}
   m_Layer: 5
   m_Name: BtnConfirm
   m_TagString: Untagged
@@ -1733,6 +1755,7 @@ GameObject:
   - 65: {fileID: 65000010798379652}
   - 114: {fileID: 114000012901315296}
   - 114: {fileID: 114000013111210514}
+  - 114: {fileID: 114000013001845496}
   m_Layer: 5
   m_Name: SprCos7
   m_TagString: Untagged
@@ -1752,6 +1775,7 @@ GameObject:
   - 65: {fileID: 65000013696013750}
   - 114: {fileID: 114000012160537448}
   - 114: {fileID: 114000011703416160}
+  - 114: {fileID: 114000011719092100}
   m_Layer: 5
   m_Name: SprCos3
   m_TagString: Untagged
@@ -1836,12 +1860,12 @@ GameObject:
   - 4: {fileID: 4000011592830506}
   - 114: {fileID: 114000011051237876}
   m_Layer: 5
-  m_Name: SprLock
+  m_Name: SprSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000014164704880
 GameObject:
   m_ObjectHideFlags: 1
@@ -2838,7 +2862,7 @@ Transform:
   m_GameObject: {fileID: 1000012699914082}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7216151, y: 0.7216151, z: 0.7216151}
+  m_LocalScale: {x: 0.721615, y: 0.721615, z: 0.721615}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000014202841094}
@@ -2981,6 +3005,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000011809063912}
+  - {fileID: 4000013278698296}
   m_Father: {fileID: 4000011226159390}
   m_RootOrder: 0
 --- !u!4 &4000012887665344
@@ -3155,6 +3180,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000010751457190}
   m_RootOrder: 0
+--- !u!4 &4000013278698296
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010281738294}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000012886600698}
+  m_RootOrder: 1
 --- !u!4 &4000013307077788
 Transform:
   m_ObjectHideFlags: 1
@@ -3188,7 +3226,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010037644392}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 667.00006, y: -375.00003, z: 0}
+  m_LocalPosition: {x: 667, y: -375.00003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -3607,6 +3645,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 90, y: 90, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65000010880940146
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010281738294}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 420, y: 620, z: 1}
+  m_Center: {x: 0, y: -55, z: 0}
 --- !u!65 &65000011046430138
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4152,10 +4202,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -4369,51 +4419,6 @@ MonoBehaviour:
   hover: {x: 0, y: 0, z: 0}
   pressed: {x: 2, y: -3, z: 0}
   duration: 0.02
---- !u!114 &114000010259815496
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011883617786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e2747e3775af504da1a4d5a46c5a1ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  method: 0
-  style: 2
-  animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  ignoreTimeScale: 1
-  delay: 0
-  duration: 1
-  steeperCurves: 0
-  tweenGroup: 0
-  onFinished:
-  - mTarget: {fileID: 114000011070731462}
-    mMethodName: OnAnimationFinishCommon
-    mParameters:
-    - obj: {fileID: 1000011883617786}
-      field: 
-    oneShot: 0
-  eventReceiver: {fileID: 0}
-  callWhenFinished: 
-  from: 0
-  to: 1
 --- !u!114 &114000010261956604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4439,7 +4444,7 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
@@ -4483,7 +4488,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 1
+  duration: 0.8
   steeperCurves: 0
   tweenGroup: 0
   onFinished:
@@ -4495,7 +4500,7 @@ MonoBehaviour:
     oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: 0
+  from: 0.25
   to: 1
 --- !u!114 &114000010270417376
 MonoBehaviour:
@@ -4588,58 +4593,13 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
---- !u!114 &114000010331275122
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011817346142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e2747e3775af504da1a4d5a46c5a1ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  method: 0
-  style: 2
-  animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  ignoreTimeScale: 1
-  delay: 0
-  duration: 1
-  steeperCurves: 0
-  tweenGroup: 0
-  onFinished:
-  - mTarget: {fileID: 114000011070731462}
-    mMethodName: OnAnimationFinishCommon
-    mParameters:
-    - obj: {fileID: 1000011817346142}
-      field: 
-    oneShot: 0
-  eventReceiver: {fileID: 0}
-  callWhenFinished: 
-  from: 0
-  to: 1
 --- !u!114 &114000010359962126
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010035274652}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
   m_Name: 
@@ -5144,10 +5104,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -5172,6 +5132,21 @@ MonoBehaviour:
   hover: {x: 0, y: 0, z: 0}
   pressed: {x: 2, y: -3, z: 0}
   duration: 0.02
+--- !u!114 &114000010482982554
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013196298230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 8355a6909041c4a47ba33a8a20af2ce5, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000010505246266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5240,51 +5215,6 @@ MonoBehaviour:
   hover: {x: 0, y: 0, z: 0}
   pressed: {x: 2, y: -3, z: 0}
   duration: 0.02
---- !u!114 &114000010577575596
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013257083906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e2747e3775af504da1a4d5a46c5a1ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  method: 0
-  style: 2
-  animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  ignoreTimeScale: 1
-  delay: 0
-  duration: 1
-  steeperCurves: 0
-  tweenGroup: 0
-  onFinished:
-  - mTarget: {fileID: 114000011070731462}
-    mMethodName: OnAnimationFinishCommon
-    mParameters:
-    - obj: {fileID: 1000013257083906}
-      field: 
-    oneShot: 0
-  eventReceiver: {fileID: 0}
-  callWhenFinished: 
-  from: 0
-  to: 1
 --- !u!114 &114000010604777426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5322,7 +5252,7 @@ MonoBehaviour:
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 39
-  mType: 3
+  mType: 1
   mFillDirection: 0
   mFillAmount: 1
   mInvert: 0
@@ -5434,7 +5364,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.89411765, g: 0, b: 0.49803922, a: 0.00062139286}
+  mColor: {r: 0.89411765, g: 0, b: 0.49803922, a: 1}
   mPivot: 3
   mWidth: 14
   mHeight: 36
@@ -5499,10 +5429,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -5581,7 +5511,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 1
+  duration: 0.8
   steeperCurves: 0
   tweenGroup: 0
   onFinished:
@@ -5593,7 +5523,7 @@ MonoBehaviour:
     oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: 0
+  from: 0.25
   to: 1
 --- !u!114 &114000010629898580
 MonoBehaviour:
@@ -5764,7 +5694,7 @@ MonoBehaviour:
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 39
-  mType: 3
+  mType: 1
   mFillDirection: 0
   mFillAmount: 1
   mInvert: 0
@@ -5861,7 +5791,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 0.7764706, b: 0, a: 0.00062139286}
+  mColor: {r: 1, g: 0.7764706, b: 0, a: 1}
   mPivot: 3
   mWidth: 14
   mHeight: 36
@@ -5901,6 +5831,21 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000010829437016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010035274652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 8355a6909041c4a47ba33a8a20af2ce5, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000010843918566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6071,7 +6016,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3013
+  startingRenderQueue: 3037
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6106,7 +6051,7 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
@@ -6254,7 +6199,7 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
@@ -6304,7 +6249,7 @@ MonoBehaviour:
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 39
-  mType: 3
+  mType: 2
   mFillDirection: 0
   mFillAmount: 1
   mInvert: 0
@@ -6351,7 +6296,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 1
+  duration: 0.8
   steeperCurves: 0
   tweenGroup: 0
   onFinished:
@@ -6363,7 +6308,7 @@ MonoBehaviour:
     oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: 0
+  from: 0.25
   to: 1
 --- !u!114 &114000011171609626
 MonoBehaviour:
@@ -6525,7 +6470,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 1
+  duration: 0.8
   steeperCurves: 0
   tweenGroup: 0
   onFinished:
@@ -6537,7 +6482,7 @@ MonoBehaviour:
     oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: 0
+  from: 0.25
   to: 1
 --- !u!114 &114000011241078086
 MonoBehaviour:
@@ -6576,7 +6521,7 @@ MonoBehaviour:
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 39
-  mType: 3
+  mType: 1
   mFillDirection: 0
   mFillAmount: 1
   mInvert: 0
@@ -6592,6 +6537,21 @@ MonoBehaviour:
   mAtlas: {fileID: 114000014215409208, guid: 065a9f9a2625e1e46b008ee2236c6541, type: 2}
   mSpriteName: exp_bar
   mFillCenter: 1
+--- !u!114 &114000011255947194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012608887260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 8355a6909041c4a47ba33a8a20af2ce5, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000011279997442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6673,7 +6633,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0, g: 1, b: 0, a: 0.00062139286}
+  mColor: {r: 0, g: 1, b: 0, a: 1}
   mPivot: 3
   mWidth: 24
   mHeight: 36
@@ -6713,6 +6673,21 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000011311541170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010509604578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 8355a6909041c4a47ba33a8a20af2ce5, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000011321077642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7005,7 +6980,7 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
@@ -7077,7 +7052,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011737788164}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
   m_Name: 
@@ -7330,7 +7305,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014078726254}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
   m_Name: 
@@ -7403,6 +7378,21 @@ MonoBehaviour:
   mAtlas: {fileID: 114000014215409208, guid: 065a9f9a2625e1e46b008ee2236c6541, type: 2}
   mSpriteName: skin_1_true
   mFillCenter: 1
+--- !u!114 &114000011719092100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014078726254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 8355a6909041c4a47ba33a8a20af2ce5, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000011751443788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7629,7 +7619,7 @@ MonoBehaviour:
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 39
-  mType: 3
+  mType: 1
   mFillDirection: 0
   mFillAmount: 1
   mInvert: 0
@@ -7645,6 +7635,21 @@ MonoBehaviour:
   mAtlas: {fileID: 114000014215409208, guid: 065a9f9a2625e1e46b008ee2236c6541, type: 2}
   mSpriteName: exp_bar
   mFillCenter: 1
+--- !u!114 &114000011813833680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011733903458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000011825007204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7772,6 +7777,21 @@ MonoBehaviour:
   mAtlas: {fileID: 114000014215409208, guid: 065a9f9a2625e1e46b008ee2236c6541, type: 2}
   mSpriteName: exp_bar
   mFillCenter: 1
+--- !u!114 &114000011895775970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014009397380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000011917096436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7803,7 +7823,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 1
+  duration: 0.8
   steeperCurves: 0
   tweenGroup: 0
   onFinished:
@@ -7815,7 +7835,7 @@ MonoBehaviour:
     oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: 0
+  from: 0.25
   to: 1
 --- !u!114 &114000011937316190
 MonoBehaviour:
@@ -7936,7 +7956,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0, g: 0.63529414, b: 1, a: 0.00062139286}
+  mColor: {r: 0, g: 0.63529414, b: 1, a: 0}
   mPivot: 3
   mWidth: 390
   mHeight: 10
@@ -7945,7 +7965,7 @@ MonoBehaviour:
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 39
-  mType: 3
+  mType: 1
   mFillDirection: 0
   mFillAmount: 1
   mInvert: 0
@@ -7992,7 +8012,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 1
+  duration: 0.8
   steeperCurves: 0
   tweenGroup: 0
   onFinished:
@@ -8004,7 +8024,7 @@ MonoBehaviour:
     oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: 0
+  from: 0.25
   to: 1
 --- !u!114 &114000011970270830
 MonoBehaviour:
@@ -8031,7 +8051,7 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
@@ -8050,7 +8070,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010509604578}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
   m_Name: 
@@ -8280,7 +8300,7 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
@@ -8621,7 +8641,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0, g: 0.63529414, b: 1, a: 0.00062139286}
+  mColor: {r: 0, g: 0.63529414, b: 1, a: 1}
   mPivot: 3
   mWidth: 14
   mHeight: 36
@@ -8752,6 +8772,21 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000012307257538
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011330590280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 8355a6909041c4a47ba33a8a20af2ce5, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000012316480748
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8796,7 +8831,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011330590280}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
   m_Name: 
@@ -8894,10 +8929,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -8922,6 +8957,43 @@ MonoBehaviour:
   hover: {x: 0, y: 0, z: 0}
   pressed: {x: 2, y: -3, z: 0}
   duration: 0.02
+--- !u!114 &114000012419057552
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010281738294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858a20c1b21a3f94bb5b2d3b901c9aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 100
+  mHeight: 100
+  mDepth: 171
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
 --- !u!114 &114000012460495132
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8947,10 +9019,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -8960,51 +9032,6 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
---- !u!114 &114000012467930656
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012821916988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e2747e3775af504da1a4d5a46c5a1ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  method: 0
-  style: 2
-  animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  ignoreTimeScale: 1
-  delay: 0
-  duration: 1
-  steeperCurves: 0
-  tweenGroup: 0
-  onFinished:
-  - mTarget: {fileID: 114000011070731462}
-    mMethodName: OnAnimationFinishCommon
-    mParameters:
-    - obj: {fileID: 1000012821916988}
-      field: 
-    oneShot: 0
-  eventReceiver: {fileID: 0}
-  callWhenFinished: 
-  from: 0
-  to: 1
 --- !u!114 &114000012484028642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9210,7 +9237,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 1
+  duration: 0.8
   steeperCurves: 0
   tweenGroup: 0
   onFinished:
@@ -9222,7 +9249,7 @@ MonoBehaviour:
     oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: 0
+  from: 0.25
   to: 1
 --- !u!114 &114000012542687098
 MonoBehaviour:
@@ -9249,7 +9276,7 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
@@ -9287,7 +9314,7 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
@@ -9406,6 +9433,21 @@ MonoBehaviour:
     - obj: {fileID: 1000011733903458}
       field: 
     oneShot: 0
+--- !u!114 &114000012639285132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012704541106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 0550bca35e6da174bbcb9f53494eae52, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000012645029526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9515,7 +9557,7 @@ MonoBehaviour:
   dragEffect: 2
   restrictWithinPanel: 1
   constrainOnDrag: 0
-  disableDragIfFits: 0
+  disableDragIfFits: 1
   smoothDragStart: 1
   iOSDragEmulation: 1
   scrollWheelFactor: 0.5
@@ -9635,51 +9677,6 @@ MonoBehaviour:
   mAtlas: {fileID: 114000014215409208, guid: 065a9f9a2625e1e46b008ee2236c6541, type: 2}
   mSpriteName: groove_space
   mFillCenter: 1
---- !u!114 &114000012764689184
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011670713572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e2747e3775af504da1a4d5a46c5a1ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  method: 0
-  style: 2
-  animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  ignoreTimeScale: 1
-  delay: 0
-  duration: 1
-  steeperCurves: 0
-  tweenGroup: 0
-  onFinished:
-  - mTarget: {fileID: 114000011070731462}
-    mMethodName: OnAnimationFinishCommon
-    mParameters:
-    - obj: {fileID: 1000011670713572}
-      field: 
-    oneShot: 0
-  eventReceiver: {fileID: 0}
-  callWhenFinished: 
-  from: 0
-  to: 1
 --- !u!114 &114000012764941738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9705,10 +9702,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -9786,6 +9783,19 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000012803763052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010281738294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02842fa4878db54f9587ff4de7d9f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollView: {fileID: 114000012673291610}
+  draggablePanel: {fileID: 0}
 --- !u!114 &114000012803764310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9817,7 +9827,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 1
+  duration: 0.8
   steeperCurves: 0
   tweenGroup: 0
   onFinished:
@@ -9829,7 +9839,7 @@ MonoBehaviour:
     oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: 0
+  from: 0.25
   to: 1
 --- !u!114 &114000012854323516
 MonoBehaviour:
@@ -9980,6 +9990,21 @@ MonoBehaviour:
   eventReceiver: {fileID: 0}
   functionName: OnActivate
   startsChecked: 0
+--- !u!114 &114000013001845496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014058041210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 8355a6909041c4a47ba33a8a20af2ce5, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000013002354892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10005,10 +10030,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -10154,7 +10179,7 @@ MonoBehaviour:
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 39
-  mType: 3
+  mType: 1
   mFillDirection: 0
   mFillAmount: 1
   mInvert: 0
@@ -10246,51 +10271,6 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
---- !u!114 &114000013107740438
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013642742316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e2747e3775af504da1a4d5a46c5a1ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  method: 0
-  style: 2
-  animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  ignoreTimeScale: 1
-  delay: 0
-  duration: 1
-  steeperCurves: 0
-  tweenGroup: 0
-  onFinished:
-  - mTarget: {fileID: 114000011070731462}
-    mMethodName: OnAnimationFinishCommon
-    mParameters:
-    - obj: {fileID: 1000013642742316}
-      field: 
-    oneShot: 0
-  eventReceiver: {fileID: 0}
-  callWhenFinished: 
-  from: 0
-  to: 1
 --- !u!114 &114000013109910252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10365,7 +10345,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014058041210}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
   m_Name: 
@@ -10512,7 +10492,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3022
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -10528,7 +10508,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013196298230}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
   m_Name: 
@@ -10685,7 +10665,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 1
+  duration: 0.8
   steeperCurves: 0
   tweenGroup: 0
   onFinished:
@@ -10697,7 +10677,7 @@ MonoBehaviour:
     oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: 0
+  from: 0.25
   to: 1
 --- !u!114 &114000013239267692
 MonoBehaviour:
@@ -10752,6 +10732,21 @@ MonoBehaviour:
   mAtlas: {fileID: 114000014215409208, guid: 065a9f9a2625e1e46b008ee2236c6541, type: 2}
   mSpriteName: property_bar
   mFillCenter: 1
+--- !u!114 &114000013253949872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012178789172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 0550bca35e6da174bbcb9f53494eae52, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000013263948648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10788,7 +10783,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3015
+  startingRenderQueue: 3064
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -10972,51 +10967,6 @@ MonoBehaviour:
   mAtlas: {fileID: 114000014215409208, guid: 065a9f9a2625e1e46b008ee2236c6541, type: 2}
   mSpriteName: skin_1_true
   mFillCenter: 1
---- !u!114 &114000013382419286
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010020112362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e2747e3775af504da1a4d5a46c5a1ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  method: 0
-  style: 2
-  animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  ignoreTimeScale: 1
-  delay: 0
-  duration: 1
-  steeperCurves: 0
-  tweenGroup: 0
-  onFinished:
-  - mTarget: {fileID: 114000011070731462}
-    mMethodName: OnAnimationFinishCommon
-    mParameters:
-    - obj: {fileID: 1000010020112362}
-      field: 
-    oneShot: 0
-  eventReceiver: {fileID: 0}
-  callWhenFinished: 
-  from: 0
-  to: 1
 --- !u!114 &114000013383968538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11148,10 +11098,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -11294,7 +11244,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3011
+  startingRenderQueue: 3039
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -11599,7 +11549,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0, g: 1, b: 0, a: 0.00062139286}
+  mColor: {r: 0, g: 1, b: 0, a: 1}
   mPivot: 3
   mWidth: 20
   mHeight: 36
@@ -11863,7 +11813,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.13725491, g: 0.47058824, b: 0.49019608, a: 0.00062139286}
+  mColor: {r: 0.13725491, g: 0.47058824, b: 0.49019608, a: 1}
   mPivot: 3
   mWidth: 38
   mHeight: 36
@@ -11931,7 +11881,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.13725491, g: 0.47058824, b: 0.49019608, a: 0.00062139286}
+  mColor: {r: 0.13725491, g: 0.47058824, b: 0.49019608, a: 1}
   mPivot: 3
   mWidth: 38
   mHeight: 36
@@ -12039,6 +11989,21 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000013842068144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011737788164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 8355a6909041c4a47ba33a8a20af2ce5, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000013852525248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12195,7 +12160,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ignoreTimeScale: 1
   delay: 0
-  duration: 1
+  duration: 0.8
   steeperCurves: 0
   tweenGroup: 0
   onFinished:
@@ -12207,7 +12172,7 @@ MonoBehaviour:
     oneShot: 0
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: 0
+  from: 0.25
   to: 1
 --- !u!114 &114000013946688392
 MonoBehaviour:
@@ -12590,7 +12555,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012608887260}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
   m_Name: 
@@ -12678,6 +12643,21 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000014254608228
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014056310482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000014283221818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12706,7 +12686,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.89411765, g: 0, b: 0.49803922, a: 0.00062139286}
+  mColor: {r: 0.89411765, g: 0, b: 0.49803922, a: 0}
   mPivot: 3
   mWidth: 390
   mHeight: 10
@@ -12715,7 +12695,7 @@ MonoBehaviour:
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 39
-  mType: 3
+  mType: 1
   mFillDirection: 0
   mFillAmount: 1
   mInvert: 0

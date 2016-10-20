@@ -75,6 +75,7 @@ GameObject:
   - 114: {fileID: 114000012702164158}
   - 114: {fileID: 114000013278370050}
   - 114: {fileID: 114000010289596928}
+  - 114: {fileID: 114000010976459060}
   m_Layer: 5
   m_Name: SprContinue
   m_TagString: Untagged
@@ -5288,12 +5289,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 1000012090510698}
-  clickResponseObjects: []
-  clickResponseParentNames: []
-  clickResponseObjectsIsShow: 
-  clickResponseParentNamesIsShow: 
-  clickResponseObjectAnimations: []
-  clickResponseParentAnimations: []
+  clickResponseObjects:
+  - {fileID: 0}
+  clickResponseParentNames:
+  - 
+  clickResponseObjectsIsShow: 01
+  clickResponseParentNamesIsShow: 01
+  clickResponseObjectAnimations:
+  - 
+  clickResponseParentAnimations:
+  - 
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
@@ -5301,7 +5306,7 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
@@ -6019,7 +6024,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3014
+  startingRenderQueue: 3012
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6674,6 +6679,21 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 4bea0300cc316457c86ff4db967545b5, type: 2}
   mSpriteName: UI_win_victory_flash_15
   mFillCenter: 1
+--- !u!114 &114000010976459060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010061853372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 3fa317b3db9e5f04ea0a2842663287b1, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000010998773578
 MonoBehaviour:
   m_ObjectHideFlags: 1
