@@ -195,6 +195,11 @@ namespace GameLogic {
 				Boss.Instance.SetBoss (_path, _po);
 			}
 
+			//if (md.nodeData.type == GameGlobal.NODE_TYPE_PRESS) {
+			//	_po.SetActive (true);
+			//	SpineActionController.Play (ACTION_KEYS.COMEIN, _po);
+			//}
+
 			return _po;
 		}
 

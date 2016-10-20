@@ -92,7 +92,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3008
+  startingRenderQueue: 3011
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -1087,6 +1087,7 @@ GameObject:
   - 114: {fileID: 114000013422777380}
   - 114: {fileID: 114000010468951680}
   - 114: {fileID: 114000013739079482}
+  - 114: {fileID: 114000010896946548}
   m_Layer: 5
   m_Name: BtnPurchase
   m_TagString: Untagged
@@ -3914,6 +3915,29 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000010896946548
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013637688262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animator: {fileID: 0}
+  clipName: pnl_yes_or_no_in
+  trigger: 0
+  playDirection: 1
+  resetOnPlay: 0
+  clearSelection: 0
+  ifDisabledOnPlay: 1
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
 --- !u!114 &114000010909510570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7604,8 +7628,8 @@ MonoBehaviour:
   - 
   clickResponseParentAnimations:
   - 
-  isFoldObjs: 0
-  isFoldParentObjs: 0
+  isFoldObjs: 1
+  isFoldParentObjs: 1
   isForceKeep: 0
   isClickHideSelf: 0
   isClickHideParent: 0
