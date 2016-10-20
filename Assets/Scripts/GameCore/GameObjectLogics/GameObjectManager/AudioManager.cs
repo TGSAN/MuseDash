@@ -343,7 +343,6 @@ public class AudioManager
         {
             return;
         }
-        Debug.Log(name);
         if (this.audioDic.ContainsKey(name))
         {
             this.girlEffect.PlayOneShot(this.audioDic[name]);
