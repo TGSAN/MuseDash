@@ -78,8 +78,6 @@ namespace FormulaBase {
 			{ "pops_up_the_mind_wings2", "stage/stage_v1/json/"},
 			{ "pops_up_the_mind_wings3", "stage/stage_v1/json/"},
 			{ "raintable1", "stage/stage_v1/json/"},
-			{ "raintable2", "stage/stage_v1/json/"},
-			{ "raintable3", "stage/stage_v1/json/"},
 			{ "shall_we_meet1", "stage/stage_v1/json/"},
 			{ "shall_we_meet2", "stage/stage_v1/json/"},
 			{ "shall_we_meet3", "stage/stage_v1/json/"},
