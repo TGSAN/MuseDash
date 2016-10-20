@@ -100,8 +100,8 @@ namespace FormulaBase
         /// <returns></returns>
         public int[] GetGirlEquipTypes(int idx)
         {
-            var typeIDs = new int[3];
             var characterInfo = ConfigPool.Instance.GetConfigValue("char_info", idx.ToString());
+            var typeIDs = new int[3];
             for (int i = 1; i < 4; i++)
             {
                 string _weaponName = "weapon_" + i.ToString();
