@@ -25,10 +25,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11405424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -42,24 +42,89 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: a60d88880858246c7b7099a5177aebd0, type: 2}
   mSprites:
-  - name: store_BG
+  - name: bg
     x: 0
-    y: 32
-    width: 30
-    height: 750
+    y: 27
+    width: 32
+    height: 32
     borderLeft: 2
     borderRight: 2
+    borderTop: 2
+    borderBottom: 2
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: bg_light
+    x: 68
+    y: 96
+    width: 32
+    height: 32
+    borderLeft: 2
+    borderRight: 2
+    borderTop: 2
+    borderBottom: 2
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: big_board
+    x: 329
+    y: 416
+    width: 96
+    height: 96
+    borderLeft: 14
+    borderRight: 14
+    borderTop: 32
+    borderBottom: 14
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: capsule_icon
+    x: 429
+    y: 368
+    width: 37
+    height: 41
+    borderLeft: 0
+    borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: store_button
+  - name: cost_board
+    x: 132
+    y: 132
+    width: 96
+    height: 38
+    borderLeft: 20
+    borderRight: 14
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: crytal_icon
+    x: 470
+    y: 374
+    width: 36
+    height: 35
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: handful_of_crystal
     x: 0
-    y: 784
-    width: 350
-    height: 240
+    y: 345
+    width: 325
+    height: 167
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -68,11 +133,11 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: store_button_n
-    x: 32
-    y: 702
-    width: 260
-    height: 80
+  - name: one_capsule
+    x: 0
+    y: 174
+    width: 325
+    height: 167
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -81,11 +146,11 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: store_button_s
-    x: 32
-    y: 620
-    width: 260
-    height: 80
+  - name: switch_button
+    x: 429
+    y: 413
+    width: 55
+    height: 99
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -94,104 +159,39 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: store_girl_1
-    x: 32
-    y: 470
-    width: 113
-    height: 148
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 3
-    paddingRight: 5
-    paddingTop: 6
-    paddingBottom: 0
-  - name: store_girl_2
-    x: 530
-    y: 869
-    width: 138
-    height: 155
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 4
-    paddingTop: 0
-    paddingBottom: 0
-  - name: store_girl_3
-    x: 147
-    y: 474
-    width: 106
-    height: 144
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 3
-    paddingRight: 5
-    paddingTop: 10
-    paddingBottom: 0
-  - name: store_girl_4
-    x: 832
-    y: 883
-    width: 139
-    height: 141
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 1
-    paddingRight: 3
-    paddingTop: 24
-    paddingBottom: 0
-  - name: store_girl_5
-    x: 352
-    y: 860
-    width: 176
-    height: 164
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 4
-    paddingTop: 0
-    paddingBottom: 0
-  - name: store_girl_6
-    x: 670
-    y: 893
-    width: 160
-    height: 131
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 12
-    paddingRight: 6
-    paddingTop: 34
-    paddingBottom: 0
-  - name: store_peripherals_(
-    x: 352
-    y: 784
-    width: 60
-    height: 74
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
+  - name: tag_button
+    x: 329
+    y: 347
+    width: 64
+    height: 65
+    borderLeft: 14
+    borderRight: 14
+    borderTop: 4
+    borderBottom: 14
     paddingLeft: 0
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: store_peripherals_)
-    x: 414
-    y: 784
-    width: 60
-    height: 74
-    borderLeft: 0
-    borderRight: 0
+  - name: tag_button_chosen
+    x: 0
+    y: 63
+    width: 64
+    height: 65
+    borderLeft: 14
+    borderRight: 14
+    borderTop: 4
+    borderBottom: 14
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: title_board
+    x: 0
+    y: 132
+    width: 128
+    height: 38
+    borderLeft: 20
+    borderRight: 20
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0
