@@ -96,7 +96,6 @@ namespace FormulaBase
             if (this.HostList == null || this.HostList.Count <= 0)
             {
                 hostList = new List<FormulaHost>();
-
                 LitJson.JsonData roleCfg = ConfigPool.Instance.GetConfigByName("char_info");
                 foreach (string key in roleCfg.Keys)
                 {

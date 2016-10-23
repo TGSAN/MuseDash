@@ -789,7 +789,7 @@ GameObject:
   - 54: {fileID: 54000013784805262}
   - 114: {fileID: 114000011551323072}
   - 114: {fileID: 114000012574213420}
-  - 114: {fileID: 114000010406054736}
+  - 114: {fileID: 114000010518647306}
   - 95: {fileID: 95000012637285898}
   m_Layer: 5
   m_Name: PnlEquipInfo
@@ -3609,19 +3609,6 @@ MonoBehaviour:
   callWhenFinished: 
   from: 0
   to: 1
---- !u!114 &114000010406054736
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011989051036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1e6b98ad6d084d09bef65f36e18be4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowAnimation: 
-  HideAnimation: 
 --- !u!114 &114000010420960240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3827,6 +3814,26 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000010518647306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011989051036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e0d05aa7bc8dd94da6fd8d743d9d5b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowAnimation: 
+  HideAnimation: 
+  txtVigour: {fileID: 0}
+  txtStamina: {fileID: 0}
+  txtStrengh: {fileID: 0}
+  txtExp: {fileID: 0}
+  txtDisc: {fileID: 0}
+  txtAbility: {fileID: 0}
+  star: {fileID: 0}
 --- !u!114 &114000010551120134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5210,7 +5217,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3010
+  startingRenderQueue: 3006
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -5808,8 +5815,8 @@ MonoBehaviour:
   activeHostKeyId: 0
   activeCondiction: LEVEL
   activeValue: 
-  labelHostKeyId: 0
-  labelMatchSign: LEVEL
+  labelHostKeyId: 5
+  labelMatchSign: STAMINA_FROM_EQUIP
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -6331,8 +6338,8 @@ MonoBehaviour:
   activeHostKeyId: 0
   activeCondiction: LEVEL
   activeValue: 
-  labelHostKeyId: 0
-  labelMatchSign: LEVEL
+  labelHostKeyId: 5
+  labelMatchSign: DESCRIPTION
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -7090,7 +7097,6 @@ MonoBehaviour:
   - {fileID: 114000012343024402}
   - {fileID: 114000013353782980}
   - {fileID: 114000013013189028}
-  - {fileID: 0}
   - {fileID: 114000012512375472}
   - {fileID: 114000012673497936}
   - {fileID: 114000010236229704}
@@ -7122,19 +7128,14 @@ MonoBehaviour:
   - {fileID: 114000013196848138}
   - {fileID: 114000010741355720}
   - {fileID: 114000014246252328}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 114000012245723402}
   - {fileID: 114000012223582936}
-  - {fileID: 0}
   - {fileID: 114000013475735350}
   - {fileID: 114000012205062318}
   - {fileID: 114000011950072724}
   - {fileID: 114000014123429248}
+  - {fileID: 114000011766514224}
+  - {fileID: 114000013121454928}
 --- !u!114 &114000012581743546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7457,8 +7458,8 @@ MonoBehaviour:
   activeHostKeyId: 0
   activeCondiction: LEVEL
   activeValue: 
-  labelHostKeyId: 0
-  labelMatchSign: LEVEL
+  labelHostKeyId: 5
+  labelMatchSign: VIGOUR_FROM_EQUIP
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -9967,8 +9968,8 @@ MonoBehaviour:
   activeHostKeyId: 0
   activeCondiction: LEVEL
   activeValue: 
-  labelHostKeyId: 0
-  labelMatchSign: LEVEL
+  labelHostKeyId: 5
+  labelMatchSign: STRENGH_FROM_EQUIP
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -10714,7 +10715,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3000
+  startingRenderQueue: 3004
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0

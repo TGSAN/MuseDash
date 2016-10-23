@@ -81,6 +81,10 @@ namespace ItemCellCharInfo
                         });
                 }
             }));
+            UIEventListener.Get(gameObject).onClick = (go) =>
+            {
+                PnlItemInfo.PnlItemInfo.Instance.OnShow(host);
+            };
         }
 
         private void SetTexByHost(FormulaBase.FormulaHost host)

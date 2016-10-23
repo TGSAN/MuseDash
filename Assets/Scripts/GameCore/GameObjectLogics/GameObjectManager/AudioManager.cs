@@ -18,6 +18,7 @@ public class AudioManager
     private AudioClip[] girlEffects;
 
     private Dictionary<string, AudioClip> sceneObjectEffects;
+    private Dictionary<string, int> m_AndroidDic = new Dictionary<string, int>();
     private AudioClip hurtEffect;
     private Dictionary<string, AudioClip> audioDic;
     private ArrayList audios = new ArrayList();
@@ -215,12 +216,22 @@ public class AudioManager
         {
             return;
         }
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+        name = StringUtil.LastAfter(name, '/');
+        if (!m_AndroidDic.ContainsKey(name))
+        {
+            var idx = AudioCenter.loadSound(name);
+            m_AndroidDic.Add(name, idx);
+        }
+#else
         if (!audioDic.ContainsKey(name))
         {
             var clip = Resources.Load(name) as AudioClip;
             audioDic.Add(name, clip);
             this.girlEffect.PlayOneShot(clip, 0.0f);
         }
+#endif
     }
 
     public void PlayBackGroundMusic()
@@ -343,10 +354,19 @@ public class AudioManager
         {
             return;
         }
+#if UNITY_ANDROID && !UNITY_EDITOR
+        name = StringUtil.LastAfter(name, '/');
+        if (m_AndroidDic.ContainsKey(name))
+        {
+            var idx = m_AndroidDic[name];
+            AudioCenter.playSound(idx);
+        }
+#else
         if (this.audioDic.ContainsKey(name))
         {
             this.girlEffect.PlayOneShot(this.audioDic[name]);
         }
+#endif
     }
 
     public void PlayHitNothing()

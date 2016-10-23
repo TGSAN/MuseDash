@@ -20,7 +20,6 @@ namespace PnlSuitcase
 
         private void Start()
         {
-            Debug.Log("=============3");
             instance = this;
         }
 
