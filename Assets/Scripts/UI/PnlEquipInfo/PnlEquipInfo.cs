@@ -12,8 +12,12 @@ namespace PnlEquipInfo
     {
         public UILabel txtVigour, txtStamina, txtStrengh;
         public UILabel txtVigourTo, txtStaminaTo, txtStrenghTo;
+        public UILabel txtName;
+        public UILabel txtCurLvl, txtNextLvl;
         public UILabel txtDiscription;
         public UIGrid grdEquips;
+        public UIButton btnSale;
+        public UIButton btnUpgrade;
         public Transform star;
         private static PnlEquipInfo instance = null;
         private Animator m_Animator;
@@ -29,6 +33,10 @@ namespace PnlEquipInfo
         private void Awake()
         {
             m_Animator = GetComponent<Animator>();
+            btnSale.onClick.Add(new EventDelegate()=>
+            {
+
+            });
         }
 
         private void Start()
@@ -49,6 +57,8 @@ namespace PnlEquipInfo
             gameObject.SetActive(true);
             m_Animator.enabled = true;
             m_Animator.Play("pnl_equip_info_in");
+            var name = host.GetDynamicStrByKey(SignKeys.NAME);
+            var curLvl = host.GetDynamicStrByKey(SignKeys.LEVEL);
             var vigour = host.Result(FormulaKeys.FORMULA_258);
             var stamina = host.Result(FormulaKeys.FORMULA_259);
             var strengh = host.Result(FormulaKeys.FORMULA_264);
@@ -58,10 +68,13 @@ namespace PnlEquipInfo
             txtStamina.transform.parent.gameObject.SetActive(stamina > 0);
             txtStrengh.transform.parent.gameObject.SetActive(strengh > 0);
 
+            txtName.text = name;
+            txtCurLvl.text = curLvl;
             txtVigour.text = vigour.ToString();
             txtStamina.text = stamina.ToString();
             txtStrengh.text = strengh.ToString();
-            txtDiscription.text = description.ToString();
+            txtDiscription.text = description;
+            
         }
     }
 }
