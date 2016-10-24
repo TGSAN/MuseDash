@@ -71,6 +71,7 @@ namespace FormulaBase
                     continue;
                 }
                 var typeID = (string)equipInfo["type"];
+
                 if (equipTypeList.Contains(typeID))
                 {
                     var index = equipTypeList.IndexOf(typeID) + 1;
@@ -104,13 +105,13 @@ namespace FormulaBase
             var typeIDs = new string[3];
             for (int i = 1; i < 4; i++)
             {
-                string _weaponName = "weapon_" + i.ToString();
-                if (!characterInfo.Keys.Contains(_weaponName))
+                string weaponName = "weapon_" + i.ToString();
+                if (!characterInfo.Keys.Contains(weaponName))
                 {
                     continue;
                 }
 
-                typeIDs[i - 1] = (string)characterInfo[_weaponName];
+                typeIDs[i - 1] = (string)characterInfo[weaponName];
             }
             return typeIDs;
         }
@@ -165,7 +166,7 @@ namespace FormulaBase
             {
                 if (host != null) host.SetDynamicData(SignKeys.WHO, 0);
             }
-
+            UnityEngine.Debug.Log(host.GetDynamicDataByKey(SignKeys.WHO));
             if (host != null)
             {
                 host.Save();

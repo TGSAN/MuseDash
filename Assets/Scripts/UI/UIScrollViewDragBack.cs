@@ -13,6 +13,7 @@ namespace Assets.Scripts.UI
         public float duration = 1.0f;
         public AnimationCurve curve;
         public UIScrollView.DragEffect originDragEffect;
+        private Tweener m_MoveTwner1, m_MoveTwner2;
 
         private void Awake()
         {
@@ -20,43 +21,54 @@ namespace Assets.Scripts.UI
             panel = GetComponent<UIPanel>();
             originDragEffect = scrollView.dragEffect;
             m_OriginOffset = scrollView.transform.position;
-            scrollView.onDragFinished += () =>
+            scrollView.onDragFinished += OnDragEvent;
+            scrollView.onStoppedMoving += OnDragEvent;
+            scrollView.onDragStarted += OnDragStart;
+        }
+
+        private void OnDragStart()
+        {
+            if (m_MoveTwner1 != null)
             {
-                if (isVertical)
+                m_MoveTwner1.Kill();
+            }
+
+            if (m_MoveTwner2 != null)
+            {
+                m_MoveTwner2.Kill();
+            }
+        }
+
+        private void OnDragEvent()
+        {
+            if (isVertical)
+            {
+                if (scrollView.transform.position.y <= limitOffset)
                 {
-                    if (scrollView.transform.position.y <= limitOffset)
-                    {
-                        scrollView.dragEffect = UIScrollView.DragEffect.Momentum;
-                        scrollView.transform.DOMoveY(m_OriginOffset.y, duration).SetEase(curve);
-                        DOTween.To(() => panel.clipOffset, x => panel.clipOffset = x, m_OriginOffset, duration)
-                            .SetEase(curve);
-                    }
-                    else
-                    {
-                        scrollView.dragEffect = originDragEffect;
-                    }
+                    scrollView.dragEffect = UIScrollView.DragEffect.Momentum;
+                    m_MoveTwner1 = scrollView.transform.DOMoveY(m_OriginOffset.y, duration).SetEase(curve);
+                    m_MoveTwner2 = DOTween.To(() => panel.clipOffset, x => panel.clipOffset = x, m_OriginOffset, duration)
+                        .SetEase(curve);
                 }
                 else
                 {
-                    if (scrollView.transform.position.x <= limitOffset)
-                    {
-                        scrollView.dragEffect = UIScrollView.DragEffect.Momentum;
-                        scrollView.DisableSpring();
-                        scrollView.transform.DOMoveX(m_OriginOffset.x, duration).SetEase(curve);
-                        DOTween.To(() => panel.clipOffset, x => panel.clipOffset = x, m_OriginOffset, duration)
-                            .SetEase(curve);
-                    }
-                    else
-                    {
-                        scrollView.dragEffect = originDragEffect;
-                    }
+                    scrollView.dragEffect = originDragEffect;
                 }
-            };
-        }
-
-        // Use this for initialization
-        private void Start()
-        {
+            }
+            else
+            {
+                if (scrollView.transform.position.x <= limitOffset)
+                {
+                    scrollView.dragEffect = UIScrollView.DragEffect.Momentum;
+                    m_MoveTwner1 = scrollView.transform.DOMoveX(m_OriginOffset.x, duration).SetEase(curve);
+                    m_MoveTwner2 = DOTween.To(() => panel.clipOffset, x => panel.clipOffset = x, m_OriginOffset, duration)
+                        .SetEase(curve);
+                }
+                else
+                {
+                    scrollView.dragEffect = originDragEffect;
+                }
+            }
         }
     }
 }

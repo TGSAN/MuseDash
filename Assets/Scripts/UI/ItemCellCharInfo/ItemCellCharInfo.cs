@@ -63,7 +63,8 @@ namespace ItemCellCharInfo
                 if (curEquipList.Length > 0)
                 {
                     CommonPanel.GetInstance().ShowWaittingPanel(true);
-                    FormulaBase.EquipManageComponent.Instance.Equip(curEquipList[0].GetDynamicIntByKey(FormulaBase.SignKeys.ID), false,
+                    FormulaBase.EquipManageComponent.Instance.Equip(
+                        curEquipList[0].GetDynamicIntByKey(FormulaBase.SignKeys.ID), false,
                         result =>
                         {
                             if (result)
@@ -80,10 +81,22 @@ namespace ItemCellCharInfo
                             }
                         });
                 }
+                else
+                {
+                    FormulaBase.EquipManageComponent.Instance.Equip(id, true, r =>
+                    {
+                        if (r)
+                        {
+                            PnlChar.PnlChar.Instance.OnEquipLoad(PnlChar.PnlChar.Instance.curRoleIdx);
+                            PnlCharInfo.PnlCharInfo.Instance.UpdateItemList(id);
+                            CommonPanel.GetInstance().ShowWaittingPanel(false);
+                        }
+                    });
+                }
             }));
             UIEventListener.Get(gameObject).onClick = (go) =>
             {
-                PnlItemInfo.PnlItemInfo.Instance.OnShow(host);
+                PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
             };
         }
 
@@ -100,7 +113,7 @@ namespace ItemCellCharInfo
         private void SetTxtByHost(FormulaBase.FormulaHost host)
         {
             var name = host.GetDynamicStrByKey(FormulaBase.SignKeys.NAME);
-            var lvl = host.GetDynamicStrByKey(FormulaBase.SignKeys.LEVEL);
+            var lvl = "LV." + host.GetDynamicStrByKey(FormulaBase.SignKeys.LEVEL);
             var effect = host.GetDynamicStrByKey(FormulaBase.SignKeys.EFFECT_DESC);
             txtName.text = name;
             txtLvl.text = lvl;

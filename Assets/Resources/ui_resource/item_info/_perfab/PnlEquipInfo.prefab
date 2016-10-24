@@ -3683,7 +3683,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3002
+  startingRenderQueue: 3004
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -3827,13 +3827,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowAnimation: 
   HideAnimation: 
-  txtVigour: {fileID: 0}
-  txtStamina: {fileID: 0}
-  txtStrengh: {fileID: 0}
-  txtExp: {fileID: 0}
-  txtDisc: {fileID: 0}
-  txtAbility: {fileID: 0}
-  star: {fileID: 0}
+  txtVigour: {fileID: 114000012318863392}
+  txtStamina: {fileID: 114000013205789836}
+  txtStrengh: {fileID: 114000013365490598}
+  txtVigourTo: {fileID: 114000010263610678}
+  txtStaminaTo: {fileID: 114000013629918384}
+  txtStrenghTo: {fileID: 114000013880571414}
+  txtDiscription: {fileID: 114000010674663724}
+  grdEquips: {fileID: 114000010371452828}
+  star: {fileID: 4000013865106962}
 --- !u!114 &114000010551120134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4147,10 +4149,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -7577,10 +7579,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -10715,7 +10717,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0

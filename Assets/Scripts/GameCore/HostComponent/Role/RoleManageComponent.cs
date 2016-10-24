@@ -178,22 +178,22 @@ namespace FormulaBase
 
         public void Equip(FormulaHost equipHost, bool isTo, HttpResponseDelegate func = null)
         {
-            var equipType = equipHost.GetDynamicDataByKey(SignKeys.TYPE);
-            if (equipType == 1 || equipType == 4 || equipType == 7)
+            var equipType = equipHost.GetDynamicStrByKey(SignKeys.TYPE);
+            if (equipType == "necklace" || equipType == "toy" || equipType == "fiara")
             {
-                //仅1、4、7类型装备增加血量
+                //仅necklace、toy、fiara
                 var value = isTo ? (int)equipHost.Result(FormulaKeys.FORMULA_258) : 0;
                 Host.SetDynamicData(SignKeys.VIGOUR_FROM_EQUIP, value);
             }
-            else if (equipType == 2 || equipType == 5 || equipType == 8)
+            else if (equipType == "gloves" || equipType == "panty" || equipType == "ring")
             {
-                //仅2、5、8类型装备增加耐力
+                //仅gloves、panty、ring类型装备增加耐力
                 var value = isTo ? (int)equipHost.Result(FormulaKeys.FORMULA_261) : 0;
                 Host.SetDynamicData(SignKeys.STAMINA_FROM_EQUIP, value);
             }
             else
             {
-                //仅3、6、9类型装备增加攻击
+                //其他类型装备增加攻击
                 var value = isTo ? (int)equipHost.Result(FormulaKeys.FORMULA_264) : 0;
                 Host.SetDynamicData(SignKeys.STRENGH_FROM_EQUIP, value);
             }
