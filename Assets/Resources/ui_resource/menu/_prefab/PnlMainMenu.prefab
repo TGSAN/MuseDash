@@ -5823,9 +5823,10 @@ MonoBehaviour:
   - PnlChar
   - PnlCharInfo
   - PnlSuitcase
+  - PnlStore
   - 
   clickResponseObjectsIsShow: 010000000001
-  clickResponseParentNamesIsShow: 010000000000000000
+  clickResponseParentNamesIsShow: 01000000000000000001
   clickResponseObjectAnimations:
   - 
   - 
@@ -5834,6 +5835,7 @@ MonoBehaviour:
   - 
   - 
   clickResponseParentAnimations:
+  - 
   - 
   - 
   - 
@@ -6130,9 +6132,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   clickResponseParentNames:
+  - PnlStore
+  - PnlStage
+  - PnlAchievement
+  - PnlChar
+  - PnlSuitcase
+  - PnlCharInfo
+  - PnlAdventure
   - 
   clickResponseObjectsIsShow: 010000000001
-  clickResponseParentNamesIsShow: 01
+  clickResponseParentNamesIsShow: 0100000000000001
   clickResponseObjectAnimations:
   - 
   - 
@@ -6140,9 +6149,17 @@ MonoBehaviour:
   - 
   - 
   - 
-  clickResponseParentAnimations: []
+  clickResponseParentAnimations:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   isFoldObjs: 1
-  isFoldParentObjs: 0
+  isFoldParentObjs: 1
   isForceKeep: 0
   isClickHideSelf: 0
   isClickHideParent: 0
@@ -7159,9 +7176,10 @@ MonoBehaviour:
   - PnlCharChose
   - PnlChar
   - PnlCharInfo
+  - PnlStore
   - 
   clickResponseObjectsIsShow: 010000000000
-  clickResponseParentNamesIsShow: 0100000000000000
+  clickResponseParentNamesIsShow: 010000000000000001
   clickResponseObjectAnimations:
   - 
   - 
@@ -7170,6 +7188,7 @@ MonoBehaviour:
   - 
   - 
   clickResponseParentAnimations:
+  - 
   - 
   - 
   - 
@@ -7622,7 +7641,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3081
+  startingRenderQueue: 3004
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -8502,9 +8521,10 @@ MonoBehaviour:
   - PnlAchievement
   - PnlItemInfo
   - PnlCharChose
+  - PnlStore
   - 
   clickResponseObjectsIsShow: 010000000000
-  clickResponseParentNamesIsShow: 000001010000000000
+  clickResponseParentNamesIsShow: 00000101000000000001
   clickResponseObjectAnimations:
   - 
   - 
@@ -8513,6 +8533,7 @@ MonoBehaviour:
   - 
   - 
   clickResponseParentAnimations:
+  - 
   - 
   - 
   - 
@@ -10452,7 +10473,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011140728686}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 2
   startDelay:
     scalar: 0
@@ -10490,13 +10511,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -12126,7 +12146,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013933880764}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 2
   startDelay:
     scalar: 0
@@ -12164,13 +12184,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -13795,7 +13814,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010474613550}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 13.4
   startDelay:
     scalar: 0
@@ -13833,13 +13852,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 1111302376
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 0
   scalingMode: 1
-  randomSeed: 1111302376
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -15489,7 +15507,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011751377626}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 2
   startDelay:
     scalar: 0
@@ -15527,13 +15545,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -17163,7 +17180,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013260411236}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 2
   startDelay:
     scalar: 0
@@ -17201,13 +17218,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 1111302376
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 0
   scalingMode: 2
-  randomSeed: 1111302376
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -18832,7 +18848,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011262193114}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 5
   startDelay:
     scalar: 0
@@ -18870,13 +18886,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 1111302376
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 0
   scalingMode: 1
-  randomSeed: 1111302376
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -20586,7 +20601,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011651259000}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 5
   startDelay:
     scalar: 0
@@ -20624,13 +20639,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 1111302376
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 0
   scalingMode: 1
-  randomSeed: 1111302376
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -22340,7 +22354,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010184853984}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 2
   startDelay:
     scalar: 0
@@ -22378,13 +22392,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 1111302376
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 0
   scalingMode: 2
-  randomSeed: 1111302376
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -24009,7 +24022,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014241867596}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 2
   startDelay:
     scalar: 0
@@ -24047,13 +24060,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 1111302376
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 0
   scalingMode: 2
-  randomSeed: 1111302376
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -25678,7 +25690,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011487487436}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 2
   startDelay:
     scalar: 0
@@ -25716,13 +25728,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -27397,7 +27408,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013355845820}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 2
   startDelay:
     scalar: 0
@@ -27435,13 +27446,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -29106,7 +29116,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013617059884}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 2
   startDelay:
     scalar: 0
@@ -29144,13 +29154,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 1111302376
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 0
   scalingMode: 2
-  randomSeed: 1111302376
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -30775,7 +30784,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013827486106}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 5
   startDelay:
     scalar: 0
@@ -30813,13 +30822,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 1111302376
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 0
   scalingMode: 1
-  randomSeed: 1111302376
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -32529,7 +32537,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011389268450}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 2
   startDelay:
     scalar: 0
@@ -32567,13 +32575,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -34178,7 +34185,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012907837054}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 2
   startDelay:
     scalar: 0
@@ -34216,13 +34223,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -35887,7 +35893,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012379811110}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 5
   startDelay:
     scalar: 0
@@ -35925,13 +35931,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 1111302376
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 0
   scalingMode: 1
-  randomSeed: 1111302376
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -37641,7 +37646,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012203291930}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 5
   startDelay:
     scalar: 0
@@ -37679,13 +37684,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 1111302376
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 0
   scalingMode: 1
-  randomSeed: 1111302376
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -39335,7 +39339,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011680061414}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 5
   startDelay:
     scalar: 0
@@ -39373,13 +39377,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 1111302376
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 0
   scalingMode: 1
-  randomSeed: 1111302376
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -41029,7 +41032,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010219118640}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 2
   startDelay:
     scalar: 0
@@ -41067,13 +41070,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -42748,7 +42750,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011532503122}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 2
   startDelay:
     scalar: 0
@@ -42786,13 +42788,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -44407,7 +44408,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013068525462}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 2
   startDelay:
     scalar: 0
@@ -44445,13 +44446,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -46066,7 +46066,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010172272566}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 5
   startDelay:
     scalar: 0
@@ -46104,13 +46104,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 1111302376
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 0
   scalingMode: 1
-  randomSeed: 1111302376
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -47760,7 +47759,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011173926280}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 2
   startDelay:
     scalar: 0
@@ -47798,13 +47797,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -49419,7 +49417,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012203712764}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 2
   startDelay:
     scalar: 0
@@ -49457,13 +49455,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
