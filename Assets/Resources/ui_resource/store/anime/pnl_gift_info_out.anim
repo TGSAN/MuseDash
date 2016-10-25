@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: resourse_in
+  m_Name: pnl_gift_info_out
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -18,24 +18,24 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: {x: 1225, y: -15, z: 0}
-        inSlope: {x: -39048.582, y: 0, z: 0}
-        outSlope: {x: -39048.582, y: 0, z: 0}
-        tangentMode: 0
-      - time: 0.05
-        value: {x: 183.98883, y: -15, z: 0}
-        inSlope: {x: -3652.1853, y: 0, z: 0}
-        outSlope: {x: -3652.1853, y: 0, z: 0}
-        tangentMode: 0
-      - time: 0.13333334
-        value: {x: 85, y: -15, z: 0}
+        value: {x: 0, y: 0, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 0.05
+        value: {x: 0, y: 1.65601, z: 0}
+        inSlope: {x: 0, y: 116.50565, z: 0}
+        outSlope: {x: 0, y: 116.50565, z: 0}
+        tangentMode: 0
+      - time: 0.13333334
+        value: {x: 0, y: 60, z: 0}
+        inSlope: {x: 0, y: 1825.2269, z: 0}
+        outSlope: {x: 0, y: 1825.2269, z: 0}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: ScrollView/TwnControl
+    path: SprBigBoard
   m_ScaleCurves: []
   m_FloatCurves:
   - curve:
@@ -45,28 +45,38 @@ AnimationClip:
         value: 1
         inSlope: 0
         outSlope: 0
-        tangentMode: 10
+        tangentMode: 0
+      - time: 0.13333334
+        value: 0.039215688
+        inSlope: -18.625591
+        outSlope: -18.625591
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: mAlpha
-    path: ScrollView
+    attribute: mColor.a
+    path: SprBigBoard
     classID: 114
-    script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
+    script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
   - curve:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
+        value: 0.8
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 0.13333334
+        value: 0
+        inSlope: -9.652041
+        outSlope: -9.652041
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_IsActive
-    path: ScrollView/TwnControl/GrdCrystal
-    classID: 1
+    attribute: m_Color.a
+    path: SprMask
+    classID: 212
     script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 60
@@ -76,22 +86,22 @@ AnimationClip:
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
     genericBindings:
-    - path: 3862349261
+    - path: 2635424792
       attribute: 1
       script: {fileID: 0}
       classID: 4
       customType: 0
       isPPtrCurve: 0
-    - path: 2970967009
-      attribute: 2086281974
-      script: {fileID: 0}
-      classID: 1
+    - path: 2635424792
+      attribute: 4224524717
+      script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+      classID: 114
       customType: 0
       isPPtrCurve: 0
-    - path: 464768124
-      attribute: 3534445652
-      script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
-      classID: 114
+    - path: 4185399592
+      attribute: 304273561
+      script: {fileID: 0}
+      classID: 212
       customType: 0
       isPPtrCurve: 0
     pptrCurveMapping: []
@@ -120,45 +130,45 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 1225
-        inSlope: -39048.582
-        outSlope: -39048.582
-        tangentMode: 0
-      - time: 0.05
-        value: 183.98883
-        inSlope: -3652.1853
-        outSlope: -3652.1853
-        tangentMode: 0
-      - time: 0.13333334
-        value: 85
+        value: 0
         inSlope: 0
         outSlope: 0
-        tangentMode: 0
+        tangentMode: 10
+      - time: 0.13333334
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: ScrollView/TwnControl
+    path: SprBigBoard
     classID: 4
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: -15
+        value: 0
         inSlope: 0
         outSlope: 0
-        tangentMode: 10
+        tangentMode: 0
+      - time: 0.05
+        value: 1.65601
+        inSlope: 116.50565
+        outSlope: 116.50565
+        tangentMode: 0
       - time: 0.13333334
-        value: -15
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 10
+        value: 60
+        inSlope: 1825.2269
+        outSlope: 1825.2269
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: ScrollView/TwnControl
+    path: SprBigBoard
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -178,7 +188,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: ScrollView/TwnControl
+    path: SprBigBoard
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -188,28 +198,38 @@ AnimationClip:
         value: 1
         inSlope: 0
         outSlope: 0
-        tangentMode: 10
+        tangentMode: 0
+      - time: 0.13333334
+        value: 0.039215688
+        inSlope: -18.625591
+        outSlope: -18.625591
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: mAlpha
-    path: ScrollView
+    attribute: mColor.a
+    path: SprBigBoard
     classID: 114
-    script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
+    script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
   - curve:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
+        value: 0.8
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 0.13333334
+        value: 0
+        inSlope: -9.652041
+        outSlope: -9.652041
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_IsActive
-    path: ScrollView/TwnControl/GrdCrystal
-    classID: 1
+    attribute: m_Color.a
+    path: SprMask
+    classID: 212
     script: {fileID: 0}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
