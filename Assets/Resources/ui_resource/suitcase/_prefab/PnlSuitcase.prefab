@@ -22,6 +22,7 @@ GameObject:
   - 114: {fileID: 114000014170010146}
   - 114: {fileID: 114000012107803548}
   - 114: {fileID: 114000011856239006}
+  - 114: {fileID: 114000012306316904}
   m_Layer: 5
   m_Name: ScrollView
   m_TagString: Untagged
@@ -258,6 +259,8 @@ GameObject:
   - 4: {fileID: 4000010602485900}
   - 114: {fileID: 114000010701023008}
   - 114: {fileID: 114000013485159966}
+  - 65: {fileID: 65000012965548578}
+  - 114: {fileID: 114000011895226764}
   m_Layer: 5
   m_Name: Grid
   m_TagString: Untagged
@@ -451,7 +454,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013249884942}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 200, z: 0}
+  m_LocalPosition: {x: -285, y: 200, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -730,6 +733,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 236, y: 64, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65000012965548578
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013249884942}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 720, y: 600, z: 1}
+  m_Center: {x: 285, y: -200, z: 0}
 --- !u!65 &65000014158105334
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -770,20 +785,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  group: 3
+  group: 0
   activeSprite: {fileID: 114000012715583692}
   invertSpriteState: 0
   activeAnimation: {fileID: 0}
   animator: {fileID: 0}
   tween: {fileID: 0}
-  startsActive: 0
+  startsActive: 1
   instantTween: 0
   optionCanBeNone: 0
-  onChange: []
+  onChange:
+  - mTarget: {fileID: 114000010348143064}
+    mMethodName: OnTypeChange
+    mParameters: []
+    oneShot: 0
   checkSprite: {fileID: 0}
   checkAnimation: {fileID: 0}
   eventReceiver: {fileID: 0}
-  functionName: OnActivate
+  functionName: 
   startsChecked: 0
 --- !u!114 &114000010240262212
 MonoBehaviour:
@@ -810,10 +829,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -889,6 +908,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowAnimation: 
   HideAnimation: 
+  grid: {fileID: 114000010701023008}
+  tglEquip: {fileID: 114000012134955442}
+  tglFood: {fileID: 114000010134453086}
+  tglServant: {fileID: 114000012300277710}
+  cellPreb: {fileID: 1000011386559160, guid: 40a04e82f7d7d47a7ab09cc54223c8f0, type: 2}
 --- !u!114 &114000010443677648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -991,12 +1015,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrangement: 0
   sorting: 0
-  pivot: 1
+  pivot: 2
   maxPerLine: 5
   cellWidth: 142
   cellHeight: 140
   animateSmoothly: 0
-  hideInactive: 0
+  hideInactive: 1
   keepWithinPanel: 0
   sorted: 0
 --- !u!114 &114000010951105168
@@ -1130,10 +1154,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -1529,6 +1553,19 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: scrollerViewDataScrollView
+--- !u!114 &114000011895226764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013249884942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02842fa4878db54f9587ff4de7d9f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollView: {fileID: 0}
+  draggablePanel: {fileID: 0}
 --- !u!114 &114000012107803548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1569,7 +1606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  group: 3
+  group: 0
   activeSprite: {fileID: 114000011425777818}
   invertSpriteState: 0
   activeAnimation: {fileID: 0}
@@ -1578,11 +1615,15 @@ MonoBehaviour:
   startsActive: 1
   instantTween: 0
   optionCanBeNone: 0
-  onChange: []
+  onChange:
+  - mTarget: {fileID: 114000010348143064}
+    mMethodName: OnTypeChange
+    mParameters: []
+    oneShot: 0
   checkSprite: {fileID: 0}
   checkAnimation: {fileID: 0}
   eventReceiver: {fileID: 0}
-  functionName: OnActivate
+  functionName: 
   startsChecked: 0
 --- !u!114 &114000012167849374
 MonoBehaviour:
@@ -1656,21 +1697,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  group: 3
+  group: 0
   activeSprite: {fileID: 114000010951105168}
   invertSpriteState: 0
   activeAnimation: {fileID: 0}
   animator: {fileID: 0}
   tween: {fileID: 0}
-  startsActive: 0
+  startsActive: 1
   instantTween: 0
   optionCanBeNone: 0
-  onChange: []
+  onChange:
+  - mTarget: {fileID: 114000010348143064}
+    mMethodName: OnTypeChange
+    mParameters: []
+    oneShot: 0
   checkSprite: {fileID: 0}
   checkAnimation: {fileID: 0}
   eventReceiver: {fileID: 0}
-  functionName: OnActivate
+  functionName: 
   startsChecked: 0
+--- !u!114 &114000012306316904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010242631516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db173ff3553200f41aa77963d1f5960f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollView: {fileID: 0}
+  panel: {fileID: 0}
+  isVertical: 1
+  duration: 0.6
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  originDragEffect: 0
+  isEnable: 1
 --- !u!114 &114000012313256784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2205,7 +2283,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 0}
+  mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 100
   mHeight: 100
@@ -2239,10 +2317,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -2364,7 +2442,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3006
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3

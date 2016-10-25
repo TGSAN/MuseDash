@@ -3683,7 +3683,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -3834,11 +3834,16 @@ MonoBehaviour:
   txtStaminaTo: {fileID: 114000013629918384}
   txtStrenghTo: {fileID: 114000013880571414}
   txtName: {fileID: 114000013703960770}
-  txtCurLvl: {fileID: 114000012364491678}
+  txtCurLvl: {fileID: 114000013761890402}
   txtNextLvl: {fileID: 114000012630900224}
+  txtSaleCoins: {fileID: 114000010514125022}
   txtDiscription: {fileID: 114000010674663724}
-  grdEquips: {fileID: 114000010371452828}
+  txtSuicaseName: {fileID: 114000012958040666}
+  grdEquips: {fileID: 114000010764593746}
+  btnSale: {fileID: 114000011302041888}
+  btnUpgrade: {fileID: 114000011722101316}
   star: {fileID: 4000013865106962}
+  btnBack: {fileID: 0}
 --- !u!114 &114000010551120134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4225,7 +4230,11 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 114000010518647306}
+    mMethodName: OnHide
+    mParameters: []
+    oneShot: 0
 --- !u!114 &114000010848912532
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4942,7 +4951,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010785312842}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
   m_Name: 
@@ -5883,7 +5892,7 @@ MonoBehaviour:
   clickResponseObjects:
   - {fileID: 0}
   clickResponseParentNames:
-  - PnlItemInfo
+  - PnlEquipInfo
   - 
   clickResponseObjectsIsShow: 01
   clickResponseParentNamesIsShow: 0101
@@ -6566,10 +6575,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -10720,7 +10729,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3002
+  startingRenderQueue: 3004
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0

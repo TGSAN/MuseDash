@@ -1,3 +1,5 @@
+using FormulaBase;
+
 /// UI分析工具自动生成代码
 /// ItemImageEquipUI主模块
 ///
@@ -9,6 +11,7 @@ namespace ItemImageEquip
     public class ItemImageEquip : UIPhaseBase
     {
         private static ItemImageEquip instance = null;
+        public UISprite sprSelected, sprOn;
 
         public static ItemImageEquip Instance
         {
@@ -24,6 +27,12 @@ namespace ItemImageEquip
 
         public string infoPanelName;
 
+        public FormulaBase.FormulaHost host
+        {
+            private set;
+            get;
+        }
+
         private void Start()
         {
             instance = this;
@@ -37,13 +46,33 @@ namespace ItemImageEquip
         {
         }
 
-        public override void OnShow(FormulaBase.FormulaHost host)
+        public override void OnShow(FormulaBase.FormulaHost h)
         {
-            SetTexByHost(host);
-            SetTxtByHost(host);
+            host = h;
+            SetTexByHost();
+            SetTxtByHost();
+            UIEventListener.Get(gameObject).onClick = (go) =>
+            {
+                PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(this);
+                if (ItemManageComponent.Instance.IsEquipment(host))
+                {
+                    PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
+                }
+                else if (ItemManageComponent.Instance.isFood(host))
+                {
+                }
+                else
+                {
+                }
+            };
         }
 
-        private void SetTxtByHost(FormulaBase.FormulaHost host)
+        public void OnSelected(bool isSelected)
+        {
+            sprSelected.gameObject.SetActive(isSelected);
+        }
+
+        private void SetTxtByHost()
         {
             if (host == null)
             {
@@ -53,11 +82,11 @@ namespace ItemImageEquip
             }
             var lvl = host.GetDynamicIntByKey(FormulaBase.SignKeys.LEVEL);
             var type = host.GetDynamicStrByKey(FormulaBase.SignKeys.TYPE);
-            txtLvl.text = "LV." + lvl.ToString();
+            txtLvl.text = lvl.ToString();
             txtType.text = type;
         }
 
-        private void SetTexByHost(FormulaBase.FormulaHost host)
+        private void SetTexByHost()
         {
             if (host == null)
             {

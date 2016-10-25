@@ -14,7 +14,7 @@ namespace PnlChar
         public Transform spiAnimParent;
         public UIButton btnLeft, btnRight;
         public ItemImageEquip.ItemImageEquip[] items;
-        private Dictionary<int, GameObject> m_SpiAniGODic = new Dictionary<int, GameObject>();
+        private readonly Dictionary<int, GameObject> m_SpiAniGODic = new Dictionary<int, GameObject>();
 
         public int curRoleIdx
         {
@@ -30,7 +30,7 @@ namespace PnlChar
 
         private int m_PreRoleIdx = 0;
         private List<FormulaBase.FormulaHost> m_Equipments = new List<FormulaBase.FormulaHost>();
-        private List<string> m_AnimPath = new List<string>();
+        private readonly List<string> m_AnimPath = new List<string>();
         public Action<int> onRoleChange;
 
         public static PnlChar Instance
@@ -55,6 +55,14 @@ namespace PnlChar
 
         public override void OnHide()
         {
+            PnlEquipInfo.PnlEquipInfo.Instance.OnHide();
+            PnlFoodInfo.PnlFoodInfo.Instance.OnHide();
+            PnlServantInfo.PnlServantInfo.Instance.OnHide();
+        }
+
+        public override void BeCatched()
+        {
+            onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
         }
 
         #region Update更新
@@ -191,7 +199,7 @@ namespace PnlChar
             FormulaBase.RoleManageComponent.Instance.GetRole(roleIdx).SetAsUINotifyInstance();
             if (PnlCharInfo.PnlCharInfo.Instance != null)
             {
-                PnlCharInfo.PnlCharInfo.Instance.OnShow();
+                PnlCharInfo.PnlCharInfo.Instance.OnExit();
             }
             OnSpiAnimLoad(roleIdx);
             OnEquipLoad(roleIdx);

@@ -116,6 +116,11 @@ namespace FormulaBase
             return typeIDs;
         }
 
+        /// <summary>
+        /// 获取装备的人物ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public int GetEquipOwnerIdx(int id)
         {
             var itemInfo = ConfigPool.Instance.GetConfigValue("items", id.ToString());
@@ -166,13 +171,58 @@ namespace FormulaBase
             {
                 if (host != null) host.SetDynamicData(SignKeys.WHO, 0);
             }
-            UnityEngine.Debug.Log(host.GetDynamicDataByKey(SignKeys.WHO));
             if (host != null)
             {
                 host.Save();
                 RoleManageComponent.Instance.Host = RoleManageComponent.Instance.GetRole(ownerIdx);
                 RoleManageComponent.Instance.Equip(host, isTo, func);
             }
+        }
+
+        /// <summary>
+        /// 获取同一套装内的所有拥有的装备
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
+        public List<FormulaHost> GetEquipWithSameSuit(FormulaHost host)
+        {
+            var list = new List<FormulaHost>();
+            var suit = host.GetDynamicStrByKey(SignKeys.SUIT);
+            if (suit != "0")
+            {
+                var roleID = GetEquipOwnerIdx(host.GetDynamicIntByKey(SignKeys.ID));
+                var allEquipHost = GetGirlEquipHosts(roleID);
+                list.AddRange(allEquipHost.Where(equipHost => suit == equipHost.GetDynamicStrByKey(SignKeys.SUIT)));
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 获取该装备的套装中所有装备名
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
+        public List<string> GetEquipNameWithSameSuit(FormulaHost host)
+        {
+            var list = new List<string>();
+            var suitName = host.GetDynamicStrByKey(SignKeys.SUIT);
+            if (suitName != "0")
+            {
+                var itemInfo = ConfigPool.Instance.GetConfigByName("items");
+                for (int i = 1; i < itemInfo.Count; i++)
+                {
+                    var sName = itemInfo[i.ToString()]["suit"].ToString();
+                    if (suitName == sName)
+                    {
+                        list.Add(itemInfo[i.ToString()]["name"].ToString());
+                        if (list.Count == 3)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            return list;
         }
 
         /// <summary>

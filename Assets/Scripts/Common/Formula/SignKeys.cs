@@ -322,6 +322,10 @@ namespace FormulaBase {
 		/// LUCK_FROM_EQUIP
 		///
 		public const string LUCK_FROM_EQUIP = "LUCK_FROM_EQUIP";
+		///
+		/// SUIT
+		///
+		public const string SUIT = "SUIT";
 
 	}
 }

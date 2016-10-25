@@ -16,6 +16,7 @@ namespace PnlCharInfo
         public UIButton btnComfirm, btnFeed, btnApply;
         public UISprite sprArrowLvl, sprArrowVigour, sprArrowStramina, sprArrowStrengh, sprArrowLuck;
         public UILabel txtNextName, txtNextLvl, txtNextVigour, txtNextStamina, txtNextStrengh, txtNextLuck;
+        private Animator m_Animtor;
 
         public static PnlCharInfo Instance
         {
@@ -27,7 +28,18 @@ namespace PnlCharInfo
 
         private void Start()
         {
+            m_Animtor = GetComponent<Animator>();
             instance = this;
+        }
+
+        public void OnEnter()
+        {
+            m_Animtor.Play("char_info_in");
+        }
+
+        public void OnExit()
+        {
+            m_Animtor.Play("pnl_items_choose_out");
         }
 
         public override void OnShow()

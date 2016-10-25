@@ -1,105 +1,126 @@
-///自定义模块，可定制模块具体行为
-using System;
-using UnityEngine;
-using System.Collections;
 using LitJson;
 
+///自定义模块，可定制模块具体行为
+using System;
+using System.Collections;
+using UnityEngine;
 
-namespace FormulaBase {
-	public class AccountManagerComponent : CustomComponentBase {
-		private static AccountManagerComponent instance = null;
-		private const int HOST_IDX = 1;
-		public static AccountManagerComponent Instance {
-			get {
-				if(instance == null) {
-					instance = new AccountManagerComponent();
-				}
-			return instance;
-			}
-		}
+namespace FormulaBase
+{
+    public class AccountManagerComponent : CustomComponentBase
+    {
+        private static AccountManagerComponent instance = null;
+        private const int HOST_IDX = 1;
 
-		// ------------------------------------------------------------------------------------------------
-		private const string LOGIN_COUNT = "LOGIN_COUNT";
+        public static AccountManagerComponent Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new AccountManagerComponent();
+                }
+                return instance;
+            }
+        }
 
-		public void Init() {
-			if (this.Host == null) {
-				this.Host = FomulaHostManager.Instance.LoadHost (HOST_IDX);
-				this.Host.SetAsUINotifyInstance ();
-			}
+        // ------------------------------------------------------------------------------------------------
+        private const string LOGIN_COUNT = "LOGIN_COUNT";
 
-			//Messenger.Broadcast (MainMenuPanel.BroadcastChangeMoney);
-			//Messenger.Broadcast (MainMenuPanel.BroadcastChangeDiamond);
-			//Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
-		}
+        public void Init()
+        {
+            if (this.Host == null)
+            {
+                this.Host = FomulaHostManager.Instance.LoadHost(HOST_IDX);
+                this.Host.SetAsUINotifyInstance();
+            }
 
-		public FormulaHost GetAccount() {
-			return this.Host;
-		}
+            //Messenger.Broadcast (MainMenuPanel.BroadcastChangeMoney);
+            //Messenger.Broadcast (MainMenuPanel.BroadcastChangeDiamond);
+            //Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
+        }
 
-		public void DeletePlayerData(HttpEndResponseDelegate _callBack) {
-			ItemManageComponent.Instance.GetItemTimeId = 0;
-			FomulaHostManager.Instance.DeleteAllHost (_callBack);
-		}
+        public FormulaHost GetAccount()
+        {
+            return this.Host;
+        }
 
-		public void AddLoginCount(int count) {
-			FormulaHost account = this.GetAccount ();
-			if (account == null) {
-				return;
-			}
+        public void DeletePlayerData(HttpEndResponseDelegate _callBack)
+        {
+            ItemManageComponent.Instance.GetItemTimeId = 0;
+            FomulaHostManager.Instance.DeleteAllHost(_callBack);
+        }
 
-			int c = account.GetDynamicIntByKey (LOGIN_COUNT);
-			account.SetDynamicData (LOGIN_COUNT, c + 1);
-			account.Save (new HttpResponseDelegate(this.OnAddLoginCount));
-		}
+        public void AddLoginCount(int count)
+        {
+            FormulaHost account = this.GetAccount();
+            if (account == null)
+            {
+                return;
+            }
 
-		private void OnAddLoginCount(bool result) {
-			if (!result) {
-				Debug.Log ("Add login count failed.");
-				return;
-			}
-		}
+            int c = account.GetDynamicIntByKey(LOGIN_COUNT);
+            account.SetDynamicData(LOGIN_COUNT, c + 1);
+            account.Save(new HttpResponseDelegate(this.OnAddLoginCount));
+        }
 
-		// ------------------------------------------------------------------------------------------------
-		// ------------------------------------------------------------------------------------------------
-		// ------------------------------------------------------------------------------------------------
-		#region 章节
+        private void OnAddLoginCount(bool result)
+        {
+            if (!result)
+            {
+                Debug.Log("Add login count failed.");
+                return;
+            }
+        }
 
-		public int GetOpenedChapter() {
-			FormulaHost account = this.GetAccount ();
-			return account.GetDynamicIntByKey (SignKeys.OPENEDCHAPTER);
-		}
+        // ------------------------------------------------------------------------------------------------
+        // ------------------------------------------------------------------------------------------------
+        // ------------------------------------------------------------------------------------------------
 
-		#endregion
+        #region 章节
 
-		#region 获取宝箱相关
+        public int GetOpenedChapter()
+        {
+            FormulaHost account = this.GetAccount();
+            return account.GetDynamicIntByKey(SignKeys.OPENEDCHAPTER);
+        }
 
-		//（1）1个免费，5个钻石付费解锁，但前2个的付费解锁代价很低，依次增多：免费、1钻石、10钻石、100钻石、150钻石、200钻石（配置表实现）				
+        #endregion 章节
 
-		/// <summary>
-		/// 获取宝箱栏位
-		/// </summary>
-		/// <returns>The chest gird number.</returns>
-		public int GetChestGirdNumber() { 
-			return (int)this.Host.GetDynamicDataByKey (SignKeys.CHESTGRID);
-		}
+        #region 获取宝箱相关
 
-		/// <summary>
-		/// 设置宝箱栏位的数量
-		/// </summary>
-		public void SetChestGirdNumber(int number, HttpResponseDelegate _CallBackFun) {
-			CommonPanel.GetInstance ().ShowWaittingPanel (true);
-			//	FormulaHost account = this.GetAccount ();
-			int NowEmpty = (int)this.Host.GetDynamicDataByKey (SignKeys.CHESTGRID);
-			Debug.Log ("设置箱子栏位的个数：" + (NowEmpty + number));
-			if (NowEmpty + number <= 0) {//什么状况出现小于一个的情况默认设置格子为1
-				this.Host.SetDynamicData (SignKeys.CHESTGRID, 1);
-			} else { //设置账户宝箱栏位的个数
-				this.Host.SetDynamicData (SignKeys.CHESTGRID, NowEmpty + number);
-			}
+        //（1）1个免费，5个钻石付费解锁，但前2个的付费解锁代价很低，依次增多：免费、1钻石、10钻石、100钻石、150钻石、200钻石（配置表实现）
 
-			this.Host.Save (_CallBackFun);
-		}
+        /// <summary>
+        /// 获取宝箱栏位
+        /// </summary>
+        /// <returns>The chest gird number.</returns>
+        public int GetChestGirdNumber()
+        {
+            return (int)this.Host.GetDynamicDataByKey(SignKeys.CHESTGRID);
+        }
 
-		#endregion
-	}
+        /// <summary>
+        /// 设置宝箱栏位的数量
+        /// </summary>
+        public void SetChestGirdNumber(int number, HttpResponseDelegate _CallBackFun)
+        {
+            CommonPanel.GetInstance().ShowWaittingPanel(true);
+            //	FormulaHost account = this.GetAccount ();
+            int NowEmpty = (int)this.Host.GetDynamicDataByKey(SignKeys.CHESTGRID);
+            Debug.Log("设置箱子栏位的个数：" + (NowEmpty + number));
+            if (NowEmpty + number <= 0)
+            {//什么状况出现小于一个的情况默认设置格子为1
+                this.Host.SetDynamicData(SignKeys.CHESTGRID, 1);
+            }
+            else
+            { //设置账户宝箱栏位的个数
+                this.Host.SetDynamicData(SignKeys.CHESTGRID, NowEmpty + number);
+            }
+
+            this.Host.Save(_CallBackFun);
+        }
+
+        #endregion 获取宝箱相关
+    }
 }
