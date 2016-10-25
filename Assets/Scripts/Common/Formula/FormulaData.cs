@@ -81,7 +81,9 @@ public class FormulaData : MonoBehaviour
     [SerializeField]
     public string componentModulePath;
 
+    [Tooltip("动态参数")]
     public string[] DynamicParams;
+
     public string[] ConfigNames;
     public string[] FormulaTypeNames;
     public FormulaStruct[] Formulas;

@@ -30,3 +30,37 @@ public class DOTweenUtil
         return (from uiWidget in childTexs where !(Mathf.Abs(uiWidget.alpha - alpha) <= near) select DOTween.To(() => uiWidget.alpha, x => uiWidget.alpha = x, alpha, dt)).Cast<Tweener>().ToArray();
     }
 }
+
+public class ArrayUtil<T>
+{
+    public static bool Contains(T[] array, T value)
+    {
+        return new List<T>(array).Contains(value);
+    }
+
+    public static T[] Add(T[] array, T value)
+    {
+        return new List<T>(array) { value }.ToArray();
+    }
+
+    public static T[] Remove(T[] array, T value)
+    {
+        var list = new List<T>(array);
+        list.Remove(value);
+        return list.ToArray();
+    }
+}
+
+public class StringUtil
+{
+    public static string LastAfter(string str, char split)
+    {
+        var strArray = str.Split(split);
+        return strArray[strArray.Length - 1];
+    }
+
+    public static string BeginBefore(string str, char split)
+    {
+        return str.Split(split)[0];
+    }
+}

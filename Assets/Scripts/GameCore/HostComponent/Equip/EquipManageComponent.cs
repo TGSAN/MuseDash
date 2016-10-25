@@ -61,7 +61,7 @@ namespace FormulaBase
         public FormulaHost[] GetGirlEquipHosts(int idx, int typePos = 0, bool isEquiping = false)
         {
             var equipHosts = new List<FormulaHost>();
-            var equipTypeList = new List<int>(GetGirlEquipTypes(idx));
+            var equipTypeList = new List<string>(GetGirlEquipTypes(idx));
             foreach (var formulaHost in HostList.Values)
             {
                 var equipID = formulaHost.GetDynamicIntByKey(SignKeys.ID);
@@ -70,7 +70,8 @@ namespace FormulaBase
                 {
                     continue;
                 }
-                var typeID = (int)equipInfo["type"];
+                var typeID = (string)equipInfo["type"];
+
                 if (equipTypeList.Contains(typeID))
                 {
                     var index = equipTypeList.IndexOf(typeID) + 1;
@@ -98,19 +99,19 @@ namespace FormulaBase
         /// </summary>
         /// <param name="idx"></param>
         /// <returns></returns>
-        public int[] GetGirlEquipTypes(int idx)
+        public string[] GetGirlEquipTypes(int idx)
         {
             var characterInfo = ConfigPool.Instance.GetConfigValue("char_info", idx.ToString());
-            var typeIDs = new int[3];
+            var typeIDs = new string[3];
             for (int i = 1; i < 4; i++)
             {
-                string _weaponName = "weapon_" + i.ToString();
-                if (!characterInfo.Keys.Contains(_weaponName))
+                string weaponName = "weapon_" + i.ToString();
+                if (!characterInfo.Keys.Contains(weaponName))
                 {
                     continue;
                 }
 
-                typeIDs[i - 1] = (int)characterInfo[_weaponName];
+                typeIDs[i - 1] = (string)characterInfo[weaponName];
             }
             return typeIDs;
         }
@@ -118,10 +119,10 @@ namespace FormulaBase
         public int GetEquipOwnerIdx(int id)
         {
             var itemInfo = ConfigPool.Instance.GetConfigValue("items", id.ToString());
-            var typeID = (int)itemInfo["type"];
+            var typeID = (string)itemInfo["type"];
             for (int i = 1; i <= RoleManageComponent.Instance.GetRoleCount(); i++)
             {
-                var tpyeList = new List<int>(GetGirlEquipTypes(i));
+                var tpyeList = new List<string>(GetGirlEquipTypes(i));
                 if (tpyeList.Contains(typeID))
                 {
                     return i;
@@ -165,7 +166,7 @@ namespace FormulaBase
             {
                 if (host != null) host.SetDynamicData(SignKeys.WHO, 0);
             }
-
+            UnityEngine.Debug.Log(host.GetDynamicDataByKey(SignKeys.WHO));
             if (host != null)
             {
                 host.Save();

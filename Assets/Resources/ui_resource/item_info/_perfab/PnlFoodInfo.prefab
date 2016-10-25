@@ -341,7 +341,7 @@ GameObject:
   - 54: {fileID: 54000012022490564}
   - 114: {fileID: 114000010665671542}
   - 114: {fileID: 114000013875367506}
-  - 114: {fileID: 114000012206940460}
+  - 114: {fileID: 114000013848561700}
   - 95: {fileID: 95000013465624656}
   m_Layer: 5
   m_Name: PnlFoodInfo
@@ -803,7 +803,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013368350596}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 4fa370cf8e7b831469c744ed15b25a8b, type: 2}
   m_CullingMode: 0
@@ -1177,7 +1177,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3000
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -1223,7 +1223,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3008
+  startingRenderQueue: 3004
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -1678,19 +1678,6 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
---- !u!114 &114000012206940460
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013368350596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1e6b98ad6d084d09bef65f36e18be4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowAnimation: 
-  HideAnimation: 
 --- !u!114 &114000012246221406
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2628,6 +2615,19 @@ MonoBehaviour:
   mAtlas: {fileID: 114000014215409208, guid: 9256cd86dee5025449d0d312ce57edd6, type: 2}
   mSpriteName: item_info_panel_base
   mFillCenter: 1
+--- !u!114 &114000013848561700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013368350596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f829a2b25a58104390ffb440428bbf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowAnimation: 
+  HideAnimation: 
 --- !u!114 &114000013875367506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2642,65 +2642,21 @@ MonoBehaviour:
   isSingleInstanceUI: 1
   isShowOnLoaded: 0
   widgets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 114000010583441640}
   - {fileID: 114000013818716544}
   - {fileID: 114000010885023392}
   - {fileID: 114000010330510606}
-  - {fileID: 0}
   - {fileID: 114000012247873332}
   - {fileID: 114000011699701746}
   - {fileID: 114000012477203510}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 114000012441518852}
   - {fileID: 114000011590366586}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 114000010403147088}
   - {fileID: 114000011875177762}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 114000011844778346}
   - {fileID: 114000012975282896}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 114000012040557200}
   - {fileID: 114000011500071256}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &114000014067251862
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -25,10 +25,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11416448
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,6 +122,8 @@ MonoBehaviour:
   - STAMINA_FROM_EQUIP
   - STRENGH_FROM_EQUIP
   - LUCK_FROM_EQUIP
+  - SUIT
+  - SUIT_EFFECT_DESC
   ConfigNames:
   - character
   - stage
@@ -782,7 +784,7 @@ MonoBehaviour:
     typeIdx: 2
     name: "\u88C5\u5907\u4FE1\u606F"
     formula: ( NAME + ICON + QUALITY + TYPE + DESCRIPTION + STACK_NUMBER + ITEMEFFECT1
-      + EFFECT_DESC  )
+      + ITEMEFFECT2 + EFFECT_DESC + SUIT_EFFECT_DESC + SUIT )
     fparams:
     - idx: 0
       dataSourceType: 1
@@ -879,9 +881,48 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
+      dataSourceName: items.suit_effect_id
+      collapsed: 1
+      paramname: ITEMEFFECT2
+      condictions:
+      - condictionType: 1
+        condictionKeyIndex: 2
+        condictionKey: ID
+        condictionValue: 0
+        plus: 1
+    - idx: 8
+      dataSourceType: 1
+      dataSourceIndex: 0
+      dataSourceValue: 0
       dataSourceName: items.effect_description
       collapsed: 1
       paramname: EFFECT_DESC
+      condictions:
+      - condictionType: 1
+        condictionKeyIndex: 2
+        condictionKey: ID
+        condictionValue: 0
+        plus: 1
+    - idx: 9
+      dataSourceType: 1
+      dataSourceIndex: 0
+      dataSourceValue: 0
+      dataSourceName: items.suit_effect_description
+      collapsed: 1
+      paramname: SUIT_EFFECT_DESC
+      condictions:
+      - condictionType: 1
+        condictionKeyIndex: 2
+        condictionKey: ID
+        condictionValue: 0
+        plus: 1
+    - idx: 10
+      dataSourceType: 1
+      dataSourceIndex: 0
+      dataSourceValue: 0
+      dataSourceName: items.suit
+      collapsed: 1
+      paramname: SUIT
       condictions:
       - condictionType: 1
         condictionKeyIndex: 2

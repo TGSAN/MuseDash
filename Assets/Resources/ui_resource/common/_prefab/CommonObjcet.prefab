@@ -510,6 +510,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012585976246}
   - 114: {fileID: 114000011569060980}
+  - 114: {fileID: 114000012499845230}
   - 81: {fileID: 81000013373560648}
   m_Layer: 5
   m_Name: SceneAudioSource
@@ -531,6 +532,23 @@ GameObject:
   - 114: {fileID: 114000012119459038}
   m_Layer: 5
   m_Name: BtnUnlockStages
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000011736424480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012101143658}
+  - 114: {fileID: 114000013768697082}
+  - 114: {fileID: 114000013872597936}
+  m_Layer: 5
+  m_Name: DebugTexts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1906,6 +1924,19 @@ Transform:
   - {fileID: 4000010843759298}
   m_Father: {fileID: 4000012845417868}
   m_RootOrder: 2
+--- !u!4 &4000012101143658
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011736424480}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 550.4, y: 321, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013294474330}
+  m_RootOrder: 10
 --- !u!4 &4000012194222196
 Transform:
   m_ObjectHideFlags: 1
@@ -2329,7 +2360,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010489259226}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2343,6 +2374,7 @@ Transform:
   - {fileID: 4000010971867016}
   - {fileID: 4000012585976246}
   - {fileID: 4000014077420648}
+  - {fileID: 4000012101143658}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000013314296988
@@ -4075,6 +4107,9 @@ MonoBehaviour:
   m_BlurMask: {fileID: 0}
   m_GMRobot: {fileID: 1000013833897456}
   m_UIMask: {fileID: 114000011126700554}
+  debugGrid: {fileID: 114000013768697082}
+  debugPrefab: {fileID: 1000012219718904, guid: 465d37d6604b49941b617d2e00cde98a,
+    type: 2}
   m_UICamera: {fileID: 0}
   m_BlurCamera: {fileID: 0}
   m_mainmenu: {fileID: 0}
@@ -6095,7 +6130,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3012
+  startingRenderQueue: 3022
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6515,7 +6550,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3006
+  startingRenderQueue: 3021
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6561,7 +6596,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3006
+  startingRenderQueue: 3021
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6639,6 +6674,17 @@ MonoBehaviour:
     mMethodName: GetDiamond
     mParameters: []
     oneShot: 0
+--- !u!114 &114000012499845230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011725662290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553f50f7785784cc49b721c6b783e1a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000012523299414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8260,6 +8306,27 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000013768697082
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011736424480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c4de3b4b6fe9045b059ee627c100df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrangement: 1
+  sorting: 0
+  pivot: 0
+  maxPerLine: 0
+  cellWidth: 200
+  cellHeight: 20
+  animateSmoothly: 0
+  hideInactive: 0
+  keepWithinPanel: 0
+  sorted: 0
 --- !u!114 &114000013800509858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8449,6 +8516,43 @@ MonoBehaviour:
   trigger: 0
   volume: 1
   pitch: 1
+--- !u!114 &114000013872597936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011736424480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858a20c1b21a3f94bb5b2d3b901c9aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 1334
+  mHeight: 750
+  mDepth: 905
+  autoResizeBoxCollider: 1
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1.7786666
 --- !u!114 &114000013882332604
 MonoBehaviour:
   m_ObjectHideFlags: 1

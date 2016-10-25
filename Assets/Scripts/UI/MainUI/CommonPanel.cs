@@ -16,6 +16,8 @@ public class CommonPanel : MonoBehaviour
     public TweenAlpha m_BlurMask;               //毛玻璃的黑色遮罩
     public GameObject m_GMRobot;                //GM机器人
     public UIMask m_UIMask;                     //各界面间的渐黑
+    public UIGrid debugGrid;
+    public GameObject debugPrefab;
 
     private static CommonPanel instance;
 
@@ -126,6 +128,29 @@ public class CommonPanel : MonoBehaviour
         m_CallBack = _callBack;
         this.gameObject.SetActive(true);
         m_Okbox.showBox(_str, m_CallBack);
+    }
+
+    /// <summary>
+    /// debug信息
+    /// </summary>
+    /// <param name="info"></param>
+    public void DebugInfo(string info)
+    {
+        if (debugGrid == null)
+        {
+            return;
+        }
+        debugGrid.enabled = true;
+        var go = GameObject.Instantiate(debugPrefab, debugGrid.transform, false) as GameObject;
+        if (go != null)
+        {
+            var label = go.GetComponent<UILabel>();
+            label.text = info;
+            DOTweenUtil.Delay(() =>
+            {
+                Destroy(go);
+            }, 10.0f);
+        }
     }
 
     /// <summary>

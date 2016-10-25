@@ -153,7 +153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000010442955842
 GameObject:
   m_ObjectHideFlags: 1
@@ -3215,6 +3215,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowAnimation: 
   HideAnimation: 
+  txtVigour: {fileID: 0}
+  txtStamina: {fileID: 0}
+  txtStrengh: {fileID: 0}
+  txtExp: {fileID: 0}
+  txtDisc: {fileID: 0}
+  txtAbility: {fileID: 0}
+  star: {fileID: 0}
 --- !u!114 &114000010087096090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5675,7 +5682,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -7415,7 +7422,7 @@ MonoBehaviour:
     locked: 0
     manualUpdate: 0
     keepDelayedEventsOnStateExit: 0
-    preprocessed: 0
+    preprocessed: 1
     ExposedEvents: []
     RestartOnEnable: 1
     EnableDebugFlow: 0
@@ -11630,7 +11637,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3012
+  startingRenderQueue: 3017
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
