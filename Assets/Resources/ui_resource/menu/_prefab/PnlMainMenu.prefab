@@ -1816,6 +1816,7 @@ GameObject:
   - 114: {fileID: 114000013766331778}
   - 114: {fileID: 114000011191581314}
   - 114: {fileID: 114000012520151800}
+  - 114: {fileID: 114000011937888010}
   m_Layer: 5
   m_Name: BtnStore
   m_TagString: Untagged
@@ -7138,6 +7139,29 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 7813e9a99211745c984b111b3f050312, type: 2}
   mSpriteName: menu_button_adv_n
   mFillCenter: 1
+--- !u!114 &114000011937888010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013987784904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animator: {fileID: 0}
+  clipName: gift_pack_in
+  trigger: 0
+  playDirection: 1
+  resetOnPlay: 0
+  clearSelection: 0
+  ifDisabledOnPlay: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
 --- !u!114 &114000011996993746
 MonoBehaviour:
   m_ObjectHideFlags: 1
