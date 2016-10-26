@@ -53,19 +53,25 @@ namespace ItemImageEquip
             SetTxtByHost();
             UIEventListener.Get(gameObject).onClick = (go) =>
             {
-                PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(this);
-
                 if (ItemManageComponent.Instance.IsEquipment(host))
                 {
+                    PnlFoodInfo.PnlFoodInfo.Instance.OnExit();
+                    PnlServantInfo.PnlServantInfo.Instance.OnExit();
                     PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
                 }
                 else if (ItemManageComponent.Instance.isFood(host))
                 {
+                    PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
+                    PnlServantInfo.PnlServantInfo.Instance.OnExit();
                     PnlFoodInfo.PnlFoodInfo.Instance.OnShow(host);
                 }
                 else
                 {
+                    PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
+                    PnlFoodInfo.PnlFoodInfo.Instance.OnExit();
+                    PnlServantInfo.PnlServantInfo.Instance.OnShow();
                 }
+                PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(this);
             };
         }
 

@@ -44,7 +44,7 @@ namespace FormulaBase {
 				case 18:
 					return ( formulaObject.GetParamValue (0) );
 				case 19:
-					return ( formulaObject.GetParamValue (0) + formulaObject.GetParamValue (1) + formulaObject.GetParamValue (2) + formulaObject.GetParamValue (3) + formulaObject.GetParamValue (4) + formulaObject.GetParamValue (5) + formulaObject.GetParamValue (6) + formulaObject.GetParamValue (7)  );
+					return ( formulaObject.GetParamValue (0) + formulaObject.GetParamValue (1) + formulaObject.GetParamValue (2) + formulaObject.GetParamValue (3) + formulaObject.GetParamValue (4) + formulaObject.GetParamValue (5) + formulaObject.GetParamValue (6) + formulaObject.GetParamValue (7) + formulaObject.GetParamValue (8) + formulaObject.GetParamValue (9) + formulaObject.GetParamValue (10) );
 				case 20:
 					return ( formulaObject.GetParamValue (0) );
 				case 21:

@@ -21,6 +21,7 @@ namespace PnlEquipInfo
         public UIButton btnSale;
         public UIButton btnUpgrade;
         public Transform star;
+        public GameObject charBack, suitcaseBack;
         private static PnlEquipInfo instance = null;
         private Animator m_Animator;
 
@@ -56,6 +57,12 @@ namespace PnlEquipInfo
             }, Time.deltaTime);
         }
 
+        private void Update()
+        {
+            charBack.SetActive(PnlChar.PnlChar.Instance != null && PnlChar.PnlChar.Instance.gameObject.activeSelf);
+            suitcaseBack.SetActive(PnlSuitcase.PnlSuitcase.Instance != null && PnlSuitcase.PnlSuitcase.Instance.gameObject.activeSelf);
+        }
+
         public override void OnShow()
         {
         }
@@ -82,7 +89,7 @@ namespace PnlEquipInfo
             var stamina = host.Result(FormulaKeys.FORMULA_259);
             var strengh = host.Result(FormulaKeys.FORMULA_264);
             var description = host.GetDynamicStrByKey(SignKeys.DESCRIPTION);
-            var cost = host.Result(FormulaKeys.FORMULA_89);
+            var cost = ItemManageComponent.Instance.GetItemMoney(host);
             var effect = host.GetDynamicStrByKey(SignKeys.SUIT_EFFECT_DESC);
 
             txtVigour.transform.parent.gameObject.SetActive(vigour > 0);

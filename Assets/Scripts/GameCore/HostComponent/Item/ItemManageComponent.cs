@@ -846,7 +846,26 @@ namespace FormulaBase
 
         public int GetItemMoney(FormulaHost _host)
         {
-            return (int)_host.Result(FormulaKeys.FORMULA_89);
+            var fileName = _host.GetFileName();
+            var saleMoney = 0;
+            switch (fileName)
+            {
+                case "Equip":
+                    saleMoney = (int)_host.Result(FormulaKeys.FORMULA_89);
+                    break;
+
+                case "Material":
+                    _host.Result(FormulaKeys.FORMULA_93);
+                    saleMoney = _host.GetDynamicIntByKey(SignKeys.SOLD);
+                    break;
+
+                case "Pet":
+                    break;
+
+                case "Chest":
+                    break;
+            }
+            return saleMoney;
         }
 
         public void AddItemListCallBack(cn.bmob.response.EndPointCallbackData<Hashtable> response)
