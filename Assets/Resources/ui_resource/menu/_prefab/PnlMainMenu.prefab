@@ -5820,14 +5820,17 @@ MonoBehaviour:
   - PnlAchievement
   - PnlStage
   - PnlCharChose
-  - PnlItemInfo
+  - PnlEquipInfo
   - PnlChar
   - PnlCharInfo
   - PnlSuitcase
   - PnlStore
+  - PnlFoodInfo
+  - PnlServantSoulInfo
+  - PnlServantInfo
   - 
   clickResponseObjectsIsShow: 010000000001
-  clickResponseParentNamesIsShow: 01000000000000000001
+  clickResponseParentNamesIsShow: 01000000000000000000000001
   clickResponseObjectAnimations:
   - 
   - 
@@ -5836,6 +5839,9 @@ MonoBehaviour:
   - 
   - 
   clickResponseParentAnimations:
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -6140,9 +6146,13 @@ MonoBehaviour:
   - PnlSuitcase
   - PnlCharInfo
   - PnlAdventure
+  - PnlEquipInfo
+  - PnlFoodInfo
+  - PnlServantSoulInfo
+  - PnlServantInfo
   - 
   clickResponseObjectsIsShow: 010000000001
-  clickResponseParentNamesIsShow: 0100000000000001
+  clickResponseParentNamesIsShow: 010000000000000000000001
   clickResponseObjectAnimations:
   - 
   - 
@@ -6151,6 +6161,10 @@ MonoBehaviour:
   - 
   - 
   clickResponseParentAnimations:
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -7665,7 +7679,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3088
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -8543,12 +8557,15 @@ MonoBehaviour:
   - PnlCharInfo
   - PnlStage
   - PnlAchievement
-  - PnlItemInfo
+  - PnlEquipInfo
   - PnlCharChose
   - PnlStore
+  - PnlServantInfo
+  - PnlServantSoulInfo
+  - PnlFoodInfo
   - 
   clickResponseObjectsIsShow: 010000000000
-  clickResponseParentNamesIsShow: 00000101000000000001
+  clickResponseParentNamesIsShow: 00000101000000000000000001
   clickResponseObjectAnimations:
   - 
   - 
@@ -8557,6 +8574,9 @@ MonoBehaviour:
   - 
   - 
   clickResponseParentAnimations:
+  - 
+  - 
+  - 
   - 
   - 
   - 
