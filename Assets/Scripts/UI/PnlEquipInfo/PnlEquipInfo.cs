@@ -20,8 +20,9 @@ namespace PnlEquipInfo
         public UIGrid grdEquips;
         public UIButton btnSale;
         public UIButton btnUpgrade;
+        public UIButton btnUpgradeBack;
         public Transform star;
-        public GameObject charBack, suitcaseBack;
+        public GameObject charBack, suitcaseBack, itemUpgrade;
         private static PnlEquipInfo instance = null;
         private Animator m_Animator;
 
@@ -59,7 +60,7 @@ namespace PnlEquipInfo
 
         private void Update()
         {
-            charBack.SetActive(PnlChar.PnlChar.Instance != null && PnlChar.PnlChar.Instance.gameObject.activeSelf);
+            charBack.SetActive(PnlChar.PnlChar.Instance != null && PnlChar.PnlChar.Instance.gameObject.activeSelf && !itemUpgrade.activeSelf);
             suitcaseBack.SetActive(PnlSuitcase.PnlSuitcase.Instance != null && PnlSuitcase.PnlSuitcase.Instance.gameObject.activeSelf);
         }
 
@@ -70,11 +71,29 @@ namespace PnlEquipInfo
         public override void OnHide()
         {
             //btnBack调用此处，使手提包界面选择取消
-            if (PnlSuitcase.PnlSuitcase.Instance != null)
-            {
-                PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(null);
-            }
+            PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(null);
+            //退出升级状态
+            OnUpgradeState(false);
             OnExit();
+        }
+
+        public void OnUpgradeState(bool isEnter)
+        {
+            if (isEnter)
+            {
+                PnlChar.PnlChar.Instance.gameObject.SetActive(false);
+                PnlSuitcase.PnlSuitcase.Instance.OnShow();
+            }
+            DOTweenUtil.Delay(() =>
+            {
+                if (isEnter)
+                {
+                    PnlSuitcase.PnlSuitcase.Instance.SetTypeActive(false, true, false);
+                }
+                PnlSuitcase.PnlSuitcase.Instance.tglEquip.enabled = !isEnter;
+                PnlSuitcase.PnlSuitcase.Instance.tglFood.enabled = !isEnter;
+                PnlSuitcase.PnlSuitcase.Instance.tglServant.enabled = !isEnter;
+            }, 0.1f);
         }
 
         public override void OnShow(FormulaHost host)
@@ -165,6 +184,16 @@ namespace PnlEquipInfo
                     }
                 });
             }));
+
+            UIEventListener.Get(btnUpgrade.gameObject).onClick = (go) =>
+            {
+                OnUpgradeState(true);
+            };
+            UIEventListener.Get(btnUpgradeBack.gameObject).onClick = (go) =>
+            {
+                PnlChar.PnlChar.Instance.gameObject.SetActive(true);
+                OnUpgradeState(false);
+            };
         }
     }
 }

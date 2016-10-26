@@ -17,6 +17,7 @@ namespace PnlSuitcase
         public Action onTypeChange;
         public GameObject cellPreb;
         private List<ItemImageEquip.ItemImageEquip> m_Cells;
+        private FormulaHost m_SelectedHost;
 
         public int selectedTglIdx
         {
@@ -39,13 +40,9 @@ namespace PnlSuitcase
             onTypeChange += OnTypeChange;
         }
 
-        private void Start()
-        {
-            instance = this;
-        }
-
         public override void OnShow()
         {
+            gameObject.SetActive(true);
             grid.enabled = true;
             m_Cells.RemoveAll(cell =>
             {
@@ -68,6 +65,7 @@ namespace PnlSuitcase
 
         public override void BeCatched()
         {
+            instance = this;
             ItemManageComponent.Instance.SortAllQuality();
             var items = ItemManageComponent.Instance.GetAllItem;
             foreach (var item in items)
@@ -85,12 +83,20 @@ namespace PnlSuitcase
             grid.enabled = true;
         }
 
-        public void SetSelectedCell(ItemImageEquip.ItemImageEquip cell)
+        public void SetSelectedCell(FormulaHost h)
         {
             foreach (var itemImageEquip in m_Cells)
             {
-                itemImageEquip.OnSelected(cell == itemImageEquip);
+                itemImageEquip.OnSelected(h == itemImageEquip.host);
             }
+            m_SelectedHost = h;
+        }
+
+        public void SetTypeActive(bool equip, bool food, bool servant)
+        {
+            tglEquip.value = equip;
+            tglFood.value = food;
+            tglServant.value = servant;
         }
 
         public void OnTypeChange()
@@ -107,7 +113,17 @@ namespace PnlSuitcase
                 }
                 else
                 {
-                    PnlEquipInfo.PnlEquipInfo.Instance.OnHide();
+                    if (!PnlEquipInfo.PnlEquipInfo.Instance.itemUpgrade.activeSelf)
+                    {
+                        if (m_SelectedHost != null && m_SelectedHost.GetFileName() == "Equip")
+                        {
+                            PnlEquipInfo.PnlEquipInfo.Instance.OnHide();
+                        }
+                        else
+                        {
+                            PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
+                        }
+                    }
                 }
                 if (tglFood.value)
                 {
@@ -115,7 +131,14 @@ namespace PnlSuitcase
                 }
                 else
                 {
-                    PnlFoodInfo.PnlFoodInfo.Instance.OnHide();
+                    if (m_SelectedHost != null && m_SelectedHost.GetFileName() == "Material")
+                    {
+                        PnlFoodInfo.PnlFoodInfo.Instance.OnHide();
+                    }
+                    else
+                    {
+                        PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
+                    }
                 }
                 if (tglFood.value)
                 {
@@ -123,7 +146,14 @@ namespace PnlSuitcase
                 }
                 else
                 {
-                    PnlServantInfo.PnlServantInfo.Instance.OnHide();
+                    if (m_SelectedHost != null && m_SelectedHost.GetFileName() == "Servant")
+                    {
+                        PnlFoodInfo.PnlFoodInfo.Instance.OnHide();
+                    }
+                    else
+                    {
+                        PnlFoodInfo.PnlFoodInfo.Instance.OnExit();
+                    }
                 }
                 cell.gameObject.SetActive(isEquip || isFood || isServant);
             }

@@ -53,10 +53,7 @@ namespace PnlFoodInfo
         public override void OnHide()
         {
             //btnBack调用此处，使手提包界面选择取消
-            if (PnlSuitcase.PnlSuitcase.Instance != null)
-            {
-                PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(null);
-            }
+            PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(null);
             OnExit();
         }
 

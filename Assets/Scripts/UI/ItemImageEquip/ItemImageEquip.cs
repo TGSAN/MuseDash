@@ -71,7 +71,7 @@ namespace ItemImageEquip
                     PnlFoodInfo.PnlFoodInfo.Instance.OnExit();
                     PnlServantInfo.PnlServantInfo.Instance.OnShow();
                 }
-                PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(this);
+                PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(h);
             };
         }
 
