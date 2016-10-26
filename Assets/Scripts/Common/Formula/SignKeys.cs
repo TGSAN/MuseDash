@@ -326,6 +326,10 @@ namespace FormulaBase {
 		/// SUIT
 		///
 		public const string SUIT = "SUIT";
+		///
+		/// SUIT_EFFECT_DESC
+		///
+		public const string SUIT_EFFECT_DESC = "SUIT_EFFECT_DESC";
 
 	}
 }

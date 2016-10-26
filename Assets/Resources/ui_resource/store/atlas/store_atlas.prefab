@@ -43,8 +43,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: a60d88880858246c7b7099a5177aebd0, type: 2}
   mSprites:
   - name: bg
-    x: 825
-    y: 865
+    x: 358
+    y: 22
     width: 32
     height: 32
     borderLeft: 2
@@ -56,8 +56,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: bg_light
-    x: 825
-    y: 829
+    x: 358
+    y: 58
     width: 32
     height: 32
     borderLeft: 2
@@ -134,8 +134,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: capsule_icon_blue
-    x: 825
-    y: 940
+    x: 316
+    y: 94
     width: 37
     height: 42
     borderLeft: 0
@@ -147,8 +147,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: capsule_icon_gold
-    x: 866
-    y: 940
+    x: 275
+    y: 48
     width: 37
     height: 42
     borderLeft: 0
@@ -160,8 +160,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: capsule_icon_purple
-    x: 907
-    y: 940
+    x: 275
+    y: 94
     width: 37
     height: 42
     borderLeft: 0
@@ -173,8 +173,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: capsule_icon_white
-    x: 948
-    y: 941
+    x: 357
+    y: 95
     width: 37
     height: 41
     borderLeft: 0
@@ -212,10 +212,23 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: coin_icon
-    x: 957
-    y: 986
+    x: 316
+    y: 52
     width: 38
     height: 38
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: coin_icon_heavy_outline
+    x: 316
+    y: 14
+    width: 34
+    height: 34
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -238,8 +251,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: crytal_icon
-    x: 825
-    y: 901
+    x: 275
+    y: 9
     width: 36
     height: 35
     borderLeft: 0
@@ -248,22 +261,9 @@ MonoBehaviour:
     borderBottom: 0
     paddingLeft: 0
     paddingRight: 0
-    paddingTop: 0
+    paddingTop: 1
     paddingBottom: 0
   - name: gift_icon_red
-    x: 227
-    y: 132
-    width: 42
-    height: 46
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: gift_icon_yellow
     x: 216
     y: 21
     width: 42
@@ -276,9 +276,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: gift_icon_yellow
+    x: 227
+    y: 132
+    width: 42
+    height: 46
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: gift_red
-    x: 550
-    y: 746
+    x: 275
+    y: 182
     width: 271
     height: 278
     borderLeft: 0
@@ -302,9 +315,152 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: handful_of_coin
+    x: 879
+    y: 857
+    width: 325
+    height: 167
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: handful_of_crystal
     x: 550
-    y: 575
+    y: 173
+    width: 325
+    height: 167
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: heap_of_coin
+    x: 550
+    y: 344
+    width: 325
+    height: 167
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: heap_of_crystal
+    x: 550
+    y: 515
+    width: 325
+    height: 167
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: many_coin
+    x: 550
+    y: 686
+    width: 325
+    height: 167
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: many_crystal
+    x: 550
+    y: 857
+    width: 325
+    height: 167
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: many_heap_of_coin
+    x: 1208
+    y: 857
+    width: 325
+    height: 167
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: many_heap_of_crystal
+    x: 1537
+    y: 857
+    width: 325
+    height: 167
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: mountain_of_coin
+    x: 879
+    y: 686
+    width: 325
+    height: 167
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: mountain_of_crystal
+    x: 879
+    y: 515
+    width: 325
+    height: 167
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: some_of_coin
+    x: 879
+    y: 344
+    width: 325
+    height: 167
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: some_of_crystal
+    x: 879
+    y: 173
     width: 325
     height: 167
     borderLeft: 0
@@ -355,8 +511,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: title_board
-    x: 825
-    y: 986
+    x: 275
+    y: 140
     width: 128
     height: 38
     borderLeft: 20

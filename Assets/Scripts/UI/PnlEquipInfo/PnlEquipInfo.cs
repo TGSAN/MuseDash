@@ -12,17 +12,18 @@ namespace PnlEquipInfo
     {
         public UILabel txtVigour, txtStamina, txtStrengh;
         public UILabel txtVigourTo, txtStaminaTo, txtStrenghTo;
-        public UILabel txtName;
+        public UILabel txtName, txtType;
         public UILabel txtCurLvl, txtNextLvl, txtSaleCoins;
         public UILabel txtDiscription;
         public UILabel txtSuicaseName;
+        public UILabel txtSuicaseEffect;
         public UIGrid grdEquips;
         public UIButton btnSale;
         public UIButton btnUpgrade;
         public Transform star;
+        public GameObject charBack, suitcaseBack;
         private static PnlEquipInfo instance = null;
         private Animator m_Animator;
-        public UIButton btnBack;
 
         public static PnlEquipInfo Instance
         {
@@ -56,6 +57,12 @@ namespace PnlEquipInfo
             }, Time.deltaTime);
         }
 
+        private void Update()
+        {
+            charBack.SetActive(PnlChar.PnlChar.Instance != null && PnlChar.PnlChar.Instance.gameObject.activeSelf);
+            suitcaseBack.SetActive(PnlSuitcase.PnlSuitcase.Instance != null && PnlSuitcase.PnlSuitcase.Instance.gameObject.activeSelf);
+        }
+
         public override void OnShow()
         {
         }
@@ -76,25 +83,28 @@ namespace PnlEquipInfo
             m_Animator.enabled = true;
             OnEnter();
             var name = host.GetDynamicStrByKey(SignKeys.NAME);
+            var type = host.GetDynamicStrByKey(SignKeys.TYPE);
             var curLvl = host.GetDynamicStrByKey(SignKeys.LEVEL);
             var vigour = host.Result(FormulaKeys.FORMULA_258);
             var stamina = host.Result(FormulaKeys.FORMULA_259);
             var strengh = host.Result(FormulaKeys.FORMULA_264);
             var description = host.GetDynamicStrByKey(SignKeys.DESCRIPTION);
-            var cost = host.Result(FormulaKeys.FORMULA_89);
+            var cost = ItemManageComponent.Instance.GetItemMoney(host);
+            var effect = host.GetDynamicStrByKey(SignKeys.SUIT_EFFECT_DESC);
 
             txtVigour.transform.parent.gameObject.SetActive(vigour > 0);
             txtStamina.transform.parent.gameObject.SetActive(stamina > 0);
             txtStrengh.transform.parent.gameObject.SetActive(strengh > 0);
 
             txtName.text = name;
+            txtType.text = type;
             txtCurLvl.text = curLvl;
             txtVigour.text = vigour.ToString();
             txtStamina.text = stamina.ToString();
             txtStrengh.text = strengh.ToString();
             txtDiscription.text = description;
             txtSaleCoins.text = cost.ToString();
-
+            txtSuicaseEffect.text = effect;
             var allName = EquipManageComponent.Instance.GetEquipNameWithSameSuit(host);
             if (allName.Count == 0)
             {
@@ -105,6 +115,7 @@ namespace PnlEquipInfo
                 txtSuicaseName.gameObject.SetActive(true);
                 var suitcases = EquipManageComponent.Instance.GetEquipWithSameSuit(host);
                 txtSuicaseName.text = host.GetDynamicStrByKey(SignKeys.SUIT);
+                var idx = 0;
                 for (int i = 0; i < grdEquips.transform.childCount; i++)
                 {
                     var equipGO = grdEquips.transform.GetChild(i).gameObject;
@@ -112,7 +123,22 @@ namespace PnlEquipInfo
                     label.text = allName[i];
                     var inTxt = equipGO.transform.GetChild(0).gameObject.GetComponent<UILabel>();
                     inTxt.text = allName[i];
-                    inTxt.gameObject.SetActive(i < suitcases.Count);
+                    if (idx < suitcases.Count)
+                    {
+                        if (suitcases[idx].GetDynamicStrByKey(SignKeys.NAME) == allName[i])
+                        {
+                            idx++;
+                            inTxt.gameObject.SetActive(true);
+                        }
+                        else
+                        {
+                            inTxt.gameObject.SetActive(false);
+                        }
+                    }
+                    else
+                    {
+                        inTxt.gameObject.SetActive(false);
+                    }
                 }
             }
 
