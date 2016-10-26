@@ -46,6 +46,7 @@ namespace PnlSuitcase
 
         public override void OnShow()
         {
+            grid.enabled = true;
             m_Cells.RemoveAll(cell =>
             {
                 if (!ItemManageComponent.Instance.Contains(cell.host.GetDynamicIntByKey(SignKeys.ID)))
@@ -94,6 +95,7 @@ namespace PnlSuitcase
 
         public void OnTypeChange()
         {
+            grid.enabled = true;
             foreach (var cell in m_Cells)
             {
                 var isEquip = false;

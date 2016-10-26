@@ -168,6 +168,7 @@ namespace PnlChar
                         curEquipTypeIdx = idx;
                         PnlCharInfo.PnlCharInfo.Instance.OnShow();
                     }
+                    PnlEquipInfo.PnlEquipInfo.Instance.OnHide();
                 }));
             }
         }
