@@ -650,6 +650,7 @@ namespace FormulaBase
                 }
 
                 int salePrice = this.GetItemMoney(_host);
+
                 AccountGoldManagerComponent.Instance.ChangeMoney(salePrice, true, new HttpResponseDelegate(((bool result) =>
                 {
                     if (_callback == null)
@@ -845,32 +846,7 @@ namespace FormulaBase
 
         public int GetItemMoney(FormulaHost _host)
         {
-            string hostname = _host.GetFileName();
-            int Money = 0;
-            switch (hostname)
-            {
-                case "Equip":
-                    _host.Result(FormulaKeys.FORMULA_19);
-                    Money = _host.GetDynamicIntByKey(SignKeys.SOLD);
-                    break;
-
-                case "Material":
-                    _host.Result(FormulaKeys.FORMULA_93);
-                    Money = _host.GetDynamicIntByKey(SignKeys.SOLD);
-                    break;
-
-                case "Pet":
-                    _host.Result(FormulaKeys.FORMULA_91);
-                    Money = _host.GetDynamicIntByKey(SignKeys.SOLD);
-                    break;
-
-                case "Chest":
-                    _host.Result(FormulaKeys.FORMULA_90);
-                    Money = _host.GetDynamicIntByKey(SignKeys.SOLD);
-                    break;
-            }
-
-            return Money;
+            return (int)_host.Result(FormulaKeys.FORMULA_89);
         }
 
         public void AddItemListCallBack(cn.bmob.response.EndPointCallbackData<Hashtable> response)

@@ -15,18 +15,26 @@ namespace Assets.Scripts.UI
         private Tweener m_MoveTwner1, m_MoveTwner2;
         public bool isEnable = true;
 
-        public void ResetBack(Vector2 offset)
+        public void ResetBack()
         {
-            scrollView.transform.position = offset;
-            panel.clipOffset = offset;
+            scrollView.transform.position = Vector2.zero;
+            panel.clipOffset = Vector2.zero;
         }
 
         private void Awake()
         {
             if (isEnable)
             {
-                scrollView = GetComponent<UIScrollView>();
-                panel = GetComponent<UIPanel>();
+                if (scrollView == null)
+                {
+                    scrollView = GetComponent<UIScrollView>();
+                }
+
+                if (panel == null)
+                {
+                    panel = GetComponent<UIPanel>();
+                }
+
                 originDragEffect = scrollView.dragEffect;
                 m_OriginOffset = scrollView.transform.position;
                 scrollView.onDragFinished += OnDragEvent;

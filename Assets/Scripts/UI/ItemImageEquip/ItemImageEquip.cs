@@ -54,12 +54,14 @@ namespace ItemImageEquip
             UIEventListener.Get(gameObject).onClick = (go) =>
             {
                 PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(this);
+
                 if (ItemManageComponent.Instance.IsEquipment(host))
                 {
                     PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
                 }
                 else if (ItemManageComponent.Instance.isFood(host))
                 {
+                    PnlFoodInfo.PnlFoodInfo.Instance.OnShow(host);
                 }
                 else
                 {

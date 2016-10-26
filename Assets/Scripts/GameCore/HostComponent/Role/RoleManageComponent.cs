@@ -382,16 +382,19 @@ namespace FormulaBase
                 }
             }
 
-            if (_callBack != null)
-            {
-                _callBack();
-            }
-
             //Messenger.Broadcast (AdvenTure5.AdvenTure5BraodChangeHero);
             FormulaHost.SaveList(new List<FormulaHost>(this.HostList.Values), new HttpEndResponseDelegate(SetFightGirlCallBack));
             if (CommonPanel.GetInstance() != null)
             {
                 CommonPanel.GetInstance().ShowWaittingPanel();
+            }
+            if (PnlAdventure.PnlAdventure.Instance != null)
+            {
+                PnlAdventure.PnlAdventure.Instance.ChoseGirl();
+            }
+            if (_callBack != null)
+            {
+                _callBack();
             }
         }
 

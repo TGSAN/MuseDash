@@ -114,7 +114,6 @@ public class CommonPanel : MonoBehaviour
     /// <param name="_show">If set to <c>true</c> show.</param>
     public void ShowWaittingPanel(bool _show = true)
     {
-        //Debug.Log("Showwaitting");
         m_WaittingPanel.gameObject.SetActive(_show);
     }
 
