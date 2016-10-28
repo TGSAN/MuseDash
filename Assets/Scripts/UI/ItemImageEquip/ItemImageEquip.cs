@@ -33,6 +33,36 @@ namespace ItemImageEquip
             get;
         }
 
+        public bool isSelected
+        {
+            get { return sprSelected.gameObject.activeSelf; }
+            set
+            {
+                sprSelected.gameObject.SetActive(value);
+            }
+        }
+
+        public bool isUpgradeSelected
+        {
+            get { return sprOn.gameObject.activeSelf; }
+            set
+            {
+                if (value)
+                {
+                    if (PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost.Count < 3)
+                    {
+                        sprOn.gameObject.SetActive(true);
+                        PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost.Add(host);
+                    }
+                }
+                else
+                {
+                    sprOn.gameObject.SetActive(false);
+                    PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost.Remove(host);
+                }
+            }
+        }
+
         private void Start()
         {
             instance = this;
@@ -53,31 +83,47 @@ namespace ItemImageEquip
             SetTxtByHost();
             UIEventListener.Get(gameObject).onClick = (go) =>
             {
-                if (ItemManageComponent.Instance.IsEquipment(host))
+                if (!PnlSuitcase.PnlSuitcase.Instance.isUpgrade)
                 {
-                    PnlFoodInfo.PnlFoodInfo.Instance.OnExit();
-                    PnlServantInfo.PnlServantInfo.Instance.OnExit();
-                    PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
-                }
-                else if (ItemManageComponent.Instance.isFood(host))
-                {
-                    PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
-                    PnlServantInfo.PnlServantInfo.Instance.OnExit();
-                    PnlFoodInfo.PnlFoodInfo.Instance.OnShow(host);
+                    if (ItemManageComponent.Instance.IsEquipment(host))
+                    {
+                        PnlFoodInfo.PnlFoodInfo.Instance.OnExit();
+                        PnlServantInfo.PnlServantInfo.Instance.OnExit();
+                        PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
+                    }
+                    else if (ItemManageComponent.Instance.isFood(host))
+                    {
+                        PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
+                        PnlServantInfo.PnlServantInfo.Instance.OnExit();
+                        PnlFoodInfo.PnlFoodInfo.Instance.OnShow(host);
+                    }
+                    else
+                    {
+                        PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
+                        PnlFoodInfo.PnlFoodInfo.Instance.OnExit();
+                        PnlServantInfo.PnlServantInfo.Instance.OnShow();
+                    }
+                    PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(h);
                 }
                 else
                 {
-                    PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
-                    PnlFoodInfo.PnlFoodInfo.Instance.OnExit();
-                    PnlServantInfo.PnlServantInfo.Instance.OnShow();
+                    OnUpgradeSelected();
+                    PnlEquipInfo.PnlEquipInfo.Instance.OnUpgradeItemsRefresh();
                 }
-                PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(h);
             };
         }
 
-        public void OnSelected(bool isSelected)
+        public void OnSelected(bool selected)
         {
-            sprSelected.gameObject.SetActive(isSelected);
+            sprSelected.gameObject.SetActive(selected);
+        }
+
+        public void OnUpgradeSelected()
+        {
+            if (PnlSuitcase.PnlSuitcase.Instance.isUpgrade)
+            {
+                isUpgradeSelected = !isUpgradeSelected;
+            }
         }
 
         private void SetTxtByHost()

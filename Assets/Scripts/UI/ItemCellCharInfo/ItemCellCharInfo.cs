@@ -46,11 +46,11 @@ namespace ItemCellCharInfo
         {
         }
 
-        public override void OnShow(FormulaBase.FormulaHost host)
+        public override void OnShow(FormulaBase.FormulaHost h)
         {
-            this.host = host;
-            SetTexByHost(host);
-            SetTxtByHost(host);
+            this.host = h;
+            SetTexByHost(h);
+            SetTxtByHost(h);
         }
 
         private void InitEvent()
@@ -97,6 +97,12 @@ namespace ItemCellCharInfo
             UIEventListener.Get(gameObject).onClick = (go) =>
             {
                 PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
+            };
+
+            UIEventListener.Get(btnUpgrade.gameObject).onClick = (go) =>
+            {
+                PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
+                PnlEquipInfo.PnlEquipInfo.Instance.OnUpgradeState(true);
             };
         }
 

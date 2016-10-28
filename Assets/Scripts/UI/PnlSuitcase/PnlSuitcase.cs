@@ -18,6 +18,25 @@ namespace PnlSuitcase
         public GameObject cellPreb;
         private List<ItemImageEquip.ItemImageEquip> m_Cells;
         private FormulaHost m_SelectedHost;
+        public List<FormulaHost> upgradeSelectedHost = new List<FormulaHost>();
+        private bool m_IsUpgrade = false;
+
+        public bool isUpgrade
+        {
+            get { return m_IsUpgrade; }
+            set
+            {
+                m_IsUpgrade = value;
+                if (!value)
+                {
+                    foreach (var itemImageEquip in m_Cells)
+                    {
+                        itemImageEquip.isUpgradeSelected = false;
+                    }
+                    upgradeSelectedHost.Clear();
+                }
+            }
+        }
 
         public int selectedTglIdx
         {
@@ -53,6 +72,7 @@ namespace PnlSuitcase
                 }
                 return false;
             });
+            m_Cells.ForEach(cell => cell.OnShow(cell.host));
         }
 
         public override void OnHide()
@@ -77,6 +97,7 @@ namespace PnlSuitcase
                     cell.transform.localScale = Vector3.one;
                     var cellScript = cell.GetComponent<ItemImageEquip.ItemImageEquip>();
                     cellScript.OnShow(item);
+                    cellScript.txtType.gameObject.SetActive(false);
                     m_Cells.Add(cellScript);
                 }
             }
@@ -88,8 +109,21 @@ namespace PnlSuitcase
             foreach (var itemImageEquip in m_Cells)
             {
                 itemImageEquip.OnSelected(h == itemImageEquip.host);
+                if (h == null)
+                {
+                    itemImageEquip.isUpgradeSelected = false;
+                }
             }
             m_SelectedHost = h;
+        }
+
+        public void SetUpgradeSelectedCell(FormulaHost h)
+        {
+            foreach (var itemImageEquip in m_Cells)
+            {
+                itemImageEquip.isUpgradeSelected = h == itemImageEquip.host;
+            }
+            PnlEquipInfo.PnlEquipInfo.Instance.OnUpgradeItemsRefresh();
         }
 
         public void SetTypeActive(bool equip, bool food, bool servant)
@@ -137,7 +171,7 @@ namespace PnlSuitcase
                     }
                     else
                     {
-                        PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
+                        PnlFoodInfo.PnlFoodInfo.Instance.OnExit();
                     }
                 }
                 if (tglFood.value)
@@ -148,11 +182,11 @@ namespace PnlSuitcase
                 {
                     if (m_SelectedHost != null && m_SelectedHost.GetFileName() == "Servant")
                     {
-                        PnlFoodInfo.PnlFoodInfo.Instance.OnHide();
+                        PnlServantInfo.PnlServantInfo.Instance.OnHide();
                     }
                     else
                     {
-                        PnlFoodInfo.PnlFoodInfo.Instance.OnExit();
+                        PnlServantInfo.PnlServantInfo.Instance.OnExit();
                     }
                 }
                 cell.gameObject.SetActive(isEquip || isFood || isServant);

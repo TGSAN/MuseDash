@@ -1,3 +1,5 @@
+using FormulaBase;
+
 /// UI分析工具自动生成代码
 /// PnlCharUI主模块
 ///
@@ -43,7 +45,6 @@ namespace PnlChar
 
         private void Start()
         {
-            instance = this;
             Init();
         }
 
@@ -62,6 +63,7 @@ namespace PnlChar
 
         public override void BeCatched()
         {
+            instance = this;
             onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
         }
 
