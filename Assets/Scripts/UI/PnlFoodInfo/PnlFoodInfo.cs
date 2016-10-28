@@ -53,23 +53,20 @@ namespace PnlFoodInfo
         public override void OnHide()
         {
             //btnBack调用此处，使手提包界面选择取消
-            if (PnlSuitcase.PnlSuitcase.Instance != null)
-            {
-                PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(null);
-            }
+            PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(null);
             OnExit();
         }
 
-        public override void OnShow(FormulaHost host)
+        public override void OnShow(FormulaHost h)
         {
             gameObject.SetActive(true);
             m_Animator.enabled = true;
             OnEnter();
-            var name = host.GetDynamicStrByKey(SignKeys.NAME);
-            var curLvl = host.GetDynamicStrByKey(SignKeys.LEVEL);
-            var exp = host.Result(FormulaKeys.FORMULA_265);
-            var description = host.GetDynamicStrByKey(SignKeys.DESCRIPTION);
-            var cost = ItemManageComponent.Instance.GetItemMoney(host);
+            var name = h.GetDynamicStrByKey(SignKeys.NAME);
+            var curLvl = h.GetDynamicStrByKey(SignKeys.LEVEL);
+            var exp = h.Result(FormulaKeys.FORMULA_265);
+            var description = h.GetDynamicStrByKey(SignKeys.DESCRIPTION);
+            var cost = ItemManageComponent.Instance.GetItemMoney(h);
 
             txtName.text = name;
             txtCurLvl.text = curLvl;
@@ -80,7 +77,7 @@ namespace PnlFoodInfo
             btnSale.onClick.Clear();
             btnSale.onClick.Add(new EventDelegate(() =>
             {
-                ItemManageComponent.Instance.SaleItem(host, (result) =>
+                ItemManageComponent.Instance.SaleItem(h, (result) =>
                 {
                     if (result)
                     {
