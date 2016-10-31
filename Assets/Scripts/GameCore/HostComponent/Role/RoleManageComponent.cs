@@ -458,7 +458,7 @@ namespace FormulaBase
         public void GetUnLockRoleMoeny(int _index, ref int _type, ref int _Cost)
         {
             _type = (int)GetRole(_index).Result(FormulaKeys.FORMULA_4);
-            _Cost = (int)GetRole(_index).Result(FormulaKeys.FORMULA_3);
+            _Cost = (int)GetRole(_index).Result(FormulaKeys.FORMULA_1);
         }
 
         public ChoseHeroDefine.RESULT_EQUIP GetRoleState(int _index)
