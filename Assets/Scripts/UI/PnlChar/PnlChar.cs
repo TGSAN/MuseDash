@@ -1,3 +1,5 @@
+using FormulaBase;
+
 /// UI分析工具自动生成代码
 /// PnlCharUI主模块
 ///
@@ -43,7 +45,6 @@ namespace PnlChar
 
         private void Start()
         {
-            instance = this;
             Init();
         }
 
@@ -62,7 +63,9 @@ namespace PnlChar
 
         public override void BeCatched()
         {
+            instance = this;
             onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
+            onRoleChange += idx => PnlCharInfo.PnlCharInfo.Instance.OnUpgradeItemsRefresh();
         }
 
         #region Update更新
@@ -217,7 +220,23 @@ namespace PnlChar
                     host = curEquipHosts[i];
                 }
                 var item = items[i];
-                item.OnShow(host);
+                if (host == null)
+                {
+                    var types = FormulaBase.EquipManageComponent.Instance.GetGirlEquipTypes(idx);
+                    if (i < types.Length)
+                    {
+                        item.OnShow(types[i]);
+                    }
+                }
+                else
+                {
+                    item.OnShow(host);
+                }
+                if (i == 3)
+                {
+                    var servantHost = PetManageComponent.Instance.GetEquipedPet(idx);
+                    item.OnShow(servantHost);
+                }
             }
         }
 

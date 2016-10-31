@@ -4,6 +4,7 @@ using FormulaBase;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RewardData
@@ -97,7 +98,7 @@ namespace FormulaBase
         {
             get
             {
-                //	BulidAllList();
+                BulidAllList();
                 return m_AllItem;
             }
         }
@@ -233,14 +234,7 @@ namespace FormulaBase
 
         public bool Contains(int id)
         {
-            foreach (var item in m_AllItem)
-            {
-                if (item.GetDynamicIntByKey(SignKeys.ID) == id)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return GetAllItem.Any(item => item.GetDynamicIntByKey(SignKeys.ID) == id);
         }
 
         #endregion 类型判断
@@ -607,14 +601,12 @@ namespace FormulaBase
                 {
                     if (_callback == null)
                     {
-                        m_AllItem.Remove(_host);
                         _host.Save(new HttpResponseDelegate(this.DeleteItemCallBack));
                         CommonPanel.GetInstance().ShowWaittingPanel(true);
                         Messenger.Broadcast(bagPanel2.BroadcastBagItem);
                     }
                     else
                     {
-                        m_AllItem.Remove(_host);
                         _host.Save(new HttpResponseDelegate(_callback));
                         CommonPanel.GetInstance().ShowWaittingPanel(true);
                     }
@@ -655,14 +647,12 @@ namespace FormulaBase
                 {
                     if (_callback == null)
                     {
-                        m_AllItem.Remove(_host);
                         _host.Delete(new HttpResponseDelegate(this.DeleteItemCallBack));
                         CommonPanel.GetInstance().ShowWaittingPanel(true);
                         Messenger.Broadcast(bagPanel2.BroadcastBagItem);
                     }
                     else
                     {
-                        m_AllItem.Remove(_host);
                         _host.Delete(new HttpResponseDelegate(_callback));
                         CommonPanel.GetInstance().ShowWaittingPanel(true);
                     }
@@ -906,10 +896,68 @@ namespace FormulaBase
             //	NGUIDebug.Log("AdditemCallBack");
         }
 
-        public void ItemLevelUp()
+        public bool IsItemLvlMax(FormulaHost host)
         {
-            //FormulaHost host;
-            //host.Delete();
+            var lvlMax = (int)host.Result(FormulaKeys.FORMULA_22);
+            var curLvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
+            return curLvl >= lvlMax;
+        }
+
+        public FormulaHost ItemLevelUp(FormulaHost host, List<FormulaHost> expHosts, HttpResponseDelegate callFunc = null, bool isSave = true)
+        {
+            var exp = 0;
+            expHosts.ForEach(h =>
+            {
+                exp += (int)h.Result(FormulaKeys.FORMULA_265);
+            });
+            var originLvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
+            var originExp = host.GetDynamicIntByKey(SignKeys.EXP);
+            var lvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
+            Action lvlUp = null;
+            var firstTimeExp = originExp;
+            lvlUp = () =>
+            {
+                var expRequired = ConfigPool.Instance.GetConfigIntValue("experience", lvl.ToString(), "eqpt_exp") - firstTimeExp;
+                exp -= expRequired;
+                if (exp >= 0)
+                {
+                    lvl++;
+                    firstTimeExp = 0;
+                    if (!IsItemLvlMax(host))
+                    {
+                        lvlUp();
+                    }
+                }
+                else
+                {
+                    exp += expRequired;
+                    host.SetDynamicData(SignKeys.LEVEL, lvl);
+                    host.SetDynamicData(SignKeys.EXP, exp);
+                }
+            };
+            lvlUp();
+            if (isSave)
+            {
+                CommonPanel.GetInstance().ShowWaittingPanel(true);
+                host.Save((result) =>
+                {
+                    if (result)
+                    {
+                        DeleteListItem(expHosts);
+                    }
+                    else
+                    {
+                        host.SetDynamicData(SignKeys.LEVEL, originLvl);
+                        host.SetDynamicData(SignKeys.EXP, originExp);
+                    }
+                    if (callFunc != null)
+                    {
+                        callFunc(true);
+                    }
+                    CommonPanel.GetInstance().ShowWaittingPanel(false);
+                });
+            }
+            return host;
         }
 
         public List<FormulaHost> GetAppointItem(int _BigType, int _smallType = -1)

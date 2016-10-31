@@ -145,7 +145,7 @@ public class CommonPanel : MonoBehaviour
         {
             var label = go.GetComponent<UILabel>();
             label.text = info;
-            DOTweenUtil.Delay(() =>
+            DOTweenUtils.Delay(() =>
             {
                 Destroy(go);
             }, 10.0f);
