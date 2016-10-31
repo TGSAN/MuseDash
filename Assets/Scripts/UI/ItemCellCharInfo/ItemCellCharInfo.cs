@@ -1,3 +1,5 @@
+using DG.Tweening;
+
 /// UI分析工具自动生成代码
 /// ItemCellCharInfoUI主模块
 ///
@@ -49,8 +51,8 @@ namespace ItemCellCharInfo
         public override void OnShow(FormulaBase.FormulaHost h)
         {
             this.host = h;
-            SetTexByHost(h);
-            SetTxtByHost(h);
+            SetTexByHost();
+            SetTxtByHost();
         }
 
         private void InitEvent()
@@ -102,11 +104,15 @@ namespace ItemCellCharInfo
             UIEventListener.Get(btnUpgrade.gameObject).onClick = (go) =>
             {
                 PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
-                PnlEquipInfo.PnlEquipInfo.Instance.OnUpgradeState(true);
+                DOTweenUtils.Delay(() =>
+                {
+                    PnlEquipInfo.PnlEquipInfo.Instance.Play("item_upgrade_in");
+                    PnlEquipInfo.PnlEquipInfo.Instance.isUpgrade = true;
+                }, 0.1f);
             };
         }
 
-        private void SetTexByHost(FormulaBase.FormulaHost host)
+        private void SetTexByHost()
         {
             var texName = host.GetDynamicStrByKey(FormulaBase.SignKeys.ICON);
             if (texName == null || ResourceLoader.Instance == null)
@@ -116,7 +122,7 @@ namespace ItemCellCharInfo
             ResourceLoader.Instance.Load(texName, resObj => texIcon.mainTexture = resObj as Texture);
         }
 
-        private void SetTxtByHost(FormulaBase.FormulaHost host)
+        private void SetTxtByHost()
         {
             var name = host.GetDynamicStrByKey(FormulaBase.SignKeys.NAME);
             var lvl = "LV." + host.GetDynamicStrByKey(FormulaBase.SignKeys.LEVEL);

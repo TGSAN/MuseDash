@@ -10,7 +10,7 @@ public class JsonUtil
 {
 }
 
-public class DOTweenUtil
+public class DOTweenUtils
 {
     public static Sequence Delay(Action callFunc, float dt)
     {

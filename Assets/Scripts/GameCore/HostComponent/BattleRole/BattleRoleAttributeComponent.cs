@@ -259,10 +259,7 @@ namespace FormulaBase
             {
                 return;
             }
-
-            float _def = this.GetDefence(host);
-            float _hurtValue = (hurtValue * (1f - _def));
-            this.AddHp((int)_hurtValue);
+            this.AddHp((int)hurtValue);
         }
 
         public bool IsDead()

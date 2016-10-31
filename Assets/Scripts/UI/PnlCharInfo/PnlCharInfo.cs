@@ -1,3 +1,5 @@
+using FormulaBase;
+
 /// UI分析工具自动生成代码
 /// PnlCharInfoUI主模块
 ///
@@ -13,10 +15,15 @@ namespace PnlCharInfo
         public Transform cellItemParent;
         public GameObject cellItem;
         private readonly List<ItemCellCharInfo.ItemCellCharInfo> m_ItemList = new List<ItemCellCharInfo.ItemCellCharInfo>();
-        public UIButton btnComfirm, btnFeed, btnApply;
-        public UISprite sprArrowLvl, sprArrowVigour, sprArrowStramina, sprArrowStrengh, sprArrowLuck;
-        public UILabel txtNextName, txtNextLvl, txtNextVigour, txtNextStamina, txtNextStrengh, txtNextLuck;
+        public UIButton btnFeed, btnApply, btnConfirm;
+        public UILabel txtNextVigour, txtNextStamina, txtNextStrengh, txtNextLuck, txtNextLvl;
+        public UILabel txtCurVigour, txtCurStamina, txtCurStrengh, txtCurLuck, txtCurLvl;
+        public UISprite sprExpCurBar, sprExpNextBar;
+        public List<UITexture> upgradeTexs = new List<UITexture>();
+        public Transform upgradeItemsParent;
+        public UIButton btnBack;
         private Animator m_Animtor;
+        private bool m_IsUpgrade = false;
 
         public static PnlCharInfo Instance
         {
@@ -26,7 +33,24 @@ namespace PnlCharInfo
             }
         }
 
-        private void Start()
+        public bool isUpgrade
+        {
+            get { return m_IsUpgrade; }
+            set
+            {
+                m_IsUpgrade = value;
+                txtNextVigour.transform.parent.gameObject.SetActive(m_IsUpgrade);
+                txtNextStamina.transform.parent.gameObject.SetActive(m_IsUpgrade);
+                txtNextStrengh.transform.parent.gameObject.SetActive(m_IsUpgrade);
+                txtNextLuck.transform.parent.gameObject.SetActive(m_IsUpgrade);
+                txtNextLvl.transform.parent.gameObject.SetActive(m_IsUpgrade);
+                sprExpNextBar.gameObject.SetActive(m_IsUpgrade);
+                PnlSuitcase.PnlSuitcase.Instance.isUpgrade = isUpgrade;
+                OnUpgradeItemsRefresh();
+            }
+        }
+
+        public override void BeCatched()
         {
             m_Animtor = GetComponent<Animator>();
             instance = this;
@@ -45,17 +69,83 @@ namespace PnlCharInfo
         public override void OnShow()
         {
             UpdateUI();
+            InitEvent();
         }
 
         public override void OnHide()
         {
+            isUpgrade = false;
+        }
+
+        public void OnUpgradeItemsRefresh()
+        {
+            if (!gameObject.activeSelf)
+            {
+                return;
+            }
+            var hostList = PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost;
+            for (int i = 0; i < upgradeTexs.Count; i++)
+            {
+                var tex = upgradeTexs[i];
+                if (i < hostList.Count)
+                {
+                    var h = hostList[i];
+                    var texName = h.GetDynamicStrByKey(SignKeys.ICON);
+                    ResourceLoader.Instance.Load(texName, resObj => tex.mainTexture = resObj as Texture);
+                }
+                else
+                {
+                    tex.mainTexture = null;
+                }
+            }
+
+            var curRoleHost = RoleManageComponent.Instance.GetGirlByIdx(PnlChar.PnlChar.Instance.curRoleIdx);
+            if (curRoleHost != null)
+            {
+                var originLvl = curRoleHost.GetDynamicIntByKey(SignKeys.LEVEL);
+                var originExp = curRoleHost.GetDynamicIntByKey(SignKeys.EXP);
+                var originVigour = (int)curRoleHost.Result(FormulaKeys.FORMULA_186);
+                var originStamina = (int)curRoleHost.Result(FormulaKeys.FORMULA_188);
+                var originStrengh = (int)curRoleHost.Result(FormulaKeys.FORMULA_187);
+                var originLuck = (int)curRoleHost.Result(FormulaKeys.FORMULA_42);
+                var originRequiredExp = ConfigPool.Instance.GetConfigIntValue("experience", originLvl.ToString(), "char_exp");
+                var originExpPercent = (float)originExp / (float)originRequiredExp;
+
+                RoleManageComponent.Instance.LevelUp(curRoleHost, PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost, null, false);
+
+                var afterLvl = curRoleHost.GetDynamicIntByKey(SignKeys.LEVEL);
+                var afterExp = curRoleHost.GetDynamicIntByKey(SignKeys.EXP);
+                var vigourTo = (int)curRoleHost.Result(FormulaKeys.FORMULA_186);
+                var staminaTo = (int)curRoleHost.Result(FormulaKeys.FORMULA_188);
+                var strenghTo = (int)curRoleHost.Result(FormulaKeys.FORMULA_187);
+                var luckTo = (int)curRoleHost.Result(FormulaKeys.FORMULA_42);
+                var curExpPercent = (float)afterExp / (float)originRequiredExp;
+                curExpPercent = afterLvl != originLvl ? 1.0f : curExpPercent;
+
+                txtCurLvl.text = originLvl.ToString();
+                txtCurVigour.text = originVigour.ToString();
+                txtCurStamina.text = originStamina.ToString();
+                txtCurStrengh.text = originStrengh.ToString();
+                txtCurLuck.text = originLuck.ToString();
+
+                txtNextVigour.text = vigourTo.ToString();
+                txtNextStamina.text = staminaTo.ToString();
+                txtNextStrengh.text = strenghTo.ToString();
+                txtNextLuck.text = luckTo.ToString();
+                txtNextLvl.text = afterLvl.ToString();
+
+                sprExpCurBar.fillAmount = originExpPercent;
+                sprExpNextBar.fillAmount = curExpPercent;
+
+                curRoleHost.SetDynamicData(SignKeys.LEVEL, originLvl);
+                curRoleHost.SetDynamicData(SignKeys.EXP, originExp);
+            }
         }
 
         public void UpdateItemList(int selectID)
         {
-            for (int i = 0; i < m_ItemList.Count; i++)
+            foreach (var item in m_ItemList)
             {
-                var item = m_ItemList[i];
                 var itemID = item.host.GetDynamicIntByKey(FormulaBase.SignKeys.ID);
                 item.SetSelected(selectID == itemID);
             }
@@ -68,7 +158,8 @@ namespace PnlCharInfo
 
         private void InitUI()
         {
-            DOTweenUtil.Delay(InitPnlItemsChoose, Time.deltaTime);
+            DOTweenUtils.Delay(InitPnlItemsChoose, Time.deltaTime);
+            DOTweenUtils.Delay(OnUpgradeItemsRefresh, 0.4f);
         }
 
         private void InitPnlItemsChoose()
@@ -87,6 +178,38 @@ namespace PnlCharInfo
                 itemCellCharInfo.SetSelected(equipment.GetDynamicIntByKey(FormulaBase.SignKeys.WHO) != 0);
                 cell.transform.SetParent(cellItemParent, false);
             }
+        }
+
+        private void InitEvent()
+        {
+            UIEventListener.Get(btnFeed.gameObject).onClick = (go) =>
+            {
+                isUpgrade = true;
+            };
+            UIEventListener.Get(btnBack.gameObject).onClick = (go) =>
+            {
+                isUpgrade = false;
+                var isShow = PnlMainMenu.PnlMainMenu.Instance.goSelectedSuitcase.activeSelf;
+                PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(isShow);
+                PnlSuitcase.PnlSuitcase.Instance.OnHide();
+            };
+            UIEventListener.Get(btnConfirm.gameObject).onClick = (go) =>
+            {
+                var hosts = PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost;
+                if (hosts.Count > 0)
+                {
+                    var curRoleHost = RoleManageComponent.Instance.GetGirlByIdx(PnlChar.PnlChar.Instance.curRoleIdx);
+                    if (curRoleHost != null)
+                    {
+                        RoleManageComponent.Instance.LevelUp(curRoleHost, hosts, (result) =>
+                        {
+                            PnlSuitcase.PnlSuitcase.Instance.SetUpgradeSelectedCell(null);
+                            PnlSuitcase.PnlSuitcase.Instance.OnShow();
+                            OnUpgradeItemsRefresh();
+                        });
+                    }
+                }
+            };
         }
     }
 }

@@ -950,10 +950,9 @@ namespace FormulaBase
                         host.SetDynamicData(SignKeys.LEVEL, originLvl);
                         host.SetDynamicData(SignKeys.EXP, originExp);
                     }
-
                     if (callFunc != null)
                     {
-                        callFunc(result);
+                        callFunc(true);
                     }
                     CommonPanel.GetInstance().ShowWaittingPanel(false);
                 });

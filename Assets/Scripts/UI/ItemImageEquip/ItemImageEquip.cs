@@ -11,7 +11,7 @@ namespace ItemImageEquip
     public class ItemImageEquip : UIPhaseBase
     {
         private static ItemImageEquip instance = null;
-        public UISprite sprSelected, sprOn;
+        public UISprite sprSelected, sprOn, sprLock;
 
         public static ItemImageEquip Instance
         {
@@ -21,7 +21,7 @@ namespace ItemImageEquip
             }
         }
 
-        public UILabel txtLvl;
+        public UILabel txtLvl, txtLv;
         public UITexture texIcon;
         public UILabel txtType;
 
@@ -60,6 +60,16 @@ namespace ItemImageEquip
                     sprOn.gameObject.SetActive(false);
                     PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost.Remove(host);
                 }
+                PnlSuitcase.PnlSuitcase.Instance.SetLock(PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost.Count >= 3);
+            }
+        }
+
+        public bool isLock
+        {
+            get { return sprLock.gameObject.activeSelf; }
+            set
+            {
+                sprLock.gameObject.SetActive(value);
             }
         }
 
@@ -76,6 +86,14 @@ namespace ItemImageEquip
         {
         }
 
+        public void OnShow(string type)
+        {
+            txtType.text = type;
+            txtLvl.gameObject.SetActive(false);
+            txtLv.gameObject.SetActive(false);
+            texIcon.gameObject.SetActive(false);
+        }
+
         public override void OnShow(FormulaBase.FormulaHost h)
         {
             host = h;
@@ -83,6 +101,10 @@ namespace ItemImageEquip
             SetTxtByHost();
             UIEventListener.Get(gameObject).onClick = (go) =>
             {
+                if (isLock || !PnlSuitcase.PnlSuitcase.Instance.gameObject.activeSelf)
+                {
+                    return;
+                }
                 if (!PnlSuitcase.PnlSuitcase.Instance.isUpgrade)
                 {
                     if (ItemManageComponent.Instance.IsEquipment(host))
@@ -109,6 +131,7 @@ namespace ItemImageEquip
                 {
                     OnUpgradeSelected();
                     PnlEquipInfo.PnlEquipInfo.Instance.OnUpgradeItemsRefresh();
+                    PnlCharInfo.PnlCharInfo.Instance.OnUpgradeItemsRefresh();
                 }
             };
         }
@@ -130,10 +153,14 @@ namespace ItemImageEquip
         {
             if (host == null)
             {
-                txtLvl.text = "Level";
-                txtType.text = "Type";
+                txtLvl.gameObject.SetActive(false);
+                txtLv.gameObject.SetActive(false);
+                texIcon.gameObject.SetActive(false);
                 return;
             }
+            txtLvl.gameObject.SetActive(true);
+            txtLv.gameObject.SetActive(true);
+            texIcon.gameObject.SetActive(true);
             var lvl = host.GetDynamicIntByKey(FormulaBase.SignKeys.LEVEL);
             var type = host.GetDynamicStrByKey(FormulaBase.SignKeys.TYPE);
             txtLvl.text = lvl.ToString();

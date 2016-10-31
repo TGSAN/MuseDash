@@ -1,4 +1,4 @@
-using FormulaBase;
+﻿using FormulaBase;
 
 /// UI分析工具自动生成代码
 /// PnlUnlockSongUI主模块
@@ -48,7 +48,7 @@ namespace PnlUnlockSong
         {
             var animator = GetComponent<Animator>();
             bkg.SetActive(false);
-            DOTweenUtil.Delay(() =>
+            DOTweenUtils.Delay(() =>
             {
                 bkg.SetActive(true);
             }, Time.deltaTime);
@@ -60,7 +60,7 @@ namespace PnlUnlockSong
                     return;
                 }
                 animator.Play("unlock_song_out");
-                DOTweenUtil.Delay(() =>
+                DOTweenUtils.Delay(() =>
                 {
                     Destroy(gameObject);
                 }, 0.5f);

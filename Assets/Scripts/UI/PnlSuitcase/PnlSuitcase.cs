@@ -34,7 +34,22 @@ namespace PnlSuitcase
                         itemImageEquip.isUpgradeSelected = false;
                     }
                     upgradeSelectedHost.Clear();
+                    SetTypeActive(true, true, true);
                 }
+                else
+                {
+                    OnShow();
+                }
+                DOTweenUtils.Delay(() =>
+                {
+                    if (m_IsUpgrade)
+                    {
+                        SetTypeActive(false, true, false);
+                    }
+                    tglEquip.enabled = !m_IsUpgrade;
+                    tglFood.enabled = !m_IsUpgrade;
+                    tglServant.enabled = !m_IsUpgrade;
+                }, 0.1f);
             }
         }
 
@@ -57,6 +72,12 @@ namespace PnlSuitcase
             selectedTglIdx = 0;
             m_Cells = new List<ItemImageEquip.ItemImageEquip>();
             onTypeChange += OnTypeChange;
+        }
+
+        public void SetLock(bool isTo)
+        {
+            m_Cells.ForEach(itemImageEquip =>
+            itemImageEquip.isLock = isTo && !upgradeSelectedHost.Contains(itemImageEquip.host));
         }
 
         public override void OnShow()
