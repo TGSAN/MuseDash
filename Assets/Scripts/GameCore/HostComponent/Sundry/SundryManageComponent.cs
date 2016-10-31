@@ -43,7 +43,7 @@ namespace FormulaBase {
 		{
 			FormulaHost host = FomulaHostManager.Instance.CreateHost (HOST_IDX);
 			host.SetDynamicData("ID",_index);
-			return host.Result(FormulaKeys.FORMULA_122);
+			return 0;
 			
 		}
 

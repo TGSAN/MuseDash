@@ -106,7 +106,7 @@ namespace FormulaBase
                 {
                     var role = FomulaHostManager.Instance.CreateHost("Role");
                     role.SetDynamicData(SignKeys.ID, int.Parse(key));
-                    role.Result(FormulaKeys.FORMULA_178);
+                    role.Result(FormulaKeys.FORMULA_35);
                     FomulaHostManager.Instance.AddHost(role);
                     var formulaHosts = HostList;
                     if (formulaHosts != null) formulaHosts[key] = role;
@@ -150,7 +150,7 @@ namespace FormulaBase
                     role.SetDynamicData(SignKeys.LOCKED, 0);
                 }
                 // 基本配置属性
-                role.Result(FormulaKeys.FORMULA_178);
+                role.Result(FormulaKeys.FORMULA_35);
 
                 // 更新动态属性
                 UpdateProperty(role);
@@ -160,16 +160,16 @@ namespace FormulaBase
         public void UpdateProperty(FormulaHost role)
         {
             // 最终血量
-            var maxVigour = (int)role.Result(FormulaKeys.FORMULA_186);
+            var maxVigour = (int)role.Result(FormulaKeys.FORMULA_38);
             role.SetDynamicData(SignKeys.MAX_VIGOUR, maxVigour);
             //最终耐久
-            var maxStamina = (int)role.Result(FormulaKeys.FORMULA_188);
+            var maxStamina = (int)role.Result(FormulaKeys.FORMULA_40);
             role.SetDynamicData(SignKeys.MAX_STAMINA, maxStamina);
             //最终攻击
-            var maxAttack = (int)role.Result(FormulaKeys.FORMULA_187);
+            var maxAttack = (int)role.Result(FormulaKeys.FORMULA_39);
             role.SetDynamicData(SignKeys.MAX_STRENGH, maxAttack);
             //最终暴击率
-            var maxLuck = (int)role.Result(FormulaKeys.FORMULA_254);
+            var maxLuck = (int)role.Result(FormulaKeys.FORMULA_47);
             role.SetDynamicData(SignKeys.MAX_LUCK, maxLuck);
 
             //装备类型
@@ -187,19 +187,19 @@ namespace FormulaBase
             if (equipType == "necklace" || equipType == "toy" || equipType == "fiara")
             {
                 //仅necklace、toy、fiara
-                var value = isTo ? (int)equipHost.Result(FormulaKeys.FORMULA_258) : 0;
+                var value = isTo ? (int)equipHost.Result(FormulaKeys.FORMULA_50) : 0;
                 Host.SetDynamicData(SignKeys.VIGOUR_FROM_EQUIP, value);
             }
             else if (equipType == "gloves" || equipType == "panty" || equipType == "ring")
             {
                 //仅gloves、panty、ring类型装备增加耐力
-                var value = isTo ? (int)equipHost.Result(FormulaKeys.FORMULA_261) : 0;
+                var value = isTo ? (int)equipHost.Result(FormulaKeys.FORMULA_53) : 0;
                 Host.SetDynamicData(SignKeys.STAMINA_FROM_EQUIP, value);
             }
             else
             {
                 //其他类型装备增加攻击
-                var value = isTo ? (int)equipHost.Result(FormulaKeys.FORMULA_264) : 0;
+                var value = isTo ? (int)equipHost.Result(FormulaKeys.FORMULA_56) : 0;
                 Host.SetDynamicData(SignKeys.STRENGH_FROM_EQUIP, value);
             }
             UpdateRoleInfo();
@@ -220,8 +220,10 @@ namespace FormulaBase
                     continue;
                 }
 
+				/*
                 Exp += (int)_item.Result(FormulaKeys.FORMULA_40) * _item.GetDynamicIntByKey(SignKeys.CHOSED);
                 Cost += (int)_item.Result(FormulaKeys.FORMULA_41) * _item.GetDynamicIntByKey(SignKeys.CHOSED);
+                */
             }
         }
 
@@ -239,15 +241,15 @@ namespace FormulaBase
             thost.SetDynamicData(SignKeys.LEVEL, _host.GetDynamicIntByKey(SignKeys.LEVEL));
             exp += _host.GetDynamicIntByKey(SignKeys.EXP);
 
-            int levelUpExp = (int)_host.Result(FormulaKeys.FORMULA_15);
+            int levelUpExp = (int)_host.Result(FormulaKeys.FORMULA_12);
             int level = _host.GetDynamicIntByKey(SignKeys.LEVEL);
             while (levelUpExp <= exp)
             {
                 level++;
                 exp -= levelUpExp;
                 thost.SetDynamicData(SignKeys.LEVEL, level);
-                levelUpExp = (int)thost.Result(FormulaKeys.FORMULA_15);
-                if (level == (int)thost.Result(FormulaKeys.FORMULA_14))
+                levelUpExp = (int)thost.Result(FormulaKeys.FORMULA_12);
+                if (level == (int)thost.Result(FormulaKeys.FORMULA_11))
                 {
                     NGUIDebug.Log("到达等级上限");
                     return thost;
@@ -261,7 +263,7 @@ namespace FormulaBase
 
         public bool IsItemLvlMax(FormulaHost host)
         {
-            var lvlMax = (int)host.Result(FormulaKeys.FORMULA_14);
+            var lvlMax = (int)host.Result(FormulaKeys.FORMULA_11);
             var curLvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
             return curLvl >= lvlMax;
         }
@@ -271,7 +273,7 @@ namespace FormulaBase
             var exp = 0;
             expHosts.ForEach(h =>
             {
-                exp += (int)h.Result(FormulaKeys.FORMULA_265);
+                exp += (int)h.Result(FormulaKeys.FORMULA_57);
             });
             var originLvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
             var originExp = host.GetDynamicIntByKey(SignKeys.EXP);
@@ -513,20 +515,20 @@ namespace FormulaBase
         public string GetName(int _index)
         {
             FormulaHost thost = GetRole(_index);
-            thost.Result(FormulaKeys.FORMULA_178);
+            thost.Result(FormulaKeys.FORMULA_35);
             return thost.GetDynamicStrByKey(SignKeys.NAME);
         }
 
         public string GetDes(int _index)
         {
             FormulaHost thost = GetRole(_index);
-            thost.Result(FormulaKeys.FORMULA_178);
+            thost.Result(FormulaKeys.FORMULA_35);
             return thost.GetDynamicStrByKey(SignKeys.DESCRIPTION);
         }
 
         public void GetUnLockRoleMoeny(int _index, ref int _type, ref int _Cost)
         {
-            _type = (int)GetRole(_index).Result(FormulaKeys.FORMULA_4);
+            _type = (int)GetRole(_index).Result(FormulaKeys.FORMULA_2);
             _Cost = (int)GetRole(_index).Result(FormulaKeys.FORMULA_1);
         }
 
@@ -578,8 +580,8 @@ namespace FormulaBase
             FormulaHost thost = new FormulaHost(HostKeys.HOST_0);
             thost.SetDynamicData(SignKeys.ID, _idx);
             thost.SetDynamicData(SignKeys.WHO, _idx);
-            _effect1 = (int)thost.Result(FormulaKeys.FORMULA_14);
-            _effect2 = (int)thost.Result(FormulaKeys.FORMULA_184);
+            _effect1 = (int)thost.Result(FormulaKeys.FORMULA_11);
+            _effect2 = (int)thost.Result(FormulaKeys.FORMULA_37);
             effect3 = 0;
             effect4 = _index > 0 ? 20 : 10;
         }

@@ -800,8 +800,8 @@ public class bagPanel2 : UIPanelBase {
 			}
 			int  ChosedNumber=ItemManageComponent.Instance.GetChosedItem[i].GetDynamicIntByKey(SignKeys.CHOSED);
 			Debug.Log("Chose itEM nUMBER "+ChosedNumber);
-			AllMoney+=(int)ItemManageComponent.Instance.GetChosedItem[i].Result(FormulaKeys.FORMULA_40)*ChosedNumber;
-			AllExp+=(int)ItemManageComponent.Instance.GetChosedItem[i].Result(FormulaKeys.FORMULA_41)*ChosedNumber;
+			//AllMoney+=(int)ItemManageComponent.Instance.GetChosedItem[i].Result(FormulaKeys.FORMULA_40)*ChosedNumber;
+			//AllExp+=(int)ItemManageComponent.Instance.GetChosedItem[i].Result(FormulaKeys.FORMULA_41)*ChosedNumber;
 		}
 	}
 //

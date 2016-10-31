@@ -443,7 +443,7 @@ namespace Assets.Scripts.NGUI
 
                     if (diff > 0)
                     {
-						cost = StageBattleComponent.Instance.Host.Result(FormulaKeys.FORMULA_45);
+						cost = StageBattleComponent.Instance.Host.Result(FormulaKeys.FORMULA_20);
                     }
                 }
                 txtEnergyLast.text = cost.ToString();

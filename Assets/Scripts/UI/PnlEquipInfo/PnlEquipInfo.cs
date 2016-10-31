@@ -151,9 +151,9 @@ namespace PnlEquipInfo
                 var name = h.GetDynamicStrByKey(SignKeys.NAME);
                 var type = h.GetDynamicStrByKey(SignKeys.TYPE);
                 var curLvl = h.GetDynamicStrByKey(SignKeys.LEVEL);
-                var vigour = h.Result(FormulaKeys.FORMULA_258);
-                var stamina = h.Result(FormulaKeys.FORMULA_259);
-                var strengh = h.Result(FormulaKeys.FORMULA_264);
+                var vigour = h.Result(FormulaKeys.FORMULA_50);
+                var stamina = h.Result(FormulaKeys.FORMULA_51);
+                var strengh = h.Result(FormulaKeys.FORMULA_56);
                 var description = h.GetDynamicStrByKey(SignKeys.DESCRIPTION);
                 var cost = ItemManageComponent.Instance.GetItemMoney(h);
                 var effect = h.GetDynamicStrByKey(SignKeys.SUIT_EFFECT_DESC);
@@ -299,9 +299,9 @@ namespace PnlEquipInfo
 
                 var afterLvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
                 var afterExp = host.GetDynamicIntByKey(SignKeys.EXP);
-                var vigourTo = (int)host.Result(FormulaKeys.FORMULA_258);
-                var staminaTo = (int)host.Result(FormulaKeys.FORMULA_259);
-                var strenghTo = (int)host.Result(FormulaKeys.FORMULA_264);
+                var vigourTo = (int)host.Result(FormulaKeys.FORMULA_50);
+                var staminaTo = (int)host.Result(FormulaKeys.FORMULA_51);
+                var strenghTo = (int)host.Result(FormulaKeys.FORMULA_56);
                 var curExpPercent = (float)afterExp / (float)originRequiredExp;
                 curExpPercent = afterLvl != originLvl ? 1.0f : curExpPercent;
 

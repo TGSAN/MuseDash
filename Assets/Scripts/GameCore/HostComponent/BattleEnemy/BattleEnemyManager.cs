@@ -260,7 +260,7 @@ namespace FormulaBase
             FormulaHost host = this.GetHost(idx);
             if (host != null)
             {
-                v = (int)host.Result(FormulaKeys.FORMULA_10);
+                v = (int)host.Result(FormulaKeys.FORMULA_8);
             }
 
             return v;
@@ -405,7 +405,7 @@ namespace FormulaBase
 
                 FormulaHost _enemy = this.enemy[i];
                 _enemy.SetDynamicData(SignKeys.PLAY_EVALUATE, result);
-                _enemy.SetDynamicData(SignKeys.BATTLE_HP, _enemy.Result(FormulaKeys.FORMULA_11));
+                //_enemy.SetDynamicData(SignKeys.BATTLE_HP, _enemy.Result(FormulaKeys.FORMULA_11));
             }
 
             Debug.Log("Set play results after " + tick + " " + this.GetCurrentPlayIdx());

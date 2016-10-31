@@ -230,7 +230,7 @@ public class ChestShow : MonoBehaviour {
 	public void SaleChest()
 	{
 		ClickExitMask (null, false);
-		m_host.Result (FormulaKeys.FORMULA_90);
+//		m_host.Result (FormulaKeys.FORMULA_90);
 		CommonPanel.GetInstance ().ShowEnSureSalePanel (m_host.GetDynamicIntByKey (SignKeys.SOLD), EnSureSaleChest, CancelSaleChest, m_host.GetDynamicIntByKey (SignKeys.QUALITY) > 1, true);
 	}
 
@@ -274,7 +274,7 @@ public class ChestShow : MonoBehaviour {
 		Debug.Log ("Sale Chest");
 
 		ClickExitMask (null, false);
-		m_host.Result (FormulaKeys.FORMULA_90);
+//		m_host.Result (FormulaKeys.FORMULA_90);
 		CommonPanel.GetInstance ().ShowEnSureSalePanel (m_host.GetDynamicIntByKey (SignKeys.SOLD), EntureSaleChestInGrid, CancelSaleChestInGrid, m_host.GetDynamicIntByKey (SignKeys.QUALITY) > 1, true);
 	}
 

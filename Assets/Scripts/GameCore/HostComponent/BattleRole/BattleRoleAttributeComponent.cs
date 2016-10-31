@@ -90,7 +90,7 @@ namespace FormulaBase
                 }
 
                 this.Host.SetDynamicData(SignKeys.ID, RoleManageComponent.RoleIndexToId(HeroIndex));
-                this.Host.Result(FormulaKeys.FORMULA_178);
+                this.Host.Result(FormulaKeys.FORMULA_35);
                 this.Host.SetAsUINotifyInstance();
             }
 
@@ -224,7 +224,7 @@ namespace FormulaBase
                 return 0;
             }
 
-            int baseValue = (int)host.Result(FormulaKeys.FORMULA_186);
+            int baseValue = (int)host.Result(FormulaKeys.FORMULA_38);
             int skPlus = (int)this.GetSkillSwitchAddUp(SkillComponent.SING_KEY_SWITCHS_HP, baseValue);
 
             return baseValue + skPlus;
@@ -294,7 +294,7 @@ namespace FormulaBase
                 return;
             }
 
-            float hpMax = battleRole.Result(FormulaKeys.FORMULA_186);
+            float hpMax = battleRole.Result(FormulaKeys.FORMULA_38);
             battleRole.SetDynamicData(SignKeys.BATTLE_HP, hpMax);
             battleRole.SetDynamicData(SignKeys.HP, hpMax);
             battleRole.SetAsUINotifyInstance();
@@ -416,8 +416,8 @@ namespace FormulaBase
             }
             else
             {
-                feverValue = Host.Result(FormulaKeys.FORMULA_87);
-                criticalFlag = (int)this.Host.Result(FormulaKeys.FORMULA_46); // xxx is get crt formula
+                feverValue = Host.Result(FormulaKeys.FORMULA_24);
+                criticalFlag = (int)this.Host.Result(FormulaKeys.FORMULA_21); // xxx is get crt formula
             }
 
             this.Host.SetDynamicData(SignKeys.CTR, criticalFlag);
@@ -448,7 +448,7 @@ namespace FormulaBase
             }
 
             // Role attack from fromula.
-            int attack = (int)this.Host.Result(FormulaKeys.FORMULA_7);
+            int attack = (int)this.Host.Result(FormulaKeys.FORMULA_5);
 
             // Skill dynamic effect to attack.
             int skPlus = (int)this.GetSkillSwitchAddUp(SkillComponent.SING_KEY_SWITCHS_ATK, attack);

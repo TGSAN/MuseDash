@@ -62,7 +62,7 @@ public class HeroLevelUpPanel : UIPanelBase {
 			{
 				for(int k=0,max=ItemManageComponent.Instance.GetChosedItem[j].GetDynamicIntByKey(SignKeys.CHOSED);k<max;k++)
 				{
-					ItemManageComponent.Instance.GetChosedItem[j].Result(FormulaKeys.FORMULA_93);
+					ItemManageComponent.Instance.GetChosedItem[j].Result(FormulaKeys.FORMULA_26);
 
 					m_ArrChoseItem[i].spriteName=ItemManageComponent.Instance.GetChosedItem[j].GetDynamicStrByKey("ID");
 					i++;

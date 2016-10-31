@@ -242,7 +242,7 @@ public class bagItemCell : MonoBehaviour {
 	void ShowEquip(FormulaHost _data)
 	{
 		ushort id=(ushort)_data.GetDynamicDataByKey("ID");
-		_data.Result(FormulaKeys.FORMULA_19);
+		_data.Result(FormulaKeys.FORMULA_13);
 
 		int Quality =(int)_data.GetDynamicDataByKey(SignKeys.QUALITY);
 	//	int TimeID =(int)_data.GetDynamicDataByKey(SignKeys.BAGINID);
@@ -266,7 +266,7 @@ public class bagItemCell : MonoBehaviour {
 	void ShowMaterial(FormulaHost _data)
 	{
 		//ushort id=(ushort)_data.GetDynamicDataByKey("ID");
-		_data.Result(FormulaKeys.FORMULA_93);
+		_data.Result(FormulaKeys.FORMULA_26);
 		int Quality =(int)_data.GetDynamicDataByKey(SignKeys.QUALITY);
 		// TimeID =(int)_data.GetDynamicDataByKey(SignKeys.BAGINID);
 		//int Type =(int)_data.GetDynamicDataByKey(SignKeys.TYPE);
@@ -292,17 +292,17 @@ public class bagItemCell : MonoBehaviour {
 	void ShowPet(FormulaHost _data)
 	{
 	//	ushort id=(ushort)_data.GetDynamicDataByKey("ID");
-		_data.Result(FormulaKeys.FORMULA_91);
+		//_data.Result(FormulaKeys.FORMULA_91);
 		int Quality =(int)_data.GetDynamicDataByKey(SignKeys.QUALITY);
 		//int TimeID =(int)_data.GetDynamicDataByKey(SignKeys.BAGINID);
 		int Type =(int)_data.GetDynamicDataByKey(SignKeys.TYPE);
 		//m_TestLabel.text="Pet";
 		int t_number=(int)_data.GetDynamicDataByKey(SignKeys.STACKITEMNUMBER);
-		int smallType=(int)_data.Result(FormulaKeys.FORMULA_115);
+		//int smallType=(int)_data.Result(FormulaKeys.FORMULA_115);
 		//m_TestLabel.text="STACKITEMNUMBER : "+t_number+"smallType"+smallType;
 		//m_TestLabel.text="Pet Q: "+Quality+"\nTime: "+TimeID+"\nType: "+Type+"\n id;"+id;
 
-		if(smallType==6)
+		if(true)
 		{
 			LevelAndNumberAndTime.text="X "+t_number.ToString();
 		}
@@ -326,11 +326,11 @@ public class bagItemCell : MonoBehaviour {
 	void ShowChest(FormulaHost _data)
 	{
 	//	ushort id=(ushort)_data.GetDynamicDataByKey("ID");
-		_data.Result(FormulaKeys.FORMULA_90);
+		//_data.Result(FormulaKeys.FORMULA_90);
 		int Quality =(int)_data.GetDynamicDataByKey(SignKeys.QUALITY);
 	//	int TimeID =(int)_data.GetDynamicDataByKey(SignKeys.BAGINID);
 	//	int Type =(int)_data.GetDynamicDataByKey(SignKeys.TYPE);
-		int alltime=(int)_data.Result(FormulaKeys.FORMULA_94);
+		//int alltime=(int)_data.Result(FormulaKeys.FORMULA_94);
 		int t_number=(int)_data.GetDynamicDataByKey(SignKeys.STACKITEMNUMBER);
 		//m_TestLabel.text="STACKITEMNUMBER : "+t_number;
 		//m_TestLabel.text="Chest Q: "+Quality+"\nTime: "+TimeID+"\nType: "+Type+"\n id;"+id;

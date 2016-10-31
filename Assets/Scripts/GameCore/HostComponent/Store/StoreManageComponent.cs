@@ -21,27 +21,27 @@ namespace FormulaBase {
 
 		public ushort GetShopType(int _id) {
 			this.Host.SetDynamicData ("ID", _id);
-			return (ushort)this.Host.Result (FormulaKeys.FORMULA_108);	
+			return (ushort)this.Host.Result (FormulaKeys.FORMULA_27);	
 		}
 
 		public ushort UseMoneyType(int _id) {
-			return (ushort)this.Host.Result (FormulaKeys.FORMULA_109);
+			return (ushort)this.Host.Result (FormulaKeys.FORMULA_28);
 		}
 
 		public ushort UseMoneyNumber(int _id) {
-			return (ushort)this.Host.Result (FormulaKeys.FORMULA_110);
+			return (ushort)this.Host.Result (FormulaKeys.FORMULA_29);
 		}
 
 		public ushort GetMoneyNumber(int _id) {
-			return (ushort)this.Host.Result (FormulaKeys.FORMULA_111);
+			return (ushort)this.Host.Result (FormulaKeys.FORMULA_30);
 		}
 
 		public ushort GetDiamondNumber(int _id) {
-			return (ushort)this.Host.Result (FormulaKeys.FORMULA_112);
+			return (ushort)this.Host.Result (FormulaKeys.FORMULA_31);
 		}
 
 		public ushort GetPhysicalNumber(int _id) {
-			return (ushort)this.Host.Result (FormulaKeys.FORMULA_113);
+			return (ushort)this.Host.Result (FormulaKeys.FORMULA_32);
 		}
 
 		public string GetImageName(int _id) {

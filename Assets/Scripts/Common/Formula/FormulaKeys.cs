@@ -4,463 +4,463 @@ namespace FormulaBase {
 	public class FormulaKeys {
 		///
 		/// 角色血量属性
-		///  0
+		///
 		public const int FORMULA_0 = 0;
 		///
 		/// 解锁所需数量
-		///  1
+		///
 		public const int FORMULA_1 = 1;
 		///
 		/// 解锁道具序号
-		///  2
-		public const int FORMULA_4 = 4;
+		///
+		public const int FORMULA_2 = 2;
 		///
 		/// 歌曲难度1所需的分数
-		///  3
-		public const int FORMULA_5 = 5;
+		///
+		public const int FORMULA_3 = 3;
 		///
 		/// 音效配置
-		///  4
-		public const int FORMULA_6 = 6;
+		///
+		public const int FORMULA_4 = 4;
 		///
 		/// 打击得分
-		///  5
-		public const int FORMULA_7 = 7;
+		///
+		public const int FORMULA_5 = 5;
 		///
 		/// 关卡音量
-		///  6
-		public const int FORMULA_8 = 8;
+		///
+		public const int FORMULA_6 = 6;
 		///
 		/// 关卡属性更新
-		///  7
-		public const int FORMULA_9 = 9;
+		///
+		public const int FORMULA_7 = 7;
 		///
 		/// 敌攻击力
-		///  8
-		public const int FORMULA_10 = 10;
+		///
+		public const int FORMULA_8 = 8;
 		///
 		/// 敌存活时间
-		///  9
-		public const int FORMULA_12 = 12;
+		///
+		public const int FORMULA_9 = 9;
 		///
 		/// 歌曲难度2所需的分数
-		///  10
-		public const int FORMULA_13 = 13;
+		///
+		public const int FORMULA_10 = 10;
 		///
 		/// 等级上限
-		///  11
-		public const int FORMULA_14 = 14;
+		///
+		public const int FORMULA_11 = 11;
 		///
 		/// 下一级所需经验
-		///  12
-		public const int FORMULA_15 = 15;
+		///
+		public const int FORMULA_12 = 12;
 		///
 		/// 装备信息
-		///  13
-		public const int FORMULA_19 = 19;
+		///
+		public const int FORMULA_13 = 13;
 		///
 		/// 装备等级上限
-		///  14
-		public const int FORMULA_22 = 22;
+		///
+		public const int FORMULA_14 = 14;
 		///
 		/// 一级被吞噬所提供的经验
-		///  15
-		public const int FORMULA_36 = 36;
+		///
+		public const int FORMULA_15 = 15;
 		///
 		/// 被吞噬消耗的金币
-		///  16
-		public const int FORMULA_37 = 37;
+		///
+		public const int FORMULA_16 = 16;
 		///
 		/// 歌曲难度3所需的分数
-		///  17
-		public const int FORMULA_39 = 39;
+		///
+		public const int FORMULA_17 = 17;
 		///
 		/// 暴击率
-		///  18
-		public const int FORMULA_42 = 42;
+		///
+		public const int FORMULA_18 = 18;
 		///
 		/// 产生随机数
-		///  19
-		public const int FORMULA_44 = 44;
+		///
+		public const int FORMULA_19 = 19;
 		///
 		/// 进入关卡消耗的体力
-		///  20
-		public const int FORMULA_45 = 45;
+		///
+		public const int FORMULA_20 = 20;
 		///
 		/// 是否产生暴击
-		///  21
-		public const int FORMULA_46 = 46;
+		///
+		public const int FORMULA_21 = 21;
 		///
 		/// 物品的增益数值（血包、金币、音符）
-		///  22
-		public const int FORMULA_73 = 73;
+		///
+		public const int FORMULA_22 = 22;
 		///
 		/// 通关奖励的魔能S
-		///  23
-		public const int FORMULA_81 = 81;
+		///
+		public const int FORMULA_23 = 23;
 		///
 		/// FEVER
-		///  24
-		public const int FORMULA_87 = 87;
+		///
+		public const int FORMULA_24 = 24;
 		///
 		/// 售价
-		///  25
-		public const int FORMULA_89 = 89;
+		///
+		public const int FORMULA_25 = 25;
 		///
 		/// 素材信息
-		///  26
-		public const int FORMULA_93 = 93;
+		///
+		public const int FORMULA_26 = 26;
 		///
 		/// 商店分页
-		///  27
-		public const int FORMULA_108 = 108;
+		///
+		public const int FORMULA_27 = 27;
 		///
 		/// 消耗货币的类型
-		///  28
-		public const int FORMULA_109 = 109;
+		///
+		public const int FORMULA_28 = 28;
 		///
 		/// 消耗货币的数量
-		///  29
-		public const int FORMULA_110 = 110;
+		///
+		public const int FORMULA_29 = 29;
 		///
 		/// 获得金币的数量
-		///  30
-		public const int FORMULA_111 = 111;
+		///
+		public const int FORMULA_30 = 30;
 		///
 		/// 获得钻石的数量
-		///  31
-		public const int FORMULA_112 = 112;
+		///
+		public const int FORMULA_31 = 31;
 		///
 		/// 获得体力的数量
-		///  32
-		public const int FORMULA_113 = 113;
+		///
+		public const int FORMULA_32 = 32;
 		///
 		/// 资源分页的图片ID
-		///  33
-		public const int FORMULA_114 = 114;
+		///
+		public const int FORMULA_33 = 33;
 		///
 		/// 装备升级所需经验
-		///  34
-		public const int FORMULA_155 = 155;
+		///
+		public const int FORMULA_34 = 34;
 		///
 		/// 角色信息
-		///  35
-		public const int FORMULA_178 = 178;
+		///
+		public const int FORMULA_35 = 35;
 		///
 		/// 角色耐久属性
-		///  36
-		public const int FORMULA_183 = 183;
+		///
+		public const int FORMULA_36 = 36;
 		///
 		/// 角色攻击属性
-		///  37
-		public const int FORMULA_184 = 184;
+		///
+		public const int FORMULA_37 = 37;
 		///
 		/// 角色最终血量
-		///  38
-		public const int FORMULA_186 = 186;
+		///
+		public const int FORMULA_38 = 38;
 		///
 		/// 角色最终攻击
-		///  39
-		public const int FORMULA_187 = 187;
+		///
+		public const int FORMULA_39 = 39;
 		///
 		/// 角色最终耐久
-		///  40
-		public const int FORMULA_188 = 188;
+		///
+		public const int FORMULA_40 = 40;
 		///
 		/// 通关奖励的账号经验S
-		///  41
-		public const int FORMULA_226 = 226;
+		///
+		public const int FORMULA_41 = 41;
 		///
 		/// 关卡难度
-		///  42
-		public const int FORMULA_237 = 237;
+		///
+		public const int FORMULA_42 = 42;
 		///
 		/// 敌攻击力增长
-		///  43
-		public const int FORMULA_238 = 238;
+		///
+		public const int FORMULA_43 = 43;
 		///
 		/// 角色额外金币获得量
-		///  44
-		public const int FORMULA_251 = 251;
+		///
+		public const int FORMULA_44 = 44;
 		///
 		/// 角色额外魔能获得量
-		///  45
-		public const int FORMULA_252 = 252;
+		///
+		public const int FORMULA_45 = 45;
 		///
 		/// 购买角色后，提升体力上限值
-		///  46
-		public const int FORMULA_253 = 253;
+		///
+		public const int FORMULA_46 = 46;
 		///
 		/// 额外暴击率
-		///  47
-		public const int FORMULA_254 = 254;
+		///
+		public const int FORMULA_47 = 47;
 		///
 		/// 装备初始血量
-		///  48
-		public const int FORMULA_255 = 255;
+		///
+		public const int FORMULA_48 = 48;
 		///
 		/// 装备血量成长
-		///  49
-		public const int FORMULA_257 = 257;
+		///
+		public const int FORMULA_49 = 49;
 		///
 		/// 装备实际血量
-		///  50
-		public const int FORMULA_258 = 258;
+		///
+		public const int FORMULA_50 = 50;
 		///
 		/// 装备初始耐力
-		///  51
-		public const int FORMULA_259 = 259;
+		///
+		public const int FORMULA_51 = 51;
 		///
 		/// 装备耐力成长
-		///  52
-		public const int FORMULA_260 = 260;
+		///
+		public const int FORMULA_52 = 52;
 		///
 		/// 装备实际耐力
-		///  53
-		public const int FORMULA_261 = 261;
+		///
+		public const int FORMULA_53 = 53;
 		///
 		/// 装备初始攻击
-		///  54
-		public const int FORMULA_262 = 262;
+		///
+		public const int FORMULA_54 = 54;
 		///
 		/// 装备攻击成长
-		///  55
-		public const int FORMULA_263 = 263;
+		///
+		public const int FORMULA_55 = 55;
 		///
 		/// 装备实际攻击
-		///  56
-		public const int FORMULA_264 = 264;
+		///
+		public const int FORMULA_56 = 56;
 		///
 		/// 食物提供的经验
-		///  57
-		public const int FORMULA_265 = 265;
+		///
+		public const int FORMULA_57 = 57;
 		///
 		/// 吃食物消耗的金币
-		///  58
-		public const int FORMULA_266 = 266;
+		///
+		public const int FORMULA_58 = 58;
 		///
 		/// 使魔碎片信息
-		///  59
-		public const int FORMULA_267 = 267;
+		///
+		public const int FORMULA_59 = 59;
 		///
 		/// 使魔信息
-		///  60
-		public const int FORMULA_268 = 268;
+		///
+		public const int FORMULA_60 = 60;
 		///
 		/// 使魔等级上限
-		///  61
-		public const int FORMULA_269 = 269;
+		///
+		public const int FORMULA_61 = 61;
 		///
 		/// 使魔初始血量
-		///  62
-		public const int FORMULA_270 = 270;
+		///
+		public const int FORMULA_62 = 62;
 		///
 		/// 使魔血量成长
-		///  63
-		public const int FORMULA_271 = 271;
+		///
+		public const int FORMULA_63 = 63;
 		///
 		/// 使魔实际血量
-		///  64
-		public const int FORMULA_272 = 272;
+		///
+		public const int FORMULA_64 = 64;
 		///
 		/// 使魔初始耐力
-		///  65
-		public const int FORMULA_273 = 273;
+		///
+		public const int FORMULA_65 = 65;
 		///
 		/// 使魔耐力成长
-		///  66
-		public const int FORMULA_274 = 274;
+		///
+		public const int FORMULA_66 = 66;
 		///
 		/// 使魔实际耐力
-		///  67
-		public const int FORMULA_275 = 275;
+		///
+		public const int FORMULA_67 = 67;
 		///
 		/// 使魔初始攻击
-		///  68
-		public const int FORMULA_276 = 276;
+		///
+		public const int FORMULA_68 = 68;
 		///
 		/// 使魔攻击成长
-		///  69
-		public const int FORMULA_277 = 277;
+		///
+		public const int FORMULA_69 = 69;
 		///
 		/// 使魔实际攻击
-		///  70
-		public const int FORMULA_278 = 278;
+		///
+		public const int FORMULA_70 = 70;
 		///
 		/// 解锁使魔所需的使魔碎片
-		///  71
-		public const int FORMULA_279 = 279;
+		///
+		public const int FORMULA_71 = 71;
 		///
 		/// 产出资源信息
-		///  72
-		public const int FORMULA_280 = 280;
+		///
+		public const int FORMULA_72 = 72;
 		///
 		/// 金币数量
-		///  73
-		public const int FORMULA_281 = 281;
+		///
+		public const int FORMULA_73 = 73;
 		///
 		/// 水晶数量
-		///  74
-		public const int FORMULA_282 = 282;
+		///
+		public const int FORMULA_74 = 74;
 		///
 		/// 魔能数量
-		///  75
-		public const int FORMULA_283 = 283;
+		///
+		public const int FORMULA_75 = 75;
 		///
 		/// 体力数量
-		///  76
-		public const int FORMULA_284 = 284;
+		///
+		public const int FORMULA_76 = 76;
 		///
 		/// 魔方信息
-		///  77
-		public const int FORMULA_285 = 285;
+		///
+		public const int FORMULA_77 = 77;
 		///
 		/// 通关奖励的魔能A
-		///  78
-		public const int FORMULA_286 = 286;
+		///
+		public const int FORMULA_78 = 78;
 		///
 		/// 通关奖励的魔能B
-		///  79
-		public const int FORMULA_287 = 287;
+		///
+		public const int FORMULA_79 = 79;
 		///
 		/// 通关奖励的魔能C
-		///  80
-		public const int FORMULA_288 = 288;
+		///
+		public const int FORMULA_80 = 80;
 		///
 		/// 通关奖励的金币A
-		///  81
-		public const int FORMULA_295 = 295;
+		///
+		public const int FORMULA_81 = 81;
 		///
 		/// 通关奖励的金币B
-		///  82
-		public const int FORMULA_296 = 296;
+		///
+		public const int FORMULA_82 = 82;
 		///
 		/// 通关奖励的金币C
-		///  83
-		public const int FORMULA_297 = 297;
+		///
+		public const int FORMULA_83 = 83;
 		///
 		/// 通关奖励的账号经验A
-		///  84
-		public const int FORMULA_304 = 304;
+		///
+		public const int FORMULA_84 = 84;
 		///
 		/// 通关奖励的账号经验B
-		///  85
-		public const int FORMULA_305 = 305;
+		///
+		public const int FORMULA_85 = 85;
 		///
 		/// 通关奖励的账号经验C
-		///  86
-		public const int FORMULA_306 = 306;
+		///
+		public const int FORMULA_86 = 86;
 		///
 		/// 关卡分数目标
-		///  87
-		public const int FORMULA_329 = 329;
+		///
+		public const int FORMULA_87 = 87;
 		///
 		/// 进入关卡所需体力
-		///  88
-		public const int FORMULA_330 = 330;
+		///
+		public const int FORMULA_88 = 88;
 		///
 		/// S通关奖励魔能
-		///  89
-		public const int FORMULA_331 = 331;
+		///
+		public const int FORMULA_89 = 89;
 		///
 		/// S通关奖励金币
-		///  90
-		public const int FORMULA_332 = 332;
+		///
+		public const int FORMULA_90 = 90;
 		///
 		/// A通关奖励魔能
-		///  91
-		public const int FORMULA_333 = 333;
+		///
+		public const int FORMULA_91 = 91;
 		///
 		/// B通关奖励魔能
-		///  92
-		public const int FORMULA_334 = 334;
+		///
+		public const int FORMULA_92 = 92;
 		///
 		/// C通关奖励魔能
-		///  93
-		public const int FORMULA_335 = 335;
+		///
+		public const int FORMULA_93 = 93;
 		///
 		/// A通关奖励金币
-		///  94
-		public const int FORMULA_336 = 336;
+		///
+		public const int FORMULA_94 = 94;
 		///
 		/// B通关奖励金币
-		///  95
-		public const int FORMULA_337 = 337;
+		///
+		public const int FORMULA_95 = 95;
 		///
 		/// C通关奖励金币
-		///  96
-		public const int FORMULA_338 = 338;
+		///
+		public const int FORMULA_96 = 96;
 		///
 		/// S通关奖励账号经验
-		///  97
-		public const int FORMULA_339 = 339;
+		///
+		public const int FORMULA_97 = 97;
 		///
 		/// A通关奖励账号经验
-		///  98
-		public const int FORMULA_341 = 341;
+		///
+		public const int FORMULA_98 = 98;
 		///
 		/// B通关奖励账号经验
-		///  99
-		public const int FORMULA_342 = 342;
+		///
+		public const int FORMULA_99 = 99;
 		///
 		/// C通关奖励账号经验
-		///  100
-		public const int FORMULA_343 = 343;
+		///
+		public const int FORMULA_100 = 100;
 		///
 		/// Combo成就目标
-		///  101
-		public const int FORMULA_344 = 344;
+		///
+		public const int FORMULA_101 = 101;
 		///
 		/// Combo成就奖励类型
-		///  102
-		public const int FORMULA_345 = 345;
+		///
+		public const int FORMULA_102 = 102;
 		///
 		/// Combo成就奖励数量
-		///  103
-		public const int FORMULA_346 = 346;
+		///
+		public const int FORMULA_103 = 103;
 		///
 		/// Perfect成就目标
-		///  104
-		public const int FORMULA_347 = 347;
+		///
+		public const int FORMULA_104 = 104;
 		///
 		/// Perfect成就奖励类型
-		///  105
-		public const int FORMULA_348 = 348;
+		///
+		public const int FORMULA_105 = 105;
 		///
 		/// Perfect成就奖励数量
-		///  106
-		public const int FORMULA_349 = 349;
+		///
+		public const int FORMULA_106 = 106;
 		///
 		/// 隐藏note成就目标
-		///  107
-		public const int FORMULA_350 = 350;
+		///
+		public const int FORMULA_107 = 107;
 		///
 		/// 隐藏note成就奖励类型
-		///  108
-		public const int FORMULA_351 = 351;
+		///
+		public const int FORMULA_108 = 108;
 		///
 		/// 隐藏note成就奖励数量
-		///  109
-		public const int FORMULA_352 = 352;
+		///
+		public const int FORMULA_109 = 109;
 		///
 		/// 通关次数成就目标
-		///  110
-		public const int FORMULA_353 = 353;
+		///
+		public const int FORMULA_110 = 110;
 		///
 		/// 通关次数成就奖励类型
-		///  111
-		public const int FORMULA_354 = 354;
+		///
+		public const int FORMULA_111 = 111;
 		///
 		/// 通关次数成就奖励数量
-		///  112
-		public const int FORMULA_355 = 355;
+		///
+		public const int FORMULA_112 = 112;
 		///
 		/// 通关奖励的魔能C
-		///  113
-		public const int FORMULA_356 = 356;
+		///
+		public const int FORMULA_113 = 113;
 		///
 		/// 通关奖励的金币S
-		///  114
+		///
 		public const int FORMULA_114 = 114;
 
 	}

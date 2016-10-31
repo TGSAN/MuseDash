@@ -35,7 +35,7 @@ namespace FormulaBase {
 		/// <param name="_UpNumber">Up number.</param>
 		public void PetLevelUp(FormulaHost _host,int _UpNumber)
 		{
-
+			/*
 			int tlevel=_host.GetDynamicIntByKey(SignKeys.LEVEL);
 			int tMaxLevel=(int)_host.Result(FormulaKeys.FORMULA_130);
 			tlevel+=_UpNumber;
@@ -47,10 +47,12 @@ namespace FormulaBase {
 			_host.SetDynamicData(SignKeys.LEVEL,tlevel);
 			CommonPanel.GetInstance().ShowWaittingPanel();
 			_host.Save(new HttpResponseDelegate(PetLevelUpCallback));
+			*/
 		}
 
 		public void GetExpAndCost(ref int Exp,ref int Cost)
 		{
+			/*
 			Exp=0;
 			Cost=0;
 			FormulaHost tempEquip=new FormulaHost(HOST_IDX);
@@ -60,12 +62,14 @@ namespace FormulaBase {
 				Exp+=(int)tList[i].Result(FormulaKeys.FORMULA_40)*tList[i].GetDynamicIntByKey(SignKeys.CHOSED);
 				Cost+=(int)tList[i].Result(FormulaKeys.FORMULA_41)*tList[i].GetDynamicIntByKey(SignKeys.CHOSED);
 			}
+			*/
 		}
 		/// <summary>
 		/// 获取升级后的host
 		/// </summary>
 		public FormulaHost GetLevelUpHost(FormulaHost _host)
 		{
+			/*
 			int Exp=0;int Cost=0;
 			GetExpAndCost(ref Exp,ref Cost);
 			FormulaHost thost=new FormulaHost(HOST_IDX);
@@ -94,6 +98,8 @@ namespace FormulaBase {
 			thost.SetDynamicData(SignKeys.LEVEL,Level);
 			thost.SetDynamicData(SignKeys.EXP,Exp);
 			return thost;
+			*/
+			return null;
 		}
 		void PetLevelUpCallback(bool _success)
 		{
@@ -258,10 +264,12 @@ namespace FormulaBase {
 			{
 				if(m_ListEquipedPetHosts[i].GetDynamicIntByKey(SignKeys.EQUIPEDQUEUE)/10==RoleManageComponent.Instance.GetFightGirlIndex())
 				{
+					/*
 					_hp+=(int)m_ListEquipedPetHosts[i].Result(FormulaKeys.FORMULA_137);					//Hp
 					_att+=(int)m_ListEquipedPetHosts[i].Result(FormulaKeys.FORMULA_139);					//Def
 					_df+=(int)m_ListEquipedPetHosts[i].Result(FormulaKeys.FORMULA_141);	//Att
 					_crit+=(int)m_ListEquipedPetHosts[i].Result(FormulaKeys.FORMULA_143);					//Crt
+					*/
 				}
 			}
 		}

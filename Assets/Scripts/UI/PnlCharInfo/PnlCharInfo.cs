@@ -104,10 +104,10 @@ namespace PnlCharInfo
             {
                 var originLvl = curRoleHost.GetDynamicIntByKey(SignKeys.LEVEL);
                 var originExp = curRoleHost.GetDynamicIntByKey(SignKeys.EXP);
-                var originVigour = (int)curRoleHost.Result(FormulaKeys.FORMULA_186);
-                var originStamina = (int)curRoleHost.Result(FormulaKeys.FORMULA_188);
-                var originStrengh = (int)curRoleHost.Result(FormulaKeys.FORMULA_187);
-                var originLuck = (int)curRoleHost.Result(FormulaKeys.FORMULA_42);
+                var originVigour = (int)curRoleHost.Result(FormulaKeys.FORMULA_38);
+                var originStamina = (int)curRoleHost.Result(FormulaKeys.FORMULA_40);
+                var originStrengh = (int)curRoleHost.Result(FormulaKeys.FORMULA_39);
+                var originLuck = (int)curRoleHost.Result(FormulaKeys.FORMULA_18);
                 var originRequiredExp = ConfigPool.Instance.GetConfigIntValue("experience", originLvl.ToString(), "char_exp");
                 var originExpPercent = (float)originExp / (float)originRequiredExp;
 
@@ -115,10 +115,10 @@ namespace PnlCharInfo
 
                 var afterLvl = curRoleHost.GetDynamicIntByKey(SignKeys.LEVEL);
                 var afterExp = curRoleHost.GetDynamicIntByKey(SignKeys.EXP);
-                var vigourTo = (int)curRoleHost.Result(FormulaKeys.FORMULA_186);
-                var staminaTo = (int)curRoleHost.Result(FormulaKeys.FORMULA_188);
-                var strenghTo = (int)curRoleHost.Result(FormulaKeys.FORMULA_187);
-                var luckTo = (int)curRoleHost.Result(FormulaKeys.FORMULA_42);
+                var vigourTo = (int)curRoleHost.Result(FormulaKeys.FORMULA_38);
+                var staminaTo = (int)curRoleHost.Result(FormulaKeys.FORMULA_40);
+                var strenghTo = (int)curRoleHost.Result(FormulaKeys.FORMULA_39);
+                var luckTo = (int)curRoleHost.Result(FormulaKeys.FORMULA_18);
                 var curExpPercent = (float)afterExp / (float)originRequiredExp;
                 curExpPercent = afterLvl != originLvl ? 1.0f : curExpPercent;
 
