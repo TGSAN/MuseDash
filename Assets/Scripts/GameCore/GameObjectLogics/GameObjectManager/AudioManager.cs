@@ -211,6 +211,15 @@ public class AudioManager
         this.sceneObjectEffects[audioName] = clip;
     }
 
+    public void AddEmptyAudio()
+    {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        var hitAudioName = "sfx_" + RoleManageComponent.Instance.Host.GetDynamicStrByKey(SignKeys.NAME) +
+                            "_hit_notthing_1";
+        AudioCenter.loadSound(hitAudioName);
+#endif
+    }
+
     public void AddAudioResource(string name)
     {
         if (name == null || name.Length < 2)
@@ -363,6 +372,12 @@ public class AudioManager
 
     public void PlayHitNothing()
     {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        var jumpAudioName = "jump_normal";
+        var hitAudioName = "sfx_" + RoleManageComponent.Instance.Host.GetDynamicStrByKey(SignKeys.NAME) +
+                            "_hit_notthing_1";
+        AudioCenter.playSound(GameGlobal.gGameTouchPlay.IsJump() ? jumpAudioName : hitAudioName);
+#else
         if (GameGlobal.gGameTouchPlay.IsJump())
         {
             SoundEffectComponent.Instance.SayByCurrentRole(GameGlobal.SOUND_TYPE_UI_JUMP_MISS);
@@ -370,6 +385,7 @@ public class AudioManager
         }
 
         SoundEffectComponent.Instance.SayByCurrentRole(GameGlobal.SOUND_TYPE_UI_ATTACK_MISS);
+#endif
 
         //this.girlEffect.clip = this.girlEffects [0];
         //this.girlEffect.Play ();

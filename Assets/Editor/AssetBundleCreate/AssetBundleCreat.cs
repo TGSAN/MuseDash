@@ -129,6 +129,9 @@ public class AssetBundleCreat : EditorWindow
                     "score",
                 }
             },
+            {"/Resources/char/buro/voice/", new[] {"sfx_buro_hit_notthing_1"} },
+            {"/Resources/char/marija/voice/", new[] { "sfx_marija_hit_notthing_1" } },
+            {"/Resources/char/urchin/voice/", new[] { "sfx_urchin_hit_notthing_1" } }
         };
 
         var dic = new Dictionary<string, string>();

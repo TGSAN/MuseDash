@@ -759,11 +759,12 @@ namespace FormulaBase
         private void InitData()
         {
             this.LoadMusicData();
-            for (int i = 0; i < this.musicTickData.Count; i++)
+            foreach (object t in this.musicTickData)
             {
-                MusicData md = (MusicData)this.musicTickData[i];
+                MusicData md = (MusicData)t;
                 AudioManager.Instance.AddAudioResource(md.nodeData.key_audio);
             }
+            AudioManager.Instance.AddEmptyAudio();
         }
 
         private void LoadMusicData()

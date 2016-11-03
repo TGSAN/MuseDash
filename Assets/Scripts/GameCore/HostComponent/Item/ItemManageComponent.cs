@@ -884,11 +884,11 @@ namespace FormulaBase
             switch (fileName)
             {
                 case "Equip":
-                    saleMoney = (int)_host.Result(FormulaKeys.FORMULA_26);
+                    saleMoney = (int)_host.Result(FormulaKeys.FORMULA_25);
                     break;
 
                 case "Material":
-                    _host.Result(FormulaKeys.FORMULA_93);
+                    _host.Result(FormulaKeys.FORMULA_26);
                     saleMoney = _host.GetDynamicIntByKey(SignKeys.SOLD);
                     break;
 
@@ -1061,7 +1061,7 @@ namespace FormulaBase
             {
                 for (int i = 0, max = m_pet.Count; i < max; i++)
                 {
-					/*
+                    /*
                     if (m_pet[i].Result(FormulaKeys.FORMULA_115) == _smallType)
                     {
                         temp.Add(m_pet[i]);
@@ -1083,7 +1083,7 @@ namespace FormulaBase
             {
                 for (int i = 0, max = m_material.Count; i < max; i++)
                 {
-					/*
+                    /*
                     if (m_material[i].Result(FormulaKeys.FORMULA_38) == _smallType)
                     {
                         temp.Add(m_material[i]);
