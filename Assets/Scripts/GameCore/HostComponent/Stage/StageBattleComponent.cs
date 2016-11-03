@@ -593,10 +593,21 @@ namespace FormulaBase
                 return;
             }
 
-            GameGlobal.gGameMusic.Run();
-            GameGlobal.gGameMusicScene.Run();
+            //延迟0.1s用于音频加载不同步缓冲
             GameGlobal.gGameMusic.PlayMusic();
-            Debug.Log("Stage start");
+            AudioManager.Instance.SetBgmVolume(0f);
+            DOTweenUtils.Delay(() =>
+            {
+                AudioManager.Instance.SetBgmVolume(1.0f);
+                AudioManager.Instance.SetBackGroundMusicProgress(0.1f);
+                DOTweenUtils.Delay(() =>
+                {
+                    GameGlobal.gGameMusic.Run();
+                    GameGlobal.gGameMusicScene.Run();
+                    Debug.Log("Stage start");
+                }, 0.1f);
+            }, 0.1f);
+
             //UserUI.Instance.SetGUIActive (false);
         }
 

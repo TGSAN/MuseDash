@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using FormulaBase;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -43,7 +45,7 @@ public class AssetBundleCreat : EditorWindow
     [MenuItem("RHY/AssetBundle/打包")]
     private static void CreateAssetBundleThemelves()
     {
-        BuildPipeline.BuildAssetBundles(AsbSavePath, BuildAssetBundleOptions.UncompressedAssetBundle | BuildAssetBundleOptions.CollectDependencies, BuildTarget.iOS);
+        BuildPipeline.BuildAssetBundles(AsbSavePath, BuildAssetBundleOptions.UncompressedAssetBundle | BuildAssetBundleOptions.CollectDependencies, BuildTarget.Android);
         AssetDatabase.Refresh();
 
         FileInfo fInfoOld = new FileInfo(Application.dataPath + "/Assetbundle/Assetbundle.ab");
@@ -105,23 +107,62 @@ public class AssetBundleCreat : EditorWindow
 
     private static void ChangeSomePath(bool isTo)
     {
-        var pathDic = new Dictionary<string, string>()
+        var pathList = new Dictionary<string, string[]>()
         {
-            {"Assets/Resources/note/key_audio/beat_easy.wav", "Assets/StreamingAssets/beat_easy.wav" },
-            {"Assets/Resources/note/key_audio/beat_hard.wav", "Assets/StreamingAssets/beat_hard.wav" },
-            {"Assets/Resources/note/key_audio/hp.wav", "Assets/StreamingAssets/hp.wav" },
-            {"Assets/Resources/note/key_audio/jump_normal.wav", "Assets/StreamingAssets/jump_normal.wav" },
-            {"Assets/Resources/note/key_audio/score.wav", "Assets/StreamingAssets/score.wav" }
+            //{"/Resources/stage/stage_v1/music/", TaskStageTarget.Instance.GetAllMusicNames()},
+            {"/Resources/note/key_audio/",
+                new[]
+                {   "beat_easy",
+                    "beat_hard",
+                    "clubby_kick_drums_A",
+                    "easy_atk_1",
+                    "FRM_Drum_1_A",
+                    "heavy_atk_3",
+                    "heavy_atk_4",
+                    "hp",
+                    "jump_normal",
+                    "pop_atk_1",
+                    "pop_atk_2",
+                    "Prayer_Prog_Drums_1_A",
+                    "s_atk_2",
+                    "S_esay_atk_1",
+                    "score",
+                }
+            },
         };
-        foreach (var kpv in pathDic)
+
+        var dic = new Dictionary<string, string>();
+        foreach (string t in pathList.Keys)
+        {
+            var folderPath = isTo ? Application.dataPath + t : Application.dataPath + "/StreamingAssets/";
+            var withoutExtensions = new List<string>() { ".ogg", ".wav", ".mp3" };
+
+            var allMusicsPath = Directory.GetFiles(folderPath, "*.*", SearchOption.AllDirectories).Where(s =>
+            {
+                var extension = Path.GetExtension(s);
+                return extension != null && withoutExtensions.Contains(extension.ToLower());
+            }).ToList();
+            foreach (var filePath in allMusicsPath)
+            {
+                var name = StringUtil.LastAfter(filePath, '/');
+                var newPath = "Assets/StreamingAssets/" + name;
+                var oldPath = "Assets" + filePath.Replace(Application.dataPath, string.Empty);
+                if (!isTo)
+                {
+                    oldPath = newPath;
+                    newPath = "Assets" + t + name;
+                }
+                if (!dic.ContainsKey(oldPath) && pathList[t].Contains(StringUtil.BeginBefore(name, '.')))
+                {
+                    dic.Add(oldPath, newPath);
+                }
+            }
+        }
+
+        foreach (var kpv in dic)
         {
             var oldPath = kpv.Key;
             var newPath = kpv.Value;
-            if (!isTo)
-            {
-                oldPath = kpv.Value;
-                newPath = kpv.Key;
-            }
             AssetDatabase.MoveAsset(oldPath, newPath);
         }
     }

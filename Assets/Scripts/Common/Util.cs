@@ -24,6 +24,23 @@ public class DOTweenUtils
         return seq;
     }
 
+    public static Sequence Update(Action completeFunc, Func<bool> stopFunc)
+    {
+        var seq = DOTween.Sequence();
+        seq.AppendInterval(float.MaxValue);
+        seq.OnUpdate(() =>
+        {
+            if (stopFunc())
+            {
+                completeFunc();
+                seq.Kill();
+                return;
+            }
+        });
+        seq.Play();
+        return seq;
+    }
+
     public static Tweener[] TweenAllAlphaTo(GameObject go, float alpha, float dt, float near)
     {
         var childTexs = go.GetComponentsInChildren<UIWidget>();

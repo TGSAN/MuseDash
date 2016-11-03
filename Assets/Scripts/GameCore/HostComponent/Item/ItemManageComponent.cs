@@ -427,6 +427,49 @@ namespace FormulaBase
             FormulaHost.SaveList(All, new HttpEndResponseDelegate(this.CheckChestTimeCallBack));
         }
 
+        public FormulaHost[] CreateAllItems(int num = 1)
+        {
+            var formulaList = new List<FormulaHost>();
+            var items = ConfigPool.Instance.GetConfigByName("items");
+            for (int i = 1; i <= items.Count; i++)
+            {
+                formulaList.Add(CreateItem(i, num));
+            }
+            return formulaList.ToArray();
+        }
+
+        public FormulaHost CreateItem(int idx, int num = 1)
+        {
+            var itemJson = ConfigPool.Instance.GetConfigValue("items", idx.ToString());
+            var typeName = itemJson["type"].ToString();
+            FormulaHost host = null;
+            if (typeName == "food")
+            {
+                host = materialManageComponent.Instance.CreateItem(idx);
+            }
+            else if (typeName == "servant" || typeName == "debris")
+            {
+            }
+            else
+            {
+                host = EquipManageComponent.Instance.CreateItem(idx);
+            }
+            if (host != null)
+            {
+                host.SetDynamicData(SignKeys.TYPE, typeName);
+                host.SetDynamicData(SignKeys.STACKITEMNUMBER, num);
+                host.SetDynamicData(SignKeys.NAME, itemJson["name"].ToString());
+                host.SetDynamicData(SignKeys.ICON, itemJson["icon"].ToString());
+                host.SetDynamicData(SignKeys.DESCRIPTION, itemJson["description"].ToString());
+                host.SetDynamicData(SignKeys.SUIT, itemJson["suit"].ToString());
+                host.SetDynamicData(SignKeys.QUALITY, itemJson["quality"].ToString());
+                host.SetDynamicData(SignKeys.SUIT_EFFECT_DESC, itemJson["suit_effect_description"].ToString());
+                host.SetDynamicData(SignKeys.EFFECT_DESC, itemJson["effect_description"].ToString());
+                AddItem(host);
+            }
+            return host;
+        }
+
         public void CheckChestTimeCallBack(cn.bmob.response.EndPointCallbackData<Hashtable> response)
         {
         }

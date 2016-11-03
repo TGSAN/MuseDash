@@ -11,28 +11,56 @@ public class AudioCenter : MonoBehaviour
 		public static AndroidJavaClass unityActivityClass ;
 		public static AndroidJavaObject activityObj ;
 		public static AndroidJavaObject soundObj = null;
+        public static Dictionary<string, int> clipDics { get; private set; }
 
-		public static void playSound( int soundId ) {
+		public static void playSound( string soundName ) {
+            if (!clipDics.ContainsKey(soundName))
+	        {
+                return;
+	        }
+			var soundId = clipDics[soundName];
 			soundObj.Call( "playSound", new object[] { soundId } );
 		}
 
-		public static void playSound( int soundId, float volume ) {
+		public static void playSound( string soundName, float volume ) {
+            if (!clipDics.ContainsKey(soundName))
+	        {
+                return;
+	        }
+            var soundId = clipDics[soundName];
 			soundObj.Call( "playSound", new object[] { soundId, volume } );
 		}
 
-		public static void playSound( int soundId, float leftVolume, float rightVolume, int priority, int loop, float rate  ) {
+		public static void playSound( string soundName, float leftVolume, float rightVolume, int priority, int loop, float rate  ) {
+            if (!clipDics.ContainsKey(soundName))
+	        {
+                return;
+	        }
+            var soundId = clipDics[soundName];
 			soundObj.Call( "playSound", new object[] { soundId, leftVolume, rightVolume, priority, loop, rate } );
 		}
 
-		public static int loadSound( string soundName ) {
-			return soundObj.Call<int>( "loadSound", new object[] { soundName + ".wav" } );
+		public static int loadSound( string soundName, string backName = ".wav" ) {
+            if (clipDics.ContainsKey(soundName))
+	        {
+                return -1;
+	        }
+            var idx = soundObj.Call<int>( "loadSound", new object[] { soundName + backName} );
+            clipDics.Add(soundName, idx);
+            return idx;
 		}
 
-		public static void unloadSound( int soundId ) {
+		public static void unloadSound( string soundName ) {
+            if (!clipDics.ContainsKey(soundName))
+	        {
+                return;
+	        }
+            var soundId = clipDics[soundName];
 			soundObj.Call( "unloadSound", new object[] { soundId } );
+            clipDics.Remove(soundName);
 		}
 #else
-    private Dictionary<int, AudioClip> audioDic = new Dictionary<int, AudioClip>();
+    private readonly Dictionary<int, AudioClip> audioDic = new Dictionary<int, AudioClip>();
 
     public static void playSound(int soundId)
     {
@@ -94,6 +122,7 @@ public class AudioCenter : MonoBehaviour
 			activityObj = unityActivityClass.GetStatic<AndroidJavaObject>( "currentActivity" );
 			//soundObj = new AndroidJavaObject( "com.catsknead.androidsoundfix.AudioCenter", 1, activityObj, activityObj );
 			soundObj = new AndroidJavaObject( "com.catsknead.androidsoundfix.AudioCenter", 200, activityObj );
+            clipDics =  new Dictionary<string, int>();
 #endif
     }
 }

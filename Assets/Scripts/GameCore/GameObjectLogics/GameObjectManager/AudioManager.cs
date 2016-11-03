@@ -1,5 +1,6 @@
 ﻿using FormulaBase;
 using GameLogic;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -219,11 +220,7 @@ public class AudioManager
 
 #if UNITY_ANDROID && !UNITY_EDITOR
         name = StringUtil.LastAfter(name, '/');
-        if (!m_AndroidDic.ContainsKey(name))
-        {
-            var idx = AudioCenter.loadSound(name);
-            m_AndroidDic.Add(name, idx);
-        }
+        var idx = AudioCenter.loadSound(name);
 #else
         if (!audioDic.ContainsKey(name))
         {
@@ -240,7 +237,6 @@ public class AudioManager
         {
             return;
         }
-
         this.backGroundMusic.Play();
         Debug.Log("play background music " + this.backGroundMusic.clip.length);
     }
@@ -356,11 +352,7 @@ public class AudioManager
         }
 #if UNITY_ANDROID && !UNITY_EDITOR
         name = StringUtil.LastAfter(name, '/');
-        if (m_AndroidDic.ContainsKey(name))
-        {
-            var idx = m_AndroidDic[name];
-            AudioCenter.playSound(idx);
-        }
+        AudioCenter.playSound(name);
 #else
         if (this.audioDic.ContainsKey(name))
         {

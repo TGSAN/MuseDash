@@ -6,6 +6,7 @@ namespace Assets.Scripts.UI
     public class UIScrollViewDragBack : MonoBehaviour
     {
         public UIScrollView scrollView;
+        public UIGrid grid;
         public UIPanel panel;
         private Vector2 m_OriginOffset;
         public bool isVertical = true;
@@ -14,6 +15,7 @@ namespace Assets.Scripts.UI
         public UIScrollView.DragEffect originDragEffect;
         private Tweener m_MoveTwner1, m_MoveTwner2;
         public bool isEnable = true;
+        public int maxNum;
 
         public void ResetBack()
         {
@@ -23,28 +25,33 @@ namespace Assets.Scripts.UI
 
         private void Awake()
         {
-            if (isEnable)
+            if (scrollView == null)
             {
-                if (scrollView == null)
-                {
-                    scrollView = GetComponent<UIScrollView>();
-                }
-
-                if (panel == null)
-                {
-                    panel = GetComponent<UIPanel>();
-                }
-
-                originDragEffect = scrollView.dragEffect;
-                m_OriginOffset = scrollView.transform.position;
-                scrollView.onDragFinished += OnDragEvent;
-                scrollView.onStoppedMoving += OnDragEvent;
-                scrollView.onDragStarted += OnDragStart;
+                scrollView = GetComponent<UIScrollView>();
             }
+
+            if (panel == null)
+            {
+                panel = GetComponent<UIPanel>();
+            }
+
+            if (grid == null)
+            {
+                grid = GetComponentInChildren<UIGrid>();
+            }
+            originDragEffect = scrollView.dragEffect;
+            m_OriginOffset = scrollView.transform.position;
+            scrollView.onDragFinished += OnDragEvent;
+            scrollView.onStoppedMoving += OnDragEvent;
+            scrollView.onDragStarted += OnDragStart;
         }
 
         private void OnDragStart()
         {
+            if (!isEnable || grid.transform.childCount > maxNum)
+            {
+                return;
+            }
             if (m_MoveTwner1 != null)
             {
                 m_MoveTwner1.Kill();
@@ -58,6 +65,11 @@ namespace Assets.Scripts.UI
 
         private void OnDragEvent()
         {
+            if (!isEnable || grid.transform.childCount > maxNum)
+            {
+                scrollView.dragEffect = originDragEffect;
+                return;
+            }
             if (isVertical)
             {
                 if (scrollView.transform.position.y <= panel.GetViewSize().y)

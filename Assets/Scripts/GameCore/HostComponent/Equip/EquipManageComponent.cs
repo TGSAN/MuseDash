@@ -70,7 +70,7 @@ namespace FormulaBase
                 {
                     continue;
                 }
-                var typeID = (string)equipInfo["type"];
+                var typeID = equipInfo["type"].ToString();
 
                 if (equipTypeList.Contains(typeID))
                 {

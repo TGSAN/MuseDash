@@ -64,8 +64,6 @@ namespace PnlChar
         public override void BeCatched()
         {
             instance = this;
-            onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
-            onRoleChange += idx => PnlCharInfo.PnlCharInfo.Instance.OnUpgradeItemsRefresh();
         }
 
         #region Update更新
@@ -88,6 +86,8 @@ namespace PnlChar
         private void Init()
         {
             curRoleIdx = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
+            onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
+            onRoleChange += idx => PnlCharInfo.PnlCharInfo.Instance.OnUpgradeItemsRefresh();
             InitInfo();
             InitEvent();
             InitUI();

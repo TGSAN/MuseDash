@@ -101,7 +101,7 @@ namespace ItemImageEquip
             SetTxtByHost();
             UIEventListener.Get(gameObject).onClick = (go) =>
             {
-                if (isLock || !PnlSuitcase.PnlSuitcase.Instance.gameObject.activeSelf)
+                if (isLock)
                 {
                     return;
                 }
