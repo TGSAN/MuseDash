@@ -39,9 +39,9 @@ namespace PnlItemInfo
         public override void OnShow(FormulaHost host)
         {
             host.SetAsUINotifyInstance();
-            var vigour = host.Result(FormulaKeys.FORMULA_258);
-            var stamina = host.Result(FormulaKeys.FORMULA_259);
-            var strengh = host.Result(FormulaKeys.FORMULA_264);
+            var vigour = host.Result(FormulaKeys.FORMULA_50);
+            var stamina = host.Result(FormulaKeys.FORMULA_51);
+            var strengh = host.Result(FormulaKeys.FORMULA_56);
             var exp = host.GetDynamicDataByKey(SignKeys.EXP);
             txtVigour.gameObject.SetActive(vigour > 0);
             txtStamina.gameObject.SetActive(stamina > 0);

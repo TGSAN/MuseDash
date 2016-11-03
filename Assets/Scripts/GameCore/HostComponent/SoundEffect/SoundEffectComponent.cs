@@ -69,7 +69,7 @@ namespace FormulaBase
                 _effectHost.SetDynamicData(SignKeys.ID, i + 1);
 
                 // init  attr
-                _effectHost.Result(FormulaKeys.FORMULA_6);
+                _effectHost.Result(FormulaKeys.FORMULA_4);
                 // Set path name and file name
                 string _mn = _effectHost.GetDynamicStrByKey(SignKeys.MUSIC_NAME);
                 if (_mn != null)

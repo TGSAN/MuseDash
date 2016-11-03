@@ -234,7 +234,7 @@ namespace FormulaBase
             List<FormulaHost> tChosedList = ItemManageComponent.Instance.GetChosedItem;
             for (int i = 0, max = tChosedList.Count; i < max; i++)
             {
-                allExp += (int)tChosedList[i].Result(FormulaKeys.FORMULA_36) + tChosedList[i].GetDynamicIntByKey(SignKeys.EXP);
+                allExp += (int)tChosedList[i].Result(FormulaKeys.FORMULA_15) + tChosedList[i].GetDynamicIntByKey(SignKeys.EXP);
             }
 
             NGUIDebug.Log("总共的经验为:" + allExp);
@@ -245,6 +245,8 @@ namespace FormulaBase
         /// </summary>
         /// <param name="_host">Host.</param>
         /// <param name="_UpNumber">Up number.</param>
+		/// 
+		/*
         public void EquipLevelUp(FormulaHost _host, int _UpNumber)
         {
             int tlevel = _host.GetDynamicIntByKey(SignKeys.LEVEL);
@@ -259,6 +261,7 @@ namespace FormulaBase
             CommonPanel.GetInstance().ShowWaittingPanel();
             _host.Save(new HttpResponseDelegate(EquipLevelUpCallback));
         }
+		*/
 
         private void EquipLevelUpCallback(bool _success)
         {
@@ -317,7 +320,7 @@ namespace FormulaBase
             {
                 foreach (FormulaHost host in this.HostList.Values)
                 {
-                    host.Result(FormulaKeys.FORMULA_19);
+                    host.Result(FormulaKeys.FORMULA_13);
                 }
             }
 
@@ -389,15 +392,15 @@ namespace FormulaBase
             List<FormulaHost> tList = ItemManageComponent.Instance.GetChosedItem;
             for (int i = 0, max = tList.Count; i < max; i++)
             {
-                Cost += (int)tList[i].Result(FormulaKeys.FORMULA_37);
-                Exp += (int)tList[i].Result(FormulaKeys.FORMULA_36) + tList[i].GetDynamicIntByKey(SignKeys.EXP);
+                Cost += (int)tList[i].Result(FormulaKeys.FORMULA_16);
+                Exp += (int)tList[i].Result(FormulaKeys.FORMULA_15) + tList[i].GetDynamicIntByKey(SignKeys.EXP);
                 int tLevel = (int)tList[i].GetDynamicIntByKey(SignKeys.LEVEL);
 
                 tempEquip.SetDynamicData(SignKeys.ID, tList[i].GetDynamicIntByKey(SignKeys.ID));
                 for (int j = 1; j < tLevel; j++)
                 {//大于1级的情况
                     tempEquip.SetDynamicData(SignKeys.LEVEL, j);
-                    Exp += (int)tempEquip.Result(FormulaKeys.FORMULA_155);
+                    Exp += (int)tempEquip.Result(FormulaKeys.FORMULA_34);
                 }
             }
         }
@@ -417,19 +420,21 @@ namespace FormulaBase
             //thost
             Exp += _host.GetDynamicIntByKey(SignKeys.EXP);
             //Exp+=1000;
-            int LevelUpExp = (int)_host.Result(FormulaKeys.FORMULA_155);
+            int LevelUpExp = (int)_host.Result(FormulaKeys.FORMULA_34);
             int Level = _host.GetDynamicIntByKey(SignKeys.LEVEL);
             while (LevelUpExp <= Exp)
             {
                 Level++;
                 Exp -= LevelUpExp;
                 thost.SetDynamicData(SignKeys.LEVEL, Level);
-                LevelUpExp = (int)thost.Result(FormulaKeys.FORMULA_155);
+                LevelUpExp = (int)thost.Result(FormulaKeys.FORMULA_34);
+				/*
                 if (Level == (int)thost.Result(FormulaKeys.FORMULA_23))
                 {
                     NGUIDebug.Log("到达等级上限");
                     return thost;
                 }
+				*/
             }
             //thost.SetDynamicData(SignKeys.LEVEL,Level);
             thost.SetDynamicData(SignKeys.EXP, Exp);
@@ -472,6 +477,7 @@ namespace FormulaBase
 
         public void GetAllEquipedEquip(ref int _hp, ref int _df, ref int _att, ref int _crit)
         {
+			/*
             for (int i = 0; i < m_EquipedEquipment.Count; i++)
             {
                 FormulaHost host = m_EquipedEquipment[i];
@@ -488,6 +494,7 @@ namespace FormulaBase
                     _crit += (int)host.Result(FormulaKeys.FORMULA_35);                  //Crt
                 }
             }
+            */
         }
     }
 }

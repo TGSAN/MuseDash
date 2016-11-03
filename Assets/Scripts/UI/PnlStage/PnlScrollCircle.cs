@@ -1,6 +1,5 @@
 ﻿using DG.Tweening;
 using FormulaBase;
-using GameLogic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -337,15 +336,15 @@ namespace Assets.Scripts.NGUI
             var lockList = TaskStageTarget.Instance.GetLockList();
             for (int i = 1; i < count; i++)
             {
-                var iconPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "cover");
-                var musicPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "music");
-                var musicName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "name");
-                var authorName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "author");
+				var iconPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "cover");
+				var musicPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "music");
+				var musicName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "name");
+				var authorName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "author");
                 var isLock = lockList[i];
                 m_StageInfos.Add(new StageInfo(i, iconPath, musicPath, musicName, authorName, 0, 0, isLock));
             }
 #if UNITY_IPHONE || UNITY_ANDROID
-            minMaxSlide.y *= 2;
+    minMaxSlide.y *= 2;
 #endif
             m_TrophySum = TaskStageTarget.Instance.GetTotalTrophy();
         }
@@ -444,7 +443,7 @@ namespace Assets.Scripts.NGUI
 
                     if (diff > 0)
                     {
-                        cost = StageBattleComponent.Instance.Host.Result(FormulaKeys.FORMULA_45);
+						cost = StageBattleComponent.Instance.Host.Result(FormulaKeys.FORMULA_20);
                     }
                 }
                 txtEnergyLast.text = cost.ToString();
@@ -756,6 +755,7 @@ namespace Assets.Scripts.NGUI
             {
                 StopCoroutine(m_Coroutine);
             }
+
             m_Coroutine = StartCoroutine(LoadCoroutine(this.loadDelay));
         }
 

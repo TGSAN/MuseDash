@@ -224,7 +224,7 @@ public class RewardPanel : MonoBehaviour {
 	List<string> RandItem(FormulaHost _Chesthost)
 	{
 		m_ListQuality.Clear();
-		int Count=(int)_Chesthost.Result(FormulaKeys.FORMULA_95);
+//		int Count=(int)_Chesthost.Result(FormulaKeys.FORMULA_95);
 		List<string> tListSprtieName=new List<string>();
 		float []Probability=new float[4]; 
 		Probability[0]=SundryManageComponent.Instance.GetVaule(1);	//4品质 绿
@@ -243,10 +243,10 @@ public class RewardPanel : MonoBehaviour {
 		tmep[6]=0.25f;
 		#region 最低产出
 		int []RewardQuality={0,0,0,0};
-		RewardQuality[0]=(int)_Chesthost.Result(FormulaKeys.FORMULA_96);
-		RewardQuality[1]=(int)_Chesthost.Result(FormulaKeys.FORMULA_97);
-		RewardQuality[2]=(int)_Chesthost.Result(FormulaKeys.FORMULA_98);
-		RewardQuality[3]=(int)_Chesthost.Result(FormulaKeys.FORMULA_99);
+//		RewardQuality[0]=(int)_Chesthost.Result(FormulaKeys.FORMULA_96);
+//		RewardQuality[1]=(int)_Chesthost.Result(FormulaKeys.FORMULA_97);
+//		RewardQuality[2]=(int)_Chesthost.Result(FormulaKeys.FORMULA_98);
+//		RewardQuality[3]=(int)_Chesthost.Result(FormulaKeys.FORMULA_99);
 
 		//int allLimit=RewardQuality[0]+RewardQuality[1]+RewardQuality[2]+RewardQuality[3];
 		//Debug.Log("获取装备的概率"+RewardQuality[0]+"sss"+RewardQuality[1]+"sss"+RewardQuality[2]+"RewardQuality3"+RewardQuality[3]+"RewardQuality4");
@@ -261,7 +261,7 @@ public class RewardPanel : MonoBehaviour {
 		List<RewardData> m_RandItem=new List<RewardData>();
 		t_AddItem.Clear();
 	//	List<FormulaHost> t_AddItem=new List<FormulaHost>();			//服务器获取的添加的物品
-		for(int i=0;i<Count;i++)
+		for(int i=0;i<1;i++)
 		{
 			t_Probality=Random.Range(0f,1f);
 			t_Quality=Random.Range(0f,1f);

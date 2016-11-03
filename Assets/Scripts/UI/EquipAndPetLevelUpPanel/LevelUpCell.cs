@@ -53,8 +53,8 @@ public class LevelUpCell : MonoBehaviour {
 		//m_Scale.PlayForward();
 		switch(type)
 		{
-		case "Equip":	m_Host.Result(FormulaKeys.FORMULA_19)	;break;
-		case "Pet":	m_Host.Result(FormulaKeys.FORMULA_91)	;break;
+		case "Equip":	m_Host.Result(FormulaKeys.FORMULA_13)	;break;
+//		case "Pet":	m_Host.Result(FormulaKeys.FORMULA_91)	;break;
 		}
 		SetQuality(m_Host.GetDynamicIntByKey(SignKeys.QUALITY));
 	}

@@ -255,7 +255,7 @@ namespace FormulaBase
                 foreach (string oid in _materialdic.Keys)
                 {
                     m_material.Add(_materialdic[oid]);
-                    int temp = (int)_materialdic[oid].Result(FormulaKeys.FORMULA_45);
+                    int temp = (int)_materialdic[oid].Result(FormulaKeys.FORMULA_20);
                     if (temp > id)
                     {
                         id = temp + 1;
@@ -838,7 +838,7 @@ namespace FormulaBase
                         break;
 
                     case "Pet":
-                        _listHost[i].Result(FormulaKeys.FORMULA_91);
+                        //_listHost[i].Result(FormulaKeys.FORMULA_91);
                         if ((int)_listHost[i].GetDynamicDataByKey(SignKeys.SMALLlTYPE) == 6)
                         {//碎片
                             t_host = PetManageComponent.Instance.HaveTheSameID(_listHost[i].GetDynamicIntByKey("ID"));
@@ -884,7 +884,7 @@ namespace FormulaBase
             switch (fileName)
             {
                 case "Equip":
-                    saleMoney = (int)_host.Result(FormulaKeys.FORMULA_89);
+                    saleMoney = (int)_host.Result(FormulaKeys.FORMULA_26);
                     break;
 
                 case "Material":
@@ -941,7 +941,7 @@ namespace FormulaBase
 
         public bool IsItemLvlMax(FormulaHost host)
         {
-            var lvlMax = (int)host.Result(FormulaKeys.FORMULA_22);
+            var lvlMax = (int)host.Result(FormulaKeys.FORMULA_14);
             var curLvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
             return curLvl >= lvlMax;
         }
@@ -951,7 +951,7 @@ namespace FormulaBase
             var exp = 0;
             expHosts.ForEach(h =>
             {
-                exp += (int)h.Result(FormulaKeys.FORMULA_265);
+                exp += (int)h.Result(FormulaKeys.FORMULA_57);
             });
             var originLvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
             var originExp = host.GetDynamicIntByKey(SignKeys.EXP);
@@ -1040,7 +1040,7 @@ namespace FormulaBase
             List<FormulaHost> temp = new List<FormulaHost>();
             for (int i = 0, max = m_Equip.Count; i < max; i++)
             {
-                m_Equip[i].Result(FormulaKeys.FORMULA_19);
+                m_Equip[i].Result(FormulaKeys.FORMULA_13);
 
                 int tt = (int)m_Equip[i].GetDynamicDataByKey(SignKeys.TYPE);
                 //				Debugger.Log("Equip Type:"+tt);
@@ -1061,10 +1061,12 @@ namespace FormulaBase
             {
                 for (int i = 0, max = m_pet.Count; i < max; i++)
                 {
+					/*
                     if (m_pet[i].Result(FormulaKeys.FORMULA_115) == _smallType)
                     {
                         temp.Add(m_pet[i]);
                     }
+                    */
                 }
                 return temp;
             }
@@ -1081,10 +1083,12 @@ namespace FormulaBase
             {
                 for (int i = 0, max = m_material.Count; i < max; i++)
                 {
+					/*
                     if (m_material[i].Result(FormulaKeys.FORMULA_38) == _smallType)
                     {
                         temp.Add(m_material[i]);
                     }
+                    */
                 }
                 return temp;
             }
@@ -1150,19 +1154,19 @@ namespace FormulaBase
                 switch (type)
                 {
                     case "Equip":
-                        GetChosedItem[i].Result(FormulaKeys.FORMULA_19);
+                        GetChosedItem[i].Result(FormulaKeys.FORMULA_13);
                         break;
 
                     case "Material":
-                        GetChosedItem[i].Result(FormulaKeys.FORMULA_93);
+                        GetChosedItem[i].Result(FormulaKeys.FORMULA_26);
                         break;
 
                     case "Pet":
-                        GetChosedItem[i].Result(FormulaKeys.FORMULA_91);
+                        //GetChosedItem[i].Result(FormulaKeys.FORMULA_91);
                         break;
 
                     case "Chest":
-                        GetChosedItem[i].Result(FormulaKeys.FORMULA_90);
+                        //GetChosedItem[i].Result(FormulaKeys.FORMULA_90);
                         break;
                 }
                 if (GetChosedItem[i].GetDynamicIntByKey(SignKeys.QUALITY) > 1)

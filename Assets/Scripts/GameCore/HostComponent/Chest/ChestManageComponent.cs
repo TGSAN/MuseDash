@@ -108,10 +108,11 @@ namespace FormulaBase {
 		}
 		public string GetBagCellTime(FormulaHost _host)
 		{
-			int alltime=(int)_host.Result(FormulaKeys.FORMULA_94);
-			int h=alltime/3600;
-			int m=alltime%3600/60;
-			int s=alltime%3600%60;
+//			int alltime=(int)_host.Result(FormulaKeys.FORMULA_94);
+//			int h=alltime/3600;
+//			int m=alltime%3600/60;
+//			int s=alltime%3600%60;
+			/*
 			if(h!=0)
 			{
 				return string.Format("{0}小时",h);
@@ -123,8 +124,9 @@ namespace FormulaBase {
 			else  if(s!=0)
 			{
 				return string.Format("{0}秒",s);
-			}
+			}*/
 			return "";
+
 		}
 		/// <summary>
 		/// 整形转字符串
@@ -229,18 +231,6 @@ namespace FormulaBase {
 //			Debugger.Log("交换队列的反馈");
 //		}
 		/// <summary>
-		/// 获取剩余时间的百分比 用与剩余时间的显示
-		/// </summary>
-		/// <returns>The time percentage.</returns>
-		/// <param name="_host">Host.</param>
-		public float GetTimePercentage(FormulaHost _host)
-		{
-			int RemindTime=(int)_host.GetDynamicDataByKey(SignKeys.CHESTREMAINING_TIME);
-			int AllTime= (int)_host.Result(FormulaKeys.FORMULA_94);
-			float temp=(RemindTime*1f)/AllTime;
-			return temp;
-		}
-		/// <summary>
 		/// 获取开启宝箱需要的钻石
 		/// </summary>
 		/// <returns>The open chest money.</returns>
@@ -253,7 +243,7 @@ namespace FormulaBase {
 			}
 			else 
 			{
-				_Retime=(int)_host.Result(FormulaKeys.FORMULA_94);
+				//_Retime=(int)_host.Result(FormulaKeys.FORMULA_94);
 			}
 			int timecut=(int)SundryManageComponent.Instance.GetVaule(11);
 			int Money=_Retime/(timecut*60);
@@ -267,7 +257,7 @@ namespace FormulaBase {
 			FormulaHost host = FomulaHostManager.Instance.CreateHost (HOST_IDX);
 			if (host != null) {
 				host.SetDynamicData("ID",idx);
-				host.SetDynamicData(SignKeys.CHESTREMAINING_TIME,(int)host.Result(FormulaKeys.FORMULA_94));
+				//host.SetDynamicData(SignKeys.CHESTREMAINING_TIME,(int)host.Result(FormulaKeys.FORMULA_94));
 				ItemManageComponent.Instance.AddItem(host);
 			}
 			return host;
@@ -281,7 +271,7 @@ namespace FormulaBase {
 				FormulaHost host = FomulaHostManager.Instance.CreateHost (HostKeys.HOST_9);
 				if (host != null) {
 					host.SetDynamicData("ID",_listIndex[i]);
-					host.SetDynamicData(SignKeys.CHESTREMAINING_TIME,(int)host.Result(FormulaKeys.FORMULA_94));
+					//host.SetDynamicData(SignKeys.CHESTREMAINING_TIME,(int)host.Result(FormulaKeys.FORMULA_94));
 				}
 				TempListItem.Add(host);
 			}
@@ -336,7 +326,7 @@ namespace FormulaBase {
 			temp.SetDynamicData(SignKeys.CHESTQUEUE,GetChestList.Count+1);
 			if(GetChestList.Count==0)
 			{
-				temp.SetRealTimeCountDown((int)temp.Result(FormulaKeys.FORMULA_94));
+				//temp.SetRealTimeCountDown((int)temp.Result(FormulaKeys.FORMULA_94));
 			}
 			//Messenger.Broadcast<int>(LevelPrepaerPanel.BraodCast_ChestMissAni,10);
 			ItemManageComponent.Instance.GetChestList.Remove(temp);
@@ -377,7 +367,7 @@ namespace FormulaBase {
 				GetChestList[i].SetDynamicData(SignKeys.CHESTQUEUE,oldQueue-1);
 				if(oldQueue==2)
 				{
-					GetChestList[i].SetRealTimeCountDown((int)GetChestList[i].Result(FormulaKeys.FORMULA_94));
+					//GetChestList[i].SetRealTimeCountDown((int)GetChestList[i].Result(FormulaKeys.FORMULA_94));
 
 				}
 				tempList.Add(GetChestList[i]);
@@ -452,7 +442,7 @@ namespace FormulaBase {
 					}
 					if(iChestQueue==2)
 					{
-						GetChestList[i].SetRealTimeCountDown((int)GetChestList[i].Result(FormulaKeys.FORMULA_94));
+						//GetChestList[i].SetRealTimeCountDown((int)GetChestList[i].Result(FormulaKeys.FORMULA_94));
 					}
 				}
 				//Messenger.Broadcast<int>(LevelPrepaerPanel.BraodCast_ChestMissAni,10);
@@ -569,7 +559,7 @@ namespace FormulaBase {
 					}
 					if(iChestQueue==2)
 					{
-						GetChestList[i].SetRealTimeCountDown((int)GetChestList[i].Result(FormulaKeys.FORMULA_94));
+						//GetChestList[i].SetRealTimeCountDown((int)GetChestList[i].Result(FormulaKeys.FORMULA_94));
 					}
 				}
 				//Messenger.Broadcast<int>(LevelPrepaerPanel.BraodCast_ChestMissAni,10);

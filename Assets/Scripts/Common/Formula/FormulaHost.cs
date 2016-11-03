@@ -208,13 +208,18 @@ namespace FormulaBase
                     }
 
                     FormulaObject fObj = FormulaManager.Instance.CreateFormula(this, fIdx);
+					Debug.Log (fIdx.ToString() + " " + i);
+
                     if (fObj == null)
                     {
                         continue;
                     }
+					if (fObj.formula.name != null) {
+						this.formulas[fObj.formula.name] = fObj;
+						this.formulasByIdx[fObj.formula.idx] = fObj;
+					}
 
-                    this.formulas[fObj.formula.name] = fObj;
-                    this.formulasByIdx[fObj.formula.idx] = fObj;
+                    
                 }
             }
         }

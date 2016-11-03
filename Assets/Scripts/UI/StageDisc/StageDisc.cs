@@ -109,7 +109,7 @@ namespace StageDisc
             this.stageHost = FomulaHostManager.Instance.CreateHost("Stage");
             this.stageHost.SetDynamicData(SignKeys.ID, this.staegId);
             this.stageHost.SetDynamicData(SignKeys.DIFFCULT, GameGlobal.DIFF_LEVEL_NORMAL);
-            this.stageHost.Result(FormulaKeys.FORMULA_9);
+            this.stageHost.Result(FormulaKeys.FORMULA_7);
         }
 
         private void SetTxrByStage()

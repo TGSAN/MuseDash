@@ -35,8 +35,8 @@ namespace FormulaBase {
 			List<FormulaHost> tlist=ItemManageComponent.Instance.GetChosedItem;
 			for(int i=0,max=tlist.Count;i<max;i++)
 			{
-				Exp+=(int)tlist[i].Result(FormulaKeys.FORMULA_40)*tlist[i].GetDynamicIntByKey(SignKeys.CHOSED);
-				Cost+=(int)tlist[i].Result(FormulaKeys.FORMULA_41)*tlist[i].GetDynamicIntByKey(SignKeys.CHOSED);
+				//Exp+=(int)tlist[i].Result(FormulaKeys.FORMULA_40)*tlist[i].GetDynamicIntByKey(SignKeys.CHOSED);
+				//Cost+=(int)tlist[i].Result(FormulaKeys.FORMULA_41)*tlist[i].GetDynamicIntByKey(SignKeys.CHOSED);
 			}
 		}
 		#endregion
