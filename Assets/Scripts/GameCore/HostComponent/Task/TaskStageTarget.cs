@@ -204,7 +204,7 @@ namespace FormulaBase
             var musicName = ConfigPool.Instance.GetConfigByName("stage");
             for (int i = 0; i < musicName.Count; i++)
             {
-                var name = StringUtil.LastAfter(musicName[i]["music"].ToString(), '/');
+                var name = StringUtils.LastAfter(musicName[i]["music"].ToString(), '/');
                 names.Add(name);
             }
             return names.ToArray();

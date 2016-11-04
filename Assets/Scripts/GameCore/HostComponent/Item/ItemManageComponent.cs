@@ -946,6 +946,11 @@ namespace FormulaBase
             return curLvl >= lvlMax;
         }
 
+        public int GetExpWithResult(FormulaHost host)
+        {
+            return 0;
+        }
+
         public FormulaHost ItemLevelUp(FormulaHost host, List<FormulaHost> expHosts, HttpResponseDelegate callFunc = null, bool isSave = true)
         {
             var exp = 0;

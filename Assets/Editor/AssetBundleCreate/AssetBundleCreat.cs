@@ -147,7 +147,7 @@ public class AssetBundleCreat : EditorWindow
             }).ToList();
             foreach (var filePath in allMusicsPath)
             {
-                var name = StringUtil.LastAfter(filePath, '/');
+                var name = StringUtils.LastAfter(filePath, '/');
                 var newPath = "Assets/StreamingAssets/" + name;
                 var oldPath = "Assets" + filePath.Replace(Application.dataPath, string.Empty);
                 if (!isTo)
@@ -155,7 +155,7 @@ public class AssetBundleCreat : EditorWindow
                     oldPath = newPath;
                     newPath = "Assets" + t + name;
                 }
-                if (!dic.ContainsKey(oldPath) && pathList[t].Contains(StringUtil.BeginBefore(name, '.')))
+                if (!dic.ContainsKey(oldPath) && pathList[t].Contains(StringUtils.BeginBefore(name, '.')))
                 {
                     dic.Add(oldPath, newPath);
                 }

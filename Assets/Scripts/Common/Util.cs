@@ -48,7 +48,7 @@ public class DOTweenUtils
     }
 }
 
-public class ArrayUtil<T>
+public class ArrayUtils<T>
 {
     public static bool Contains(T[] array, T value)
     {
@@ -68,7 +68,7 @@ public class ArrayUtil<T>
     }
 }
 
-public class StringUtil
+public class StringUtils
 {
     public static string LastAfter(string str, char split)
     {
@@ -79,5 +79,12 @@ public class StringUtil
     public static string BeginBefore(string str, char split)
     {
         return str.Split(split)[0];
+    }
+}
+
+public class RandomUtils
+{
+    public static void RandomEvent(float[] probalities, Action[] events)
+    {
     }
 }
