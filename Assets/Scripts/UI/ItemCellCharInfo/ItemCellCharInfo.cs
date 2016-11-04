@@ -1,4 +1,5 @@
 using DG.Tweening;
+using FormulaBase;
 
 /// UI分析工具自动生成代码
 /// ItemCellCharInfoUI主模块
@@ -103,12 +104,19 @@ namespace ItemCellCharInfo
 
             UIEventListener.Get(btnUpgrade.gameObject).onClick = (go) =>
             {
-                PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
-                DOTweenUtils.Delay(() =>
+                if (ItemManageComponent.Instance.IsItemLvlMax(host))
                 {
-                    PnlEquipInfo.PnlEquipInfo.Instance.Play("item_upgrade_in");
-                    PnlEquipInfo.PnlEquipInfo.Instance.isUpgrade = true;
-                }, 0.1f);
+                    CommonPanel.GetInstance().ShowText("物品已达最高等级，无法升级");
+                }
+                else
+                {
+                    PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
+                    DOTweenUtils.Delay(() =>
+                    {
+                        PnlEquipInfo.PnlEquipInfo.Instance.Play("item_upgrade_in");
+                        PnlEquipInfo.PnlEquipInfo.Instance.isUpgrade = true;
+                    }, 0.1f);
+                }
             };
         }
 

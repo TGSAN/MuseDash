@@ -184,7 +184,18 @@ namespace PnlCharInfo
         {
             UIEventListener.Get(btnFeed.gameObject).onClick = (go) =>
             {
-                isUpgrade = true;
+                var curRoleHost = RoleManageComponent.Instance.GetGirlByIdx(PnlChar.PnlChar.Instance.curRoleIdx);
+                if (RoleManageComponent.Instance.IsItemLvlMax(curRoleHost))
+                {
+                    CommonPanel.GetInstance().ShowText("人物已达最高等级，无法升级");
+                }
+                else
+                {
+                    isUpgrade = true;
+                    m_Animtor.Play("cos_change");
+                    PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(true);
+                    PnlChar.PnlChar.Instance.gameObject.SetActive(false);
+                }
             };
             UIEventListener.Get(btnBack.gameObject).onClick = (go) =>
             {
@@ -206,6 +217,12 @@ namespace PnlCharInfo
                             PnlSuitcase.PnlSuitcase.Instance.SetUpgradeSelectedCell(null);
                             PnlSuitcase.PnlSuitcase.Instance.OnShow();
                             OnUpgradeItemsRefresh();
+                            isUpgrade = false;
+                            m_Animtor.Play("cos_change_out");
+                            PnlChar.PnlChar.Instance.gameObject.SetActive(true);
+                            var isShow = PnlMainMenu.PnlMainMenu.Instance.goSelectedSuitcase.activeSelf;
+                            PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(isShow);
+                            PnlSuitcase.PnlSuitcase.Instance.OnHide();
                         });
                     }
                 }

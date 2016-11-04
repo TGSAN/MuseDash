@@ -220,7 +220,7 @@ namespace FormulaBase
                     continue;
                 }
 
-				/*
+                /*
                 Exp += (int)_item.Result(FormulaKeys.FORMULA_40) * _item.GetDynamicIntByKey(SignKeys.CHOSED);
                 Cost += (int)_item.Result(FormulaKeys.FORMULA_41) * _item.GetDynamicIntByKey(SignKeys.CHOSED);
                 */

@@ -236,7 +236,15 @@ namespace PnlEquipInfo
 
             UIEventListener.Get(btnUpgrade.gameObject).onClick = (go) =>
             {
-                isUpgrade = true;
+                if (ItemManageComponent.Instance.IsItemLvlMax(host))
+                {
+                    CommonPanel.GetInstance().ShowText("物品已达最高等级，无法升级");
+                }
+                else
+                {
+                    Play("item_upgrade_in");
+                    isUpgrade = true;
+                }
             };
             UIEventListener.VoidDelegate callFunc = (go) =>
             {
@@ -256,6 +264,7 @@ namespace PnlEquipInfo
                         PnlSuitcase.PnlSuitcase.Instance.SetUpgradeSelectedCell(null);
                         PnlSuitcase.PnlSuitcase.Instance.OnShow();
                         updateInfo();
+                        callFunc(gameObject);
                     });
                 }
             };

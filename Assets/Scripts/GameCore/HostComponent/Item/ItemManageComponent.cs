@@ -973,7 +973,7 @@ namespace FormulaBase
                 }
                 else
                 {
-                    exp += expRequired;
+                    exp += expRequired + firstTimeExp;
                     host.SetDynamicData(SignKeys.LEVEL, lvl);
                     host.SetDynamicData(SignKeys.EXP, exp);
                 }
