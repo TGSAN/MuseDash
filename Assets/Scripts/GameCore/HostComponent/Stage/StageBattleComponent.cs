@@ -593,8 +593,10 @@ namespace FormulaBase
                 return;
             }
 
-            //延迟0.1s用于音频加载不同步缓冲
             GameGlobal.gGameMusic.PlayMusic();
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+            /延迟0.1s用于音频加载不同步缓冲
             AudioManager.Instance.SetBgmVolume(0f);
             DOTweenUtils.Delay(() =>
             {
@@ -607,6 +609,10 @@ namespace FormulaBase
                     Debug.Log("Stage start");
                 }, 0.1f);
             }, 0.1f);
+#else
+            GameGlobal.gGameMusic.Run();
+            GameGlobal.gGameMusicScene.Run();
+#endif
 
             //UserUI.Instance.SetGUIActive (false);
         }
