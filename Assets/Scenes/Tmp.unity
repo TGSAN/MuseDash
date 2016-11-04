@@ -2076,6 +2076,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011407509188, guid: a7a871e6989fc284b98c6f39ededf856, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7a871e6989fc284b98c6f39ededf856, type: 2}
   m_IsPrefabParent: 0
@@ -2285,7 +2289,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowAnimation: 
   HideAnimation: 
+  sprSelected: {fileID: 0}
+  sprOn: {fileID: 0}
+  sprLock: {fileID: 0}
   txtLvl: {fileID: 1670341939}
+  txtLv: {fileID: 0}
   texIcon: {fileID: 526598571}
   txtType: {fileID: 1379881953}
   infoPanelName: PnlItemInfoEquip
@@ -2637,6 +2645,48 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick: []
+--- !u!1001 &1103017720
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000012836862694, guid: 6e8ece698b9099e49ac0b2aaf532aa24, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012836862694, guid: 6e8ece698b9099e49ac0b2aaf532aa24, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012836862694, guid: 6e8ece698b9099e49ac0b2aaf532aa24, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012836862694, guid: 6e8ece698b9099e49ac0b2aaf532aa24, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012836862694, guid: 6e8ece698b9099e49ac0b2aaf532aa24, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012836862694, guid: 6e8ece698b9099e49ac0b2aaf532aa24, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012836862694, guid: 6e8ece698b9099e49ac0b2aaf532aa24, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012836862694, guid: 6e8ece698b9099e49ac0b2aaf532aa24, type: 2}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6e8ece698b9099e49ac0b2aaf532aa24, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1137976887
 GameObject:
   m_ObjectHideFlags: 0
@@ -3050,7 +3100,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowAnimation: 
   HideAnimation: 
+  sprSelected: {fileID: 0}
+  sprOn: {fileID: 0}
+  sprLock: {fileID: 0}
   txtLvl: {fileID: 69597355}
+  txtLv: {fileID: 0}
   texIcon: {fileID: 818972873}
   txtType: {fileID: 385934703}
   infoPanelName: PnlItemInfoEquip
@@ -3436,7 +3490,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowAnimation: 
   HideAnimation: 
+  sprSelected: {fileID: 0}
+  sprOn: {fileID: 0}
+  sprLock: {fileID: 0}
   txtLvl: {fileID: 1200379975}
+  txtLv: {fileID: 0}
   texIcon: {fileID: 446138269}
   txtType: {fileID: 748344919}
   infoPanelName: PnlItemInfoEquip
