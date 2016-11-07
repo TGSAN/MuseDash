@@ -84,7 +84,19 @@ public class StringUtils
 
 public class RandomUtils
 {
-    public static void RandomEvent(float[] probalities, Action[] events)
+    public static void RandomEvent(float[] probabilities, Action[] events)
     {
+        const int baseNum = 10000;
+        var random = UnityEngine.Random.Range(0, baseNum);
+        for (var i = 0; i < probabilities.Length; i++)
+        {
+            var probability = probabilities[i];
+            if (!(random <= probability * baseNum)) continue;
+            if (events.Length > i)
+            {
+                events[i]();
+                break;
+            }
+        }
     }
 }

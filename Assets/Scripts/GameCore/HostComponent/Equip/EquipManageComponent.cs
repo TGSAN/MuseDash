@@ -60,7 +60,7 @@ namespace FormulaBase
         /// <returns></returns>
         public FormulaHost[] GetGirlEquipHosts(int idx, int typePos = 0, bool isEquiping = false)
         {
-            var equipHosts = new List<FormulaHost>();
+            var equipHosts = new Dictionary<FormulaHost, int>();
             var equipTypeList = new List<string>(GetGirlEquipTypes(idx));
             foreach (var formulaHost in HostList.Values)
             {
@@ -81,17 +81,23 @@ namespace FormulaBase
                         {
                             if (formulaHost.GetDynamicIntByKey(SignKeys.WHO) != 0)
                             {
-                                equipHosts.Add(formulaHost);
+                                equipHosts.Add(formulaHost, index);
                             }
                         }
                         else
                         {
-                            equipHosts.Add(formulaHost);
+                            equipHosts.Add(formulaHost, index);
                         }
                     }
                 }
             }
-            return equipHosts.ToArray();
+            if (isEquiping)
+            {
+                var keyValuePairs = equipHosts.OrderBy(e => e.Value).ToList();
+                var list = keyValuePairs.Select(keyValuePair => keyValuePair.Key).ToList();
+                return list.ToArray();
+            }
+            return equipHosts.Keys.ToArray();
         }
 
         /// <summary>
@@ -245,7 +251,7 @@ namespace FormulaBase
         /// </summary>
         /// <param name="_host">Host.</param>
         /// <param name="_UpNumber">Up number.</param>
-		/// 
+		///
 		/*
         public void EquipLevelUp(FormulaHost _host, int _UpNumber)
         {
@@ -428,7 +434,7 @@ namespace FormulaBase
                 Exp -= LevelUpExp;
                 thost.SetDynamicData(SignKeys.LEVEL, Level);
                 LevelUpExp = (int)thost.Result(FormulaKeys.FORMULA_34);
-				/*
+                /*
                 if (Level == (int)thost.Result(FormulaKeys.FORMULA_23))
                 {
                     NGUIDebug.Log("到达等级上限");
@@ -477,7 +483,7 @@ namespace FormulaBase
 
         public void GetAllEquipedEquip(ref int _hp, ref int _df, ref int _att, ref int _crit)
         {
-			/*
+            /*
             for (int i = 0; i < m_EquipedEquipment.Count; i++)
             {
                 FormulaHost host = m_EquipedEquipment[i];

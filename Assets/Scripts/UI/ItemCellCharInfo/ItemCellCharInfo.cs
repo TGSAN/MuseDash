@@ -1,3 +1,4 @@
+using Assets.Scripts.Common;
 using DG.Tweening;
 using FormulaBase;
 
@@ -104,7 +105,7 @@ namespace ItemCellCharInfo
 
             UIEventListener.Get(btnUpgrade.gameObject).onClick = (go) =>
             {
-                if (ItemManageComponent.Instance.IsItemLvlMax(host))
+                if (UpgradeManager.instance.IsItemLvlMax(host))
                 {
                     CommonPanel.GetInstance().ShowText("物品已达最高等级，无法升级");
                 }

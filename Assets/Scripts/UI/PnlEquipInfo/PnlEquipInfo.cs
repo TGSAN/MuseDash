@@ -1,3 +1,4 @@
+using Assets.Scripts.Common;
 using FormulaBase;
 
 /// UI分析工具自动生成代码
@@ -236,7 +237,7 @@ namespace PnlEquipInfo
 
             UIEventListener.Get(btnUpgrade.gameObject).onClick = (go) =>
             {
-                if (ItemManageComponent.Instance.IsItemLvlMax(host))
+                if (UpgradeManager.instance.IsItemLvlMax(host))
                 {
                     CommonPanel.GetInstance().ShowText("物品已达最高等级，无法升级");
                 }
@@ -259,7 +260,7 @@ namespace PnlEquipInfo
                 var hosts = PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost;
                 if (hosts.Count > 0)
                 {
-                    ItemManageComponent.Instance.ItemLevelUp(h, hosts, (result) =>
+                    UpgradeManager.instance.ItemLevelUp(h, hosts, (result) =>
                     {
                         PnlSuitcase.PnlSuitcase.Instance.SetUpgradeSelectedCell(null);
                         PnlSuitcase.PnlSuitcase.Instance.OnShow();
@@ -304,7 +305,7 @@ namespace PnlEquipInfo
                 var originRequiredExp = ConfigPool.Instance.GetConfigIntValue("experience", originLvl.ToString(), "eqpt_exp");
                 var originExpPercent = (float)originExp / (float)originRequiredExp;
 
-                host = ItemManageComponent.Instance.ItemLevelUp(host, hostList, null, false);
+                host = UpgradeManager.instance.ItemLevelUp(host, hostList, null, false);
 
                 var afterLvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
                 var afterExp = host.GetDynamicIntByKey(SignKeys.EXP);

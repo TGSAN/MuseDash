@@ -232,6 +232,7 @@ namespace PnlChar
                 {
                     item.OnShow(host);
                 }
+
                 if (i == 3)
                 {
                     var servantHost = PetManageComponent.Instance.GetEquipedPet(idx);

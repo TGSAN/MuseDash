@@ -1,3 +1,4 @@
+using Assets.Scripts.Common;
 using GameLogic;
 
 ///自定义模块，可定制模块具体行为
@@ -259,70 +260,6 @@ namespace FormulaBase
             //thost.SetDynamicData(SignKeys.LEVEL,Level);
             thost.SetDynamicData(SignKeys.EXP, exp);
             return thost;
-        }
-
-        public bool IsItemLvlMax(FormulaHost host)
-        {
-            var lvlMax = (int)host.Result(FormulaKeys.FORMULA_11);
-            var curLvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
-            return curLvl >= lvlMax;
-        }
-
-        public FormulaHost LevelUp(FormulaHost host, List<FormulaHost> expHosts, HttpResponseDelegate callFunc = null, bool isSave = true)
-        {
-            var exp = 0;
-            expHosts.ForEach(h =>
-            {
-                exp += (int)h.Result(FormulaKeys.FORMULA_57);
-            });
-            var originLvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
-            var originExp = host.GetDynamicIntByKey(SignKeys.EXP);
-            var lvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
-            Action lvlUp = null;
-            var firstTimeExp = originExp;
-            lvlUp = () =>
-            {
-                var expRequired = ConfigPool.Instance.GetConfigIntValue("experience", lvl.ToString(), "char_exp") - firstTimeExp;
-                exp -= expRequired;
-                if (exp >= 0)
-                {
-                    lvl++;
-                    firstTimeExp = 0;
-                    if (!IsItemLvlMax(host))
-                    {
-                        lvlUp();
-                    }
-                }
-                else
-                {
-                    exp += expRequired;
-                    host.SetDynamicData(SignKeys.LEVEL, lvl);
-                    host.SetDynamicData(SignKeys.EXP, exp);
-                }
-            };
-            lvlUp();
-            if (isSave)
-            {
-                CommonPanel.GetInstance().ShowWaittingPanel(true);
-                host.Save((result) =>
-                {
-                    if (!result)
-                    {
-                        host.SetDynamicData(SignKeys.LEVEL, originLvl);
-                        host.SetDynamicData(SignKeys.EXP, originExp);
-                    }
-                    else
-                    {
-                        ItemManageComponent.Instance.DeleteListItem(expHosts);
-                    }
-                    if (callFunc != null)
-                    {
-                        callFunc(result);
-                    }
-                    CommonPanel.GetInstance().ShowWaittingPanel(false);
-                });
-            }
-            return host;
         }
 
         public void UnlockRole(int _index, Callback _callBack = null)

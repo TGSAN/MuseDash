@@ -1,3 +1,4 @@
+using Assets.Scripts.Common;
 using FormulaBase;
 
 /// UI分析工具自动生成代码
@@ -21,8 +22,9 @@ namespace PnlCharInfo
         public UISprite sprExpCurBar, sprExpNextBar;
         public List<UITexture> upgradeTexs = new List<UITexture>();
         public Transform upgradeItemsParent;
-        public UIButton btnBack;
-        private Animator m_Animtor;
+        public UIButton btnBack, btnCosChangeBack;
+        private Animator m_Animator;
+
         private bool m_IsUpgrade = false;
 
         public static PnlCharInfo Instance
@@ -52,24 +54,29 @@ namespace PnlCharInfo
 
         public override void BeCatched()
         {
-            m_Animtor = GetComponent<Animator>();
+            m_Animator = GetComponent<Animator>();
             instance = this;
         }
 
         public void OnEnter()
         {
-            m_Animtor.Play("char_info_in");
+            m_Animator.Play("char_info_in");
         }
 
         public void OnExit()
         {
-            m_Animtor.Play("pnl_items_choose_out");
+            m_Animator.Play("pnl_items_choose_out");
         }
 
         public override void OnShow()
         {
             UpdateUI();
             InitEvent();
+        }
+
+        private void OnEnable()
+        {
+            OnShow();
         }
 
         public override void OnHide()
@@ -111,7 +118,7 @@ namespace PnlCharInfo
                 var originRequiredExp = ConfigPool.Instance.GetConfigIntValue("experience", originLvl.ToString(), "char_exp");
                 var originExpPercent = (float)originExp / (float)originRequiredExp;
 
-                RoleManageComponent.Instance.LevelUp(curRoleHost, PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost, null, false);
+                UpgradeManager.instance.RoleLevelUp(curRoleHost, PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost, null, false);
 
                 var afterLvl = curRoleHost.GetDynamicIntByKey(SignKeys.LEVEL);
                 var afterExp = curRoleHost.GetDynamicIntByKey(SignKeys.EXP);
@@ -185,20 +192,29 @@ namespace PnlCharInfo
             UIEventListener.Get(btnFeed.gameObject).onClick = (go) =>
             {
                 var curRoleHost = RoleManageComponent.Instance.GetGirlByIdx(PnlChar.PnlChar.Instance.curRoleIdx);
-                if (RoleManageComponent.Instance.IsItemLvlMax(curRoleHost))
+                if (UpgradeManager.instance.IsRoleLvlMax(curRoleHost))
                 {
                     CommonPanel.GetInstance().ShowText("人物已达最高等级，无法升级");
                 }
                 else
                 {
                     isUpgrade = true;
-                    m_Animtor.Play("cos_change");
-                    PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(true);
-                    PnlChar.PnlChar.Instance.gameObject.SetActive(false);
+                    gameObject.SetActive(false);
+                    DOTweenUtils.Delay(() =>
+                    {
+                        gameObject.SetActive(true);
+                        m_Animator.Play("cos_change");
+                        PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(true);
+                        PnlChar.PnlChar.Instance.gameObject.SetActive(false);
+                    }, 0.1f);
                 }
             };
             UIEventListener.Get(btnBack.gameObject).onClick = (go) =>
             {
+                DOTweenUtils.Delay(() =>
+                {
+                    m_Animator.Play("char_info_in");
+                }, 0.1f);
                 isUpgrade = false;
                 var isShow = PnlMainMenu.PnlMainMenu.Instance.goSelectedSuitcase.activeSelf;
                 PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(isShow);
@@ -212,13 +228,13 @@ namespace PnlCharInfo
                     var curRoleHost = RoleManageComponent.Instance.GetGirlByIdx(PnlChar.PnlChar.Instance.curRoleIdx);
                     if (curRoleHost != null)
                     {
-                        RoleManageComponent.Instance.LevelUp(curRoleHost, hosts, (result) =>
+                        UpgradeManager.instance.RoleLevelUp(curRoleHost, hosts, (result) =>
                         {
                             PnlSuitcase.PnlSuitcase.Instance.SetUpgradeSelectedCell(null);
                             PnlSuitcase.PnlSuitcase.Instance.OnShow();
                             OnUpgradeItemsRefresh();
                             isUpgrade = false;
-                            m_Animtor.Play("cos_change_out");
+                            m_Animator.Play("cos_change_out");
                             PnlChar.PnlChar.Instance.gameObject.SetActive(true);
                             var isShow = PnlMainMenu.PnlMainMenu.Instance.goSelectedSuitcase.activeSelf;
                             PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(isShow);
