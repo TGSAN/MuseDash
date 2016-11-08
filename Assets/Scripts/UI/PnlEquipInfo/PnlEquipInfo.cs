@@ -94,14 +94,6 @@ namespace PnlEquipInfo
             animator = GetComponent<Animator>();
         }
 
-        private void Start()
-        {
-            DOTweenUtils.Delay(() =>
-            {
-                PnlChar.PnlChar.Instance.onRoleChange += idx => OnExit();
-            }, Time.deltaTime);
-        }
-
         private void Update()
         {
             charBack.SetActive(PnlChar.PnlChar.Instance != null && PnlChar.PnlChar.Instance.gameObject.activeSelf && !itemUpgrade.activeSelf);

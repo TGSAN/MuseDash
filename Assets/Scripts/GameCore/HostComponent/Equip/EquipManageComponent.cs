@@ -179,9 +179,11 @@ namespace FormulaBase
             }
             if (host != null)
             {
-                host.Save();
-                RoleManageComponent.Instance.Host = RoleManageComponent.Instance.GetRole(ownerIdx);
-                RoleManageComponent.Instance.Equip(host, isTo, func);
+                host.Save(result =>
+                {
+                    RoleManageComponent.Instance.Host = RoleManageComponent.Instance.GetRole(ownerIdx);
+                    RoleManageComponent.Instance.Equip(host, isTo, func);
+                });
             }
         }
 

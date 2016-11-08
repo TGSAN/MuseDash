@@ -414,6 +414,34 @@ namespace FormulaBase
             }
         }
 
+        public List<CharCos> GetCloths(int idx)
+        {
+            var list = new List<CharCos>();
+            var allCharCos = ConfigPool.Instance.GetConfigByName("char_cos");
+            for (int i = 1; i <= allCharCos.Count; i++)
+            {
+                var charCos = new CharCos(i);
+                if (charCos.owner == GetName(idx))
+                {
+                    list.Add(charCos);
+                }
+            }
+            list.Sort((l, r) => l.id - r.id);
+            return list;
+        }
+
+        public List<CharCos> GetClothList(int idx)
+        {
+            var role = GetRole(idx);
+            var suitGroup = role.GetDynamicStrByKey(SignKeys.SUIT_GROUP);
+            if (suitGroup == "0")
+            {
+                suitGroup = role.GetDynamicStrByKey(SignKeys.CLOTH);
+            }
+            var suitNumber = suitGroup.Split(',');
+            return suitNumber.Select(s => new CharCos((float)int.Parse(s))).ToList();
+        }
+
         public void SetFightGirlClothByOrder(int order)
         {
             int idx = this.GetFightGirlIndex();
@@ -424,21 +452,16 @@ namespace FormulaBase
             }
 
             FormulaHost role = this.GetRole(idx);
-            if (role == null)
-            {
-                Debugger.Log("Role " + idx + " has no data.");
-                return;
-            }
-
+            var originCloth = role.GetDynamicDataByKey(SignKeys.CLOTH);
             string name = role.GetDynamicStrByKey(SignKeys.NAME);
-            if (name == null || name == string.Empty)
+            if (string.IsNullOrEmpty(name))
             {
                 Debugger.Log("Role " + idx + " has no NAME.");
                 return;
             }
 
             int clothUid = idx * 10 + (order - 1);
-            string clothName = ConfigPool.Instance.GetConfigStringValue("clothing", "uid", "name", clothUid);
+            string clothName = ConfigPool.Instance.GetConfigStringValue("char_cos", "uid", "name", clothUid);
             if (clothName == null)
             {
                 clothUid = idx * 10;
@@ -446,7 +469,10 @@ namespace FormulaBase
 
             role.SetDynamicData(SignKeys.CLOTH, clothUid);
             Debugger.Log("Set " + name + " with cloth uid : " + clothUid);
-            CommonPanel.GetInstance().ShowText("换装:" + clothName);
+            if (originCloth != role.GetDynamicDataByKey(SignKeys.CLOTH))
+            {
+                CommonPanel.GetInstance().ShowText("换装:" + clothName);
+            }
         }
 
         public string GetName(int _index)
@@ -454,6 +480,11 @@ namespace FormulaBase
             FormulaHost thost = GetRole(_index);
             thost.Result(FormulaKeys.FORMULA_35);
             return thost.GetDynamicStrByKey(SignKeys.NAME);
+        }
+
+        public int GetID(string name)
+        {
+            return (from formulaHost in HostList.Values where formulaHost.GetDynamicStrByKey(SignKeys.NAME) == name select formulaHost.GetDynamicIntByKey(SignKeys.ID)).FirstOrDefault();
         }
 
         public string GetDes(int _index)
@@ -521,6 +552,108 @@ namespace FormulaBase
             _effect2 = (int)thost.Result(FormulaKeys.FORMULA_37);
             effect3 = 0;
             effect4 = _index > 0 ? 20 : 10;
+        }
+    }
+
+    public class CharCos
+    {
+        public int id;
+        public int uid;
+        public string name;
+        public string path;
+        public string description;
+        public string owner;
+        public bool isLock;
+
+        public CharCos(int i)
+        {
+            var charCos = ConfigPool.Instance.GetConfigByName("char_cos");
+            id = i;
+            var cos = charCos[id.ToString()];
+            name = (string)cos["name"];
+            uid = (int)cos["uid"];
+            path = (string)cos["path"];
+            description = (string)cos["description"];
+            owner = ((string)cos["owner"]).ToLower();
+
+            var allEquips = EquipManageComponent.Instance.GetGirlEquipHosts(RoleManageComponent.Instance.GetID(owner), 0).ToList();
+            var count = 0;
+            allEquips.ForEach(equip =>
+            {
+                if (equip.GetDynamicStrByKey(SignKeys.SUIT) == name)
+                {
+                    count++;
+                }
+            });
+            isLock = count < 3;
+            if (name == "默认服装")
+            {
+                isLock = false;
+            }
+        }
+
+        public CharCos(float u)
+        {
+            var charCos = ConfigPool.Instance.GetConfigByName("char_cos");
+            uid = (int)u;
+            for (int i = 1; i <= charCos.Count; i++)
+            {
+                var cos = charCos[i.ToString()];
+                if ((int)cos["uid"] != uid) continue;
+                id = (int)cos["id"];
+                name = cos["name"].ToString();
+                path = (string)cos["path"];
+                description = (string)cos["description"];
+                owner = ((string)cos["owner"]).ToLower();
+
+                var allEquips = EquipManageComponent.Instance.GetGirlEquipHosts(RoleManageComponent.Instance.GetID(owner), 0).ToList();
+                var count = 0;
+                allEquips.ForEach(equip =>
+                {
+                    if (equip.GetDynamicStrByKey(SignKeys.SUIT) == name)
+                    {
+                        count++;
+                    }
+                });
+                isLock = count < 3;
+                if (name == "默认服装")
+                {
+                    isLock = false;
+                }
+                break;
+            }
+        }
+
+        public CharCos(string n)
+        {
+            var charCos = ConfigPool.Instance.GetConfigByName("char_cos");
+            name = n;
+            for (var i = 1; i <= charCos.Count; i++)
+            {
+                var cos = charCos[i.ToString()];
+                if (cos["name"].ToString() != n) continue;
+                id = (int)cos["id"];
+                uid = (int)cos["uid"];
+                path = (string)cos["path"];
+                description = (string)cos["description"];
+                owner = ((string)cos["owner"]).ToLower();
+
+                var allEquips = EquipManageComponent.Instance.GetGirlEquipHosts(RoleManageComponent.Instance.GetID(owner), 0).ToList();
+                var count = 0;
+                allEquips.ForEach(equip =>
+                {
+                    if (equip.GetDynamicStrByKey(SignKeys.SUIT) == name)
+                    {
+                        count++;
+                    }
+                });
+                isLock = count < 3;
+                if (name == "默认服装")
+                {
+                    isLock = false;
+                }
+                break;
+            }
         }
     }
 }

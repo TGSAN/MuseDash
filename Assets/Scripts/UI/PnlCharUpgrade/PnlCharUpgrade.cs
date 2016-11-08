@@ -99,9 +99,7 @@ namespace PnlCharUpgrade
             {
                 var formulaHost = hosts[i];
                 var tex = itemTexs[i];
-                var icon = formulaHost.GetDynamicStrByKey(SignKeys.ICON);
-                Debug.Log(icon);
-                ResourceLoader.Instance.Load(icon, res => tex.mainTexture = res as Texture);
+                ResourceLoader.Instance.Load(formulaHost, tex);
             }
             DOTweenUtils.Delay(() =>
             {

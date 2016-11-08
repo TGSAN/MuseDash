@@ -6,6 +6,7 @@ using FormulaBase;
 ///
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace PnlCharInfo
@@ -23,7 +24,12 @@ namespace PnlCharInfo
         public List<UITexture> upgradeTexs = new List<UITexture>();
         public Transform upgradeItemsParent;
         public UIButton btnBack, btnCosChangeBack;
+        public Transform tglsParent;
+
         private Animator m_Animator;
+        private List<CharCos> m_SelectedCosList = new List<CharCos>();
+        private CharCos m_SelectedCos;
+        private List<SprCos> m_SprCosList = new List<SprCos>();
 
         private bool m_IsUpgrade = false;
 
@@ -56,6 +62,9 @@ namespace PnlCharInfo
         {
             m_Animator = GetComponent<Animator>();
             instance = this;
+            m_SprCosList = tglsParent.GetComponentsInChildren<SprCos>().ToList();
+            m_SelectedCos = new FormulaBase.CharCos((float)RoleManageComponent.Instance.GetRole(RoleManageComponent.Instance.GetChoseRoleIdx()).GetDynamicIntByKey(SignKeys.CLOTH));
+            m_SelectedCosList = RoleManageComponent.Instance.GetClothList(RoleManageComponent.Instance.GetChoseRoleIdx());
         }
 
         public void OnEnter()
@@ -91,7 +100,7 @@ namespace PnlCharInfo
                 return;
             }
             var hostList = PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost;
-            for (int i = 0; i < upgradeTexs.Count; i++)
+            for (var i = 0; i < upgradeTexs.Count; i++)
             {
                 var tex = upgradeTexs[i];
                 if (i < hostList.Count)
@@ -243,6 +252,96 @@ namespace PnlCharInfo
                     }
                 }
             };
+            UIEventListener.Get(btnApply.gameObject).onClick = (go) =>
+            {
+                var roleHost = RoleManageComponent.Instance.GetRole(PnlChar.PnlChar.Instance.curRoleIdx);
+                roleHost.Save();
+            };
+
+            foreach (var t in m_SprCosList)
+            {
+                var tgl = t.selectedTgl;
+                tgl.onChange.Clear();
+                tgl.onChange.Add(new EventDelegate(() =>
+                {
+                    OnSelectChange(tgl.transform);
+                }));
+            }
+        }
+
+        public void OnRoleChange(int idx)
+        {
+            m_SelectedCos = new FormulaBase.CharCos((float)RoleManageComponent.Instance.GetRole(idx).GetDynamicIntByKey(SignKeys.CLOTH));
+            m_SelectedCosList = RoleManageComponent.Instance.GetClothList(idx);
+            var allCharCos = RoleManageComponent.Instance.GetCloths(idx);
+            for (var i = 0; i < tglsParent.childCount; i++)
+            {
+                var sprCos = m_SprCosList[i];
+                if (i < allCharCos.Count)
+                {
+                    var charCos = allCharCos[i];
+                    sprCos.isSelected = charCos.uid == m_SelectedCos.uid;
+                    sprCos.isInGroup = false;
+                    if (m_SelectedCosList != null)
+                    {
+                        foreach (var c in m_SelectedCosList)
+                        {
+                            if (c.uid != charCos.uid) continue;
+                            sprCos.isInGroup = true;
+                            break;
+                        }
+                    }
+                    sprCos.isInGroup = charCos.uid == m_SelectedCos.uid;
+                    sprCos.isLock = charCos.isLock;
+                }
+                else
+                {
+                    sprCos.isInGroup = false;
+                    sprCos.isLock = true;
+                    sprCos.isSelected = false;
+                }
+            }
+        }
+
+        public void OnSelectChange(Transform t)
+        {
+            var allCharCos = RoleManageComponent.Instance.GetCloths(PnlChar.PnlChar.Instance.curRoleIdx);
+            var idx = t.GetSiblingIndex();
+            var sprCos = t.GetComponent<SprCos>();
+            if (idx >= allCharCos.Count) return;
+            var charCos = allCharCos[idx];
+
+            if (m_SprCosList.All(sprCose => !sprCose.isInGroup))
+            {
+                sprCos.isInGroup = true;
+            }
+
+            if (sprCos.isSelected)
+            {
+                m_SelectedCos = charCos;
+            }
+
+            if (sprCos.isInGroup)
+            {
+                if (m_SelectedCosList.All(c => c.uid != charCos.uid))
+                {
+                    m_SelectedCosList.Add(charCos);
+                }
+            }
+            else
+            {
+                foreach (var c in m_SelectedCosList.Where(c => c.uid == charCos.uid))
+                {
+                    m_SelectedCosList.Remove(c);
+                    break;
+                }
+            }
+            PnlChar.PnlChar.Instance.OnSpiAnimLoad(PnlChar.PnlChar.Instance.curRoleIdx, m_SelectedCos.path);
+            var roleHost = RoleManageComponent.Instance.GetRole(PnlChar.PnlChar.Instance.curRoleIdx);
+            roleHost.SetDynamicData(SignKeys.CLOTH, m_SelectedCos.uid);
+            /* var clothStr = m_SelectedCosList.Aggregate(string.Empty, (current, charCose) => current + (charCose.uid + ","));
+             clothStr = clothStr.Substring(0, clothStr.Length - 1);
+             roleHost.SetDynamicData(SignKeys.SUIT_GROUP, clothStr);*/
         }
     }
 }

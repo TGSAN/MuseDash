@@ -1,4 +1,5 @@
 ﻿using DYUnityLib;
+using FormulaBase;
 using GameLogic;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,6 +41,12 @@ public class ResourceLoader : MonoBehaviour
 		return default(T);
 	}
 	*/
+
+    public Coroutine Load(FormulaHost host, UITexture tex)
+    {
+        var icon = host.GetDynamicStrByKey(SignKeys.ICON);
+        return ResourceLoader.Instance.Load(icon, res => tex.mainTexture = res as Texture);
+    }
 
     public Coroutine Load(string path, ResourceLoaderHandler handler, string resFrom = RES_FROM_RESOURCE)
     {

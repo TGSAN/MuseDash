@@ -80,20 +80,10 @@ namespace Assets.Scripts.Common
             var lvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
             Action lvlUp = null;
             var firstTimeExp = originExp;
-            var upgradeResult = new UpgradeInfo(UpgradeResultType.Cool);
-            var upgradeBestResult = new UpgradeInfo(UpgradeResultType.Cool);
+            var upgradeResult = GetUpgradeResult();
             exp = (int)((float)exp * upgradeResult.radio);
             lvlUp = () =>
             {
-                if (isSave)
-                {
-                    var newUpgradeResult = UpgradeManager.instance.GetUpgradeResult();
-                    if (newUpgradeResult.radio > upgradeResult.radio)
-                    {
-                        upgradeBestResult = newUpgradeResult;
-                    }
-                    upgradeResult = newUpgradeResult;
-                }
                 var expRequired = ConfigPool.Instance.GetConfigIntValue("experience", lvl.ToString(), "char_exp") - firstTimeExp;
                 exp -= expRequired;
                 if (exp >= 0)
@@ -128,7 +118,7 @@ namespace Assets.Scripts.Common
                         ItemManageComponent.Instance.DeleteListItem(expHosts);
                         if (originLvl != host.GetDynamicIntByKey(SignKeys.LEVEL))
                         {
-                            PnlCharUpgrade.PnlCharUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeBestResult);
+                            PnlCharUpgrade.PnlCharUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeResult);
                         }
                     }
                     if (callFunc != null)
@@ -160,6 +150,8 @@ namespace Assets.Scripts.Common
             var lvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
             Action lvlUp = null;
             var firstTimeExp = originExp;
+            var upgradeResult = GetUpgradeResult();
+            exp = (int)((float)exp * upgradeResult.radio);
             lvlUp = () =>
             {
                 var expRequired = ConfigPool.Instance.GetConfigIntValue("experience", lvl.ToString(), "eqpt_exp") - firstTimeExp;
@@ -189,6 +181,10 @@ namespace Assets.Scripts.Common
                     if (result)
                     {
                         ItemManageComponent.Instance.DeleteListItem(expHosts);
+                        if (originLvl != host.GetDynamicIntByKey(SignKeys.LEVEL))
+                        {
+                            PnlItemUpgrade.PnlItemUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeResult);
+                        }
                     }
                     else
                     {
