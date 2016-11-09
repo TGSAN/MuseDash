@@ -4,6 +4,7 @@ using LitJson;
 ///自定义模块，可定制模块具体行为
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace FormulaBase
@@ -216,15 +217,8 @@ namespace FormulaBase
         /// <returns></returns>
         public int GetTotalTrophy()
         {
-            var trophySum = 0;
             var hosts = GetList("Task");
-            foreach (var host in hosts)
-            {
-                trophySum +=
-                    host.Value.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_EVLUATE +
-                                                  TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
-            }
-            return trophySum;
+            return hosts.Sum(host => host.Value.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_EVLUATE + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL));
         }
 
         /// <summary>
@@ -396,10 +390,15 @@ namespace FormulaBase
                 this.Host.SetDynamicData(SignKeys.DIFFCULT, targetIdx);
 
                 int evlua = this.GetStageEvluateMax();
-                var nextIdx = 1;
-                var trophyNext = GetNextUnlockTrophy(ref nextUnlockIdx);
-                var trophyTotal = GetTotalTrophy();
-                isNextUnlock = trophyTotal == trophyNext;
+                bool change = this.SetStageEvluateMax(evlua + 1);
+
+                //是否下首歌曲解锁
+                if (change)
+                {
+                    var trophyNext = GetNextUnlockTrophy(ref nextUnlockIdx);
+                    var trophyTotal = GetTotalTrophy();
+                    isNextUnlock = trophyTotal == trophyNext;
+                }
                 return true;
             }
 
