@@ -104,7 +104,7 @@ public class SceneAudioManager : MonoBehaviour
                 player.clip = ac;
                 player.time = 0;
                 player.Play();
-                Debug.Log(player.name + " : " + player.clip.name);
+                //Debug.Log(player.name + " : " + player.clip.name);
                 return;
             }
         }

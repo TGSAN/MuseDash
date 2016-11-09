@@ -63,8 +63,8 @@ namespace PnlCharInfo
             m_Animator = GetComponent<Animator>();
             instance = this;
             m_SprCosList = tglsParent.GetComponentsInChildren<SprCos>().ToList();
-            m_SelectedCos = new FormulaBase.CharCos((float)RoleManageComponent.Instance.GetRole(RoleManageComponent.Instance.GetChoseRoleIdx()).GetDynamicIntByKey(SignKeys.CLOTH));
             m_SelectedCosList = RoleManageComponent.Instance.GetClothList(RoleManageComponent.Instance.GetChoseRoleIdx());
+            m_SelectedCos = m_SelectedCosList[0];
         }
 
         public void OnEnter()
@@ -277,8 +277,8 @@ namespace PnlCharInfo
 
         public void OnRoleChange(int idx)
         {
-            m_SelectedCos = new FormulaBase.CharCos((float)RoleManageComponent.Instance.GetRole(idx).GetDynamicIntByKey(SignKeys.CLOTH));
             m_SelectedCosList = RoleManageComponent.Instance.GetClothList(idx);
+            m_SelectedCos = m_SelectedCosList[0];
             var allCharCos = RoleManageComponent.Instance.GetCloths(idx);
             for (var i = 0; i < tglsParent.childCount; i++)
             {
@@ -328,7 +328,7 @@ namespace PnlCharInfo
 
             if (m_SprCosList.All(sprCose => !sprCose.isInGroup))
             {
-                sprCos.isInGroup = true;
+                m_SprCosList[idx].isInGroup = true;
             }
 
             if (sprCos.isSelected)
