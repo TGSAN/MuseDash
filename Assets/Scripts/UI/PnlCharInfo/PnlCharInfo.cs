@@ -30,6 +30,7 @@ namespace PnlCharInfo
         private List<CharCos> m_SelectedCosList = new List<CharCos>();
         private CharCos m_SelectedCos;
         private List<SprCos> m_SprCosList = new List<SprCos>();
+        private int m_LastSelected = 1;
 
         private bool m_IsUpgrade = false;
 
@@ -326,9 +327,16 @@ namespace PnlCharInfo
             if (idx >= allCharCos.Count) return;
             var charCos = allCharCos[idx];
 
+            for (var i = 0; i < m_SprCosList.Count; i++)
+            {
+                if (m_SprCosList[i].isInGroup)
+                {
+                    m_LastSelected = i;
+                }
+            }
             if (m_SprCosList.All(sprCose => !sprCose.isInGroup))
             {
-                m_SprCosList[idx].isInGroup = true;
+                m_SprCosList[m_LastSelected].isInGroup = true;
             }
 
             if (sprCos.isSelected)
