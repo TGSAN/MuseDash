@@ -27,7 +27,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000010002136444
 GameObject:
   m_ObjectHideFlags: 1
@@ -121,7 +121,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000010104512668
 GameObject:
   m_ObjectHideFlags: 1
@@ -570,7 +570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000011400034058
 GameObject:
   m_ObjectHideFlags: 1
@@ -1133,7 +1133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000013193576986
 GameObject:
   m_ObjectHideFlags: 1
@@ -1184,7 +1184,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000013241700340
 GameObject:
   m_ObjectHideFlags: 1
@@ -1235,7 +1235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000013343941462
 GameObject:
   m_ObjectHideFlags: 1
@@ -3149,7 +3149,7 @@ MonoBehaviour:
   clickResponseObjects:
   - {fileID: 0}
   clickResponseParentNames:
-  - PnlEquipInfo
+  - 
   - 
   - 
   clickResponseObjectsIsShow: 01
@@ -3157,7 +3157,7 @@ MonoBehaviour:
   clickResponseObjectAnimations:
   - 
   clickResponseParentAnimations:
-  - item_upgrade_in
+  - 
   - 
   - 
   isFoldObjs: 1
@@ -3714,10 +3714,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -4149,6 +4149,8 @@ MonoBehaviour:
   btnUpgrade: {fileID: 114000011722101316}
   btnUpgradeBack: {fileID: 114000012361665954}
   btnConfirm: {fileID: 114000012055096548}
+  sprExpCurBar: {fileID: 114000010476463580}
+  sprExpNextBar: {fileID: 114000012025495682}
   star: {fileID: 4000013865106962}
   charBack: {fileID: 1000010883771302}
   suitcaseBack: {fileID: 1000011561403656}
@@ -4706,7 +4708,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 100
   mHeight: 100
-  mDepth: 160
+  mDepth: 159
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -6819,7 +6821,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 100
   mHeight: 100
-  mDepth: 160
+  mDepth: 159
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -7008,15 +7010,17 @@ MonoBehaviour:
   clickResponseObjects:
   - {fileID: 0}
   clickResponseParentNames:
+  - PnlEquipInfo
   - 
   clickResponseObjectsIsShow: 01
-  clickResponseParentNamesIsShow: 01
+  clickResponseParentNamesIsShow: 0101
   clickResponseObjectAnimations:
   - 
   clickResponseParentAnimations:
+  - item_upgrade_out
   - 
-  isFoldObjs: 0
-  isFoldParentObjs: 0
+  isFoldObjs: 1
+  isFoldParentObjs: 1
   isForceKeep: 0
   isClickHideSelf: 0
   isClickHideParent: 0
@@ -8362,7 +8366,7 @@ MonoBehaviour:
   mPivot: 3
   mWidth: 222
   mHeight: 30
-  mDepth: 158
+  mDepth: 159
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -9925,7 +9929,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 100
   mHeight: 100
-  mDepth: 160
+  mDepth: 159
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -10426,7 +10430,7 @@ MonoBehaviour:
   mPivot: 3
   mWidth: 224
   mHeight: 30
-  mDepth: 158
+  mDepth: 159
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0

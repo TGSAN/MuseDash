@@ -198,6 +198,18 @@ namespace FormulaBase
             this.OnInit(stageId);
         }
 
+        public string[] GetAllMusicNames()
+        {
+            var names = new List<string>();
+            var musicName = ConfigPool.Instance.GetConfigByName("stage");
+            for (int i = 0; i < musicName.Count; i++)
+            {
+                var name = StringUtils.LastAfter(musicName[i]["music"].ToString(), '/');
+                names.Add(name);
+            }
+            return names.ToArray();
+        }
+
         /// <summary>
         /// 获取当前玩家获得的奖杯总数
         /// </summary>
@@ -278,6 +290,10 @@ namespace FormulaBase
             {
                 var unlockTrophy = ConfigPool.Instance.GetConfigIntValue("stage", i.ToString(), "unlock");
                 idxs[i] = unlockTrophy > totalTrophy;
+                if (GameGlobal.IS_UNLOCK_ALL_STAGE)
+                {
+                    idxs[i] = false;
+                }
             }
             return idxs;
         }

@@ -265,30 +265,30 @@ public class ItemInfoPanel : UIPanelBase {
 	{
 		int nowLevel=(int)_host.GetDynamicDataByKey(SignKeys.LEVEL);			//等级
 		Debug.Log("差个经验值");
-		int nowHp=(int)_host.Result(FormulaKeys.FORMULA_26);					//Hp
-		int nowDef=(int)_host.Result(FormulaKeys.FORMULA_32);					//Def
-		int nowAtt=(int)_host.Result(FormulaKeys.FORMULA_29);					//Att
-		int nowCrt=(int)_host.Result(FormulaKeys.FORMULA_35);					//Crt
+//		int nowHp=(int)_host.Result(FormulaKeys.FORMULA_26);					//Hp
+//		int nowDef=(int)_host.Result(FormulaKeys.FORMULA_32);					//Def
+//		int nowAtt=(int)_host.Result(FormulaKeys.FORMULA_29);					//Att
+//		int nowCrt=(int)_host.Result(FormulaKeys.FORMULA_35);					//Crt
 
-		int maxLevel=(int)_host.Result(FormulaKeys.FORMULA_23);
+//		int maxLevel=(int)_host.Result(FormulaKeys.FORMULA_23);
 		m_Addob.SetActive(true);
-		int type=(int)_host.Result(FormulaKeys.FORMULA_147);
-		float BaseVaule=(float)_host.Result(FormulaKeys.FORMULA_148);
+//		int type=(int)_host.Result(FormulaKeys.FORMULA_147);
+//		float BaseVaule=(float)_host.Result(FormulaKeys.FORMULA_148);
 		string AddType="";
-		switch(type)
-		{
-		case 1:AddType="攻击";break;
-		case 2:AddType="生命";break;
-		case 3:AddType="防御";break;
-		case 4:AddType="暴击";break;
-		default:AddType="error";break;
-		}
+//		switch(type)
+//		{
+//		case 1:AddType="攻击";break;
+//		case 2:AddType="生命";break;
+//		case 3:AddType="防御";break;
+//		case 4:AddType="暴击";break;
+//		default:AddType="error";break;
+//		}
 
 
-		int MaxStars=(int)_host.Result(FormulaKeys.FORMULA_20);
-		int NowStars=(int)_host.Result(FormulaKeys.FORMULA_24);
+//		int MaxStars=(int)_host.Result(FormulaKeys.FORMULA_20);
+//		int NowStars=(int)_host.Result(FormulaKeys.FORMULA_24);
 
-		for(int i=0,max=listBlckStars.Length;i<max;i++)
+/*		for(int i=0,max=listBlckStars.Length;i<max;i++)
 		{
 			if(i<MaxStars)
 			{
@@ -310,6 +310,7 @@ public class ItemInfoPanel : UIPanelBase {
 				stars[i].SetActive(false);
 			}
 		}
+*/
 		m_StarsTable.Reposition();
 //		public UILabel m_Des;			  //描述文本
 //		public UILabel m_Effect1Des1;	  //效果1标题
@@ -328,20 +329,20 @@ public class ItemInfoPanel : UIPanelBase {
 
 			Debug.Log("显示而外的属性");
 			FormulaHost tempHost=EquipManageComponent.Instance.GetLevelUpHost(_host);
-			int tHp=(int)tempHost.Result(FormulaKeys.FORMULA_26);					//Hp
-			int tDef=(int)tempHost.Result(FormulaKeys.FORMULA_32);					//Def
-			int tAtt=(int)tempHost.Result(FormulaKeys.FORMULA_29);					//Att
-			int tCrt=(int)tempHost.Result(FormulaKeys.FORMULA_35);					//Crt
+//			int tHp=(int)tempHost.Result(FormulaKeys.FORMULA_26);					//Hp
+//			int tDef=(int)tempHost.Result(FormulaKeys.FORMULA_32);					//Def
+//			int tAtt=(int)tempHost.Result(FormulaKeys.FORMULA_29);					//Att
+//			int tCrt=(int)tempHost.Result(FormulaKeys.FORMULA_35);					//Crt
 			int tLevel=tempHost.GetDynamicIntByKey(SignKeys.LEVEL);
 			m_LevelUpExp.gameObject.SetActive(true);
 			m_Level.text="LV."+nowLevel.ToString()+"-->"+tLevel.ToString();
 
-			ShowItemInfo(nowHp,nowDef,nowAtt,nowCrt,tHp,tDef,tAtt,tCrt);
-			m_AddNumberLaber.text=string.Format("角色{0}额外提升{1}%",AddType,BaseVaule*100);
+//			ShowItemInfo(nowHp,nowDef,nowAtt,nowCrt,tHp,tDef,tAtt,tCrt);
+//			m_AddNumberLaber.text=string.Format("角色{0}额外提升{1}%",AddType,BaseVaule*100);
 			m_Effect1.text=(string)_host.GetDynamicStrByKey(SignKeys.ITEMEFFECT1);
 			m_effect2.text=(string)_host.GetDynamicStrByKey(SignKeys.ITEMEFFECT2)+"\n"+(string)_host.GetDynamicStrByKey(SignKeys.ITEMEFFECT3);
-			m_Exp.fillAmount=_host.GetDynamicIntByKey(SignKeys.EXP)/_host.Result(FormulaKeys.FORMULA_155);
-			m_LevelUpExp.fillAmount=tempHost.GetDynamicIntByKey(SignKeys.EXP)/tempHost.Result(FormulaKeys.FORMULA_155);
+			m_Exp.fillAmount=_host.GetDynamicIntByKey(SignKeys.EXP)/_host.Result(FormulaKeys.FORMULA_34);
+			m_LevelUpExp.fillAmount=tempHost.GetDynamicIntByKey(SignKeys.EXP)/tempHost.Result(FormulaKeys.FORMULA_34);
 
 			if(_host.GetDynamicIntByKey(SignKeys.LEVEL)<tLevel)
 			{
@@ -364,11 +365,11 @@ public class ItemInfoPanel : UIPanelBase {
 		{
 			m_LevelUpExp.gameObject.SetActive(false);
 			m_Level.text="LV."+nowLevel.ToString();
-			ShowItemInfo(nowHp,nowDef,nowAtt,nowCrt);
-			m_AddNumberLaber.text=string.Format("角色{0}额外提升{1}%",AddType,BaseVaule*100);
+//			ShowItemInfo(nowHp,nowDef,nowAtt,nowCrt);
+//			m_AddNumberLaber.text=string.Format("角色{0}额外提升{1}%",AddType,BaseVaule*100);
 			m_Effect1.text=(string)_host.GetDynamicStrByKey(SignKeys.ITEMEFFECT1);
 			m_effect2.text=(string)_host.GetDynamicStrByKey(SignKeys.ITEMEFFECT2)+"\n"+(string)_host.GetDynamicStrByKey(SignKeys.ITEMEFFECT3);
-			m_Exp.fillAmount=_host.GetDynamicIntByKey(SignKeys.EXP)/_host.Result(FormulaKeys.FORMULA_155);
+			m_Exp.fillAmount=_host.GetDynamicIntByKey(SignKeys.EXP)/_host.Result(FormulaKeys.FORMULA_34);
 		}
 //		m_Level.text="LV."+nowLevel.ToString();
 //		ShowItemInfo(nowHp,nowDef,nowAtt,nowCrt);
@@ -382,14 +383,14 @@ public class ItemInfoPanel : UIPanelBase {
 		//m_Effect1.text=_host.GetDynamicStrByKey(SignKeys)
 
 	//	Debug.Log
-		if(maxLevel==nowLevel)					//判断是否可升级
-		{
+//		if(maxLevel==nowLevel)					//判断是否可升级
+//		{
 			FullLevelEquip();
-		}
-		else 
-		{
-			NoFullLevelEquip();
-		}
+//		}
+//		else 
+//		{
+//			NoFullLevelEquip();
+//		}
 
 //		if(bagPanel2.GetBagPanelState()==BagPanel2State.BagPanel2_ShowAll)
 //		{
@@ -435,10 +436,10 @@ public class ItemInfoPanel : UIPanelBase {
 			m_Crtob.SetActive(false);
 
 
-			int MaxStars=(int)m_host.Result(FormulaKeys.FORMULA_132);
-			int NowStars=(int)m_host.Result(FormulaKeys.FORMULA_131);
+//			int MaxStars=(int)m_host.Result(FormulaKeys.FORMULA_132);
+//			int NowStars=(int)m_host.Result(FormulaKeys.FORMULA_131);
 
-			for(int i=0,max=listBlckStars.Length;i<max;i++)
+/*			for(int i=0,max=listBlckStars.Length;i<max;i++)
 			{
 				if(i<MaxStars)
 				{
@@ -460,6 +461,7 @@ public class ItemInfoPanel : UIPanelBase {
 					stars[i].SetActive(false);
 				}
 			}
+*/
 			m_StarsTable.Reposition();
 
 			m_Effect1Des1.text="道具效果";
@@ -481,15 +483,15 @@ public class ItemInfoPanel : UIPanelBase {
 		{
 			int nowLevel=(int)_host.GetDynamicDataByKey(SignKeys.LEVEL);			//等级
 
-			int maxLevel=(int)_host.Result(FormulaKeys.FORMULA_157);
-			int nowHp=(int)_host.Result(FormulaKeys.FORMULA_137);					//Hp
-			int nowDef=(int)_host.Result(FormulaKeys.FORMULA_141);					//Def
-			int nowAtt=(int)_host.Result(FormulaKeys.FORMULA_139);					//Att
-			int nowCrt=(int)_host.Result(FormulaKeys.FORMULA_143);					//Crt
+//			int maxLevel=(int)_host.Result(FormulaKeys.FORMULA_157);
+//			int nowHp=(int)_host.Result(FormulaKeys.FORMULA_137);					//Hp
+//			int nowDef=(int)_host.Result(FormulaKeys.FORMULA_141);					//Def
+//			int nowAtt=(int)_host.Result(FormulaKeys.FORMULA_139);					//Att
+//			int nowCrt=(int)_host.Result(FormulaKeys.FORMULA_143);					//Crt
 			m_Effect1Des1.text="激活技能";
 			m_Effect1Des2.gameObject.SetActive(true);
-			int MaxStars=(int)m_host.Result(FormulaKeys.FORMULA_136);
-			int NowStars=(int)m_host.Result(FormulaKeys.FORMULA_135);
+//			int MaxStars=(int)m_host.Result(FormulaKeys.FORMULA_136);
+//			int NowStars=(int)m_host.Result(FormulaKeys.FORMULA_135);
 			#region 宠物信息
 
 			if(ItemManageComponent.Instance.GetChosedItem.Count!=0)
@@ -500,23 +502,23 @@ public class ItemInfoPanel : UIPanelBase {
 				m_effect2.text=(string)_host.GetDynamicStrByKey(SignKeys.ITEMEFFECT2);
 				m_Effect1Des1.text="被动技能";
 				m_Level.text="LV."+nowLevel.ToString();
-				ShowItemInfo(nowHp,nowDef,nowAtt,nowCrt);
-				m_Exp.fillAmount=_host.GetDynamicIntByKey(SignKeys.EXP)/_host.Result(FormulaKeys.FORMULA_141);
+//				ShowItemInfo(nowHp,nowDef,nowAtt,nowCrt);
+//				m_Exp.fillAmount=_host.GetDynamicIntByKey(SignKeys.EXP)/_host.Result(FormulaKeys.FORMULA_141);
 
 
 				FormulaHost tempHost=PetManageComponent.Instance.GetLevelUpHost(_host);
-				int tHp=(int)tempHost.Result(FormulaKeys.FORMULA_137);					//Hp
-				int tDef=(int)tempHost.Result(FormulaKeys.FORMULA_141);					//Def
-				int tAtt=(int)tempHost.Result(FormulaKeys.FORMULA_139);					//Att
-				int tCrt=(int)tempHost.Result(FormulaKeys.FORMULA_143);					//Crt
+//				int tHp=(int)tempHost.Result(FormulaKeys.FORMULA_137);					//Hp
+//				int tDef=(int)tempHost.Result(FormulaKeys.FORMULA_141);					//Def
+//				int tAtt=(int)tempHost.Result(FormulaKeys.FORMULA_139);					//Att
+//				int tCrt=(int)tempHost.Result(FormulaKeys.FORMULA_143);					//Crt
 				int tLevel=tempHost.GetDynamicIntByKey(SignKeys.LEVEL);
 				m_LevelUpExp.gameObject.SetActive(true);
 				m_Level.text="LV."+nowLevel.ToString()+"-->"+tLevel.ToString();
 //
-				ShowItemInfo(nowHp,nowDef,nowAtt,nowCrt,tHp,tDef,tAtt,tCrt);
+//				ShowItemInfo(nowHp,nowDef,nowAtt,nowCrt,tHp,tDef,tAtt,tCrt);
 
-				m_Exp.fillAmount=_host.GetDynamicIntByKey(SignKeys.EXP)/_host.Result(FormulaKeys.FORMULA_141);
-				m_LevelUpExp.fillAmount=tempHost.GetDynamicIntByKey(SignKeys.EXP)/tempHost.Result(FormulaKeys.FORMULA_141);
+//				m_Exp.fillAmount=_host.GetDynamicIntByKey(SignKeys.EXP)/_host.Result(FormulaKeys.FORMULA_141);
+//				m_LevelUpExp.fillAmount=tempHost.GetDynamicIntByKey(SignKeys.EXP)/tempHost.Result(FormulaKeys.FORMULA_141);
 				//			if(_host.GetDynamicIntByKey(SignKeys.LEVEL)<tLevel)
 				if(_host.GetDynamicIntByKey(SignKeys.LEVEL)<tLevel)
 				{
@@ -548,13 +550,13 @@ public class ItemInfoPanel : UIPanelBase {
 				m_effect2.text=(string)_host.GetDynamicStrByKey(SignKeys.ITEMEFFECT2);
 				m_Effect1Des1.text="被动技能";
 				m_Level.text="LV."+nowLevel.ToString();
-				ShowItemInfo(nowHp,nowDef,nowAtt,nowCrt);
-				m_Exp.fillAmount=_host.GetDynamicIntByKey(SignKeys.EXP)/_host.Result(FormulaKeys.FORMULA_141);
+//				ShowItemInfo(nowHp,nowDef,nowAtt,nowCrt);
+//				m_Exp.fillAmount=_host.GetDynamicIntByKey(SignKeys.EXP)/_host.Result(FormulaKeys.FORMULA_141);
 			}
 
 
 			#endregion
-			for(int i=0,max=listBlckStars.Length;i<max;i++)
+/*			for(int i=0,max=listBlckStars.Length;i<max;i++)
 			{
 				if(i<MaxStars)
 					{
@@ -576,7 +578,7 @@ public class ItemInfoPanel : UIPanelBase {
 						stars[i].SetActive(false);
 					}
 				}
-
+*/
 
 				m_StarsTable.Reposition();
 				m_Hpob.SetActive(true);
@@ -584,31 +586,31 @@ public class ItemInfoPanel : UIPanelBase {
 				m_Attob.SetActive(true);
 				m_Crtob.SetActive(true);
 				m_InfoTable.Reposition();
-			Debug.Log(">>>>>>>>>>>>>>>>>>>>>>>"+nowLevel+"/"+maxLevel);
-			if(maxLevel==nowLevel)					//判断是否可升级
-			{
-				FullLevelEquip();
-			}
-			else 
-			{
-				NoFullLevelEquip();
-			}
-		}
-			else if(type==6)//碎片
-			{
+//			Debug.Log(">>>>>>>>>>>>>>>>>>>>>>>"+nowLevel+"/"+maxLevel);
+//			if(maxLevel==nowLevel)					//判断是否可升级
+//			{
+//				FullLevelEquip();
+//			}
+//			else 
+//			{
+//				NoFullLevelEquip();
+//			}
+//		}
+//			else if(type==6)//碎片
+//			{
 
-				m_Exp.fillAmount=1f;
-				m_Level.text="MAX";			//等级
+//				m_Exp.fillAmount=1f;
+//				m_Level.text="MAX";			//等级
 
-				m_Hpob.SetActive(false);
+//				m_Hpob.SetActive(false);
 				m_Defob.SetActive(false);
 				m_Attob.SetActive(false);
 				m_Crtob.SetActive(false);
 
-				int MaxStars=(int)m_host.Result(FormulaKeys.FORMULA_136);
-				int NowStars=(int)m_host.Result(FormulaKeys.FORMULA_135);
+//				int MaxStars=(int)m_host.Result(FormulaKeys.FORMULA_136);
+//				int NowStars=(int)m_host.Result(FormulaKeys.FORMULA_135);
 
-				for(int i=0,max=listBlckStars.Length;i<max;i++)
+/*				for(int i=0,max=listBlckStars.Length;i<max;i++)
 				{
 					if(i<MaxStars)
 					{
@@ -630,11 +632,12 @@ public class ItemInfoPanel : UIPanelBase {
 						stars[i].SetActive(false);
 					}
 				}
+*/
 				m_StarsTable.Reposition();
 
-				m_Des.text=	(string)_host.GetDynamicStrByKey(SignKeys.DESCRIPTION);
-				m_Effect1.text=(string)_host.GetDynamicStrByKey(SignKeys.ITEMEFFECT1);
-				m_effect2.text=(string)_host.GetDynamicStrByKey(SignKeys.ITEMEFFECT2);
+//				m_Des.text=	(string)_host.GetDynamicStrByKey(SignKeys.DESCRIPTION);
+//				m_Effect1.text=(string)_host.GetDynamicStrByKey(SignKeys.ITEMEFFECT1);
+//				m_effect2.text=(string)_host.GetDynamicStrByKey(SignKeys.ITEMEFFECT2);
 			}
 	}
 	/// <summary>

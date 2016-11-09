@@ -14,6 +14,7 @@ namespace FormulaBase {
 			{ "store", "config/"},
 			{ "system_sfx", "config/"},
 			{ "talk", "config/"},
+			{ "upgrade_info", "config/"},
 			{ "items", "items/_config/"},
 			{ "notedata", "note/_config/"},
 			{ "pet", "servant/_config/"},

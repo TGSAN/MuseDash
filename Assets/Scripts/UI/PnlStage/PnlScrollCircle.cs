@@ -379,7 +379,7 @@ namespace Assets.Scripts.NGUI
             JumpToSong(PnlScrollCircle.currentSongIdx);
             UpdateInfo();
             enabled = false;
-            DOTweenUtil.Delay(() =>
+            DOTweenUtils.Delay(() =>
             {
                 enabled = true;
             }, Time.deltaTime);
@@ -443,7 +443,7 @@ namespace Assets.Scripts.NGUI
 
                     if (diff > 0)
                     {
-						cost = StageBattleComponent.Instance.Host.Result(FormulaKeys.FORMULA_45);
+						cost = StageBattleComponent.Instance.Host.Result(FormulaKeys.FORMULA_20);
                     }
                 }
                 txtEnergyLast.text = cost.ToString();
@@ -586,7 +586,7 @@ namespace Assets.Scripts.NGUI
             }
 
             var alphaTo = m_StageInfos[m_CurrentIdx].isLock ? 0.0f : 1.0f;
-            DOTweenUtil.TweenAllAlphaTo(btnStart, alphaTo, btnFadeTime, 0.1f);
+            DOTweenUtils.TweenAllAlphaTo(btnStart, alphaTo, btnFadeTime, 0.1f);
             btnStart.GetComponent<TweenAlpha>().enabled = !m_StageInfos[m_CurrentIdx].isLock;
             var midIdx = Mathf.RoundToInt(m_ZAngle / angle + 2);
             midIdx %= m_CellGroup.Count;
@@ -785,7 +785,7 @@ namespace Assets.Scripts.NGUI
             pivot.transform.localEulerAngles = angleAxis;
             var offset = new Vector3(0, 0, numFrom * angle);
             OnChangeOffset(offset, animDuration);
-            DOTweenUtil.Delay(() =>
+            DOTweenUtils.Delay(() =>
             {
                 m_FinishEnter = true;
             }, animDuration);

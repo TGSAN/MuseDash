@@ -330,6 +330,10 @@ namespace FormulaBase {
 		/// SUIT_EFFECT_DESC
 		///
 		public const string SUIT_EFFECT_DESC = "SUIT_EFFECT_DESC";
+		///
+		/// SUIT_GROUP
+		///
+		public const string SUIT_GROUP = "SUIT_GROUP";
 
 	}
 }

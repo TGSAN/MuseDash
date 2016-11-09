@@ -54,7 +54,7 @@ namespace GameLogic
         public int prop_value;
         public float damage_growth;
 
-		public int enable_jump;
+        public int enable_jump;
 
         public bool missCombo;
         public bool addCombo;
@@ -66,10 +66,10 @@ namespace GameLogic
 
     public struct MusicConfigData
     {
-		public int id;
-		public decimal time;
-		public int level;
-		public string note_uid;
+        public int id;
+        public decimal time;
+        public int level;
+        public string note_uid;
     }
 
     public struct MusicData
@@ -140,7 +140,7 @@ namespace GameLogic
             //if (result < PERFECTINTERVAL) {
             //	return MISS;
             //}
-			if ((this.nodeData.enable_jump == 1) && GameGlobal.gGameTouchPlay.IsJump())
+            if ((this.nodeData.enable_jump == 1) && GameGlobal.gGameTouchPlay.IsJump())
             {
                 return GameMusic.JUMPOVER;
             }
@@ -250,16 +250,18 @@ namespace GameLogic
         }
 
         public static int GetNodeIdxByNodeid(string uid)
-		{
-			int len = ConfigPool.Instance.GetConfigByName (CONFIG_NAME).Count;
-			foreach (string keyId in ConfigPool.Instance.GetConfigByName(CONFIG_NAME).Keys) {
-				if (uid == ConfigPool.Instance.GetConfigStringValue (CONFIG_NAME, keyId, "uid")) {
-					return int.Parse (keyId);
-				}
-			}
+        {
+            int len = ConfigPool.Instance.GetConfigByName(CONFIG_NAME).Count;
+            foreach (string keyId in ConfigPool.Instance.GetConfigByName(CONFIG_NAME).Keys)
+            {
+                if (uid == ConfigPool.Instance.GetConfigStringValue(CONFIG_NAME, keyId, "uid"))
+                {
+                    return int.Parse(keyId);
+                }
+            }
 
-			return 0;
-		}
+            return 0;
+        }
     }
 
     /// <summary>
@@ -293,22 +295,22 @@ namespace GameLogic
             {
                 MusicConfigData sd = new MusicConfigData();
                 sd = (MusicConfigData)this.ConfigToObject(_data[i], sd);
-				if (sd.time < tickLimit)
+                if (sd.time < tickLimit)
                 {
                     Debug.Assert(false, "关卡配置" + filename + "存在Timming少于2秒的node点 : " + i);
                     continue;
                 }
 
                 MusicData md = new MusicData();
-				md.objId = sd.id;
-				md.tick = decimal.Round(sd.time, 2);
+                md.objId = sd.id;
+                md.tick = decimal.Round(sd.time, 2);
                 md.configData = sd;
                 md.SetAttackRangeRate(-1f);
 
-				string nodeId = md.configData.note_uid;
-				if (md.objId <= 0 || nodeId == null)
+                string nodeId = md.configData.note_uid;
+                if (md.objId <= 0 || nodeId == null)
                 {
-					Debug.Assert(false, "关卡配置" + filename + "存在无效note_uid : " + i);
+                    Debug.Assert(false, "关卡配置" + filename + "存在无效note_uid : " + i);
                 }
 
                 foreach (NodeConfigData _nd in nodeData)

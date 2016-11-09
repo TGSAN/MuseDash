@@ -144,6 +144,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1000014246668994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011053061546}
+  - 114: {fileID: 114000011503928498}
+  m_Layer: 5
+  m_Name: SprMask
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!4 &4000010134629694
 Transform:
   m_ObjectHideFlags: 1
@@ -170,6 +186,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000013921830188}
   m_RootOrder: 6
+--- !u!4 &4000011053061546
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014246668994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013921830188}
+  m_RootOrder: 7
 --- !u!4 &4000012657005402
 Transform:
   m_ObjectHideFlags: 1
@@ -203,7 +232,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011386559160}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 108.6, y: 26.5, z: 0}
+  m_LocalPosition: {x: 1.086e+10, y: 2.65e+9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -214,6 +243,7 @@ Transform:
   - {fileID: 4000012657005402}
   - {fileID: 4000014209979032}
   - {fileID: 4000010745802002}
+  - {fileID: 4000011053061546}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000013979474182
@@ -249,7 +279,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012719839236}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -33, y: -45, z: 0}
+  m_LocalPosition: {x: -34, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -265,7 +295,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 120, y: 120, z: 1}
+  m_Size: {x: 142, y: 142, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114000010112444320
 MonoBehaviour:
@@ -481,10 +511,65 @@ MonoBehaviour:
   HideAnimation: 
   sprSelected: {fileID: 114000011708329230}
   sprOn: {fileID: 114000011642191824}
+  sprLock: {fileID: 114000011503928498}
   txtLvl: {fileID: 114000010748723778}
+  txtLv: {fileID: 114000014022830202}
   texIcon: {fileID: 114000010112444320}
   txtType: {fileID: 114000011861998306}
   infoPanelName: PnlItemInfoEquip
+--- !u!114 &114000011503928498
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014246668994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 0.5882353}
+  mPivot: 4
+  mWidth: 120
+  mHeight: 120
+  mDepth: 107
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 114000014215409208, guid: 16eabfe9c7826c34ba402df1690462d5, type: 2}
+  mSpriteName: item_mask
+  mFillCenter: 1
 --- !u!114 &114000011642191824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -804,12 +889,12 @@ MonoBehaviour:
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 3
   mWidth: 34
-  mHeight: 30
+  mHeight: 2
   mDepth: 104
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.1333333
+  aspectRatio: 1.2142857
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: bb22fb5beacef47a6816ba69bce73b56, type: 3}
   mFont: {fileID: 0}

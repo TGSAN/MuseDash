@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Sigleton<T> where T : new()
+public class Singleton<T> where T : new()
 {
     private static T m_Instance;
 

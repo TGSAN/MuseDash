@@ -1,6 +1,8 @@
 ﻿using DYUnityLib;
+using FormulaBase;
 using GameLogic;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -40,6 +42,12 @@ public class ResourceLoader : MonoBehaviour
 	}
 	*/
 
+    public Coroutine Load(FormulaHost host, UITexture tex)
+    {
+        var icon = host.GetDynamicStrByKey(SignKeys.ICON);
+        return ResourceLoader.Instance.Load(icon, res => tex.mainTexture = res as Texture);
+    }
+
     public Coroutine Load(string path, ResourceLoaderHandler handler, string resFrom = RES_FROM_RESOURCE)
     {
         if (resFrom == RES_FROM_RESOURCE)
@@ -71,9 +79,8 @@ public class ResourceLoader : MonoBehaviour
         }
         else if (resFrom == RES_FROM_WWW)
         {
-            WWW streamRes = new WWW(AssetBundleFileMangager.FileLoadResPath + path);
+            WWW streamRes = new WWW(AssetBundleFileMangager.STREAMINGASSETS + path);
             yield return streamRes;
-
             resObj = streamRes.assetBundle.LoadAsset<UnityEngine.Object>(path);
         }
 

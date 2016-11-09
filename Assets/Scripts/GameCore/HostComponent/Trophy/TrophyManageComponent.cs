@@ -29,43 +29,43 @@ namespace FormulaBase {
 		public float GetNormalFoodProbability()
 		{
 			GetItemHost().SetDynamicData("ID",6);
-			return (float)GetItemHost().Result(FormulaKeys.FORMULA_104);
+			return 0;
 		}
 		//获取宠物食物
 		public float GetPetFoodProbability()
 		{
 			GetItemHost().SetDynamicData("ID",6);
-			return (float)GetItemHost().Result(FormulaKeys.FORMULA_123);
+			return 0;
 		}
 		//获取角色升星
 		public float GetRoleUpStarsProbability()
 		{
 			GetItemHost().SetDynamicData("ID",6);
-			return (float)GetItemHost().Result(FormulaKeys.FORMULA_125);
+			return 0;
 		}
 		//获取装备升星
 		public float GetEquipUpStarsProbability()
 		{
 			GetItemHost().SetDynamicData("ID",6);
-			return (float)GetItemHost().Result(FormulaKeys.FORMULA_126);
+			return 0;
 		}
 		//获取武器
 		public float GetWeaponProbablity()
 		{
 			GetItemHost().SetDynamicData("ID",6);
-			return (float)GetItemHost().Result(FormulaKeys.FORMULA_127);
+			return 0;
 		}
 		//获取饰品
 		public float GetAccessoriesProbality()
 		{
 			GetItemHost().SetDynamicData("ID",6);
-			return (float)GetItemHost().Result(FormulaKeys.FORMULA_128);
+			return 0;
 		}
 		//获取宠物碎片
 		public float GetPetPatchProbality()
 		{
 			GetItemHost().SetDynamicData("ID",6);
-			return (float)GetItemHost().Result(FormulaKeys.FORMULA_129);
+			return 0;
 		}
 //		public void Init()
 //		{

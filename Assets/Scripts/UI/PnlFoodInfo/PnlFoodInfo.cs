@@ -64,7 +64,7 @@ namespace PnlFoodInfo
             OnEnter();
             var name = h.GetDynamicStrByKey(SignKeys.NAME);
             var curLvl = h.GetDynamicStrByKey(SignKeys.LEVEL);
-            var exp = h.Result(FormulaKeys.FORMULA_265);
+            var exp = h.Result(FormulaKeys.FORMULA_57);
             var description = h.GetDynamicStrByKey(SignKeys.DESCRIPTION);
             var cost = ItemManageComponent.Instance.GetItemMoney(h);
 

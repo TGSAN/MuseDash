@@ -15,9 +15,11 @@ namespace PnlCharChose
         public Transform spiParent, pointParent;
         public UIButton btnApply, btnPurchase;
         public UILabel txtApplying;
+        public Transform btnsParent;
+        public int clothIdx = 0;
         private readonly List<string> m_ActionPaths = new List<string>();
-        private List<UIToggle> m_Points = new List<UIToggle>();
-        private Dictionary<int, GameObject> m_SpiAniGODic = new Dictionary<int, GameObject>();
+        private readonly List<UIToggle> m_Points = new List<UIToggle>();
+        private readonly Dictionary<int, GameObject> m_SpiAniGODic = new Dictionary<int, GameObject>();
 
         public int choseType
         {
@@ -102,6 +104,23 @@ namespace PnlCharChose
                 FormulaBase.RoleManageComponent.Instance.UnlockRole(choseType, this.UnLockRoleCallback);
             }));
             OnCharacterChange(choseType);
+
+            var btns = btnsParent.GetComponentsInChildren<UIButton>();
+            foreach (var uiButton in btns)
+            {
+                var btn = uiButton;
+                uiButton.onClick.Add(new EventDelegate(() =>
+                {
+                    var suits = FormulaBase.RoleManageComponent.Instance.GetCloths(choseType);
+                    var idx = btn.transform.GetSiblingIndex();
+                    clothIdx = idx;
+                    if (clothIdx < suits.Count)
+                    {
+                        var suit = suits[clothIdx];
+                        PnlCharCosChose.PnlCharCosChose.Instance.OnShow(suit);
+                    }
+                }));
+            }
         }
 
         /// <summary>
@@ -130,7 +149,8 @@ namespace PnlCharChose
                 var template = Resources.Load(path) as GameObject;
                 if (template)
                 {
-                    var go = GameObject.Instantiate(Resources.Load(path)) as GameObject;
+                    GameObject go = null;
+                    ResourceLoader.Instance.Load(path, res => go = Instantiate(res) as GameObject);
                     go.transform.SetParent(spiParent, false);
                     go.SetActive(true);
                     go.transform.localPosition = Vector3.zero;

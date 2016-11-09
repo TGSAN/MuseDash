@@ -29,8 +29,8 @@ public class AirEnergyBottleController : BaseEnemyObjectController {
 
 	private void RecoveryEffects(){
 		var myHost = BattleRoleAttributeComponent.Instance.GetBattleRole ();
-		int recoverValue = (int)myHost.Result (FormulaKeys.FORMULA_47);
-		BattleRoleAttributeComponent.Instance.AddHp (recoverValue);
+		//int recoverValue = (int)myHost.Result (FormulaKeys.FORMULA_47);
+		//BattleRoleAttributeComponent.Instance.AddHp (recoverValue);
 
 		BattleEnemyManager.Instance.SetPlayResult (this.idx, GameMusic.PERFECT);
 		BattleRoleAttributeComponent.Instance.FireSkill (SkillComponent.ON_EAT_ITEM);

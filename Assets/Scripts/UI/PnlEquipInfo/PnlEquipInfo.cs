@@ -1,3 +1,4 @@
+using Assets.Scripts.Common;
 using FormulaBase;
 
 /// UI分析工具自动生成代码
@@ -24,11 +25,12 @@ namespace PnlEquipInfo
         public UIButton btnUpgrade;
         public UIButton btnUpgradeBack;
         public UIButton btnConfirm;
+        public UISprite sprExpCurBar, sprExpNextBar;
         public Transform star;
         public GameObject charBack, suitcaseBack, itemUpgrade;
         public Transform upgradeItemsParent;
         private static PnlEquipInfo instance = null;
-        private Animator m_Animator;
+        private bool m_IsUpgrade = false;
         public List<UITexture> upgradeTexs = new List<UITexture>();
         public List<UILabel> upgradeTxts = new List<UILabel>();
 
@@ -40,33 +42,56 @@ namespace PnlEquipInfo
             }
         }
 
+        public Animator animator
+        {
+            get;
+            private set;
+        }
+
         public FormulaHost host
         {
             private set;
             get;
         }
 
+        public bool isUpgrade
+        {
+            get { return m_IsUpgrade; }
+            set
+            {
+                m_IsUpgrade = value;
+                UpgradeInfoActive(m_IsUpgrade);
+                PnlSuitcase.PnlSuitcase.Instance.isUpgrade = m_IsUpgrade;
+                sprExpNextBar.gameObject.SetActive(m_IsUpgrade);
+                if (m_IsUpgrade)
+                {
+                    PnlChar.PnlChar.Instance.gameObject.SetActive(false);
+                }
+                else
+                {
+                    OnUpgradeItemsRefresh();
+                }
+            }
+        }
+
+        public void Play(string animName)
+        {
+            animator.Play(animName);
+        }
+
         public void OnEnter()
         {
-            m_Animator.Play("pnl_equip_info_in");
+            Play("pnl_equip_info_in");
         }
 
         public void OnExit()
         {
-            m_Animator.Play("pnl_item_info_out");
+            Play("pnl_item_info_out");
         }
 
         private void Awake()
         {
-            m_Animator = GetComponent<Animator>();
-        }
-
-        private void Start()
-        {
-            DOTweenUtil.Delay(() =>
-            {
-                PnlChar.PnlChar.Instance.onRoleChange += idx => OnExit();
-            }, Time.deltaTime);
+            animator = GetComponent<Animator>();
         }
 
         private void Update()
@@ -89,7 +114,7 @@ namespace PnlEquipInfo
             //btnBack调用此处，使手提包界面选择取消
             PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(null);
             //退出升级状态
-            OnUpgradeState(false);
+            isUpgrade = false;
             //退出动画
             OnExit();
         }
@@ -101,30 +126,17 @@ namespace PnlEquipInfo
             if (isEnter)
             {
                 PnlChar.PnlChar.Instance.gameObject.SetActive(false);
-                PnlSuitcase.PnlSuitcase.Instance.OnShow();
-                PnlCharInfo.PnlCharInfo.Instance.OnExit();
             }
             else
             {
-                PnlSuitcase.PnlSuitcase.Instance.SetTypeActive(true, true, true);
                 OnUpgradeItemsRefresh();
             }
-            DOTweenUtil.Delay(() =>
-            {
-                if (isEnter)
-                {
-                    PnlSuitcase.PnlSuitcase.Instance.SetTypeActive(false, true, false);
-                }
-                PnlSuitcase.PnlSuitcase.Instance.tglEquip.enabled = !isEnter;
-                PnlSuitcase.PnlSuitcase.Instance.tglFood.enabled = !isEnter;
-                PnlSuitcase.PnlSuitcase.Instance.tglServant.enabled = !isEnter;
-            }, 0.5f);
         }
 
         public override void OnShow(FormulaHost h)
         {
             gameObject.SetActive(true);
-            m_Animator.enabled = true;
+            animator.enabled = true;
             OnEnter();
 
             Action updateInfo = () =>
@@ -132,9 +144,9 @@ namespace PnlEquipInfo
                 var name = h.GetDynamicStrByKey(SignKeys.NAME);
                 var type = h.GetDynamicStrByKey(SignKeys.TYPE);
                 var curLvl = h.GetDynamicStrByKey(SignKeys.LEVEL);
-                var vigour = h.Result(FormulaKeys.FORMULA_258);
-                var stamina = h.Result(FormulaKeys.FORMULA_259);
-                var strengh = h.Result(FormulaKeys.FORMULA_264);
+                var vigour = h.Result(FormulaKeys.FORMULA_50);
+                var stamina = h.Result(FormulaKeys.FORMULA_51);
+                var strengh = h.Result(FormulaKeys.FORMULA_56);
                 var description = h.GetDynamicStrByKey(SignKeys.DESCRIPTION);
                 var cost = ItemManageComponent.Instance.GetItemMoney(h);
                 var effect = h.GetDynamicStrByKey(SignKeys.SUIT_EFFECT_DESC);
@@ -172,7 +184,7 @@ namespace PnlEquipInfo
                         inTxt.text = allName[i];
                         if (idx < suitcases.Count)
                         {
-                            if (suitcases[idx].GetDynamicStrByKey(SignKeys.NAME) == allName[i])
+                            if (allName.Contains(suitcases[idx].GetDynamicStrByKey(SignKeys.NAME)))
                             {
                                 idx++;
                                 inTxt.gameObject.SetActive(true);
@@ -217,14 +229,22 @@ namespace PnlEquipInfo
 
             UIEventListener.Get(btnUpgrade.gameObject).onClick = (go) =>
             {
-                OnUpgradeState(true);
+                if (UpgradeManager.instance.IsItemLvlMax(host))
+                {
+                    CommonPanel.GetInstance().ShowText("物品已达最高等级，无法升级");
+                }
+                else
+                {
+                    Play("item_upgrade_in");
+                    isUpgrade = true;
+                }
             };
             UIEventListener.VoidDelegate callFunc = (go) =>
             {
                 var isShow = PnlMainMenu.PnlMainMenu.Instance.goSelectedSuitcase.activeSelf;
                 PnlChar.PnlChar.Instance.gameObject.SetActive(!isShow);
                 PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(isShow);
-                OnUpgradeState(false);
+                isUpgrade = false;
             };
             UIEventListener.Get(btnUpgradeBack.gameObject).onClick = callFunc;
             UIEventListener.Get(btnConfirm.gameObject).onClick = (go) =>
@@ -232,11 +252,12 @@ namespace PnlEquipInfo
                 var hosts = PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost;
                 if (hosts.Count > 0)
                 {
-                    ItemManageComponent.Instance.ItemLevelUp(h, hosts, (result) =>
+                    UpgradeManager.instance.ItemLevelUp(h, hosts, (result) =>
                     {
                         PnlSuitcase.PnlSuitcase.Instance.SetUpgradeSelectedCell(null);
                         PnlSuitcase.PnlSuitcase.Instance.OnShow();
                         updateInfo();
+                        callFunc(gameObject);
                     });
                 }
             };
@@ -245,6 +266,10 @@ namespace PnlEquipInfo
 
         public void OnUpgradeItemsRefresh()
         {
+            if (!gameObject.activeSelf)
+            {
+                return;
+            }
             var hostList = PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost;
             for (int i = 0; i < upgradeTexs.Count; i++)
             {
@@ -261,23 +286,35 @@ namespace PnlEquipInfo
                 else
                 {
                     tex.mainTexture = null;
-                    txt.text = "";
                 }
+                txt.transform.parent.GetChild(1).gameObject.SetActive(i < hostList.Count);
+                txt.gameObject.SetActive(i < hostList.Count);
             }
             if (host != null)
             {
                 var originLvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
                 var originExp = host.GetDynamicIntByKey(SignKeys.EXP);
-                host = ItemManageComponent.Instance.ItemLevelUp(host, hostList, null, false);
+                var originRequiredExp = ConfigPool.Instance.GetConfigIntValue("experience", originLvl.ToString(), "eqpt_exp");
+                var originExpPercent = (float)originExp / (float)originRequiredExp;
+
+                host = UpgradeManager.instance.ItemLevelUp(host, hostList, null, false);
+
                 var afterLvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
                 var afterExp = host.GetDynamicIntByKey(SignKeys.EXP);
-                var vigourTo = (int)host.Result(FormulaKeys.FORMULA_258);
-                var staminaTo = (int)host.Result(FormulaKeys.FORMULA_259);
-                var strenghTo = (int)host.Result(FormulaKeys.FORMULA_264);
+                var vigourTo = (int)host.Result(FormulaKeys.FORMULA_50);
+                var staminaTo = (int)host.Result(FormulaKeys.FORMULA_51);
+                var strenghTo = (int)host.Result(FormulaKeys.FORMULA_56);
+                var curExpPercent = (float)afterExp / (float)originRequiredExp;
+                curExpPercent = afterLvl != originLvl ? 1.0f : curExpPercent;
+
                 txtNextLvl.text = afterLvl.ToString();
                 txtVigourTo.text = vigourTo.ToString();
                 txtStaminaTo.text = staminaTo.ToString();
                 txtStrenghTo.text = strenghTo.ToString();
+
+                sprExpCurBar.fillAmount = originExpPercent;
+                sprExpNextBar.fillAmount = curExpPercent;
+
                 host.SetDynamicData(SignKeys.LEVEL, originLvl);
                 host.SetDynamicData(SignKeys.EXP, originExp);
             }

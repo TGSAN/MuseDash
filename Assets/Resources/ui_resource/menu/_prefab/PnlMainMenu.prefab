@@ -187,6 +187,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010058112624}
   - 114: {fileID: 114000012688025632}
+  - 114: {fileID: 114000014239985310}
   m_Layer: 5
   m_Name: BtnAdventureSelect
   m_TagString: Untagged
@@ -1509,6 +1510,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012800056078}
   - 114: {fileID: 114000013974068346}
+  - 114: {fileID: 114000012193938296}
   m_Layer: 5
   m_Name: BtnSuitcaseSelect
   m_TagString: Untagged
@@ -1576,6 +1578,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012726762126}
   - 114: {fileID: 114000011236733660}
+  - 114: {fileID: 114000012651584222}
   m_Layer: 5
   m_Name: BtnEnhancementSelect
   m_TagString: Untagged
@@ -1833,6 +1836,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012117906204}
   - 114: {fileID: 114000010078459112}
+  - 114: {fileID: 114000012954210648}
   m_Layer: 5
   m_Name: BtnStoreButtonSelect
   m_TagString: Untagged
@@ -7376,6 +7380,18 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000012193938296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013215768442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce582b2d13097044ca1bead73cb6194a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  col: {fileID: 65000013933974406}
 --- !u!114 &114000012207834246
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8135,6 +8151,18 @@ MonoBehaviour:
   ShowAnimation: 
   HideAnimation: 
   goSelectedSuitcase: {fileID: 1000013215768442}
+--- !u!114 &114000012651584222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013365178616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce582b2d13097044ca1bead73cb6194a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  col: {fileID: 65000013529832664}
 --- !u!114 &114000012688025632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8578,7 +8606,7 @@ MonoBehaviour:
   - 
   - 
   - 
-  - 
+  - char_info_in
   - 
   - 
   - 
@@ -8663,6 +8691,18 @@ MonoBehaviour:
   from: {x: 1.2, y: 1.2, z: 1.2}
   to: {x: 1.4, y: 1.4, z: 1.4}
   updateTable: 0
+--- !u!114 &114000012954210648
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014004768068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce582b2d13097044ca1bead73cb6194a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  col: {fileID: 65000014065442004}
 --- !u!114 &114000012968539696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10489,6 +10529,18 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 7813e9a99211745c984b111b3f050312, type: 2}
   mSpriteName: black_block
   mFillCenter: 1
+--- !u!114 &114000014239985310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010603904690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce582b2d13097044ca1bead73cb6194a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  col: {fileID: 65000010847649060}
 --- !u!114 &114000014292889042
 MonoBehaviour:
   m_ObjectHideFlags: 1

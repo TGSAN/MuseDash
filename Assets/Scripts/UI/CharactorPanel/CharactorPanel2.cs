@@ -131,11 +131,11 @@ public class CharactorPanel2 : UIPanelBase {
 
 		FormulaHost thost=RoleManageComponent.Instance.GetRole(RoleManageComponent.Instance.GetFightGirlIndex());
 	
-		int hp= (int)thost.Result(FormulaKeys.FORMULA_186);
-		int df= (int)thost.Result(FormulaKeys.FORMULA_188);
-		int ap= (int)thost.Result(FormulaKeys.FORMULA_187);
-		int dr= (int)thost.Result(FormulaKeys.FORMULA_189);
-		m_Exp.fillAmount=thost.GetDynamicIntByKey(SignKeys.EXP)/thost.Result(FormulaKeys.FORMULA_15);
+		int hp= (int)thost.Result(FormulaKeys.FORMULA_38);
+		int df= (int)thost.Result(FormulaKeys.FORMULA_40);
+		int ap= (int)thost.Result(FormulaKeys.FORMULA_39);
+		//int dr= (int)thost.Result(FormulaKeys.FORMULA_189);
+		m_Exp.fillAmount=thost.GetDynamicIntByKey(SignKeys.EXP)/thost.Result(FormulaKeys.FORMULA_12);
 		int star=thost.GetDynamicIntByKey(SignKeys.LEVEL_STAR);
 		for(int i=0,max=m_ListStars.Count;i<max;i++)
 		{
@@ -152,14 +152,14 @@ public class CharactorPanel2 : UIPanelBase {
 			{
 				Debug.Log("显示升级信息 ");
 				FormulaHost Uphost=RoleManageComponent.Instance.GetLevelUpHost(thost);
-				int thp= (int)Uphost.Result(FormulaKeys.FORMULA_186);
-				int tdf= (int)Uphost.Result(FormulaKeys.FORMULA_188);
-				int tap= (int)Uphost.Result(FormulaKeys.FORMULA_187);
-				int tdr= (int)Uphost.Result(FormulaKeys.FORMULA_189);
+				int thp= (int)Uphost.Result(FormulaKeys.FORMULA_38);
+				int tdf= (int)Uphost.Result(FormulaKeys.FORMULA_40);
+				int tap= (int)Uphost.Result(FormulaKeys.FORMULA_39);
+				//int tdr= (int)Uphost.Result(FormulaKeys.FORMULA_189);
 			//	EquipManageComponent.Instance.GetAllEquipedEquip(ref hp,ref df,ref ap,ref dr,  ref thp,ref df,ref ap,ref dr );
-				ShowAttributeInfo(hp,df,ap,dr,thp,tdf,tap,tdr);
+				//ShowAttributeInfo(hp,df,ap,dr,thp,tdf,tap,tdr);
 				m_addExp.gameObject.SetActive(true);
-				m_addExp.fillAmount=Uphost.GetDynamicIntByKey(SignKeys.EXP)/Uphost.Result(FormulaKeys.FORMULA_15);
+				m_addExp.fillAmount=Uphost.GetDynamicIntByKey(SignKeys.EXP)/Uphost.Result(FormulaKeys.FORMULA_12);
 				m_Lv.text="LV.:"+thost.GetDynamicIntByKey(SignKeys.LEVEL)+"->"+Uphost.GetDynamicIntByKey(SignKeys.LEVEL);
 				GetLevelUpPanel.SetClickSureFun(()=>{
 
@@ -180,7 +180,7 @@ public class CharactorPanel2 : UIPanelBase {
 			else 
 			{
 				//EquipManageComponent.Instance.GetAllEquipedEquip(ref hp,ref df,ref ap,ref dr);
-				ShowAttributeInfo(hp,df,ap,dr);
+				//ShowAttributeInfo(hp,df,ap,dr);
 				m_addExp.gameObject.SetActive(false);
 				m_Lv.text="LV.:"+thost.GetDynamicIntByKey(SignKeys.LEVEL);
 			}

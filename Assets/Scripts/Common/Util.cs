@@ -10,7 +10,7 @@ public class JsonUtil
 {
 }
 
-public class DOTweenUtil
+public class DOTweenUtils
 {
     public static Sequence Delay(Action callFunc, float dt)
     {
@@ -24,6 +24,23 @@ public class DOTweenUtil
         return seq;
     }
 
+    public static Sequence Update(Action completeFunc, Func<bool> stopFunc)
+    {
+        var seq = DOTween.Sequence();
+        seq.AppendInterval(float.MaxValue);
+        seq.OnUpdate(() =>
+        {
+            if (stopFunc())
+            {
+                completeFunc();
+                seq.Kill();
+                return;
+            }
+        });
+        seq.Play();
+        return seq;
+    }
+
     public static Tweener[] TweenAllAlphaTo(GameObject go, float alpha, float dt, float near)
     {
         var childTexs = go.GetComponentsInChildren<UIWidget>();
@@ -31,7 +48,7 @@ public class DOTweenUtil
     }
 }
 
-public class ArrayUtil<T>
+public class ArrayUtils<T>
 {
     public static bool Contains(T[] array, T value)
     {
@@ -51,7 +68,7 @@ public class ArrayUtil<T>
     }
 }
 
-public class StringUtil
+public class StringUtils
 {
     public static string LastAfter(string str, char split)
     {
@@ -62,5 +79,25 @@ public class StringUtil
     public static string BeginBefore(string str, char split)
     {
         return str.Split(split)[0];
+    }
+}
+
+public class RandomUtils
+{
+    public static void RandomEvent(float[] probabilities, Action[] events)
+    {
+        const int baseNum = 10000;
+        var random = UnityEngine.Random.Range(0, baseNum);
+        for (var i = 0; i < probabilities.Length; i++)
+        {
+            var probability = probabilities[i];
+            var callFuncEvent = events[i];
+            if (!(random <= probability * baseNum)) continue;
+            if (events.Length > i)
+            {
+                callFuncEvent();
+                break;
+            }
+        }
     }
 }

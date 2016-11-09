@@ -259,7 +259,6 @@ GameObject:
   - 4: {fileID: 4000010602485900}
   - 114: {fileID: 114000010701023008}
   - 114: {fileID: 114000013485159966}
-  - 65: {fileID: 65000012965548578}
   - 114: {fileID: 114000011895226764}
   m_Layer: 5
   m_Name: Grid
@@ -733,18 +732,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 236, y: 64, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65000012965548578
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013249884942}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 720, y: 600, z: 1}
-  m_Center: {x: 285, y: -200, z: 0}
 --- !u!65 &65000014158105334
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1728,6 +1715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollView: {fileID: 0}
+  grid: {fileID: 0}
   panel: {fileID: 0}
   isVertical: 1
   duration: 0.6
@@ -1749,6 +1737,7 @@ MonoBehaviour:
     m_RotationOrder: 0
   originDragEffect: 0
   isEnable: 1
+  maxNum: 16
 --- !u!114 &114000012313256784
 MonoBehaviour:
   m_ObjectHideFlags: 1

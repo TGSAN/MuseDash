@@ -255,7 +255,7 @@ namespace FormulaBase
                 foreach (string oid in _materialdic.Keys)
                 {
                     m_material.Add(_materialdic[oid]);
-                    int temp = (int)_materialdic[oid].Result(FormulaKeys.FORMULA_45);
+                    int temp = (int)_materialdic[oid].Result(FormulaKeys.FORMULA_20);
                     if (temp > id)
                     {
                         id = temp + 1;
@@ -425,6 +425,49 @@ namespace FormulaBase
             All.AddRange(ChestManageComponent.Instance.GetChestList);
             All.AddRange(ChestManageComponent.Instance.GetTimeDownChest);
             FormulaHost.SaveList(All, new HttpEndResponseDelegate(this.CheckChestTimeCallBack));
+        }
+
+        public FormulaHost[] CreateAllItems(int num = 1)
+        {
+            var formulaList = new List<FormulaHost>();
+            var items = ConfigPool.Instance.GetConfigByName("items");
+            for (int i = 1; i <= items.Count; i++)
+            {
+                formulaList.Add(CreateItem(i, num));
+            }
+            return formulaList.ToArray();
+        }
+
+        public FormulaHost CreateItem(int idx, int num = 1)
+        {
+            var itemJson = ConfigPool.Instance.GetConfigValue("items", idx.ToString());
+            var typeName = itemJson["type"].ToString();
+            FormulaHost host = null;
+            if (typeName == "food")
+            {
+                host = materialManageComponent.Instance.CreateItem(idx);
+            }
+            else if (typeName == "servant" || typeName == "debris")
+            {
+            }
+            else
+            {
+                host = EquipManageComponent.Instance.CreateItem(idx);
+            }
+            if (host != null)
+            {
+                host.SetDynamicData(SignKeys.TYPE, typeName);
+                host.SetDynamicData(SignKeys.STACKITEMNUMBER, num);
+                host.SetDynamicData(SignKeys.NAME, itemJson["name"].ToString());
+                host.SetDynamicData(SignKeys.ICON, itemJson["icon"].ToString());
+                host.SetDynamicData(SignKeys.DESCRIPTION, itemJson["description"].ToString());
+                host.SetDynamicData(SignKeys.SUIT, itemJson["suit"].ToString());
+                host.SetDynamicData(SignKeys.QUALITY, itemJson["quality"].ToString());
+                host.SetDynamicData(SignKeys.SUIT_EFFECT_DESC, itemJson["suit_effect_description"].ToString());
+                host.SetDynamicData(SignKeys.EFFECT_DESC, itemJson["effect_description"].ToString());
+                AddItem(host);
+            }
+            return host;
         }
 
         public void CheckChestTimeCallBack(cn.bmob.response.EndPointCallbackData<Hashtable> response)
@@ -795,7 +838,7 @@ namespace FormulaBase
                         break;
 
                     case "Pet":
-                        _listHost[i].Result(FormulaKeys.FORMULA_91);
+                        //_listHost[i].Result(FormulaKeys.FORMULA_91);
                         if ((int)_listHost[i].GetDynamicDataByKey(SignKeys.SMALLlTYPE) == 6)
                         {//碎片
                             t_host = PetManageComponent.Instance.HaveTheSameID(_listHost[i].GetDynamicIntByKey("ID"));
@@ -841,11 +884,11 @@ namespace FormulaBase
             switch (fileName)
             {
                 case "Equip":
-                    saleMoney = (int)_host.Result(FormulaKeys.FORMULA_89);
+                    saleMoney = (int)_host.Result(FormulaKeys.FORMULA_25);
                     break;
 
                 case "Material":
-                    _host.Result(FormulaKeys.FORMULA_93);
+                    _host.Result(FormulaKeys.FORMULA_26);
                     saleMoney = _host.GetDynamicIntByKey(SignKeys.SOLD);
                     break;
 
@@ -896,71 +939,6 @@ namespace FormulaBase
             //	NGUIDebug.Log("AdditemCallBack");
         }
 
-        public bool IsItemLvlMax(FormulaHost host)
-        {
-            var lvlMax = (int)host.Result(FormulaKeys.FORMULA_22);
-            var curLvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
-            return curLvl >= lvlMax;
-        }
-
-        public FormulaHost ItemLevelUp(FormulaHost host, List<FormulaHost> expHosts, HttpResponseDelegate callFunc = null, bool isSave = true)
-        {
-            var exp = 0;
-            expHosts.ForEach(h =>
-            {
-                exp += (int)h.Result(FormulaKeys.FORMULA_265);
-            });
-            var originLvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
-            var originExp = host.GetDynamicIntByKey(SignKeys.EXP);
-            var lvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
-            Action lvlUp = null;
-            var firstTimeExp = originExp;
-            lvlUp = () =>
-            {
-                var expRequired = ConfigPool.Instance.GetConfigIntValue("experience", lvl.ToString(), "eqpt_exp") - firstTimeExp;
-                exp -= expRequired;
-                if (exp >= 0)
-                {
-                    lvl++;
-                    firstTimeExp = 0;
-                    if (!IsItemLvlMax(host))
-                    {
-                        lvlUp();
-                    }
-                }
-                else
-                {
-                    exp += expRequired;
-                    host.SetDynamicData(SignKeys.LEVEL, lvl);
-                    host.SetDynamicData(SignKeys.EXP, exp);
-                }
-            };
-            lvlUp();
-            if (isSave)
-            {
-                CommonPanel.GetInstance().ShowWaittingPanel(true);
-                host.Save((result) =>
-                {
-                    if (result)
-                    {
-                        DeleteListItem(expHosts);
-                    }
-                    else
-                    {
-                        host.SetDynamicData(SignKeys.LEVEL, originLvl);
-                        host.SetDynamicData(SignKeys.EXP, originExp);
-                    }
-
-                    if (callFunc != null)
-                    {
-                        callFunc(result);
-                    }
-                    CommonPanel.GetInstance().ShowWaittingPanel(false);
-                });
-            }
-            return host;
-        }
-
         public List<FormulaHost> GetAppointItem(int _BigType, int _smallType = -1)
         {
             switch (_BigType)
@@ -998,7 +976,7 @@ namespace FormulaBase
             List<FormulaHost> temp = new List<FormulaHost>();
             for (int i = 0, max = m_Equip.Count; i < max; i++)
             {
-                m_Equip[i].Result(FormulaKeys.FORMULA_19);
+                m_Equip[i].Result(FormulaKeys.FORMULA_13);
 
                 int tt = (int)m_Equip[i].GetDynamicDataByKey(SignKeys.TYPE);
                 //				Debugger.Log("Equip Type:"+tt);
@@ -1019,10 +997,12 @@ namespace FormulaBase
             {
                 for (int i = 0, max = m_pet.Count; i < max; i++)
                 {
+                    /*
                     if (m_pet[i].Result(FormulaKeys.FORMULA_115) == _smallType)
                     {
                         temp.Add(m_pet[i]);
                     }
+                    */
                 }
                 return temp;
             }
@@ -1039,10 +1019,12 @@ namespace FormulaBase
             {
                 for (int i = 0, max = m_material.Count; i < max; i++)
                 {
+                    /*
                     if (m_material[i].Result(FormulaKeys.FORMULA_38) == _smallType)
                     {
                         temp.Add(m_material[i]);
                     }
+                    */
                 }
                 return temp;
             }
@@ -1108,19 +1090,19 @@ namespace FormulaBase
                 switch (type)
                 {
                     case "Equip":
-                        GetChosedItem[i].Result(FormulaKeys.FORMULA_19);
+                        GetChosedItem[i].Result(FormulaKeys.FORMULA_13);
                         break;
 
                     case "Material":
-                        GetChosedItem[i].Result(FormulaKeys.FORMULA_93);
+                        GetChosedItem[i].Result(FormulaKeys.FORMULA_26);
                         break;
 
                     case "Pet":
-                        GetChosedItem[i].Result(FormulaKeys.FORMULA_91);
+                        //GetChosedItem[i].Result(FormulaKeys.FORMULA_91);
                         break;
 
                     case "Chest":
-                        GetChosedItem[i].Result(FormulaKeys.FORMULA_90);
+                        //GetChosedItem[i].Result(FormulaKeys.FORMULA_90);
                         break;
                 }
                 if (GetChosedItem[i].GetDynamicIntByKey(SignKeys.QUALITY) > 1)

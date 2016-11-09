@@ -790,7 +790,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011389206952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -130, z: 0}
+  m_LocalPosition: {x: 0, y: -107, z: 0}
   m_LocalScale: {x: 120, y: 120, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -983,6 +983,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowAnimation: 
   HideAnimation: 
+  spiPoint: {fileID: 4000012962023578}
+  btnLeft: {fileID: 114000011812747476}
+  btnRight: {fileID: 114000013565297970}
+  txtName: {fileID: 114000012539748064}
+  txtDescription: {fileID: 114000013754989154}
+  txtIdx: {fileID: 114000013579541890}
+  suits:
+  - {fileID: 4000011667419892}
+  - {fileID: 4000012293538484}
+  - {fileID: 4000012318976628}
 --- !u!114 &114000010102844100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1008,10 +1018,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -1245,10 +1255,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -1675,7 +1685,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3018
+  startingRenderQueue: 3012
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -2490,10 +2500,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -2577,7 +2587,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3010
+  startingRenderQueue: 3004
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -3015,7 +3025,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3016
+  startingRenderQueue: 3010
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0

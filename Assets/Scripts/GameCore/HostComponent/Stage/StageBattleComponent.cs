@@ -64,12 +64,12 @@ namespace FormulaBase
             int diff = task.GetDynamicIntByKey(SignKeys.DIFFCULT);
             this.Host.SetDynamicData(SignKeys.DIFFCULT, diff);
 
-            this.Host.Result(FormulaKeys.FORMULA_9);
+            this.Host.Result(FormulaKeys.FORMULA_7);
 
-            int energy = (int)this.Host.Result(FormulaKeys.FORMULA_45);
+            int energy = (int)this.Host.Result(FormulaKeys.FORMULA_20);
             this.Host.SetDynamicData(SignKeys.ENERGY, energy);
 
-            int targetScore = (int)this.Host.Result(FormulaKeys.FORMULA_329);
+            int targetScore = (int)this.Host.Result(FormulaKeys.FORMULA_87);
             task.SetDynamicData(TaskStageTarget.TASK_SIGNKEY_SCORE + TaskStageTarget.TASK_SIGNKEY_COUNT_TARGET_TAIL, targetScore);
             this.Host.SetDynamicData(TaskStageTarget.TASK_SIGNKEY_SCORE + TaskStageTarget.TASK_SIGNKEY_COUNT_TARGET_TAIL, targetScore);
 
@@ -223,7 +223,7 @@ namespace FormulaBase
                 return 0f;
             }
 
-            return this.Host.Result(FormulaKeys.FORMULA_8);
+            return this.Host.Result(FormulaKeys.FORMULA_6);
         }
 
         public int GetCombo()
@@ -316,7 +316,7 @@ namespace FormulaBase
             }
 
             this.Host.SetDynamicData(SignKeys.ID, id);
-            this.Host.Result(FormulaKeys.FORMULA_9);
+            this.Host.Result(FormulaKeys.FORMULA_7);
         }
 
         public void SetPlayResultLock(uint result, uint lockLevel)
@@ -376,7 +376,7 @@ namespace FormulaBase
             }
 
             this.Host.SetDynamicData(SignKeys.ID, id);
-            this.Host.Result(FormulaKeys.FORMULA_9);
+            this.Host.Result(FormulaKeys.FORMULA_7);
 
             string _scenename = "GameScene";
             SceneLoader.SetLoadInfo(ref _scenename);
@@ -570,7 +570,7 @@ namespace FormulaBase
         public void Dead()
         {
             Debug.Log("Player dead.");
-            int payBackPhysical = (int)(this.Host.Result(FormulaKeys.FORMULA_72) * 0.5);
+            int payBackPhysical = 0;
             AccountPhysicsManagerComponent.Instance.ChangePhysical(payBackPhysical, false);
             EffectManager.Instance.StopCombo();
             SoundEffectComponent.Instance.SayByCurrentRole(GameGlobal.SOUND_TYPE_DEAD);
@@ -593,10 +593,27 @@ namespace FormulaBase
                 return;
             }
 
+            GameGlobal.gGameMusic.PlayMusic();
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+            /延迟0.1s用于音频加载不同步缓冲
+            AudioManager.Instance.SetBgmVolume(0f);
+            DOTweenUtils.Delay(() =>
+            {
+                AudioManager.Instance.SetBgmVolume(1.0f);
+                AudioManager.Instance.SetBackGroundMusicProgress(0.1f);
+                DOTweenUtils.Delay(() =>
+                {
+                    GameGlobal.gGameMusic.Run();
+                    GameGlobal.gGameMusicScene.Run();
+                    Debug.Log("Stage start");
+                }, 0.1f);
+            }, 0.1f);
+#else
             GameGlobal.gGameMusic.Run();
             GameGlobal.gGameMusicScene.Run();
-            GameGlobal.gGameMusic.PlayMusic();
-            Debug.Log("Stage start");
+#endif
+
             //UserUI.Instance.SetGUIActive (false);
         }
 
@@ -748,11 +765,12 @@ namespace FormulaBase
         private void InitData()
         {
             this.LoadMusicData();
-            for (int i = 0; i < this.musicTickData.Count; i++)
+            foreach (object t in this.musicTickData)
             {
-                MusicData md = (MusicData)this.musicTickData[i];
+                MusicData md = (MusicData)t;
                 AudioManager.Instance.AddAudioResource(md.nodeData.key_audio);
             }
+            AudioManager.Instance.AddEmptyAudio();
         }
 
         private void LoadMusicData()
@@ -788,12 +806,12 @@ namespace FormulaBase
 
         public int GetStagePhysical()
         {
-            return (int)this.Host.Result(FormulaKeys.FORMULA_72);
+            return 0;
         }
 
         public string GetSatageAuthor()
         {
-            this.Host.Result(FormulaKeys.FORMULA_9);
+            this.Host.Result(FormulaKeys.FORMULA_7);
             return this.Host.GetDynamicStrByKey(SignKeys.AUTHOR);
         }
     }

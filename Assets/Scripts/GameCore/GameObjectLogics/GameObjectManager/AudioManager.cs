@@ -1,5 +1,6 @@
 ﻿using FormulaBase;
 using GameLogic;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -210,6 +211,15 @@ public class AudioManager
         this.sceneObjectEffects[audioName] = clip;
     }
 
+    public void AddEmptyAudio()
+    {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        var hitAudioName = "sfx_" + RoleManageComponent.Instance.Host.GetDynamicStrByKey(SignKeys.NAME) +
+                            "_hit_notthing_1";
+        AudioCenter.loadSound(hitAudioName);
+#endif
+    }
+
     public void AddAudioResource(string name)
     {
         if (name == null || name.Length < 2)
@@ -218,12 +228,8 @@ public class AudioManager
         }
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-        name = StringUtil.LastAfter(name, '/');
-        if (!m_AndroidDic.ContainsKey(name))
-        {
-            var idx = AudioCenter.loadSound(name);
-            m_AndroidDic.Add(name, idx);
-        }
+        name = StringUtils.LastAfter(name, '/');
+        var idx = AudioCenter.loadSound(name);
 #else
         if (!audioDic.ContainsKey(name))
         {
@@ -240,7 +246,6 @@ public class AudioManager
         {
             return;
         }
-
         this.backGroundMusic.Play();
         Debug.Log("play background music " + this.backGroundMusic.clip.length);
     }
@@ -355,12 +360,8 @@ public class AudioManager
             return;
         }
 #if UNITY_ANDROID && !UNITY_EDITOR
-        name = StringUtil.LastAfter(name, '/');
-        if (m_AndroidDic.ContainsKey(name))
-        {
-            var idx = m_AndroidDic[name];
-            AudioCenter.playSound(idx);
-        }
+        name = StringUtils.LastAfter(name, '/');
+        AudioCenter.playSound(name);
 #else
         if (this.audioDic.ContainsKey(name))
         {
@@ -371,6 +372,12 @@ public class AudioManager
 
     public void PlayHitNothing()
     {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        var jumpAudioName = "jump_normal";
+        var hitAudioName = "sfx_" + RoleManageComponent.Instance.Host.GetDynamicStrByKey(SignKeys.NAME) +
+                            "_hit_notthing_1";
+        AudioCenter.playSound(GameGlobal.gGameTouchPlay.IsJump() ? jumpAudioName : hitAudioName);
+#else
         if (GameGlobal.gGameTouchPlay.IsJump())
         {
             SoundEffectComponent.Instance.SayByCurrentRole(GameGlobal.SOUND_TYPE_UI_JUMP_MISS);
@@ -378,6 +385,7 @@ public class AudioManager
         }
 
         SoundEffectComponent.Instance.SayByCurrentRole(GameGlobal.SOUND_TYPE_UI_ATTACK_MISS);
+#endif
 
         //this.girlEffect.clip = this.girlEffects [0];
         //this.girlEffect.Play ();

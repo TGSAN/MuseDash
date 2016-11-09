@@ -30,7 +30,7 @@ public class GroundMusicNodeController : BaseEnemyObjectController {
 			}
 		}
 
-		int _score = (int)myHost.Result (FormulaKeys.FORMULA_73);
+		int _score = (int)myHost.Result (FormulaKeys.FORMULA_22);
 		TaskStageTarget.Instance.AddScore (_score);
 		BattleEnemyManager.Instance.SetPlayResult (this.idx, GameMusic.PERFECT);
 		BattleRoleAttributeComponent.Instance.FireSkill (SkillComponent.ON_EAT_ITEM);
