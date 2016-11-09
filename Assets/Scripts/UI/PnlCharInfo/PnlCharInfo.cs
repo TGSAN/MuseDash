@@ -255,6 +255,9 @@ namespace PnlCharInfo
             UIEventListener.Get(btnApply.gameObject).onClick = (go) =>
             {
                 var roleHost = RoleManageComponent.Instance.GetRole(PnlChar.PnlChar.Instance.curRoleIdx);
+                var clothStr = m_SelectedCosList.Aggregate(string.Empty, (current, charCose) => current + (charCose.uid + ","));
+                clothStr = clothStr.Substring(0, clothStr.Length - 1);
+                roleHost.SetDynamicData(SignKeys.SUIT_GROUP, clothStr);
                 roleHost.Save();
             };
 
@@ -264,7 +267,10 @@ namespace PnlCharInfo
                 tgl.onChange.Clear();
                 tgl.onChange.Add(new EventDelegate(() =>
                 {
-                    OnSelectChange(tgl.transform);
+                    DOTweenUtils.Delay(() =>
+                    {
+                        OnSelectChange(tgl.transform);
+                    }, Time.deltaTime);
                 }));
             }
         }
@@ -291,7 +297,10 @@ namespace PnlCharInfo
                             break;
                         }
                     }
-                    sprCos.isInGroup = charCos.uid == m_SelectedCos.uid;
+                    if (charCos.uid == m_SelectedCos.uid)
+                    {
+                        sprCos.isInGroup = true;
+                    }
                     sprCos.isLock = charCos.isLock;
                 }
                 else
@@ -300,6 +309,12 @@ namespace PnlCharInfo
                     sprCos.isLock = true;
                     sprCos.isSelected = false;
                 }
+            }
+            if (m_SelectedCosList != null)
+            {
+                var clothStr = m_SelectedCosList.Aggregate(string.Empty, (current, charCose) => current + (charCose.uid + ","));
+                clothStr = clothStr.Substring(0, clothStr.Length - 1);
+                btnApply.gameObject.SetActive(RoleManageComponent.Instance.GetRole(idx).GetDynamicStrByKey(SignKeys.SUIT_GROUP) != clothStr);
             }
         }
 
@@ -339,9 +354,10 @@ namespace PnlCharInfo
             PnlChar.PnlChar.Instance.OnSpiAnimLoad(PnlChar.PnlChar.Instance.curRoleIdx, m_SelectedCos.path);
             var roleHost = RoleManageComponent.Instance.GetRole(PnlChar.PnlChar.Instance.curRoleIdx);
             roleHost.SetDynamicData(SignKeys.CLOTH, m_SelectedCos.uid);
-            /* var clothStr = m_SelectedCosList.Aggregate(string.Empty, (current, charCose) => current + (charCose.uid + ","));
-             clothStr = clothStr.Substring(0, clothStr.Length - 1);
-             roleHost.SetDynamicData(SignKeys.SUIT_GROUP, clothStr);*/
+            m_SelectedCosList.Sort((l, r) => l.uid - r.uid);
+            var clothStr = m_SelectedCosList.Aggregate(string.Empty, (current, charCose) => current + (charCose.uid + ","));
+            clothStr = clothStr.Substring(0, clothStr.Length - 1);
+            btnApply.gameObject.SetActive(roleHost.GetDynamicStrByKey(SignKeys.SUIT_GROUP) != clothStr);
         }
     }
 }

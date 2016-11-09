@@ -86,7 +86,6 @@ namespace PnlChar
         private void Init()
         {
             curRoleIdx = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
-            onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
             onRoleChange += idx => PnlCharInfo.PnlCharInfo.Instance.OnUpgradeItemsRefresh();
             onRoleChange += PnlCharInfo.PnlCharInfo.Instance.OnRoleChange;
             onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
@@ -206,10 +205,7 @@ namespace PnlChar
             m_PreRoleIdx = roleIdx;
             curEquipTypeIdx = 0;
             FormulaBase.RoleManageComponent.Instance.GetRole(roleIdx).SetAsUINotifyInstance();
-            if (PnlCharInfo.PnlCharInfo.Instance != null)
-            {
-                PnlCharInfo.PnlCharInfo.Instance.OnExit();
-            }
+
             OnSpiAnimLoad(roleIdx);
             OnEquipLoad(roleIdx);
         }
@@ -253,34 +249,28 @@ namespace PnlChar
             {
                 return;
             }
-            var tmpGO = Resources.Load(p ?? path) as GameObject;
-            if (tmpGO)
+            GameObject go = null;
+            ResourceLoader.Instance.Load(p ?? path, res => go = Instantiate(res) as GameObject);
+            go.transform.SetParent(spiAnimParent, false);
+            go.SetActive(true);
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localScale = Vector3.one * 140f;
+            go.transform.localEulerAngles = Vector3.zero;
+            var skeletonAnim = go.GetComponent<SkeletonAnimation>();
+            skeletonAnim.loop = true;
+            skeletonAnim.AnimationName = "standby";
+            go.GetComponent<SpineSynchroObjects>().enabled = false;
+            go.GetComponent<SpineMountController>().enabled = false;
+            if (m_SpiAniGODic.ContainsKey(idx))
             {
-                var go = GameObject.Instantiate(tmpGO) as GameObject;
-                go.transform.SetParent(spiAnimParent, false);
-                go.SetActive(true);
-                go.transform.localPosition = Vector3.zero;
-                go.transform.localScale = Vector3.one * 140f;
-                go.transform.localEulerAngles = Vector3.zero;
-                var skeletonAnim = go.GetComponent<SkeletonAnimation>();
-                skeletonAnim.loop = true;
-                skeletonAnim.AnimationName = "standby";
-                if (m_SpiAniGODic.ContainsKey(idx))
-                {
-                    Destroy(m_SpiAniGODic[idx]);
-                    m_SpiAniGODic[idx] = go;
-                    m_AnimPath[idx - 1] = p ?? path;
-                }
-                else
-                {
-                    m_SpiAniGODic.Add(idx, go);
-                }
+                Destroy(m_SpiAniGODic[idx]);
+                m_SpiAniGODic[idx] = go;
             }
             else
             {
-                Debug.LogError("加载未获得对象 : " + path);
-                return;
+                m_SpiAniGODic.Add(idx, go);
             }
+            m_AnimPath[idx - 1] = p ?? path;
             foreach (var pair in m_SpiAniGODic)
             {
                 pair.Value.SetActive(pair.Key == idx);

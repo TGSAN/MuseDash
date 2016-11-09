@@ -91,10 +91,11 @@ public class RandomUtils
         for (var i = 0; i < probabilities.Length; i++)
         {
             var probability = probabilities[i];
+            var callFuncEvent = events[i];
             if (!(random <= probability * baseNum)) continue;
             if (events.Length > i)
             {
-                events[i]();
+                callFuncEvent();
                 break;
             }
         }

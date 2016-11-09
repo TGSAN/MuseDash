@@ -1,258 +1,307 @@
-﻿using UnityEngine;
-using System.Collections;
-using GameLogic;
+﻿using DYUnityLib;
 using FormulaBase;
-using DYUnityLib;
+using GameLogic;
+using System.Collections;
+using UnityEngine;
 
-public class GirlManager : MonoBehaviour {
-	private const string GILR_PATH = "char/";
-	private const string ARM_PATH = "servant/";
+public class GirlManager : MonoBehaviour
+{
+    private const string GILR_PATH = "char/";
+    private const string ARM_PATH = "servant/";
 
-	private static GirlManager instacne = null;
-	private GameObject[] girls;
-	private GameObject[] arms;
-	// private Coroutine jumpCoroutine;
-	private float autoReduceEnergyDuringTime = 0f;
-	private bool hasGameBeenStarted = false;
-	private bool isJumpingAction = false;
+    private static GirlManager instacne = null;
+    private GameObject[] girls;
+    private GameObject[] arms;
 
-	public GameObject[] Girls {
-		get {
-			return this.girls;
-		}
-	}
+    // private Coroutine jumpCoroutine;
+    private float autoReduceEnergyDuringTime = 0f;
 
-	public GameObject[] Arms {
-		get {
-			return this.arms;
-		}
-	}
+    private bool hasGameBeenStarted = false;
+    private bool isJumpingAction = false;
 
-	public float playWaitForComeOut;
-	public bool isCommingOut = true;
+    public GameObject[] Girls
+    {
+        get
+        {
+            return this.girls;
+        }
+    }
 
-	[SerializeField]
-	public string[] girlnames;
-	public string[] armnames;
+    public GameObject[] Arms
+    {
+        get
+        {
+            return this.arms;
+        }
+    }
 
-	void Start() {
-		instacne = this;
-	}
+    public float playWaitForComeOut;
+    public bool isCommingOut = true;
 
-	private void ReduceCharLifePerFixedTime() {
-		if (StageTeachComponent.Instance.IsTeachingStage ()) {
-			return;
-		}
+    [SerializeField]
+    public string[] girlnames;
 
-		if (GameKernel.Instance.IsOnFeverState ()) {
-			return;
-		}
+    public string[] armnames;
 
-		if (!GameGlobal.gGameMusic.IsRunning ()) {
-			return;
-		}
+    private void Start()
+    {
+        instacne = this;
+    }
 
-		if (this.autoReduceEnergyDuringTime < GameGlobal.REDUCE_ENERGY_TIME) {
-			this.autoReduceEnergyDuringTime += Time.fixedDeltaTime;
-			return;
-		}
+    private void ReduceCharLifePerFixedTime()
+    {
+        if (StageTeachComponent.Instance.IsTeachingStage())
+        {
+            return;
+        }
 
-		this.autoReduceEnergyDuringTime = 0f;
-		BattleRoleAttributeComponent.Instance.AddHp (-1, false);
-	}
+        if (GameKernel.Instance.IsOnFeverState())
+        {
+            return;
+        }
 
-	private void ReduceFeverEnergyPerFixedTime() {
-		var reduceValue = Time.deltaTime / GameGlobal.FEVER_LAST_TIME * -100;
-		GameKernel.Instance.AddFever (reduceValue);
-		FightMenuPanel.Instance.SetFerver (GameKernel.Instance.GetFeverRate ());
-	}
+        if (!GameGlobal.gGameMusic.IsRunning())
+        {
+            return;
+        }
 
-	public void StartAutoReduceEnergy(){
-		this.hasGameBeenStarted = true;
-	}
+        if (this.autoReduceEnergyDuringTime < GameGlobal.REDUCE_ENERGY_TIME)
+        {
+            this.autoReduceEnergyDuringTime += Time.fixedDeltaTime;
+            return;
+        }
 
-	public void StopAutoReduceEnergy(){
-		this.hasGameBeenStarted = false;
-	}
+        this.autoReduceEnergyDuringTime = 0f;
+        BattleRoleAttributeComponent.Instance.AddHp(-1, false);
+    }
 
-	void Update(){
-		if (Time.timeScale <= 0) {
-			return;
-		}
+    private void ReduceFeverEnergyPerFixedTime()
+    {
+        var reduceValue = Time.deltaTime / GameGlobal.FEVER_LAST_TIME * -100;
+        GameKernel.Instance.AddFever(reduceValue);
+        FightMenuPanel.Instance.SetFerver(GameKernel.Instance.GetFeverRate());
+    }
 
-		if (FixUpdateTimer.IsPausing ()) {
-			return;
-		}
+    public void StartAutoReduceEnergy()
+    {
+        this.hasGameBeenStarted = true;
+    }
 
-		if (this.hasGameBeenStarted) {
-			this.ReduceCharLifePerFixedTime ();
-		}
+    public void StopAutoReduceEnergy()
+    {
+        this.hasGameBeenStarted = false;
+    }
 
-		if (GameKernel.Instance.IsOnFeverState ()) {
-			this.ReduceFeverEnergyPerFixedTime ();
-		}
-	}
+    private void Update()
+    {
+        if (Time.timeScale <= 0)
+        {
+            return;
+        }
 
-	public static GirlManager Instance {
-		get {
-			return instacne;
-		}
-	}
+        if (FixUpdateTimer.IsPausing())
+        {
+            return;
+        }
 
-	public static string GetCharactPath(string name) {
-		return GILR_PATH + name + "/prefabs/";
-	}
+        if (this.hasGameBeenStarted)
+        {
+            this.ReduceCharLifePerFixedTime();
+        }
 
-	public static string GetPetPath(string name) {
-		return ARM_PATH + name + "/prefabs/";
-	}
+        if (GameKernel.Instance.IsOnFeverState())
+        {
+            this.ReduceFeverEnergyPerFixedTime();
+        }
+    }
 
+    public static GirlManager Instance
+    {
+        get
+        {
+            return instacne;
+        }
+    }
 
-	public void Reset() {
-		BattlePetComponent.Instance.Init ();
-		this.isJumpingAction = false;
-		//FightMenuPanel.Instance.SetFerver (0);
-		this.girls = new GameObject[this.girlnames.Length];
+    public static string GetCharactPath(string name)
+    {
+        return GILR_PATH + name + "/prefabs/";
+    }
 
-		int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex ();
-		if (heroIndex < 0) {
-			heroIndex = 0;
+    public static string GetPetPath(string name)
+    {
+        return ARM_PATH + name + "/prefabs/";
+    }
+
+    public void Reset()
+    {
+        BattlePetComponent.Instance.Init();
+        this.isJumpingAction = false;
+        //FightMenuPanel.Instance.SetFerver (0);
+        this.girls = new GameObject[this.girlnames.Length];
+
+        int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex();
+        if (heroIndex < 0)
+        {
+            heroIndex = 0;
 #if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
-			heroIndex = AdminData.Instance.DefaultRoleIdx;
+            heroIndex = AdminData.Instance.DefaultRoleIdx;
 #endif
-		}
+        }
 
-		Debug.Log ("Battle with hero : " + heroIndex);
-		FormulaHost hero = RoleManageComponent.Instance.GetRole (heroIndex);
-		int clothIdx = 0;
-		string clothPath = null;
-		if (hero != null) {
-			clothIdx = hero.GetDynamicIntByKey (SignKeys.CLOTH);
-			clothPath = ConfigPool.Instance.GetConfigStringValue ("char_cos", clothIdx.ToString (), "path");
-		}
+        Debug.Log("Battle with hero : " + heroIndex);
+        FormulaHost hero = RoleManageComponent.Instance.GetRole(heroIndex);
+        int clothIdx = 0;
+        string clothPath = null;
+        if (hero != null)
+        {
+            var charCos = RoleManageComponent.Instance.GetRandomCloth(heroIndex);
+            clothIdx = charCos.id;
+            clothPath = charCos.path;
+        }
 
 #if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
-		if (clothPath == null || clothPath == string.Empty) {
-			clothIdx = ConfigPool.Instance.GetConfigIntValue ("char_info", heroIndex.ToString (), "character");
-			clothPath = ConfigPool.Instance.GetConfigStringValue ("char_cos", "uid", "path", clothIdx);
-			if (GameGlobal.DEBUG_CLOTH_UID > 0) {
-				clothPath = ConfigPool.Instance.GetConfigStringValue ("char_cos", "uid", "path", GameGlobal.DEBUG_CLOTH_UID);
-			}
-		}
+        if (string.IsNullOrEmpty(clothPath))
+        {
+            clothIdx = ConfigPool.Instance.GetConfigIntValue("char_info", heroIndex.ToString(), "character");
+            clothPath = ConfigPool.Instance.GetConfigStringValue("char_cos", "uid", "path", clothIdx);
+            if (GameGlobal.DEBUG_CLOTH_UID > 0)
+            {
+                clothPath = ConfigPool.Instance.GetConfigStringValue("char_cos", "uid", "path", GameGlobal.DEBUG_CLOTH_UID);
+            }
+        }
 #endif
-		this.girlnames [0] = clothPath;
-		string[] _armnames = BattlePetComponent.Instance.GetPetPerfabNames ();
-		if (_armnames != null) {
-			this.armnames = _armnames;
-		}
+        this.girlnames[0] = clothPath;
+        string[] _armnames = BattlePetComponent.Instance.GetPetPerfabNames();
+        if (_armnames != null)
+        {
+            this.armnames = _armnames;
+        }
 
-		this.arms = new GameObject[this.armnames.Length];
-		// Girl init.
-		for (int i = 0; i < this.girlnames.Length; i++) {
-			string _gilrName = this.girlnames [i];
-			if (_gilrName == null || _gilrName == string.Empty) {
-				continue;
-			}
+        this.arms = new GameObject[this.armnames.Length];
+        // Girl init.
+        for (int i = 0; i < this.girlnames.Length; i++)
+        {
+            string _gilrName = this.girlnames[i];
+            if (string.IsNullOrEmpty(_gilrName))
+            {
+                continue;
+            }
 
-			this.StartCoroutine (this.__ReloadGirl (i, _gilrName));
-		}
+            this.StartCoroutine(this.__ReloadGirl(i, _gilrName));
+        }
 
-		// Arm init.
-		for (int i = 0; i < this.armnames.Length; i++) {
-			string _armName = this.armnames [i];
-			if (_armName == null || _armName == string.Empty) {
-				continue;
-			}
+        // Arm init.
+        for (int i = 0; i < this.armnames.Length; i++)
+        {
+            string _armName = this.armnames[i];
+            if (string.IsNullOrEmpty(_armName))
+            {
+                continue;
+            }
 
-			this.StartCoroutine (this.__ReloadArm (i, _armName));
-		}
+            this.StartCoroutine(this.__ReloadArm(i, _armName));
+        }
 
-		EffectManager.Instance.SetEffectByCharact (heroIndex);
-	}
+        EffectManager.Instance.SetEffectByCharact(heroIndex);
+    }
 
-	private IEnumerator __ReloadGirl(int girlIdx, string pathName) {
-		GameObject _girl = StageBattleComponent.Instance.AddObj (ref pathName);
-		if (_girl == null) {
-			Debug.Log (pathName + " is null.");
-			yield return null;
-		}
+    private IEnumerator __ReloadGirl(int girlIdx, string pathName)
+    {
+        GameObject _girl = StageBattleComponent.Instance.AddObj(ref pathName);
+        if (_girl == null)
+        {
+            Debug.Log(pathName + " is null.");
+            yield return null;
+        }
 
-		// 热更读取例子
-/*
-		WWW streamGirl = new WWW (AssetBundleFileMangager.FileLoadResPath + "/girl111.ab");
-		yield return streamGirl;
+        // 热更读取例子
+        /*
+                WWW streamGirl = new WWW (AssetBundleFileMangager.FileLoadResPath + "/girl111.ab");
+                yield return streamGirl;
 
-		_girl.SetActive (false);
-		_girl = GameObject.Instantiate (streamGirl.assetBundle.LoadAsset<UnityEngine.Object> ("assets/resources/prefabs/girls/buruo23333.prefab")) as GameObject;
-*/
-		_girl.transform.SetParent (this.gameObject.transform, false);
-		SpineActionController sac = _girl.GetComponent<SpineActionController> ();
-		sac.Init (girlIdx);
-		SpineActionController.SetSynchroObjectsActive (_girl, false);
-		//TODO : girl be generated here
+                _girl.SetActive (false);
+                _girl = GameObject.Instantiate (streamGirl.assetBundle.LoadAsset<UnityEngine.Object> ("assets/resources/prefabs/girls/buruo23333.prefab")) as GameObject;
+        */
+        _girl.transform.SetParent(this.gameObject.transform, false);
+        SpineActionController sac = _girl.GetComponent<SpineActionController>();
+        sac.Init(girlIdx);
+        SpineActionController.SetSynchroObjectsActive(_girl, false);
+        //TODO : girl be generated here
 
-		this.girls [girlIdx] = _girl;
-	}
+        this.girls[girlIdx] = _girl;
+    }
 
-	private IEnumerator __ReloadArm(int armIdx, string pathName) {
-		GameObject _arm = StageBattleComponent.Instance.AddObj (ref pathName);
-		if (_arm == null) {
-			Debug.Log (pathName + " is null.");
-			yield return null;
-		}
+    private IEnumerator __ReloadArm(int armIdx, string pathName)
+    {
+        GameObject _arm = StageBattleComponent.Instance.AddObj(ref pathName);
+        if (_arm == null)
+        {
+            Debug.Log(pathName + " is null.");
+            yield return null;
+        }
 
-		_arm.transform.SetParent (this.gameObject.transform, false);
-		SpineActionController sacArm = _arm.GetComponent<SpineActionController> ();
-		sacArm.Init (armIdx);
+        _arm.transform.SetParent(this.gameObject.transform, false);
+        SpineActionController sacArm = _arm.GetComponent<SpineActionController>();
+        sacArm.Init(armIdx);
 
-		this.arms [armIdx] = _arm;
-		BattlePetComponent.Instance.SetGameObject (armIdx, _arm);
+        this.arms[armIdx] = _arm;
+        BattlePetComponent.Instance.SetGameObject(armIdx, _arm);
 
-		TaskStageTarget.Instance.AddArmCount (1);
-	}
+        TaskStageTarget.Instance.AddArmCount(1);
+    }
 
-	private int RandomAttackIndex(int roleActIndex) {
-		if (roleActIndex > 0) {
-			return roleActIndex;
-		}
+    private int RandomAttackIndex(int roleActIndex)
+    {
+        if (roleActIndex > 0)
+        {
+            return roleActIndex;
+        }
 
-		return Random.Range (0, 4);
-	}
+        return Random.Range(0, 4);
+    }
 
-	public void ComeOut() {
-		this.isCommingOut = true;
-		this.StartCoroutine (this.AfterComeOut ());
-		this.StartCoroutine (this.ComeOutFinished ());
-	}
+    public void ComeOut()
+    {
+        this.isCommingOut = true;
+        this.StartCoroutine(this.AfterComeOut());
+        this.StartCoroutine(this.ComeOutFinished());
+    }
 
-	private IEnumerator ComeOutFinished() {
-		yield return new WaitForSeconds (this.playWaitForComeOut);
+    private IEnumerator ComeOutFinished()
+    {
+        yield return new WaitForSeconds(this.playWaitForComeOut);
 
-		this.isCommingOut = false;
-	}
+        this.isCommingOut = false;
+    }
 
-	private IEnumerator AfterComeOut () {
-		yield return new WaitForSeconds (0.1f);
+    private IEnumerator AfterComeOut()
+    {
+        yield return new WaitForSeconds(0.1f);
 
-		this.StartAutoReduceEnergy ();
-		for (int i = 0; i < this.girls.Length; i++) {
-			GameObject _girl = this.girls [i];
-			if (_girl == null) {
-				continue;
-			}
+        this.StartAutoReduceEnergy();
+        for (int i = 0; i < this.girls.Length; i++)
+        {
+            GameObject _girl = this.girls[i];
+            if (_girl == null)
+            {
+                continue;
+            }
 
-			this.girls [i].SetActive (true);
-			GirlActionController gac = this.girls [i].GetComponent<GirlActionController> ();
-			if (gac != null) {
-				gac.OnControllerStart ();
-			}
-		}
+            this.girls[i].SetActive(true);
+            GirlActionController gac = this.girls[i].GetComponent<GirlActionController>();
+            if (gac != null)
+            {
+                gac.OnControllerStart();
+            }
+        }
 
-		BattlePetComponent.Instance.SwitchPet ();
-	}
-	
-	public void ResetAttacker() {
-		/*
+        BattlePetComponent.Instance.SwitchPet();
+    }
+
+    public void ResetAttacker()
+    {
+        /*
 		for (int i = 0; i < this.girls.Length; i++) {
 			GameObject _girl = this.girls [i];
 			if (_girl == null) {
@@ -263,183 +312,228 @@ public class GirlManager : MonoBehaviour {
 			_girlAction.ResetAttacker ();
 		}
 		*/
-	}
+    }
 
-	public void UnLockActionProtect() {
-		for (int i = 0; i < this.girls.Length; i++) {
-			GameObject _girl = this.girls [i];
-			if (_girl == null) {
-				continue;
-			}
+    public void UnLockActionProtect()
+    {
+        for (int i = 0; i < this.girls.Length; i++)
+        {
+            GameObject _girl = this.girls[i];
+            if (_girl == null)
+            {
+                continue;
+            }
 
-			SpineActionController sac = _girl.GetComponent<SpineActionController> ();
-			if (sac != null) {
-				sac.SetProtectLevel (0);
-				sac.SetCurrentActionName (null);
-			}
-		}
-	}
+            SpineActionController sac = _girl.GetComponent<SpineActionController>();
+            if (sac != null)
+            {
+                sac.SetProtectLevel(0);
+                sac.SetCurrentActionName(null);
+            }
+        }
+    }
 
-	public void AttacksWithoutExchange(uint result, string actKey = null) {
-		for (int i = 0; i < this.girls.Length; i++) {
-			GameObject _girl = this.girls [i];
-			if (_girl == null) {
-				continue;
-			}
+    public void AttacksWithoutExchange(uint result, string actKey = null)
+    {
+        for (int i = 0; i < this.girls.Length; i++)
+        {
+            GameObject _girl = this.girls[i];
+            if (_girl == null)
+            {
+                continue;
+            }
 
-			GirlActionController _girlAction = _girl.GetComponent<GirlActionController> ();
-			_girlAction.AttackQuick (actKey, result);
-		}
-	}
+            GirlActionController _girlAction = _girl.GetComponent<GirlActionController>();
+            _girlAction.AttackQuick(actKey, result);
+        }
+    }
 
-	public void AttackWithExchange(uint result ,string actKey = null) {
-		if (this.girls.Length <= 1) {
-			this.AttacksWithoutExchange (result, actKey);
-			return;
-		}
+    public void AttackWithExchange(uint result, string actKey = null)
+    {
+        if (this.girls.Length <= 1)
+        {
+            this.AttacksWithoutExchange(result, actKey);
+            return;
+        }
 
-		for (int i = 0; i < this.girls.Length; i++) {
-			GameObject _girl = this.girls [i];
-			if (_girl == null) {
-				continue;
-			}
+        for (int i = 0; i < this.girls.Length; i++)
+        {
+            GameObject _girl = this.girls[i];
+            if (_girl == null)
+            {
+                continue;
+            }
 
-			GirlActionController _girlAction = _girl.GetComponent<GirlActionController> ();
-			_girlAction.Attack (actKey, result);
-		}
-	}
+            GirlActionController _girlAction = _girl.GetComponent<GirlActionController>();
+            _girlAction.Attack(actKey, result);
+        }
+    }
 
-	public void BeAttackEffect() {
-		for (int i = 0; i < this.girls.Length; i++) {
-			GameObject _girl = this.girls [i];
-			if (_girl == null) {
-				continue;
-			}
+    public void BeAttackEffect()
+    {
+        for (int i = 0; i < this.girls.Length; i++)
+        {
+            GameObject _girl = this.girls[i];
+            if (_girl == null)
+            {
+                continue;
+            }
 
-			GirlActionController _girlAction = _girl.GetComponent<GirlActionController> ();
+            GirlActionController _girlAction = _girl.GetComponent<GirlActionController>();
 
-			// First state judge.
-			if (!this.IsJumpingAction ()) {
-				_girlAction.AttackQuick (ACTION_KEYS.HURT, GameMusic.MISS);
-			} else {
-				float tick = 0;
-				Animator ani = _girl.GetComponent<Animator> ();
-				if (ani != null) {
-					tick = (float)ani.GetTime ();
-				}
+            // First state judge.
+            if (!this.IsJumpingAction())
+            {
+                _girlAction.AttackQuick(ACTION_KEYS.HURT, GameMusic.MISS);
+            }
+            else
+            {
+                float tick = 0;
+                Animator ani = _girl.GetComponent<Animator>();
+                if (ani != null)
+                {
+                    tick = (float)ani.GetTime();
+                }
 
-				_girlAction.AttackQuick (ACTION_KEYS.JUMP_HURT, GameMusic.MISS, tick);
-			}
+                _girlAction.AttackQuick(ACTION_KEYS.JUMP_HURT, GameMusic.MISS, tick);
+            }
 
-			// Then state set.
-			//this.SetJumpingAction (false);
-		}
+            // Then state set.
+            //this.SetJumpingAction (false);
+        }
 
-		CharPanel.Instance.BeAttack ();
-		ActerChangeColore.Instance.PlayAnimation ();
-		// sound effect
-		AudioManager.Instance.PlayHurtEffect ();
-		SoundEffectComponent.Instance.SayByCurrentRole (GameGlobal.SOUND_TYPE_HURT);
-	}
+        CharPanel.Instance.BeAttack();
+        ActerChangeColore.Instance.PlayAnimation();
+        // sound effect
+        AudioManager.Instance.PlayHurtEffect();
+        SoundEffectComponent.Instance.SayByCurrentRole(GameGlobal.SOUND_TYPE_HURT);
+    }
 
-	public void StopBeAttckedEffect() {
-	}
+    public void StopBeAttckedEffect()
+    {
+    }
 
-	public void SetJumpingAction(bool value) {
-		this.isJumpingAction = value;
-	}
+    public void SetJumpingAction(bool value)
+    {
+        this.isJumpingAction = value;
+    }
 
-	public bool IsJumpingAction() {
-		return this.isJumpingAction;
-	}
+    public bool IsJumpingAction()
+    {
+        return this.isJumpingAction;
+    }
 
-	public void JumpBeatPause() {
-		foreach (var girl in this.girls) {
-			if (girl == null) {
-				continue;
-			}
+    public void JumpBeatPause()
+    {
+        foreach (var girl in this.girls)
+        {
+            if (girl == null)
+            {
+                continue;
+            }
 
-			CharactorJumpAssert cja = girl.GetComponent<CharactorJumpAssert> ();
-			if (cja == null) {
-				continue;
-			}
+            CharactorJumpAssert cja = girl.GetComponent<CharactorJumpAssert>();
+            if (cja == null)
+            {
+                continue;
+            }
 
-			cja.DoDelay ();
-		}
-	}
+            cja.DoDelay();
+        }
+    }
 
-	public void PlayGirlDeadAnimation() {
-		foreach (var girl in this.girls) {
-			if (girl == null) {
-				continue;
-			}
+    public void PlayGirlDeadAnimation()
+    {
+        foreach (var girl in this.girls)
+        {
+            if (girl == null)
+            {
+                continue;
+            }
 
-			SpineActionController.Play (ACTION_KEYS.CHAR_DEAD, girl);
-		}
-	}
+            SpineActionController.Play(ACTION_KEYS.CHAR_DEAD, girl);
+        }
+    }
 
-	public void StopPhysicDetect() {
-		foreach (var girl in this.girls) {
-			if (girl == null) {
-				continue;
-			}
+    public void StopPhysicDetect()
+    {
+        foreach (var girl in this.girls)
+        {
+            if (girl == null)
+            {
+                continue;
+            }
 
-			var spineMountController = girl.GetComponent<SpineMountController> ();
-			if (spineMountController == null) {
-				continue;
-			}
+            var spineMountController = girl.GetComponent<SpineMountController>();
+            if (spineMountController == null)
+            {
+                continue;
+            }
 
-			foreach (var detectScript in spineMountController.GetMountObjects()) {
-				if (detectScript == null) {
-					continue;
-				}
+            foreach (var detectScript in spineMountController.GetMountObjects())
+            {
+                if (detectScript == null)
+                {
+                    continue;
+                }
 
-				var detect = detectScript.GetComponent<GirlCollisionDetectNodeController> ();
-				if (detect == null) {
-					continue;
-				}
+                var detect = detectScript.GetComponent<GirlCollisionDetectNodeController>();
+                if (detect == null)
+                {
+                    continue;
+                }
 
-				detect.DisableDetect ();
-			}
-		}
-	}
+                detect.DisableDetect();
+            }
+        }
+    }
 
-	public void StartPhysicDetect() {
-		foreach (var girl in this.girls) {
-			if (girl == null) {
-				continue;
-			}
-			
-			var spineMountController = girl.GetComponent<SpineMountController> ();
-			if (spineMountController == null) {
-				continue;
-			}
-			
-			foreach (var detectScript in spineMountController.GetMountObjects()) {
-				if (detectScript == null) {
-					continue;
-				}
-				
-				var detect = detectScript.GetComponent<GirlCollisionDetectNodeController> ();
-				if (detect == null) {
-					continue;
-				}
-				
-				detect.EnableDetect ();
-			}
-		}
-	}
+    public void StartPhysicDetect()
+    {
+        foreach (var girl in this.girls)
+        {
+            if (girl == null)
+            {
+                continue;
+            }
 
-	public Vector3 GetCurrentGirlPositon() {
-		if (this.girls == null || this.girls.Length <= 0) {
-			return Vector3.zero;
-		}
+            var spineMountController = girl.GetComponent<SpineMountController>();
+            if (spineMountController == null)
+            {
+                continue;
+            }
 
-		GameObject girl = this.girls [0];
-		if (girl == null) {
-			return Vector3.zero;
-		}
+            foreach (var detectScript in spineMountController.GetMountObjects())
+            {
+                if (detectScript == null)
+                {
+                    continue;
+                }
 
-		return girl.transform.position;
-	}
+                var detect = detectScript.GetComponent<GirlCollisionDetectNodeController>();
+                if (detect == null)
+                {
+                    continue;
+                }
+
+                detect.EnableDetect();
+            }
+        }
+    }
+
+    public Vector3 GetCurrentGirlPositon()
+    {
+        if (this.girls == null || this.girls.Length <= 0)
+        {
+            return Vector3.zero;
+        }
+
+        GameObject girl = this.girls[0];
+        if (girl == null)
+        {
+            return Vector3.zero;
+        }
+
+        return girl.transform.position;
+    }
 }

@@ -95,11 +95,19 @@ namespace PnlCharUpgrade
                     }
                     break;
             }
-            for (int i = 0; i < hosts.Length; i++)
+            for (int i = 0; i < itemTexs.Length; i++)
             {
-                var formulaHost = hosts[i];
                 var tex = itemTexs[i];
-                ResourceLoader.Instance.Load(formulaHost, tex);
+                if (i < hosts.Length)
+                {
+                    tex.transform.parent.gameObject.SetActive(true);
+                    var formulaHost = hosts[i];
+                    ResourceLoader.Instance.Load(formulaHost, tex);
+                }
+                else
+                {
+                    tex.transform.parent.gameObject.SetActive(false);
+                }
             }
             DOTweenUtils.Delay(() =>
             {

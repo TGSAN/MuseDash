@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 432788}
   - 114: {fileID: 11410648}
-  - 114: {fileID: 11431354}
   - 54: {fileID: 5496660}
   - 114: {fileID: 114000011401766856}
   - 95: {fileID: 95000010635955988}
@@ -92,7 +91,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3094
+  startingRenderQueue: 3008
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -102,42 +101,6 @@ MonoBehaviour:
   mSortingOrder: 70
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
---- !u!114 &11431354
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 175578}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b67eb3daa2cd44f479979c2ca34f7d20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _NameLabel: {fileID: 114000010736510140}
-  _PlayeTextLabel: {fileID: 114000013007334782}
-  _ActiveObj: {fileID: 0}
-  _BackButton: {fileID: 1000012779509668}
-  _AddButton: {fileID: 1000011349118800}
-  _CubeButton: {fileID: 1000013685548296}
-  _CosUI:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _AtrrItems:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _PotToggles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _BuyValueUI: {fileID: 0}
-  _BuyButton: {fileID: 1000013637688262}
-  _BuyValueLabel: {fileID: 0}
-  _BuyButtonTextLabel: {fileID: 114000013690696758}
-  _HaveUseUI: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -4631,7 +4594,7 @@ MonoBehaviour:
   clickResponseObjects:
   - {fileID: 0}
   clickResponseParentNames:
-  - PnlCharCosChose
+  - 
   - 
   clickResponseObjectsIsShow: 01
   clickResponseParentNamesIsShow: 0101
@@ -8318,6 +8281,7 @@ MonoBehaviour:
   btnApply: {fileID: 114000014261565194}
   btnPurchase: {fileID: 114000010468951680}
   txtApplying: {fileID: 114000013170670144}
+  btnsParent: {fileID: 4000010491311190}
 --- !u!114 &114000014065130846
 MonoBehaviour:
   m_ObjectHideFlags: 1

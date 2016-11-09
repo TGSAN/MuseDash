@@ -184,7 +184,7 @@ namespace PnlEquipInfo
                         inTxt.text = allName[i];
                         if (idx < suitcases.Count)
                         {
-                            if (suitcases[idx].GetDynamicStrByKey(SignKeys.NAME) == allName[i])
+                            if (allName.Contains(suitcases[idx].GetDynamicStrByKey(SignKeys.NAME)))
                             {
                                 idx++;
                                 inTxt.gameObject.SetActive(true);

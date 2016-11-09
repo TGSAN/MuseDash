@@ -233,6 +233,25 @@ namespace FormulaBase
             return list;
         }
 
+        public List<string> GetEquipNameInSuit(string suitName)
+        {
+            var list = new List<string>();
+            var itemInfo = ConfigPool.Instance.GetConfigByName("items");
+            for (int i = 1; i < itemInfo.Count; i++)
+            {
+                var sName = itemInfo[i.ToString()]["suit"].ToString();
+                if (suitName == sName)
+                {
+                    list.Add(itemInfo[i.ToString()]["name"].ToString());
+                    if (list.Count == 3)
+                    {
+                        return list;
+                    }
+                }
+            }
+            return list;
+        }
+
         /// <summary>
         /// 计算选择物品的经验
         /// </summary>
