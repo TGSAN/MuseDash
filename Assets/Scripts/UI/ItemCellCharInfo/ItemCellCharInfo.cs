@@ -128,7 +128,7 @@ namespace ItemCellCharInfo
             {
                 return;
             }
-            ResourceLoader.Instance.Load(texName, resObj => texIcon.mainTexture = resObj as Texture);
+            ResourceLoader.Instance.Load("items/icon/" + texName, resObj => texIcon.mainTexture = resObj as Texture);
         }
 
         private void SetTxtByHost()

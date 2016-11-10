@@ -261,7 +261,7 @@ namespace PnlChar
             skeletonAnim.AnimationName = "standby";
             go.GetComponent<SpineSynchroObjects>().enabled = false;
             go.GetComponent<SpineMountController>().enabled = false;
-            go.GetComponent<Renderer>().sortingOrder = 100;
+            go.GetComponent<Renderer>().sortingOrder = 50;
             if (m_SpiAniGODic.ContainsKey(idx))
             {
                 Destroy(m_SpiAniGODic[idx]);

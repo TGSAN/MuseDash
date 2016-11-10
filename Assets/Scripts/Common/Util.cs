@@ -88,15 +88,21 @@ public class RandomUtils
     {
         const int baseNum = 10000;
         var random = UnityEngine.Random.Range(0, baseNum);
+        var startR = 0f;
         for (var i = 0; i < probabilities.Length; i++)
         {
             var probability = probabilities[i];
             var callFuncEvent = events[i];
-            if (!(random <= probability * baseNum)) continue;
-            if (events.Length > i)
+            var radomNum = startR + probability * baseNum;
+            if (random >= startR && random < radomNum)
             {
+                if (events.Length <= i) continue;
                 callFuncEvent();
                 break;
+            }
+            else
+            {
+                startR = radomNum;
             }
         }
     }

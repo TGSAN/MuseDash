@@ -179,13 +179,7 @@ namespace ItemImageEquip
             {
                 return;
             }
-            ResourceLoader.Instance.Load(texName, resObj =>
-            {
-                if (resObj != null)
-                {
-                    texIcon.mainTexture = resObj as Texture;
-                }
-            });
+            ResourceLoader.Instance.Load("items/icon/" + texName, resObj => texIcon.mainTexture = resObj as Texture);
         }
     }
 }
