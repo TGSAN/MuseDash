@@ -40,6 +40,7 @@ namespace PnlItemUpgrade
         public void OnShow(FormulaHost host, FormulaHost[] hosts, UpgradeInfo result)
         {
             gameObject.SetActive(true);
+            animator1.gameObject.SetActive(true);
             ResourceLoader.Instance.Load(host, mainTex1);
             ResourceLoader.Instance.Load(host, mainTex2);
             for (int i = 0; i < hosts.Length; i++)
@@ -52,6 +53,10 @@ namespace PnlItemUpgrade
                 animator1.gameObject.SetActive(false);
                 animator2.gameObject.SetActive(true);
             }, 2.4f);
+            DOTweenUtils.Delay(() =>
+            {
+                animator2.enabled = true;
+            }, 2.5f);
         }
     }
 }

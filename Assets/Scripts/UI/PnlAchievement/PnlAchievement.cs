@@ -1,3 +1,4 @@
+using Assets.Scripts.NGUI;
 using FormulaBase;
 using GameLogic;
 
@@ -7,8 +8,9 @@ using GameLogic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor.VersionControl;
 using UnityEngine;
-using Assets.Scripts.NGUI;
 
 namespace PnlAchievement
 {
@@ -27,6 +29,7 @@ namespace PnlAchievement
         public int sliderWidth;
         public UISprite nextTrophyShow;
         public List<GameObject> trophys;
+        public UILabel[] labels;
 
         public TweenWidth slideCombo;
         public TweenWidth slidePerfect;
@@ -35,31 +38,35 @@ namespace PnlAchievement
 
         private void Start()
         {
-            instance = this;
             this.slideCombo.enabled = false;
             this.slidePerfect.enabled = false;
             this.slideStars.enabled = false;
             this.slideClear.enabled = false;
         }
 
-        public override void OnShow()
+        public override void OnShow(int idx)
         {
+            if (!TaskStageTarget.Instance.Contains(idx))
+            {
+                labels.ToList().ForEach(l => l.text = "0");
+            }
             foreach (GameObject t in this.trophys)
             {
                 t.SetActive(false);
             }
-
+            gameObject.SetActive(true);
             this.StartCoroutine(this.__OnShow(0.1f));
         }
 
         public override void OnHide()
         {
-			if (PnlScrollCircle.instance != null) {
-				PnlScrollCircle.instance.FinishEnter = true;
-				Debug.Log ("Back to PnlScrollCircle.");
-			}
+            if (PnlScrollCircle.instance != null)
+            {
+                PnlScrollCircle.instance.FinishEnter = true;
+                Debug.Log("Back to PnlScrollCircle.");
+            }
 
-			this.gameObject.SetActive (false);
+            this.gameObject.SetActive(false);
         }
 
         private IEnumerator __OnShow(float sec)
@@ -77,6 +84,11 @@ namespace PnlAchievement
             this.ShowRankProgress(TaskStageTarget.TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT, "Perfect_", this.slidePerfect);
             this.ShowRankProgress(TaskStageTarget.TASK_SIGNKEY_HIDE_NODE_COUNT, "Star_", this.slideStars);
             this.ShowRankProgress(TaskStageTarget.TASK_SIGNKEY_STAGE_CLEAR_COUNT, "Clear_", this.slideClear);
+        }
+
+        public override void BeCatched()
+        {
+            instance = this;
         }
 
         private void ShowRankProgress(string taskKey, string cfgKey, TweenWidth slider)

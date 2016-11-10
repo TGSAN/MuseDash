@@ -43,23 +43,26 @@ namespace PnlCharCosChose
             btnLeft.onClick.Add(new EventDelegate(() =>
             {
                 var idx = PnlCharChose.PnlCharChose.Instance.clothIdx;
-                if (--idx >= 0)
+                var cloths = FormulaBase.RoleManageComponent.Instance.GetCloths(PnlCharChose.PnlCharChose.Instance.choseType);
+                if (--idx < 0)
                 {
-                    var suit = FormulaBase.RoleManageComponent.Instance.GetCloths(PnlCharChose.PnlCharChose.Instance.choseType)[idx];
-                    PnlCharChose.PnlCharChose.Instance.clothIdx = idx;
-                    OnShow(suit);
+                    idx = cloths.Count - 1;
                 }
+                var suit = cloths[idx];
+                PnlCharChose.PnlCharChose.Instance.clothIdx = idx;
+                OnShow(suit);
             }));
             btnRight.onClick.Add(new EventDelegate(() =>
             {
                 var idx = PnlCharChose.PnlCharChose.Instance.clothIdx;
-                var suits = FormulaBase.RoleManageComponent.Instance.GetCloths(PnlCharChose.PnlCharChose.Instance.choseType);
-                if (++idx < suits.Count)
+                var cloths = FormulaBase.RoleManageComponent.Instance.GetCloths(PnlCharChose.PnlCharChose.Instance.choseType);
+                if (++idx >= cloths.Count)
                 {
-                    var suit = suits[idx];
-                    PnlCharChose.PnlCharChose.Instance.clothIdx = idx;
-                    OnShow(suit);
+                    idx = 0;
                 }
+                var suit = cloths[idx];
+                PnlCharChose.PnlCharChose.Instance.clothIdx = idx;
+                OnShow(suit);
             }));
         }
 
@@ -111,6 +114,7 @@ namespace PnlCharCosChose
             var skeletonAnim = go.GetComponent<SkeletonAnimation>();
             skeletonAnim.loop = true;
             skeletonAnim.AnimationName = "standby";
+            go.GetComponent<Renderer>().sortingOrder = 100;
 
             txtIdx.text = "SKIN " + (PnlCharChose.PnlCharChose.Instance.clothIdx + 1).ToString();
         }

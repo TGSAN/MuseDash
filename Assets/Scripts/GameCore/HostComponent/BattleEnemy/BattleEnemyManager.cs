@@ -266,6 +266,18 @@ namespace FormulaBase
             return v;
         }
 
+        public int GetValueByIndex(int idx)
+        {
+            int v = 0;
+            FormulaHost host = this.GetHost(idx);
+            if (host != null)
+            {
+                v = (int)host.Result(FormulaKeys.FORMULA_22);
+            }
+
+            return v;
+        }
+
         public string GetNodeBossAnimationByIdx(int idx)
         {
             MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);

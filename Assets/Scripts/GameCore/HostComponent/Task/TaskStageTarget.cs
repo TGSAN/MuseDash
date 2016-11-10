@@ -4,6 +4,7 @@ using LitJson;
 ///自定义模块，可定制模块具体行为
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace FormulaBase
@@ -216,15 +217,12 @@ namespace FormulaBase
         /// <returns></returns>
         public int GetTotalTrophy()
         {
-            var trophySum = 0;
-            var hosts = GetList("Task");
-            foreach (var host in hosts)
+            var hostList = HostList;
+            if (hostList == null)
             {
-                trophySum +=
-                    host.Value.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_EVLUATE +
-                                                  TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
+                hostList = GetList("Task");
             }
-            return trophySum;
+            return hostList.Sum(host => host.Value.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_EVLUATE + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL));
         }
 
         /// <summary>
@@ -306,7 +304,7 @@ namespace FormulaBase
         {
             var trophyTotal = GetTotalTrophy();
             var trophyRequest = 0;
-            for (int i = 1; trophyRequest <= trophyTotal; i++)
+            for (int i = 1; trophyRequest < trophyTotal; i++)
             {
                 trophyRequest = ConfigPool.Instance.GetConfigIntValue("stage", i.ToString(), "unlock");
                 idx = i;
@@ -396,10 +394,8 @@ namespace FormulaBase
                 this.Host.SetDynamicData(SignKeys.DIFFCULT, targetIdx);
 
                 int evlua = this.GetStageEvluateMax();
-                var nextIdx = 1;
-                var trophyNext = GetNextUnlockTrophy(ref nextUnlockIdx);
-                var trophyTotal = GetTotalTrophy();
-                isNextUnlock = trophyTotal == trophyNext;
+                this.SetStageEvluateMax(evlua + 1);
+
                 return true;
             }
 
@@ -630,6 +626,15 @@ namespace FormulaBase
 
         private void AfterSave(bool _Success)
         {
+            var trophyNext = GetNextUnlockTrophy(ref nextUnlockIdx);
+            var trophyTotal = GetTotalTrophy();
+            isNextUnlock = trophyTotal == trophyNext;
+        }
+
+        public bool Contains(int idx)
+        {
+            var hostList = HostList ?? GetList("Task");
+            return hostList.Values.ToList().Any(k => k.GetDynamicIntByKey(SignKeys.ID) == idx);
         }
 
         /// <summary>
