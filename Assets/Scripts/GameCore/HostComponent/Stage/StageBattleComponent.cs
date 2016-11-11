@@ -410,7 +410,7 @@ namespace FormulaBase
             GameObject catchObj = this.prefabCatchObj[filename] as GameObject;
             if (catchObj == null)
             {
-                catchObj = Resources.Load(filename) as GameObject;
+                ResourceLoader.Instance.Load(filename, res => catchObj = res as GameObject);
                 if (catchObj == null)
                 {
                     // Debug.Log ("obj is empty");
