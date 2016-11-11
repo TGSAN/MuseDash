@@ -110,7 +110,7 @@ public class AudioManager
         {
             this.backGroundMusic.clip = null;
             //SceneAudioManager.Instance.Load (pathName + ".ogg", this.backGroundMusic);
-            this.backGroundMusic.clip = Resources.Load<AudioClip>(this.PlayingMusic);
+            ResourceLoader.Instance.Load(this.PlayingMusic, res => this.backGroundMusic.clip = res as AudioClip);
             Debug.Log("Load battle bgm " + this.PlayingMusic + " succeed.");
         }
     }
