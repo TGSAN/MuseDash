@@ -160,17 +160,12 @@ public class GirlManager : MonoBehaviour
             clothPath = charCos.path;
         }
 
-#if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
         if (string.IsNullOrEmpty(clothPath))
         {
             clothIdx = ConfigPool.Instance.GetConfigIntValue("char_info", heroIndex.ToString(), "character");
             clothPath = ConfigPool.Instance.GetConfigStringValue("char_cos", "uid", "path", clothIdx);
-            if (GameGlobal.DEBUG_CLOTH_UID > 0)
-            {
-                clothPath = ConfigPool.Instance.GetConfigStringValue("char_cos", "uid", "path", GameGlobal.DEBUG_CLOTH_UID);
-            }
         }
-#endif
+
         this.girlnames[0] = clothPath;
         string[] _armnames = BattlePetComponent.Instance.GetPetPerfabNames();
         if (_armnames != null)
@@ -208,6 +203,7 @@ public class GirlManager : MonoBehaviour
 
     private IEnumerator __ReloadGirl(int girlIdx, string pathName)
     {
+        CommonPanel.GetInstance().DebugInfo(pathName + "===============1");
         GameObject _girl = StageBattleComponent.Instance.AddObj(ref pathName);
         if (_girl == null)
         {
