@@ -60,7 +60,6 @@ public class ResourceLoader : MonoBehaviour
         {
             CommonPanel.GetInstance().DebugInfo(path);
             UnityEngine.Object resObj = Resources.Load<UnityEngine.Object>(path);
-            CommonPanel.GetInstance().DebugInfo(resObj.ToString());
             if (handler != null)
             {
                 handler(resObj);

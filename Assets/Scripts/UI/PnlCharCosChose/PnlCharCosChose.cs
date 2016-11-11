@@ -103,18 +103,21 @@ namespace PnlCharCosChose
             }
             spiPoint.DestroyChildren();
             GameObject go = null;
-            ResourceLoader.Instance.Load(m_CharCos.path, res => go = Instantiate(res) as GameObject);
-            go.transform.SetParent(spiPoint);
-            go.GetComponent<Animator>().enabled = false;
-            go.GetComponent<SpineSynchroObjects>().enabled = false;
-            go.GetComponent<SpineMountController>().enabled = false;
-            go.SetActive(true);
-            go.transform.localPosition = Vector3.zero;
-            go.transform.localEulerAngles = Vector3.zero;
-            var skeletonAnim = go.GetComponent<SkeletonAnimation>();
-            skeletonAnim.loop = true;
-            skeletonAnim.AnimationName = "standby";
-            go.GetComponent<Renderer>().sortingOrder = 100;
+            ResourceLoader.Instance.Load(m_CharCos.path, res =>
+            {
+                go = Instantiate(res) as GameObject;
+                go.transform.SetParent(spiPoint);
+                go.GetComponent<Animator>().enabled = false;
+                go.GetComponent<SpineSynchroObjects>().enabled = false;
+                go.GetComponent<SpineMountController>().enabled = false;
+                go.SetActive(true);
+                go.transform.localPosition = Vector3.zero;
+                go.transform.localEulerAngles = Vector3.zero;
+                var skeletonAnim = go.GetComponent<SkeletonAnimation>();
+                skeletonAnim.loop = true;
+                skeletonAnim.AnimationName = "standby";
+                go.GetComponent<Renderer>().sortingOrder = 100;
+            }, ResourceLoader.RES_FROM_LOCAL);
 
             txtIdx.text = "SKIN " + (PnlCharChose.PnlCharChose.Instance.clothIdx + 1).ToString();
         }
