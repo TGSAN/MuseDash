@@ -278,6 +278,12 @@ namespace FormulaBase
             return true;
         }
 
+        public FormulaHost GetStageByIdx(int idx)
+        {
+            var hostList = HostList ?? GetList("Task");
+            return hostList.Values.FirstOrDefault(formulaHost => formulaHost.GetDynamicIntByKey(SignKeys.ID) == idx);
+        }
+
         /// <summary>
         /// 获取解锁歌曲列表
         /// </summary>
@@ -399,12 +405,12 @@ namespace FormulaBase
 
                 this.SetStageEvluateMax(evlua + 1);
                 //成就
-                AchievementManager.instance.GetAchievement(Host);
+                AchievementManager.instance.SetAchievement(Host);
                 return true;
             }
 
             //成就
-            AchievementManager.instance.GetAchievement(Host);
+            AchievementManager.instance.SetAchievement(Host);
             return false;
 
             /*
