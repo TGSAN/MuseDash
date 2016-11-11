@@ -203,7 +203,6 @@ public class GirlManager : MonoBehaviour
 
     private IEnumerator __ReloadGirl(int girlIdx, string pathName)
     {
-        CommonPanel.GetInstance().DebugInfo(pathName + "===============1");
         GameObject _girl = StageBattleComponent.Instance.AddObj(ref pathName);
         if (_girl == null)
         {
