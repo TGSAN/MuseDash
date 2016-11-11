@@ -13,6 +13,7 @@ namespace PnlAchievementInfo
     public class PnlAchievementInfo : UIPhaseBase
     {
         private static PnlAchievementInfo instance = null;
+        public Transform combo, perfect, stars, clear;
 
         public static PnlAchievementInfo Instance
         {
@@ -28,7 +29,7 @@ namespace PnlAchievementInfo
 
         public override void OnShow()
         {
-            var allAchievements = AchievementManager.instance.GetAchievements();
+            //var allAchievements = AchievementManager.instance.GetAchievements();
         }
 
         public override void OnHide()
