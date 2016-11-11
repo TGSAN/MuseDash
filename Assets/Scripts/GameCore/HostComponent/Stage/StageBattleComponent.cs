@@ -406,7 +406,6 @@ namespace FormulaBase
                 Debug.Log("Stage prefabCatchObj not init.");
                 return null;
             }
-
             GameObject catchObj = this.prefabCatchObj[filename] as GameObject;
             if (catchObj == null)
             {
