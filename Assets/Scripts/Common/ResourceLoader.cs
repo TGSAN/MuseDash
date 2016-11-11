@@ -42,6 +42,12 @@ public class ResourceLoader : MonoBehaviour
 	}
 	*/
 
+    public Coroutine LoadItemIcon(FormulaHost host, UITexture tex)
+    {
+        var icon = "items/icon/" + host.GetDynamicStrByKey(SignKeys.ICON);
+        return ResourceLoader.Instance.Load(icon, res => tex.mainTexture = res as Texture);
+    }
+
     public Coroutine Load(FormulaHost host, UITexture tex)
     {
         var icon = host.GetDynamicStrByKey(SignKeys.ICON);

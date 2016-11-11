@@ -280,7 +280,7 @@ namespace PnlEquipInfo
                     var h = hostList[i];
                     var texName = h.GetDynamicStrByKey(SignKeys.ICON);
                     var lvl = h.GetDynamicIntByKey(SignKeys.LEVEL);
-                    ResourceLoader.Instance.Load(texName, resObj => tex.mainTexture = resObj as Texture);
+                    ResourceLoader.Instance.Load("items/icon/" + texName, resObj => tex.mainTexture = resObj as Texture);
                     txt.text = lvl.ToString();
                 }
                 else

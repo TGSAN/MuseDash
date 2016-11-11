@@ -1,3 +1,4 @@
+using Assets.Scripts.Common.Manager;
 using GameLogic;
 using LitJson;
 
@@ -211,17 +212,18 @@ namespace FormulaBase
             return names.ToArray();
         }
 
+        public FormulaHost GetTask(int idx)
+        {
+            return (HostList ?? GetList("Task")).Values.ToList().Single(h => h.GetDynamicIntByKey(SignKeys.ID) == idx);
+        }
+
         /// <summary>
         /// 获取当前玩家获得的奖杯总数
         /// </summary>
         /// <returns></returns>
         public int GetTotalTrophy()
         {
-            var hostList = HostList;
-            if (hostList == null)
-            {
-                hostList = GetList("Task");
-            }
+            var hostList = HostList ?? GetList("Task");
             return hostList.Sum(host => host.Value.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_EVLUATE + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL));
         }
 
@@ -394,11 +396,15 @@ namespace FormulaBase
                 this.Host.SetDynamicData(SignKeys.DIFFCULT, targetIdx);
 
                 int evlua = this.GetStageEvluateMax();
-                this.SetStageEvluateMax(evlua + 1);
 
+                this.SetStageEvluateMax(evlua + 1);
+                //成就
+                AchievementManager.instance.GetAchievement(Host);
                 return true;
             }
 
+            //成就
+            AchievementManager.instance.GetAchievement(Host);
             return false;
 
             /*
@@ -626,6 +632,7 @@ namespace FormulaBase
 
         private void AfterSave(bool _Success)
         {
+            //检验下首歌曲是否解锁
             var trophyNext = GetNextUnlockTrophy(ref nextUnlockIdx);
             var trophyTotal = GetTotalTrophy();
             isNextUnlock = trophyTotal == trophyNext;

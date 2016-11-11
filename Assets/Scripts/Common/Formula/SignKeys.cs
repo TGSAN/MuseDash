@@ -334,6 +334,10 @@ namespace FormulaBase {
 		/// SUIT_GROUP
 		///
 		public const string SUIT_GROUP = "SUIT_GROUP";
+		///
+		/// ACHIEVEMENT
+		///
+		public const string ACHIEVEMENT = "ACHIEVEMENT";
 
 	}
 }

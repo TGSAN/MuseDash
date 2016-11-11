@@ -41,11 +41,11 @@ namespace PnlItemUpgrade
         {
             gameObject.SetActive(true);
             animator1.gameObject.SetActive(true);
-            ResourceLoader.Instance.Load(host, mainTex1);
-            ResourceLoader.Instance.Load(host, mainTex2);
+            ResourceLoader.Instance.LoadItemIcon(host, mainTex1);
+            ResourceLoader.Instance.LoadItemIcon(host, mainTex2);
             for (int i = 0; i < hosts.Length; i++)
             {
-                ResourceLoader.Instance.Load(hosts[i], itemTexs[i]);
+                ResourceLoader.Instance.LoadItemIcon(hosts[i], itemTexs[i]);
             }
             animator1.Play(hosts.Length.ToString() + "item");
             DOTweenUtils.Delay(() =>

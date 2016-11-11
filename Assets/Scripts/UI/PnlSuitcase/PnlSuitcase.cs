@@ -156,7 +156,6 @@ namespace PnlSuitcase
 
         public void OnTypeChange()
         {
-            grid.enabled = true;
             foreach (var cell in m_Cells)
             {
                 var isEquip = false;
@@ -212,6 +211,17 @@ namespace PnlSuitcase
                 }
                 cell.gameObject.SetActive(isEquip || isFood || isServant);
             }
+            grid.enabled = true;
+            ResetPos();
+        }
+
+        public void ResetPos()
+        {
+            var scrollViewGO = grid.transform.parent.gameObject;
+            scrollViewGO.transform.position = new Vector3(scrollViewGO.transform.position.x, 0,
+                scrollViewGO.transform.position.z);
+            scrollViewGO.GetComponent<UIPanel>().clipOffset =
+                new Vector2(scrollViewGO.GetComponent<UIPanel>().clipOffset.x, 0);
         }
     }
 }

@@ -107,8 +107,7 @@ namespace PnlCharInfo
                 if (i < hostList.Count)
                 {
                     var h = hostList[i];
-                    var texName = h.GetDynamicStrByKey(SignKeys.ICON);
-                    ResourceLoader.Instance.Load(texName, resObj => tex.mainTexture = resObj as Texture);
+                    ResourceLoader.Instance.LoadItemIcon(h, tex);
                 }
                 else
                 {
@@ -218,6 +217,7 @@ namespace PnlCharInfo
                         PnlChar.PnlChar.Instance.gameObject.SetActive(false);
                     }, 0.1f);
                 }
+                PnlSuitcase.PnlSuitcase.Instance.ResetPos();
             };
             UIEventListener.Get(btnBack.gameObject).onClick = (go) =>
             {

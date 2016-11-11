@@ -102,7 +102,7 @@ namespace PnlCharUpgrade
                 {
                     tex.transform.parent.gameObject.SetActive(true);
                     var formulaHost = hosts[i];
-                    ResourceLoader.Instance.Load(formulaHost, tex);
+                    ResourceLoader.Instance.LoadItemIcon(formulaHost, tex);
                 }
                 else
                 {

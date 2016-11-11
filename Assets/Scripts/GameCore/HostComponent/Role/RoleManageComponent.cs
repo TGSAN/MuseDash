@@ -448,7 +448,11 @@ namespace FormulaBase
             {
                 suitGroup = role.GetDynamicStrByKey(SignKeys.CLOTH);
             }
-            var suitNumber = suitGroup.Split(',');
+            var suitNumber = suitGroup.Split(',').ToList();
+            if (suitNumber.Contains("0"))
+            {
+                suitNumber.Remove("0");
+            }
             var list = suitNumber.Select(s => new CharCos((float)int.Parse(s))).ToList();
             return list;
         }
