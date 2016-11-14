@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000011475398324}
   - 114: {fileID: 114000011694086348}
   - 114: {fileID: 114000014210016832}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TxtTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,8 +38,29 @@ GameObject:
   - 4: {fileID: 4000011789203688}
   - 114: {fileID: 114000010648444128}
   - 114: {fileID: 114000012270677610}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TxtSum
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000011246585632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010459811444}
+  - 114: {fileID: 114000013630849670}
+  - 65: {fileID: 65000010434267252}
+  - 114: {fileID: 114000012782365992}
+  - 114: {fileID: 114000012850488568}
+  - 114: {fileID: 114000013933960252}
+  - 114: {fileID: 114000011691716200}
+  m_Layer: 5
+  m_Name: BtnGiftPack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +76,7 @@ GameObject:
   - 4: {fileID: 4000014230896186}
   - 114: {fileID: 114000011516653074}
   - 114: {fileID: 114000013574378176}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TxtDescription
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +92,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013553478896}
   - 114: {fileID: 114000011398439686}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SprTitleBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +109,7 @@ GameObject:
   - 4: {fileID: 4000011949880616}
   - 114: {fileID: 114000013588937510}
   - 114: {fileID: 114000012815025554}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TxtMultipleSign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +130,7 @@ GameObject:
   - 114: {fileID: 114000010568902522}
   - 114: {fileID: 114000013167518602}
   - 114: {fileID: 114000012395184196}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BtnInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +153,8 @@ GameObject:
   - 114: {fileID: 114000012056456694}
   - 114: {fileID: 114000014228125586}
   - 114: {fileID: 114000010283736990}
-  m_Layer: 0
+  - 114: {fileID: 114000013582875810}
+  m_Layer: 5
   m_Name: BtnYellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +170,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013893334822}
   - 114: {fileID: 114000011262239026}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SprCapsuleIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +187,7 @@ GameObject:
   - 4: {fileID: 4000014036862350}
   - 114: {fileID: 114000012764449832}
   - 114: {fileID: 114000010882157088}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TxtCost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,24 +203,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011465096330}
   - 114: {fileID: 114000014153622160}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SprCoinIcon
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1000013683602884
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 4000012874609090}
-  - 114: {fileID: 114000013889244894}
-  m_Layer: 0
-  m_Name: SprCapsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,7 +219,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013139768284}
   - 114: {fileID: 114000011711997870}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SprGiftBigBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,13 +234,26 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010527437798}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Sum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4000010459811444
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011246585632}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 31, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013139768284}
+  m_RootOrder: 0
 --- !u!4 &4000010527437798
 Transform:
   m_ObjectHideFlags: 1
@@ -318,19 +337,6 @@ Transform:
   - {fileID: 4000014036862350}
   m_Father: {fileID: 4000013139768284}
   m_RootOrder: 4
---- !u!4 &4000012874609090
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013683602884}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 31, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 4000013139768284}
-  m_RootOrder: 0
 --- !u!4 &4000013139768284
 Transform:
   m_ObjectHideFlags: 1
@@ -342,7 +348,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 4000012874609090}
+  - {fileID: 4000010459811444}
   - {fileID: 4000013553478896}
   - {fileID: 4000010527437798}
   - {fileID: 4000014230896186}
@@ -416,6 +422,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000013139768284}
   m_RootOrder: 3
+--- !u!65 &65000010434267252
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011246585632}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 272, y: 278, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65000011564249910
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -889,6 +907,29 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000011691716200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011246585632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animator: {fileID: 0}
+  clipName: pnl_gift_info_in
+  trigger: 0
+  playDirection: 1
+  resetOnPlay: 0
+  clearSelection: 0
+  ifDisabledOnPlay: 1
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
 --- !u!114 &114000011694086348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1213,6 +1254,31 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000012782365992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011246585632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 1000011246585632}
+  hover: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 0.8849481, g: 0.8984488, b: 0.9117647, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.02
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick: []
 --- !u!114 &114000012815025554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1251,6 +1317,19 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000012850488568
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011246585632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02842fa4878db54f9587ff4de7d9f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollView: {fileID: 0}
+  draggablePanel: {fileID: 0}
 --- !u!114 &114000013167518602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1304,6 +1383,19 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000013582875810
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013310337662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02842fa4878db54f9587ff4de7d9f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollView: {fileID: 0}
+  draggablePanel: {fileID: 0}
 --- !u!114 &114000013588937510
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1372,12 +1464,12 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
---- !u!114 &114000013889244894
+--- !u!114 &114000013630849670
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013683602884}
+  m_GameObject: {fileID: 1000011246585632}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
@@ -1425,6 +1517,21 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 685ab1af597914997b134cceb4ad9f48, type: 2}
   mSpriteName: gift_yellow
   mFillCenter: 1
+--- !u!114 &114000013933960252
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011246585632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000013957968144
 MonoBehaviour:
   m_ObjectHideFlags: 1
