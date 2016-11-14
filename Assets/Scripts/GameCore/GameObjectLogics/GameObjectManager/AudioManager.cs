@@ -229,7 +229,7 @@ public class AudioManager
 
 #if UNITY_ANDROID && !UNITY_EDITOR
         name = StringUtils.LastAfter(name, '/');
-        var idx = AudioCenter.loadSound(name);
+        AudioCenter.loadSound(name);
 #else
         if (!audioDic.ContainsKey(name))
         {
@@ -361,7 +361,7 @@ public class AudioManager
         }
 #if UNITY_ANDROID && !UNITY_EDITOR
         name = StringUtils.LastAfter(name, '/');
-        AudioCenter.playSound(name);
+        var result = AudioCenter.playSound(name);
 #else
         if (this.audioDic.ContainsKey(name))
         {

@@ -13,31 +13,34 @@ public class AudioCenter : MonoBehaviour
 		public static AndroidJavaObject soundObj = null;
         public static Dictionary<string, int> clipDics { get; private set; }
 
-		public static void playSound( string soundName ) {
+		public static bool playSound( string soundName ) {
             if (!clipDics.ContainsKey(soundName))
 	        {
-                return;
+                return false;
 	        }
 			var soundId = clipDics[soundName];
 			soundObj.Call( "playSound", new object[] { soundId } );
+            return true;
 		}
 
-		public static void playSound( string soundName, float volume ) {
+		public static bool playSound( string soundName, float volume ) {
             if (!clipDics.ContainsKey(soundName))
 	        {
-                return;
+                return false;
 	        }
             var soundId = clipDics[soundName];
 			soundObj.Call( "playSound", new object[] { soundId, volume } );
+            return true;
 		}
 
-		public static void playSound( string soundName, float leftVolume, float rightVolume, int priority, int loop, float rate  ) {
+		public static bool playSound( string soundName, float leftVolume, float rightVolume, int priority, int loop, float rate  ) {
             if (!clipDics.ContainsKey(soundName))
 	        {
-                return;
+                return false;
 	        }
             var soundId = clipDics[soundName];
 			soundObj.Call( "playSound", new object[] { soundId, leftVolume, rightVolume, priority, loop, rate } );
+            return true;
 		}
 
 		public static int loadSound( string soundName, string backName = ".wav" ) {

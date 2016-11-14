@@ -595,7 +595,7 @@ namespace FormulaBase
             GameGlobal.gGameMusic.PlayMusic();
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-            /延迟0.1s用于音频加载不同步缓冲
+            //延迟0.1s用于音频加载不同步缓冲
             AudioManager.Instance.SetBgmVolume(0f);
             DOTweenUtils.Delay(() =>
             {

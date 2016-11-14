@@ -18,9 +18,9 @@ namespace Assets.Scripts.Common.Manager
 
     public enum AchievementGoal
     {
-        A,
-        B,
         C,
+        B,
+        A,
         S,
     }
 
@@ -45,8 +45,10 @@ namespace Assets.Scripts.Common.Manager
         {
             get
             {
-                var achs = AchievementManager.instance.GetAchievements(uid);
-                return achs.Any(ach => ach.id == id);
+                var host = TaskStageTarget.Instance.GetStageByIdx(uid);
+                if (host == null) return false;
+                var achs = Achievement.ToArray(host.GetDynamicStrByKey(SignKeys.ACHIEVEMENT));
+                return achs.Any(ach => ach.id == id && ach.achGoalType == achGoalType);
             }
         }
 
@@ -91,21 +93,23 @@ namespace Assets.Scripts.Common.Manager
             var strArray = str.Split('/');
             for (var i = 0; i < strArray.Length; i++)
             {
-                if (i == 0)
+                switch (i)
                 {
-                    id = int.Parse(strArray[i]);
-                    achiConfig = achiConfig[id.ToString()];
-                }
-                else if (i == 1)
-                {
-                    goal = (int)achiConfig[strArray[i]];
-                    var typeStr = strArray[i].Replace("_goal", string.Empty);
-                    typeStr = typeStr.ToUpper();
-                    achGoalType = (AchievementGoal)Enum.Parse(typeof(AchievementGoal), typeStr);
-                }
-                else if (i == 2)
-                {
-                    isGet = bool.Parse(strArray[i]);
+                    case 0:
+                        id = int.Parse(strArray[i]);
+                        achiConfig = achiConfig[id.ToString()];
+                        break;
+
+                    case 1:
+                        goal = (int)achiConfig[strArray[i]];
+                        var typeStr = strArray[i].Replace("_goal", string.Empty);
+                        typeStr = typeStr.ToUpper();
+                        achGoalType = (AchievementGoal)Enum.Parse(typeof(AchievementGoal), typeStr);
+                        break;
+
+                    case 2:
+                        isGet = bool.Parse(strArray[i]);
+                        break;
                 }
             }
 
@@ -151,13 +155,11 @@ namespace Assets.Scripts.Common.Manager
                 }
                 else
                 {
-                    if (i == strArray.Length - 1)
-                    {
-                        var list = strArray.ToList();
-                        list.Add(id.ToString() + "/" + lvl + "/true");
-                        strArray = list.ToArray();
-                        break;
-                    }
+                    if (i != strArray.Length - 1) continue;
+                    var list = strArray.ToList();
+                    list.Add(id.ToString() + "/" + lvl + "/true");
+                    strArray = list.ToArray();
+                    break;
                 }
             }
 
@@ -195,7 +197,7 @@ namespace Assets.Scripts.Common.Manager
         {
             var clearCount = stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_CLEAR_COUNT);
             var perfectMaxCount = stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
-            var comboCount = stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_HIT_COUNT + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
+            var comboCount = stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_MAX_COMBO);
             var starCount = stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_HIDE_NODE_COUNT + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
             var achievementConfig = ConfigPool.Instance.GetConfigByName("achievement");
             var count = 0;
@@ -204,9 +206,9 @@ namespace Assets.Scripts.Common.Manager
             var goalType = Enum.GetNames(typeof(AchievementGoal));
             Action<JsonData, int, int> resultFunc = (ach, value, i) =>
             {
-                for (var j = 0; j < goalType.Length; j++)
+                foreach (string t in goalType)
                 {
-                    var goal = goalType[j].ToLower() + "_goal";
+                    var goal = t.ToLower() + "_goal";
                     var goalNum = (int)ach[goal];
                     if (value >= goalNum)
                     {
@@ -294,21 +296,50 @@ namespace Assets.Scripts.Common.Manager
         /// <returns></returns>
         public Achievement[] GetAchievements(int idx)
         {
-            var host = TaskStageTarget.Instance.GetStageByIdx(idx);
-            var list = Achievement.ToArray(host.GetDynamicStrByKey(SignKeys.ACHIEVEMENT)).ToList();
+            var list = new List<Achievement>();
             var achConfig = ConfigPool.Instance.GetConfigByName("achievement");
-            for (int i = 1; i <= achConfig.Count; i++)
+            for (var i = 1; i <= achConfig.Count; i++)
             {
                 var ach = achConfig[i.ToString()];
-
-                if ((int)ach["uid"] == idx)
-                {
-                    if (list.Any(l => l.id == (int)ach["id"])) continue;
-                    var achievement = new Achievement(ach["id"].ToString() + "/" + "a_goal/true");
-                    list.Add(achievement);
-                }
+                if ((int)ach["uid"] != idx) continue;
+                list.Add(new Achievement(ach["id"].ToString() + "/c_goal/true"));
+                list.Add(new Achievement(ach["id"].ToString() + "/b_goal/true"));
+                list.Add(new Achievement(ach["id"].ToString() + "/a_goal/true"));
+                list.Add(new Achievement(ach["id"].ToString() + "/s_goal/true"));
             }
+            list.Sort((l, r) =>
+            {
+                if (l.id != r.id)
+                {
+                    return l.id - r.id;
+                }
+                return l.achGoalType - r.achGoalType;
+            });
             return list.ToArray();
+        }
+
+        public int GetComboMax(int idx)
+        {
+            var host = TaskStageTarget.Instance.GetStageByIdx(idx);
+            return host == null ? 0 : host.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_MAX_COMBO);
+        }
+
+        public int GetClearCount(int idx)
+        {
+            var host = TaskStageTarget.Instance.GetStageByIdx(idx);
+            return host == null ? 0 : host.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_CLEAR_COUNT);
+        }
+
+        public int GetPerfectMax(int idx)
+        {
+            var host = TaskStageTarget.Instance.GetStageByIdx(idx);
+            return host == null ? 0 : host.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
+        }
+
+        public int GetStarMax(int idx)
+        {
+            var host = TaskStageTarget.Instance.GetStageByIdx(idx);
+            return host == null ? 0 : host.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_HIDE_NODE_COUNT + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
         }
     }
 }
