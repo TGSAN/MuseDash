@@ -43,15 +43,11 @@ namespace PnlChar
             }
         }
 
-        private void Start()
-        {
-            Init();
-        }
-
         public override void OnShow()
         {
             UpdateInfo();
             UpdateUI();
+            UpdateEvent();
         }
 
         public override void OnHide()
@@ -64,13 +60,13 @@ namespace PnlChar
         public override void BeCatched()
         {
             instance = this;
+            curRoleIdx = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
         }
 
         #region Update更新
 
         private void UpdateInfo()
         {
-            m_AnimPath.Clear();
             InitInfo();
         }
 
@@ -83,19 +79,14 @@ namespace PnlChar
 
         #region Init初始化
 
-        private void Init()
+        private void UpdateEvent()
         {
-            curRoleIdx = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
-            onRoleChange += idx => PnlCharInfo.PnlCharInfo.Instance.OnUpgradeItemsRefresh();
-            onRoleChange += PnlCharInfo.PnlCharInfo.Instance.OnRoleChange;
-            onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
-            InitInfo();
             InitEvent();
-            InitUI();
         }
 
         private void InitInfo()
         {
+            m_AnimPath.Clear();
             for (int i = 1; i <= FormulaBase.RoleManageComponent.Instance.GetRoleCount(); i++)
             {
                 var pathIdx = ConfigPool.Instance.GetConfigStringValue("char_info", i.ToString(), "character");
@@ -115,6 +106,10 @@ namespace PnlChar
 
         private void InitEvent()
         {
+            onRoleChange = null; ;
+            onRoleChange += idx => PnlCharInfo.PnlCharInfo.Instance.OnUpgradeItemsRefresh();
+            onRoleChange += PnlCharInfo.PnlCharInfo.Instance.OnRoleChange;
+            onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
             onRoleChange += OnRoleChange;
             var maxCount = FormulaBase.RoleManageComponent.Instance.GetRoleCount();
             Action onLeftClick = null;
@@ -250,35 +245,32 @@ namespace PnlChar
                 return;
             }
             GameObject go = null;
-            ResourceLoader.Instance.Load(p ?? path, res =>
+            ResourceLoader.Instance.Load(p ?? path, res => go = Instantiate(res) as GameObject);
+            go.transform.SetParent(spiAnimParent, false);
+            go.SetActive(true);
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localScale = Vector3.one * 140f;
+            go.transform.localEulerAngles = Vector3.zero;
+            var skeletonAnim = go.GetComponent<SkeletonAnimation>();
+            skeletonAnim.loop = true;
+            skeletonAnim.AnimationName = "standby";
+            go.GetComponent<SpineSynchroObjects>().enabled = false;
+            go.GetComponent<SpineMountController>().enabled = false;
+            go.GetComponent<Renderer>().sortingOrder = 50;
+            if (m_SpiAniGODic.ContainsKey(idx))
             {
-                go = Instantiate(res) as GameObject;
-                go.transform.SetParent(spiAnimParent, false);
-                go.SetActive(true);
-                go.transform.localPosition = Vector3.zero;
-                go.transform.localScale = Vector3.one * 140f;
-                go.transform.localEulerAngles = Vector3.zero;
-                var skeletonAnim = go.GetComponent<SkeletonAnimation>();
-                skeletonAnim.loop = true;
-                skeletonAnim.AnimationName = "standby";
-                go.GetComponent<SpineSynchroObjects>().enabled = false;
-                go.GetComponent<SpineMountController>().enabled = false;
-                go.GetComponent<Renderer>().sortingOrder = 50;
-                if (m_SpiAniGODic.ContainsKey(idx))
-                {
-                    Destroy(m_SpiAniGODic[idx]);
-                    m_SpiAniGODic[idx] = go;
-                }
-                else
-                {
-                    m_SpiAniGODic.Add(idx, go);
-                }
-                m_AnimPath[idx - 1] = p ?? path;
-                foreach (var pair in m_SpiAniGODic)
-                {
-                    pair.Value.SetActive(pair.Key == idx);
-                }
-            }, ResourceLoader.RES_FROM_LOCAL);
+                Destroy(m_SpiAniGODic[idx]);
+                m_SpiAniGODic[idx] = go;
+            }
+            else
+            {
+                m_SpiAniGODic.Add(idx, go);
+            }
+            m_AnimPath[idx - 1] = p ?? path;
+            foreach (var pair in m_SpiAniGODic)
+            {
+                pair.Value.SetActive(pair.Key == idx);
+            }
         }
 
         #endregion On事件
