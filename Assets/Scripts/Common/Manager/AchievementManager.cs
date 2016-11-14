@@ -177,20 +177,34 @@ namespace Assets.Scripts.Common.Manager
             return true;
         }
 
-        public void ReceieveAchievement(FormulaHost stageHost, int id, string lvl)
+        public void ReceieveAchievement(FormulaHost stageHost)
         {
             var achs = stageHost.GetDynamicStrByKey(SignKeys.ACHIEVEMENT);
+            var achievements = Achievement.ToArray(achs);
+            var coins = 0;
+            var crystals = 0;
+            foreach (var achievement in achievements)
+            {
+                var awdType = achievement.awdType;
+                if (awdType == AwardType.Coin && !achievement.isGet)
+                {
+                    coins += achievement.award;
+                }
+                else if (awdType == AwardType.Crystal && !achievement.isGet)
+                {
+                    crystals += achievement.award;
+                }
+            }
+
             var strArray = achs.Split(',');
             for (var i = 0; i < strArray.Length; i++)
             {
-                if (!strArray[i].Contains(id.ToString())) continue;
-                var str = lvl + "/true";
-                var newStr = lvl + "/false";
-                strArray[i] = strArray[i].Replace(str, newStr);
-                break;
+                strArray[i] = strArray[i].Replace("true", "false");
             }
             achs = strArray.TakeWhile((t, i) => i != strArray.Length - 1).Aggregate(string.Empty, (current, t) => current + (t + ","));
             stageHost.SetDynamicData(SignKeys.ACHIEVEMENT, achs);
+            AccountGoldManagerComponent.Instance.ChangeMoney(coins);
+            AccountCrystalManagerComponent.Instance.ChangeDiamond(crystals);
         }
 
         public void SetAchievement(FormulaHost stageHost)

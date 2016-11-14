@@ -47,7 +47,6 @@ namespace PnlChar
         {
             UpdateInfo();
             UpdateUI();
-            UpdateEvent();
         }
 
         public override void OnHide()
@@ -61,6 +60,7 @@ namespace PnlChar
         {
             instance = this;
             curRoleIdx = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
+            DOTweenUtils.Delay(InitEvent, Time.deltaTime);
         }
 
         #region Update更新
@@ -78,11 +78,6 @@ namespace PnlChar
         #endregion Update更新
 
         #region Init初始化
-
-        private void UpdateEvent()
-        {
-            InitEvent();
-        }
 
         private void InitInfo()
         {
@@ -123,9 +118,11 @@ namespace PnlChar
                 {
                     onLeftClick();
                 }
-                onRoleChange(curRoleIdx);
+                else
+                {
+                    onRoleChange(curRoleIdx);
+                }
             };
-
             btnLeft.onClick.Add(new EventDelegate(() =>
             {
                 onLeftClick();
@@ -142,7 +139,10 @@ namespace PnlChar
                 {
                     onRightClick();
                 }
-                onRoleChange(curRoleIdx);
+                else
+                {
+                    onRoleChange(curRoleIdx);
+                }
             };
             btnRight.onClick.Add(new EventDelegate(() =>
             {
@@ -247,13 +247,15 @@ namespace PnlChar
             GameObject go = null;
             ResourceLoader.Instance.Load(p ?? path, res => go = Instantiate(res) as GameObject);
             go.transform.SetParent(spiAnimParent, false);
-            go.SetActive(true);
             go.transform.localPosition = Vector3.zero;
             go.transform.localScale = Vector3.one * 140f;
             go.transform.localEulerAngles = Vector3.zero;
             var skeletonAnim = go.GetComponent<SkeletonAnimation>();
             skeletonAnim.loop = true;
-            skeletonAnim.AnimationName = "standby";
+            DOTweenUtils.Delay(() =>
+            {
+                skeletonAnim.AnimationName = "standby";
+            }, 0.1f);
             go.GetComponent<SpineSynchroObjects>().enabled = false;
             go.GetComponent<SpineMountController>().enabled = false;
             go.GetComponent<Renderer>().sortingOrder = 50;

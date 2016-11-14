@@ -97,10 +97,12 @@ namespace PnlCharChose
             }));
             btnApply.onClick.Add(new EventDelegate(() =>
             {
+                CommonPanel.GetInstance().ShowWaittingPanel();
                 FormulaBase.RoleManageComponent.Instance.SetFightGirlIndex(choseType, this.SetFightGirlCallback);
             }));
             btnPurchase.onClick.Add(new EventDelegate(() =>
             {
+                CommonPanel.GetInstance().ShowWaittingPanel();
                 FormulaBase.RoleManageComponent.Instance.UnlockRole(choseType, this.UnLockRoleCallback);
             }));
             OnCharacterChange(choseType);
@@ -232,6 +234,7 @@ namespace PnlCharChose
 
         private void SetFightGirlCallback()
         {
+            CommonPanel.GetInstance().ShowWaittingPanel(false);
             btnApply.gameObject.SetActive(false);
             btnPurchase.gameObject.SetActive(false);
             txtApplying.gameObject.SetActive(true);
