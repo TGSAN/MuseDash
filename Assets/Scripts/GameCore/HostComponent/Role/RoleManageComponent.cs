@@ -272,6 +272,7 @@ namespace FormulaBase
             {
                 _result = AccountGoldManagerComponent.Instance.ChangeMoney(tcost, true, new HttpResponseDelegate(((bool result) =>
                 {
+                    CommonPanel.GetInstance().ShowWaittingPanel(false);
                     if (!result)
                     {
                         CommonPanel.GetInstance().ShowTextLackMoney();
@@ -286,8 +287,6 @@ namespace FormulaBase
                     {
                         _callBack();
                     }
-
-                    CommonPanel.GetInstance().ShowWaittingPanel();
                 })));
             }
             else if (ttype == GameGlobal.RESOURCE_TYPE_DIAMOND)
@@ -340,7 +339,6 @@ namespace FormulaBase
             {
                 return true;
             }
-
             return _role.GetDynamicIntByKey(SignKeys.LOCKED) == 1;
         }
 
@@ -446,7 +444,7 @@ namespace FormulaBase
             var suitGroup = role.GetDynamicStrByKey(SignKeys.SUIT_GROUP);
             if (suitGroup == "0")
             {
-                suitGroup = role.GetDynamicStrByKey(SignKeys.CLOTH);
+                suitGroup = (idx * 10).ToString();
             }
             var suitNumber = suitGroup.Split(',').ToList();
             if (suitNumber.Contains("0"))
