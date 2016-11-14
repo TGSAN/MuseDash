@@ -394,6 +394,11 @@ namespace FormulaBase
 
                 targetIdx = _t.id;
             }
+            Action achieveFunc = () =>
+            {
+                AchievementManager.instance.SetAchievement(Host);
+                AchievementManager.instance.ReceieveAchievement(Host);
+            };
 
             // 完成难度分数目标后，自动增加难度，同时增加奖杯
             int diff = this.Host.GetDynamicIntByKey(SignKeys.DIFFCULT);
@@ -405,12 +410,12 @@ namespace FormulaBase
 
                 this.SetStageEvluateMax(evlua + 1);
                 //成就
-                AchievementManager.instance.SetAchievement(Host);
+                achieveFunc();
                 return true;
             }
 
             //成就
-            AchievementManager.instance.SetAchievement(Host);
+            achieveFunc();
             return false;
 
             /*
