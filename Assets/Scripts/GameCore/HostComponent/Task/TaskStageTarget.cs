@@ -321,6 +321,11 @@ namespace FormulaBase
             return trophyRequest;
         }
 
+        public int GetScoreTarget()
+        {
+            return this.Host.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_SCORE + TaskStageTarget.TASK_SIGNKEY_COUNT_TARGET_TAIL);
+        }
+
         /// <summary>
         /// Determines whether this instance is next lock.
         /// 下个关卡锁定状态
@@ -379,17 +384,18 @@ namespace FormulaBase
 
             Action achieveFunc = () =>
             {
-                AchievementManager.instance.SetAchievement(Host);
-                AchievementManager.instance.ReceieveAchievement(Host);
+                this.Host = AchievementManager.instance.SetAchievement(this.Host);
+                this.Host = AchievementManager.instance.ReceieveAchievement(this.Host);
             };
-            var score = this.Host.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_SCORE);
-            var scoreTarget = this.Host.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_SCORE + TaskStageTarget.TASK_SIGNKEY_COUNT_TARGET_TAIL);
+            var score = GetScore();
+            var scoreTarget = GetScoreTarget();
             isChange = false;
+            int diff = this.Host.GetDynamicIntByKey(SignKeys.DIFFCULT);
             // 完成难度分数目标后，自动增加难度，同时增加奖杯
-            if (score >= scoreTarget)
+            if (score >= scoreTarget && diff <= 3)
             {
                 isChange = true;
-                int diff = this.Host.GetDynamicIntByKey(SignKeys.DIFFCULT);
+
                 this.Host.SetDynamicData(SignKeys.DIFFCULT, ++diff);
 
                 int evlua = this.GetStageEvluateMax();

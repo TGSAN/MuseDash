@@ -70,8 +70,11 @@ namespace FormulaBase
             this.Host.SetDynamicData(SignKeys.ENERGY, energy);
 
             int targetScore = (int)this.Host.Result(FormulaKeys.FORMULA_87);
-            task.SetDynamicData(TaskStageTarget.TASK_SIGNKEY_SCORE + TaskStageTarget.TASK_SIGNKEY_COUNT_TARGET_TAIL, targetScore);
-            this.Host.SetDynamicData(TaskStageTarget.TASK_SIGNKEY_SCORE + TaskStageTarget.TASK_SIGNKEY_COUNT_TARGET_TAIL, targetScore);
+            if (targetScore != 0)
+            {
+                task.SetDynamicData(TaskStageTarget.TASK_SIGNKEY_SCORE + TaskStageTarget.TASK_SIGNKEY_COUNT_TARGET_TAIL, targetScore);
+                this.Host.SetDynamicData(TaskStageTarget.TASK_SIGNKEY_SCORE + TaskStageTarget.TASK_SIGNKEY_COUNT_TARGET_TAIL, targetScore);
+            }
 
             this.Host.SetAsUINotifyInstance();
         }

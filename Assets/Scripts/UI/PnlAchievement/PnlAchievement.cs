@@ -75,6 +75,7 @@ namespace PnlAchievement
             yield return new WaitForSeconds(sec);
 
             int rank = TaskStageTarget.Instance.GetStageEvluateMax();
+            rank = rank > 3 ? 3 : rank;
             for (int i = 0; i < rank; i++)
             {
                 GameObject t = this.trophys[i];

@@ -133,7 +133,7 @@ namespace Assets.Scripts.Common.Manager
 
     public class AchievementManager : Singleton<AchievementManager>
     {
-        public bool AddAchievement(FormulaHost stageHost, int id, string lvl)
+        public bool AddAchievement(ref FormulaHost stageHost, int id, string lvl)
         {
             var curAchStr = stageHost.GetDynamicStrByKey(SignKeys.ACHIEVEMENT);
             var strArray = string.IsNullOrEmpty(curAchStr) ? new[] { string.Empty } : curAchStr.Split(',');
@@ -177,9 +177,13 @@ namespace Assets.Scripts.Common.Manager
             return true;
         }
 
-        public void ReceieveAchievement(FormulaHost stageHost)
+        public FormulaHost ReceieveAchievement(FormulaHost stageHost)
         {
             var achs = stageHost.GetDynamicStrByKey(SignKeys.ACHIEVEMENT);
+            if (string.IsNullOrEmpty(achs))
+            {
+                return stageHost;
+            }
             var achievements = Achievement.ToArray(achs);
             var coins = 0;
             var crystals = 0;
@@ -201,13 +205,19 @@ namespace Assets.Scripts.Common.Manager
             {
                 strArray[i] = strArray[i].Replace("true", "false");
             }
-            achs = strArray.TakeWhile((t, i) => i != strArray.Length - 1).Aggregate(string.Empty, (current, t) => current + (t + ","));
+
+            achs = string.Empty;
+            for (var i = 0; i < strArray.Length; i++)
+            {
+                achs += strArray[i] + (i == strArray.Length - 1 ? string.Empty : ",");
+            }
             stageHost.SetDynamicData(SignKeys.ACHIEVEMENT, achs);
             AccountGoldManagerComponent.Instance.ChangeMoney(coins);
             AccountCrystalManagerComponent.Instance.ChangeDiamond(crystals);
+            return stageHost;
         }
 
-        public void SetAchievement(FormulaHost stageHost)
+        public FormulaHost SetAchievement(FormulaHost stageHost)
         {
             var clearCount = stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_CLEAR_COUNT);
             var perfectMaxCount = stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
@@ -226,7 +236,7 @@ namespace Assets.Scripts.Common.Manager
                     var goalNum = (int)ach[goal];
                     if (value >= goalNum)
                     {
-                        AddAchievement(stageHost, i, goal);
+                        AddAchievement(ref stageHost, i, goal);
                     }
                 }
             };
@@ -275,6 +285,7 @@ namespace Assets.Scripts.Common.Manager
                     }
                 }
             }
+            return stageHost;
         }
 
         /// <summary>
