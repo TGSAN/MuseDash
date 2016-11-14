@@ -344,7 +344,7 @@ namespace Assets.Scripts.NGUI
                 m_StageInfos.Add(new StageInfo(i, iconPath, musicPath, musicName, authorName, 0, 0, isLock));
             }
 #if UNITY_IPHONE || UNITY_ANDROID
-    minMaxSlide.y *= 2;
+            minMaxSlide.y *= 2;
 #endif
             m_TrophySum = TaskStageTarget.Instance.GetTotalTrophy();
         }
@@ -476,8 +476,11 @@ namespace Assets.Scripts.NGUI
                         var idx = i;
                         m_DiffSeq.AppendCallback(() =>
                         {
-                            var child = difficulty.transform.GetChild(idx);
-                            child.gameObject.SetActive(isVisiable);
+                            if (difficulty.transform.childCount > idx)
+                            {
+                                var child = difficulty.transform.GetChild(idx);
+                                child.gameObject.SetActive(isVisiable);
+                            }
                         });
                         m_DiffSeq.AppendInterval(dt);
                     }
