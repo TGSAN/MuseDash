@@ -16,6 +16,7 @@ namespace FormulaBase
         private const int HOST_IDX = 14;
         public static bool isNextUnlock = false;
         public static int nextUnlockIdx = 1;
+        public static bool isChange = false;
 
         public static TaskStageTarget Instance
         {
@@ -376,38 +377,23 @@ namespace FormulaBase
 
             this.AddStageClearCount(1);
 
-            int targetIdx = 0;
-            int sid = StageBattleComponent.Instance.GetId();
-            for (int i = 0; i < this.targets.Length; i++)
-            {
-                Target _t = this.targets[i];
-                if (_t.signKey == null)
-                {
-                    continue;
-                }
-
-                int v = this.Host.GetDynamicIntByKey(_t.signKey);
-                if (v < _t.value)
-                {
-                    continue;
-                }
-
-                targetIdx = _t.id;
-            }
             Action achieveFunc = () =>
             {
                 AchievementManager.instance.SetAchievement(Host);
                 AchievementManager.instance.ReceieveAchievement(Host);
             };
-
+            var score = this.Host.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_SCORE);
+            var scoreTarget = this.Host.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_SCORE + TaskStageTarget.TASK_SIGNKEY_COUNT_TARGET_TAIL);
+            isChange = false;
             // 完成难度分数目标后，自动增加难度，同时增加奖杯
-            int diff = this.Host.GetDynamicIntByKey(SignKeys.DIFFCULT);
-            if (targetIdx > diff)
+            if (score >= scoreTarget)
             {
-                this.Host.SetDynamicData(SignKeys.DIFFCULT, targetIdx);
+                isChange = true;
+                int diff = this.Host.GetDynamicIntByKey(SignKeys.DIFFCULT);
+                this.Host.SetDynamicData(SignKeys.DIFFCULT, ++diff);
 
                 int evlua = this.GetStageEvluateMax();
-
+                Debug.Log("evlua" + evlua);
                 this.SetStageEvluateMax(evlua + 1);
                 //成就
                 achieveFunc();
@@ -644,9 +630,12 @@ namespace FormulaBase
         private void AfterSave(bool _Success)
         {
             //检验下首歌曲是否解锁
-            var trophyNext = GetNextUnlockTrophy(ref nextUnlockIdx);
-            var trophyTotal = GetTotalTrophy();
-            isNextUnlock = trophyTotal == trophyNext;
+            if (isChange)
+            {
+                var trophyNext = GetNextUnlockTrophy(ref nextUnlockIdx);
+                var trophyTotal = GetTotalTrophy();
+                isNextUnlock = trophyTotal == trophyNext;
+            }
         }
 
         public bool Contains(int idx)

@@ -29,6 +29,7 @@ namespace PnlAchievement
         public UISprite nextTrophyShow;
         public List<GameObject> trophys;
         public UILabel[] labels;
+        public UILabel txtTargetScore;
 
         public TweenWidth slideCombo;
         public TweenWidth slidePerfect;
@@ -48,6 +49,7 @@ namespace PnlAchievement
             if (!TaskStageTarget.Instance.Contains(idx))
             {
                 labels.ToList().ForEach(l => l.text = "0");
+                txtTargetScore.text = ConfigPool.Instance.GetConfigIntValue("stage_value", idx.ToString(), "goal_1").ToString();
             }
             foreach (GameObject t in this.trophys)
             {
