@@ -46,7 +46,8 @@ namespace PnlAchievementInfo
             for (var i = 0; i < m_BtnDic.Count; i++)
             {
                 var btn = m_BtnDic[i];
-                btn.OnShow(allAchievements[i]);
+                var ach = allAchievements[i];
+                btn.OnShow(ach);
             }
         }
 

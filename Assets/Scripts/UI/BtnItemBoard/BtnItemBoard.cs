@@ -13,6 +13,17 @@ namespace BtnItemBoard
         private static BtnItemBoard instance = null;
         public UILabel txtGoal, txtType, txtCoin, txtCrystal;
         public GameObject goCoin, goCrystal;
+        public GameObject goIcon;
+        private Collider m_Collider;
+
+        public bool isReach
+        {
+            set
+            {
+                goIcon.SetActive(value);
+                m_Collider.enabled = !value;
+            }
+        }
 
         public static BtnItemBoard Instance
         {
@@ -25,6 +36,7 @@ namespace BtnItemBoard
         private void Start()
         {
             instance = this;
+            m_Collider = GetComponent<Collider>();
         }
 
         public override void OnShow()
@@ -51,6 +63,7 @@ namespace BtnItemBoard
                 goCrystal.SetActive(true);
                 txtCrystal.text = ach.award.ToString();
             }
+            isReach = ach.isReach;
         }
     }
 }
