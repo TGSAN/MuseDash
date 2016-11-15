@@ -279,6 +279,21 @@ namespace FormulaBase
             return true;
         }
 
+        public bool IsUnLockAllDiff(FormulaHost host)
+        {
+            return
+                host.GetDynamicIntByKey(SignKeys.DIFFCULT) >=
+                4;
+        }
+
+        public bool IsAchieveNow(FormulaHost host)
+        {
+            return
+                host.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_SCORE) >=
+                host.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_SCORE +
+                                        TaskStageTarget.TASK_SIGNKEY_COUNT_TARGET_TAIL);
+        }
+
         public FormulaHost GetStageByIdx(int idx)
         {
             var hostList = HostList ?? GetList("Task");
