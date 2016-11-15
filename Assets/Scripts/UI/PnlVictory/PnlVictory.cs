@@ -27,16 +27,23 @@ namespace PnlVictory
         public UISprite sprGrade;
         public UITexture txrCharact;
 
+        [HideInInspector]
+        public float rank;
+
         private void Start()
         {
-            instance = this;
             this.SetTxrByCharacter();
+        }
+
+        public override void BeCatched()
+        {
+            instance = this;
+            sprGrade.gameObject.SetActive(false);
         }
 
         private void OnEnable()
         {
             this.SetTxrByCharacter();
-            this.SetTexByGrade();
         }
 
         public override void OnShow()
@@ -48,6 +55,7 @@ namespace PnlVictory
 
             this.isSaid = true;
             SoundEffectComponent.Instance.SayByCurrentRole(GameGlobal.SOUND_TYPE_LAST_NODE);
+            this.SetTexByGrade();
         }
 
         public override void OnHide()
@@ -57,10 +65,8 @@ namespace PnlVictory
         private void SetTexByGrade()
         {
             sprGrade.spriteName = "grade_" +
-                                  TaskStageTarget.Instance.Host.GetDynamicStrByKey(
-                                      TaskStageTarget.TASK_SIGNKEY_STAGE_EVLUATE);
-            Debug.Log(TaskStageTarget.Instance.Host.GetDynamicStrByKey(
-                TaskStageTarget.TASK_SIGNKEY_STAGE_EVLUATE) + "========");
+                                  TaskStageTarget.Instance.GetStagePJ();
+            sprGrade.gameObject.SetActive(true);
         }
 
         private void SetTxrByCharacter()

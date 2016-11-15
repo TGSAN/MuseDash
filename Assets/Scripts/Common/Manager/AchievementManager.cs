@@ -212,8 +212,8 @@ namespace Assets.Scripts.Common.Manager
                 achs += strArray[i] + (i == strArray.Length - 1 ? string.Empty : ",");
             }
             stageHost.SetDynamicData(SignKeys.ACHIEVEMENT, achs);
-            AccountGoldManagerComponent.Instance.ChangeMoney(coins);
-            AccountCrystalManagerComponent.Instance.ChangeDiamond(crystals);
+            //AccountGoldManagerComponent.Instance.ChangeMoney(coins);
+            //AccountCrystalManagerComponent.Instance.ChangeDiamond(crystals);
             return stageHost;
         }
 

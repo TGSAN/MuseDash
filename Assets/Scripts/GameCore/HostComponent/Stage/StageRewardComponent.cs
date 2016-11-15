@@ -32,7 +32,11 @@ namespace FormulaBase
         public static string[] ACHIEVEMENT_GOAL_MAP = new string[] { "", "c_goal", "b_goal", "a_goal", "s_goal" };
         public static string[] ACHIEVEMENT_REWARD_MAP = new string[] { "", "c_award", "b_award", "a_award", "s_award" };
 
-        private FormulaHost stage = null;
+        public FormulaHost stage
+        {
+            private set;
+            get;
+        }
 
         public void SetStage(FormulaHost host)
         {
@@ -70,10 +74,11 @@ namespace FormulaBase
 
             // 通关成就奖励
             // rank 来自 score和performance的比率 : 1, 0.8, 0.6, 0.4, 0.2
-            int rank = (int)(rwRate * 10) / 2;
+            var rank = ((float)TaskStageTarget.Instance.GetComboMax() * 0.5f + (float)TaskStageTarget.Instance.GetHideNodeCount() * 0.1f + (float)stageHost.GetDynamicIntByKey(SignKeys.FULL_PERFECT) * 0.4f) / performanceScore;
             // 每个关卡在 Achievement 表有连续4行对应
             int achiLen = 4;
             int achiId = (id - 1) * achiLen + 1;
+            PnlVictory.PnlVictory.Instance.rank = rank;
             Debug.Log("Stage " + sid + " reward form " + achiId + " with rank : " + rank);
             for (int i = achiId; i < achiId + achiLen; i++)
             {

@@ -357,6 +357,35 @@ namespace FormulaBase
             return (this.GetClearEvluate() < 1);
         }
 
+        public string GetStagePJ()
+        {
+            // rank 来自 score和performance的比率 : 1, 0.8, 0.6, 0.4, 0.2
+            var stageHost = this.Host;
+            var performanceScore = ConfigPool.Instance.GetConfigIntValue("stage_value", stageHost.GetDynamicStrByKey(SignKeys.ID), "performance");
+            var rank = ((float)stageHost.GetDynamicIntByKey(TASK_SIGNKEY_MAX_COMBO) * 0.5f + (float)stageHost.GetDynamicIntByKey(TASK_SIGNKEY_HIDE_NODE_COUNT) * 0.1f + (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT) * 0.4f) / performanceScore;
+            Debug.Log(rank * performanceScore);
+            if (rank <= 0.2f)
+            {
+                return "d";
+            }
+            else if (rank <= 0.4f)
+            {
+                return "c";
+            }
+            else if (rank <= 0.6f)
+            {
+                return "b";
+            }
+            else if (rank <= 0.8f)
+            {
+                return "a";
+            }
+            else
+            {
+                return "s";
+            }
+        }
+
         public void OnStageStarted()
         {
             // Only reset not _XMAX value
