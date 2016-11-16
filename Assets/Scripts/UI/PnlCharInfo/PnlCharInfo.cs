@@ -18,7 +18,7 @@ namespace PnlCharInfo
         public GameObject cellItem;
         private readonly List<ItemCellCharInfo.ItemCellCharInfo> m_ItemList = new List<ItemCellCharInfo.ItemCellCharInfo>();
         public UIButton btnFeed, btnApply, btnConfirm;
-        public UILabel txtNextVigour, txtNextStamina, txtNextStrengh, txtNextLuck, txtNextLvl;
+        public UILabel txtNextVigour, txtNextStamina, txtNextStrengh, txtNextLuck, txtNextLvl, txtApply;
         public UILabel txtCurVigour, txtCurStamina, txtCurStrengh, txtCurLuck, txtCurLvl;
         public UISprite sprExpCurBar, sprExpNextBar;
         public List<UITexture> upgradeTexs = new List<UITexture>();
@@ -320,6 +320,7 @@ namespace PnlCharInfo
             {
                 btnApply.gameObject.SetActive(false);
             }
+            txtApply.gameObject.SetActive(!btnApply.gameObject.activeSelf);
         }
 
         public void OnSelectChange(Transform t)
@@ -375,6 +376,7 @@ namespace PnlCharInfo
             {
                 btnApply.gameObject.SetActive(false);
             }
+            txtApply.gameObject.SetActive(!btnApply.gameObject.activeSelf);
         }
     }
 }
