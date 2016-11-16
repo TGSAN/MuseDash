@@ -338,6 +338,10 @@ namespace FormulaBase {
 		/// ACHIEVEMENT
 		///
 		public const string ACHIEVEMENT = "ACHIEVEMENT";
+		///
+		/// CAPSULE
+		///
+		public const string CAPSULE = "CAPSULE";
 
 	}
 }
