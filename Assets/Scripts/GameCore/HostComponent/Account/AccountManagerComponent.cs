@@ -66,6 +66,10 @@ namespace FormulaBase
 
         public void SetCapsuleStr(string str)
         {
+            if (str == string.Empty)
+            {
+                str = GetCapsuleStr();
+            }
             Host.SetDynamicData(SignKeys.CAPSULE, str);
         }
 

@@ -252,6 +252,7 @@ namespace PnlChar
             go.transform.localEulerAngles = Vector3.zero;
             var skeletonAnim = go.GetComponent<SkeletonAnimation>();
             skeletonAnim.loop = true;
+            skeletonAnim.AnimationName = "run";
             DOTweenUtils.Delay(() =>
             {
                 skeletonAnim.AnimationName = "standby";

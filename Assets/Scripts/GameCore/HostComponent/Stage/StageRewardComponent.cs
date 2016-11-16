@@ -60,8 +60,7 @@ namespace FormulaBase
             int score = TaskStageTarget.Instance.GetScore();
 
             // 通关基础奖励
-            int performanceScore = ConfigPool.Instance.GetConfigIntValue(REWARD_CONFIG_NAME, sid, "performance");
-            float rwRate = score * 1.0f / performanceScore;
+            float rwRate = TaskStageTarget.Instance.GetStageRewardRank();
             int rwExp = (int)(ConfigPool.Instance.GetConfigIntValue(REWARD_CONFIG_NAME, sid, "exp") * rwRate);
             int rwGold = (int)(ConfigPool.Instance.GetConfigIntValue(REWARD_CONFIG_NAME, sid, "coin") * rwRate);
             int rwCharm = (int)(ConfigPool.Instance.GetConfigIntValue(REWARD_CONFIG_NAME, sid, "charm") * rwRate);
@@ -70,15 +69,14 @@ namespace FormulaBase
             // reward exp
             stageHost.SetDynamicData(SignKeys.EXP, rwExp);
             // reward diamond
-            stageHost.SetDynamicData(SignKeys.DIAMOND, rwCharm);
+            stageHost.SetDynamicData(SignKeys.ENERGY, rwCharm);
 
             // 通关成就奖励
-            // rank 来自 score和performance的比率 : 1, 0.8, 0.6, 0.4, 0.2
-            var rank = ((float)TaskStageTarget.Instance.GetComboMax() * 0.5f + (float)TaskStageTarget.Instance.GetHideNodeCount() * 0.1f + (float)stageHost.GetDynamicIntByKey(SignKeys.FULL_PERFECT) * 0.4f) / performanceScore;
+            var rank = rwRate;
             // 每个关卡在 Achievement 表有连续4行对应
             int achiLen = 4;
             int achiId = (id - 1) * achiLen + 1;
-            PnlVictory.PnlVictory.Instance.rank = rank;
+
             Debug.Log("Stage " + sid + " reward form " + achiId + " with rank : " + rank);
             for (int i = achiId; i < achiId + achiLen; i++)
             {

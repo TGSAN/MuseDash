@@ -27,9 +27,6 @@ namespace PnlVictory
         public UISprite sprGrade;
         public UITexture txrCharact;
 
-        [HideInInspector]
-        public float rank;
-
         private void Start()
         {
             this.SetTxrByCharacter();
