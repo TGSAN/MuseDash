@@ -315,7 +315,11 @@ namespace PnlCharInfo
             var clothStr = m_SelectedCosList.Aggregate(string.Empty, (current, charCose) => current + (charCose.uid + ","));
             clothStr = clothStr.Substring(0, clothStr.Length - 1);
             var suitStr = RoleManageComponent.Instance.GetRole(idx).GetDynamicStrByKey(SignKeys.SUIT_GROUP);
-            btnApply.gameObject.SetActive(suitStr != clothStr && suitStr != "0");
+            btnApply.gameObject.SetActive(suitStr != clothStr);
+            if (suitStr == "0" && clothStr == (idx * 10).ToString())
+            {
+                btnApply.gameObject.SetActive(false);
+            }
         }
 
         public void OnSelectChange(Transform t)
@@ -366,7 +370,11 @@ namespace PnlCharInfo
             var clothStr = m_SelectedCosList.Aggregate(string.Empty, (current, charCose) => current + (charCose.uid + ","));
             clothStr = clothStr.Substring(0, clothStr.Length - 1);
             var suitStr = roleHost.GetDynamicStrByKey(SignKeys.SUIT_GROUP);
-            btnApply.gameObject.SetActive(suitStr != clothStr && suitStr != "0");
+            btnApply.gameObject.SetActive(suitStr != clothStr);
+            if (suitStr == "0" && clothStr == (roleHost.GetDynamicIntByKey(SignKeys.ID) * 10).ToString())
+            {
+                btnApply.gameObject.SetActive(false);
+            }
         }
     }
 }

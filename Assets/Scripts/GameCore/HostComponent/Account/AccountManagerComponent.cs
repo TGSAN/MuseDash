@@ -1,8 +1,10 @@
+using Assets.Scripts.Common.Manager;
 using LitJson;
 
 ///自定义模块，可定制模块具体行为
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace FormulaBase
@@ -49,6 +51,22 @@ namespace FormulaBase
         {
             ItemManageComponent.Instance.GetItemTimeId = 0;
             FomulaHostManager.Instance.DeleteAllHost(_callBack);
+        }
+
+        public string GetCapsuleStr()
+        {
+            var capsuleStr = Host.GetDynamicStrByKey(SignKeys.CAPSULE);
+            if (capsuleStr == "0")
+            {
+                capsuleStr = Capsule.ConfigToString();
+                Host.SetDynamicData(SignKeys.CAPSULE, capsuleStr);
+            }
+            return capsuleStr;
+        }
+
+        public void SetCapsuleStr(string str)
+        {
+            Host.SetDynamicData(SignKeys.CAPSULE, str);
         }
 
         public void AddLoginCount(int count)
