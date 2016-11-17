@@ -13,6 +13,10 @@ namespace PnlVictory
     public class PnlVictory : UIPhaseBase
     {
         private static PnlVictory instance = null;
+        public GameObject[] goAll, goNoneAll;
+        public GameObject best, trophyTaskFalse, trophyTaskTrue;
+        public UIButton btn;
+        private bool m_Flag = false;
 
         public static PnlVictory Instance
         {
@@ -30,6 +34,14 @@ namespace PnlVictory
         private void Start()
         {
             this.SetTxrByCharacter();
+            var callFunc = btn.onClick[0];
+            btn.onClick.Clear();
+            UIEventListener.Get(btn.gameObject).onClick = (go) =>
+            {
+                //GetComponent<Animator>().Play("score_change");
+                UIEventListener.Get(btn.gameObject).onClick = null;
+                btn.onClick.Add(callFunc);
+            };
         }
 
         public override void BeCatched()
@@ -41,6 +53,17 @@ namespace PnlVictory
         private void OnEnable()
         {
             this.SetTxrByCharacter();
+
+            if (m_Flag)
+            {
+                this.SetTexByGrade();
+                var isAllCombo = StageBattleComponent.Instance.IsAllCombo();
+
+                goAll.ToList().ForEach(go => go.SetActive(isAllCombo));
+                goNoneAll.ToList().ForEach(go => go.SetActive(!isAllCombo));
+            }
+
+            m_Flag = true;
         }
 
         public override void OnShow()
@@ -52,7 +75,12 @@ namespace PnlVictory
 
             this.isSaid = true;
             SoundEffectComponent.Instance.SayByCurrentRole(GameGlobal.SOUND_TYPE_LAST_NODE);
-            this.SetTexByGrade();
+
+            var isClearAllDiff = FightMenuPanel.Instance.isAchieve;
+            var isAchieve = TaskStageTarget.Instance.IsAchieveNow();
+            best.SetActive(isClearAllDiff);
+            trophyTaskFalse.SetActive(!isClearAllDiff && !isAchieve);
+            trophyTaskTrue.SetActive(!isClearAllDiff && isAchieve);
         }
 
         public override void OnHide()

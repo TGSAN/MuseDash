@@ -1,3 +1,5 @@
+using FormulaBase;
+
 /// UI分析工具自动生成代码
 /// PnlCharChoseUI主模块
 ///
@@ -103,7 +105,7 @@ namespace PnlCharChose
             btnPurchase.onClick.Add(new EventDelegate(() =>
             {
                 CommonPanel.GetInstance().ShowWaittingPanel();
-                FormulaBase.RoleManageComponent.Instance.UnlockRole(choseType, this.UnLockRoleCallback);
+                FormulaBase.RoleManageComponent.Instance.PurchaseRole(choseType, this.UnLockRoleCallback);
             }));
             OnCharacterChange(choseType);
 

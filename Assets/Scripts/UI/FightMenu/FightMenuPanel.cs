@@ -29,6 +29,9 @@ public class FightMenuPanel : MonoBehaviour
     public TweenScale m_FeverScaleLabel;                        //Fever文字的缩放
     public TweenAlpha m_FeverLabelAlpha;                        //Fever文字的透明度
 
+    [HideInInspector]
+    public bool isAchieve;
+
     private bool PlayHeartAnimation = false;
 
     private const float SONG_PROGRESS_MIN = 0.1f;
@@ -126,16 +129,23 @@ public class FightMenuPanel : MonoBehaviour
         this.StartCoroutine(this.HeroComeOut());
         this.StartCoroutine(this.__OnEnable());
 
-        var isAchieve = TaskStageTarget.Instance.IsUnLockAllDiff(TaskStageTarget.Instance.Host);
+        isAchieve = TaskStageTarget.Instance.IsUnLockAllDiff(TaskStageTarget.Instance.Host);
         twnAchievement.gameObject.SetActive(false);
         if (!isAchieve)
         {
             DOTweenUtils.Update(() =>
             {
-                twnAchievement.gameObject.SetActive(true);
-                twnAchievement.Play(true);
-                twnTrophy.enabled = true;
-                twnTrophy.Play(true);
+                if (twnAchievement != null)
+                {
+                    twnAchievement.gameObject.SetActive(true);
+                    twnAchievement.Play(true);
+                }
+                if (twnTrophy != null)
+                {
+                    twnTrophy.enabled = true;
+                    twnTrophy.ResetToBeginning();
+                    twnTrophy.Play(true);
+                }
             }, () => TaskStageTarget.Instance.IsAchieveNow(TaskStageTarget.Instance.Host));
         }
         trophyShow.SetActive(!isAchieve);

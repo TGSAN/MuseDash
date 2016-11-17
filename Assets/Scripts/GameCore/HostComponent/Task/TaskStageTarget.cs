@@ -279,15 +279,17 @@ namespace FormulaBase
             return true;
         }
 
-        public bool IsUnLockAllDiff(FormulaHost host)
+        public bool IsUnLockAllDiff(FormulaHost host = null)
         {
+            host = host ?? this.Host;
             return
-                host.GetDynamicIntByKey(SignKeys.DIFFCULT) >=
-                4;
+                host.GetDynamicIntByKey(SignKeys.DIFFCULT) >
+                3;
         }
 
-        public bool IsAchieveNow(FormulaHost host)
+        public bool IsAchieveNow(FormulaHost host = null)
         {
+            host = host ?? this.Host;
             return
                 host.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_SCORE) >=
                 host.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_SCORE +
@@ -431,11 +433,6 @@ namespace FormulaBase
 
             this.AddStageClearCount(1);
 
-            Action achieveFunc = () =>
-            {
-                this.Host = AchievementManager.instance.SetAchievement(this.Host);
-                this.Host = AchievementManager.instance.ReceieveAchievement(this.Host);
-            };
             var score = GetScore();
             var scoreTarget = GetScoreTarget();
             isChange = false;
@@ -450,13 +447,8 @@ namespace FormulaBase
                 int evlua = this.GetStageEvluateMax();
                 Debug.Log("evlua" + evlua);
                 this.SetStageEvluateMax(evlua + 1);
-                //成就
-                achieveFunc();
                 return true;
             }
-
-            //成就
-            achieveFunc();
             return false;
 
             /*

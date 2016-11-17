@@ -256,7 +256,7 @@ namespace PnlChar
             DOTweenUtils.Delay(() =>
             {
                 skeletonAnim.AnimationName = "standby";
-            }, 0.1f);
+            }, Time.deltaTime);
             go.GetComponent<SpineSynchroObjects>().enabled = false;
             go.GetComponent<SpineMountController>().enabled = false;
             go.GetComponent<Renderer>().sortingOrder = 50;

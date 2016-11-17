@@ -177,7 +177,7 @@ namespace Assets.Scripts.Common.Manager
             return true;
         }
 
-        public FormulaHost ReceieveAchievement(FormulaHost stageHost)
+        public FormulaHost ReceieveAchievement(FormulaHost stageHost, bool isSave = true)
         {
             var achs = stageHost.GetDynamicStrByKey(SignKeys.ACHIEVEMENT);
             if (string.IsNullOrEmpty(achs))
@@ -212,13 +212,14 @@ namespace Assets.Scripts.Common.Manager
                 achs += strArray[i] + (i == strArray.Length - 1 ? string.Empty : ",");
             }
             stageHost.SetDynamicData(SignKeys.ACHIEVEMENT, achs);
-            //AccountGoldManagerComponent.Instance.ChangeMoney(coins);
-            //AccountCrystalManagerComponent.Instance.ChangeDiamond(crystals);
+            AccountGoldManagerComponent.Instance.ChangeMoney(coins, isSave);
+            AccountCrystalManagerComponent.Instance.ChangeDiamond(crystals, isSave);
             return stageHost;
         }
 
-        public FormulaHost SetAchievement(FormulaHost stageHost)
+        public FormulaHost SetAchievement(FormulaHost stageHost = null)
         {
+            stageHost = stageHost ?? TaskStageTarget.Instance.Host;
             var clearCount = stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_CLEAR_COUNT);
             var perfectMaxCount = stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
             var comboCount = stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_MAX_COMBO);

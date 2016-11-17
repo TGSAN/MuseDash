@@ -71,7 +71,6 @@ GameObject:
   - 114: {fileID: 114000011782208278}
   - 65: {fileID: 65000013389885920}
   - 114: {fileID: 114000012920790602}
-  - 114: {fileID: 114000013273913364}
   - 114: {fileID: 114000012702164158}
   - 114: {fileID: 114000013278370050}
   - 114: {fileID: 114000010289596928}
@@ -1405,7 +1404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000012847012446
 GameObject:
   m_ObjectHideFlags: 1
@@ -1651,7 +1650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000013318142966
 GameObject:
   m_ObjectHideFlags: 1
@@ -4712,7 +4711,7 @@ MonoBehaviour:
   des: "\u5168perfect\u5C55\u793A"
   activeHostKeyId: 3
   activeCondiction: ITEMEFFECT2
-  activeValue: 1
+  activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
   labelMatchSelfDefineSign: 
@@ -5293,11 +5292,13 @@ MonoBehaviour:
   - {fileID: 0}
   clickResponseParentNames:
   - 
+  - 
   clickResponseObjectsIsShow: 01
-  clickResponseParentNamesIsShow: 01
+  clickResponseParentNamesIsShow: 0101
   clickResponseObjectAnimations:
   - 
   clickResponseParentAnimations:
+  - 
   - 
   isFoldObjs: 0
   isFoldParentObjs: 0
@@ -5817,7 +5818,7 @@ MonoBehaviour:
   des: "combo\u672A\u6EE1\u5C55\u793A"
   activeHostKeyId: 3
   activeCondiction: ITEMEFFECT1
-  activeValue: 0
+  activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
   labelMatchSelfDefineSign: 
@@ -6024,7 +6025,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3016
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6882,7 +6883,7 @@ MonoBehaviour:
   des: "perfect\u672A\u6EE1\u5C55\u793A"
   activeHostKeyId: 3
   activeCondiction: ITEMEFFECT2
-  activeValue: 0
+  activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
   labelMatchSelfDefineSign: 
@@ -9345,13 +9346,7 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick:
-  - mTarget: {fileID: 114000012765410358}
-    mMethodName: OnClickCommon
-    mParameters:
-    - obj: {fileID: 1000010061853372}
-      field: 
-    oneShot: 0
+  onClick: []
 --- !u!114 &114000012705051436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9761,7 +9756,7 @@ MonoBehaviour:
   des: "\u5168stars\u5C55\u793A"
   activeHostKeyId: 3
   activeCondiction: ITEMEFFECT3
-  activeValue: 1
+  activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
   labelMatchSelfDefineSign: 
@@ -10102,7 +10097,7 @@ MonoBehaviour:
   des: "\u5168combo\u5C55\u793A"
   activeHostKeyId: 3
   activeCondiction: ITEMEFFECT1
-  activeValue: 1
+  activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
   labelMatchSelfDefineSign: 
@@ -10193,7 +10188,7 @@ MonoBehaviour:
   des: "stars\u672A\u6EE1\u5C55\u793A"
   activeHostKeyId: 3
   activeCondiction: ITEMEFFECT3
-  activeValue: 0
+  activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
   labelMatchSelfDefineSign: 
@@ -10502,17 +10497,6 @@ MonoBehaviour:
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 1
---- !u!114 &114000013273913364
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010061853372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1bd99dcf43f97d48bb6215c70f0cd40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000013278370050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11681,9 +11665,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowAnimation: score1in
   HideAnimation: score2out
+  goAll:
+  - {fileID: 1000012018914440}
+  - {fileID: 1000012213364362}
+  - {fileID: 1000011346041608}
+  goNoneAll:
+  - {fileID: 1000010028232038}
+  - {fileID: 1000012058914662}
+  - {fileID: 1000013391451736}
+  best: {fileID: 1000012379210860}
+  trophyTaskFalse: {fileID: 1000012832460316}
+  trophyTaskTrue: {fileID: 1000013301929610}
+  btn: {fileID: 114000012702164158}
   sprGrade: {fileID: 114000010920897418}
   txrCharact: {fileID: 114000011569308994}
-  rank: 0
 --- !u!114 &114000014073991542
 MonoBehaviour:
   m_ObjectHideFlags: 1
