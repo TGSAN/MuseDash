@@ -126,6 +126,10 @@ namespace Assets.Scripts.Common.Manager
 
     public class CapsuleManager : Singleton<CapsuleManager>
     {
+        /*  public Capsule curCapsule
+          {
+          }*/
+
         public Capsule RandomCapsule()
         {
             var capsuleStr = AccountManagerComponent.Instance.GetCapsuleStr();
@@ -133,7 +137,10 @@ namespace Assets.Scripts.Common.Manager
             var idx = UnityEngine.Random.Range(1, list.Count - 1);
             var capsule = list[idx];
             list.RemoveAt(idx);
-            list[0] = capsule;
+            if (list.Count > 0)
+            {
+                list[0] = capsule;
+            }
             var str = Capsule.ListToString(list);
             AccountManagerComponent.Instance.SetCapsuleStr(str);
             return capsule;

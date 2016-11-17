@@ -127,6 +127,7 @@ MonoBehaviour:
   - SUIT_GROUP
   - ACHIEVEMENT
   - CAPSULE
+  - CHARM
   ConfigNames:
   - character
   - stage
@@ -1343,7 +1344,7 @@ MonoBehaviour:
     typeIdx: 0
     name: "\u89D2\u8272\u4FE1\u606F"
     formula: ( DESCRIPTION + NAME + LVL_LIMIT + STATIC_CTR + GOLD_EXTRA + CHARM_EXTRA
-      + VIT_LIMIT )
+      + VIT_LIMIT + SOLD )
     fparams:
     - idx: 0
       dataSourceType: 1
@@ -1430,6 +1431,19 @@ MonoBehaviour:
       dataSourceName: char_info.extra_energy_max
       collapsed: 1
       paramname: VIT_LIMIT
+      condictions:
+      - condictionType: 1
+        condictionKeyIndex: 2
+        condictionKey: ID
+        condictionValue: 0
+        plus: 1
+    - idx: 7
+      dataSourceType: 1
+      dataSourceIndex: 0
+      dataSourceValue: 0
+      dataSourceName: char_info.unlock_count
+      collapsed: 1
+      paramname: SOLD
       condictions:
       - condictionType: 1
         condictionKeyIndex: 2
@@ -3364,23 +3378,23 @@ MonoBehaviour:
     collapsedSign: 1
     collapsedComponent: 1
     formulaSet: 
-    singSet: 00000000010000000300000004000000190000001b0000001c0000002300000033000000
+    singSet: 0000000001000000030000001b00000023000000330000005500000054000000
     signValueSet:
     - 1
-    - 666666
-    - 20
-    - 50
-    - 23333
-    - 120
+    - 10000
+    - 10000
     - 0
     - 1
     - 6
+    - 0
+    - 0
     componentNames:
     - CrystalManagerComponent
     - EnergyManagerComponent
     - GoldManagerComponent
     - LevelManagerComponent
     - ManagerComponent
+    - CharmComponent
   - name: "\u6218\u6597\u89D2\u8272"
     fileName: BattleRole
     collapsedFormula: 1

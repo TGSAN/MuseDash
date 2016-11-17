@@ -279,15 +279,17 @@ namespace FormulaBase
             return true;
         }
 
-        public bool IsUnLockAllDiff(FormulaHost host)
+        public bool IsUnLockAllDiff(FormulaHost host = null)
         {
+            host = host ?? this.Host;
             return
-                host.GetDynamicIntByKey(SignKeys.DIFFCULT) >=
-                4;
+                host.GetDynamicIntByKey(SignKeys.DIFFCULT) >
+                3;
         }
 
-        public bool IsAchieveNow(FormulaHost host)
+        public bool IsAchieveNow(FormulaHost host = null)
         {
+            host = host ?? this.Host;
             return
                 host.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_SCORE) >=
                 host.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_SCORE +
@@ -357,13 +359,18 @@ namespace FormulaBase
             return (this.GetClearEvluate() < 1);
         }
 
-        public string GetStagePJ()
+        public float GetStageRewardRank()
         {
             // rank 来自 score和performance的比率 : 1, 0.8, 0.6, 0.4, 0.2
             var stageHost = this.Host;
             var performanceScore = ConfigPool.Instance.GetConfigIntValue("stage_value", stageHost.GetDynamicStrByKey(SignKeys.ID), "performance");
             var rank = ((float)stageHost.GetDynamicIntByKey(TASK_SIGNKEY_MAX_COMBO) * 0.5f + (float)stageHost.GetDynamicIntByKey(TASK_SIGNKEY_HIDE_NODE_COUNT) * 0.1f + (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT) * 0.4f) / performanceScore;
-            Debug.Log(rank * performanceScore);
+            return rank;
+        }
+
+        public string GetStagePJ()
+        {
+            var rank = GetStageRewardRank();
             if (rank <= 0.2f)
             {
                 return "d";
@@ -426,11 +433,6 @@ namespace FormulaBase
 
             this.AddStageClearCount(1);
 
-            Action achieveFunc = () =>
-            {
-                this.Host = AchievementManager.instance.SetAchievement(this.Host);
-                this.Host = AchievementManager.instance.ReceieveAchievement(this.Host);
-            };
             var score = GetScore();
             var scoreTarget = GetScoreTarget();
             isChange = false;
@@ -445,13 +447,8 @@ namespace FormulaBase
                 int evlua = this.GetStageEvluateMax();
                 Debug.Log("evlua" + evlua);
                 this.SetStageEvluateMax(evlua + 1);
-                //成就
-                achieveFunc();
                 return true;
             }
-
-            //成就
-            achieveFunc();
             return false;
 
             /*

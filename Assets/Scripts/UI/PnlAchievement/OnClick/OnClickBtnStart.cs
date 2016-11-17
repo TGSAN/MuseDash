@@ -1,25 +1,24 @@
-/// UI分析工具自动生成代码
-/// 未有描述
-/// 
-using System;
-using UnityEngine;
+using Assets.Scripts.NGUI;
 using FormulaBase;
 using GameLogic;
-using Assets.Scripts.NGUI;
 
-namespace PnlAchievement {
-	public class OnClickBtnStart : UIPhaseOnClickBase {
-		public static void Do(GameObject gameObject) {
-			OnDo (gameObject);
+/// UI分析工具自动生成代码
+/// 未有描述
+///
+using System;
+using UnityEngine;
 
-			if (UISceneHelper.Instance != null) {
-				UISceneHelper.Instance.HideWidget ();
-			}
+namespace PnlAchievement
+{
+    public class OnClickBtnStart : UIPhaseOnClickBase
+    {
+        public static void Do(GameObject gameObject)
+        {
+            OnDo(gameObject);
 
-			int sid = StageBattleComponent.Instance.GetId ();
-			uint diff = StageBattleComponent.Instance.GetDiffcult ();
-			SceneAudioManager.Instance.bgm.clip = PnlScrollCircle.instance.CatchClip;
-			StageBattleComponent.Instance.Enter ((uint)sid, diff);
-		}
-	}
+            int sid = StageBattleComponent.Instance.GetId();
+            uint diff = StageBattleComponent.Instance.GetDiffcult();
+            StageBattleComponent.Instance.Enter((uint)sid, diff);
+        }
+    }
 }
