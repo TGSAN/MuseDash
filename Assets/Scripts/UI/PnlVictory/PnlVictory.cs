@@ -38,7 +38,7 @@ namespace PnlVictory
             btn.onClick.Clear();
             UIEventListener.Get(btn.gameObject).onClick = (go) =>
             {
-                //GetComponent<Animator>().Play("score_change");
+                GetComponent<Animator>().Play("score_change");
                 UIEventListener.Get(btn.gameObject).onClick = null;
                 btn.onClick.Add(callFunc);
             };
