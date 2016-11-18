@@ -1,3 +1,5 @@
+using Assets.Scripts.Common.Manager;
+using Assets.Scripts.NGUI;
 using DYUnityLib;
 using FormulaBase;
 using GameLogic;
@@ -6,7 +8,9 @@ using GameLogic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace FormulaBase
 {
@@ -70,8 +74,11 @@ namespace FormulaBase
             this.Host.SetDynamicData(SignKeys.ENERGY, energy);
 
             int targetScore = (int)this.Host.Result(FormulaKeys.FORMULA_87);
-            task.SetDynamicData(TaskStageTarget.TASK_SIGNKEY_SCORE + TaskStageTarget.TASK_SIGNKEY_COUNT_TARGET_TAIL, targetScore);
-            this.Host.SetDynamicData(TaskStageTarget.TASK_SIGNKEY_SCORE + TaskStageTarget.TASK_SIGNKEY_COUNT_TARGET_TAIL, targetScore);
+            if (targetScore != 0)
+            {
+                task.SetDynamicData(TaskStageTarget.TASK_SIGNKEY_SCORE + TaskStageTarget.TASK_SIGNKEY_COUNT_TARGET_TAIL, targetScore);
+                this.Host.SetDynamicData(TaskStageTarget.TASK_SIGNKEY_SCORE + TaskStageTarget.TASK_SIGNKEY_COUNT_TARGET_TAIL, targetScore);
+            }
 
             this.Host.SetAsUINotifyInstance();
         }
@@ -143,6 +150,13 @@ namespace FormulaBase
             }
 
             return list;
+        }
+
+        public bool IsAllCombo()
+        {
+            var musicData = GetMusicData();
+            var count = musicData.Cast<MusicData>().Count(d => d.nodeData.addCombo);
+            return GetCombo() >= count;
         }
 
         public string GetStageName()
@@ -361,11 +375,29 @@ namespace FormulaBase
         // ------------------------------------------------------------// ------------------------------------------------------------
         public void Enter(uint id, uint diff)
         {
-            Debug.Log("Enter Stage " + id + " with diffcult " + diff + " !");
-            GameKernel.Instance.InitGameKernel();
+            //扣体力回调
+            var r = AccountPhysicsManagerComponent.Instance.ChangePhysical(-(int)Host.Result(FormulaKeys.FORMULA_20), false, true,
+               result =>
+               {
+                   if (PnlScrollCircle.instance != null)
+                   {
+                       SceneAudioManager.Instance.bgm.clip = PnlScrollCircle.instance.CatchClip;
+                   }
 
-            this.Host.SetDynamicData(SignKeys.DIFFCULT, diff);
-            this.Enter(id);
+                   if (UISceneHelper.Instance != null)
+                   {
+                       UISceneHelper.Instance.HideWidget();
+                   }
+                   Debug.Log("Enter Stage " + id + " with diffcult " + diff + " !");
+                   GameKernel.Instance.InitGameKernel();
+
+                   this.Host.SetDynamicData(SignKeys.DIFFCULT, diff);
+                   this.Enter(id);
+               });
+            if (r == 0)
+            {
+                CommonPanel.GetInstance().ShowText("体力不足哦~");
+            }
         }
 
         public void Enter(uint id)
@@ -380,7 +412,7 @@ namespace FormulaBase
 
             string _scenename = "GameScene";
             SceneLoader.SetLoadInfo(ref _scenename);
-            Application.LoadLevel(GameGlobal.LOADING_SCENE_NAME);
+            SceneManager.LoadScene(GameGlobal.LOADING_SCENE_NAME);
         }
 
         private bool EnterCheck(uint id)
@@ -406,11 +438,10 @@ namespace FormulaBase
                 Debug.Log("Stage prefabCatchObj not init.");
                 return null;
             }
-
             GameObject catchObj = this.prefabCatchObj[filename] as GameObject;
             if (catchObj == null)
             {
-                catchObj = Resources.Load(filename) as GameObject;
+                ResourceLoader.Instance.Load(filename, res => catchObj = res as GameObject);
                 if (catchObj == null)
                 {
                     // Debug.Log ("obj is empty");
@@ -553,7 +584,8 @@ namespace FormulaBase
         {
             // 结算统计
             bool isNewRank = TaskStageTarget.Instance.OnStageFinished();
-            // 先在stage host上设置好各种数据, 然后再显示ui
+            //成就统计
+            AchievementManager.instance.SetAchievement();
             // 结算UI数据 奖励
             StageRewardComponent.Instance.StageReward(this.Host, isNewRank);
 
@@ -596,7 +628,7 @@ namespace FormulaBase
             GameGlobal.gGameMusic.PlayMusic();
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-            /延迟0.1s用于音频加载不同步缓冲
+            //延迟0.1s用于音频加载不同步缓冲
             AudioManager.Instance.SetBgmVolume(0f);
             DOTweenUtils.Delay(() =>
             {
@@ -642,24 +674,40 @@ namespace FormulaBase
         }
 
         // Exit stage.
-        public void Exit(string sceneName = "ChooseSongs")
+        public void Exit(string sceneName = "ChooseSongs", bool isFinish = false)
         {
             Debug.Log("Stage Exit.");
-            UISceneHelper.Instance.HideUi("PnlBattle");
-            GameGlobal.gGameMusic.Stop();
-            GameGlobal.gGameMusicScene.Stop();
-            gTrigger.ClearEvent();
-            GameGlobal.gTouch.ClearCustomEvent();
-            GameGlobal.gCamera.gameObject.SetActive(false);
-            SceneLoader.SetLoadInfo(ref sceneName);
-            Time.timeScale = GameGlobal.TIME_SCALE;
-            CommonPanel.GetInstance().SetMask(true, this.OnExit);
+            Action callFunc = () =>
+            {
+                UISceneHelper.Instance.HideUi("PnlBattle");
+                GameGlobal.gGameMusic.Stop();
+                GameGlobal.gGameMusicScene.Stop();
+                gTrigger.ClearEvent();
+                GameGlobal.gTouch.ClearCustomEvent();
+                GameGlobal.gCamera.gameObject.SetActive(false);
+                SceneLoader.SetLoadInfo(ref sceneName);
+                Time.timeScale = GameGlobal.TIME_SCALE;
+                CommonPanel.GetInstance().SetMask(true, this.OnExit);
+            };
+            if (!isFinish)
+            {
+                AccountPhysicsManagerComponent.Instance.ChangePhysical((int)Host.Result(FormulaKeys.FORMULA_20), false,
+                    true,
+                    result =>
+                    {
+                        callFunc();
+                    });
+            }
+            else
+            {
+                callFunc();
+            }
         }
 
         private void OnExit()
         {
             PnlAdventure.PnlAdventure.backFromBattle = true;
-            Application.LoadLevel(GameGlobal.LOADING_SCENE_NAME);
+            SceneManager.LoadScene(GameGlobal.LOADING_SCENE_NAME);
         }
 
         /// <summary>

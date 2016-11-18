@@ -262,56 +262,44 @@ namespace FormulaBase
             return thost;
         }
 
+        public bool PurchaseRole(int idx, Callback callBack = null)
+        {
+            var roleHost = GetRole(idx);
+            if (roleHost.GetDynamicIntByKey(SignKeys.SOLD) > AccountCrystalManagerComponent.Instance.GetDiamond())
+            {
+                CommonPanel.GetInstance().ShowText("钻石不足哟~~");
+                CommonPanel.GetInstance().ShowWaittingPanel(false);
+                return false;
+            }
+            UnlockRole(idx, callBack);
+            return true;
+        }
+
         public void UnlockRole(int _index, Callback _callBack = null)
         {
             int ttype = 0;
             int tcost = 0;
             bool _result = true;
             GetUnLockRoleMoeny(_index, ref ttype, ref tcost);
-            if (ttype == GameGlobal.RESOURCE_TYPE_GOLD)
+            UnityEngine.Debug.Log(ttype + "=====" + tcost);
+
+            AccountCrystalManagerComponent.Instance.ChangeDiamond(-tcost, true, new HttpResponseDelegate(((bool result) =>
             {
-                _result = AccountGoldManagerComponent.Instance.ChangeMoney(tcost, true, new HttpResponseDelegate(((bool result) =>
+                if (!result) return;
+                FormulaHost host = GetRole(_index);
+                host.SetDynamicData(SignKeys.LOCKED, 0);
+                //Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
+                host.Save(new HttpResponseDelegate(r =>
                 {
-                    if (!result)
-                    {
-                        CommonPanel.GetInstance().ShowTextLackMoney();
-                        return;
-                    }
-
-                    FormulaHost host = GetRole(_index);
-                    host.SetDynamicData(SignKeys.LOCKED, 0);
-                    //Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
-                    host.Save(new HttpResponseDelegate(this.UnlockedHeroCallBack));
-                    if (_callBack != null)
-                    {
-                        _callBack();
-                    }
-
-                    CommonPanel.GetInstance().ShowWaittingPanel();
-                })));
-            }
-            else if (ttype == GameGlobal.RESOURCE_TYPE_DIAMOND)
-            {
-                _result = AccountCrystalManagerComponent.Instance.ChangeDiamond(tcost, true, new HttpResponseDelegate(((bool result) =>
+                    UnlockedHeroCallBack(r);
+                    PnlMainMenu.PnlMainMenu.Instance.OnEnergyUpdate(true);
+                }));
+                if (_callBack != null)
                 {
-                    if (!result)
-                    {
-                        CommonPanel.GetInstance().ShowTextLackDiamond();
-                        return;
-                    }
-
-                    FormulaHost host = GetRole(_index);
-                    host.SetDynamicData(SignKeys.LOCKED, 0);
-                    //Messenger.Broadcast (MainMenuPanel.BroadcastChangePhysical);
-                    host.Save(new HttpResponseDelegate(this.UnlockedHeroCallBack));
-                    if (_callBack != null)
-                    {
-                        _callBack();
-                    }
-
-                    CommonPanel.GetInstance().ShowWaittingPanel();
-                })));
-            }
+                    _callBack();
+                }
+                CommonPanel.GetInstance().ShowWaittingPanel(false);
+            })));
         }
 
         public void UnlockedHeroCallBack(bool _success)
@@ -340,7 +328,6 @@ namespace FormulaBase
             {
                 return true;
             }
-
             return _role.GetDynamicIntByKey(SignKeys.LOCKED) == 1;
         }
 
@@ -446,9 +433,13 @@ namespace FormulaBase
             var suitGroup = role.GetDynamicStrByKey(SignKeys.SUIT_GROUP);
             if (suitGroup == "0")
             {
-                suitGroup = role.GetDynamicStrByKey(SignKeys.CLOTH);
+                suitGroup = (idx * 10).ToString();
             }
-            var suitNumber = suitGroup.Split(',');
+            var suitNumber = suitGroup.Split(',').ToList();
+            if (suitNumber.Contains("0"))
+            {
+                suitNumber.Remove("0");
+            }
             var list = suitNumber.Select(s => new CharCos((float)int.Parse(s))).ToList();
             return list;
         }
@@ -553,18 +544,31 @@ namespace FormulaBase
         /// <returns>The role physical add.</returns>
         public int GetRolePhysicalAdd()
         {
-            int tPhysical = 0;
-            foreach (FormulaHost _role in this.HostList.Values)
+            if (Host == null)
             {
-                if (_role == null)
-                {
-                    continue;
-                }
-
-                tPhysical += _role.GetDynamicIntByKey(SignKeys.PHYSICAL);
+                return 0;
             }
+            var charConfig = ConfigPool.Instance.GetConfigByName("char_info");
+            var value = this.HostList.Values.Select(role => role.GetDynamicIntByKey(SignKeys.ID)).Where(id => GetRoleState(id) != ChoseHeroDefine.RESULT_EQUIP.NO_GET).Sum(id => (int)charConfig[id.ToString()]["extra_energy_max"]);
+            return value;
+        }
 
-            return tPhysical;
+        public float GetGoldAdd()
+        {
+            if (Host == null)
+            {
+                return 0f;
+            }
+            return Host.GetDynamicDataByKey(SignKeys.GOLD_EXTRA) + 1f;
+        }
+
+        public float GetCharmAdd()
+        {
+            if (Host == null)
+            {
+                return 0f;
+            }
+            return Host.GetDynamicDataByKey(SignKeys.CHARM_EXTRA) + 1f;
         }
 
         public void SetHeroAttribute(int _index, ref int _effect1, ref int _effect2, ref int effect3, ref int effect4)

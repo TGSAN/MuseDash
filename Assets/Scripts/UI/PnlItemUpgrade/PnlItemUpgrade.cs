@@ -5,6 +5,8 @@ using FormulaBase;
 /// PnlItemUpgradeUI主模块
 ///
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace PnlItemUpgrade
@@ -15,6 +17,7 @@ namespace PnlItemUpgrade
         public UITexture[] itemTexs;
         public UITexture mainTex1, mainTex2;
         public Animator animator1, animator2;
+        public List<GameObject> goQualities;
 
         public static PnlItemUpgrade Instance
         {
@@ -41,11 +44,11 @@ namespace PnlItemUpgrade
         {
             gameObject.SetActive(true);
             animator1.gameObject.SetActive(true);
-            ResourceLoader.Instance.Load(host, mainTex1);
-            ResourceLoader.Instance.Load(host, mainTex2);
+            ResourceLoader.Instance.LoadItemIcon(host, mainTex1);
+            ResourceLoader.Instance.LoadItemIcon(host, mainTex2);
             for (int i = 0; i < hosts.Length; i++)
             {
-                ResourceLoader.Instance.Load(hosts[i], itemTexs[i]);
+                ResourceLoader.Instance.LoadItemIcon(hosts[i], itemTexs[i]);
             }
             animator1.Play(hosts.Length.ToString() + "item");
             DOTweenUtils.Delay(() =>
@@ -57,6 +60,13 @@ namespace PnlItemUpgrade
             {
                 animator2.enabled = true;
             }, 2.5f);
+
+            var quality = host.GetDynamicIntByKey(SignKeys.QUALITY);
+
+            for (var i = 0; i < goQualities.Count; i++)
+            {
+                goQualities[i].gameObject.SetActive(quality == i + 1);
+            }
         }
     }
 }

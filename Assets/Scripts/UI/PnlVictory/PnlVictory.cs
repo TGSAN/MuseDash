@@ -1,66 +1,122 @@
-/// UI分析工具自动生成代码
-/// PnlVictoryUI主模块
-/// 
-using System;
-using UnityEngine;
 using FormulaBase;
 using GameLogic;
 
+/// UI分析工具自动生成代码
+/// PnlVictoryUI主模块
+///
+using System;
+using System.Linq;
+using UnityEngine;
 
-namespace PnlVictory {
-	public class PnlVictory : UIPhaseBase {
-		private static PnlVictory instance = null;
-		public static PnlVictory Instance {
-			get {
-					return instance;
-			}
-		}
+namespace PnlVictory
+{
+    public class PnlVictory : UIPhaseBase
+    {
+        private static PnlVictory instance = null;
+        public GameObject[] goAll, goNoneAll;
+        public GameObject best, trophyTaskFalse, trophyTaskTrue;
+        public UIButton btn;
+        private bool m_Flag = false;
 
-		private bool isSaid = false;
+        public static PnlVictory Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
 
-		public UISprite sprGrade;
-		public UITexture txrCharact;
+        private bool isSaid = false;
 
-		void Start() {
-			instance = this;
-			this.SetTxrByCharacter ();
-		}
+        public UISprite sprGrade;
+        public UITexture txrCharact;
 
-		void OnEnable() {
-			this.SetTxrByCharacter ();
-		}
+        private void Start()
+        {
+            this.SetTxrByCharacter();
+            var callFunc = btn.onClick[0];
+            btn.onClick.Clear();
+            UIEventListener.Get(btn.gameObject).onClick = (go) =>
+            {
+                GetComponent<Animator>().Play("score_change");
+                UIEventListener.Get(btn.gameObject).onClick = null;
+                btn.onClick.Add(callFunc);
+            };
+        }
 
-		public override void OnShow () {
-			if (isSaid) {
-				return;
-			}
+        public override void BeCatched()
+        {
+            instance = this;
+            sprGrade.gameObject.SetActive(false);
+        }
 
-			this.isSaid = true;
-			SoundEffectComponent.Instance.SayByCurrentRole (GameGlobal.SOUND_TYPE_LAST_NODE);
-		}
+        private void OnEnable()
+        {
+            this.SetTxrByCharacter();
 
-		public override void OnHide () {
-		}
+            if (m_Flag)
+            {
+                this.SetTexByGrade();
+                var isAllCombo = StageBattleComponent.Instance.IsAllCombo();
 
-		private void SetTxrByCharacter() {
-			int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex ();
-			string txrName = ConfigPool.Instance.GetConfigStringValue ("char_info", heroIndex.ToString (), "image_victory");
-			if (txrName == null || ResourceLoader.Instance == null) {
-				return;
-			}
+                goAll.ToList().ForEach(go => go.SetActive(isAllCombo));
+                goNoneAll.ToList().ForEach(go => go.SetActive(!isAllCombo));
+            }
 
-			ResourceLoader.Instance.Load (txrName, this.__LoadTxr);
-		}
+            m_Flag = true;
+        }
 
-		private void __LoadTxr(UnityEngine.Object resObj) {
-			Texture t = resObj as Texture;
-			if (t == null) {
-				int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex ();
-				string txrName = ConfigPool.Instance.GetConfigStringValue ("char_info", heroIndex.ToString (), "image_victory");
-				Debug.Log ("Load char_info " + heroIndex + " PnlVictory texture failed : " + txrName);
-			}
+        public override void OnShow()
+        {
+            if (isSaid)
+            {
+                return;
+            }
 
-			this.txrCharact.mainTexture = t;
-		}
-	}
+            this.isSaid = true;
+            SoundEffectComponent.Instance.SayByCurrentRole(GameGlobal.SOUND_TYPE_LAST_NODE);
+
+            var isClearAllDiff = FightMenuPanel.Instance.isAchieve;
+            var isAchieve = TaskStageTarget.Instance.IsAchieveNow();
+            best.SetActive(isClearAllDiff);
+            trophyTaskFalse.SetActive(!isClearAllDiff && !isAchieve);
+            trophyTaskTrue.SetActive(!isClearAllDiff && isAchieve);
+        }
+
+        public override void OnHide()
+        {
+        }
+
+        private void SetTexByGrade()
+        {
+            sprGrade.spriteName = "grade_" +
+                                  TaskStageTarget.Instance.GetStagePJ();
+            sprGrade.gameObject.SetActive(true);
+        }
+
+        private void SetTxrByCharacter()
+        {
+            int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex();
+            string txrName = ConfigPool.Instance.GetConfigStringValue("char_info", heroIndex.ToString(), "image_victory");
+            if (txrName == null || ResourceLoader.Instance == null)
+            {
+                return;
+            }
+
+            ResourceLoader.Instance.Load(txrName, this.__LoadTxr);
+        }
+
+        private void __LoadTxr(UnityEngine.Object resObj)
+        {
+            Texture t = resObj as Texture;
+            if (t == null)
+            {
+                int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex();
+                string txrName = ConfigPool.Instance.GetConfigStringValue("char_info", heroIndex.ToString(), "image_victory");
+                Debug.Log("Load char_info " + heroIndex + " PnlVictory texture failed : " + txrName);
+            }
+
+            this.txrCharact.mainTexture = t;
+        }
+    }
 }

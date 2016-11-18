@@ -110,7 +110,7 @@ public class AudioManager
         {
             this.backGroundMusic.clip = null;
             //SceneAudioManager.Instance.Load (pathName + ".ogg", this.backGroundMusic);
-            this.backGroundMusic.clip = Resources.Load<AudioClip>(this.PlayingMusic);
+            ResourceLoader.Instance.Load(this.PlayingMusic, res => this.backGroundMusic.clip = res as AudioClip);
             Debug.Log("Load battle bgm " + this.PlayingMusic + " succeed.");
         }
     }
@@ -229,7 +229,7 @@ public class AudioManager
 
 #if UNITY_ANDROID && !UNITY_EDITOR
         name = StringUtils.LastAfter(name, '/');
-        var idx = AudioCenter.loadSound(name);
+        AudioCenter.loadSound(name);
 #else
         if (!audioDic.ContainsKey(name))
         {
@@ -361,7 +361,7 @@ public class AudioManager
         }
 #if UNITY_ANDROID && !UNITY_EDITOR
         name = StringUtils.LastAfter(name, '/');
-        AudioCenter.playSound(name);
+        var result = AudioCenter.playSound(name);
 #else
         if (this.audioDic.ContainsKey(name))
         {
