@@ -107,20 +107,25 @@ namespace PnlSuitcase
         public override void BeCatched()
         {
             instance = this;
+            UpdateSuitcase();
+        }
+
+        public void UpdateSuitcase()
+        {
             ItemManageComponent.Instance.SortAllQuality();
             var items = ItemManageComponent.Instance.GetAllItem;
+            grid.transform.DestroyChildren();
+            m_Cells.Clear();
             foreach (var item in items)
             {
                 var cell = Instantiate(cellPreb, grid.transform) as GameObject;
-                if (cell != null)
-                {
-                    cell.AddComponent<UIDragScrollView>();
-                    cell.transform.localScale = Vector3.one;
-                    var cellScript = cell.GetComponent<ItemImageEquip.ItemImageEquip>();
-                    cellScript.OnShow(item);
-                    cellScript.txtType.gameObject.SetActive(false);
-                    m_Cells.Add(cellScript);
-                }
+                if (cell == null) continue;
+                cell.AddComponent<UIDragScrollView>();
+                cell.transform.localScale = Vector3.one;
+                var cellScript = cell.GetComponent<ItemImageEquip.ItemImageEquip>();
+                cellScript.OnShow(item);
+                cellScript.txtType.gameObject.SetActive(false);
+                m_Cells.Add(cellScript);
             }
             grid.enabled = true;
         }

@@ -1,58 +1,62 @@
-﻿using FormulaBase;
+﻿using DG.Tweening.Plugins;
+using FormulaBase;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Common.Manager
 {
+    public class ItemID
+    {
+        public int id;
+
+        public ItemID(int i)
+        {
+            id = i;
+        }
+    }
+
     public class Capsule
     {
         public int id;
         public int uid;
-        public Dictionary<int, Dictionary<int, int>> items;
+        public Dictionary<int, Dictionary<ItemID, int>> items;
         public int charmRequire;
-        public string path;
+        public int path;
         public string name;
         public string description;
-
-        public GameObject go
-        {
-            get
-            {
-                GameObject g = null;
-                ResourceLoader.Instance.Load(path, res => g = res as GameObject);
-                return g;
-            }
-        }
+        public List<int> itemsID;
 
         public Capsule(int i)
         {
-            var config = ConfigPool.Instance.GetConfigByName("Capsule");
+            var config = ConfigPool.Instance.GetConfigByName("capsule");
             uid = i;
             id = 1;
-            for (var j = 1; j <= config.Count; j++)
+            var capsuleConfig = config[0];
+            for (var j = 0; j < config.Count; j++)
             {
-                if ((int)config[j.ToString()]["uid"] != i) continue;
-                id = j;
+                capsuleConfig = config[j];
+                if ((int)(capsuleConfig["uid"]) != i) continue;
+                id = (int)capsuleConfig["id"];
                 break;
             }
-            var capsuleConfig = config[i.ToString()];
+
             charmRequire = (int)capsuleConfig["charm_require"];
-            path = capsuleConfig["path"].ToString();
+            path = (int)capsuleConfig["path"];
             name = capsuleConfig["name"].ToString();
             description = capsuleConfig["description"].ToString();
-            items = new Dictionary<int, Dictionary<int, int>>();
+            items = new Dictionary<int, Dictionary<ItemID, int>>();
 
-            for (int j = 1; j <= config.Count; j++)
+            for (int j = 0; j < config.Count; j++)
             {
-                var capsuleItem = config[j.ToString()];
+                var capsuleItem = config[j];
                 if ((int)capsuleItem["uid"] == uid)
                 {
                     for (int k = 1; k <= 5; k++)
                     {
                         if (!items.ContainsKey(k))
                         {
-                            items.Add(k, new Dictionary<int, int>());
+                            items.Add(k, new Dictionary<ItemID, int>());
                         }
                         var keyV = "probability" + k;
                         var keyP = "item" + k;
@@ -60,8 +64,32 @@ namespace Assets.Scripts.Common.Manager
                         var valueV = (int)capsuleConfig[keyV];
                         if (valueP != 0 && valueV != 0)
                         {
-                            items[k].Add(valueP, valueV);
+                            var idValue = new ItemID(valueP);
+                            items[k].Add(idValue, valueV);
                         }
+                    }
+                }
+            }
+
+            itemsID = new List<int>();
+            for (int j = 1; j <= 5; j++)
+            {
+                var itemAndProbability = items[j];
+                var random = UnityEngine.Random.Range(0, 10000);
+                var proAdd = 0;
+                foreach (var pair in itemAndProbability)
+                {
+                    var itemID = pair.Key;
+                    if (itemID.id == 0)
+                    {
+                        break;
+                    }
+                    var probability = pair.Value;
+                    proAdd += probability;
+                    if (random <= proAdd)
+                    {
+                        itemsID.Add(itemID.id);
+                        break;
                     }
                 }
             }
@@ -69,7 +97,7 @@ namespace Assets.Scripts.Common.Manager
 
         public static string ConfigToString()
         {
-            var capsuleStr = "0,";
+            var capsuleStr = string.Empty;
             var config = ConfigPool.Instance.GetConfigByName("capsule_combination");
             var lvlDic = new Dictionary<int, int>();
             for (int i = 0; i < config.Count; i++)
@@ -99,6 +127,7 @@ namespace Assets.Scripts.Common.Manager
                     capsuleIdxs.Add(value);
                 }
             }
+            capsuleIdxs = ArrayUtils<int>.RandomSort(capsuleIdxs.ToArray()).ToList();
             for (var i = 0; i < capsuleIdxs.Count; i++)
             {
                 capsuleStr += capsuleIdxs[i].ToString() + (i == capsuleIdxs.Count - 1 ? string.Empty : ",");
@@ -126,24 +155,40 @@ namespace Assets.Scripts.Common.Manager
 
     public class CapsuleManager : Singleton<CapsuleManager>
     {
-        /*  public Capsule curCapsule
-          {
-          }*/
+        public Capsule curCapsule
+        {
+            get
+            {
+                var capsuleStr = AccountManagerComponent.Instance.GetCapsuleStr();
+                var list = Capsule.StringToList(capsuleStr);
+                return list.FirstOrDefault();
+            }
+        }
 
-        public Capsule RandomCapsule()
+        public void PopCapsule()
         {
             var capsuleStr = AccountManagerComponent.Instance.GetCapsuleStr();
             var list = Capsule.StringToList(capsuleStr);
-            var idx = UnityEngine.Random.Range(1, list.Count - 1);
-            var capsule = list[idx];
-            list.RemoveAt(idx);
-            if (list.Count > 0)
-            {
-                list[0] = capsule;
-            }
+            list.RemoveAt(0);
+            list = ArrayUtils<Capsule>.RandomSort(list.ToArray()).ToList();
             var str = Capsule.ListToString(list);
             AccountManagerComponent.Instance.SetCapsuleStr(str);
-            return capsule;
+        }
+
+        public void OpenCapsule(HttpResponseDelegate callFunc = null)
+        {
+            AccountCharmComponent.Instance.ChangeCharm(-curCapsule.charmRequire, true, result =>
+            {
+                if (result)
+                {
+                    foreach (var id in curCapsule.itemsID)
+                    {
+                        ItemManageComponent.Instance.CreateItemByUID(id);
+                    }
+                    PopCapsule();
+                }
+                if (callFunc != null) callFunc(result);
+            });
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using Random = System.Random;
 
 public class JsonUtil
 {
@@ -65,6 +66,17 @@ public class ArrayUtils<T>
         var list = new List<T>(array);
         list.Remove(value);
         return list.ToArray();
+    }
+
+    public static T[] RandomSort(T[] array)
+    {
+        Random random = new Random();
+        List<T> newList = new List<T>();
+        foreach (T item in array)
+        {
+            newList.Insert(random.Next(newList.Count + 1), item);
+        }
+        return newList.ToArray();
     }
 }
 
