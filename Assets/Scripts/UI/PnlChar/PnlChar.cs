@@ -201,8 +201,11 @@ namespace PnlChar
             curEquipTypeIdx = 0;
             FormulaBase.RoleManageComponent.Instance.GetRole(roleIdx).SetAsUINotifyInstance();
 
-            //OnEquipLoad(roleIdx);
-            OnSpiAnimLoad(roleIdx);
+            OnEquipLoad(roleIdx);
+            DOTweenUtils.Delay(() =>
+            {
+                OnSpiAnimLoad(roleIdx);
+            }, 0.1f);
         }
 
         public void OnEquipLoad(int idx)
