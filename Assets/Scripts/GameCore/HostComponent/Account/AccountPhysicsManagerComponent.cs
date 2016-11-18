@@ -90,6 +90,13 @@ namespace FormulaBase
             return (int)account.GetDynamicDataByKey(SignKeys.PHYSICAL);
         }
 
+        public void ChangeEnergyToMax()
+        {
+            var max = GetMaxPhysical();
+            var cur = GetPhysical();
+            ChangePhysical(max - cur);
+        }
+
         /// <summary>
         /// 改变玩家体力
         ///
