@@ -2519,7 +2519,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010464891004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.7, y: 0, z: 0}
+  m_LocalPosition: {x: -49, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -2911,7 +2911,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013065399918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -82, y: 0, z: 0}
+  m_LocalPosition: {x: -180, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -5744,19 +5744,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4000012458210492}
-    relative: 1
+    target: {fileID: 0}
+    relative: 0
     absolute: 23
   rightAnchor:
-    target: {fileID: 4000012458210492}
+    target: {fileID: 0}
     relative: 1
     absolute: 398
   bottomAnchor:
-    target: {fileID: 4000012458210492}
+    target: {fileID: 0}
     relative: 0
     absolute: 0
   topAnchor:
-    target: {fileID: 4000012458210492}
+    target: {fileID: 0}
     relative: 1
     absolute: 0
   updateAnchors: 1
@@ -6060,21 +6060,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4000011493928446}
-    relative: 0
-    absolute: -28
-  rightAnchor:
-    target: {fileID: 4000011493928446}
-    relative: 0
-    absolute: -26
-  bottomAnchor:
-    target: {fileID: 4000011493928446}
-    relative: 0
-    absolute: -8
-  topAnchor:
-    target: {fileID: 4000011493928446}
+    target: {fileID: 4000012439898926}
     relative: 1
-    absolute: 8
+    absolute: 191
+  rightAnchor:
+    target: {fileID: 4000012439898926}
+    relative: 1
+    absolute: 193
+  bottomAnchor:
+    target: {fileID: 4000012439898926}
+    relative: 0
+    absolute: -9
+  topAnchor:
+    target: {fileID: 4000012439898926}
+    relative: 1
+    absolute: 9
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
@@ -7324,8 +7324,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4000010227454768}
-    relative: 1
+    target: {fileID: 0}
+    relative: 0
     absolute: 6
   rightAnchor:
     target: {fileID: 0}
@@ -7333,11 +7333,11 @@ MonoBehaviour:
     absolute: 94
   bottomAnchor:
     target: {fileID: 0}
-    relative: 0.5
+    relative: 0
     absolute: -18
   topAnchor:
     target: {fileID: 0}
-    relative: 0.5
+    relative: 1
     absolute: 18
   updateAnchors: 1
   mColor: {r: 0.654902, g: 0.5921569, b: 0.8745099, a: 1}
@@ -7348,11 +7348,11 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 3.6666667
+  aspectRatio: 3.1111112
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: bb22fb5beacef47a6816ba69bce73b56, type: 3}
   mFont: {fileID: 0}
-  mText: 999/260
+  mText: 999/259
   mFontSize: 36
   mFontStyle: 0
   mAlignment: 0
@@ -7497,24 +7497,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: -13
+    target: {fileID: 4000012439898926}
+    relative: 1
+    absolute: 219
   rightAnchor:
-    target: {fileID: 0}
+    target: {fileID: 4000012439898926}
     relative: 1
-    absolute: -10
+    absolute: 295
   bottomAnchor:
-    target: {fileID: 0}
+    target: {fileID: 4000012439898926}
     relative: 0
-    absolute: 6
+    absolute: -1
   topAnchor:
-    target: {fileID: 0}
+    target: {fileID: 4000012439898926}
     relative: 1
-    absolute: -4
+    absolute: 1
   updateAnchors: 1
   mColor: {r: 0.654902, g: 0.5921569, b: 0.8745099, a: 1}
-  mPivot: 5
+  mPivot: 3
   mWidth: 76
   mHeight: 36
   mDepth: 192
@@ -7535,7 +7535,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
-  mOverflow: 2
+  mOverflow: 0
   mMaterial: {fileID: 0}
   mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
@@ -7695,7 +7695,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3002
+  startingRenderQueue: 3000
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -9618,24 +9618,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 232
+    target: {fileID: 4000012439898926}
+    relative: 1
+    absolute: 60
   rightAnchor:
-    target: {fileID: 0}
+    target: {fileID: 4000012439898926}
     relative: 1
-    absolute: 298
+    absolute: 158
   bottomAnchor:
-    target: {fileID: 0}
+    target: {fileID: 4000012439898926}
     relative: 0
-    absolute: -52
+    absolute: -1
   topAnchor:
-    target: {fileID: 0}
+    target: {fileID: 4000012439898926}
     relative: 1
-    absolute: -16
+    absolute: 1
   updateAnchors: 1
   mColor: {r: 0.654902, g: 0.5921569, b: 0.8745099, a: 1}
-  mPivot: 5
+  mPivot: 3
   mWidth: 98
   mHeight: 36
   mDepth: 192
@@ -9656,7 +9656,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
-  mOverflow: 2
+  mOverflow: 0
   mMaterial: {fileID: 0}
   mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
@@ -10343,19 +10343,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 4000012681742544}
-    relative: 0
-    absolute: -28
+    target: {fileID: 4000012439898926}
+    relative: 1
+    absolute: 32
   rightAnchor:
-    target: {fileID: 4000012681742544}
-    relative: 0
-    absolute: -26
+    target: {fileID: 4000012439898926}
+    relative: 1
+    absolute: 34
   bottomAnchor:
-    target: {fileID: 4000012681742544}
+    target: {fileID: 4000012439898926}
     relative: 0.5
     absolute: -1
   topAnchor:
-    target: {fileID: 4000012681742544}
+    target: {fileID: 4000012439898926}
     relative: 0.5
     absolute: 1
   updateAnchors: 1
@@ -13962,7 +13962,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 0
   scalingMode: 1
-  randomSeed: 1111302376
+  randomSeed: 1111302400
   InitialModule:
     serializedVersion: 2
     enabled: 1

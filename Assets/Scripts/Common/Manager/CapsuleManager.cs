@@ -126,9 +126,19 @@ namespace Assets.Scripts.Common.Manager
 
     public class CapsuleManager : Singleton<CapsuleManager>
     {
-        /*  public Capsule curCapsule
-          {
-          }*/
+        public Capsule curCapsule
+        {
+            get
+            {
+                var capsuleStr = AccountManagerComponent.Instance.GetCapsuleStr();
+                if (capsuleStr == "0")
+                {
+                    return RandomCapsule();
+                }
+                var list = Capsule.StringToList(capsuleStr);
+                return list.FirstOrDefault();
+            }
+        }
 
         public Capsule RandomCapsule()
         {

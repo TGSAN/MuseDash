@@ -22,7 +22,7 @@ public class GMOrderPanel : MonoBehaviour
 
     public void GetPhysical()
     {
-        AccountPhysicsManagerComponent.Instance.ChangePhysical(120, true);
+        AccountPhysicsManagerComponent.Instance.ChangeEnergyToMax();
     }
 
     public void ShowGMOrderPanel()

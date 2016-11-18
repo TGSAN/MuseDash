@@ -13,7 +13,7 @@ namespace PnlMainMenu
     {
         private static PnlMainMenu instance = null;
         public GameObject goSelectedSuitcase;
-        public UILabel txtEnergy;
+        public UILabel txtEnergy, txtCharm, txtCharmMax;
         public UISprite sprRecoverTime;
         public UITweener twnEnergy, twnCoin, twnCrystal;
 
