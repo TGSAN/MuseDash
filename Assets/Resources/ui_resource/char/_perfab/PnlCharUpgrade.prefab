@@ -1956,6 +1956,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011959503376}
   - 114: {fileID: 114000013951349032}
+  - 114: {fileID: 114000013066652486}
   m_Layer: 5
   m_Name: Animation2
   m_TagString: Untagged
@@ -9569,7 +9570,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: -0.014311486, w: 0.9998976}
   m_LocalPosition: {x: 0, y: 179.07, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.4394843}
   m_Children: []
   m_Father: {fileID: 4000012885074604}
   m_RootOrder: 2
@@ -25946,6 +25947,21 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 3ae8a9819cc5e403393f1a9651b5f378, type: 2}
   mSpriteName: malya_perfect-word_4
   mFillCenter: 1
+--- !u!114 &114000013066652486
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011117014518}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: dcbd485e0e4164a348e0848e0f7faa62, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000013083042488
 MonoBehaviour:
   m_ObjectHideFlags: 1
