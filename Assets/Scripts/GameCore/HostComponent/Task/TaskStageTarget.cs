@@ -282,9 +282,8 @@ namespace FormulaBase
         public bool IsUnLockAllDiff(FormulaHost host = null)
         {
             host = host ?? this.Host;
-            return
-                host.GetDynamicIntByKey(SignKeys.DIFFCULT) >
-                3;
+            if (host == null) return false;
+            return host.GetDynamicIntByKey(SignKeys.DIFFCULT) > 3;
         }
 
         public bool IsAchieveNow(FormulaHost host = null)
