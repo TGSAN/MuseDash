@@ -1,4 +1,5 @@
 using FormulaBase;
+using LitJson;
 
 ///自定义模块，可定制模块具体行为
 using System;
@@ -237,6 +238,11 @@ namespace FormulaBase
             return GetAllItem.Any(item => item.GetDynamicIntByKey(SignKeys.ID) == id);
         }
 
+        public FormulaHost GetHostItem(int id)
+        {
+            return GetAllItem.FirstOrDefault(host => host.GetDynamicIntByKey(SignKeys.ID) == id);
+        }
+
         #endregion 类型判断
 
         public void Init()
@@ -446,6 +452,7 @@ namespace FormulaBase
             if (typeName == "food")
             {
                 host = materialManageComponent.Instance.CreateItem(idx);
+                num += host.GetDynamicIntByKey(SignKeys.STACKITEMNUMBER);
             }
             else if (typeName == "servant" || typeName == "debris")
             {
@@ -468,6 +475,20 @@ namespace FormulaBase
                 AddItem(host);
             }
             return host;
+        }
+
+        public FormulaHost CreateItemByUID(int uid, int count = 1)
+        {
+            var config = ConfigPool.Instance.GetConfigByName("items");
+            for (var i = 0; i < config.Count; i++)
+            {
+                var u = (int)config[i]["uid"];
+                if (u == uid)
+                {
+                    return CreateItem(i + 1, count);
+                }
+            }
+            return null;
         }
 
         public void CheckChestTimeCallBack(cn.bmob.response.EndPointCallbackData<Hashtable> response)
@@ -718,6 +739,19 @@ namespace FormulaBase
             {
                 NGUIDebug.Log("connet is fail");
             }
+        }
+
+        public JsonData GetItemConfigByUID(int uid)
+        {
+            var config = ConfigPool.Instance.GetConfigByName("items");
+            for (int i = 0; i < config.Count; i++)
+            {
+                if ((int)config[i]["uid"] == uid)
+                {
+                    return config[i];
+                }
+            }
+            return null;
         }
 
         public void LockItem(FormulaHost _host, bool _Locked)

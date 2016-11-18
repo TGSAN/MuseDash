@@ -1,4 +1,4 @@
-//----------------------------------------------
+﻿//----------------------------------------------
 //            NGUI: Next-Gen UI kit
 // Copyright © 2011-2016 Tasharen Entertainment
 //----------------------------------------------
@@ -104,7 +104,7 @@ public class BetterList<T>
 	/// Remove an item from the end.
 	/// </summary>
 
-	public T Pop ()
+	public T PopCapsule ()
 	{
 		if (buffer != null && size != 0)
 		{

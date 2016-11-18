@@ -11,7 +11,7 @@ namespace PnlFoodInfo
     public class PnlFoodInfo : UIPhaseBase
     {
         public UILabel txtName;
-        public UILabel txtCurLvl, txtSaleCoins;
+        public UILabel txtSaleCoins;
         public UILabel txtDiscription;
         public UILabel txtExp;
         public UIButton btnSale;
@@ -63,13 +63,11 @@ namespace PnlFoodInfo
             m_Animator.enabled = true;
             OnEnter();
             var name = h.GetDynamicStrByKey(SignKeys.NAME);
-            var curLvl = h.GetDynamicStrByKey(SignKeys.LEVEL);
             var exp = h.Result(FormulaKeys.FORMULA_57);
             var description = h.GetDynamicStrByKey(SignKeys.DESCRIPTION);
             var cost = ItemManageComponent.Instance.GetItemMoney(h);
 
             txtName.text = name;
-            txtCurLvl.text = curLvl;
             txtExp.text = exp.ToString();
             txtDiscription.text = description;
             txtSaleCoins.text = cost.ToString();

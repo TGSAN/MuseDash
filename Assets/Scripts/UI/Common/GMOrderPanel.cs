@@ -55,6 +55,13 @@ public class GMOrderPanel : MonoBehaviour
     {
         Debug.Log("GM命令添加物品");
         ItemManageComponent.Instance.CreateAllItems(100);
+        DOTweenUtils.Delay(() =>
+        {
+            if (PnlSuitcase.PnlSuitcase.Instance != null)
+            {
+                PnlSuitcase.PnlSuitcase.Instance.UpdateSuitcase();
+            }
+        }, 0.5f);
         /*//所有装备
         LitJson.JsonData cfg1 = ConfigPool.Instance.GetConfigByName("items");
         Debug.Log("Equipment_info" + cfg1.Count);
