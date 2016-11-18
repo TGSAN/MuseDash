@@ -201,8 +201,8 @@ namespace PnlChar
             curEquipTypeIdx = 0;
             FormulaBase.RoleManageComponent.Instance.GetRole(roleIdx).SetAsUINotifyInstance();
 
-            OnSpiAnimLoad(roleIdx);
             OnEquipLoad(roleIdx);
+            OnSpiAnimLoad(roleIdx);
         }
 
         public void OnEquipLoad(int idx)
@@ -245,35 +245,39 @@ namespace PnlChar
                 return;
             }
             GameObject go = null;
-            ResourceLoader.Instance.Load(p ?? path, res => go = Instantiate(res) as GameObject);
-            go.transform.SetParent(spiAnimParent, false);
-            go.transform.localPosition = Vector3.zero;
-            go.transform.localScale = Vector3.one * 140f;
-            go.transform.localEulerAngles = Vector3.zero;
-            var skeletonAnim = go.GetComponent<SkeletonAnimation>();
-            skeletonAnim.loop = true;
-            skeletonAnim.AnimationName = "run";
-            DOTweenUtils.Delay(() =>
+            ResourceLoader.Instance.Load(p ?? path, res =>
             {
-                skeletonAnim.AnimationName = "standby";
-            }, Time.deltaTime);
-            go.GetComponent<SpineSynchroObjects>().enabled = false;
-            go.GetComponent<SpineMountController>().enabled = false;
-            go.GetComponent<Renderer>().sortingOrder = 50;
-            if (m_SpiAniGODic.ContainsKey(idx))
-            {
-                Destroy(m_SpiAniGODic[idx]);
-                m_SpiAniGODic[idx] = go;
-            }
-            else
-            {
-                m_SpiAniGODic.Add(idx, go);
-            }
-            m_AnimPath[idx - 1] = p ?? path;
-            foreach (var pair in m_SpiAniGODic)
-            {
-                pair.Value.SetActive(pair.Key == idx);
-            }
+                if (res == null) return;
+                go = Instantiate(res) as GameObject;
+                go.transform.SetParent(spiAnimParent, false);
+                go.transform.localPosition = Vector3.zero;
+                go.transform.localScale = Vector3.one * 140f;
+                go.transform.localEulerAngles = Vector3.zero;
+                var skeletonAnim = go.GetComponent<SkeletonAnimation>();
+                skeletonAnim.loop = true;
+                skeletonAnim.AnimationName = "run";
+                DOTweenUtils.Delay(() =>
+                {
+                    skeletonAnim.AnimationName = "standby";
+                }, Time.deltaTime);
+                go.GetComponent<SpineSynchroObjects>().enabled = false;
+                go.GetComponent<SpineMountController>().enabled = false;
+                go.GetComponent<Renderer>().sortingOrder = 50;
+                if (m_SpiAniGODic.ContainsKey(idx))
+                {
+                    Destroy(m_SpiAniGODic[idx]);
+                    m_SpiAniGODic[idx] = go;
+                }
+                else
+                {
+                    m_SpiAniGODic.Add(idx, go);
+                }
+                m_AnimPath[idx - 1] = p ?? path;
+                foreach (var pair in m_SpiAniGODic)
+                {
+                    pair.Value.SetActive(pair.Key == idx);
+                }
+            });
         }
 
         #endregion On事件

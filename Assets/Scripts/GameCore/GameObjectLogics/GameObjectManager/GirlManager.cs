@@ -144,9 +144,6 @@ public class GirlManager : MonoBehaviour
         if (heroIndex < 0)
         {
             heroIndex = 0;
-#if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
-            heroIndex = AdminData.Instance.DefaultRoleIdx;
-#endif
         }
 
         Debug.Log("Battle with hero : " + heroIndex);
@@ -156,7 +153,6 @@ public class GirlManager : MonoBehaviour
         if (hero != null)
         {
             var charCos = RoleManageComponent.Instance.GetRandomCloth(heroIndex);
-            clothIdx = charCos.id;
             clothPath = charCos.path;
         }
 
@@ -165,6 +161,12 @@ public class GirlManager : MonoBehaviour
             clothIdx = ConfigPool.Instance.GetConfigIntValue("char_info", heroIndex.ToString(), "character");
             clothPath = ConfigPool.Instance.GetConfigStringValue("char_cos", "uid", "path", clothIdx);
         }
+
+#if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
+        heroIndex = AdminData.Instance.DefaultRoleIdx;
+        clothIdx = GameGlobal.DEBUG_CLOTH_UID;
+        clothPath = ConfigPool.Instance.GetConfigStringValue("char_cos", "uid", "path", clothIdx);
+#endif
 
         this.girlnames[0] = clothPath;
         string[] _armnames = BattlePetComponent.Instance.GetPetPerfabNames();

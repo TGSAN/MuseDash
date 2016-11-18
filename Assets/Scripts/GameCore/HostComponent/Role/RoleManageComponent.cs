@@ -281,7 +281,6 @@ namespace FormulaBase
             int tcost = 0;
             bool _result = true;
             GetUnLockRoleMoeny(_index, ref ttype, ref tcost);
-            UnityEngine.Debug.Log(ttype + "=====" + tcost);
 
             AccountCrystalManagerComponent.Instance.ChangeDiamond(-tcost, true, new HttpResponseDelegate(((bool result) =>
             {
