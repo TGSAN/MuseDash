@@ -445,13 +445,13 @@ namespace FormulaBase
             FormulaHost.SaveList(All, new HttpEndResponseDelegate(this.CheckChestTimeCallBack));
         }
 
-        public FormulaHost[] CreateAllItems(int num = 1)
+        public FormulaHost[] CreateAllItems()
         {
             var formulaList = new List<FormulaHost>();
             var items = ConfigPool.Instance.GetConfigByName("items");
             for (int i = 1; i <= items.Count; i++)
             {
-                formulaList.Add(CreateItem(i, num));
+                formulaList.Add(CreateItem(i, 99));
             }
             return formulaList.ToArray();
         }
@@ -465,6 +465,7 @@ namespace FormulaBase
             {
                 host = materialManageComponent.Instance.CreateItem(idx);
                 num += host.GetDynamicIntByKey(SignKeys.STACKITEMNUMBER);
+                host.SetDynamicData(SignKeys.STACKITEMNUMBER, num);
             }
             else if (typeName == "servant" || typeName == "debris")
             {
@@ -472,11 +473,11 @@ namespace FormulaBase
             else
             {
                 host = EquipManageComponent.Instance.CreateItem(idx);
+                host.SetDynamicData(SignKeys.STACKITEMNUMBER, 1);
             }
             if (host != null)
             {
                 host.SetDynamicData(SignKeys.TYPE, typeName);
-                host.SetDynamicData(SignKeys.STACKITEMNUMBER, num);
                 host.SetDynamicData(SignKeys.NAME, itemJson["name"].ToString());
                 host.SetDynamicData(SignKeys.ICON, itemJson["icon"].ToString());
                 host.SetDynamicData(SignKeys.DESCRIPTION, itemJson["description"].ToString());

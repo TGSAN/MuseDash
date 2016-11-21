@@ -102,6 +102,14 @@ namespace ItemImageEquip
             SetTxtByHost();
             UIEventListener.Get(gameObject).onClick = (go) =>
             {
+                if (PnlEquipInfo.PnlEquipInfo.Instance.host != null)
+                {
+                    if (host.GetDynamicIntByKey(SignKeys.ID) == PnlEquipInfo.PnlEquipInfo.Instance.host.GetDynamicIntByKey(SignKeys.ID))
+                    {
+                        return;
+                    }
+                }
+
                 if (isLock)
                 {
                     return;
