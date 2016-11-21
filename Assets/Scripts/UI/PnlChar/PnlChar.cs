@@ -180,7 +180,7 @@ namespace PnlChar
             {
                 item.gameObject.SetActive(true);
             }
-            onRoleChange(curRoleIdx);
+            //onRoleChange(curRoleIdx);
         }
 
         #endregion Init初始化
