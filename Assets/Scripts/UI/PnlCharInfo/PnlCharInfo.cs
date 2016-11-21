@@ -370,7 +370,10 @@ namespace PnlCharInfo
             m_SelectedCosList.Sort((l, r) => l.uid - r.uid);
 
             var clothStr = m_SelectedCosList.Aggregate(string.Empty, (current, charCose) => current + (charCose.uid + ","));
-            clothStr = clothStr.Substring(0, clothStr.Length - 1);
+            if (clothStr.Length > 0)
+            {
+                clothStr = clothStr.Substring(0, clothStr.Length - 1);
+            }
             var suitStr = roleHost.GetDynamicStrByKey(SignKeys.SUIT_GROUP);
             btnApply.gameObject.SetActive(suitStr != clothStr);
             if (suitStr == "0" && clothStr == (roleHost.GetDynamicIntByKey(SignKeys.ID) * 10).ToString())
