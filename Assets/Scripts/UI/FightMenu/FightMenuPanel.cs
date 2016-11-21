@@ -1,4 +1,5 @@
-﻿using DYUnityLib;
+﻿using DG.Tweening;
+using DYUnityLib;
 using FormulaBase;
 using GameLogic;
 using System.Collections;
@@ -36,6 +37,7 @@ public class FightMenuPanel : MonoBehaviour
 
     private const float SONG_PROGRESS_MIN = 0.1f;
     private static FightMenuPanel instance = null;
+    private Sequence m_Seq;
 
     public static FightMenuPanel Instance
     {
@@ -133,7 +135,11 @@ public class FightMenuPanel : MonoBehaviour
         twnAchievement.gameObject.SetActive(false);
         if (!isAchieve)
         {
-            DOTweenUtils.Update(() =>
+            if (m_Seq != null)
+            {
+                m_Seq.Kill();
+            }
+            m_Seq = DOTweenUtils.Update(() =>
             {
                 if (twnAchievement != null)
                 {
