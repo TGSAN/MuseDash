@@ -266,13 +266,13 @@ namespace PnlCharInfo
             {
                 var tgl = t.selectedTgl;
                 tgl.onChange.Clear();
-                tgl.onChange.Add(new EventDelegate(() =>
-                {
-                    DOTweenUtils.Delay(() =>
-                    {
-                        OnSelectChange(tgl.transform);
-                    }, Time.deltaTime);
-                }));
+                /*  tgl.onChange.Add(new EventDelegate(() =>
+                  {
+                      DOTweenUtils.Delay(() =>
+                      {
+                          OnSelectChange(tgl.transform);
+                      }, Time.deltaTime);
+                  }));*/
             }
         }
 

@@ -180,10 +180,7 @@ namespace PnlChar
             {
                 item.gameObject.SetActive(true);
             }
-            DOTweenUtils.Delay(() =>
-            {
-                //onRoleChange(curRoleIdx);
-            }, Time.deltaTime);
+            onRoleChange(curRoleIdx);
         }
 
         #endregion Init初始化
@@ -238,6 +235,7 @@ namespace PnlChar
 
         public void OnSpiAnimLoad(int idx, string p = null)
         {
+            Debug.Log("=============123");
             var path = m_AnimPath[idx - 1];
             if (p == path) return;
             GameObject go = null;
