@@ -321,6 +321,7 @@ namespace PnlCharInfo
                 btnApply.gameObject.SetActive(false);
             }
             txtApply.gameObject.SetActive(!btnApply.gameObject.activeSelf);
+            OnUpgradeItemsRefresh();
         }
 
         public void OnSelectChange(Transform t)

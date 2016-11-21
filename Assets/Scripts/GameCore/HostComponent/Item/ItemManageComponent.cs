@@ -203,6 +203,10 @@ namespace FormulaBase
 
         public bool isFood(FormulaHost host)
         {
+            if (host == null)
+            {
+                return false;
+            }
             if (host.GetDynamicStrByKey(SignKeys.TYPE) == "food")
             {
                 return true;
@@ -212,6 +216,10 @@ namespace FormulaBase
 
         public bool isServant(FormulaHost host)
         {
+            if (host == null)
+            {
+                return false;
+            }
             var typeName = host.GetDynamicStrByKey(SignKeys.TYPE);
             if (typeName == "servant" || typeName == "debris")
             {
@@ -222,6 +230,10 @@ namespace FormulaBase
 
         public bool IsEquipment(FormulaHost host)
         {
+            if (host == null)
+            {
+                return false;
+            }
             if (isFood(host))
             {
                 return false;

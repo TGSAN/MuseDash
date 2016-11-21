@@ -102,10 +102,9 @@ namespace PnlChar
         private void InitEvent()
         {
             onRoleChange = null; ;
-            onRoleChange += idx => PnlCharInfo.PnlCharInfo.Instance.OnUpgradeItemsRefresh();
+            onRoleChange += OnRoleChange;
             onRoleChange += PnlCharInfo.PnlCharInfo.Instance.OnRoleChange;
             onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
-            onRoleChange += OnRoleChange;
             var maxCount = FormulaBase.RoleManageComponent.Instance.GetRoleCount();
             Action onLeftClick = null;
             onLeftClick = () =>
@@ -183,7 +182,7 @@ namespace PnlChar
             }
             DOTweenUtils.Delay(() =>
             {
-                onRoleChange(curRoleIdx);
+                //onRoleChange(curRoleIdx);
             }, Time.deltaTime);
         }
 
@@ -202,10 +201,7 @@ namespace PnlChar
             FormulaBase.RoleManageComponent.Instance.GetRole(roleIdx).SetAsUINotifyInstance();
 
             OnEquipLoad(roleIdx);
-            DOTweenUtils.Delay(() =>
-            {
-                OnSpiAnimLoad(roleIdx);
-            }, 0.1f);
+            OnSpiAnimLoad(roleIdx);
         }
 
         public void OnEquipLoad(int idx)
