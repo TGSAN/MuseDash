@@ -180,7 +180,7 @@ namespace PnlChar
             {
                 item.gameObject.SetActive(true);
             }
-            //onRoleChange(curRoleIdx);
+            onRoleChange(curRoleIdx);
         }
 
         #endregion Init初始化
@@ -235,11 +235,16 @@ namespace PnlChar
 
         public void OnSpiAnimLoad(int idx, string p = null)
         {
-            Debug.Log("=============123");
-            var path = m_AnimPath[idx - 1];
-            if (p == path) return;
+            return;
+            var path = p ?? m_AnimPath[idx - 1];
+            if (m_SpiAniGODic.ContainsKey(idx))
+            {
+                var goName = StringUtils.LastAfter(path, '/');
+                var curGoName = m_SpiAniGODic[idx].name;
+                if (goName == curGoName) return;
+            }
             GameObject go = null;
-            ResourceLoader.Instance.Load(p ?? path, res =>
+            ResourceLoader.Instance.Load(path, res =>
             {
                 if (res == null) return;
                 go = Instantiate(res) as GameObject;
@@ -269,7 +274,7 @@ namespace PnlChar
                         m_SpiAniGODic.Add(idx, go);
                     }
                 }
-                m_AnimPath[idx - 1] = p ?? path;
+                m_AnimPath[idx - 1] = path;
                 foreach (var pair in m_SpiAniGODic)
                 {
                     pair.Value.SetActive(pair.Key == idx);
