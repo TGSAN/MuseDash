@@ -54,7 +54,7 @@ public class GMOrderPanel : MonoBehaviour
     public void AddItem()
     {
         Debug.Log("GM命令添加物品");
-        ItemManageComponent.Instance.CreateAllItems(100);
+        ItemManageComponent.Instance.CreateAllItems();
         DOTweenUtils.Delay(() =>
         {
             if (PnlSuitcase.PnlSuitcase.Instance != null)

@@ -44,7 +44,14 @@ namespace PnlSuitcase
                 {
                     if (m_IsUpgrade)
                     {
-                        SetTypeActive(false, true, false);
+                        if (PnlEquipInfo.PnlEquipInfo.Instance.gameObject.activeSelf)
+                        {
+                            SetTypeActive(true, false, false);
+                        }
+                        else
+                        {
+                            SetTypeActive(false, true, false);
+                        }
                     }
                     tglEquip.enabled = !m_IsUpgrade;
                     tglFood.enabled = !m_IsUpgrade;

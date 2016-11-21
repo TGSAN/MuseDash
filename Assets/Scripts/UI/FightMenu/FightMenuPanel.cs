@@ -185,6 +185,11 @@ public class FightMenuPanel : MonoBehaviour
 		*/
     }
 
+    private void OnDestroy()
+    {
+        m_Seq.Kill();
+    }
+
     public void UnShow()
     {
         this.gameObject.SetActive(false);

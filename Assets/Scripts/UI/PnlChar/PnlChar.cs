@@ -60,7 +60,7 @@ namespace PnlChar
         {
             instance = this;
             curRoleIdx = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
-            DOTweenUtils.Delay(InitEvent, Time.deltaTime);
+            DOTweenUtils.Delay(InitEvent, 0.1f);
         }
 
         #region Update更新
