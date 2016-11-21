@@ -31,10 +31,10 @@ namespace PnlAchievement
         public UILabel[] labels;
         public UILabel txtTargetScore;
 
-        public TweenWidth slideCombo;
-        public TweenWidth slidePerfect;
-        public TweenWidth slideStars;
-        public TweenWidth slideClear;
+        public TweenFill slideCombo;
+        public TweenFill slidePerfect;
+        public TweenFill slideStars;
+        public TweenFill slideClear;
 
         private void Start()
         {
@@ -81,16 +81,50 @@ namespace PnlAchievement
                 GameObject t = this.trophys[i];
                 t.SetActive(i < rank);
             }
+            var stageHost = TaskStageTarget.Instance.Host;
 
-            this.ShowRankProgress(TaskStageTarget.TASK_SIGNKEY_MAX_COMBO, "Combo_", this.slideCombo);
+            var stageID = stageHost.GetDynamicIntByKey(SignKeys.ID);
+            var maxCombo = (float)ConfigPool.Instance.GetConfigIntValue("stage", stageID.ToString(), "all_combo");
+            var maxPerfect = (float)ConfigPool.Instance.GetConfigIntValue("stage", stageID.ToString(), "all_perfect");
+            var maxStar = (float)ConfigPool.Instance.GetConfigIntValue("stage", stageID.ToString(), "all_star");
+            var maxClear = 0f;
+            var clearConfig = ConfigPool.Instance.GetConfigByName("achievement");
+            for (var i = 0; i < clearConfig.Count; i++)
+            {
+                var table = clearConfig[i];
+                if ((int)table["uid"] != stageID) continue;
+                if ((string)table["type"] != "clear") continue;
+                maxClear = (float)((int)table["s_goal"]);
+                break;
+            }
+
+            var perfectMaxCount = (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
+            var comboCount = (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_MAX_COMBO);
+            var starCount = (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_HIDE_NODE_COUNT + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
+            var clearCount = (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_CLEAR_COUNT);
+
+            PlayProgress(comboCount / maxCombo, slideCombo);
+            PlayProgress(perfectMaxCount / maxPerfect, slidePerfect);
+            PlayProgress(starCount / maxStar, slideStars);
+            PlayProgress(clearCount / maxClear, slideClear);
+            /* this.ShowRankProgress(TaskStageTarget.TASK_SIGNKEY_MAX_COMBO, "Combo_", this.slideCombo);
             this.ShowRankProgress(TaskStageTarget.TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT, "Perfect_", this.slidePerfect);
             this.ShowRankProgress(TaskStageTarget.TASK_SIGNKEY_HIDE_NODE_COUNT, "Star_", this.slideStars);
-            this.ShowRankProgress(TaskStageTarget.TASK_SIGNKEY_STAGE_CLEAR_COUNT, "Clear_", this.slideClear);
+            this.ShowRankProgress(TaskStageTarget.TASK_SIGNKEY_STAGE_CLEAR_COUNT, "Clear_", this.slideClear);*/
         }
 
         public override void BeCatched()
         {
             instance = this;
+        }
+
+        private void PlayProgress(float to, TweenFill twn)
+        {
+            twn.enabled = true;
+            twn.from = 0;
+            twn.to = to;
+            twn.ResetToBeginning();
+            twn.PlayForward();
         }
 
         private void ShowRankProgress(string taskKey, string cfgKey, TweenWidth slider)
