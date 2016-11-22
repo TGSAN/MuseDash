@@ -60,8 +60,8 @@ namespace PnlChar
         {
             instance = this;
             curRoleIdx = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
-            InitEvent();
             InitInfo();
+            InitEvent();
         }
 
         #region Update更新
@@ -192,9 +192,10 @@ namespace PnlChar
             m_PreRoleIdx = roleIdx;
             curEquipTypeIdx = 0;
             FormulaBase.RoleManageComponent.Instance.GetRole(roleIdx).SetAsUINotifyInstance();
-
+            CommonPanel.GetInstance().DebugInfo("========On Role Change");
             OnEquipLoad(roleIdx);
             OnSpiAnimLoad(roleIdx);
+            CommonPanel.GetInstance().DebugInfo("========On Role Change Finished");
         }
 
         public void OnEquipLoad(int idx)
