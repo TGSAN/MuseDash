@@ -470,6 +470,10 @@ namespace FormulaBase
             else if (typeName == "servant" || typeName == "debris")
             {
             }
+            else if (typeName == "coin" || typeName == "crystal" || typeName == "charm" || typeName == "energy")
+            {
+                return null;
+            }
             else
             {
                 host = EquipManageComponent.Instance.CreateItem(idx);
