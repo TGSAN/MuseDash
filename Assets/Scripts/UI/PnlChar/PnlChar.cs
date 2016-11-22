@@ -202,7 +202,6 @@ namespace PnlChar
             var curEquipHosts = FormulaBase.EquipManageComponent.Instance.GetGirlEquipHosts(idx, 0, true);
             for (int i = 0; i < items.Length; i++)
             {
-                CommonPanel.GetInstance().DebugInfo("====" + i);
                 FormulaBase.FormulaHost host = null;
                 if (i < curEquipHosts.Length)
                 {
