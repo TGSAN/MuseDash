@@ -79,7 +79,10 @@ namespace PnlFoodInfo
                 {
                     if (result)
                     {
-                        OnExit();
+                        if (h.GetDynamicIntByKey(SignKeys.STACKITEMNUMBER) < 1)
+                        {
+                            OnExit();
+                        }
 
                         if (PnlSuitcase.PnlSuitcase.Instance.gameObject.activeSelf)
                         {
