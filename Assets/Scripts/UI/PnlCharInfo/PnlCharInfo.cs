@@ -80,8 +80,8 @@ namespace PnlCharInfo
 
         public override void OnShow()
         {
-            //UpdateUI();
-            //InitEvent();
+            UpdateUI();
+            InitEvent();
         }
 
         private void OnEnable()
