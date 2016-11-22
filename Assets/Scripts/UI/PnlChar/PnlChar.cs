@@ -5,6 +5,7 @@ using FormulaBase;
 ///
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace PnlChar
@@ -239,10 +240,16 @@ namespace PnlChar
             var path = p ?? m_AnimPath[idx - 1];
             if (m_SpiAniGODic.ContainsKey(idx))
             {
-                var goName = StringUtils.LastAfter(path, '/');
+                var goName = StringUtils.LastAfter(path, '/') + "(Clone)";
                 var curGoName = m_SpiAniGODic[idx].name;
-                if (goName == curGoName) return;
+                if (goName == curGoName)
+                {
+                    spiAnimParent.transform.GetComponentsInChildren<SkeletonAnimation>().ToList().ForEach(g => g.gameObject.SetActive(false));
+                    m_SpiAniGODic[idx].SetActive(true);
+                    return;
+                }
             }
+
             GameObject go = null;
             ResourceLoader.Instance.Load(path, res =>
             {
