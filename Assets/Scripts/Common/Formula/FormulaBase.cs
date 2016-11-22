@@ -809,6 +809,10 @@ namespace FormulaBase
                 return;
             }
 
+            if (resp.data == null)
+            {
+                return;
+            }
             SimpleJson.JsonArray _resultList = resp.data["results"] as SimpleJson.JsonArray;
             if (_resultList == null || _resultList.Count == 0)
             {
