@@ -69,7 +69,10 @@ namespace PnlMainMenu
             {
                 m_CapsuleAnimator = capsule.transform.GetChild(0).gameObject.GetComponent<Animator>();
                 m_CapsuleAnimator.enabled = true;
-                m_CapsuleAnimator.Play(curCharm >= maxCharm ? "capsule_unlocked" : "capsule_in_nolight");
+                if (m_CapsuleAnimator.isActiveAndEnabled)
+                {
+                    m_CapsuleAnimator.Play(curCharm >= maxCharm ? "capsule_unlocked" : "capsule_in_nolight");
+                }
             }
         }
 
