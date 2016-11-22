@@ -46,8 +46,8 @@ namespace PnlChar
 
         public override void OnShow()
         {
-            //UpdateInfo();
-            //UpdateUI();
+            UpdateInfo();
+            UpdateUI();
         }
 
         public override void OnHide()
@@ -61,7 +61,7 @@ namespace PnlChar
         {
             instance = this;
             curRoleIdx = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
-            DOTweenUtils.Delay(InitEvent, 0.1f);
+            InitEvent();
         }
 
         #region Update更新
