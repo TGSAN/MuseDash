@@ -76,9 +76,12 @@ namespace FormulaBase
 
             // 通关成就奖励
             StageBattleComponent.Instance.Host = AchievementManager.instance.ReceieveAchievement(stageHost, false);
-            AccountManagerComponent.Instance.GetAccount().Save();
-        }
 
-        // ------------------------------------------------------------------------------------------------------------
+            var account = AccountManagerComponent.Instance.GetAccount();
+            if (account != null)
+            {
+                account.Save();
+            }
+        }
     }
 }

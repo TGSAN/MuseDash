@@ -44,25 +44,25 @@ namespace PnlChar
             }
         }
 
-        public override void OnShow()
-        {
-            UpdateInfo();
-            UpdateUI();
-        }
+        /*  public override void OnShow()
+          {
+              UpdateInfo();
+              UpdateUI();
+          }
 
-        public override void OnHide()
-        {
-            PnlEquipInfo.PnlEquipInfo.Instance.OnHide();
-            PnlFoodInfo.PnlFoodInfo.Instance.OnHide();
-            PnlServantInfo.PnlServantInfo.Instance.OnHide();
-        }
+          public override void OnHide()
+          {
+              PnlEquipInfo.PnlEquipInfo.Instance.OnHide();
+              PnlFoodInfo.PnlFoodInfo.Instance.OnHide();
+              PnlServantInfo.PnlServantInfo.Instance.OnHide();
+          }
 
-        public override void BeCatched()
-        {
-            instance = this;
-            curRoleIdx = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
-            InitEvent();
-        }
+          public override void BeCatched()
+          {
+              instance = this;
+              curRoleIdx = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
+              InitEvent();
+          }*/
 
         #region Update更新
 
