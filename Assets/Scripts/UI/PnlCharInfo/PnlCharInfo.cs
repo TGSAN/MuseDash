@@ -69,30 +69,30 @@ namespace PnlCharInfo
             m_Animator.Play("pnl_items_choose_out");
         }
 
-        /*  public override void OnShow()
-          {
-              UpdateUI();
-              InitEvent();
-          }
+        public override void OnShow()
+        {
+            UpdateUI();
+            InitEvent();
+        }
 
-          public override void BeCatched()
-          {
-              m_Animator = GetComponent<Animator>();
-              instance = this;
-              m_SprCosList = tglsParent.GetComponentsInChildren<SprCos>().ToList();
-              m_SelectedCosList = RoleManageComponent.Instance.GetClothList(RoleManageComponent.Instance.GetChoseRoleIdx());
-              m_SelectedCos = m_SelectedCosList[0];
-          }
+        public override void BeCatched()
+        {
+            m_Animator = GetComponent<Animator>();
+            instance = this;
+            m_SprCosList = tglsParent.GetComponentsInChildren<SprCos>().ToList();
+            m_SelectedCosList = RoleManageComponent.Instance.GetClothList(RoleManageComponent.Instance.GetChoseRoleIdx());
+            m_SelectedCos = m_SelectedCosList[0];
+        }
 
-          private void OnEnable()
-          {
-              OnShow();
-          }
+        private void OnEnable()
+        {
+            OnShow();
+        }
 
-          public override void OnHide()
-          {
-              isUpgrade = false;
-          }*/
+        public override void OnHide()
+        {
+            isUpgrade = false;
+        }
 
         public void OnUpgradeItemsRefresh()
         {
@@ -310,7 +310,10 @@ namespace PnlCharInfo
             }
             if (m_SelectedCosList == null) return;
             var clothStr = m_SelectedCosList.Aggregate(string.Empty, (current, charCose) => current + (charCose.uid + ","));
-            clothStr = clothStr.Substring(0, clothStr.Length - 1);
+            if (clothStr.Length > 0)
+            {
+                clothStr = clothStr.Substring(0, clothStr.Length - 1);
+            }
             var suitStr = RoleManageComponent.Instance.GetRole(idx).GetDynamicStrByKey(SignKeys.SUIT_GROUP);
             btnApply.gameObject.SetActive(suitStr != clothStr);
             if (suitStr == "0" && clothStr == (idx * 10).ToString())
