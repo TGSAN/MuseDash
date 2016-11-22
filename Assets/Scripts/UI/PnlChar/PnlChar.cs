@@ -46,7 +46,6 @@ namespace PnlChar
 
         public override void OnShow()
         {
-            UpdateInfo();
             UpdateUI();
         }
 
@@ -62,14 +61,10 @@ namespace PnlChar
             instance = this;
             curRoleIdx = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
             InitEvent();
+            InitInfo();
         }
 
         #region Update更新
-
-        private void UpdateInfo()
-        {
-            InitInfo();
-        }
 
         private void UpdateUI()
         {
@@ -207,6 +202,7 @@ namespace PnlChar
             var curEquipHosts = FormulaBase.EquipManageComponent.Instance.GetGirlEquipHosts(idx, 0, true);
             for (int i = 0; i < items.Length; i++)
             {
+                CommonPanel.GetInstance().DebugInfo("====" + i);
                 FormulaBase.FormulaHost host = null;
                 if (i < curEquipHosts.Length)
                 {
