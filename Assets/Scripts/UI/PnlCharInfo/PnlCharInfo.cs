@@ -59,15 +59,6 @@ namespace PnlCharInfo
             }
         }
 
-        public override void BeCatched()
-        {
-            m_Animator = GetComponent<Animator>();
-            instance = this;
-            m_SprCosList = tglsParent.GetComponentsInChildren<SprCos>().ToList();
-            m_SelectedCosList = RoleManageComponent.Instance.GetClothList(RoleManageComponent.Instance.GetChoseRoleIdx());
-            m_SelectedCos = m_SelectedCosList[0];
-        }
-
         public void OnEnter()
         {
             m_Animator.Play("char_info_in");
@@ -78,21 +69,30 @@ namespace PnlCharInfo
             m_Animator.Play("pnl_items_choose_out");
         }
 
-        public override void OnShow()
-        {
-            UpdateUI();
-            InitEvent();
-        }
+        /*  public override void OnShow()
+          {
+              UpdateUI();
+              InitEvent();
+          }
 
-        private void OnEnable()
-        {
-            OnShow();
-        }
+          public override void BeCatched()
+          {
+              m_Animator = GetComponent<Animator>();
+              instance = this;
+              m_SprCosList = tglsParent.GetComponentsInChildren<SprCos>().ToList();
+              m_SelectedCosList = RoleManageComponent.Instance.GetClothList(RoleManageComponent.Instance.GetChoseRoleIdx());
+              m_SelectedCos = m_SelectedCosList[0];
+          }
 
-        public override void OnHide()
-        {
-            isUpgrade = false;
-        }
+          private void OnEnable()
+          {
+              OnShow();
+          }
+
+          public override void OnHide()
+          {
+              isUpgrade = false;
+          }*/
 
         public void OnUpgradeItemsRefresh()
         {
