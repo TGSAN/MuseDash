@@ -59,15 +59,6 @@ namespace PnlCharInfo
             }
         }
 
-        public override void BeCatched()
-        {
-            m_Animator = GetComponent<Animator>();
-            instance = this;
-            m_SprCosList = tglsParent.GetComponentsInChildren<SprCos>().ToList();
-            m_SelectedCosList = RoleManageComponent.Instance.GetClothList(RoleManageComponent.Instance.GetChoseRoleIdx());
-            m_SelectedCos = m_SelectedCosList[0];
-        }
-
         public void OnEnter()
         {
             m_Animator.Play("char_info_in");
@@ -82,6 +73,15 @@ namespace PnlCharInfo
         {
             UpdateUI();
             InitEvent();
+        }
+
+        public override void BeCatched()
+        {
+            m_Animator = GetComponent<Animator>();
+            instance = this;
+            m_SprCosList = tglsParent.GetComponentsInChildren<SprCos>().ToList();
+            m_SelectedCosList = RoleManageComponent.Instance.GetClothList(RoleManageComponent.Instance.GetChoseRoleIdx());
+            m_SelectedCos = m_SelectedCosList[0];
         }
 
         private void OnEnable()
@@ -268,10 +268,7 @@ namespace PnlCharInfo
                 tgl.onChange.Clear();
                 tgl.onChange.Add(new EventDelegate(() =>
                 {
-                    DOTweenUtils.Delay(() =>
-                    {
-                        OnSelectChange(tgl.transform);
-                    }, Time.deltaTime);
+                    OnSelectChange(tgl.transform);
                 }));
             }
         }
@@ -313,7 +310,10 @@ namespace PnlCharInfo
             }
             if (m_SelectedCosList == null) return;
             var clothStr = m_SelectedCosList.Aggregate(string.Empty, (current, charCose) => current + (charCose.uid + ","));
-            clothStr = clothStr.Substring(0, clothStr.Length - 1);
+            if (clothStr.Length > 0)
+            {
+                clothStr = clothStr.Substring(0, clothStr.Length - 1);
+            }
             var suitStr = RoleManageComponent.Instance.GetRole(idx).GetDynamicStrByKey(SignKeys.SUIT_GROUP);
             btnApply.gameObject.SetActive(suitStr != clothStr);
             if (suitStr == "0" && clothStr == (idx * 10).ToString())
@@ -321,6 +321,7 @@ namespace PnlCharInfo
                 btnApply.gameObject.SetActive(false);
             }
             txtApply.gameObject.SetActive(!btnApply.gameObject.activeSelf);
+            OnUpgradeItemsRefresh();
         }
 
         public void OnSelectChange(Transform t)
@@ -369,7 +370,10 @@ namespace PnlCharInfo
             m_SelectedCosList.Sort((l, r) => l.uid - r.uid);
 
             var clothStr = m_SelectedCosList.Aggregate(string.Empty, (current, charCose) => current + (charCose.uid + ","));
-            clothStr = clothStr.Substring(0, clothStr.Length - 1);
+            if (clothStr.Length > 0)
+            {
+                clothStr = clothStr.Substring(0, clothStr.Length - 1);
+            }
             var suitStr = roleHost.GetDynamicStrByKey(SignKeys.SUIT_GROUP);
             btnApply.gameObject.SetActive(suitStr != clothStr);
             if (suitStr == "0" && clothStr == (roleHost.GetDynamicIntByKey(SignKeys.ID) * 10).ToString())

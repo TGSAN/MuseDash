@@ -56,21 +56,18 @@ namespace FormulaBase
         public string GetCapsuleStr()
         {
             var capsuleStr = Host.GetDynamicStrByKey(SignKeys.CAPSULE);
-            if (capsuleStr == "0")
+            if (capsuleStr == "0" || string.IsNullOrEmpty(capsuleStr))
             {
                 capsuleStr = Capsule.ConfigToString();
-                Host.SetDynamicData(SignKeys.CAPSULE, capsuleStr);
+                SetCapsuleStr(capsuleStr);
             }
             return capsuleStr;
         }
 
         public void SetCapsuleStr(string str)
         {
-            if (str == string.Empty)
-            {
-                str = GetCapsuleStr();
-            }
             Host.SetDynamicData(SignKeys.CAPSULE, str);
+            Host.Save();
         }
 
         public void AddLoginCount(int count)

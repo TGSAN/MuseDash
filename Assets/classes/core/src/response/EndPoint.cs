@@ -1,15 +1,14 @@
-﻿using System;
+﻿using cn.bmob.exception;
+using cn.bmob.Extensions;
+using cn.bmob.io;
+using cn.bmob.json;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using cn.bmob.io;
-using System.Collections;
-using cn.bmob.exception;
-using cn.bmob.json;
-using cn.bmob.Extensions;
 
 namespace cn.bmob.response
 {
-
     /// <summary>
     /// 云端代码的执行回调
     /// </summary>
@@ -20,7 +19,6 @@ namespace cn.bmob.response
 
         public override void readFields(BmobInput input)
         {
-
             // EndPoint直接返回数据，不像Table返回值有Container的概念！
             var type = typeof(U);
 
@@ -28,8 +26,8 @@ namespace cn.bmob.response
             Object jsonData = null;
             // 请求失败（如，云端方法不存在）， 异常状态
             Object statData = null;
-
             var rawResp = input.getString("result");
+
             if (typeof(IList).IsAssignableFrom(type))
             {
                 this.data = BmobInput.Parse<U>(JsonAdapter.JSON.ToObject(rawResp));
@@ -39,7 +37,7 @@ namespace cn.bmob.response
                 var rawRespJson = JsonAdapter.JSON.ToObject(rawResp);
                 jsonData = rawRespJson;
                 statData = rawRespJson;
-                
+
                 if (statData is IDictionary || statData is IDictionary<String, Object>)
                 {
                     // 要么返回数据，要么就是返回状态值
@@ -47,6 +45,7 @@ namespace cn.bmob.response
                     if (status != null && status.sucess != null)
                     {
                         this.exception = new BmobException("请求失败！错误信息为： " + status.message);
+                        UnityEngine.Debug.Log("请求失败！错误信息为： " + status.message);
                         this.data = default(U);
                         return;
                     }
@@ -54,7 +53,6 @@ namespace cn.bmob.response
 
                 this.data = BmobInput.Parse<U>(rawRespJson);
             }
-            
         }
 
         public override void write(BmobOutput output, bool all)
@@ -68,7 +66,6 @@ namespace cn.bmob.response
     /// </summary>
     public class EndPointCallbackStat : BmobObject, IBmobWritable
     {
-
         /// <summary>
         /// 执行结果
         /// </summary>
@@ -103,7 +100,6 @@ namespace cn.bmob.response
                 this.message = input.getString("error") + "(" + input.getInt("code") + ")";
                 this.sucess = false;
             }
-
         }
 
         public override void write(BmobOutput output, bool all)
@@ -111,7 +107,5 @@ namespace cn.bmob.response
             output.Put("message", this.message);
             output.Put("success", this.sucess);
         }
-
     }
-
 }

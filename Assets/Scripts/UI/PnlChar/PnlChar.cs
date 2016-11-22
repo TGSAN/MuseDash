@@ -5,6 +5,7 @@ using FormulaBase;
 ///
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace PnlChar
@@ -45,7 +46,6 @@ namespace PnlChar
 
         public override void OnShow()
         {
-            UpdateInfo();
             UpdateUI();
         }
 
@@ -60,15 +60,11 @@ namespace PnlChar
         {
             instance = this;
             curRoleIdx = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
-            DOTweenUtils.Delay(InitEvent, Time.deltaTime);
+            InitEvent();
+            InitInfo();
         }
 
         #region Update更新
-
-        private void UpdateInfo()
-        {
-            InitInfo();
-        }
 
         private void UpdateUI()
         {
@@ -102,10 +98,9 @@ namespace PnlChar
         private void InitEvent()
         {
             onRoleChange = null; ;
-            onRoleChange += idx => PnlCharInfo.PnlCharInfo.Instance.OnUpgradeItemsRefresh();
+            onRoleChange += OnRoleChange;
             onRoleChange += PnlCharInfo.PnlCharInfo.Instance.OnRoleChange;
             onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
-            onRoleChange += OnRoleChange;
             var maxCount = FormulaBase.RoleManageComponent.Instance.GetRoleCount();
             Action onLeftClick = null;
             onLeftClick = () =>
@@ -181,10 +176,7 @@ namespace PnlChar
             {
                 item.gameObject.SetActive(true);
             }
-            DOTweenUtils.Delay(() =>
-            {
-                onRoleChange(curRoleIdx);
-            }, Time.deltaTime);
+            onRoleChange(curRoleIdx);
         }
 
         #endregion Init初始化
@@ -210,6 +202,7 @@ namespace PnlChar
             var curEquipHosts = FormulaBase.EquipManageComponent.Instance.GetGirlEquipHosts(idx, 0, true);
             for (int i = 0; i < items.Length; i++)
             {
+                CommonPanel.GetInstance().DebugInfo("====" + i);
                 FormulaBase.FormulaHost host = null;
                 if (i < curEquipHosts.Length)
                 {
@@ -239,40 +232,51 @@ namespace PnlChar
 
         public void OnSpiAnimLoad(int idx, string p = null)
         {
-            var path = m_AnimPath[idx - 1];
-            if (p == path)
+            var path = p ?? m_AnimPath[idx - 1];
+            if (m_SpiAniGODic.ContainsKey(idx))
             {
-                return;
+                var goName = StringUtils.LastAfter(path, '/') + "(Clone)";
+                var curGoName = m_SpiAniGODic[idx].name;
+                if (goName == curGoName)
+                {
+                    spiAnimParent.transform.GetComponentsInChildren<SkeletonAnimation>().ToList().ForEach(g => g.gameObject.SetActive(false));
+                    m_SpiAniGODic[idx].SetActive(true);
+                    return;
+                }
             }
+
             GameObject go = null;
-            ResourceLoader.Instance.Load(p ?? path, res =>
+            ResourceLoader.Instance.Load(path, res =>
             {
                 if (res == null) return;
                 go = Instantiate(res) as GameObject;
-                go.transform.SetParent(spiAnimParent, false);
-                go.transform.localPosition = Vector3.zero;
-                go.transform.localScale = Vector3.one * 140f;
-                go.transform.localEulerAngles = Vector3.zero;
-                var skeletonAnim = go.GetComponent<SkeletonAnimation>();
-                skeletonAnim.loop = true;
-                skeletonAnim.AnimationName = "run";
-                DOTweenUtils.Delay(() =>
+                if (go != null)
                 {
-                    skeletonAnim.AnimationName = "standby";
-                }, Time.deltaTime);
-                go.GetComponent<SpineSynchroObjects>().enabled = false;
-                go.GetComponent<SpineMountController>().enabled = false;
-                go.GetComponent<Renderer>().sortingOrder = 50;
-                if (m_SpiAniGODic.ContainsKey(idx))
-                {
-                    Destroy(m_SpiAniGODic[idx]);
-                    m_SpiAniGODic[idx] = go;
+                    go.transform.SetParent(spiAnimParent, false);
+                    go.transform.localPosition = Vector3.zero;
+                    go.transform.localScale = Vector3.one * 140f;
+                    go.transform.localEulerAngles = Vector3.zero;
+                    var skeletonAnim = go.GetComponent<SkeletonAnimation>();
+                    skeletonAnim.loop = true;
+                    skeletonAnim.AnimationName = "run";
+                    DOTweenUtils.Delay(() =>
+                    {
+                        skeletonAnim.AnimationName = "standby";
+                    }, Time.deltaTime);
+                    go.GetComponent<SpineSynchroObjects>().enabled = false;
+                    go.GetComponent<SpineMountController>().enabled = false;
+                    go.GetComponent<Renderer>().sortingOrder = 50;
+                    if (m_SpiAniGODic.ContainsKey(idx))
+                    {
+                        Destroy(m_SpiAniGODic[idx]);
+                        m_SpiAniGODic[idx] = go;
+                    }
+                    else
+                    {
+                        m_SpiAniGODic.Add(idx, go);
+                    }
                 }
-                else
-                {
-                    m_SpiAniGODic.Add(idx, go);
-                }
-                m_AnimPath[idx - 1] = p ?? path;
+                m_AnimPath[idx - 1] = path;
                 foreach (var pair in m_SpiAniGODic)
                 {
                     pair.Value.SetActive(pair.Key == idx);

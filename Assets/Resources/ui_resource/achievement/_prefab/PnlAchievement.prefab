@@ -482,8 +482,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012580875360}
   - 114: {fileID: 114000010068349240}
-  - 114: {fileID: 114000012173418250}
   - 114: {fileID: 114000011997926992}
+  - 114: {fileID: 114000014135130326}
   m_Layer: 5
   m_Name: SprAchievementProgress3
   m_TagString: Untagged
@@ -1289,8 +1289,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013655863584}
   - 114: {fileID: 114000013718349098}
-  - 114: {fileID: 114000011485183770}
   - 114: {fileID: 114000012176763562}
+  - 114: {fileID: 114000010366497286}
   m_Layer: 5
   m_Name: SprAchievementProgress4
   m_TagString: Untagged
@@ -1307,8 +1307,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011302787200}
   - 114: {fileID: 114000010172904882}
-  - 114: {fileID: 114000010923161918}
   - 114: {fileID: 114000012301953874}
+  - 114: {fileID: 114000013146009100}
   m_Layer: 5
   m_Name: SprAchievementProgress1
   m_TagString: Untagged
@@ -1513,8 +1513,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014263495992}
   - 114: {fileID: 114000011165593584}
-  - 114: {fileID: 114000010662704350}
   - 114: {fileID: 114000011517233708}
+  - 114: {fileID: 114000012260247276}
   m_Layer: 5
   m_Name: SprAchievementProgress2
   m_TagString: Untagged
@@ -4729,6 +4729,55 @@ MonoBehaviour:
   mAtlas: {fileID: 114000011775949898, guid: 209b2d4a519d0fe42b6e99961af185d8, type: 2}
   mSpriteName: rank_label
   mFillCenter: 1
+--- !u!114 &114000010366497286
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012998677292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba7f59a1f412544f85ac3e66f0b5227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: -0.0012224913
+      inSlope: 6.285396
+      outSlope: 6.285396
+      tangentMode: 0
+    - time: 0.11628798
+      value: 0.47508705
+      inSlope: 2.3049095
+      outSlope: 2.3049095
+      tangentMode: 0
+    - time: 0.41292775
+      value: 0.88050234
+      inSlope: 0.779658
+      outSlope: 0.779658
+      tangentMode: 0
+    - time: 1
+      value: 0.9987775
+      inSlope: 0.0230506
+      outSlope: 0.0230506
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ignoreTimeScale: 1
+  delay: 0
+  duration: 0.5
+  steeperCurves: 0
+  tweenGroup: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+  from: 0
+  to: 1
 --- !u!114 &114000010387892466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5477,56 +5526,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollView: {fileID: 0}
   draggablePanel: {fileID: 0}
---- !u!114 &114000010662704350
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013450416892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe5d396737f89f4ea1534bc147cad2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  method: 0
-  style: 0
-  animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: -0.0012224913
-      inSlope: 6.285396
-      outSlope: 6.285396
-      tangentMode: 0
-    - time: 0.11628798
-      value: 0.47508705
-      inSlope: 2.3049095
-      outSlope: 2.3049095
-      tangentMode: 0
-    - time: 0.41292775
-      value: 0.88050234
-      inSlope: 0.779658
-      outSlope: 0.779658
-      tangentMode: 0
-    - time: 1
-      value: 0.9987775
-      inSlope: 0.0230506
-      outSlope: 0.0230506
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  ignoreTimeScale: 1
-  delay: 0
-  duration: 0.5
-  steeperCurves: 0
-  tweenGroup: 0
-  onFinished: []
-  eventReceiver: {fileID: 0}
-  callWhenFinished: 
-  from: 0
-  to: 820
-  updateTable: 0
 --- !u!114 &114000010674821118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6072,56 +6071,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollView: {fileID: 0}
   draggablePanel: {fileID: 0}
---- !u!114 &114000010923161918
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013052904388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe5d396737f89f4ea1534bc147cad2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  method: 0
-  style: 0
-  animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: -0.0012224913
-      inSlope: 6.285396
-      outSlope: 6.285396
-      tangentMode: 0
-    - time: 0.11628798
-      value: 0.47508705
-      inSlope: 2.3049095
-      outSlope: 2.3049095
-      tangentMode: 0
-    - time: 0.41292775
-      value: 0.88050234
-      inSlope: 0.779658
-      outSlope: 0.779658
-      tangentMode: 0
-    - time: 1
-      value: 0.9987775
-      inSlope: 0.0230506
-      outSlope: 0.0230506
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  ignoreTimeScale: 1
-  delay: 0
-  duration: 0.5
-  steeperCurves: 0
-  tweenGroup: 0
-  onFinished: []
-  eventReceiver: {fileID: 0}
-  callWhenFinished: 
-  from: 0
-  to: 820
-  updateTable: 0
 --- !u!114 &114000010923315012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6910,7 +6859,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3011
+  startingRenderQueue: 3012
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -7039,56 +6988,6 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick: []
---- !u!114 &114000011485183770
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012998677292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe5d396737f89f4ea1534bc147cad2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  method: 0
-  style: 0
-  animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: -0.0012224913
-      inSlope: 6.285396
-      outSlope: 6.285396
-      tangentMode: 0
-    - time: 0.11628798
-      value: 0.47508705
-      inSlope: 2.3049095
-      outSlope: 2.3049095
-      tangentMode: 0
-    - time: 0.41292775
-      value: 0.88050234
-      inSlope: 0.779658
-      outSlope: 0.779658
-      tangentMode: 0
-    - time: 1
-      value: 0.9987775
-      inSlope: 0.0230506
-      outSlope: 0.0230506
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  ignoreTimeScale: 1
-  delay: 0
-  duration: 0.5
-  steeperCurves: 0
-  tweenGroup: 0
-  onFinished: []
-  eventReceiver: {fileID: 0}
-  callWhenFinished: 
-  from: 0
-  to: 820
-  updateTable: 0
 --- !u!114 &114000011517233708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7883,7 +7782,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3014
+  startingRenderQueue: 3011
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -8173,56 +8072,6 @@ MonoBehaviour:
   mAtlas: {fileID: 114000011775949898, guid: 209b2d4a519d0fe42b6e99961af185d8, type: 2}
   mSpriteName: rank_label
   mFillCenter: 1
---- !u!114 &114000012173418250
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010932693960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe5d396737f89f4ea1534bc147cad2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  method: 0
-  style: 0
-  animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: -0.0012224913
-      inSlope: 6.285396
-      outSlope: 6.285396
-      tangentMode: 0
-    - time: 0.11628798
-      value: 0.47508705
-      inSlope: 2.3049095
-      outSlope: 2.3049095
-      tangentMode: 0
-    - time: 0.41292775
-      value: 0.88050234
-      inSlope: 0.779658
-      outSlope: 0.779658
-      tangentMode: 0
-    - time: 1
-      value: 0.9987775
-      inSlope: 0.0230506
-      outSlope: 0.0230506
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  ignoreTimeScale: 1
-  delay: 0
-  duration: 0.5
-  steeperCurves: 0
-  tweenGroup: 0
-  onFinished: []
-  eventReceiver: {fileID: 0}
-  callWhenFinished: 
-  from: 0
-  to: 820
-  updateTable: 0
 --- !u!114 &114000012176303052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8466,6 +8315,55 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick: []
+--- !u!114 &114000012260247276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013450416892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba7f59a1f412544f85ac3e66f0b5227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: -0.0012224913
+      inSlope: 6.285396
+      outSlope: 6.285396
+      tangentMode: 0
+    - time: 0.11628798
+      value: 0.47508705
+      inSlope: 2.3049095
+      outSlope: 2.3049095
+      tangentMode: 0
+    - time: 0.41292775
+      value: 0.88050234
+      inSlope: 0.779658
+      outSlope: 0.779658
+      tangentMode: 0
+    - time: 1
+      value: 0.9987775
+      inSlope: 0.0230506
+      outSlope: 0.0230506
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ignoreTimeScale: 1
+  delay: 0
+  duration: 0.5
+  steeperCurves: 0
+  tweenGroup: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+  from: 0
+  to: 1
 --- !u!114 &114000012276233416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8993,10 +8891,10 @@ MonoBehaviour:
   - {fileID: 114000012344275154}
   - {fileID: 114000012219130322}
   txtTargetScore: {fileID: 114000012219130322}
-  slideCombo: {fileID: 114000010923161918}
-  slidePerfect: {fileID: 114000010662704350}
-  slideStars: {fileID: 114000012173418250}
-  slideClear: {fileID: 114000011485183770}
+  slideCombo: {fileID: 114000013146009100}
+  slidePerfect: {fileID: 114000012260247276}
+  slideStars: {fileID: 114000014135130326}
+  slideClear: {fileID: 114000010366497286}
 --- !u!114 &114000012498720908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10174,6 +10072,55 @@ MonoBehaviour:
   mAtlas: {fileID: 114000011775949898, guid: 209b2d4a519d0fe42b6e99961af185d8, type: 2}
   mSpriteName: rank_label
   mFillCenter: 1
+--- !u!114 &114000013146009100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013052904388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba7f59a1f412544f85ac3e66f0b5227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: -0.0012224913
+      inSlope: 6.285396
+      outSlope: 6.285396
+      tangentMode: 0
+    - time: 0.11628798
+      value: 0.47508705
+      inSlope: 2.3049095
+      outSlope: 2.3049095
+      tangentMode: 0
+    - time: 0.41292775
+      value: 0.88050234
+      inSlope: 0.779658
+      outSlope: 0.779658
+      tangentMode: 0
+    - time: 1
+      value: 0.9987775
+      inSlope: 0.0230506
+      outSlope: 0.0230506
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ignoreTimeScale: 1
+  delay: 0
+  duration: 0.5
+  steeperCurves: 0
+  tweenGroup: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+  from: 0
+  to: 1
 --- !u!114 &114000013165081562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11829,6 +11776,55 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000014135130326
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010932693960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba7f59a1f412544f85ac3e66f0b5227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: -0.0012224913
+      inSlope: 6.285396
+      outSlope: 6.285396
+      tangentMode: 0
+    - time: 0.11628798
+      value: 0.47508705
+      inSlope: 2.3049095
+      outSlope: 2.3049095
+      tangentMode: 0
+    - time: 0.41292775
+      value: 0.88050234
+      inSlope: 0.779658
+      outSlope: 0.779658
+      tangentMode: 0
+    - time: 1
+      value: 0.9987775
+      inSlope: 0.0230506
+      outSlope: 0.0230506
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ignoreTimeScale: 1
+  delay: 0
+  duration: 0.5
+  steeperCurves: 0
+  tweenGroup: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+  from: 0
+  to: 1
 --- !u!114 &114000014162677664
 MonoBehaviour:
   m_ObjectHideFlags: 1
