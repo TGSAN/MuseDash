@@ -79,8 +79,8 @@ namespace PnlVictory
             var isClearAllDiff = FightMenuPanel.Instance.isAchieve;
             var isAchieve = TaskStageTarget.Instance.IsAchieveNow();
             best.SetActive(isClearAllDiff);
-            trophyTaskFalse.SetActive(!isClearAllDiff && !isAchieve);
             trophyTaskTrue.SetActive(!isClearAllDiff && isAchieve);
+            trophyTaskFalse.SetActive(!best.activeSelf && !trophyTaskTrue.activeSelf);
         }
 
         public override void OnHide()

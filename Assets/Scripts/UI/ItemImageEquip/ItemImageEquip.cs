@@ -12,6 +12,7 @@ namespace ItemImageEquip
     {
         private static ItemImageEquip instance = null;
         public UISprite sprSelected, sprOn, sprLock;
+        public UILabel txtCount;
 
         public static ItemImageEquip Instance
         {
@@ -101,6 +102,14 @@ namespace ItemImageEquip
             SetTxtByHost();
             UIEventListener.Get(gameObject).onClick = (go) =>
             {
+                if (PnlEquipInfo.PnlEquipInfo.Instance.host != null)
+                {
+                    if (host.GetDynamicIntByKey(SignKeys.ID) == PnlEquipInfo.PnlEquipInfo.Instance.host.GetDynamicIntByKey(SignKeys.ID))
+                    {
+                        return;
+                    }
+                }
+
                 if (isLock)
                 {
                     return;
@@ -156,15 +165,28 @@ namespace ItemImageEquip
                 txtLvl.gameObject.SetActive(false);
                 txtLv.gameObject.SetActive(false);
                 texIcon.gameObject.SetActive(false);
+                if (txtCount != null)
+                {
+                    txtCount.gameObject.SetActive(false);
+                }
+
                 return;
             }
             txtLvl.gameObject.SetActive(true);
             txtLv.gameObject.SetActive(true);
             texIcon.gameObject.SetActive(true);
+            if (txtCount != null)
+            {
+                txtCount.gameObject.SetActive(true);
+            }
             var lvl = host.GetDynamicIntByKey(FormulaBase.SignKeys.LEVEL);
             var type = host.GetDynamicStrByKey(FormulaBase.SignKeys.TYPE);
             txtLvl.text = lvl.ToString();
             txtType.text = type;
+            if (txtCount != null)
+            {
+                txtCount.text = host.GetDynamicIntByKey(SignKeys.STACKITEMNUMBER).ToString();
+            }
         }
 
         private void SetTexByHost()

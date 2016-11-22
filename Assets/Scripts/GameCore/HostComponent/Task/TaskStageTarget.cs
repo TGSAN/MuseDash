@@ -1419,12 +1419,12 @@ namespace FormulaBase
         /// <returns>The combo max.</returns>
         public int GetComboMax()
         {
-            if (this.Host == null)
-            {
-                return 0;
-            }
+            return this.Host == null ? 0 : this.Host.GetDynamicIntByKey(TASK_SIGNKEY_MAX_COMBO);
+        }
 
-            return this.Host.GetDynamicIntByKey(TASK_SIGNKEY_MAX_COMBO);
+        public int GetPerfectMax()
+        {
+            return this.Host == null ? 0 : this.Host.GetDynamicIntByKey(TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT + TASK_SIGNKEY_COUNT_MAX_TAIL);
         }
 
         /// <summary>

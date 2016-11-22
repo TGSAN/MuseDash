@@ -1,3 +1,4 @@
+using Assets.Scripts.Common.Manager;
 using FormulaBase;
 using PnlStore;
 
@@ -14,8 +15,10 @@ namespace PnlMainMenu
         private static PnlMainMenu instance = null;
         public GameObject goSelectedSuitcase;
         public UILabel txtEnergy, txtCharm, txtCharmMax;
-        public UISprite sprRecoverTime;
+        public UISprite sprRecoverTime, sprCharmBar;
         public UITweener twnEnergy, twnCoin, twnCrystal;
+        public GameObject[] capsules;
+        private Animator m_CapsuleAnimator;
 
         public static PnlMainMenu Instance
         {
@@ -41,6 +44,33 @@ namespace PnlMainMenu
             OnEnergyUpdate();
             OnCrystalUpdate();
             OnCoinUpdate();
+            OnCharmUpdate();
+        }
+
+        public void OnCharmUpdate(bool isUpdate = false, Action callFunc = null)
+        {
+            GameObject capsule = null;
+            var curCapsule = CapsuleManager.instance.curCapsule;
+            var curCharm = AccountCharmComponent.Instance.GetCharm();
+            var maxCharm = curCapsule.charmRequire;
+            txtCharm.text = curCharm.ToString();
+            txtCharmMax.text = maxCharm.ToString();
+            sprCharmBar.width = (int)(300f * Mathf.Min((float)curCharm / (float)maxCharm, 1.0f));
+
+            for (var i = 0; i < capsules.Length; i++)
+            {
+                if (i == curCapsule.path)
+                {
+                    capsule = capsules[i];
+                }
+                capsules[i].SetActive(i == curCapsule.path);
+            }
+            if (capsule != null)
+            {
+                m_CapsuleAnimator = capsule.transform.GetChild(0).gameObject.GetComponent<Animator>();
+                m_CapsuleAnimator.enabled = true;
+                m_CapsuleAnimator.Play(curCharm >= maxCharm ? "capsule_unlocked" : "capsule_in_nolight");
+            }
         }
 
         public void OnEnergyUpdate(bool isUpdate = false, Action callFunc = null)

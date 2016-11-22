@@ -3267,7 +3267,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.9943905}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000010277931370}
   - {fileID: 4000012431688822}
@@ -7348,7 +7348,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 3.1111112
+  aspectRatio: 3.6666667
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: bb22fb5beacef47a6816ba69bce73b56, type: 3}
   mFont: {fileID: 0}
@@ -7695,7 +7695,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3000
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -8152,10 +8152,18 @@ MonoBehaviour:
   HideAnimation: 
   goSelectedSuitcase: {fileID: 1000013215768442}
   txtEnergy: {fileID: 114000012120225394}
+  txtCharm: {fileID: 114000011672148776}
+  txtCharmMax: {fileID: 114000010430561218}
   sprRecoverTime: {fileID: 114000014088224646}
+  sprCharmBar: {fileID: 114000010303266626}
   twnEnergy: {fileID: 114000012447660652}
   twnCoin: {fileID: 114000012939167994}
   twnCrystal: {fileID: 114000012698713908}
+  capsules:
+  - {fileID: 1000011181039614}
+  - {fileID: 1000013866085424}
+  - {fileID: 1000011262709490}
+  - {fileID: 1000012911776706}
 --- !u!114 &114000012651584222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18999,7 +19007,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 0
   scalingMode: 1
-  randomSeed: 1111302376
+  randomSeed: 1111302400
   InitialModule:
     serializedVersion: 2
     enabled: 1

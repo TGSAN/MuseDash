@@ -1,4 +1,5 @@
 using FormulaBase;
+using LitJson;
 
 ///自定义模块，可定制模块具体行为
 using System;
@@ -202,6 +203,10 @@ namespace FormulaBase
 
         public bool isFood(FormulaHost host)
         {
+            if (host == null)
+            {
+                return false;
+            }
             if (host.GetDynamicStrByKey(SignKeys.TYPE) == "food")
             {
                 return true;
@@ -211,6 +216,10 @@ namespace FormulaBase
 
         public bool isServant(FormulaHost host)
         {
+            if (host == null)
+            {
+                return false;
+            }
             var typeName = host.GetDynamicStrByKey(SignKeys.TYPE);
             if (typeName == "servant" || typeName == "debris")
             {
@@ -221,6 +230,10 @@ namespace FormulaBase
 
         public bool IsEquipment(FormulaHost host)
         {
+            if (host == null)
+            {
+                return false;
+            }
             if (isFood(host))
             {
                 return false;
@@ -235,6 +248,11 @@ namespace FormulaBase
         public bool Contains(int id)
         {
             return GetAllItem.Any(item => item.GetDynamicIntByKey(SignKeys.ID) == id);
+        }
+
+        public FormulaHost GetHostItem(int id)
+        {
+            return GetAllItem.FirstOrDefault(host => host.GetDynamicIntByKey(SignKeys.ID) == id);
         }
 
         #endregion 类型判断
@@ -427,13 +445,13 @@ namespace FormulaBase
             FormulaHost.SaveList(All, new HttpEndResponseDelegate(this.CheckChestTimeCallBack));
         }
 
-        public FormulaHost[] CreateAllItems(int num = 1)
+        public FormulaHost[] CreateAllItems()
         {
             var formulaList = new List<FormulaHost>();
             var items = ConfigPool.Instance.GetConfigByName("items");
             for (int i = 1; i <= items.Count; i++)
             {
-                formulaList.Add(CreateItem(i, num));
+                formulaList.Add(CreateItem(i, 99));
             }
             return formulaList.ToArray();
         }
@@ -446,18 +464,24 @@ namespace FormulaBase
             if (typeName == "food")
             {
                 host = materialManageComponent.Instance.CreateItem(idx);
+                num += host.GetDynamicIntByKey(SignKeys.STACKITEMNUMBER);
+                host.SetDynamicData(SignKeys.STACKITEMNUMBER, num);
             }
             else if (typeName == "servant" || typeName == "debris")
             {
             }
+            else if (typeName == "coin" || typeName == "crystal" || typeName == "charm" || typeName == "energy")
+            {
+                return null;
+            }
             else
             {
                 host = EquipManageComponent.Instance.CreateItem(idx);
+                host.SetDynamicData(SignKeys.STACKITEMNUMBER, 1);
             }
             if (host != null)
             {
                 host.SetDynamicData(SignKeys.TYPE, typeName);
-                host.SetDynamicData(SignKeys.STACKITEMNUMBER, num);
                 host.SetDynamicData(SignKeys.NAME, itemJson["name"].ToString());
                 host.SetDynamicData(SignKeys.ICON, itemJson["icon"].ToString());
                 host.SetDynamicData(SignKeys.DESCRIPTION, itemJson["description"].ToString());
@@ -468,6 +492,20 @@ namespace FormulaBase
                 AddItem(host);
             }
             return host;
+        }
+
+        public FormulaHost CreateItemByUID(int uid, int count = 1)
+        {
+            var config = ConfigPool.Instance.GetConfigByName("items");
+            for (var i = 0; i < config.Count; i++)
+            {
+                var u = (int)config[i]["uid"];
+                if (u == uid)
+                {
+                    return CreateItem(i + 1, count);
+                }
+            }
+            return null;
         }
 
         public void CheckChestTimeCallBack(cn.bmob.response.EndPointCallbackData<Hashtable> response)
@@ -718,6 +756,19 @@ namespace FormulaBase
             {
                 NGUIDebug.Log("connet is fail");
             }
+        }
+
+        public JsonData GetItemConfigByUID(int uid)
+        {
+            var config = ConfigPool.Instance.GetConfigByName("items");
+            for (int i = 0; i < config.Count; i++)
+            {
+                if ((int)config[i]["uid"] == uid)
+                {
+                    return config[i];
+                }
+            }
+            return null;
         }
 
         public void LockItem(FormulaHost _host, bool _Locked)

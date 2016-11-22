@@ -1,6 +1,7 @@
 ﻿using FormulaBase;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace Assets.Scripts.Common
 {
@@ -138,12 +139,26 @@ namespace Assets.Scripts.Common
             return curLvl >= lvlMax;
         }
 
+        public int GetItemExp(FormulaHost host)
+        {
+            var sum = host.GetDynamicIntByKey(SignKeys.EXP);
+            var id = host.GetDynamicIntByKey(SignKeys.ID);
+            var lvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
+            var baseExp = ConfigPool.Instance.GetConfigIntValue("items", id.ToString(), "experience_base");
+            for (int i = 1; i < lvl; i++)
+            {
+                sum += ConfigPool.Instance.GetConfigIntValue("experience", i.ToString(), "eqpt_exp");
+            }
+            sum = baseExp + (int)((float)sum / 2f);
+            return sum;
+        }
+
         public FormulaHost ItemLevelUp(FormulaHost host, List<FormulaHost> expHosts, HttpResponseDelegate callFunc = null, bool isSave = true)
         {
             var exp = 0;
             expHosts.ForEach(h =>
             {
-                exp += (int)h.Result(FormulaKeys.FORMULA_57);
+                exp += GetItemExp(h);
             });
             var originLvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
             var originExp = host.GetDynamicIntByKey(SignKeys.EXP);

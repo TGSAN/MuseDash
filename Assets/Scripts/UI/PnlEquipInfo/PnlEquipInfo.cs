@@ -76,6 +76,10 @@ namespace PnlEquipInfo
 
         public void Play(string animName)
         {
+            if (!gameObject.activeSelf)
+            {
+                return;
+            }
             animator.Play(animName);
         }
 
