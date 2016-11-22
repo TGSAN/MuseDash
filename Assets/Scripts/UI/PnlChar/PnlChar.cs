@@ -236,7 +236,6 @@ namespace PnlChar
 
         public void OnSpiAnimLoad(int idx, string p = null)
         {
-            return;
             var path = p ?? m_AnimPath[idx - 1];
             if (m_SpiAniGODic.ContainsKey(idx))
             {
