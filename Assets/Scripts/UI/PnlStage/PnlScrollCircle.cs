@@ -728,6 +728,10 @@ namespace Assets.Scripts.NGUI
         private void UpdatePos()
         {
             var currentIdx = m_CurrentIdx;
+            if (m_Angles.Count <= currentIdx)
+            {
+                return;
+            }
             var startAngle = m_Angles[currentIdx];
             for (int i = currentIdx; i < (m_CellGroup.Count) / 2 + currentIdx; i++)
             {

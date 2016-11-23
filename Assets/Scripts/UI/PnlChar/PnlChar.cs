@@ -97,7 +97,6 @@ namespace PnlChar
 
         private void InitEvent()
         {
-            onRoleChange = null; ;
             onRoleChange += OnRoleChange;
             onRoleChange += PnlCharInfo.PnlCharInfo.Instance.OnRoleChange;
             onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
@@ -176,7 +175,10 @@ namespace PnlChar
             {
                 item.gameObject.SetActive(true);
             }
-            onRoleChange(curRoleIdx);
+            if (onRoleChange != null)
+            {
+                onRoleChange(curRoleIdx);
+            }
         }
 
         #endregion Init初始化
@@ -200,6 +202,7 @@ namespace PnlChar
 
         public void OnEquipLoad(int idx)
         {
+            return;
             var curEquipHosts = FormulaBase.EquipManageComponent.Instance.GetGirlEquipHosts(idx, 0, true);
             for (int i = 0; i < items.Length; i++)
             {
@@ -232,6 +235,7 @@ namespace PnlChar
 
         public void OnSpiAnimLoad(int idx, string p = null)
         {
+            return;
             var path = p ?? m_AnimPath[idx - 1];
             if (m_SpiAniGODic.ContainsKey(idx))
             {
