@@ -97,6 +97,7 @@ namespace PnlChar
 
         private void InitEvent()
         {
+            return;
             onRoleChange += OnRoleChange;
             onRoleChange += PnlCharInfo.PnlCharInfo.Instance.OnRoleChange;
             onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
