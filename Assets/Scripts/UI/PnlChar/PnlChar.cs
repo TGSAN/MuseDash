@@ -176,7 +176,10 @@ namespace PnlChar
             {
                 item.gameObject.SetActive(true);
             }
-            onRoleChange(curRoleIdx);
+            if (onRoleChange != null)
+            {
+                onRoleChange(curRoleIdx);
+            }
         }
 
         #endregion Init初始化
