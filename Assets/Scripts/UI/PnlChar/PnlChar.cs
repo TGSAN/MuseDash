@@ -97,6 +97,7 @@ namespace PnlChar
 
         private void InitEvent()
         {
+            return;
             onRoleChange += OnRoleChange;
             onRoleChange += PnlCharInfo.PnlCharInfo.Instance.OnRoleChange;
             onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
@@ -175,7 +176,10 @@ namespace PnlChar
             {
                 item.gameObject.SetActive(true);
             }
-            onRoleChange(curRoleIdx);
+            if (onRoleChange != null)
+            {
+                onRoleChange(curRoleIdx);
+            }
         }
 
         #endregion Init初始化
