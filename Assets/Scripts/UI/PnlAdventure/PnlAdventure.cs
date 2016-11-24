@@ -78,7 +78,7 @@ namespace PnlAdventure
             }
         }
 
-        private void PlayBgm()
+        public void PlayBgm()
         {
             int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex();
             if (heroIndex < 0)
@@ -103,6 +103,32 @@ namespace PnlAdventure
                 return;
             }
 
+            SoundEffectComponent.Instance.Say(name, GameGlobal.SOUND_TYPE_UI_BGM, "bgm_");
+        }
+
+        public void PlayBGM()
+        {
+            int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex();
+            if (heroIndex < 0)
+            {
+                return;
+            }
+
+            if (SoundEffectComponent.Instance == null)
+            {
+                return;
+            }
+
+            if (SoundEffectComponent.Instance.IsPause())
+            {
+                return;
+            }
+
+            string name = ConfigPool.Instance.GetConfigStringValue("char_info", (RoleManageComponent.RoleIndexToId(heroIndex)).ToString(), "name");
+            if (("bgm_" + name) == SceneAudioManager.Instance.bgm.clip.name)
+            {
+                return;
+            }
             SoundEffectComponent.Instance.Say(name, GameGlobal.SOUND_TYPE_UI_BGM, "bgm_");
         }
     }

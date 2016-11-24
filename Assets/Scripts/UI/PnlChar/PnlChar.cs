@@ -34,7 +34,7 @@ namespace PnlChar
         private int m_PreRoleIdx = 0;
         private List<FormulaBase.FormulaHost> m_Equipments = new List<FormulaBase.FormulaHost>();
         private readonly List<string> m_AnimPath = new List<string>();
-        public Action<int> onRoleChange;
+        public Action<int> onRoleChange = null;
 
         public static PnlChar Instance
         {
@@ -97,7 +97,7 @@ namespace PnlChar
 
         private void InitEvent()
         {
-            onRoleChange += OnRoleChange;
+            onRoleChange = new Action<int>(OnRoleChange);
             onRoleChange += PnlCharInfo.PnlCharInfo.Instance.OnRoleChange;
             onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
             var maxCount = FormulaBase.RoleManageComponent.Instance.GetRoleCount();
@@ -194,15 +194,12 @@ namespace PnlChar
             m_PreRoleIdx = roleIdx;
             curEquipTypeIdx = 0;
             FormulaBase.RoleManageComponent.Instance.GetRole(roleIdx).SetAsUINotifyInstance();
-            CommonPanel.GetInstance().DebugInfo("========On Role Change");
             OnEquipLoad(roleIdx);
             OnSpiAnimLoad(roleIdx);
-            CommonPanel.GetInstance().DebugInfo("========On Role Change Finished");
         }
 
         public void OnEquipLoad(int idx)
         {
-            return;
             var curEquipHosts = FormulaBase.EquipManageComponent.Instance.GetGirlEquipHosts(idx, 0, true);
             for (int i = 0; i < items.Length; i++)
             {
@@ -235,7 +232,6 @@ namespace PnlChar
 
         public void OnSpiAnimLoad(int idx, string p = null)
         {
-            return;
             var path = p ?? m_AnimPath[idx - 1];
             if (m_SpiAniGODic.ContainsKey(idx))
             {
