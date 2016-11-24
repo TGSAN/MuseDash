@@ -61,42 +61,50 @@ namespace FormulaBase
         public FormulaHost[] GetGirlEquipHosts(int idx, int typePos = 0, bool isEquiping = false)
         {
             var equipHosts = new Dictionary<FormulaHost, int>();
-            var equipTypeList = new List<string>(GetGirlEquipTypes(idx));
-            foreach (var formulaHost in HostList.Values)
-            {
-                var equipID = formulaHost.GetDynamicIntByKey(SignKeys.ID);
-                var equipInfo = ConfigPool.Instance.GetConfigValue("items", equipID.ToString());
-                if (equipInfo == null)
-                {
-                    continue;
-                }
-                var typeID = equipInfo["type"].ToString();
+			var equipTypeList = new List<string>(GetGirlEquipTypes(idx));
+			foreach (var formulaHost in HostList.Values)
+			{
+				var equipID = formulaHost.GetDynamicIntByKey(SignKeys.ID);
+				var equipInfo = ConfigPool.Instance.GetConfigValue("items", equipID.ToString());
+				if (equipInfo == null)
+				{
+					continue;
+				}
+				var typeID = equipInfo["type"].ToString();
 
-                if (equipTypeList.Contains(typeID))
-                {
-                    var index = equipTypeList.IndexOf(typeID) + 1;
-                    if (index == typePos || typePos == 0)
-                    {
-                        if (isEquiping)
-                        {
-                            if (formulaHost.GetDynamicIntByKey(SignKeys.WHO) != 0)
-                            {
-                                equipHosts.Add(formulaHost, index);
-                            }
-                        }
-                        else
-                        {
-                            equipHosts.Add(formulaHost, index);
-                        }
-                    }
-                }
-            }
-            if (isEquiping)
-            {
-                var keyValuePairs = equipHosts.OrderBy(e => e.Value).ToList();
-                var list = keyValuePairs.Select(keyValuePair => keyValuePair.Key).ToList();
-                return list.ToArray();
-            }
+				if (equipTypeList.Contains(typeID))
+				{
+					var index = equipTypeList.IndexOf(typeID) + 1;
+					if (index == typePos || typePos == 0)
+					{
+						if (isEquiping)
+						{
+							if (formulaHost.GetDynamicIntByKey(SignKeys.WHO) != 0)
+							{
+								equipHosts.Add(formulaHost, index);
+							}
+						}
+						else
+						{
+							equipHosts.Add(formulaHost, index);
+						}
+					}
+				}
+			}
+			if (isEquiping)
+			{
+				var list = new List<KeyValuePair<FormulaHost, int>>();
+				foreach (var item in equipHosts) {
+					list.Add (item);
+				}
+				var newList = new List<FormulaHost> ();
+				list.Sort ((l, r) => {
+					return l.Value - r.Value;
+				});
+				list.ForEach (l => newList.Add (l.Key));
+				return newList.ToArray ();
+			}
+            
             return equipHosts.Keys.ToArray();
         }
 
