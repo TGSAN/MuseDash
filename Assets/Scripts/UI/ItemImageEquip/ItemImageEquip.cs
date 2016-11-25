@@ -90,6 +90,7 @@ namespace ItemImageEquip
         public void OnShow(string type)
         {
             txtType.text = type;
+            sprBkg.spriteName = "groove_space";
             txtLvl.gameObject.SetActive(false);
             txtLv.gameObject.SetActive(false);
             texIcon.gameObject.SetActive(false);
