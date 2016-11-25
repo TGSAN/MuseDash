@@ -30,6 +30,7 @@ namespace PnlAchievement
         public UISprite nextTrophyShow;
         public List<GameObject> trophys;
         public UILabel[] labels;
+        public UILabel txtEnergyCost;
         public UILabel txtTargetScore;
 
         public TweenFill slideCombo;
@@ -59,6 +60,8 @@ namespace PnlAchievement
             gameObject.SetActive(true);
             m_Idx = idx;
             this.StartCoroutine(this.__OnShow(0.1f));
+            var energyCost = ConfigPool.Instance.GetConfigIntValue("stage_value", idx.ToString(), "energy");
+            txtEnergyCost.text = energyCost.ToString();
         }
 
         public override void OnHide()

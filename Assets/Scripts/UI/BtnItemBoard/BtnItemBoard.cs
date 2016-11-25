@@ -21,6 +21,7 @@ namespace BtnItemBoard
             set
             {
                 goIcon.SetActive(value);
+                txtGoal.transform.parent.gameObject.SetActive(!value);
                 m_Collider.enabled = !value;
             }
         }
@@ -63,6 +64,8 @@ namespace BtnItemBoard
                 goCrystal.SetActive(true);
                 txtCrystal.text = ach.award.ToString();
             }
+            goIcon.transform.GetChild(0).GetComponent<UILabel>().text = ach.achType.ToString();
+            goIcon.transform.GetChild(1).GetComponent<UILabel>().text = ach.goal.ToString();
             isReach = ach.isReach;
         }
     }

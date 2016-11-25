@@ -7,7 +7,10 @@ public class UIButtonNotAgain : MonoBehaviour
 
     private void OnEnable()
     {
-        col.enabled = false;
+        DOTweenUtils.Delay(() =>
+        {
+            col.enabled = false;
+        }, Time.deltaTime);
     }
 
     private void OnDisable()
