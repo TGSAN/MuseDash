@@ -262,6 +262,16 @@ namespace FormulaBase
             return thost;
         }
 
+        public void GetMaxLevelProperties(FormulaHost host, ref int vigour, ref int stamina, ref int strengh)
+        {
+            var id = host.GetDynamicIntByKey(SignKeys.ID);
+            var roleConfig = ConfigPool.Instance.GetConfigValue("char_info", id.ToString());
+            var maxLevel = (int)roleConfig["level_max_add"] - host.GetDynamicIntByKey(SignKeys.LEVEL);
+            vigour = (int)((float)maxLevel * (double)roleConfig["vig_growth"]) + (int)host.Result(FormulaKeys.FORMULA_0);
+            stamina = (int)((float)maxLevel * (double)roleConfig["sta_growth"]) + (int)host.Result(FormulaKeys.FORMULA_36);
+            strengh = (int)((float)maxLevel * (double)roleConfig["str_growth"]) + (int)host.Result(FormulaKeys.FORMULA_37);
+        }
+
         public bool PurchaseRole(int idx, Callback callBack = null)
         {
             var roleHost = GetRole(idx);

@@ -25,6 +25,7 @@ namespace PnlCharInfo
         public Transform upgradeItemsParent;
         public UIButton btnBack, btnCosChangeBack;
         public Transform tglsParent;
+        public UISprite sprVigour, sprStamina, sprStrengh, sprLuck;
 
         private Animator m_Animator;
         private List<CharCos> m_SelectedCosList = new List<CharCos>();
@@ -300,6 +301,24 @@ namespace PnlCharInfo
             }
             OnApplyShow(idx);
             OnUpgradeItemsRefresh();
+            OnPropertyBarShow(idx);
+        }
+
+        private void OnPropertyBarShow(int idx)
+        {
+            var role = RoleManageComponent.Instance.GetRole(idx);
+            var maxVigour = 0;
+            var maxStamina = 0;
+            var maxStrengh = 0;
+            var curVigour = role.Result(FormulaKeys.FORMULA_0);
+            var curStamina = role.Result(FormulaKeys.FORMULA_36);
+            var curStrengh = role.Result(FormulaKeys.FORMULA_37);
+
+            RoleManageComponent.Instance.GetMaxLevelProperties(role, ref maxVigour, ref maxStamina, ref maxStrengh);
+            sprVigour.fillAmount = (float)curVigour / (float)maxVigour;
+            sprStamina.fillAmount = (float)curStamina / (float)maxStamina;
+            sprStrengh.fillAmount = (float)curStrengh / (float)maxStrengh;
+            sprLuck.gameObject.SetActive(false);
         }
 
         private void OnApplyShow(int idx)

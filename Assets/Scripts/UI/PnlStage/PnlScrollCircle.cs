@@ -282,6 +282,7 @@ namespace Assets.Scripts.NGUI
                     return;
                 }
                 m_FinishEnter = false;
+                btnStart.gameObject.GetComponent<AudioSource>().Play();
                 PnlAchievement.PnlAchievement.Instance.OnShow(currentSongIdx);
             };
 

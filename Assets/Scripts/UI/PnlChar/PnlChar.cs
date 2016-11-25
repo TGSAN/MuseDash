@@ -117,10 +117,10 @@ namespace PnlChar
                     onRoleChange(curRoleIdx);
                 }
             };
-			UIEventListener.Get (btnLeft.gameObject).onClick += go => 
-			{
-				onLeftClick();
-			};
+            UIEventListener.Get(btnLeft.gameObject).onClick += go =>
+           {
+               onLeftClick();
+           };
 
             Action onRightClick = null;
             onRightClick = () =>
@@ -139,10 +139,10 @@ namespace PnlChar
                 }
             };
 
-			UIEventListener.Get (btnRight.gameObject).onClick += go => 
-			{
-				onRightClick();
-			};
+            UIEventListener.Get(btnRight.gameObject).onClick += go =>
+           {
+               onRightClick();
+           };
 
             for (int i = 0; i < items.Length; i++)
             {
@@ -201,20 +201,20 @@ namespace PnlChar
 
         public void OnEquipLoad(int idx)
         {
-			Debug.Log ("Get Girl Equip");
+            Debug.Log("Get Girl Equip");
             var curEquipHosts = FormulaBase.EquipManageComponent.Instance.GetGirlEquipHosts(idx, 0, true);
-			Debug.Log ("Get Girl Equip Finished");
+            Debug.Log("Get Girl Equip Finished");
             for (int i = 0; i < items.Length; i++)
             {
+                var types = FormulaBase.EquipManageComponent.Instance.GetGirlEquipTypes(idx);
                 FormulaBase.FormulaHost host = null;
-                if (i < curEquipHosts.Length)
+                if (i < types.Length)
                 {
-                    host = curEquipHosts[i];
+                    host = curEquipHosts.ToList().Find(h => h.GetDynamicStrByKey(SignKeys.TYPE) == types[i]);
                 }
                 var item = items[i];
                 if (host == null)
                 {
-                    var types = FormulaBase.EquipManageComponent.Instance.GetGirlEquipTypes(idx);
                     if (i < types.Length)
                     {
                         item.OnShow(types[i]);
@@ -225,11 +225,9 @@ namespace PnlChar
                     item.OnShow(host);
                 }
 
-                if (i == 3)
-                {
-                    var servantHost = PetManageComponent.Instance.GetEquipedPet(idx);
-                    item.OnShow(servantHost);
-                }
+                if (i != 3) continue;
+                var servantHost = PetManageComponent.Instance.GetEquipedPet(idx);
+                item.OnShow(servantHost);
             }
         }
 

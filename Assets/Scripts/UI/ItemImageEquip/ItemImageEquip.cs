@@ -114,6 +114,7 @@ namespace ItemImageEquip
                 {
                     return;
                 }
+                GetComponent<AudioSource>().Play();
                 if (!PnlSuitcase.PnlSuitcase.Instance.isUpgrade)
                 {
                     if (ItemManageComponent.Instance.IsEquipment(host))
