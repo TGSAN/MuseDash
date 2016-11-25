@@ -117,10 +117,10 @@ namespace PnlChar
                     onRoleChange(curRoleIdx);
                 }
             };
-            btnLeft.onClick.Add(new EventDelegate(() =>
-            {
-                onLeftClick();
-            }));
+			UIEventListener.Get (btnLeft.gameObject).onClick += go => 
+			{
+				onLeftClick();
+			};
 
             Action onRightClick = null;
             onRightClick = () =>
@@ -138,10 +138,11 @@ namespace PnlChar
                     onRoleChange(curRoleIdx);
                 }
             };
-            btnRight.onClick.Add(new EventDelegate(() =>
-            {
-                onRightClick();
-            }));
+
+			UIEventListener.Get (btnRight.gameObject).onClick += go => 
+			{
+				onRightClick();
+			};
 
             for (int i = 0; i < items.Length; i++)
             {
@@ -200,7 +201,9 @@ namespace PnlChar
 
         public void OnEquipLoad(int idx)
         {
+			Debug.Log ("Get Girl Equip");
             var curEquipHosts = FormulaBase.EquipManageComponent.Instance.GetGirlEquipHosts(idx, 0, true);
+			Debug.Log ("Get Girl Equip Finished");
             for (int i = 0; i < items.Length; i++)
             {
                 FormulaBase.FormulaHost host = null;

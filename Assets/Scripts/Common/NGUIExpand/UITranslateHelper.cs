@@ -17,7 +17,10 @@ public class UITranslateHelper : MonoBehaviour {
 	private UILabel _label;
 	// Use this for initialization
 	void Start () {
-		this.InitLanguageMap ();
+		return;
+		if (!this.InitLanguageMap ()) {
+			return;
+		};
 
 		this._label = this.gameObject.GetComponent<UILabel> ();
 		if (this._label == null) {
@@ -27,14 +30,14 @@ public class UITranslateHelper : MonoBehaviour {
 		this._label.onPostFill += new UIWidget.OnPostFillCallback (this.OnLabelTextChanged);
 	}
 
-	private void InitLanguageMap() {
+	private bool InitLanguageMap() {
 		if (_languageMap != null) {
-			return;
+			return false;
 		}
 
 		int l = ConfigPool.Instance.GetConfigLenght (CFG_NAME);
 		if (l <= 0) {
-			return;
+			return false;
 		}
 
 		_languageMap = new Dictionary<string, string> ();
@@ -44,6 +47,7 @@ public class UITranslateHelper : MonoBehaviour {
 			string _dest = ConfigPool.Instance.GetConfigStringValue (CFG_NAME, _i, GameGlobal.LANGUAGE_VERSION);
 			_languageMap [_default] = _dest;
 		}
+		return true;
 	}
 
 	private void OnLabelTextChanged(UIWidget widget, int bufferOffset, BetterList<Vector3> verts, BetterList<Vector2> uvs, BetterList<Color> cols) {
