@@ -34,7 +34,7 @@ namespace PnlChar
         private int m_PreRoleIdx = 0;
         private List<FormulaBase.FormulaHost> m_Equipments = new List<FormulaBase.FormulaHost>();
         private readonly List<string> m_AnimPath = new List<string>();
-        public Action<int> onRoleChange;
+        public Action<int> onRoleChange = null;
 
         public static PnlChar Instance
         {
@@ -97,8 +97,7 @@ namespace PnlChar
 
         private void InitEvent()
         {
-            onRoleChange = null; ;
-            onRoleChange += OnRoleChange;
+            onRoleChange = new Action<int>(OnRoleChange);
             onRoleChange += PnlCharInfo.PnlCharInfo.Instance.OnRoleChange;
             onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
             var maxCount = FormulaBase.RoleManageComponent.Instance.GetRoleCount();
@@ -118,10 +117,10 @@ namespace PnlChar
                     onRoleChange(curRoleIdx);
                 }
             };
-            btnLeft.onClick.Add(new EventDelegate(() =>
-            {
-                onLeftClick();
-            }));
+			UIEventListener.Get (btnLeft.gameObject).onClick += go => 
+			{
+				onLeftClick();
+			};
 
             Action onRightClick = null;
             onRightClick = () =>
@@ -139,10 +138,11 @@ namespace PnlChar
                     onRoleChange(curRoleIdx);
                 }
             };
-            btnRight.onClick.Add(new EventDelegate(() =>
-            {
-                onRightClick();
-            }));
+
+			UIEventListener.Get (btnRight.gameObject).onClick += go => 
+			{
+				onRightClick();
+			};
 
             for (int i = 0; i < items.Length; i++)
             {
@@ -176,7 +176,10 @@ namespace PnlChar
             {
                 item.gameObject.SetActive(true);
             }
-            onRoleChange(curRoleIdx);
+            if (onRoleChange != null)
+            {
+                onRoleChange(curRoleIdx);
+            }
         }
 
         #endregion Init初始化
@@ -192,15 +195,15 @@ namespace PnlChar
             m_PreRoleIdx = roleIdx;
             curEquipTypeIdx = 0;
             FormulaBase.RoleManageComponent.Instance.GetRole(roleIdx).SetAsUINotifyInstance();
-            CommonPanel.GetInstance().DebugInfo("========On Role Change");
             OnEquipLoad(roleIdx);
             OnSpiAnimLoad(roleIdx);
-            CommonPanel.GetInstance().DebugInfo("========On Role Change Finished");
         }
 
         public void OnEquipLoad(int idx)
         {
+			Debug.Log ("Get Girl Equip");
             var curEquipHosts = FormulaBase.EquipManageComponent.Instance.GetGirlEquipHosts(idx, 0, true);
+			Debug.Log ("Get Girl Equip Finished");
             for (int i = 0; i < items.Length; i++)
             {
                 FormulaBase.FormulaHost host = null;

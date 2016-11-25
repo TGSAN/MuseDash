@@ -309,20 +309,25 @@ namespace PnlCharInfo
                 }
             }
             if (m_SelectedCosList == null) return;
-            var clothStr = m_SelectedCosList.Aggregate(string.Empty, (current, charCose) => current + (charCose.uid + ","));
-            if (clothStr.Length > 0)
-            {
-                clothStr = clothStr.Substring(0, clothStr.Length - 1);
-            }
-            var suitStr = RoleManageComponent.Instance.GetRole(idx).GetDynamicStrByKey(SignKeys.SUIT_GROUP);
-            btnApply.gameObject.SetActive(suitStr != clothStr);
-            if (suitStr == "0" && clothStr == (idx * 10).ToString())
-            {
-                btnApply.gameObject.SetActive(false);
-            }
-            txtApply.gameObject.SetActive(!btnApply.gameObject.activeSelf);
+			OnApplyShow (idx);
             OnUpgradeItemsRefresh();
         }
+
+		private void OnApplyShow(int idx)
+		{
+			var clothStr = m_SelectedCosList.Aggregate(string.Empty, (current, charCose) => current + (charCose.uid + ","));
+			if (clothStr.Length > 0)
+			{
+				clothStr = clothStr.Substring(0, clothStr.Length - 1);
+			}
+			var suitStr = RoleManageComponent.Instance.GetRole(idx).GetDynamicStrByKey(SignKeys.SUIT_GROUP);
+			btnApply.gameObject.SetActive(suitStr != clothStr);
+			if ((suitStr == "0" && clothStr == (idx * 10).ToString()) || string.IsNullOrEmpty(clothStr))
+			{
+				btnApply.gameObject.SetActive(false);
+			}
+			txtApply.gameObject.SetActive(!btnApply.gameObject.activeSelf);
+		}
 
         public void OnSelectChange(Transform t)
         {
@@ -368,19 +373,7 @@ namespace PnlCharInfo
             var roleHost = RoleManageComponent.Instance.GetRole(PnlChar.PnlChar.Instance.curRoleIdx);
             roleHost.SetDynamicData(SignKeys.CLOTH, m_SelectedCos.uid);
             m_SelectedCosList.Sort((l, r) => l.uid - r.uid);
-
-            var clothStr = m_SelectedCosList.Aggregate(string.Empty, (current, charCose) => current + (charCose.uid + ","));
-            if (clothStr.Length > 0)
-            {
-                clothStr = clothStr.Substring(0, clothStr.Length - 1);
-            }
-            var suitStr = roleHost.GetDynamicStrByKey(SignKeys.SUIT_GROUP);
-            btnApply.gameObject.SetActive(suitStr != clothStr);
-            if (suitStr == "0" && clothStr == (roleHost.GetDynamicIntByKey(SignKeys.ID) * 10).ToString())
-            {
-                btnApply.gameObject.SetActive(false);
-            }
-            txtApply.gameObject.SetActive(!btnApply.gameObject.activeSelf);
+			OnApplyShow (PnlChar.PnlChar.Instance.curRoleIdx);
         }
     }
 }

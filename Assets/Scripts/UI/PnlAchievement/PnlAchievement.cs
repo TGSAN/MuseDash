@@ -16,6 +16,7 @@ namespace PnlAchievement
     public class PnlAchievement : UIPhaseBase
     {
         private static PnlAchievement instance = null;
+        private int m_Idx;
 
         public static PnlAchievement Instance
         {
@@ -56,6 +57,7 @@ namespace PnlAchievement
                 t.SetActive(false);
             }
             gameObject.SetActive(true);
+            m_Idx = idx;
             this.StartCoroutine(this.__OnShow(0.1f));
         }
 
@@ -81,32 +83,35 @@ namespace PnlAchievement
                 GameObject t = this.trophys[i];
                 t.SetActive(i < rank);
             }
-            var stageHost = TaskStageTarget.Instance.Host;
 
-            var stageID = stageHost.GetDynamicIntByKey(SignKeys.ID);
-            var maxCombo = (float)ConfigPool.Instance.GetConfigIntValue("stage", stageID.ToString(), "all_combo");
-            var maxPerfect = (float)ConfigPool.Instance.GetConfigIntValue("stage", stageID.ToString(), "all_perfect");
-            var maxStar = (float)ConfigPool.Instance.GetConfigIntValue("stage", stageID.ToString(), "all_star");
-            var maxClear = 0f;
-            var clearConfig = ConfigPool.Instance.GetConfigByName("achievement");
-            for (var i = 0; i < clearConfig.Count; i++)
+            var stageHost = TaskStageTarget.Instance.GetStageByIdx(m_Idx);
+            if (stageHost != null)
             {
-                var table = clearConfig[i];
-                if ((int)table["uid"] != stageID) continue;
-                if ((string)table["type"] != "clear") continue;
-                maxClear = (float)((int)table["s_goal"]);
-                break;
+                var stageID = stageHost.GetDynamicIntByKey(SignKeys.ID);
+                var maxCombo = (float)ConfigPool.Instance.GetConfigIntValue("stage", stageID.ToString(), "all_combo");
+                var maxPerfect = (float)ConfigPool.Instance.GetConfigIntValue("stage", stageID.ToString(), "all_perfect");
+                var maxStar = (float)ConfigPool.Instance.GetConfigIntValue("stage", stageID.ToString(), "all_star");
+                var maxClear = 0f;
+                var clearConfig = ConfigPool.Instance.GetConfigByName("achievement");
+                for (var i = 0; i < clearConfig.Count; i++)
+                {
+                    var table = clearConfig[i];
+                    if ((int)table["uid"] != stageID) continue;
+                    if ((string)table["type"] != "clear") continue;
+                    maxClear = (float)((int)table["s_goal"]);
+                    break;
+                }
+
+                var perfectMaxCount = (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
+                var comboCount = (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_MAX_COMBO);
+                var starCount = (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_HIDE_NODE_COUNT + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
+                var clearCount = (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_CLEAR_COUNT);
+
+                PlayProgress(comboCount / maxCombo, slideCombo);
+                PlayProgress(perfectMaxCount / maxPerfect, slidePerfect);
+                PlayProgress(starCount / maxStar, slideStars);
+                PlayProgress(clearCount / maxClear, slideClear);
             }
-
-            var perfectMaxCount = (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
-            var comboCount = (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_MAX_COMBO);
-            var starCount = (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_HIDE_NODE_COUNT + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
-            var clearCount = (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_CLEAR_COUNT);
-
-            PlayProgress(comboCount / maxCombo, slideCombo);
-            PlayProgress(perfectMaxCount / maxPerfect, slidePerfect);
-            PlayProgress(starCount / maxStar, slideStars);
-            PlayProgress(clearCount / maxClear, slideClear);
             /* this.ShowRankProgress(TaskStageTarget.TASK_SIGNKEY_MAX_COMBO, "Combo_", this.slideCombo);
             this.ShowRankProgress(TaskStageTarget.TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT, "Perfect_", this.slidePerfect);
             this.ShowRankProgress(TaskStageTarget.TASK_SIGNKEY_HIDE_NODE_COUNT, "Star_", this.slideStars);

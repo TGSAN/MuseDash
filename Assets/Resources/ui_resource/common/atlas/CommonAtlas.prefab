@@ -25,10 +25,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11405424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -42,9 +42,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 1bfa4e92a78be4cb2a68bb43b297cfb9, type: 2}
   mSprites:
+  - name: board
+    x: 346
+    y: 650
+    width: 96
+    height: 96
+    borderLeft: 12
+    borderRight: 12
+    borderTop: 30
+    borderBottom: 12
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: button_cancel
-    x: 349
-    y: 273
+    x: 351
+    y: 783
     width: 138
     height: 120
     borderLeft: 0
@@ -56,8 +69,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: button_cancel_s
-    x: 342
-    y: 124
+    x: 204
+    y: 552
     width: 80
     height: 70
     borderLeft: 28
@@ -69,8 +82,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: button_confirm
-    x: 202
-    y: 116
+    x: 204
+    y: 626
     width: 138
     height: 120
     borderLeft: 0
@@ -82,8 +95,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: button_confirm_s
-    x: 424
-    y: 124
+    x: 0
+    y: 428
     width: 80
     height: 70
     borderLeft: 28
@@ -95,8 +108,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: button_s_base
-    x: 202
-    y: 34
+    x: 346
+    y: 566
     width: 92
     height: 80
     borderLeft: 30
@@ -108,8 +121,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: darken
-    x: 349
-    y: 239
+    x: 288
+    y: 590
     width: 32
     height: 32
     borderLeft: 5
@@ -122,7 +135,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: hint_base
     x: 0
-    y: 238
+    y: 750
     width: 347
     height: 274
     borderLeft: 271
@@ -135,7 +148,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: pause_base
     x: 0
-    y: 36
+    y: 546
     width: 200
     height: 200
     borderLeft: 75
@@ -146,9 +159,48 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: slider
+    x: 351
+    y: 759
+    width: 24
+    height: 20
+    borderLeft: 10
+    borderRight: 10
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: slider_bg
+    x: 379
+    y: 759
+    width: 24
+    height: 20
+    borderLeft: 10
+    borderRight: 10
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: slider_thumb
+    x: 288
+    y: 554
+    width: 32
+    height: 32
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: tag_base
-    x: 342
-    y: 196
+    x: 0
+    y: 502
     width: 156
     height: 40
     borderLeft: 0
@@ -160,8 +212,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: text_base
-    x: 342
-    y: 52
+    x: 0
+    y: 354
     width: 80
     height: 70
     borderLeft: 26
@@ -172,9 +224,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: title_board
+    x: 84
+    y: 450
+    width: 96
+    height: 48
+    borderLeft: 20
+    borderRight: 20
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: wifi
-    x: 349
-    y: 395
+    x: 351
+    y: 907
     width: 149
     height: 117
     borderLeft: 0
