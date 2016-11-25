@@ -59,7 +59,10 @@ namespace PnlCapsuleOpen
 
         private void OnDisable()
         {
-            PnlMainMenu.PnlMainMenu.Instance.OnCharmUpdate();
+			if (PnlMainMenu.PnlMainMenu.Instance != null) {
+				PnlMainMenu.PnlMainMenu.Instance.OnCharmUpdate();
+			}
+            
         }
 
         public override void BeCatched()

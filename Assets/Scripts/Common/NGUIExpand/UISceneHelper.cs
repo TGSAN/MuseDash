@@ -33,12 +33,13 @@ public class UISceneHelper : MonoBehaviour {
 	void Start() {
 		instance = this;
 		this.InitCamera ();
+		Debug.Log ("Camera Init Finished");
 		if (this.isStartScene) {
 			Debug.Log ("This is the start scene.");
 			return;
 		}
-
-		this.HideWidget ();
+		Debug.Log ("Ready For UI");
+		HideWidget ();
 	}
 
 	void OnDestory() {
@@ -207,7 +208,6 @@ public class UISceneHelper : MonoBehaviour {
 			if (urh == null) {
 				continue;
 			}
-
 			this.RegDymWidget (urh.gameObject.name, urh);
 		}
 
@@ -222,8 +222,9 @@ public class UISceneHelper : MonoBehaviour {
 			if (upb != null) {
 				upb.BeCatched ();
 			}
-
+			Debug.Log ("==========");
 			urh.gameObject.SetActive (false);
+			Debug.Log ("Catch ui : " + urh.gameObject.name + " Finished");
 		}
 	}
 }
