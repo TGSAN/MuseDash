@@ -11,7 +11,7 @@ namespace ItemImageEquip
     public class ItemImageEquip : UIPhaseBase
     {
         private static ItemImageEquip instance = null;
-        public UISprite sprSelected, sprOn, sprLock;
+        public UISprite sprSelected, sprOn, sprLock, sprBkg;
         public UILabel txtCount;
 
         public static ItemImageEquip Instance
@@ -203,6 +203,9 @@ namespace ItemImageEquip
                 return;
             }
             ResourceLoader.Instance.LoadItemIcon(host, texIcon);
+
+            var quality = host.GetDynamicIntByKey(SignKeys.QUALITY);
+            sprBkg.spriteName = "groove_" + quality.ToString();
         }
     }
 }

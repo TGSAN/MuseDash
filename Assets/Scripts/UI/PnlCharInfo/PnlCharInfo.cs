@@ -281,7 +281,10 @@ namespace PnlCharInfo
         {
             m_SelectedCosList = RoleManageComponent.Instance.GetClothList(idx);
             var allCharCos = RoleManageComponent.Instance.GetCloths(idx);
-            m_SelectedCos = m_SelectedCosList[0];
+            var curPath = PnlChar.PnlChar.Instance.animPath[idx - 1];
+            var selectedSpiIdx = allCharCos.FindIndex(c => c.path == curPath);
+            selectedSpiIdx = selectedSpiIdx == -1 ? 0 : selectedSpiIdx;
+            m_SelectedCos = allCharCos[selectedSpiIdx];
             for (var i = 0; i < tglsParent.childCount; i++)
             {
                 var sprCos = m_SprCosList[i];
@@ -344,7 +347,6 @@ namespace PnlCharInfo
             var sprCos = t.GetComponent<SprCos>();
             if (idx >= allCharCos.Count) return;
             var charCos = allCharCos[idx];
-
             for (var i = 0; i < m_SprCosList.Count; i++)
             {
                 if (m_SprCosList[i].isInGroup)

@@ -34,6 +34,12 @@ namespace PnlChar
         private int m_PreRoleIdx = 0;
         private List<FormulaBase.FormulaHost> m_Equipments = new List<FormulaBase.FormulaHost>();
         private readonly List<string> m_AnimPath = new List<string>();
+
+        public List<string> animPath
+        {
+            get { return m_AnimPath; }
+        }
+
         public Action<int> onRoleChange = null;
 
         public static PnlChar Instance
