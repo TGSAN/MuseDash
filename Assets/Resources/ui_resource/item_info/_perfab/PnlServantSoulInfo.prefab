@@ -99,6 +99,7 @@ GameObject:
   - 4: {fileID: 4000013450637016}
   - 114: {fileID: 114000013624754554}
   - 54: {fileID: 54000012673320078}
+  - 65: {fileID: 65000014185479440}
   m_Layer: 5
   m_Name: SprBase
   m_TagString: Untagged
@@ -628,6 +629,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 125.8, y: 77.4, z: 1}
   m_Center: {x: 40, y: 0, z: 0}
+--- !u!65 &65000014185479440
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011124596618}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 444, y: 644, z: 1}
+  m_Center: {x: -222, y: 322, z: 0}
 --- !u!65 &65000014267798112
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1101,7 +1114,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3000
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -1354,7 +1367,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3006
+  startingRenderQueue: 3014
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
