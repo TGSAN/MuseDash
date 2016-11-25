@@ -62,7 +62,9 @@ namespace FormulaBase
         {
             var equipHosts = new Dictionary<FormulaHost, int>();
             var equipTypeList = new List<string>(GetGirlEquipTypes(idx));
-            foreach (var formulaHost in HostList.Values)
+            var theList = HostList.Values.ToList();
+            theList.Sort((l, r) => r.GetDynamicIntByKey(SignKeys.QUALITY) - l.GetDynamicIntByKey(SignKeys.QUALITY));
+            foreach (var formulaHost in theList)
             {
                 var equipID = formulaHost.GetDynamicIntByKey(SignKeys.ID);
                 var equipInfo = ConfigPool.Instance.GetConfigValue("items", equipID.ToString());
@@ -182,6 +184,10 @@ namespace FormulaBase
                 {
                     RoleManageComponent.Instance.Host = RoleManageComponent.Instance.GetRole(ownerIdx);
                     RoleManageComponent.Instance.Equip(host, isTo, func);
+                    if (PnlSuitcase.PnlSuitcase.Instance != null)
+                    {
+                        PnlSuitcase.PnlSuitcase.Instance.UpdateSuitcase();
+                    }
                 });
             }
         }

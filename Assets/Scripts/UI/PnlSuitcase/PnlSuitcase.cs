@@ -121,9 +121,9 @@ namespace PnlSuitcase
 
         public void UpdateSuitcase()
         {
-            ItemManageComponent.Instance.SortAllQuality();
-            var items = ItemManageComponent.Instance.GetAllItem;
+            var items = ItemManageComponent.Instance.SortAllQuality(true);
             grid.transform.DestroyChildren();
+
             m_Cells.Clear();
             foreach (var item in items)
             {

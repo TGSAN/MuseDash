@@ -114,7 +114,12 @@ namespace ItemImageEquip
                 {
                     return;
                 }
-                GetComponent<AudioSource>().Play();
+                var ac = GetComponent<AudioSource>();
+                if (ac)
+                {
+                    ac.Play();
+                }
+
                 if (!PnlSuitcase.PnlSuitcase.Instance.isUpgrade)
                 {
                     if (ItemManageComponent.Instance.IsEquipment(host))
@@ -195,6 +200,7 @@ namespace ItemImageEquip
             if (host == null)
             {
                 texIcon.mainTexture = null;
+                sprBkg.spriteName = "groove_space";
                 return;
             }
             string texName = host.GetDynamicStrByKey(FormulaBase.SignKeys.ICON);

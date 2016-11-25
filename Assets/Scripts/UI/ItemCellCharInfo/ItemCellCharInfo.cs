@@ -15,7 +15,9 @@ namespace ItemCellCharInfo
         public GameObject cellBaseSelected;
         public UILabel txtName, txtEffect, txtLvl;
         public UITexture texIcon;
+        public UISprite sprBkg;
         public UIButton btnApply, btnUpgrade;
+        public Color vigourColor, staminaColor, strColor;
 
         public FormulaBase.FormulaHost host
         {
@@ -124,6 +126,8 @@ namespace ItemCellCharInfo
         private void SetTexByHost()
         {
             var texName = host.GetDynamicStrByKey(FormulaBase.SignKeys.ICON);
+            var quality = host.GetDynamicIntByKey(SignKeys.QUALITY);
+            sprBkg.spriteName = "groove_" + quality.ToString();
             if (texName == null || ResourceLoader.Instance == null)
             {
                 return;
@@ -135,10 +139,28 @@ namespace ItemCellCharInfo
         {
             var name = host.GetDynamicStrByKey(FormulaBase.SignKeys.NAME);
             var lvl = "LV." + host.GetDynamicStrByKey(FormulaBase.SignKeys.LEVEL);
-            var effect = host.GetDynamicStrByKey(FormulaBase.SignKeys.EFFECT_DESC);
+
             txtName.text = name;
             txtLvl.text = lvl;
-            txtEffect.text = effect;
+
+            var vigour = (int)host.Result(FormulaKeys.FORMULA_50);
+            var stamina = (int)host.Result(FormulaKeys.FORMULA_51);
+            var strengh = (int)host.Result(FormulaKeys.FORMULA_56);
+            if (vigour > 0)
+            {
+                txtEffect.text = "Vigour +" + vigour.ToString();
+                txtEffect.color = vigourColor;
+            }
+            if (stamina > 0)
+            {
+                txtEffect.text = "Stamina +" + stamina.ToString();
+                txtEffect.color = staminaColor;
+            }
+            if (strengh > 0)
+            {
+                txtEffect.text = "Strengh +" + strengh.ToString();
+                txtEffect.color = strColor;
+            }
         }
 
         private void Start()

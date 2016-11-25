@@ -107,17 +107,17 @@ namespace FormulaBase
         private void BulidAllList()
         {
             m_AllItem.Clear();
-            for (int i = 0, max = m_material.Count; i < max; i++)
+            for (int i = 0, max = m_Material.Count; i < max; i++)
             {
-                m_AllItem.Add(m_material[i]);
+                m_AllItem.Add(m_Material[i]);
             }
             for (int i = 0, max = m_Equip.Count; i < max; i++)
             {
                 m_AllItem.Add(m_Equip[i]);
             }
-            for (int i = 0, max = m_pet.Count; i < max; i++)
+            for (int i = 0, max = m_Pet.Count; i < max; i++)
             {
-                m_AllItem.Add(m_pet[i]);
+                m_AllItem.Add(m_Pet[i]);
             }
             for (int i = 0, max = m_Chest.Count; i < max; i++)
             {
@@ -129,17 +129,17 @@ namespace FormulaBase
 
         #region 材料链表
 
-        private List<FormulaHost> m_material = new List<FormulaHost>();
+        private List<FormulaHost> m_Material = new List<FormulaHost>();
 
         public List<FormulaHost> GetMaterialList
         {
             get
             {
-                return m_material;
+                return m_Material;
             }
             set
             {
-                m_material = value;
+                m_Material = value;
             }
         }
 
@@ -165,17 +165,17 @@ namespace FormulaBase
 
         #region 宠物链表
 
-        private List<FormulaHost> m_pet = new List<FormulaHost>();
+        private List<FormulaHost> m_Pet = new List<FormulaHost>();
 
         public List<FormulaHost> GetPetList
         {
             get
             {
-                return m_pet;
+                return m_Pet;
             }
             set
             {
-                m_pet = value;
+                m_Pet = value;
             }
         }
 
@@ -268,18 +268,18 @@ namespace FormulaBase
             }
             else
             {
-                m_material.Clear();
+                m_Material.Clear();
                 Debugger.LogWarning("角色拥有的材料数量:" + _materialdic.Count);
                 foreach (string oid in _materialdic.Keys)
                 {
-                    m_material.Add(_materialdic[oid]);
+                    m_Material.Add(_materialdic[oid]);
                     int temp = (int)_materialdic[oid].Result(FormulaKeys.FORMULA_20);
                     if (temp > id)
                     {
                         id = temp + 1;
                     }
                 }
-                //	Debugger.Log("material count is :"+m_material.Count);
+                //	Debugger.Log("material count is :"+m_Material.Count);
             }
             //加载所有装备
             Dictionary<string, FormulaHost> _EquipList = FomulaHostManager.Instance.GetHostListByFileName("Equip");
@@ -316,13 +316,13 @@ namespace FormulaBase
             }
             else
             {
-                m_pet.Clear();
+                m_Pet.Clear();
                 Debugger.LogWarning("角色拥有的宠物碎片和宠物数量:" + _PetList.Count);
                 foreach (string oid in _PetList.Keys)
                 {
                     if (_PetList[oid].GetDynamicDataByKey(SignKeys.EQUIPEDQUEUE) == 0)
                     {
-                        m_pet.Add(_PetList[oid]);
+                        m_Pet.Add(_PetList[oid]);
                     }
                     else
                     {
@@ -481,6 +481,8 @@ namespace FormulaBase
             }
             if (host != null)
             {
+                UnityEngine.Debug.Log(host.GetDynamicIntByKey(SignKeys.ID));
+                UnityEngine.Debug.Log(itemJson["name"].ToString());
                 host.SetDynamicData(SignKeys.TYPE, typeName);
                 host.SetDynamicData(SignKeys.NAME, itemJson["name"].ToString());
                 host.SetDynamicData(SignKeys.ICON, itemJson["icon"].ToString());
@@ -530,8 +532,8 @@ namespace FormulaBase
         {
             Debug.Log("删除所有物品");
             m_Equip.Clear();
-            m_material.Clear();
-            m_pet.Clear();
+            m_Material.Clear();
+            m_Pet.Clear();
             m_Chest.Clear();
         }
 
@@ -547,12 +549,12 @@ namespace FormulaBase
 
                 case "Material":
                     NGUIDebug.Log("Sale Mtaerial");
-                    m_material.Remove(_host);
+                    m_Material.Remove(_host);
                     break;
 
                 case "Pet":
                     NGUIDebug.Log("Sale Pet");
-                    m_pet.Remove(_host);
+                    m_Pet.Remove(_host);
                     break;
 
                 case "Chest":
@@ -578,12 +580,12 @@ namespace FormulaBase
 
                     case "Material":
                         NGUIDebug.Log("Sale Mtaerial");
-                        m_material.Remove(_listhost[i]);
+                        m_Material.Remove(_listhost[i]);
                         break;
 
                     case "Pet":
                         NGUIDebug.Log("Sale Pet");
-                        m_pet.Remove(_listhost[i]);
+                        m_Pet.Remove(_listhost[i]);
                         break;
 
                     case "Chest":
@@ -708,12 +710,12 @@ namespace FormulaBase
 
                     case "Material":
                         Debug.Log("Sale Mtaerial");
-                        this.m_material.Remove(_host);
+                        this.m_Material.Remove(_host);
                         break;
 
                     case "Pet":
                         Debug.Log("Sale Pet");
-                        this.m_pet.Remove(_host);
+                        this.m_Pet.Remove(_host);
                         break;
 
                     case "Chest":
@@ -814,7 +816,7 @@ namespace FormulaBase
                     if (t_host == null)
                     {//有没有材料
                         _host.SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
-                        m_material.Add(_host);
+                        m_Material.Add(_host);
                     }
                     else
                     {
@@ -830,7 +832,7 @@ namespace FormulaBase
                         if (t_host == null)
                         {
                             _host.SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
-                            m_pet.Add(_host);
+                            m_Pet.Add(_host);
                         }
                         else
                         {
@@ -880,7 +882,7 @@ namespace FormulaBase
                         if (t_host == null)
                         {//有没有材料
                             _listHost[i].SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
-                            m_material.Add(_listHost[i]);
+                            m_Material.Add(_listHost[i]);
                         }
                         else
                         {
@@ -896,7 +898,7 @@ namespace FormulaBase
                             if (t_host == null)
                             {
                                 _listHost[i].SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
-                                m_pet.Add(_listHost[i]);
+                                m_Pet.Add(_listHost[i]);
                             }
                             else
                             {
@@ -908,7 +910,7 @@ namespace FormulaBase
                             if (_listHost[i].GetDynamicIntByKey(SignKeys.BAGINID) == 0)
                             {//没有的东西
                                 _listHost[i].SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
-                                m_pet.Add(_listHost[i]);
+                                m_Pet.Add(_listHost[i]);
                             }
                         }
                         break;
@@ -969,11 +971,11 @@ namespace FormulaBase
                     break;
 
                 case "Material":
-                    m_material.Add(_host);
+                    m_Material.Add(_host);
                     break;
 
                 case "Pet":
-                    m_pet.Add(_host);
+                    m_Pet.Add(_host);
                     break;
 
                 case "Chest":
@@ -1042,16 +1044,16 @@ namespace FormulaBase
             List<FormulaHost> temp = new List<FormulaHost>();
             if (_smallType == -1)
             {
-                return m_pet;
+                return m_Pet;
             }
             else
             {
-                for (int i = 0, max = m_pet.Count; i < max; i++)
+                for (int i = 0, max = m_Pet.Count; i < max; i++)
                 {
                     /*
-                    if (m_pet[i].Result(FormulaKeys.FORMULA_115) == _smallType)
+                    if (m_Pet[i].Result(FormulaKeys.FORMULA_115) == _smallType)
                     {
-                        temp.Add(m_pet[i]);
+                        temp.Add(m_Pet[i]);
                     }
                     */
                 }
@@ -1064,16 +1066,16 @@ namespace FormulaBase
             List<FormulaHost> temp = new List<FormulaHost>();
             if (_smallType == -1)
             {
-                return m_material;
+                return m_Material;
             }
             else
             {
-                for (int i = 0, max = m_material.Count; i < max; i++)
+                for (int i = 0, max = m_Material.Count; i < max; i++)
                 {
                     /*
-                    if (m_material[i].Result(FormulaKeys.FORMULA_38) == _smallType)
+                    if (m_Material[i].Result(FormulaKeys.FORMULA_38) == _smallType)
                     {
-                        temp.Add(m_material[i]);
+                        temp.Add(m_Material[i]);
                     }
                     */
                 }
@@ -1088,7 +1090,7 @@ namespace FormulaBase
         /// <returns>The all item count.</returns>
         public int GetAllItemCount()
         {
-            return m_Equip.Count + m_material.Count + m_pet.Count + m_Chest.Count;
+            return m_Equip.Count + m_Material.Count + m_Pet.Count + m_Chest.Count;
         }
 
         public List<FormulaHost> SortAllTime()
@@ -1099,11 +1101,17 @@ namespace FormulaBase
             return m_AllItem;
         }
 
-        public List<FormulaHost> SortAllQuality()
+        public List<FormulaHost> SortAllQuality(bool isEquip = false)
         {
             BulidAllList();
-
-            m_AllItem.Sort(ItemSort.EquipSort_Quality);
+            if (isEquip)
+            {
+                m_AllItem.Sort(ItemSort.EquipSort_EquipOn);
+            }
+            else
+            {
+                m_AllItem.Sort(ItemSort.EquipSort_Quality);
+            }
             return m_AllItem;
         }
 
@@ -1256,27 +1264,43 @@ public class ItemSort
         }
         else if (Quality1 == Quality2)
         {
-            /* ushort Type1 = (ushort)host1.GetDynamicDataByKey(SignKeys.TYPE);
-             ushort Type2 = (ushort)host2.GetDynamicDataByKey(SignKeys.TYPE);
-
-             if (Type1 < Type2)
-             {
-                 return -1;
-             }
-             else if (Type1 == Type2)
-             {
-                 return 0;
-             }
-             else
-             {
-                 return 1;
-             }*/
             return 0;
         }
         else
         {
             return 1;
         }
+    }
+
+    /// <summary>
+    /// 装备有装备上排在前面
+    /// </summary>
+    /// <param name="hostL"></param>
+    /// <param name="hostR"></param>
+    /// <returns></returns>
+    public static int EquipSort_EquipOn(FormulaHost hostL, FormulaHost hostR)
+    {
+        int whoL = hostL.GetDynamicIntByKey(SignKeys.WHO);
+        int whoR = hostR.GetDynamicIntByKey(SignKeys.WHO);
+        if (whoL == whoR)
+        {
+            int Quality1 = (int)hostL.GetDynamicDataByKey(SignKeys.QUALITY);
+            int Quality2 = (int)hostR.GetDynamicDataByKey(SignKeys.QUALITY);
+
+            if (Quality1 > Quality2)
+            {
+                return -1;
+            }
+            else if (Quality1 == Quality2)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+        return whoR - whoL;
     }
 
     /// <summary>
