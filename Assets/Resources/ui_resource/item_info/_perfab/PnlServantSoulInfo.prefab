@@ -213,6 +213,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000012414318098
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012496819598}
+  - 114: {fileID: 114000010792789382}
+  m_Layer: 5
+  m_Name: Coin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000012441942710
 GameObject:
   m_ObjectHideFlags: 1
@@ -335,13 +351,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010866810650}
-  m_LocalRotation: {x: -0.000000043711687, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.4, y: -15.6, z: -40.000004}
+  m_LocalRotation: {x: -0.000000043711687, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_LocalEulerAnglesHint: {x: -0.0000050089902, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 4000012446985318}
-  m_RootOrder: 1
+  m_Father: {fileID: 4000012496819598}
+  m_RootOrder: 0
 --- !u!4 &4000010741784924
 Transform:
   m_ObjectHideFlags: 1
@@ -419,12 +435,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010867866052}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.4, y: -16, z: 0}
+  m_LocalPosition: {x: 15, y: -16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000012446985318}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &4000012446985318
 Transform:
   m_ObjectHideFlags: 1
@@ -437,10 +453,24 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000013236377386}
-  - {fileID: 4000010569608904}
   - {fileID: 4000012169318480}
+  - {fileID: 4000012496819598}
   m_Father: {fileID: 4000013450637016}
   m_RootOrder: 0
+--- !u!4 &4000012496819598
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012414318098}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10, y: -14, z: -40}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 4000010569608904}
+  m_Father: {fileID: 4000012446985318}
+  m_RootOrder: 2
 --- !u!4 &4000012818075436
 Transform:
   m_ObjectHideFlags: 1
@@ -942,6 +972,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollView: {fileID: 0}
   draggablePanel: {fileID: 0}
+--- !u!114 &114000010792789382
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012414318098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858a20c1b21a3f94bb5b2d3b901c9aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 4000012169318480}
+    relative: 0
+    absolute: -32
+  rightAnchor:
+    target: {fileID: 4000012169318480}
+    relative: 0
+    absolute: -7
+  bottomAnchor:
+    target: {fileID: 4000012169318480}
+    relative: 0
+    absolute: 1
+  topAnchor:
+    target: {fileID: 4000012169318480}
+    relative: 1
+    absolute: 2
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 25
+  mHeight: 25
+  mDepth: 0
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
 --- !u!114 &114000010972200820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1315,7 +1382,7 @@ MonoBehaviour:
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 97.5
-  mType: 3
+  mType: 1
   mFillDirection: 0
   mFillAmount: 1
   mInvert: 0
@@ -1367,7 +1434,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3014
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -1787,7 +1854,7 @@ MonoBehaviour:
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 97.5
-  mType: 3
+  mType: 1
   mFillDirection: 0
   mFillAmount: 1
   mInvert: 0
