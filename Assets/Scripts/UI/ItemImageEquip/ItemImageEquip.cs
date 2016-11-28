@@ -103,15 +103,7 @@ namespace ItemImageEquip
             SetTxtByHost();
             UIEventListener.Get(gameObject).onClick = (go) =>
             {
-                if (PnlEquipInfo.PnlEquipInfo.Instance.host != null)
-                {
-                    if (host.GetDynamicIntByKey(SignKeys.ID) == PnlEquipInfo.PnlEquipInfo.Instance.host.GetDynamicIntByKey(SignKeys.ID))
-                    {
-                        return;
-                    }
-                }
-
-                if (isLock)
+                if (isSelected || isLock)
                 {
                     return;
                 }
@@ -120,7 +112,6 @@ namespace ItemImageEquip
                 {
                     ac.Play();
                 }
-
                 if (!PnlSuitcase.PnlSuitcase.Instance.isUpgrade)
                 {
                     if (ItemManageComponent.Instance.IsEquipment(host))
@@ -142,6 +133,7 @@ namespace ItemImageEquip
                         PnlServantInfo.PnlServantInfo.Instance.OnShow();
                     }
                     PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(h);
+                    isSelected = true;
                 }
                 else
                 {
@@ -154,7 +146,7 @@ namespace ItemImageEquip
 
         public void OnSelected(bool selected)
         {
-            sprSelected.gameObject.SetActive(selected);
+            isSelected = selected;
         }
 
         public void OnUpgradeSelected()

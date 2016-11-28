@@ -75,22 +75,7 @@ namespace PnlFoodInfo
             btnSale.onClick.Clear();
             btnSale.onClick.Add(new EventDelegate(() =>
             {
-                ItemManageComponent.Instance.SaleItem(h, (result) =>
-                {
-                    if (result)
-                    {
-                        if (h.GetDynamicIntByKey(SignKeys.STACKITEMNUMBER) < 1)
-                        {
-                            OnExit();
-                        }
-
-                        if (PnlSuitcase.PnlSuitcase.Instance.gameObject.activeSelf)
-                        {
-                            PnlSuitcase.PnlSuitcase.Instance.OnShow();
-                        }
-                        CommonPanel.GetInstance().ShowWaittingPanel(false);
-                    }
-                });
+                PnlItemSale.PnlItemSale.Instance.OnShow(h);
             }));
         }
     }

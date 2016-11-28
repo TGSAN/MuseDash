@@ -796,6 +796,7 @@ namespace Assets.Scripts.NGUI
             DOTweenUtils.Delay(() =>
             {
                 m_FinishEnter = true;
+                CommonPanel.GetInstance().ShowWaittingPanel(false);
             }, animDuration);
 
             var first = idx - 2;

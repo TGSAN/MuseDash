@@ -245,9 +245,14 @@ namespace FormulaBase
             return true;
         }
 
-        public bool Contains(int id)
+        public bool Contains(int i)
         {
-            return GetAllItem.Any(item => item.GetDynamicIntByKey(SignKeys.ID) == id);
+            return GetAllItem.Any(item => item.GetDynamicIntByKey(SignKeys.BAGINID) == i);
+        }
+
+        public bool ContainsType(int i)
+        {
+            return GetAllItem.Any(item => item.GetDynamicIntByKey(SignKeys.ID) == i);
         }
 
         public FormulaHost GetHostItem(int id)
@@ -463,7 +468,7 @@ namespace FormulaBase
             FormulaHost host = null;
             if (typeName == "food")
             {
-                host = materialManageComponent.Instance.CreateItem(idx);
+                host = MaterialManageComponent.Instance.CreateItem(idx);
                 num += host.GetDynamicIntByKey(SignKeys.STACKITEMNUMBER);
                 host.SetDynamicData(SignKeys.STACKITEMNUMBER, num);
             }
@@ -481,8 +486,6 @@ namespace FormulaBase
             }
             if (host != null)
             {
-                UnityEngine.Debug.Log(host.GetDynamicIntByKey(SignKeys.ID));
-                UnityEngine.Debug.Log(itemJson["name"].ToString());
                 host.SetDynamicData(SignKeys.TYPE, typeName);
                 host.SetDynamicData(SignKeys.NAME, itemJson["name"].ToString());
                 host.SetDynamicData(SignKeys.ICON, itemJson["icon"].ToString());
@@ -671,15 +674,16 @@ namespace FormulaBase
             CommonPanel.GetInstance().ShowWaittingPanel(false);
         }
 
-        public void SaleItem(FormulaHost _host, HttpResponseDelegate _callback = null)
+        public void SaleItem(FormulaHost _host, HttpResponseDelegate _callback = null, int saleNum = 1)
         {
             string fileName = _host.GetFileName();
             int Monye = 0;
             int StackitemNumber = _host.GetDynamicIntByKey(SignKeys.STACKITEMNUMBER);
-            if (StackitemNumber > 1)
+            var afterNum = StackitemNumber - saleNum;
+            _host.SetDynamicData(SignKeys.STACKITEMNUMBER, afterNum);
+            if (afterNum > 0)
             {
-                _host.SetDynamicData(SignKeys.STACKITEMNUMBER, StackitemNumber - 1);
-                int salePrice = this.GetItemMoney(_host);
+                int salePrice = this.GetItemMoney(_host) * saleNum;
                 AccountGoldManagerComponent.Instance.ChangeMoney(salePrice, true, new HttpResponseDelegate(((bool result) =>
                 {
                     if (_callback == null)
@@ -697,20 +701,21 @@ namespace FormulaBase
             }
             else
             {
+                var bagInID = _host.GetDynamicIntByKey(SignKeys.BAGINID);
                 switch (fileName)
                 {
                     case "Equip":
                         Debug.Log("Sale Equip");
                         if ((int)_host.GetDynamicDataByKey(SignKeys.WHO) == 1)
                         {
-                            EquipManageComponent.Instance.Equip((int)_host.GetDynamicDataByKey(SignKeys.ID), false);
+                            EquipManageComponent.Instance.Equip((int)_host.GetDynamicDataByKey(SignKeys.BAGINID), false);
                         }
-                        this.m_Equip.Remove(_host);
+                        this.m_Equip.RemoveAll(h => h.GetDynamicIntByKey(SignKeys.BAGINID) == bagInID);
                         break;
 
                     case "Material":
-                        Debug.Log("Sale Mtaerial");
-                        this.m_Material.Remove(_host);
+                        Debug.Log("Sale Material");
+                        this.m_Material.RemoveAll(h => h.GetDynamicIntByKey(SignKeys.BAGINID) == bagInID);
                         break;
 
                     case "Pet":
@@ -724,7 +729,7 @@ namespace FormulaBase
                         break;
                 }
 
-                int salePrice = this.GetItemMoney(_host);
+                int salePrice = this.GetItemMoney(_host) * saleNum;
 
                 AccountGoldManagerComponent.Instance.ChangeMoney(salePrice, true, new HttpResponseDelegate(((bool result) =>
                 {
@@ -812,7 +817,7 @@ namespace FormulaBase
                     break;
 
                 case "Material":
-                    t_host = materialManageComponent.Instance.HaveTheSameID(_host.GetDynamicIntByKey("ID"));
+                    t_host = MaterialManageComponent.Instance.HaveTheSameID(_host.GetDynamicIntByKey("ID"));
                     if (t_host == null)
                     {//有没有材料
                         _host.SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
@@ -878,7 +883,7 @@ namespace FormulaBase
                         break;
 
                     case "Material":
-                        t_host = materialManageComponent.Instance.HaveTheSameID(_listHost[i].GetDynamicIntByKey("ID"));
+                        t_host = MaterialManageComponent.Instance.HaveTheSameID(_listHost[i].GetDynamicIntByKey("ID"));
                         if (t_host == null)
                         {//有没有材料
                             _listHost[i].SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数

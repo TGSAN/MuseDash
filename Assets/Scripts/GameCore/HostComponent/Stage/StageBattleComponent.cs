@@ -413,6 +413,7 @@ namespace FormulaBase
             string _scenename = "GameScene";
             SceneLoader.SetLoadInfo(ref _scenename);
             SceneManager.LoadScene(GameGlobal.LOADING_SCENE_NAME);
+            CommonPanel.GetInstance().ShowWaittingPanel(false);
         }
 
         private bool EnterCheck(uint id)
@@ -670,11 +671,11 @@ namespace FormulaBase
         public void ReEnter()
         {
             string sceneName = "GameScene";
-            this.Exit(sceneName);
+            this.Exit(sceneName, false, true);
         }
 
         // Exit stage.
-        public void Exit(string sceneName = "ChooseSongs", bool isFinish = false)
+        public void Exit(string sceneName = "ChooseSongs", bool isFinish = false, bool isRestart = false)
         {
             Debug.Log("Stage Exit.");
             Action callFunc = () =>
@@ -689,7 +690,7 @@ namespace FormulaBase
                 Time.timeScale = GameGlobal.TIME_SCALE;
                 CommonPanel.GetInstance().SetMask(true, this.OnExit);
             };
-            if (!isFinish)
+            if (!isFinish && !isRestart)
             {
                 AccountPhysicsManagerComponent.Instance.ChangePhysical((int)Host.Result(FormulaKeys.FORMULA_20), false,
                     true,

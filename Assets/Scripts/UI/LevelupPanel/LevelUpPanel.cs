@@ -177,7 +177,7 @@ public class LevelUpPanel : UIPanelBase {
 		int Exp=0;
 		if(m_LevelUpPanelState==LevelUpPanelState.LevelUpPanelState_ChoseHeroFood||m_LevelUpPanelState==LevelUpPanelState.LevelUpPanelState_ChosePetFood)
 		{
-			materialManageComponent.Instance.GetExpAndCost(ref Exp,ref tempMoney);
+			MaterialManageComponent.Instance.GetExpAndCost(ref Exp,ref tempMoney);
 		}
 		else if(m_LevelUpPanelState==LevelUpPanelState.LevelUpPanelState_ChoseEquip)
 		{

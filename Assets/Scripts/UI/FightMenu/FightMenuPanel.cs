@@ -3,6 +3,7 @@ using DYUnityLib;
 using FormulaBase;
 using GameLogic;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class FightMenuPanel : MonoBehaviour
@@ -24,7 +25,7 @@ public class FightMenuPanel : MonoBehaviour
     public TweenPosition m_DownGround;    //下方信息栏
     public TweenPosition m_SongInfo;	  //文件信息
     public TweenPosition twnAchievement;
-    public TweenScale twnTrophy;
+    public UITweener[] twnTrophys;
     public GameObject trophyShow;
 
     public TweenScale m_FeverScaleLabel;                        //Fever文字的缩放
@@ -139,20 +140,24 @@ public class FightMenuPanel : MonoBehaviour
             {
                 m_Seq.Kill();
             }
-            m_Seq = DOTweenUtils.Update(() =>
+            DOTweenUtils.Delay(() =>
             {
-                if (twnAchievement != null)
+                m_Seq = DOTweenUtils.Update(() =>
                 {
-                    twnAchievement.gameObject.SetActive(true);
-                    twnAchievement.Play(true);
-                }
-                if (twnTrophy != null)
-                {
-                    twnTrophy.enabled = true;
-                    twnTrophy.ResetToBeginning();
-                    twnTrophy.Play(true);
-                }
-            }, () => TaskStageTarget.Instance.IsAchieveNow(TaskStageTarget.Instance.Host));
+                    if (twnAchievement != null)
+                    {
+                        twnAchievement.gameObject.SetActive(true);
+                        twnAchievement.Play(true);
+                    }
+                    twnTrophys.ToList().ForEach(t =>
+                    {
+                        t.gameObject.SetActive(true);
+                        t.enabled = true;
+                        t.ResetToBeginning();
+                        t.Play(true);
+                    });
+                }, () => TaskStageTarget.Instance.IsAchieveNow());
+            }, 1.0f);
         }
         trophyShow.SetActive(!isAchieve);
     }

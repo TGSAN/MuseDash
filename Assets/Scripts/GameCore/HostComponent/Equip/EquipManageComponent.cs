@@ -167,9 +167,14 @@ namespace FormulaBase
         /// <param name="isTo"></param>
         public void Equip(int equipID, bool isTo = true, HttpResponseDelegate func = null)
         {
-            FormulaHost host = (from value in HostList.Values let id = value.GetDynamicIntByKey(SignKeys.ID) where id == equipID select value).FirstOrDefault();
-
-            var ownerIdx = GetEquipOwnerIdx(equipID);
+            FormulaHost host = null;
+            var id = 0;
+            foreach (var equip in HostList.Values.ToList().Where(equip => equip.GetDynamicIntByKey(SignKeys.BAGINID) == equipID))
+            {
+                host = equip;
+                id = equip.GetDynamicIntByKey(SignKeys.ID);
+            }
+            var ownerIdx = GetEquipOwnerIdx(id);
             if (isTo)
             {
                 if (host != null) host.SetDynamicData(SignKeys.WHO, ownerIdx);

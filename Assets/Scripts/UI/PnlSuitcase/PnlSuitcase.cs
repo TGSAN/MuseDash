@@ -95,7 +95,7 @@ namespace PnlSuitcase
             grid.enabled = true;
             m_Cells.RemoveAll(cell =>
             {
-                if (!ItemManageComponent.Instance.Contains(cell.host.GetDynamicIntByKey(SignKeys.ID)))
+                if (!ItemManageComponent.Instance.Contains(cell.host.GetDynamicIntByKey(SignKeys.BAGINID)))
                 {
                     Destroy(cell.gameObject);
                     return true;
@@ -123,7 +123,6 @@ namespace PnlSuitcase
         {
             var items = ItemManageComponent.Instance.SortAllQuality(true);
             grid.transform.DestroyChildren();
-
             m_Cells.Clear();
             foreach (var item in items)
             {
@@ -141,15 +140,18 @@ namespace PnlSuitcase
 
         public void SetSelectedCell(FormulaHost h)
         {
-            foreach (var itemImageEquip in m_Cells)
+            m_SelectedHost = h;
+            if (m_SelectedHost != null)
             {
-                itemImageEquip.OnSelected(h == itemImageEquip.host);
-                if (h == null)
+                foreach (var itemImageEquip in m_Cells)
                 {
-                    itemImageEquip.isUpgradeSelected = false;
+                    var host = itemImageEquip.host;
+                    if (host != null)
+                    {
+                        itemImageEquip.OnSelected(m_SelectedHost.GetDynamicIntByKey(SignKeys.BAGINID) == host.GetDynamicIntByKey(SignKeys.BAGINID));
+                    }
                 }
             }
-            m_SelectedHost = h;
         }
 
         public void SetUpgradeSelectedCell(FormulaHost h)

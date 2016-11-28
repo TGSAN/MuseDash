@@ -210,24 +210,28 @@ namespace PnlEquipInfo
             btnSale.onClick.Clear();
             btnSale.onClick.Add(new EventDelegate(() =>
             {
-                ItemManageComponent.Instance.SaleItem(h, (result) =>
+                CommonPanel.GetInstance().ShowYesNo("卖出该物品吗？不可撤销哦~", () =>
                 {
-                    if (result)
+                    Debug.Log("=========1");
+                    ItemManageComponent.Instance.SaleItem(h, (result) =>
                     {
-                        PnlCharInfo.PnlCharInfo.Instance.OnShow();
-                        PnlCharInfo.PnlCharInfo.Instance.OnExit();
-                        OnExit();
-                        if (PnlChar.PnlChar.Instance != null)
+                        if (result)
                         {
-                            PnlChar.PnlChar.Instance.OnEquipLoad(PnlChar.PnlChar.Instance.curRoleIdx);
-                        }
+                            PnlCharInfo.PnlCharInfo.Instance.OnShow();
+                            PnlCharInfo.PnlCharInfo.Instance.OnExit();
+                            OnExit();
+                            if (PnlChar.PnlChar.Instance != null)
+                            {
+                                PnlChar.PnlChar.Instance.OnEquipLoad(PnlChar.PnlChar.Instance.curRoleIdx);
+                            }
 
-                        if (PnlSuitcase.PnlSuitcase.Instance.gameObject.activeSelf)
-                        {
-                            PnlSuitcase.PnlSuitcase.Instance.OnShow();
+                            if (PnlSuitcase.PnlSuitcase.Instance.gameObject.activeSelf)
+                            {
+                                PnlSuitcase.PnlSuitcase.Instance.OnShow();
+                            }
+                            CommonPanel.GetInstance().ShowWaittingPanel(false);
                         }
-                        CommonPanel.GetInstance().ShowWaittingPanel(false);
-                    }
+                    });
                 });
             }));
 

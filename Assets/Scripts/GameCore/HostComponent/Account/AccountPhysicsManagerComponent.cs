@@ -94,7 +94,10 @@ namespace FormulaBase
         {
             var max = GetMaxPhysical();
             var cur = GetPhysical();
-            ChangePhysical(max - cur);
+            ChangePhysical(max - cur, false, true, result =>
+            {
+                CommonPanel.GetInstance().ShowWaittingPanel(false);
+            });
         }
 
         /// <summary>

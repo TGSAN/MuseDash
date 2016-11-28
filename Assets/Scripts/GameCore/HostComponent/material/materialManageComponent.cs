@@ -6,18 +6,18 @@ using System.Collections.Generic;
 
 namespace FormulaBase
 {
-    public class materialManageComponent : CustomComponentBase
+    public class MaterialManageComponent : CustomComponentBase
     {
-        private static materialManageComponent instance = null;
+        private static MaterialManageComponent instance = null;
         private const int HOST_IDX = 6;
 
-        public static materialManageComponent Instance
+        public static MaterialManageComponent Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new materialManageComponent();
+                    instance = new MaterialManageComponent();
                 }
                 return instance;
             }
@@ -25,7 +25,7 @@ namespace FormulaBase
 
         public FormulaHost CreateItem(int idx)
         {
-            if (ItemManageComponent.Instance.Contains(idx))
+            if (ItemManageComponent.Instance.ContainsType(idx))
             {
                 var h = ItemManageComponent.Instance.GetHostItem(idx);
                 return h;

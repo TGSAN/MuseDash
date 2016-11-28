@@ -163,7 +163,7 @@ namespace PnlCharInfo
         {
             foreach (var item in m_ItemList)
             {
-                var itemID = item.host.GetDynamicIntByKey(FormulaBase.SignKeys.ID);
+                var itemID = item.host.GetDynamicIntByKey(FormulaBase.SignKeys.BAGINID);
                 item.SetSelected(selectID == itemID);
             }
         }

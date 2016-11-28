@@ -315,39 +315,39 @@ public class RewardPanel : MonoBehaviour {
 			switch(Type)
 			{
 			case 0://		tmep[0]=TrophyManageComponent.Instance.GetNormalFoodProbability();//7概率
-				m_RandItem=materialManageComponent.Instance.GetLimitItem(Quality,1);
+				m_RandItem=MaterialManageComponent.Instance.GetLimitItem(Quality,1);
 				if(m_RandItem.Count!=0)
 				{
 					temp_id=m_RandItem[Random.Range(0,m_RandItem.Count)].id;	//获取随机的ID
-					t_AddItem.Add(materialManageComponent.Instance.CreateItem(temp_id));		//增加获取的ID
+					t_AddItem.Add(MaterialManageComponent.Instance.CreateItem(temp_id));		//增加获取的ID
 					tListSprtieName.Add(temp_id.ToString());
 				}
 				break;
 			case 1://		tmep[1]=TrophyManageComponent.Instance.GetPetFoodProbability();
-				m_RandItem=materialManageComponent.Instance.GetLimitItem(Quality,2);
+				m_RandItem=MaterialManageComponent.Instance.GetLimitItem(Quality,2);
 				if(m_RandItem.Count!=0)
 				{
 					temp_id=m_RandItem[Random.Range(0,m_RandItem.Count)].id;	//获取随机的ID
-					t_AddItem.Add(materialManageComponent.Instance.CreateItem(temp_id));		//增加获取的ID
+					t_AddItem.Add(MaterialManageComponent.Instance.CreateItem(temp_id));		//增加获取的ID
 					tListSprtieName.Add(temp_id.ToString());
 				}
 				break;
 			case 2://		tmep[2]=TrophyManageComponent.Instance.GetRoleUpStarsProbability();
 				Debug.LogWarning("这地方角色升级素材的品质 有点问题");
-				m_RandItem=materialManageComponent.Instance.GetLimitItem(3,3);
+				m_RandItem=MaterialManageComponent.Instance.GetLimitItem(3,3);
 				if(m_RandItem.Count!=0)
 				{
 					temp_id=m_RandItem[Random.Range(0,m_RandItem.Count)].id;					//获取随机的ID
-					t_AddItem.Add(materialManageComponent.Instance.CreateItem(temp_id));		//增加获取的ID
+					t_AddItem.Add(MaterialManageComponent.Instance.CreateItem(temp_id));		//增加获取的ID
 					tListSprtieName.Add(temp_id.ToString());
 				}
 				break;
 			case 3://材料//		tmep[3]=TrophyManageComponent.Instance.GetEquipUpStarsProbability();
-				m_RandItem=materialManageComponent.Instance.GetLimitItem(Quality,4);
+				m_RandItem=MaterialManageComponent.Instance.GetLimitItem(Quality,4);
 				if(m_RandItem.Count!=0)
 				{
 					temp_id=m_RandItem[Random.Range(0,m_RandItem.Count)].id;	//获取随机的ID
-					t_AddItem.Add(materialManageComponent.Instance.CreateItem(temp_id));		//增加获取的ID
+					t_AddItem.Add(MaterialManageComponent.Instance.CreateItem(temp_id));		//增加获取的ID
 					tListSprtieName.Add(temp_id.ToString());
 				}
 				break;

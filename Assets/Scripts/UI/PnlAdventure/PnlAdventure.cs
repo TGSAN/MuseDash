@@ -78,6 +78,11 @@ namespace PnlAdventure
             }
         }
 
+        public void ShowWaitingPanel()
+        {
+            CommonPanel.GetInstance().ShowWaittingPanel();
+        }
+
         public void PlayBgm()
         {
             int heroIndex = RoleManageComponent.Instance.GetFightGirlIndex();

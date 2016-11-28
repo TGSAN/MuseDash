@@ -130,7 +130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000010555147794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,7 +1447,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010490188884}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04d1b7c9e9a19a24ab67123a43c6544b, type: 3}
   m_Name: 
@@ -3228,7 +3228,10 @@ MonoBehaviour:
   m_DownGround: {fileID: 114000011519584720}
   m_SongInfo: {fileID: 114000011768857520}
   twnAchievement: {fileID: 114000013319537800}
-  twnTrophy: {fileID: 114000013431707104}
+  twnTrophys:
+  - {fileID: 114000013431707104}
+  - {fileID: 114000010232841420}
+  - {fileID: 114000013982222208}
   trophyShow: {fileID: 1000011875483342}
   m_FeverScaleLabel: {fileID: 0}
   m_FeverLabelAlpha: {fileID: 0}
@@ -4515,7 +4518,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010490188884}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75e7459110b9666449485c40f25362a5, type: 3}
   m_Name: 
@@ -4699,7 +4702,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3000
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0

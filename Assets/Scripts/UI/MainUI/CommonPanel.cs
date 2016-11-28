@@ -12,6 +12,9 @@ public class CommonPanel : MonoBehaviour
     //public  UseResBox m_UseResBox;
     public GameObject m_WaittingPanel;
 
+    public GameObject yesNoPanel, btnYes, btnNo, btnMask;
+    public UILabel txtYesNoContent;
+
     public TweenAlpha m_Mask;
     public TweenAlpha m_BlurMask;               //毛玻璃的黑色遮罩
     public GameObject m_GMRobot;                //GM机器人
@@ -127,6 +130,32 @@ public class CommonPanel : MonoBehaviour
         m_CallBack = _callBack;
         this.gameObject.SetActive(true);
         m_Okbox.showBox(_str, m_CallBack);
+    }
+
+    public void ShowYesNo(string content, Callback yesCallFunc, Callback noCallFunc = null)
+    {
+        txtYesNoContent.text = content;
+        var animator = yesNoPanel.GetComponent<Animator>();
+        animator.Play("pnl_yes_or_no_in");
+
+        UIEventListener.Get(btnYes.gameObject).onClick = go =>
+        {
+            if (yesCallFunc != null)
+            {
+                yesCallFunc();
+            }
+            animator.Play("pnl_yes_or_no_out");
+        };
+        UIEventListener.VoidDelegate quitCallFunc = go =>
+        {
+            if (noCallFunc != null)
+            {
+                noCallFunc();
+            }
+            animator.Play("pnl_yes_or_no_out");
+        };
+        UIEventListener.Get(btnNo.gameObject).onClick = quitCallFunc;
+        UIEventListener.Get(btnMask.gameObject).onClick = quitCallFunc;
     }
 
     /// <summary>

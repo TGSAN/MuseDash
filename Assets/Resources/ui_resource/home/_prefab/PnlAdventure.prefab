@@ -59,7 +59,6 @@ GameObject:
   - 114: {fileID: 114000014272033200}
   - 65: {fileID: 65000011222801674}
   - 114: {fileID: 114000010489017642}
-  - 114: {fileID: 114000012917074954}
   - 114: {fileID: 114000012860548030}
   - 114: {fileID: 114000014010726472}
   - 114: {fileID: 114000013718149848}
@@ -130,11 +129,9 @@ GameObject:
   - 114: {fileID: 114000010858205730}
   - 65: {fileID: 65000012079224322}
   - 114: {fileID: 114000011697142760}
-  - 114: {fileID: 114000010814201858}
   - 114: {fileID: 114000011090545796}
   - 114: {fileID: 114000012526644172}
   - 114: {fileID: 114000010503547714}
-  - 114: {fileID: 114000011692248886}
   m_Layer: 5
   m_Name: BtnEvent
   m_TagString: Untagged
@@ -187,7 +184,6 @@ GameObject:
   - 114: {fileID: 114000011847275170}
   - 65: {fileID: 65000014015834758}
   - 114: {fileID: 114000012655245354}
-  - 114: {fileID: 114000013387410598}
   - 114: {fileID: 114000011737235356}
   - 114: {fileID: 114000010509632066}
   - 114: {fileID: 114000012145527638}
@@ -807,7 +803,11 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 114000012857021548}
+    mMethodName: ShowWaitingPanel
+    mParameters: []
+    oneShot: 0
 --- !u!114 &114000010503547714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -888,21 +888,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
-  trigger: 0
-  volume: 1
-  pitch: 1
---- !u!114 &114000010814201858
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012833797152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 74b3d4bf250734fe4ba59e7c3fd7d7d1, type: 3}
   trigger: 0
   volume: 1
   pitch: 1
@@ -1048,21 +1033,6 @@ MonoBehaviour:
   timeScale: 1
   loop: 1
   _animationName: 1stand
---- !u!114 &114000011692248886
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012833797152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: d84c90dac63fe6148ad1e2f8f38a4940, type: 3}
-  trigger: 0
-  volume: 1
-  pitch: 1
 --- !u!114 &114000011697142760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1603,21 +1573,6 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
---- !u!114 &114000012917074954
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010658236466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 74b3d4bf250734fe4ba59e7c3fd7d7d1, type: 3}
-  trigger: 0
-  volume: 1
-  pitch: 1
 --- !u!114 &114000013385252164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1643,21 +1598,6 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick: []
---- !u!114 &114000013387410598
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013317917794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 74b3d4bf250734fe4ba59e7c3fd7d7d1, type: 3}
-  trigger: 0
-  volume: 1
-  pitch: 1
 --- !u!114 &114000013696322702
 MonoBehaviour:
   m_ObjectHideFlags: 1

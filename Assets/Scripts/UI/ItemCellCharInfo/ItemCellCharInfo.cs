@@ -64,23 +64,23 @@ namespace ItemCellCharInfo
             btnApply.onClick.Clear();
             btnApply.onClick.Add(new EventDelegate(() =>
             {
-                var id = host.GetDynamicIntByKey(FormulaBase.SignKeys.ID);
+                var bagID = host.GetDynamicIntByKey(FormulaBase.SignKeys.BAGINID);
                 var curEquipList = FormulaBase.EquipManageComponent.Instance.GetGirlEquipHosts(PnlChar.PnlChar.Instance.curRoleIdx, PnlChar.PnlChar.Instance.curEquipTypeIdx, true);
                 if (curEquipList.Length > 0)
                 {
                     CommonPanel.GetInstance().ShowWaittingPanel(true);
                     FormulaBase.EquipManageComponent.Instance.Equip(
-                        curEquipList[0].GetDynamicIntByKey(FormulaBase.SignKeys.ID), false,
+                        curEquipList[0].GetDynamicIntByKey(FormulaBase.SignKeys.BAGINID), false,
                         result =>
                         {
                             if (result)
                             {
-                                FormulaBase.EquipManageComponent.Instance.Equip(id, true, r =>
+                                FormulaBase.EquipManageComponent.Instance.Equip(bagID, true, r =>
                                 {
                                     if (r)
                                     {
                                         PnlChar.PnlChar.Instance.OnEquipLoad(PnlChar.PnlChar.Instance.curRoleIdx);
-                                        PnlCharInfo.PnlCharInfo.Instance.UpdateItemList(id);
+                                        PnlCharInfo.PnlCharInfo.Instance.UpdateItemList(bagID);
                                         CommonPanel.GetInstance().ShowWaittingPanel(false);
                                     }
                                 });
@@ -89,12 +89,12 @@ namespace ItemCellCharInfo
                 }
                 else
                 {
-                    FormulaBase.EquipManageComponent.Instance.Equip(id, true, r =>
+                    FormulaBase.EquipManageComponent.Instance.Equip(bagID, true, r =>
                     {
                         if (r)
                         {
                             PnlChar.PnlChar.Instance.OnEquipLoad(PnlChar.PnlChar.Instance.curRoleIdx);
-                            PnlCharInfo.PnlCharInfo.Instance.UpdateItemList(id);
+                            PnlCharInfo.PnlCharInfo.Instance.UpdateItemList(bagID);
                             CommonPanel.GetInstance().ShowWaittingPanel(false);
                         }
                     });

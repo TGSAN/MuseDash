@@ -83,7 +83,7 @@ public class GMOrderPanel : MonoBehaviour
             //				break;
             TempitemList.Add(int.Parse(temp));
         }
-        materialManageComponent.Instance.CreateItem(TempitemList);
+        MaterialManageComponent.Instance.CreateItem(TempitemList);
 
         //宠物
         LitJson.JsonData cfg3 = ConfigPool.Instance.GetConfigByName("pet");
@@ -123,7 +123,7 @@ public class GMOrderPanel : MonoBehaviour
             TempitemList.Add(int.Parse(temp));
         }
 
-        materialManageComponent.Instance.CreateItem(TempitemList);
+        MaterialManageComponent.Instance.CreateItem(TempitemList);
     }
 
     public void AddEquip()

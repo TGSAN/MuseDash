@@ -20,9 +20,6 @@ namespace PnlStage
             get { return instance; }
         }
 
-        private Coroutine _loadMusicCoroutine;
-        //public AudioSource diskAudioSource;
-
         private void Start()
         {
             instance = this;
