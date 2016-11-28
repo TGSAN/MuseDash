@@ -6,6 +6,7 @@ using LitJson;
 /// PnlCapsuleOpenUI主模块
 ///
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace PnlCapsuleOpen
@@ -13,9 +14,10 @@ namespace PnlCapsuleOpen
     public class PnlCapsuleOpen : UIPhaseBase
     {
         public UILabel txtCharm, txtCharmMax;
-        public UIButton btnOpen;
+        public UIButton btnOpen, btnPurchase;
         public UITexture[] texItems;
         public GameObject[] capsules;
+        public UIPlayAnimation[] playAnimations;
         private static PnlCapsuleOpen instance = null;
 
         public static PnlCapsuleOpen Instance
@@ -41,28 +43,42 @@ namespace PnlCapsuleOpen
                 capsules[i].SetActive(i == curCapsule.path);
             }
 
-            for (var i = 0; i < curCapsule.itemsID.Count; i++)
+            texItems.ToList().ForEach(t => t.transform.parent.gameObject.SetActive(false));
+            var commonItemCount = 0;
+            for (int i = 0, k = 0; i < curCapsule.itemsID.Count; i++)
             {
-                var tex = texItems[i];
                 var id = curCapsule.itemsID[i];
                 var itemConfig = ItemManageComponent.Instance.GetItemConfigByUID(id);
-                var iconPath = "items/icon/" + itemConfig["icon"].ToString();
-                var quality = (int)itemConfig["quality"];
-                ResourceLoader.Instance.Load(iconPath, res => tex.mainTexture = res as Texture);
-                for (var j = 0; j < tex.transform.childCount; j++)
+                if (ItemManageComponent.Instance.IsCommonItem(itemConfig["type"].ToString()))
                 {
-                    var go = tex.transform.GetChild(j).gameObject;
-                    go.SetActive((j + 1) == quality);
+                    commonItemCount++;
+                    var tex = texItems[k++];
+                    tex.transform.parent.gameObject.SetActive(true);
+                    var iconPath = "items/icon/" + itemConfig["icon"].ToString();
+                    var quality = (int)itemConfig["quality"];
+                    ResourceLoader.Instance.Load(iconPath, res => tex.mainTexture = res as Texture);
+                    for (var j = 0; j < tex.transform.childCount; j++)
+                    {
+                        var go = tex.transform.GetChild(j).gameObject;
+                        go.SetActive((j + 1) == quality);
+                    }
+                }
+                else
+                {
                 }
             }
+            playAnimations = btnOpen.gameObject.GetComponents<UIPlayAnimation>();
+            playAnimations[0].clipName = "capsule_open_item" + commonItemCount.ToString();
+            var isAnimate = AccountCharmComponent.Instance.GetCharm() >= curCapsule.charmRequire;
+            playAnimations.ToList().ForEach(a => a.enabled = isAnimate);
         }
 
         private void OnDisable()
         {
-			if (PnlMainMenu.PnlMainMenu.Instance != null) {
-				PnlMainMenu.PnlMainMenu.Instance.OnCharmUpdate();
-			}
-            
+            if (PnlMainMenu.PnlMainMenu.Instance != null)
+            {
+                PnlMainMenu.PnlMainMenu.Instance.OnCharmUpdate();
+            }
         }
 
         public override void BeCatched()
@@ -71,6 +87,30 @@ namespace PnlCapsuleOpen
             instance = this;
             btnOpen.onClick.Add(new EventDelegate(() =>
             {
+                if (AccountCharmComponent.Instance.GetCharm() < CapsuleManager.instance.curCapsule.charmRequire)
+                {
+                    btnPurchase.gameObject.SetActive(true);
+                    btnPurchase.GetComponentInChildren<UILabel>().text = "fucker";
+                }
+                else
+                {
+                    playAnimations.ToList().ForEach(a => a.enabled = true);
+                    CapsuleManager.instance.OpenCapsule((result) =>
+                    {
+                        if (result)
+                        {
+                            if (PnlSuitcase.PnlSuitcase.Instance != null)
+                            {
+                                PnlSuitcase.PnlSuitcase.Instance.UpdateSuitcase();
+                            }
+                        }
+                    });
+                }
+            }));
+
+            btnPurchase.onClick.Add(new EventDelegate(() =>
+            {
+                playAnimations.ToList().ForEach(a => a.enabled = true);
                 CapsuleManager.instance.OpenCapsule((result) =>
                 {
                     if (result)

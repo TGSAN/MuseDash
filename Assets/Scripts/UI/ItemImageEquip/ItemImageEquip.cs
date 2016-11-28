@@ -116,24 +116,27 @@ namespace ItemImageEquip
                 {
                     if (ItemManageComponent.Instance.IsEquipment(host))
                     {
+                        PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
                         PnlFoodInfo.PnlFoodInfo.Instance.OnExit();
                         PnlServantInfo.PnlServantInfo.Instance.OnExit();
-                        PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
                     }
-                    else if (ItemManageComponent.Instance.isFood(host))
+                    else if (ItemManageComponent.Instance.IsFood(host))
                     {
+                        PnlFoodInfo.PnlFoodInfo.Instance.OnShow(host);
                         PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
                         PnlServantInfo.PnlServantInfo.Instance.OnExit();
-                        PnlFoodInfo.PnlFoodInfo.Instance.OnShow(host);
                     }
                     else
                     {
+                        PnlServantInfo.PnlServantInfo.Instance.OnShow();
                         PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
                         PnlFoodInfo.PnlFoodInfo.Instance.OnExit();
-                        PnlServantInfo.PnlServantInfo.Instance.OnShow();
                     }
-                    PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(h);
-                    isSelected = true;
+                    if (!PnlChar.PnlChar.Instance.gameObject.activeSelf)
+                    {
+                        PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(h);
+                        isSelected = true;
+                    }
                 }
                 else
                 {
