@@ -53,7 +53,7 @@ namespace PnlMainMenu
         {
             var expNextLvl = AccountLevelManagerComponent.Instance.NextLvlExp();
             var curExp = AccountLevelManagerComponent.Instance.GetExp();
-            sprExpBar.width = (int)(240f * (float)curExp / (float)expNextLvl);
+            sprExpBar.transform.localScale = new Vector3((float)curExp / (float)expNextLvl, 1f, 1f);
         }
 
         public void OnCharmUpdate(bool isUpdate = false, Action callFunc = null)
