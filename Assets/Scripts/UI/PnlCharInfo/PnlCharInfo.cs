@@ -26,6 +26,7 @@ namespace PnlCharInfo
         public UIButton btnBack, btnCosChangeBack;
         public Transform tglsParent;
         public UISprite sprVigour, sprStamina, sprStrengh, sprLuck;
+        public UILabel txtInfo;
 
         private Animator m_Animator;
         private List<CharCos> m_SelectedCosList = new List<CharCos>();
@@ -195,6 +196,8 @@ namespace PnlCharInfo
                 itemCellCharInfo.SetSelected(equipment.GetDynamicIntByKey(FormulaBase.SignKeys.WHO) != 0);
                 cell.transform.SetParent(cellItemParent, false);
             }
+            cellItemParent.parent.gameObject.SetActive(allEquipments.Length != 0);
+            txtInfo.gameObject.SetActive(allEquipments.Length == 0);
         }
 
         private void InitEvent()

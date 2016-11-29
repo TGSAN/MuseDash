@@ -11,7 +11,7 @@ namespace ItemImageEquip
     public class ItemImageEquip : UIPhaseBase
     {
         private static ItemImageEquip instance = null;
-        public UISprite sprSelected, sprOn, sprLock, sprBkg;
+        public UISprite sprSelected, sprOn, sprLock, sprBkg, sprPlusSign;
         public UILabel txtCount;
 
         public static ItemImageEquip Instance
@@ -94,6 +94,7 @@ namespace ItemImageEquip
             txtLvl.gameObject.SetActive(false);
             txtLv.gameObject.SetActive(false);
             texIcon.gameObject.SetActive(false);
+            sprPlusSign.gameObject.SetActive(true);
         }
 
         public override void OnShow(FormulaBase.FormulaHost h)
@@ -101,6 +102,11 @@ namespace ItemImageEquip
             host = h;
             SetTexByHost();
             SetTxtByHost();
+            isUpgradeSelected = false;
+            if (sprPlusSign != null)
+            {
+                sprPlusSign.gameObject.SetActive(false);
+            }
             UIEventListener.Get(gameObject).onClick = (go) =>
             {
                 if (isSelected || isLock)
@@ -116,24 +122,27 @@ namespace ItemImageEquip
                 {
                     if (ItemManageComponent.Instance.IsEquipment(host))
                     {
+                        PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
                         PnlFoodInfo.PnlFoodInfo.Instance.OnExit();
                         PnlServantInfo.PnlServantInfo.Instance.OnExit();
-                        PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
                     }
-                    else if (ItemManageComponent.Instance.isFood(host))
+                    else if (ItemManageComponent.Instance.IsFood(host))
                     {
+                        PnlFoodInfo.PnlFoodInfo.Instance.OnShow(host);
                         PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
                         PnlServantInfo.PnlServantInfo.Instance.OnExit();
-                        PnlFoodInfo.PnlFoodInfo.Instance.OnShow(host);
                     }
                     else
                     {
+                        PnlServantInfo.PnlServantInfo.Instance.OnShow();
                         PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
                         PnlFoodInfo.PnlFoodInfo.Instance.OnExit();
-                        PnlServantInfo.PnlServantInfo.Instance.OnShow();
                     }
-                    PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(h);
-                    isSelected = true;
+                    if (!PnlChar.PnlChar.Instance.gameObject.activeSelf)
+                    {
+                        PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(h);
+                        isSelected = true;
+                    }
                 }
                 else
                 {

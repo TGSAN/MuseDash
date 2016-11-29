@@ -89,9 +89,12 @@ namespace PnlItemSale
 
         private void OnDisable()
         {
-            if (PnlSuitcase.PnlSuitcase.Instance.gameObject.activeSelf && m_IsChange)
+            if (PnlSuitcase.PnlSuitcase.Instance)
             {
-                PnlSuitcase.PnlSuitcase.Instance.OnShow();
+                if (PnlSuitcase.PnlSuitcase.Instance.gameObject.activeSelf && m_IsChange)
+                {
+                    PnlSuitcase.PnlSuitcase.Instance.OnShow();
+                }
             }
         }
     }

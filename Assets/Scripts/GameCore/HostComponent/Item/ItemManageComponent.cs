@@ -119,10 +119,6 @@ namespace FormulaBase
             {
                 m_AllItem.Add(m_Pet[i]);
             }
-            for (int i = 0, max = m_Chest.Count; i < max; i++)
-            {
-                m_AllItem.Add(m_Chest[i]);
-            }
         }
 
         #endregion 所有物品
@@ -201,7 +197,7 @@ namespace FormulaBase
 
         #region 类型判断
 
-        public bool isFood(FormulaHost host)
+        public bool IsFood(FormulaHost host)
         {
             if (host == null)
             {
@@ -214,14 +210,28 @@ namespace FormulaBase
             return false;
         }
 
-        public bool isServant(FormulaHost host)
+        public bool IsServant(FormulaHost host)
         {
             if (host == null)
             {
                 return false;
             }
             var typeName = host.GetDynamicStrByKey(SignKeys.TYPE);
-            if (typeName == "servant" || typeName == "debris")
+            if (typeName == "servant")
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsServantDebris(FormulaHost host)
+        {
+            if (host == null)
+            {
+                return false;
+            }
+            var typeName = host.GetDynamicStrByKey(SignKeys.TYPE);
+            if (typeName == "debris")
             {
                 return true;
             }
@@ -234,11 +244,11 @@ namespace FormulaBase
             {
                 return false;
             }
-            if (isFood(host))
+            if (IsFood(host))
             {
                 return false;
             }
-            else if (isServant(host))
+            else if (IsServant(host) || IsServantDebris(host))
             {
                 return false;
             }
@@ -278,7 +288,7 @@ namespace FormulaBase
                 foreach (string oid in _materialdic.Keys)
                 {
                     m_Material.Add(_materialdic[oid]);
-                    int temp = (int)_materialdic[oid].Result(FormulaKeys.FORMULA_20);
+                    int temp = (int)_materialdic[oid].Result(FormulaKeys.FORMULA_19);
                     if (temp > id)
                     {
                         id = temp + 1;
@@ -341,41 +351,6 @@ namespace FormulaBase
                     }
                 }
                 CheckChestTime();
-            }
-            //加载所有宝箱
-            Dictionary<string, FormulaHost> _ChestList = FomulaHostManager.Instance.GetHostListByFileName("Chest");
-            if (_ChestList == null)
-            {
-                Debugger.LogWarning("Chest is null");
-            }
-            else
-            {
-                Debugger.LogWarning("角色拥有的宝箱个数:" + _ChestList.Count);
-                m_Chest.Clear();
-                foreach (string oid in _ChestList.Keys)
-                {
-                    int Type = (int)_ChestList[oid].GetDynamicDataByKey(SignKeys.CHESTQUEUE);
-                    if (Type == 0)
-                    {//判断是不是在开启栏的宝箱
-                        m_Chest.Add(_ChestList[oid]);
-                    }
-                    else
-                    {
-                        if (_ChestList[oid].GetDynamicIntByKey(SignKeys.CHESTREMAINING_TIME) > 0)
-                        {
-                            ChestManageComponent.Instance.GetChestList.Add(_ChestList[oid]);
-                        }
-                        else
-                        {
-                            ChestManageComponent.Instance.GetTimeDownChest.Add(_ChestList[oid]);
-                        }
-                    }
-                    int temp = (int)_ChestList[oid].GetDynamicDataByKey(SignKeys.BAGINID);
-                    if (temp > id)
-                    {
-                        id = temp + 1;
-                    }
-                }
             }
         }
 
@@ -461,10 +436,19 @@ namespace FormulaBase
             return formulaList.ToArray();
         }
 
+        public bool IsCommonItem(string itemType)
+        {
+            return !(itemType == "coin" || itemType == "crystal" || itemType == "charm" || itemType == "energy");
+        }
+
         public FormulaHost CreateItem(int idx, int num = 1)
         {
             var itemJson = ConfigPool.Instance.GetConfigValue("items", idx.ToString());
             var typeName = itemJson["type"].ToString();
+            if (!IsCommonItem(typeName))
+            {
+                return null;
+            }
             FormulaHost host = null;
             if (typeName == "food")
             {
@@ -472,30 +456,31 @@ namespace FormulaBase
                 num += host.GetDynamicIntByKey(SignKeys.STACKITEMNUMBER);
                 host.SetDynamicData(SignKeys.STACKITEMNUMBER, num);
             }
-            else if (typeName == "servant" || typeName == "debris")
+            else if (typeName == "servant")
             {
+                host = PetManageComponent.Instance.CreateItem(idx);
+                host.SetDynamicData(SignKeys.STACKITEMNUMBER, 1);
             }
-            else if (typeName == "coin" || typeName == "crystal" || typeName == "charm" || typeName == "energy")
+            else if (typeName == "debris")
             {
-                return null;
+                host = PetManageComponent.Instance.CreateItem(idx);
+                num += host.GetDynamicIntByKey(SignKeys.STACKITEMNUMBER);
+                host.SetDynamicData(SignKeys.STACKITEMNUMBER, num);
             }
             else
             {
                 host = EquipManageComponent.Instance.CreateItem(idx);
                 host.SetDynamicData(SignKeys.STACKITEMNUMBER, 1);
             }
-            if (host != null)
-            {
-                host.SetDynamicData(SignKeys.TYPE, typeName);
-                host.SetDynamicData(SignKeys.NAME, itemJson["name"].ToString());
-                host.SetDynamicData(SignKeys.ICON, itemJson["icon"].ToString());
-                host.SetDynamicData(SignKeys.DESCRIPTION, itemJson["description"].ToString());
-                host.SetDynamicData(SignKeys.SUIT, itemJson["suit"].ToString());
-                host.SetDynamicData(SignKeys.QUALITY, itemJson["quality"].ToString());
-                host.SetDynamicData(SignKeys.SUIT_EFFECT_DESC, itemJson["suit_effect_description"].ToString());
-                host.SetDynamicData(SignKeys.EFFECT_DESC, itemJson["effect_description"].ToString());
-                AddItem(host);
-            }
+            host.SetDynamicData(SignKeys.TYPE, typeName);
+            host.SetDynamicData(SignKeys.NAME, itemJson["name"].ToString());
+            host.SetDynamicData(SignKeys.ICON, itemJson["icon"].ToString());
+            host.SetDynamicData(SignKeys.DESCRIPTION, itemJson["description"].ToString());
+            host.SetDynamicData(SignKeys.SUIT, itemJson["suit"].ToString());
+            host.SetDynamicData(SignKeys.QUALITY, itemJson["quality"].ToString());
+            host.SetDynamicData(SignKeys.SUIT_EFFECT_DESC, itemJson["suit_effect_description"].ToString());
+            host.SetDynamicData(SignKeys.EFFECT_DESC, itemJson["effect_description"].ToString());
+            AddItem(host);
             return host;
         }
 
@@ -800,65 +785,40 @@ namespace FormulaBase
 
         public void AddItem(FormulaHost _host)
         {
-            BagManageComponent.Instance.SetBagHaveNew();
+            //BagManageComponent.Instance.SetBagHaveNew();
             CommonPanel.GetInstance().ShowWaittingPanel();
-            //bool stack=false;
             string itemType = _host.GetFileName();
-            FormulaHost t_host = null;
             switch (itemType)
             {
                 case "Equip":
-                    if (_host.GetDynamicIntByKey(SignKeys.BAGINID) == 0)
-                    {//没有的东西
-                        _host.SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
-                        m_Equip.Add(_host);
-                    }
+                    _host.SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
+                    m_Equip.Add(_host);
                     _host.Save(new HttpResponseDelegate(CallBackAdditem));
                     break;
 
                 case "Material":
-                    t_host = MaterialManageComponent.Instance.HaveTheSameID(_host.GetDynamicIntByKey("ID"));
-                    if (t_host == null)
-                    {//有没有材料
+                    //有没有材料
+                    if (!ContainsType(_host.GetDynamicIntByKey(SignKeys.ID)))
+                    {
                         _host.SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
                         m_Material.Add(_host);
-                    }
-                    else
-                    {
-                        _host = t_host;
                     }
                     _host.Save(new HttpResponseDelegate(CallBackAdditem));
                     break;
 
                 case "Pet":
-                    if ((int)_host.GetDynamicDataByKey(SignKeys.SMALLlTYPE) == 6)
-                    {//碎片
-                        t_host = PetManageComponent.Instance.HaveTheSameID(_host.GetDynamicIntByKey("ID"));
-                        if (t_host == null)
+                    if (IsServantDebris(_host))
+                    {
+                        if (!ContainsType(_host.GetDynamicIntByKey(SignKeys.ID)))
                         {
                             _host.SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
                             m_Pet.Add(_host);
                         }
-                        else
-                        {
-                            _host = t_host;
-                        }
-                        _host.Save(new HttpResponseDelegate(CallBackAdditem));
                     }
                     else
                     {
-                        if (_host.GetDynamicIntByKey(SignKeys.BAGINID) == 0)
-                        {//没有的东西
-                            _host.SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
-                        }
-                    }
-                    break;
-
-                case "Chest":
-                    if (_host.GetDynamicIntByKey(SignKeys.BAGINID) == 0)
-                    {//没有的东西
                         _host.SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
-                        m_Chest.Add(_host);
+                        m_Pet.Add(_host);
                     }
                     _host.Save(new HttpResponseDelegate(CallBackAdditem));
                     break;
@@ -867,7 +827,7 @@ namespace FormulaBase
 
         public void AddItemList(List<FormulaHost> _listHost)
         {
-            BagManageComponent.Instance.SetBagHaveNew();
+            //BagManageComponent.Instance.SetBagHaveNew();
             for (int i = 0; i < _listHost.Count; i++)
             {
                 string itemType = _listHost[i].GetFileName();
@@ -1106,17 +1066,17 @@ namespace FormulaBase
             return m_AllItem;
         }
 
-        public List<FormulaHost> SortAllQuality(bool isEquip = false)
+        public List<FormulaHost> SortAllCur()
         {
             BulidAllList();
-            if (isEquip)
-            {
-                m_AllItem.Sort(ItemSort.EquipSort_EquipOn);
-            }
-            else
-            {
-                m_AllItem.Sort(ItemSort.EquipSort_Quality);
-            }
+            m_AllItem.Sort(ItemSort.EquipSort_Cur);
+            return m_AllItem;
+        }
+
+        public List<FormulaHost> SortAllQuality()
+        {
+            BulidAllList();
+            m_AllItem.Sort(ItemSort.EquipSort_Quality);
             return m_AllItem;
         }
 
@@ -1227,6 +1187,72 @@ namespace FormulaBase
 
 public class ItemSort
 {
+    public static int EquipSort_Cur(FormulaHost hostL, FormulaHost hostR)
+    {
+        var result = EquipSort_ItemType(hostL, hostR);
+        if (result == 0)
+        {
+            result = EquipSort_Quality(hostL, hostR);
+            if (result == 0)
+            {
+                result = EquipSort_Exp(hostL, hostR);
+            }
+        }
+        return result;
+    }
+
+    public static int EquipSort_ItemType(FormulaHost hostL, FormulaHost hostR)
+    {
+        if (hostL.GetDynamicStrByKey(SignKeys.TYPE) == hostR.GetDynamicStrByKey(SignKeys.TYPE))
+        {
+            return 0;
+        }
+
+        if (ItemManageComponent.Instance.IsEquipment(hostL) && ItemManageComponent.Instance.IsEquipment(hostR))
+        {
+            return 0;
+        }
+        if (ItemManageComponent.Instance.IsFood(hostL))
+        {
+            return -1;
+        }
+        if (ItemManageComponent.Instance.IsFood(hostR))
+        {
+            return 1;
+        }
+
+        if (ItemManageComponent.Instance.IsEquipment(hostL))
+        {
+            return -1;
+        }
+        if (ItemManageComponent.Instance.IsEquipment(hostR))
+        {
+            return 1;
+        }
+
+        if (ItemManageComponent.Instance.IsServantDebris(hostL))
+        {
+            return -1;
+        }
+
+        if (ItemManageComponent.Instance.IsServantDebris(hostR))
+        {
+            return 1;
+        }
+
+        if (ItemManageComponent.Instance.IsServant(hostL))
+        {
+            return -1;
+        }
+
+        if (ItemManageComponent.Instance.IsServant(hostR))
+        {
+            return 1;
+        }
+
+        return 0;
+    }
+
     /// <summary>
     /// 根据获取道具的先后顺序排序  获取时间ID 唯一
     /// </summary>
@@ -1243,6 +1269,31 @@ public class ItemSort
             return -1;
         }
         else if (TimeID1 == TimeID2)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+
+    /// <summary>
+    /// 根据装备EXP排序
+    /// </summary>
+    /// <param name="hostL"></param>
+    /// <param name="hostR"></param>
+    /// <returns></returns>
+    public static int EquipSort_Exp(FormulaHost hostL, FormulaHost hostR)
+    {
+        int expL = (int)hostL.GetDynamicDataByKey(SignKeys.EXP);
+        int expR = (int)hostR.GetDynamicDataByKey(SignKeys.EXP);
+
+        if (expL > expR)
+        {
+            return -1;
+        }
+        else if (expL == expR)
         {
             return 0;
         }

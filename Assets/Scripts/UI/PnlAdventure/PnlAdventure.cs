@@ -45,6 +45,7 @@ namespace PnlAdventure
 
         public override void OnShow()
         {
+            gameObject.SetActive(true);
             if (!backFromBattle)
             {
                 this.PlayBgm();

@@ -207,12 +207,12 @@ namespace PnlEquipInfo
             };
             updateInfo();
 
+            btnSale.gameObject.SetActive(!PnlChar.PnlChar.Instance.gameObject.activeSelf);
             btnSale.onClick.Clear();
             btnSale.onClick.Add(new EventDelegate(() =>
             {
                 CommonPanel.GetInstance().ShowYesNo("卖出该物品吗？不可撤销哦~", () =>
                 {
-                    Debug.Log("=========1");
                     ItemManageComponent.Instance.SaleItem(h, (result) =>
                     {
                         if (result)

@@ -121,7 +121,7 @@ namespace PnlSuitcase
 
         public void UpdateSuitcase()
         {
-            var items = ItemManageComponent.Instance.SortAllQuality(true);
+            var items = ItemManageComponent.Instance.SortAllCur();
             grid.transform.DestroyChildren();
             m_Cells.Clear();
             foreach (var item in items)
@@ -198,7 +198,7 @@ namespace PnlSuitcase
                 }
                 if (tglFood.value)
                 {
-                    isFood = ItemManageComponent.Instance.isFood(cell.host);
+                    isFood = ItemManageComponent.Instance.IsFood(cell.host);
                 }
                 else
                 {
@@ -213,7 +213,7 @@ namespace PnlSuitcase
                 }
                 if (tglServant.value)
                 {
-                    isServant = ItemManageComponent.Instance.isServant(cell.host);
+                    isServant = ItemManageComponent.Instance.IsServant(cell.host) || ItemManageComponent.Instance.IsServantDebris(cell.host);
                 }
                 else
                 {
