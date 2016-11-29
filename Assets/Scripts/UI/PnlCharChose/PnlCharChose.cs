@@ -5,6 +5,7 @@ using FormulaBase;
 ///
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace PnlCharChose
@@ -15,7 +16,7 @@ namespace PnlCharChose
         public UIButton btnLeft, btnRight;
         public GameObject pointPrefab;
         public Transform spiParent, pointParent;
-        public UIButton btnApply, btnPurchase;
+        public UIButton btnApply, btnPurchase, btnBack;
         public UILabel txtApplying;
         public Transform btnsParent;
         public int clothIdx = 0;
@@ -25,8 +26,7 @@ namespace PnlCharChose
 
         public int choseType
         {
-            get;
-            private set;
+            private set; get;
         }
 
         public static PnlCharChose Instance
@@ -73,6 +73,15 @@ namespace PnlCharChose
         private void InitEvent()
         {
             var count = FormulaBase.RoleManageComponent.Instance.HostList.Count;
+            UIEventListener.Get(btnBack.gameObject).onClick = go =>
+            {
+                PnlMainMenu.PnlMainMenu.Instance.OnShow();
+                OnHide();
+                if (!PnlChar.PnlChar.Instance.gameObject.activeSelf)
+                {
+                    PnlAdventure.PnlAdventure.Instance.OnShow();
+                }
+            };
             btnLeft.onClick.Add(new EventDelegate(() =>
             {
                 --choseType;
@@ -107,7 +116,6 @@ namespace PnlCharChose
                 CommonPanel.GetInstance().ShowWaittingPanel();
                 FormulaBase.RoleManageComponent.Instance.PurchaseRole(choseType, this.UnLockRoleCallback);
             }));
-            OnCharacterChange(choseType);
 
             var btns = btnsParent.GetComponentsInChildren<UIButton>();
             foreach (var uiButton in btns)
@@ -219,17 +227,27 @@ namespace PnlCharChose
             btnApply.gameObject.SetActive(!isLocked && !isCurCharacter);
             btnPurchase.gameObject.SetActive(isLocked && !isCurCharacter);
             txtApplying.gameObject.SetActive(isCurCharacter);
+            m_Points.ToList().ForEach(p => p.value = false);
             m_Points[curType - 1].value = true;
         }
 
-        public override void OnShow()
+        public override void OnShow(int choseIdx = 0)
         {
-            choseType = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
+            gameObject.SetActive(true);
+            if (choseIdx > 0)
+            {
+                choseType = choseIdx;
+            }
+            else
+            {
+                choseType = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
+            }
             OnCharacterChange(choseType);
         }
 
         public override void OnHide()
         {
+            gameObject.SetActive(false);
         }
 
         #endregion OnEvent

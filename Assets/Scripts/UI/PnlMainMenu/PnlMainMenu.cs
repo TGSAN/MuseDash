@@ -36,6 +36,7 @@ namespace PnlMainMenu
 
         public override void OnShow()
         {
+            gameObject.SetActive(true);
             OnUpdateInfo();
         }
 

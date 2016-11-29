@@ -33,7 +33,7 @@ namespace FormulaBase
             FormulaHost host = FomulaHostManager.Instance.CreateHost(HOST_IDX);
             if (host != null)
             {
-                host.SetDynamicData("ID", idx);
+                host.SetDynamicData(SignKeys.ID, idx);
             }
             return host;
         }
@@ -72,7 +72,7 @@ namespace FormulaBase
             List<FormulaHost> templist = ItemManageComponent.Instance.GetMaterialList;
             for (int i = 0, max = templist.Count; i < max; i++)
             {
-                targetId = (int)templist[i].GetDynamicDataByKey("ID");
+                targetId = (int)templist[i].GetDynamicDataByKey(SignKeys.ID);
                 if (_ID == targetId)
                 {
                     if (templist[i].GetDynamicIntByKey(SignKeys.STACK_NUMBER) != 1)//可以堆叠

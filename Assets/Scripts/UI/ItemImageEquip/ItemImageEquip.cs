@@ -11,7 +11,7 @@ namespace ItemImageEquip
     public class ItemImageEquip : UIPhaseBase
     {
         private static ItemImageEquip instance = null;
-        public UISprite sprSelected, sprOn, sprLock, sprBkg;
+        public UISprite sprSelected, sprOn, sprLock, sprBkg, sprPlusSign;
         public UILabel txtCount;
 
         public static ItemImageEquip Instance
@@ -94,6 +94,7 @@ namespace ItemImageEquip
             txtLvl.gameObject.SetActive(false);
             txtLv.gameObject.SetActive(false);
             texIcon.gameObject.SetActive(false);
+            sprPlusSign.gameObject.SetActive(true);
         }
 
         public override void OnShow(FormulaBase.FormulaHost h)
@@ -101,6 +102,11 @@ namespace ItemImageEquip
             host = h;
             SetTexByHost();
             SetTxtByHost();
+            isUpgradeSelected = false;
+            if (sprPlusSign != null)
+            {
+                sprPlusSign.gameObject.SetActive(false);
+            }
             UIEventListener.Get(gameObject).onClick = (go) =>
             {
                 if (isSelected || isLock)

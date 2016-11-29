@@ -36,7 +36,6 @@ namespace FormulaBase
             this.currentPetIndex = -1;
             this.currentSkillObject = null;
             this.pets = new Dictionary<int, FormulaHost>();
-
             string[] testpets = new string[] { "51010" }; //, "53010", "52010"};
             for (int i = 0; i < testpets.Length; i++)
             {

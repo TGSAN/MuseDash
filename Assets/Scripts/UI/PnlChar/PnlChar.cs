@@ -15,8 +15,9 @@ namespace PnlChar
         private static PnlChar instance = null;
 
         public Transform spiAnimParent;
-        public UIButton btnLeft, btnRight;
+        public UIButton btnLeft, btnRight, btnUnlock;
         public ItemImageEquip.ItemImageEquip[] items;
+        public GameObject goGrdGroove, goGrdServent;
         private readonly Dictionary<int, GameObject> m_SpiAniGODic = new Dictionary<int, GameObject>();
 
         public int curRoleIdx
@@ -107,48 +108,29 @@ namespace PnlChar
             onRoleChange += PnlCharInfo.PnlCharInfo.Instance.OnRoleChange;
             onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
             var maxCount = FormulaBase.RoleManageComponent.Instance.GetRoleCount();
-            Action onLeftClick = null;
-            onLeftClick = () =>
-            {
-                if (--curRoleIdx < 1)
-                {
-                    curRoleIdx = maxCount;
-                }
-                if (FormulaBase.RoleManageComponent.Instance.GetRoleLockedState(curRoleIdx))
-                {
-                    onLeftClick();
-                }
-                else
-                {
-                    onRoleChange(curRoleIdx);
-                }
-            };
             UIEventListener.Get(btnLeft.gameObject).onClick += go =>
-           {
-               onLeftClick();
-           };
+               {
+                   if (--curRoleIdx < 1)
+                   {
+                       curRoleIdx = maxCount;
+                   }
+                   onRoleChange(curRoleIdx);
+               };
 
-            Action onRightClick = null;
-            onRightClick = () =>
+            UIEventListener.Get(btnRight.gameObject).onClick += go =>
             {
                 if (++curRoleIdx > maxCount)
                 {
                     curRoleIdx = 1;
                 }
-                if (FormulaBase.RoleManageComponent.Instance.GetRoleLockedState(curRoleIdx))
-                {
-                    onRightClick();
-                }
-                else
-                {
-                    onRoleChange(curRoleIdx);
-                }
+                onRoleChange(curRoleIdx);
             };
 
-            UIEventListener.Get(btnRight.gameObject).onClick += go =>
-           {
-               onRightClick();
-           };
+            UIEventListener.Get(btnUnlock.gameObject).onClick += go =>
+            {
+                PnlMainMenu.PnlMainMenu.Instance.gameObject.SetActive(false);
+                PnlCharChose.PnlCharChose.Instance.OnShow(curRoleIdx);
+            };
 
             for (int i = 0; i < items.Length; i++)
             {
@@ -175,9 +157,6 @@ namespace PnlChar
 
         private void InitUI()
         {
-            var unlockCount = FormulaBase.RoleManageComponent.Instance.GetUnlockRoleCount();
-            btnLeft.gameObject.SetActive(unlockCount > 1);
-            btnRight.gameObject.SetActive(unlockCount > 1);
             foreach (var item in items)
             {
                 item.gameObject.SetActive(true);
@@ -201,6 +180,10 @@ namespace PnlChar
             m_PreRoleIdx = roleIdx;
             curEquipTypeIdx = 0;
             FormulaBase.RoleManageComponent.Instance.GetRole(roleIdx).SetAsUINotifyInstance();
+            var isLock = RoleManageComponent.Instance.GetRoleLockedState(curRoleIdx);
+            goGrdGroove.SetActive(!isLock);
+            goGrdServent.SetActive(!isLock);
+            btnUnlock.gameObject.SetActive(isLock);
             OnEquipLoad(roleIdx);
             OnSpiAnimLoad(roleIdx);
         }
