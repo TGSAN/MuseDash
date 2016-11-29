@@ -308,6 +308,10 @@ namespace PnlCharInfo
             OnApplyShow(idx);
             OnUpgradeItemsRefresh();
             OnPropertyBarShow(idx);
+
+            var isLock = RoleManageComponent.Instance.GetRoleLockedState(idx);
+            txtApply.gameObject.SetActive(!isLock);
+            btnFeed.gameObject.SetActive(!isLock);
         }
 
         private void OnPropertyBarShow(int idx)
@@ -321,9 +325,9 @@ namespace PnlCharInfo
             var curStrengh = role.Result(FormulaKeys.FORMULA_37);
 
             RoleManageComponent.Instance.GetMaxLevelProperties(role, ref maxVigour, ref maxStamina, ref maxStrengh);
-            sprVigour.fillAmount = (float)curVigour / (float)maxVigour;
-            sprStamina.fillAmount = (float)curStamina / (float)maxStamina;
-            sprStrengh.fillAmount = (float)curStrengh / (float)maxStrengh;
+            sprVigour.transform.localScale = new Vector3((float)curVigour / (float)maxVigour, 1.0f, 1.0f);
+            sprStamina.transform.localScale = new Vector3((float)curStamina / (float)maxStamina, 1.0f, 1.0f);
+            sprStrengh.transform.localScale = new Vector3((float)curStrengh / (float)maxStrengh, 1.0f, 1.0f);
             sprLuck.gameObject.SetActive(false);
         }
 

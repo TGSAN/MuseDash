@@ -1195,10 +1195,32 @@ public class ItemSort
             result = EquipSort_Quality(hostL, hostR);
             if (result == 0)
             {
-                result = EquipSort_Exp(hostL, hostR);
+                result = EquipSort_ItemID(hostL, hostR);
+                if (result == 0)
+                {
+                    result = EquipSort_Exp(hostL, hostR);
+                    if (result == 0)
+                    {
+                        result = EquipSort_BagID(hostL, hostR);
+                    }
+                }
             }
         }
         return result;
+    }
+
+    public static int EquipSort_BagID(FormulaHost hostL, FormulaHost hostR)
+    {
+        var idL = hostL.GetDynamicIntByKey(SignKeys.BAGINID);
+        var idR = hostR.GetDynamicIntByKey(SignKeys.BAGINID);
+        return idL - idR;
+    }
+
+    public static int EquipSort_ItemID(FormulaHost hostL, FormulaHost hostR)
+    {
+        var idL = hostL.GetDynamicIntByKey(SignKeys.ID);
+        var idR = hostR.GetDynamicIntByKey(SignKeys.ID);
+        return idL - idR;
     }
 
     public static int EquipSort_ItemType(FormulaHost hostL, FormulaHost hostR)

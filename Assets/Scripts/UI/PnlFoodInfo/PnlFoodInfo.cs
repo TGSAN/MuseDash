@@ -66,8 +66,10 @@ namespace PnlFoodInfo
             var exp = (int)h.Result(FormulaKeys.FORMULA_57);
             var description = h.GetDynamicStrByKey(SignKeys.DESCRIPTION);
             var cost = ItemManageComponent.Instance.GetItemMoney(h);
+            var quality = h.GetDynamicIntByKey(SignKeys.QUALITY);
 
             txtName.text = name;
+            txtName.color = PnlEquipInfo.PnlEquipInfo.Instance.colorName[quality - 1];
             txtExp.text = exp.ToString();
             txtDiscription.text = description;
             txtSaleCoins.text = cost.ToString();

@@ -15,7 +15,7 @@ namespace PnlMainMenu
         private static PnlMainMenu instance = null;
         public GameObject goSelectedSuitcase;
         public UILabel txtEnergy, txtCharm, txtCharmMax;
-        public UISprite sprRecoverTime, sprCharmBar;
+        public UISprite sprRecoverTime, sprCharmBar, sprExpBar;
         public UITweener twnEnergy, twnCoin, twnCrystal;
         public GameObject[] capsules;
         private Animator m_CapsuleAnimator;
@@ -46,6 +46,14 @@ namespace PnlMainMenu
             OnCrystalUpdate();
             OnCoinUpdate();
             OnCharmUpdate();
+            OnExpUpdate();
+        }
+
+        public void OnExpUpdate()
+        {
+            var expNextLvl = AccountLevelManagerComponent.Instance.NextLvlExp();
+            var curExp = AccountLevelManagerComponent.Instance.GetExp();
+            sprExpBar.width = (int)(240f * (float)curExp / (float)expNextLvl);
         }
 
         public void OnCharmUpdate(bool isUpdate = false, Action callFunc = null)

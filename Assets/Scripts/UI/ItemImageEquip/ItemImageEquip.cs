@@ -134,7 +134,7 @@ namespace ItemImageEquip
                     }
                     else
                     {
-                        PnlServantInfo.PnlServantInfo.Instance.OnShow();
+                        PnlServantInfo.PnlServantInfo.Instance.OnShow(host);
                         PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
                         PnlFoodInfo.PnlFoodInfo.Instance.OnExit();
                     }

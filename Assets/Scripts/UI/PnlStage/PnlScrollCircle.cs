@@ -16,9 +16,10 @@ namespace Assets.Scripts.NGUI
         public int musicEnergy;
         public int musicDifficulty;
         public int idx;
+        public int unLockNum;
         public bool isLock;
 
-        public StageInfo(int i, string icon, string music, string name, string author, int energy, int difficulty, bool isLocking)
+        public StageInfo(int i, string icon, string music, string name, string author, int energy, int difficulty, bool isLocking, int num)
         {
             idx = i;
             iconPath = icon;
@@ -28,6 +29,7 @@ namespace Assets.Scripts.NGUI
             musicEnergy = energy;
             musicDifficulty = difficulty;
             isLock = isLocking;
+            unLockNum = num;
         }
     }
 
@@ -279,6 +281,7 @@ namespace Assets.Scripts.NGUI
             {
                 if (!m_FinishEnter || m_StageInfos[m_CurrentIdx].isLock)
                 {
+                    CommonPanel.GetInstance().ShowText("需获得" + m_StageInfos[m_CurrentIdx].unLockNum.ToString() + "个奖杯才可以解锁！（当前：" + TaskStageTarget.Instance.GetTotalTrophy().ToString() + "奖杯）");
                     return;
                 }
                 m_FinishEnter = false;
@@ -341,8 +344,9 @@ namespace Assets.Scripts.NGUI
                 var musicPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "music");
                 var musicName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "name");
                 var authorName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "author");
+                var unlockNum = ConfigPool.Instance.GetConfigIntValue("stage", i.ToString(), "unlock");
                 var isLock = lockList[i];
-                m_StageInfos.Add(new StageInfo(i, iconPath, musicPath, musicName, authorName, 0, 0, isLock));
+                m_StageInfos.Add(new StageInfo(i, iconPath, musicPath, musicName, authorName, 0, 0, isLock, unlockNum));
             }
 #if UNITY_IPHONE || UNITY_ANDROID
             minMaxSlide.y *= 2;
@@ -797,7 +801,7 @@ namespace Assets.Scripts.NGUI
             {
                 m_FinishEnter = true;
                 CommonPanel.GetInstance().ShowWaittingPanel(false);
-            }, animDuration);
+            }, animDuration + 0.5f);
 
             var first = idx - 2;
             first = first < 0 ? first + m_CellGroup.Count : first;
