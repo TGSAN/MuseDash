@@ -20,11 +20,13 @@ namespace PnlEquipInfo
         public UILabel txtDiscription;
         public UILabel txtSuicaseName;
         public UILabel txtSuicaseEffect;
+        public UILabel txtLv;
         public UIGrid grdEquips;
         public UIButton btnSale;
         public UIButton btnUpgrade;
         public UIButton btnUpgradeBack;
         public UIButton btnConfirm;
+        public UIButton btnApply;
         public UISprite sprExpCurBar, sprExpNextBar;
         public Transform star;
         public GameObject charBack, suitcaseBack, itemUpgrade;
@@ -33,6 +35,7 @@ namespace PnlEquipInfo
         private bool m_IsUpgrade = false;
         public List<UITexture> upgradeTexs = new List<UITexture>();
         public List<UILabel> upgradeTxts = new List<UILabel>();
+        public Color[] colorName;
 
         public static PnlEquipInfo Instance
         {
@@ -145,8 +148,9 @@ namespace PnlEquipInfo
 
             Action updateInfo = () =>
             {
-                var name = h.GetDynamicStrByKey(SignKeys.NAME);
+                var itemName = h.GetDynamicStrByKey(SignKeys.NAME);
                 var type = h.GetDynamicStrByKey(SignKeys.TYPE);
+                var quality = h.GetDynamicIntByKey(SignKeys.QUALITY);
                 var curLvl = h.GetDynamicStrByKey(SignKeys.LEVEL);
                 var vigour = h.Result(FormulaKeys.FORMULA_50);
                 var stamina = h.Result(FormulaKeys.FORMULA_51);
@@ -159,7 +163,10 @@ namespace PnlEquipInfo
                 txtStamina.transform.parent.gameObject.SetActive(stamina > 0);
                 txtStrengh.transform.parent.gameObject.SetActive(strengh > 0);
 
-                txtName.text = name;
+                txtName.text = itemName;
+                txtName.color = colorName[quality - 1];
+                txtCurLvl.color = colorName[quality - 1];
+                txtLv.color = colorName[quality - 1];
                 txtType.text = type;
                 txtCurLvl.text = curLvl;
                 txtVigour.text = vigour.ToString();
@@ -204,6 +211,17 @@ namespace PnlEquipInfo
                         }
                     }
                 }
+                if (PnlChar.PnlChar.Instance.gameObject.activeSelf)
+                {
+                    var isOwned = h.GetDynamicIntByKey(SignKeys.WHO) == 1;
+                    btnUpgrade.gameObject.SetActive(isOwned);
+                    btnApply.gameObject.SetActive(!isOwned);
+                }
+                else
+                {
+                    btnUpgrade.gameObject.SetActive(true);
+                    btnApply.gameObject.SetActive(false);
+                }
             };
             updateInfo();
 
@@ -234,6 +252,49 @@ namespace PnlEquipInfo
                     });
                 });
             }));
+
+            UIEventListener.Get(btnApply.gameObject).onClick = go =>
+            {
+                var bagID = host.GetDynamicIntByKey(FormulaBase.SignKeys.BAGINID);
+                var curEquipList = FormulaBase.EquipManageComponent.Instance.GetGirlEquipHosts(PnlChar.PnlChar.Instance.curRoleIdx, PnlChar.PnlChar.Instance.curEquipTypeIdx, true);
+                if (curEquipList.Length > 0)
+                {
+                    CommonPanel.GetInstance().ShowWaittingPanel(true);
+                    FormulaBase.EquipManageComponent.Instance.Equip(
+                        curEquipList[0].GetDynamicIntByKey(FormulaBase.SignKeys.BAGINID), false,
+                        result =>
+                        {
+                            if (result)
+                            {
+                                FormulaBase.EquipManageComponent.Instance.Equip(bagID, true, r =>
+                                {
+                                    if (r)
+                                    {
+                                        PnlChar.PnlChar.Instance.OnEquipLoad(PnlChar.PnlChar.Instance.curRoleIdx);
+                                        PnlCharInfo.PnlCharInfo.Instance.UpdateItemList(bagID);
+                                        btnUpgrade.gameObject.SetActive(true);
+                                        btnApply.gameObject.SetActive(false);
+                                        CommonPanel.GetInstance().ShowWaittingPanel(false);
+                                    }
+                                });
+                            }
+                        });
+                }
+                else
+                {
+                    FormulaBase.EquipManageComponent.Instance.Equip(bagID, true, r =>
+                    {
+                        if (r)
+                        {
+                            PnlChar.PnlChar.Instance.OnEquipLoad(PnlChar.PnlChar.Instance.curRoleIdx);
+                            PnlCharInfo.PnlCharInfo.Instance.UpdateItemList(bagID);
+                            btnUpgrade.gameObject.SetActive(true);
+                            btnApply.gameObject.SetActive(false);
+                            CommonPanel.GetInstance().ShowWaittingPanel(false);
+                        }
+                    });
+                }
+            };
 
             UIEventListener.Get(btnUpgrade.gameObject).onClick = (go) =>
             {

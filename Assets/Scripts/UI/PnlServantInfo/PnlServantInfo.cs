@@ -11,8 +11,10 @@ namespace PnlServantInfo
     public class PnlServantInfo : UIPhaseBase
     {
         private static PnlServantInfo instance = null;
-        public UILabel txtInfo, txtName, txtExp, txtDescription, txtSaleCoins;
-        public UIButton btnSale;
+        public UILabel txtInfo, txtName, txtLvl, txtDescription, txtLv;
+        public UISprite sprVigour, sprStamina, sprStrengh;
+        public UIButton btnApply, btnUpgrade;
+        public UISprite sprArrow;
 
         public Animator animator
         {
@@ -47,22 +49,35 @@ namespace PnlServantInfo
         {
             gameObject.SetActive(true);
             animator.enabled = true;
-            OnEnter();
-            var itemName = h.GetDynamicStrByKey(SignKeys.NAME);
-            var exp = (int)h.Result(FormulaKeys.FORMULA_57);
-            var description = h.GetDynamicStrByKey(SignKeys.DESCRIPTION);
-            var cost = ItemManageComponent.Instance.GetItemMoney(h);
-
-            txtName.text = itemName;
-            txtExp.text = exp.ToString();
-            txtDescription.text = description;
-            txtSaleCoins.text = cost.ToString();
-
-            btnSale.onClick.Clear();
-            btnSale.onClick.Add(new EventDelegate(() =>
+            if (h.GetDynamicStrByKey(SignKeys.TYPE) == "servant")
             {
-                PnlItemSale.PnlItemSale.Instance.OnShow(h);
-            }));
+                animator.Play("pnl_servant_info_in");
+            }
+            else
+            {
+                animator.Play("pnl_servantsoul_info_in");
+            }
+            var itemName = h.GetDynamicStrByKey(SignKeys.NAME);
+            var description = h.GetDynamicStrByKey(SignKeys.DESCRIPTION);
+            var lvl = h.GetDynamicIntByKey(SignKeys.LEVEL);
+            var quality = h.GetDynamicIntByKey(SignKeys.QUALITY);
+
+            var color = PnlEquipInfo.PnlEquipInfo.Instance.colorName[quality - 1];
+            txtName.text = itemName;
+            txtName.color = color;
+            txtLv.color = color;
+            txtLvl.color = color;
+            txtDescription.text = description;
+            txtLvl.text = lvl.ToString();
+
+            sprVigour.gameObject.SetActive(false);
+            sprStamina.gameObject.SetActive(false);
+            sprStrengh.gameObject.SetActive(false);
+            sprArrow.gameObject.SetActive(false);
+
+            var isOwned = h.GetDynamicIntByKey(SignKeys.WHO) == 1;
+            btnUpgrade.gameObject.SetActive(isOwned);
+            btnApply.gameObject.SetActive(!isOwned);
         }
 
         public override void OnHide()
