@@ -11,7 +11,7 @@ namespace PnlServantInfo
     public class PnlServantInfo : UIPhaseBase
     {
         private static PnlServantInfo instance = null;
-        public UILabel txtInfo, txtName, txtLvl, txtDescription, txtLv;
+        public UILabel txtName, txtLvl, txtDescription, txtLv;
         public UISprite sprVigour, sprStamina, sprStrengh;
         public UIButton btnApply, btnUpgrade;
         public UISprite sprArrow;

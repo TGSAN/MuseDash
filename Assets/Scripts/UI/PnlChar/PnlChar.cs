@@ -216,7 +216,14 @@ namespace PnlChar
 
                 if (i != 3) continue;
                 var servantHost = PetManageComponent.Instance.GetEquipedPet(idx);
-                item.OnShow(servantHost);
+                if (servantHost != null)
+                {
+                    item.OnShow(servantHost);
+                }
+                else
+                {
+                    item.OnShow("Servant");
+                }
             }
         }
 
