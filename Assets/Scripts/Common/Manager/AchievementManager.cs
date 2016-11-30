@@ -213,7 +213,7 @@ namespace Assets.Scripts.Common.Manager
             }
             stageHost.SetDynamicData(SignKeys.ACHIEVEMENT, achs);
             AccountGoldManagerComponent.Instance.ChangeMoney(coins, isSave);
-            AccountCrystalManagerComponent.Instance.ChangeDiamond(crystals, isSave);
+            AccountCrystalManagerComponent.Instance.ChangeCrystal(crystals, isSave);
             return stageHost;
         }
 

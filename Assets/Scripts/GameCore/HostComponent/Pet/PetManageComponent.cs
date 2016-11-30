@@ -4,6 +4,7 @@ using FormulaBase;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace FormulaBase
 {
@@ -126,16 +127,10 @@ namespace FormulaBase
             }
         }
 
-        public FormulaHost GetEquipedPet(int _index)
+        public FormulaHost GetEquipedPet(int idx)
         {
-            for (int i = 0, max = m_ListEquipedPetHosts.Count; i < max; i++)
-            {
-                if (_index + RoleManageComponent.Instance.GetFightGirlIndex() * 10 == m_ListEquipedPetHosts[i].GetDynamicIntByKey(SignKeys.EQUIPEDQUEUE))
-                {
-                    return m_ListEquipedPetHosts[i];
-                }
-            }
-            return null;
+            FormulaHost host = ItemManageComponent.Instance.GetPetList.ToList().Find(h => h.GetDynamicIntByKey(SignKeys.WHO) == idx);
+            return host;
         }
 
         public bool CheckHaveSamePet(FormulaHost _host, int _index)

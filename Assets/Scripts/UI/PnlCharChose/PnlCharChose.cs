@@ -158,22 +158,13 @@ namespace PnlCharChose
             if (!m_SpiAniGODic.ContainsKey(idx))
             {
                 var path = m_ActionPaths[idx - 1];
-                var template = Resources.Load(path) as GameObject;
-                if (template)
-                {
-                    GameObject go = null;
-                    ResourceLoader.Instance.Load(path, res => go = Instantiate(res) as GameObject);
-                    go.transform.SetParent(spiParent, false);
-                    go.SetActive(true);
-                    go.transform.localPosition = Vector3.zero;
-                    go.transform.localEulerAngles = Vector3.zero;
-                    m_SpiAniGODic.Add(idx, go);
-                }
-                else
-                {
-                    Debug.LogError("加载未获得对象 : " + path);
-                    return;
-                }
+                GameObject go = null;
+                ResourceLoader.Instance.Load(path, res => go = Instantiate(res) as GameObject);
+                go.transform.SetParent(spiParent, false);
+                go.SetActive(true);
+                go.transform.localPosition = Vector3.zero;
+                go.transform.localEulerAngles = Vector3.zero;
+                m_SpiAniGODic.Add(idx, go);
             }
             foreach (var pair in m_SpiAniGODic)
             {

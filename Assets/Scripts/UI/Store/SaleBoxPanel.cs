@@ -47,7 +47,7 @@ public class SaleBoxPanel : MonoBehaviour {
 			CommonPanel.GetInstance().ShowText("背包的容量已经是最大了!");
 			
 		}
-		else if(AccountCrystalManagerComponent.Instance.GetDiamond()<UpDanmond)// 钻石不够
+		else if(AccountCrystalManagerComponent.Instance.GetCrystal()<UpDanmond)// 钻石不够
 		{
 			Debug.Log("钻石不够");
 			

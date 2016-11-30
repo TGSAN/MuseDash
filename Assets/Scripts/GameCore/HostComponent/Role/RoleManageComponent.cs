@@ -275,7 +275,7 @@ namespace FormulaBase
         public bool PurchaseRole(int idx, Callback callBack = null)
         {
             var roleHost = GetRole(idx);
-            if (roleHost.GetDynamicIntByKey(SignKeys.SOLD) > AccountCrystalManagerComponent.Instance.GetDiamond())
+            if (roleHost.GetDynamicIntByKey(SignKeys.SOLD) > AccountCrystalManagerComponent.Instance.GetCrystal())
             {
                 CommonPanel.GetInstance().ShowText("钻石不足哟~~");
                 CommonPanel.GetInstance().ShowWaittingPanel(false);
@@ -292,7 +292,7 @@ namespace FormulaBase
             bool _result = true;
             GetUnLockRoleMoeny(_index, ref ttype, ref tcost);
 
-            AccountCrystalManagerComponent.Instance.ChangeDiamond(-tcost, true, new HttpResponseDelegate(((bool result) =>
+            AccountCrystalManagerComponent.Instance.ChangeCrystal(-tcost, true, new HttpResponseDelegate(((bool result) =>
             {
                 if (!result) return;
                 FormulaHost host = GetRole(_index);

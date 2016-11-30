@@ -1,8 +1,19 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FormulaBase
 {
+    public enum FileType
+    {
+        Account,
+        Role,
+        Equip,
+        Material,
+        Pet,
+        Task,
+    }
+
     public class CustomComponentBase
     {
         private FormulaHost currentHost;
@@ -201,6 +212,18 @@ namespace FormulaBase
             }
 
             FormulaHost.SaveList(_list, rsp);
+        }
+
+        public static void DeleteAllHost(HttpEndResponseDelegate callFunc = null)
+        {
+            var enums = Enum.GetNames(typeof(FileType));
+            var list = new List<FormulaHost>();
+            foreach (var e in enums)
+            {
+                var hostList = FomulaHostManager.Instance.GetHostListByFileName(e.ToString());
+                list.AddRange(hostList.Values);
+            }
+            FormulaHost.DeleteList(list, callFunc);
         }
     }
 }

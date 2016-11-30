@@ -62,7 +62,7 @@ public class StoreSaleBox : MonoBehaviour {
 //			
 //			break;
 //		case 2:
-//			if(AccountManagerComponent.Instance.ChangeDiamond(-m_BuyNumber))
+//			if(AccountManagerComponent.Instance.ChangeCrystal(-m_BuyNumber))
 //			{
 //				GetRes();
 //			}
@@ -86,7 +86,7 @@ public class StoreSaleBox : MonoBehaviour {
 	//			AccountGoldManagerComponent.Instance.ChangeMoney(m_GetNumber);
 //			break;
 //		case 2:
-//			AccountManagerComponent.Instance.ChangeDiamond(m_GetNumber);
+//			AccountManagerComponent.Instance.ChangeCrystal(m_GetNumber);
 //			break;
 //		case 3:
 	//			AccountPhysicsManagerComponent.Instance.ChangePhysical(m_GetNumber);

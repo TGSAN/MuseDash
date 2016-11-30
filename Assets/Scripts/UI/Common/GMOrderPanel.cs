@@ -17,7 +17,7 @@ public class GMOrderPanel : MonoBehaviour
 
     public void GetDiamond()
     {
-        AccountCrystalManagerComponent.Instance.ChangeDiamond(100);
+        AccountCrystalManagerComponent.Instance.ChangeCrystal(100);
     }
 
     public void GetPhysical()
@@ -32,16 +32,9 @@ public class GMOrderPanel : MonoBehaviour
 
     public void DeleteAccountData()
     {
-        BagManageComponent.Instance.DeleteBagData();
-        ItemManageComponent.Instance.DeleteAllItem();
-        ChestManageComponent.Instance.GetChestList.Clear();
-        ChestManageComponent.Instance.GetTimeDownChest.Clear();
-        //RoleManageComponent.Instance.CreateRoles();
-        AccountManagerComponent.Instance.DeletePlayerData(new HttpEndResponseDelegate(DeleteAccountCallBack));//(120,true);
+        CustomComponentBase.DeleteAllHost();
 
-        //	AccountManagerComponent.Instance.DeleteAccountData();
-        //		ItemManageComponent.Instance.Init();
-        // AccountData.g_Instan.DeletePlyaerData();
+        //AccountManagerComponent.Instance.DeletePlayerData(new HttpEndResponseDelegate(DeleteAccountCallBack));
     }
 
     private void DeleteAccountCallBack(cn.bmob.response.EndPointCallbackData<Hashtable> response)
