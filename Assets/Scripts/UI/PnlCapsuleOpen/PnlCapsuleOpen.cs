@@ -17,8 +17,13 @@ namespace PnlCapsuleOpen
         public UIButton btnOpen, btnPurchase;
         public UITexture[] texItems;
         public GameObject[] capsules;
-        public UIPlayAnimation[] playAnimations;
         private static PnlCapsuleOpen instance = null;
+        private string m_AnimName = string.Empty;
+
+        public Animator animator
+        {
+            get; private set;
+        }
 
         public static PnlCapsuleOpen Instance
         {
@@ -30,6 +35,7 @@ namespace PnlCapsuleOpen
 
         private void Start()
         {
+            animator = GetComponent<Animator>();
         }
 
         public override void OnShow()
@@ -67,14 +73,22 @@ namespace PnlCapsuleOpen
                 {
                 }
             }
-            playAnimations = btnOpen.gameObject.GetComponents<UIPlayAnimation>();
-            playAnimations[0].clipName = "capsule_open_item" + commonItemCount.ToString();
-            var isAnimate = AccountCharmComponent.Instance.GetCharm() >= curCapsule.charmRequire;
-            playAnimations.ToList().ForEach(a => a.enabled = isAnimate);
+            m_AnimName = "capsule_open_item" + commonItemCount.ToString();
+        }
+
+        private void PlayAnimation()
+        {
+            animator.enabled = true;
+            animator.Play(m_AnimName);
+            var capsuleAnimator =
+                capsules.ToList().Find(c => c.gameObject.activeSelf).GetComponentInChildren<Animator>();
+            capsuleAnimator.enabled = true;
+            capsuleAnimator.Play("capsule_open");
         }
 
         private void OnDisable()
         {
+            btnPurchase.gameObject.SetActive(false);
             if (PnlMainMenu.PnlMainMenu.Instance != null)
             {
                 PnlMainMenu.PnlMainMenu.Instance.OnCharmUpdate();
@@ -90,11 +104,11 @@ namespace PnlCapsuleOpen
                 if (AccountCharmComponent.Instance.GetCharm() < CapsuleManager.instance.curCapsule.charmRequire)
                 {
                     btnPurchase.gameObject.SetActive(true);
-                    btnPurchase.GetComponentInChildren<UILabel>().text = "fucker";
+                    btnPurchase.GetComponentInChildren<UILabel>().text = ((int)(CapsuleManager.instance.curCapsule.charmRequire * StoreManageComponent.Instance.Host.Result(FormulaKeys.FORMULA_115))).ToString();
                 }
                 else
                 {
-                    playAnimations.ToList().ForEach(a => a.enabled = true);
+                    PlayAnimation();
                     CapsuleManager.instance.OpenCapsule((result) =>
                     {
                         if (result)
@@ -110,17 +124,38 @@ namespace PnlCapsuleOpen
 
             btnPurchase.onClick.Add(new EventDelegate(() =>
             {
-                playAnimations.ToList().ForEach(a => a.enabled = true);
-                CapsuleManager.instance.OpenCapsule((result) =>
+                var crystalRequired = CapsuleManager.instance.curCapsule.charmRequire * StoreManageComponent.Instance.charmRate;
+                var curCrystal = AccountCrystalManagerComponent.Instance.GetCrystal();
+                var text = "确认用" + crystalRequired.ToString() + "钻石购买吗？";
+                Callback callback = () =>
                 {
-                    if (result)
+                    AccountCrystalManagerComponent.Instance.ChangeCrystal(-crystalRequired, true, r =>
                     {
-                        if (PnlSuitcase.PnlSuitcase.Instance != null)
+                        if (r)
                         {
-                            PnlSuitcase.PnlSuitcase.Instance.UpdateSuitcase();
+                            PlayAnimation();
+                            CapsuleManager.instance.OpenCapsule((result) =>
+                            {
+                                if (result)
+                                {
+                                    if (PnlSuitcase.PnlSuitcase.Instance != null)
+                                    {
+                                        PnlSuitcase.PnlSuitcase.Instance.UpdateSuitcase();
+                                    }
+                                }
+                            });
                         }
-                    }
-                });
+                    });
+                };
+                if (crystalRequired > curCrystal)
+                {
+                    text = "钻石不足哦，是否前往商店购买呢？";
+                    callback = () =>
+                    {
+                    };
+                }
+
+                CommonPanel.GetInstance().ShowYesNo(text, callback);
             }));
         }
     }

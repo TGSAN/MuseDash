@@ -99,6 +99,7 @@ namespace PnlChar
                         break;
                     }
                 }
+                OnSpiAnimLoad(i);
             }
         }
 

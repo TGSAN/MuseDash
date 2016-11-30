@@ -33,7 +33,7 @@ namespace FormulaBase
             account.SetDynamicData(SignKeys.CRYSTAL, diamond);
         }
 
-        public int GetDiamond()
+        public int GetCrystal()
         {
             FormulaHost account = AccountManagerComponent.Instance.GetAccount();
             if (account == null)
@@ -49,7 +49,7 @@ namespace FormulaBase
         /// Changes the diamond.
         ///
         /// Sample :
-        /// AccountCrystalManagerComponent.Instance.ChangeDiamond (-1000, true, new HttpResponseDelegate (((bool result) => {
+        /// AccountCrystalManagerComponent.Instance.ChangeCrystal (-1000, true, new HttpResponseDelegate (((bool result) => {
         /// 	Debug.Log ("On Change Diamond : " + result);
         /// })));
         ///
@@ -58,7 +58,7 @@ namespace FormulaBase
         /// <param name="diamond">Diamond.</param>
         /// <param name="isave">If set to <c>true</c> isave.</param>
         /// <param name="rsp">Rsp.</param>
-        public bool ChangeDiamond(int diamond, bool isave = true, HttpResponseDelegate rsp = null)
+        public bool ChangeCrystal(int diamond, bool isave = true, HttpResponseDelegate rsp = null)
         {
             FormulaHost account = AccountManagerComponent.Instance.GetAccount();
             if (account == null)
