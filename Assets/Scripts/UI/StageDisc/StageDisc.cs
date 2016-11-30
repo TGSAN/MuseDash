@@ -90,7 +90,6 @@ namespace StageDisc
 
             _discTable[this.staegId] = this;
             SetUnlockTrophyAmount(idx);
-            //this.SetTxrByStage ();
         }
 
         public void SetUnlockTrophyAmount(int idx)

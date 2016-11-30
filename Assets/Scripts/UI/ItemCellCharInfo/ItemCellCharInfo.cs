@@ -113,11 +113,12 @@ namespace ItemCellCharInfo
                 }
                 else
                 {
+                    PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(host);
                     PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
                     DOTweenUtils.Delay(() =>
                     {
-                        PnlEquipInfo.PnlEquipInfo.Instance.Play("item_upgrade_in");
                         PnlEquipInfo.PnlEquipInfo.Instance.isUpgrade = true;
+                        PnlEquipInfo.PnlEquipInfo.Instance.Play("item_upgrade_in");
                     }, 0.1f);
                 }
             };

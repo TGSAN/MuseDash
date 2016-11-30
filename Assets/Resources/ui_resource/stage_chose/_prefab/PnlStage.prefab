@@ -1278,6 +1278,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000013930858058
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013229937890}
+  - 114: {fileID: 114000012551691812}
+  - 114: {fileID: 114000012057746800}
+  - 114: {fileID: 114000012702876968}
+  - 65: {fileID: 65000012494417566}
+  - 114: {fileID: 114000012072079836}
+  - 82: {fileID: 82000011492759734}
+  m_Layer: 5
+  m_Name: TxtTouchToStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000013943674440
 GameObject:
   m_ObjectHideFlags: 1
@@ -1334,14 +1355,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012188432164}
-  - 114: {fileID: 114000012551691812}
-  - 114: {fileID: 114000012057746800}
-  - 114: {fileID: 114000012702876968}
   - 65: {fileID: 65000010662954690}
-  - 114: {fileID: 114000012072079836}
-  - 82: {fileID: 82000011492759734}
+  - 114: {fileID: 114000011448769428}
   m_Layer: 5
-  m_Name: TxtTouchToStart
+  m_Name: BtnTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2146,7 +2163,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013349852086}
-  m_RootOrder: 5
+  m_RootOrder: 8
 --- !u!4 &4000012245830014
 Transform:
   m_ObjectHideFlags: 1
@@ -2395,6 +2412,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000011004011424}
   m_RootOrder: 12
+--- !u!4 &4000013229937890
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013930858058}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -140, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013349852086}
+  m_RootOrder: 5
 --- !u!4 &4000013236601138
 Transform:
   m_ObjectHideFlags: 1
@@ -2424,9 +2454,10 @@ Transform:
   - {fileID: 4000014169711986}
   - {fileID: 4000014271783054}
   - {fileID: 4000011161162016}
-  - {fileID: 4000012188432164}
+  - {fileID: 4000013229937890}
   - {fileID: 4000012251562602}
   - {fileID: 4000010128943812}
+  - {fileID: 4000012188432164}
   m_Father: {fileID: 4000010398275416}
   m_RootOrder: 0
 --- !u!4 &4000013362553802
@@ -2823,6 +2854,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1200, y: 550, z: 0}
   m_Center: {x: 0, y: -100, z: 0}
+--- !u!65 &65000012494417566
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013930858058}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 350, y: 350, z: 1}
+  m_Center: {x: 0, y: 120, z: 0}
 --- !u!65 &65000012938223678
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2852,7 +2895,7 @@ AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014087704234}
+  m_GameObject: {fileID: 1000013930858058}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -4329,6 +4372,43 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 65f66dd2f3cd949b28da34f9929d6faf, type: 2}
   mSpriteName: difficulty_4
   mFillCenter: 1
+--- !u!114 &114000011448769428
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014087704234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858a20c1b21a3f94bb5b2d3b901c9aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 100
+  mHeight: 100
+  mDepth: 133
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
 --- !u!114 &114000011456566294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5387,7 +5467,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014087704234}
+  m_GameObject: {fileID: 1000013930858058}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e2747e3775af504da1a4d5a46c5a1ce, type: 3}
@@ -5420,7 +5500,7 @@ MonoBehaviour:
   - mTarget: {fileID: 114000010365787410}
     mMethodName: OnAnimationFinishCommon
     mParameters:
-    - obj: {fileID: 1000014087704234}
+    - obj: {fileID: 1000013930858058}
       field: 
     oneShot: 0
   eventReceiver: {fileID: 0}
@@ -5432,7 +5512,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014087704234}
+  m_GameObject: {fileID: 1000013930858058}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1bd99dcf43f97d48bb6215c70f0cd40, type: 3}
@@ -6001,7 +6081,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014087704234}
+  m_GameObject: {fileID: 1000013930858058}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
@@ -6380,7 +6460,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014087704234}
+  m_GameObject: {fileID: 1000013930858058}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
@@ -8450,7 +8530,8 @@ MonoBehaviour:
   sprEnergy: {fileID: 114000011812473996}
   energy: {fileID: 1000012475127406}
   difficulty: {fileID: 1000013857325814}
-  btnStart: {fileID: 1000014087704234}
+  btnStart: {fileID: 1000013930858058}
+  btnTip: {fileID: 1000014087704234}
   sprSongProgress: {fileID: 114000011775110260}
   trophyParent: {fileID: 4000011081304668}
   txtTrophySum: {fileID: 114000013683447706}

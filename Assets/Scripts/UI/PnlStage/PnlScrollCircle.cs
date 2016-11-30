@@ -88,7 +88,7 @@ namespace Assets.Scripts.NGUI
         public UILabel txtNameLast, txtAuthorLast, txtEnergyLast;
         public UISprite sprEnergy;
         public GameObject energy, difficulty;
-        public GameObject btnStart;
+        public GameObject btnStart, btnTip;
         public UISprite sprSongProgress;
         public Transform trophyParent;
         public UILabel txtTrophySum;
@@ -324,6 +324,11 @@ namespace Assets.Scripts.NGUI
                 }
                 OnChangeOffset(new Vector3(0, 0, angle * 1), nextPageTime);
             };
+            UIEventListener.Get(btnTip.gameObject).onClick = go =>
+            {
+                var unLockNum = m_StageInfos[m_CurrentIdx].unLockNum;
+                CommonPanel.GetInstance().ShowText("需获得" + unLockNum.ToString() + "个奖杯才可以解锁！（当前:" + TaskStageTarget.Instance.GetTotalTrophy().ToString() + "个奖杯）");
+            };
             onSongChange += PlayMusic;
             onSongChange += OnInfoChange;
         }
@@ -417,11 +422,13 @@ namespace Assets.Scripts.NGUI
         private void OnTrophyChange()
         {
             var trophyNum = TaskStageTarget.Instance.GetXMax(TaskStageTarget.TASK_SIGNKEY_STAGE_EVLUATE);
+            var unLockNum = m_StageInfos[m_CurrentIdx].unLockNum;
             for (int i = 0; i < trophyParent.childCount; i++)
             {
                 var child = trophyParent.GetChild(i);
                 child.GetChild(0).gameObject.SetActive(i < trophyNum);
             }
+            btnTip.gameObject.SetActive(unLockNum > trophyNum);
         }
 
         private void OnEnergyInfoChange(bool change)

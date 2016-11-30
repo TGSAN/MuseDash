@@ -25,6 +25,7 @@ namespace PnlEquipInfo
         public UIButton btnSale;
         public UIButton btnUpgrade;
         public UIButton btnUpgradeBack;
+        public UIButton btnCharBack;
         public UIButton btnConfirm;
         public UIButton btnApply;
         public UISprite sprExpCurBar, sprExpNextBar;
@@ -311,6 +312,13 @@ namespace PnlEquipInfo
             UIEventListener.VoidDelegate callFunc = (go) =>
             {
                 var isShow = PnlMainMenu.PnlMainMenu.Instance.goSelectedSuitcase.activeSelf;
+                if (!isShow)
+                {
+                    animator.enabled = false;
+                    btnUpgradeBack.transform.parent.gameObject.SetActive(false);
+                }
+                animator.enabled = true;
+                gameObject.SetActive(isShow);
                 PnlChar.PnlChar.Instance.gameObject.SetActive(!isShow);
                 PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(isShow);
                 isUpgrade = false;
@@ -321,6 +329,7 @@ namespace PnlEquipInfo
                 var hosts = PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost;
                 if (hosts.Count > 0)
                 {
+                    animator.enabled = true;
                     UpgradeManager.instance.ItemLevelUp(h, hosts, (result) =>
                     {
                         PnlSuitcase.PnlSuitcase.Instance.SetUpgradeSelectedCell(null);
@@ -328,6 +337,11 @@ namespace PnlEquipInfo
                         updateInfo();
                         callFunc(gameObject);
                     });
+                }
+                else
+                {
+                    animator.enabled = false;
+                    CommonPanel.GetInstance().ShowText("请在左边手提箱中选择装备");
                 }
             };
             host = h;
