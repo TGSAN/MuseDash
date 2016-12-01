@@ -151,10 +151,13 @@ public class FightMenuPanel : MonoBehaviour
                     }
                     twnTrophys.ToList().ForEach(t =>
                     {
-                        t.gameObject.SetActive(true);
-                        t.enabled = true;
-                        t.ResetToBeginning();
-                        t.Play(true);
+                        if (t)
+                        {
+                            t.gameObject.SetActive(true);
+                            t.enabled = true;
+                            t.ResetToBeginning();
+                            t.Play(true);
+                        }
                     });
                 }, () => TaskStageTarget.Instance.IsAchieveNow());
             }, 1.0f);

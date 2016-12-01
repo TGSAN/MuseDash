@@ -45,12 +45,12 @@ namespace PnlAdventure
 
         public override void OnShow()
         {
+            ChoseGirl();
             gameObject.SetActive(true);
             if (!backFromBattle)
             {
                 this.PlayBgm();
             }
-            ChoseGirl();
             backFromBattle = false;
         }
 

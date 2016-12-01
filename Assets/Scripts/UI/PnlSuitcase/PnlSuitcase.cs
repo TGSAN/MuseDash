@@ -141,15 +141,17 @@ namespace PnlSuitcase
         public void SetSelectedCell(FormulaHost h)
         {
             m_SelectedHost = h;
-            if (m_SelectedHost != null)
+            foreach (var itemImageEquip in m_Cells)
             {
-                foreach (var itemImageEquip in m_Cells)
+                var host = itemImageEquip.host;
+                if (m_SelectedHost != null)
                 {
-                    var host = itemImageEquip.host;
-                    if (host != null)
-                    {
-                        itemImageEquip.OnSelected(m_SelectedHost.GetDynamicIntByKey(SignKeys.BAGINID) == host.GetDynamicIntByKey(SignKeys.BAGINID));
-                    }
+                    itemImageEquip.OnSelected(m_SelectedHost.GetDynamicIntByKey(SignKeys.BAGINID) ==
+                                              host.GetDynamicIntByKey(SignKeys.BAGINID));
+                }
+                else
+                {
+                    itemImageEquip.OnSelected(false);
                 }
             }
         }
@@ -184,7 +186,7 @@ namespace PnlSuitcase
                 }
                 else
                 {
-                    if (!PnlEquipInfo.PnlEquipInfo.Instance.itemUpgrade.activeSelf)
+                    if (!isUpgrade)
                     {
                         if (m_SelectedHost != null && m_SelectedHost.GetFileName() == "Equip")
                         {

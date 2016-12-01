@@ -256,6 +256,10 @@ namespace PnlCharInfo
                         });
                     }
                 }
+                else
+                {
+                    CommonPanel.GetInstance().ShowText("请在左边手提箱中选择食物");
+                }
             };
             UIEventListener.Get(btnApply.gameObject).onClick = (go) =>
             {
