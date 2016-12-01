@@ -282,7 +282,7 @@ namespace FormulaBase
 
             string voice = seHost.GetDynamicStrByKey(SignKeys.MUSIC_NAME);
             _speakerOfType[effectType] = speaker;
-            Debug.Log(speaker + " with type " + effectType + " say : " + voice);
+            //Debug.Log(speaker + " with type " + effectType + " say : " + voice);
             SceneAudioManager.Instance.Play(voice, effectType);
         }
 

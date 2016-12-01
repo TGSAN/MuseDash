@@ -519,7 +519,10 @@ namespace FormulaBase
                     obj = GameGlobal.gGameMusicScene.PreLoad(idx);
                     if (obj == null)
                     {
-                        obj = StageBattleComponent.Instance.AddObj(ref filename);
+                        if (!string.IsNullOrEmpty(filename))
+                        {
+                            obj = StageBattleComponent.Instance.AddObj(ref filename);
+                        }
                     }
                 }
             }

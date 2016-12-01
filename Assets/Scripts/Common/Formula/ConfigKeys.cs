@@ -89,6 +89,7 @@ namespace FormulaBase {
 			{ "shall_we_meet2", "stage/stage_v1/json/"},
 			{ "shall_we_meet3", "stage/stage_v1/json/"},
 			{ "shall_we_meet_easy1", "stage/stage_v1/json/"},
+			{ "snow_and_rain1", "stage/stage_v1/json/"},
 			{ "stream1", "stage/stage_v1/json/"},
 			{ "stream2", "stage/stage_v1/json/"},
 			{ "stream3", "stage/stage_v1/json/"},

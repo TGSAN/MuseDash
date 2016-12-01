@@ -71,7 +71,6 @@ namespace GameLogic
                 FixUpdateTimer.RollTimer();
                 return;
             }
-
             decimal bgts = (decimal)AudioManager.Instance.GetBackGroundMusicTime();
             bgts = bgts - bgts % FixUpdateTimer.dInterval;
             int c = (int)((bgts - this.lastMusicTick) / FixUpdateTimer.dInterval);

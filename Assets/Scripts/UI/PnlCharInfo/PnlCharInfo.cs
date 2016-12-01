@@ -68,7 +68,10 @@ namespace PnlCharInfo
 
         public void OnExit()
         {
-            m_Animator.Play("pnl_items_choose_out");
+            if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("pnl_items_choose_in"))
+            {
+                m_Animator.Play("pnl_items_choose_out");
+            }
         }
 
         public override void OnShow()
@@ -312,7 +315,7 @@ namespace PnlCharInfo
             OnApplyShow(idx);
             OnUpgradeItemsRefresh();
             OnPropertyBarShow(idx);
-
+            OnExit();
             var isLock = RoleManageComponent.Instance.GetRoleLockedState(idx);
             txtApply.gameObject.SetActive(!isLock);
             btnFeed.gameObject.SetActive(!isLock);
@@ -343,7 +346,7 @@ namespace PnlCharInfo
                 clothStr = clothStr.Substring(0, clothStr.Length - 1);
             }
             var suitStr = RoleManageComponent.Instance.GetRole(idx).GetDynamicStrByKey(SignKeys.SUIT_GROUP);
-            btnApply.gameObject.SetActive(suitStr != clothStr);
+            btnApply.gameObject.SetActive(suitStr != clothStr && !RoleManageComponent.Instance.GetRoleLockedState(idx));
             if ((suitStr == "0" && clothStr == (idx * 10).ToString()) || string.IsNullOrEmpty(clothStr))
             {
                 btnApply.gameObject.SetActive(false);

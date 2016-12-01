@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections;
+using UnityEngine;
 
 /*
  * 使用方法：
@@ -14,7 +14,7 @@ using System.Collections;
 	public void touchTrigger(object sender, EventTrigger.EventTriggerArgs e, params object[] args){
 		Debug.Log ("Raise Touch Event " + e.triggerArgs);
 	}
-	
+
 	e.Trigger += touchTrigger
 	响应方法支持动态参数args
 	也可以删除响应方法
@@ -25,24 +25,32 @@ using System.Collections;
 	则e.Trigger所添加的响应方法会被依次调用（例如touchTrigger会被调用）。
 
  */
-namespace DYUnityLib {
-	public class EventTrigger {
-		//定义delegate
-		public delegate void TriggerHandler(object sender, uint triggerId, params object[] args);
-		//用event 关键字声明事件对象
-		public uint id;
-		public event TriggerHandler Trigger;
-		//引发事件
-		public void RaiseEvent(uint triggerId, params object[] args){
-			if (Trigger == null) {
-				return;
-			}
 
-			this.id = triggerId;
-			Trigger(this, triggerId, args);
-		}
-	}
-	/*
+namespace DYUnityLib
+{
+    public class EventTrigger
+    {
+        //定义delegate
+        public delegate void TriggerHandler(object sender, uint triggerId, params object[] args);
+
+        //用event 关键字声明事件对象
+        public uint id;
+
+        public event TriggerHandler Trigger;
+
+        //引发事件
+        public void RaiseEvent(uint triggerId, params object[] args)
+        {
+            if (Trigger == null)
+            {
+                return;
+            }
+            this.id = triggerId;
+            Trigger(this, triggerId, args);
+        }
+    }
+
+    /*
 	public class EventSubscriber {
 		public void onEvent(object sender, EventTrigger.EventTriggerArgs e){
 			// Debug.Log ("Raise an event " + e.triggerArgs);
@@ -60,60 +68,71 @@ namespace DYUnityLib {
 	}
 	*/
 
-	// Use for make a static obj for global.
-	class gTrigger {
-		// 基础库保留段
-		public const uint DYUL_EVENT_TOUCH_BEGAN = 0;
-		public const uint DYUL_EVENT_TOUCH_ENDED = 1;
-		public const uint DYUL_EVENT_TOUCH_MOVE = 2;
+    // Use for make a static obj for global.
+    internal class gTrigger
+    {
+        // 基础库保留段
+        public const uint DYUL_EVENT_TOUCH_BEGAN = 0;
 
-		// public static EventSubscriber gSubscriber = new EventSubscriber();
-		static Hashtable es = new Hashtable();
+        public const uint DYUL_EVENT_TOUCH_ENDED = 1;
+        public const uint DYUL_EVENT_TOUCH_MOVE = 2;
 
-		public static EventTrigger RegEvent(uint eventIndex) {
-			if (es.Contains (eventIndex) && es [eventIndex] != null) {
-				Debug.Log ("Event " + eventIndex + " already Reg.");
-				return (EventTrigger)es [eventIndex];
-			}
+        // public static EventSubscriber gSubscriber = new EventSubscriber();
+        private static Hashtable es = new Hashtable();
 
-			EventTrigger _es = new EventTrigger ();
-			_es.id = eventIndex;
-			es [eventIndex] = _es;
+        public static EventTrigger RegEvent(uint eventIndex)
+        {
+            if (es.Contains(eventIndex) && es[eventIndex] != null)
+            {
+                Debug.Log("Event " + eventIndex + " already Reg.");
+                return (EventTrigger)es[eventIndex];
+            }
 
-			return _es;
-		}
+            EventTrigger _es = new EventTrigger();
+            _es.id = eventIndex;
+            es[eventIndex] = _es;
 
-		public static void UnRegEvent(uint eventIndex){
-			if (!es.Contains (eventIndex)) {
-				return;
-			}
+            return _es;
+        }
 
-			EventTrigger _es = es [eventIndex] as EventTrigger;
-			es.Remove(eventIndex);
+        public static void UnRegEvent(uint eventIndex)
+        {
+            if (!es.Contains(eventIndex))
+            {
+                return;
+            }
 
-			if (_es == null) {
-				return;
-			}
+            EventTrigger _es = es[eventIndex] as EventTrigger;
+            es.Remove(eventIndex);
 
-			_es = null;
-		}
+            if (_es == null)
+            {
+                return;
+            }
 
-		public static void FireEvent(uint eventIndex, params object[] args){
-			if (!es.ContainsKey (eventIndex)) {
-				return;
-			}
+            _es = null;
+        }
 
-			System.Object esObj = es [eventIndex];
-			if (esObj == null) {
-				return;
-			}
+        public static void FireEvent(uint eventIndex, params object[] args)
+        {
+            if (!es.ContainsKey(eventIndex))
+            {
+                return;
+            }
 
-			EventTrigger _es = esObj as EventTrigger;
-			_es.RaiseEvent (eventIndex, args);
-		}
+            System.Object esObj = es[eventIndex];
+            if (esObj == null)
+            {
+                return;
+            }
 
-		public static void ClearEvent(){
-			es.Clear ();
-		}
-	}
+            EventTrigger _es = esObj as EventTrigger;
+            _es.RaiseEvent(eventIndex, args);
+        }
+
+        public static void ClearEvent()
+        {
+            es.Clear();
+        }
+    }
 }

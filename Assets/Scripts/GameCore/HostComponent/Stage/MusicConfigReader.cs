@@ -276,7 +276,7 @@ namespace GameLogic
 
         public static MusicConfigReader Instance = new MusicConfigReader();
 
-        private const int tickLimit = 2;
+        private const int tickLimit = 0;
 
         // override Init
         public override void Init(ref string filename)

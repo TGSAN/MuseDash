@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using DYUnityLib;
 using System.Collections;
-using DYUnityLib;
+using UnityEngine;
+
 /*
  * 使用方法：
  * 该timer标准单位是秒， 精度默认0.01
@@ -30,7 +31,7 @@ using DYUnityLib;
 	objTimer.AddTickEvent (3.54m, TIMER_EVENT);
 	objTimer.AddTickEvent (6.22m, TIMER_EVENT);
 	TIMER_TYPE_EVENT_ARRAY  默认类型，不规则时间事件表
-	
+
 	TIMER_TYPE_STEP_ARRAY   固定时间间隔触发固定事件
 							需要调用一次AddTickEvent注册固定事件id
 							第一个参数tick此时无效可随意，建议0
@@ -42,202 +43,245 @@ using DYUnityLib;
 在开启后的2.34、3.54、6.22秒各触发一次TIMER_EVENT消息
 也可以在这几个时刻触发其他消息
 
-
 小技巧：
 objTimer.AddTickEvent (0.0m, XXX); // 启动timer触发，相当于onBegan
 objTimer.AddTickEvent (10.0m, XXX); //   结束timer触发，相当于onEnded
  */
-namespace DYUnityLib {
-	public class oTimer : MonoBehaviour {
-		public const int TIMER_TYPE_EVENT_ARRAY = 0;
-		public const int TIMER_TYPE_STEP_ARRAY = 1;
-		private const int interval = 1;
-		private const float _fInterval = 0.01f;
-		public const decimal dInterval = 0.01m;
 
-		private float beganDelay;
-		// Precision is 0.01
-		private const int precision = 100;
-		private int iType = 0;
-		private int passedTick;
-		private int passedCount;
-		private int totalTick;
-		private uint defaultEvent;
+namespace DYUnityLib
+{
+    public class oTimer : MonoBehaviour
+    {
+        public const int TIMER_TYPE_EVENT_ARRAY = 0;
+        public const int TIMER_TYPE_STEP_ARRAY = 1;
+        private const int interval = 1;
+        private const float _fInterval = 0.01f;
+        public const decimal dInterval = 0.01m;
 
-		private const string strOnTick = "OnTick";
+        private float beganDelay;
 
-		private bool isPause;
+        // Precision is 0.01
+        private const int precision = 100;
 
-		private Hashtable eventTbl = new Hashtable();
+        private int iType = 0;
+        private int passedTick;
+        private int passedCount;
+        private int totalTick;
+        private uint defaultEvent;
 
-		// totalTick < 0 is unlimit time
-		// totalTick is 0.00 with unit is second
-		// beganDelay is 0.00 with unit is second
-		// all float force to int here
-		public void Init(float beganDelay, float totalTick, int timerType = TIMER_TYPE_EVENT_ARRAY){
-			this.isPause = true;
-			this.passedTick = 0;
-			this.passedCount = 0;
-			this.iType = timerType;
-			this.beganDelay = beganDelay;
-			this.totalTick = (int)(totalTick * precision);
-		}
+        private const string strOnTick = "OnTick";
 
-		public void Run(){
-			this.Cancle ();
-			this.Resume ();
-			InvokeRepeating (strOnTick, this.beganDelay, _fInterval);
-		}
+        private bool isPause;
 
-		public bool IsRunning(){
-			return !this.isPause;
-		}
+        private Hashtable eventTbl = new Hashtable();
 
-		public void Cancle(){
-			// Debug.Log ("Cancle Timer at " + this.passedTick);
+        // totalTick < 0 is unlimit time
+        // totalTick is 0.00 with unit is second
+        // beganDelay is 0.00 with unit is second
+        // all float force to int here
+        public void Init(float beganDelay, float totalTick, int timerType = TIMER_TYPE_EVENT_ARRAY)
+        {
+            this.isPause = true;
+            this.passedTick = 0;
+            this.passedCount = 0;
+            this.iType = timerType;
+            this.beganDelay = beganDelay;
+            this.totalTick = (int)(totalTick * precision);
+        }
 
-			CancelInvoke(strOnTick);
-			this.passedTick = 0;
-			this.passedCount = 0;
-		}
+        public void Run()
+        {
+            this.Cancle();
+            this.Resume();
+            InvokeRepeating(strOnTick, this.beganDelay, _fInterval);
+        }
 
-		public void Pause(){
-			if (this.eventTbl == null) {
-				return;
-			}
+        public bool IsRunning()
+        {
+            return !this.isPause;
+        }
 
-			this.isPause = true;
-		}
+        public void Cancle()
+        {
+            // Debug.Log ("Cancle Timer at " + this.passedTick);
 
-		public void Resume(){
-			this.isPause = false;
-		}
+            CancelInvoke(strOnTick);
+            this.passedTick = 0;
+            this.passedCount = 0;
+        }
 
-		public void AddTickEvent(decimal tick, uint eventIndex){
-			if (this.eventTbl == null) {
-				Debug.Log ("AddTickEvent before Init.");
-				return;
-			}
+        public void Pause()
+        {
+            if (this.eventTbl == null)
+            {
+                return;
+            }
 
-			if (this.iType == TIMER_TYPE_STEP_ARRAY) {
-				this.defaultEvent = eventIndex;
-			}
+            this.isPause = true;
+        }
 
-			int _tick = (int)(tick * precision);
-			this.eventTbl [_tick] = eventIndex;
-		}
-		
-		public void RemoveTickEvent(decimal tick){
-			if (this.eventTbl == null) {
-				Debug.Log ("RemoveTickEvent before Init.");
-				return;
-			}
+        public void Resume()
+        {
+            this.isPause = false;
+        }
 
-			int _tick = (int)(tick * precision);
-			this.eventTbl [_tick] = null;
-		}
-		
-		public void ClearTickEvent(){
-			this.defaultEvent = 0;
+        public void AddTickEvent(decimal tick, uint eventIndex)
+        {
+            if (this.eventTbl == null)
+            {
+                Debug.Log("AddTickEvent before Init.");
+                return;
+            }
 
-			if (this.eventTbl == null) {
-				Debug.Log ("ClearTickEvent before Init.");
-				return;
-			}
+            if (this.iType == TIMER_TYPE_STEP_ARRAY)
+            {
+                this.defaultEvent = eventIndex;
+            }
 
-			this.eventTbl.Clear ();
-		}
+            int _tick = (int)(tick * precision);
+            this.eventTbl[_tick] = eventIndex;
+        }
 
-		public decimal GetPassTick(){
-			return this.passedTick * dInterval;
-		}
+        public void RemoveTickEvent(decimal tick)
+        {
+            if (this.eventTbl == null)
+            {
+                Debug.Log("RemoveTickEvent before Init.");
+                return;
+            }
 
-		public int GetPassCount(){
-			return this.passedCount;
-		}
+            int _tick = (int)(tick * precision);
+            this.eventTbl[_tick] = null;
+        }
 
-		public int Count(){
-			if (this.eventTbl == null) {
-				return 0;
-			}
+        public void ClearTickEvent()
+        {
+            this.defaultEvent = 0;
 
-			if (this.iType == TIMER_TYPE_STEP_ARRAY) {
-				if (this.defaultEvent != 0){
-					return 1;
-				}else{
-					return 0;
-				}
-			}
+            if (this.eventTbl == null)
+            {
+                Debug.Log("ClearTickEvent before Init.");
+                return;
+            }
 
-			return this.eventTbl.Count;
-		}
+            this.eventTbl.Clear();
+        }
 
-		private void __OnTickEventArray(){
-			if (this.eventTbl == null) {
-				return;
-			}
+        public decimal GetPassTick()
+        {
+            return this.passedTick * dInterval;
+        }
 
-			// Over time check.
-			if (this.totalTick >= 0) {
-				if (this.passedTick > this.totalTick){
-					this.Cancle();
-					return;
-				}
-			}
-			
-			object oIdx = this.eventTbl [this.passedTick];
-			if (oIdx == null) {
-				return;
-			}
-			
-			uint eventIndex = (uint)oIdx;
-			if (eventIndex <= 0) {
-				return;
-			}
-			
-			// Trig event
-			// Debug.Log (" -- " + (this.passedTick * _dInterval));
-			gTrigger.FireEvent (eventIndex, this.passedTick * dInterval);
-			this.passedCount += 1;
-		}
+        public int GetPassCount()
+        {
+            return this.passedCount;
+        }
 
-		public void SetProgress(decimal tick){
-			int tempPassCount = 0;
-			this.passedTick = (int)(tick * precision);
-			foreach (DictionaryEntry de in this.eventTbl) {
-				int _idx = int.Parse (de.Key.ToString ());
-				if (this.passedTick > _idx) {
-					tempPassCount += 1;
-				}
-			}
+        public int Count()
+        {
+            if (this.eventTbl == null)
+            {
+                return 0;
+            }
 
-			this.passedCount = tempPassCount;
-		}
+            if (this.iType == TIMER_TYPE_STEP_ARRAY)
+            {
+                if (this.defaultEvent != 0)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
 
-		private void __OnTickStepArray(){
-			// Over time check.
-			if (this.totalTick >= 0) {
-				if (this.passedTick > this.totalTick){
-					this.Cancle();
-					return;
-				}
-			}
+            return this.eventTbl.Count;
+        }
 
-			gTrigger.FireEvent (this.defaultEvent, this.passedTick * dInterval);
-		}
+        private void __OnTickEventArray()
+        {
+            if (this.eventTbl == null)
+            {
+                return;
+            }
 
-		private void OnTick(){
-			if (this.isPause) {
-				return;
-			}
+            // Over time check.
+            if (this.totalTick >= 0)
+            {
+                if (this.passedTick > this.totalTick)
+                {
+                    this.Cancle();
+                    return;
+                }
+            }
 
-			if (this.iType == TIMER_TYPE_EVENT_ARRAY) {
-				this.__OnTickEventArray ();
-			} else if (this.iType == TIMER_TYPE_STEP_ARRAY) {
-				this.__OnTickStepArray ();
-			}
+            object oIdx = this.eventTbl[this.passedTick];
+            if (oIdx == null)
+            {
+                return;
+            }
 
-			this.passedTick += interval;
-		}
-	}
+            uint eventIndex = (uint)oIdx;
+            if (eventIndex <= 0)
+            {
+                return;
+            }
+
+            // Trig event
+            Debug.Log(" -- " + (this.passedTick * dInterval));
+            gTrigger.FireEvent(eventIndex, this.passedTick * dInterval);
+            this.passedCount += 1;
+        }
+
+        public void SetProgress(decimal tick)
+        {
+            int tempPassCount = 0;
+            this.passedTick = (int)(tick * precision);
+            foreach (DictionaryEntry de in this.eventTbl)
+            {
+                int _idx = int.Parse(de.Key.ToString());
+                if (this.passedTick > _idx)
+                {
+                    tempPassCount += 1;
+                }
+            }
+
+            this.passedCount = tempPassCount;
+        }
+
+        private void __OnTickStepArray()
+        {
+            // Over time check.
+            if (this.totalTick >= 0)
+            {
+                if (this.passedTick > this.totalTick)
+                {
+                    this.Cancle();
+                    return;
+                }
+            }
+
+            gTrigger.FireEvent(this.defaultEvent, this.passedTick * dInterval);
+        }
+
+        private void OnTick()
+        {
+            if (this.isPause)
+            {
+                return;
+            }
+
+            if (this.iType == TIMER_TYPE_EVENT_ARRAY)
+            {
+                this.__OnTickEventArray();
+            }
+            else if (this.iType == TIMER_TYPE_STEP_ARRAY)
+            {
+                this.__OnTickStepArray();
+            }
+
+            this.passedTick += interval;
+        }
+    }
 }

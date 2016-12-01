@@ -428,7 +428,7 @@ namespace Assets.Scripts.NGUI
                 var child = trophyParent.GetChild(i);
                 child.GetChild(0).gameObject.SetActive(i < trophyNum);
             }
-            btnTip.gameObject.SetActive(unLockNum > trophyNum);
+            btnTip.gameObject.SetActive(unLockNum > TaskStageTarget.Instance.GetTotalTrophy());
         }
 
         private void OnEnergyInfoChange(bool change)

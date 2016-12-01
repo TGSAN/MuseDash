@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using FormulaBase = FormulaBase.FormulaBase;
 
 namespace PnlChar
 {
@@ -33,7 +34,7 @@ namespace PnlChar
         }
 
         private int m_PreRoleIdx = 0;
-        private List<FormulaBase.FormulaHost> m_Equipments = new List<FormulaBase.FormulaHost>();
+        private List<FormulaHost> m_Equipments = new List<FormulaHost>();
         private readonly List<string> m_AnimPath = new List<string>();
 
         public List<string> animPath
@@ -66,7 +67,7 @@ namespace PnlChar
         public override void BeCatched()
         {
             instance = this;
-            curRoleIdx = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
+            curRoleIdx = RoleManageComponent.Instance.GetFightGirlIndex();
             InitInfo();
             InitEvent();
         }
@@ -85,7 +86,7 @@ namespace PnlChar
         private void InitInfo()
         {
             m_AnimPath.Clear();
-            for (int i = 1; i <= FormulaBase.RoleManageComponent.Instance.GetRoleCount(); i++)
+            for (int i = 1; i <= RoleManageComponent.Instance.GetRoleCount(); i++)
             {
                 var pathIdx = ConfigPool.Instance.GetConfigStringValue("char_info", i.ToString(), "character");
                 var clothingConfig = ConfigPool.Instance.GetConfigByName("char_cos");
@@ -99,6 +100,9 @@ namespace PnlChar
                         break;
                     }
                 }
+            }
+            for (int i = 1; i <= RoleManageComponent.Instance.GetRoleCount(); i++)
+            {
                 OnSpiAnimLoad(i);
             }
         }
@@ -108,7 +112,7 @@ namespace PnlChar
             onRoleChange = new Action<int>(OnRoleChange);
             onRoleChange += PnlCharInfo.PnlCharInfo.Instance.OnRoleChange;
             onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
-            var maxCount = FormulaBase.RoleManageComponent.Instance.GetRoleCount();
+            var maxCount = RoleManageComponent.Instance.GetRoleCount();
             UIEventListener.Get(btnLeft.gameObject).onClick += go =>
                {
                    if (--curRoleIdx < 1)
@@ -180,7 +184,7 @@ namespace PnlChar
             }
             m_PreRoleIdx = roleIdx;
             curEquipTypeIdx = 0;
-            FormulaBase.RoleManageComponent.Instance.GetRole(roleIdx).SetAsUINotifyInstance();
+            RoleManageComponent.Instance.GetRole(roleIdx).SetAsUINotifyInstance();
             var isLock = RoleManageComponent.Instance.GetRoleLockedState(curRoleIdx);
             goGrdGroove.SetActive(!isLock);
             goGrdServent.SetActive(!isLock);
@@ -192,12 +196,12 @@ namespace PnlChar
         public void OnEquipLoad(int idx)
         {
             Debug.Log("Get Girl Equip");
-            var curEquipHosts = FormulaBase.EquipManageComponent.Instance.GetGirlEquipHosts(idx, 0, true);
+            var curEquipHosts = EquipManageComponent.Instance.GetGirlEquipHosts(idx, 0, true);
             Debug.Log("Get Girl Equip Finished");
             for (int i = 0; i < items.Length; i++)
             {
-                var types = FormulaBase.EquipManageComponent.Instance.GetGirlEquipTypes(idx);
-                FormulaBase.FormulaHost host = null;
+                var types = EquipManageComponent.Instance.GetGirlEquipTypes(idx);
+                FormulaHost host = null;
                 if (i < types.Length)
                 {
                     host = curEquipHosts.ToList().Find(h => h.GetDynamicStrByKey(SignKeys.TYPE) == types[i]);
