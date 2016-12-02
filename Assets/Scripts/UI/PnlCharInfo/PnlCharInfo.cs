@@ -109,14 +109,17 @@ namespace PnlCharInfo
             for (var i = 0; i < upgradeTexs.Count; i++)
             {
                 var tex = upgradeTexs[i];
+                var sprite = tex.transform.parent.GetComponent<UISprite>();
                 if (i < hostList.Count)
                 {
                     var h = hostList[i];
                     ResourceLoader.Instance.LoadItemIcon(h, tex);
+                    sprite.spriteName = "groove_" + h.GetDynamicIntByKey(SignKeys.QUALITY).ToString();
                 }
                 else
                 {
                     tex.mainTexture = null;
+                    sprite.spriteName = "groove_space";
                 }
             }
 
@@ -168,7 +171,7 @@ namespace PnlCharInfo
             foreach (var item in m_ItemList)
             {
                 var itemID = item.host.GetDynamicIntByKey(FormulaBase.SignKeys.BAGINID);
-                item.SetSelected(selectID == itemID);
+                item.isSelected = selectID == itemID;
             }
         }
 
@@ -196,7 +199,7 @@ namespace PnlCharInfo
                 var itemCellCharInfo = cell.GetComponent<ItemCellCharInfo.ItemCellCharInfo>();
                 m_ItemList.Add(itemCellCharInfo);
                 itemCellCharInfo.OnShow(equipment);
-                itemCellCharInfo.SetSelected(equipment.GetDynamicIntByKey(FormulaBase.SignKeys.WHO) != 0);
+                itemCellCharInfo.isSelected = equipment.GetDynamicIntByKey(FormulaBase.SignKeys.WHO) != 0;
                 cell.transform.SetParent(cellItemParent, false);
             }
             cellItemParent.parent.gameObject.SetActive(allEquipments.Length != 0);

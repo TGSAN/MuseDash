@@ -357,10 +357,12 @@ namespace PnlEquipInfo
             for (int i = 0; i < upgradeTexs.Count; i++)
             {
                 var tex = upgradeTexs[i];
+                var sprite = tex.GetComponentInParent<UISprite>();
                 var txt = upgradeTxts[i];
                 if (i < hostList.Count)
                 {
                     var h = hostList[i];
+                    sprite.spriteName = "groove_" + h.GetDynamicIntByKey(SignKeys.QUALITY).ToString();
                     var texName = h.GetDynamicStrByKey(SignKeys.ICON);
                     var lvl = h.GetDynamicIntByKey(SignKeys.LEVEL);
                     ResourceLoader.Instance.Load("items/icon/" + texName, resObj => tex.mainTexture = resObj as Texture);
@@ -369,6 +371,7 @@ namespace PnlEquipInfo
                 else
                 {
                     tex.mainTexture = null;
+                    sprite.spriteName = "groove_space";
                 }
                 txt.transform.parent.GetChild(1).gameObject.SetActive(i < hostList.Count);
                 txt.gameObject.SetActive(i < hostList.Count);

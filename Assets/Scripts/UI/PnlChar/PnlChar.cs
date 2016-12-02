@@ -178,6 +178,10 @@ namespace PnlChar
 
         private void OnRoleChange(int roleIdx)
         {
+            var isLock = RoleManageComponent.Instance.GetRoleLockedState(curRoleIdx);
+            goGrdGroove.SetActive(!isLock);
+            goGrdServent.SetActive(!isLock);
+            btnUnlock.gameObject.SetActive(isLock);
             if (m_PreRoleIdx == roleIdx)
             {
                 return;
@@ -185,10 +189,6 @@ namespace PnlChar
             m_PreRoleIdx = roleIdx;
             curEquipTypeIdx = 0;
             RoleManageComponent.Instance.GetRole(roleIdx).SetAsUINotifyInstance();
-            var isLock = RoleManageComponent.Instance.GetRoleLockedState(curRoleIdx);
-            goGrdGroove.SetActive(!isLock);
-            goGrdServent.SetActive(!isLock);
-            btnUnlock.gameObject.SetActive(isLock);
             OnEquipLoad(roleIdx);
             OnSpiAnimLoad(roleIdx);
         }

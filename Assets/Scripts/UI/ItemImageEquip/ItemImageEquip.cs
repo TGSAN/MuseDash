@@ -12,6 +12,7 @@ namespace ItemImageEquip
     {
         private static ItemImageEquip instance = null;
         public UISprite sprSelected, sprOn, sprLock, sprBkg, sprPlusSign;
+        public GameObject btnIsEquip;
         public UILabel txtCount;
 
         public static ItemImageEquip Instance
@@ -32,6 +33,12 @@ namespace ItemImageEquip
         {
             private set;
             get;
+        }
+
+        public bool isInEquip
+        {
+            get { return btnIsEquip.activeSelf; }
+            set { btnIsEquip.SetActive(value); }
         }
 
         public bool isSelected
@@ -61,7 +68,10 @@ namespace ItemImageEquip
                     sprOn.gameObject.SetActive(false);
                     PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost.Remove(host);
                 }
-                PnlSuitcase.PnlSuitcase.Instance.SetLock(PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost.Count >= 3);
+                if (PnlSuitcase.PnlSuitcase.Instance.isUpgrade)
+                {
+                    PnlSuitcase.PnlSuitcase.Instance.SetLock(PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost.Count >= 3);
+                }
             }
         }
 
@@ -100,6 +110,10 @@ namespace ItemImageEquip
         public override void OnShow(FormulaBase.FormulaHost h)
         {
             host = h;
+            if (btnIsEquip != null)
+            {
+                isInEquip = h.GetDynamicIntByKey(SignKeys.WHO) != 0;
+            }
             SetTexByHost();
             SetTxtByHost();
             isUpgradeSelected = false;
@@ -109,7 +123,7 @@ namespace ItemImageEquip
             }
             UIEventListener.Get(gameObject).onClick = (go) =>
             {
-                if (isSelected || isLock)
+                if (isLock)
                 {
                     return;
                 }

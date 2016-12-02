@@ -81,6 +81,10 @@ namespace PnlCharChose
                 {
                     PnlAdventure.PnlAdventure.Instance.OnShow();
                 }
+                else
+                {
+                    PnlChar.PnlChar.Instance.onRoleChange(choseType);
+                }
             };
             btnLeft.onClick.Add(new EventDelegate(() =>
             {

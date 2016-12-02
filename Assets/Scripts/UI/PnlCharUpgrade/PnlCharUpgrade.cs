@@ -16,7 +16,6 @@ namespace PnlCharUpgrade
         public UISprite sprChar, sprCharFade;
         public UITexture[] itemTexs;
         public GameObject[] txtsCool, txtsGreat, txtsPerfect;
-        public SkeletonAnimation spiAnim;
 
         public static PnlCharUpgrade Instance
         {
@@ -98,11 +97,14 @@ namespace PnlCharUpgrade
             for (int i = 0; i < itemTexs.Length; i++)
             {
                 var tex = itemTexs[i];
+
                 if (i < hosts.Length)
                 {
                     tex.transform.parent.gameObject.SetActive(true);
                     var formulaHost = hosts[i];
                     ResourceLoader.Instance.LoadItemIcon(formulaHost, tex);
+                    tex.GetComponentInParent<UISprite>().spriteName = "groove_" +
+                                                                      formulaHost.GetDynamicIntByKey(SignKeys.QUALITY).ToString();
                 }
                 else
                 {

@@ -32,6 +32,7 @@ namespace PnlSuitcase
                     foreach (var itemImageEquip in m_Cells)
                     {
                         itemImageEquip.isUpgradeSelected = false;
+                        itemImageEquip.isLock = false;
                     }
                     upgradeSelectedHost.Clear();
                     SetTypeActive(true, false, false, false);
@@ -85,12 +86,11 @@ namespace PnlSuitcase
         public void SetLock(bool isTo)
         {
             m_Cells.ForEach(itemImageEquip =>
-            itemImageEquip.isLock = isTo && !upgradeSelectedHost.Contains(itemImageEquip.host));
+            itemImageEquip.isLock = (isTo && !upgradeSelectedHost.Contains(itemImageEquip.host)) || itemImageEquip.host.GetDynamicIntByKey(SignKeys.WHO) != 0);
         }
 
         public override void OnShow()
         {
-            ResetPos();
             gameObject.SetActive(true);
             grid.enabled = true;
             m_Cells.RemoveAll(cell =>

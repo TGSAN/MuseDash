@@ -74,6 +74,14 @@ namespace PnlCapsuleOpen
                 }
             }
             m_AnimName = "capsule_open_item" + commonItemCount.ToString();
+
+            var isPurchase = AccountCharmComponent.Instance.GetCharm() < CapsuleManager.instance.curCapsule.charmRequire;
+            btnPurchase.GetComponentInChildren<UILabel>().text =
+                    ((int)
+                        (CapsuleManager.instance.curCapsule.charmRequire *
+                         StoreManageComponent.Instance.Host.Result(FormulaKeys.FORMULA_115))).ToString();
+            btnOpen.gameObject.SetActive(!isPurchase);
+            btnPurchase.gameObject.SetActive(isPurchase);
         }
 
         private void PlayAnimation()
@@ -101,25 +109,17 @@ namespace PnlCapsuleOpen
             instance = this;
             btnOpen.onClick.Add(new EventDelegate(() =>
             {
-                if (AccountCharmComponent.Instance.GetCharm() < CapsuleManager.instance.curCapsule.charmRequire)
+                PlayAnimation();
+                CapsuleManager.instance.OpenCapsule((result) =>
                 {
-                    btnPurchase.gameObject.SetActive(true);
-                    btnPurchase.GetComponentInChildren<UILabel>().text = ((int)(CapsuleManager.instance.curCapsule.charmRequire * StoreManageComponent.Instance.Host.Result(FormulaKeys.FORMULA_115))).ToString();
-                }
-                else
-                {
-                    PlayAnimation();
-                    CapsuleManager.instance.OpenCapsule((result) =>
+                    if (result)
                     {
-                        if (result)
+                        if (PnlSuitcase.PnlSuitcase.Instance != null)
                         {
-                            if (PnlSuitcase.PnlSuitcase.Instance != null)
-                            {
-                                PnlSuitcase.PnlSuitcase.Instance.UpdateSuitcase();
-                            }
+                            PnlSuitcase.PnlSuitcase.Instance.UpdateSuitcase();
                         }
-                    });
-                }
+                    }
+                });
             }));
 
             btnPurchase.onClick.Add(new EventDelegate(() =>

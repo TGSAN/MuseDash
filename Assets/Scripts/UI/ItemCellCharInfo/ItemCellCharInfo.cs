@@ -25,6 +25,18 @@ namespace ItemCellCharInfo
             get;
         }
 
+        public bool isSelected
+        {
+            get { return cellBaseSelected.activeSelf; }
+            set
+            {
+                if (cellBaseSelected != null)
+                {
+                    cellBaseSelected.SetActive(value);
+                }
+            }
+        }
+
         private static ItemCellCharInfo instance = null;
 
         public static ItemCellCharInfo Instance
@@ -32,14 +44,6 @@ namespace ItemCellCharInfo
             get
             {
                 return instance;
-            }
-        }
-
-        public void SetSelected(bool isTo)
-        {
-            if (cellBaseSelected != null)
-            {
-                cellBaseSelected.SetActive(isTo);
             }
         }
 

@@ -531,22 +531,22 @@ namespace FormulaBase
             switch (temp)
             {
                 case "Equip":
-                    NGUIDebug.Log("Sale Equip");
+                    //NGUIDebug.Log("Sale Equip");
                     m_Equip.Remove(_host);
                     break;
 
                 case "Material":
-                    NGUIDebug.Log("Sale Mtaerial");
+                    //NGUIDebug.Log("Sale Mtaerial");
                     m_Material.Remove(_host);
                     break;
 
                 case "Pet":
-                    NGUIDebug.Log("Sale Pet");
+                    //NGUIDebug.Log("Sale Pet");
                     m_Pet.Remove(_host);
                     break;
 
                 case "Chest":
-                    NGUIDebug.Log("Sale Chest");
+                    //NGUIDebug.Log("Sale Chest");
                     m_Chest.Remove(_host);
                     break;
             }

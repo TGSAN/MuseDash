@@ -116,11 +116,8 @@ namespace Assets.Scripts.Common
                     }
                     else
                     {
-                        if (originLvl != host.GetDynamicIntByKey(SignKeys.LEVEL))
-                        {
-                            PnlCharUpgrade.PnlCharUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeResult);
-                            PnlMainMenu.PnlMainMenu.Instance.OnEnergyUpdate(true);
-                        }
+                        PnlCharUpgrade.PnlCharUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeResult);
+                        PnlMainMenu.PnlMainMenu.Instance.OnEnergyUpdate(true);
                     }
                     if (callFunc != null)
                     {
@@ -196,10 +193,7 @@ namespace Assets.Scripts.Common
                     if (result)
                     {
                         ItemManageComponent.Instance.DeleteListItem(expHosts);
-                        if (originLvl != host.GetDynamicIntByKey(SignKeys.LEVEL))
-                        {
-                            PnlItemUpgrade.PnlItemUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeResult);
-                        }
+                        PnlItemUpgrade.PnlItemUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeResult);
                     }
                     else
                     {
