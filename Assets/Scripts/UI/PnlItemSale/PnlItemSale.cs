@@ -42,6 +42,7 @@ namespace PnlItemSale
             var price = ItemManageComponent.Instance.GetItemMoney(host);
             UIEventListener.Get(btnSale.gameObject).onClick = go =>
             {
+                GetComponent<Animator>().enabled = false;
                 var saleNum = int.Parse(txtSaleNum.text);
                 ItemManageComponent.Instance.SaleItem(host, (result) =>
                 {
@@ -61,6 +62,7 @@ namespace PnlItemSale
                     }
 
                     CommonPanel.GetInstance().ShowWaittingPanel(false);
+                    OnDisable();
                 }, int.Parse(txtSaleNum.text));
             };
             UIEventListener.Get(btnCancell.gameObject).onClick = go =>
