@@ -297,6 +297,10 @@ namespace PnlEquipInfo
                 }
             };
 
+            UIEventListener.Get(btnCharBack.gameObject).onClick = (go) =>
+            {
+            };
+
             UIEventListener.Get(btnUpgrade.gameObject).onClick = (go) =>
             {
                 if (UpgradeManager.instance.IsItemLvlMax(host))

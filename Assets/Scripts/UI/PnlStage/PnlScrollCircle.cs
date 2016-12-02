@@ -329,6 +329,9 @@ namespace Assets.Scripts.NGUI
                 var unLockNum = m_StageInfos[m_CurrentIdx].unLockNum;
                 CommonPanel.GetInstance().ShowText("需获得" + unLockNum.ToString() + "个奖杯才可以解锁！（当前:" + TaskStageTarget.Instance.GetTotalTrophy().ToString() + "个奖杯）");
             };
+            UIEventListener.Get(btnTip.gameObject).onDragStart = onDragStart;
+            UIEventListener.Get(btnTip.gameObject).onDrag = onDrag;
+            UIEventListener.Get(btnTip.gameObject).onDragEnd = onDragEnd;
             onSongChange += PlayMusic;
             onSongChange += OnInfoChange;
         }

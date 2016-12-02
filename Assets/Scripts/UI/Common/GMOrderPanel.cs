@@ -181,6 +181,7 @@ public class GMOrderPanel : MonoBehaviour
     {
         GameGlobal.IS_UNLOCK_ALL_STAGE = true;
         CommonPanel.GetInstance().ShowText("全关卡解锁", null, false);
+
         m_SureUnLockStagesButton.SetActive(false);
     }
 

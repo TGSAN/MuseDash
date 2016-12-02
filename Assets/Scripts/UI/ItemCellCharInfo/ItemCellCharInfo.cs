@@ -117,7 +117,6 @@ namespace ItemCellCharInfo
                 }
                 else
                 {
-                    PnlSuitcase.PnlSuitcase.Instance.SetSelectedCell(host);
                     PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
                     DOTweenUtils.Delay(() =>
                     {
