@@ -2431,6 +2431,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011960558810}
   - 114: {fileID: 114000010675732868}
+  - 65: {fileID: 65000011903905990}
   m_Layer: 5
   m_Name: TexBg
   m_TagString: Untagged
@@ -4049,6 +4050,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011241149946}
   - 114: {fileID: 114000013499239740}
+  - 65: {fileID: 65000012664220396}
   m_Layer: 5
   m_Name: Bg
   m_TagString: Untagged
@@ -14245,6 +14247,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 120, y: 120, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65000011903905990
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011373841158}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1334, y: 750, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65000012613015618
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -14256,6 +14270,18 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 120, y: 120, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65000012664220396
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012308749300}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1334, y: 750, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65000013389465558
 BoxCollider:
@@ -25763,7 +25789,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3076
+  startingRenderQueue: 3000
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
