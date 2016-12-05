@@ -1,4 +1,5 @@
 using Assets.Scripts.Common.Manager;
+using Assets.Scripts.Common.Tools;
 using com.ootii.Messages;
 using FormulaBase;
 using PnlStore;
@@ -19,6 +20,7 @@ namespace PnlMainMenu
         public UISprite sprRecoverTime, sprCharmBar, sprExpBar;
         public UITweener twnEnergy, twnCoin, twnCrystal;
         public GameObject[] capsules;
+        public RandomObjFly coin, crystal, charm, exp;
         private Animator m_CapsuleAnimator;
 
         public static PnlMainMenu Instance

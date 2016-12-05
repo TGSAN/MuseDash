@@ -71,7 +71,7 @@ namespace FormulaBase
                 {
                     if (money > 0)
                     {
-                        //MessageDispatcher.SendMessage("ADD_COIN");
+                        MessageDispatcher.SendMessage("ADD_COIN");
                     }
                 }
             }), true, 0, this.GetMaxMoney());
