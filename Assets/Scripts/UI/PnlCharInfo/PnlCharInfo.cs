@@ -23,7 +23,7 @@ namespace PnlCharInfo
         public UISprite sprExpCurBar, sprExpNextBar;
         public List<UITexture> upgradeTexs = new List<UITexture>();
         public Transform upgradeItemsParent;
-        public UIButton btnBack, btnCosChangeBack;
+        public UIButton btnBack;
         public Transform tglsParent;
         public UISprite sprVigour, sprStamina, sprStrengh, sprLuck;
         public UILabel txtEquipInfo, txtServantInfo;
@@ -229,17 +229,17 @@ namespace PnlCharInfo
                 }
                 PnlSuitcase.PnlSuitcase.Instance.ResetPos();
             };
-            UIEventListener.Get(btnBack.gameObject).onClick = (go) =>
-            {
-                DOTweenUtils.Delay(() =>
-                {
-                    m_Animator.Play("char_info_in");
-                }, 0.1f);
-                isUpgrade = false;
-                var isShow = PnlMainMenu.PnlMainMenu.Instance.goSelectedSuitcase.activeSelf;
-                PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(isShow);
-                PnlSuitcase.PnlSuitcase.Instance.OnHide();
-            };
+            /* UIEventListener.Get(btnBack.gameObject).onClick = (go) =>
+             {
+                 DOTweenUtils.Delay(() =>
+                 {
+                     m_Animator.Play("char_info_in");
+                 }, 0.1f);
+                 isUpgrade = false;
+                 var isShow = PnlMainMenu.PnlMainMenu.Instance.goSelectedSuitcase.activeSelf;
+                 PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(isShow);
+                 PnlSuitcase.PnlSuitcase.Instance.OnHide();
+             };*/
             UIEventListener.Get(btnConfirm.gameObject).onClick = (go) =>
             {
                 var hosts = PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost;

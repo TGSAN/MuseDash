@@ -1,73 +1,100 @@
+using com.ootii.Messages;
+
 ///自定义模块，可定制模块具体行为
 using System;
 using UnityEngine;
-namespace FormulaBase {
-	public class AccountGoldManagerComponent : CustomComponentBase {
-		private static AccountGoldManagerComponent instance = null;
-		private const int HOST_IDX = 1;
-		public static AccountGoldManagerComponent Instance {
-			get {
-				if(instance == null) {
-					instance = new AccountGoldManagerComponent();
-				}
-			return instance;
-			}
-		}
 
-		//---------------------------------------
-		public int GetMaxMoney() {
-			return 99999999;
-		}
+namespace FormulaBase
+{
+    public class AccountGoldManagerComponent : CustomComponentBase
+    {
+        private static AccountGoldManagerComponent instance = null;
+        private const int HOST_IDX = 1;
 
-		public int GetMoney() {
-			FormulaHost account = AccountManagerComponent.Instance.GetAccount ();
-			if(account==null)
-			{
-				return 0;
-			}
-			return (int)account.GetDynamicDataByKey(SignKeys.GOLD);
-		}
+        public static AccountGoldManagerComponent Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new AccountGoldManagerComponent();
+                }
+                return instance;
+            }
+        }
 
-		public void SetMoney(int money) {
-			FormulaHost account = AccountManagerComponent.Instance.GetAccount ();
-			if (account == null) {
-				return;
-			}
+        //---------------------------------------
+        public int GetMaxMoney()
+        {
+            return 99999999;
+        }
 
-			account.SetDynamicData (SignKeys.GOLD, money);
-		}
+        public int GetMoney()
+        {
+            FormulaHost account = AccountManagerComponent.Instance.GetAccount();
+            if (account == null)
+            {
+                return 0;
+            }
+            return (int)account.GetDynamicDataByKey(SignKeys.GOLD);
+        }
 
-		// TODO : add money here
-		public bool ChangeMoney(int money, bool isave = true, HttpResponseDelegate rsp = null) {
-			FormulaHost account = AccountManagerComponent.Instance.GetAccount ();
-			if (account == null) {
-				return false;
-			}
+        public void SetMoney(int money)
+        {
+            FormulaHost account = AccountManagerComponent.Instance.GetAccount();
+            if (account == null)
+            {
+                return;
+            }
 
-			CommonPanel.GetInstance ().ShowWaittingPanel (true);
-			bool result = account.AddDynamicValueRemote (SignKeys.GOLD, money, isave, new HttpResponseDelegate ((bool _result) => {
-				this.ChangeMoneyCallBack (_result);
-				if (rsp != null) {
-					rsp (_result);
-				}
-			}), true, 0, this.GetMaxMoney ());
+            account.SetDynamicData(SignKeys.GOLD, money);
+        }
 
-			if (!result) {
-				CommonPanel.GetInstance ().ShowWaittingPanel (false);
-			}
+        // TODO : add money here
+        public bool ChangeMoney(int money, bool isave = true, HttpResponseDelegate rsp = null)
+        {
+            FormulaHost account = AccountManagerComponent.Instance.GetAccount();
+            if (account == null)
+            {
+                return false;
+            }
 
-			return result;
-		}
+            CommonPanel.GetInstance().ShowWaittingPanel(true);
+            bool result = account.AddDynamicValueRemote(SignKeys.GOLD, money, isave, new HttpResponseDelegate((bool _result) =>
+            {
+                this.ChangeMoneyCallBack(_result);
+                if (rsp != null)
+                {
+                    rsp(_result);
+                }
+                if (_result)
+                {
+                    if (money > 0)
+                    {
+                        //MessageDispatcher.SendMessage("ADD_COIN");
+                    }
+                }
+            }), true, 0, this.GetMaxMoney());
 
-		private void ChangeMoneyCallBack(bool _Success) {
-			if (!_Success) {
-				CommonPanel.GetInstance ().ShowText ("存储钱失败");
-				return;
-			}
+            if (!result)
+            {
+                CommonPanel.GetInstance().ShowWaittingPanel(false);
+            }
 
-			//Messenger.Broadcast (MainMenuPanel.BroadcastChangeMoney);
-			//Messenger.Broadcast (MainMenuPanel.Broadcast_MainMenuChangeMoney);
-			CommonPanel.GetInstance ().ShowWaittingPanel (false);
-		}
-	}
+            return result;
+        }
+
+        private void ChangeMoneyCallBack(bool _Success)
+        {
+            if (!_Success)
+            {
+                CommonPanel.GetInstance().ShowText("存储钱失败");
+                return;
+            }
+
+            //Messenger.Broadcast (MainMenuPanel.BroadcastChangeMoney);
+            //Messenger.Broadcast (MainMenuPanel.Broadcast_MainMenuChangeMoney);
+            CommonPanel.GetInstance().ShowWaittingPanel(false);
+        }
+    }
 }

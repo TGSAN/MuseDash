@@ -327,7 +327,7 @@ namespace PnlEquipInfo
                 PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(isShow);
                 isUpgrade = false;
             };
-            UIEventListener.Get(btnUpgradeBack.gameObject).onClick = callFunc;
+            //UIEventListener.Get(btnUpgradeBack.gameObject).onClick = callFunc;
             UIEventListener.Get(btnConfirm.gameObject).onClick = (go) =>
             {
                 var hosts = PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost;
@@ -339,7 +339,7 @@ namespace PnlEquipInfo
                         PnlSuitcase.PnlSuitcase.Instance.SetUpgradeSelectedCell(null);
                         PnlSuitcase.PnlSuitcase.Instance.OnShow();
                         updateInfo();
-                        callFunc(gameObject);
+                        //callFunc(gameObject);
                     });
                 }
                 else
