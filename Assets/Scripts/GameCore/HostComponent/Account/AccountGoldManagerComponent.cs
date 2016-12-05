@@ -10,6 +10,17 @@ namespace FormulaBase
     {
         private static AccountGoldManagerComponent instance = null;
         private const int HOST_IDX = 1;
+        private bool m_IsAdd = false;
+
+        public void DetectAdd(int num = 0)
+        {
+            if (m_IsAdd && PnlMainMenu.PnlMainMenu.Instance != null)
+            {
+                PnlMainMenu.PnlMainMenu.Instance.coin.FlyAll();
+                PnlMainMenu.PnlMainMenu.Instance.OnCoinUpdate(true);
+                m_IsAdd = false;
+            }
+        }
 
         public static AccountGoldManagerComponent Instance
         {
@@ -67,12 +78,10 @@ namespace FormulaBase
                 {
                     rsp(_result);
                 }
-                if (_result)
+                if (money > 0)
                 {
-                    if (money > 0)
-                    {
-                        MessageDispatcher.SendMessage("ADD_COIN");
-                    }
+                    m_IsAdd = _result;
+                    DetectAdd(money);
                 }
             }), true, 0, this.GetMaxMoney());
 

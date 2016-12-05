@@ -24,6 +24,18 @@ namespace FormulaBase
         // ------------------------------------------------------------------
         public const string SIGN_KEY_TXT_ENERGY = "TXT_ENERGY";
 
+        private bool m_IsAdd = false;
+
+        public void DetectAdd(int num = 0)
+        {
+            if (m_IsAdd && PnlMainMenu.PnlMainMenu.Instance != null)
+            {
+                m_IsAdd = false;
+                PnlMainMenu.PnlMainMenu.Instance.energy.FlyAll();
+                PnlMainMenu.PnlMainMenu.Instance.OnEnergyUpdate();
+            }
+        }
+
         public void Init()
         {
             this.SetPhysicText();
@@ -123,22 +135,14 @@ namespace FormulaBase
             bool result = account.AddDynamicValueRemote(SignKeys.PHYSICAL, _value, isave, new HttpResponseDelegate((bool _result) =>
             {
                 this.ChangePhysicalCallBack(_result);
-                if (PnlMainMenu.PnlMainMenu.Instance != null)
+                if (_value > 0)
                 {
-                    PnlMainMenu.PnlMainMenu.Instance.OnEnergyUpdate(true, () =>
-                    {
-                        if (rsp != null)
-                        {
-                            rsp(_result);
-                        }
-                    });
+                    m_IsAdd = _result;
+                    DetectAdd(_value);
                 }
-                else
+                if (rsp != null)
                 {
-                    if (rsp != null)
-                    {
-                        rsp(_result);
-                    }
+                    rsp(_result);
                 }
             }), _isMatchLimit, 0, this.GetMaxPhysical());
 

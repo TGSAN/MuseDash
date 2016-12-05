@@ -20,7 +20,7 @@ namespace PnlMainMenu
         public UISprite sprRecoverTime, sprCharmBar, sprExpBar;
         public UITweener twnEnergy, twnCoin, twnCrystal;
         public GameObject[] capsules;
-        public RandomObjFly coin, crystal, charm, exp;
+        public RandomObjFly coin, crystal, charm, exp, energy;
         private Animator m_CapsuleAnimator;
 
         public static PnlMainMenu Instance
@@ -34,13 +34,25 @@ namespace PnlMainMenu
         public override void BeCatched()
         {
             instance = this;
-            base.BeCatched();
         }
 
         public override void OnShow()
         {
             gameObject.SetActive(true);
             OnUpdateInfo();
+            UpdateEvent();
+        }
+
+        private void UpdateEvent()
+        {
+            DOTweenUtils.Delay(() =>
+            {
+                AccountGoldManagerComponent.Instance.DetectAdd();
+                AccountPhysicsManagerComponent.Instance.DetectAdd();
+                AccountCharmComponent.Instance.DetectAdd();
+                AccountCrystalManagerComponent.Instance.DetectAdd();
+                AccountLevelManagerComponent.Instance.DetectAdd();
+            }, 1.0f);
         }
 
         public void OnUpdateInfo()
@@ -56,7 +68,7 @@ namespace PnlMainMenu
         {
             var expNextLvl = AccountLevelManagerComponent.Instance.NextLvlExp();
             var curExp = AccountLevelManagerComponent.Instance.GetExp();
-            sprExpBar.transform.localScale = new Vector3((float)curExp / (float)expNextLvl, 1f, 1f);
+            sprExpBar.transform.localScale = new Vector3(Mathf.Min((float)curExp / (float)expNextLvl, 1f), 1f, 1f);
         }
 
         public void OnCharmUpdate(bool isUpdate = false, Action callFunc = null)

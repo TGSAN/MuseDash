@@ -13,6 +13,7 @@ namespace Assets.Scripts.Common.Tools
         public float maxY, maxZ;
         public float time;
         public AnimationCurve speedCurve;
+        public int count = 20;
         private ParticleSystem m_ParticleSystem;
         private GameObject[] m_Gos;
 
@@ -21,7 +22,7 @@ namespace Assets.Scripts.Common.Tools
             m_ParticleSystem = GetComponent<ParticleSystem>();
         }
 
-        public void FlyAll(int count)
+        public void FlyAll()
         {
             m_Gos = new GameObject[count];
             var pool = FastPoolManager.GetPool(go);
@@ -34,10 +35,9 @@ namespace Assets.Scripts.Common.Tools
 
         private void Fly(GameObject g)
         {
-            Debug.Log(startPos);
             var distance = Vector3.Distance(startPos.position, endPos.position);
             var xDirection = Vector3.Normalize(endPos.position - startPos.position);
-            var zDirection = Camera.main.transform.forward;
+            var zDirection = Vector3.forward;
             var yDirection = Vector3.Cross(xDirection, zDirection);
             var x = m_ParticleSystem.velocityOverLifetime.x.Evaluate(Random.Range(0f, 1f), Random.Range(0f, 1f));
             var y = m_ParticleSystem.velocityOverLifetime.y.Evaluate(x, Random.Range(0f, 1f));
@@ -49,7 +49,7 @@ namespace Assets.Scripts.Common.Tools
             g.transform.DOPath(path, time, PathType.CatmullRom).SetEase(speedCurve).OnComplete(() =>
             {
                 var pool = FastPoolManager.GetPool(go);
-                pool.FastDestroy(go);
+                pool.FastDestroy(g);
             });
         }
     }

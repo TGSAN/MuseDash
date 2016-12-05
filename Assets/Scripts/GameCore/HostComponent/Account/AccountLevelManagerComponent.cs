@@ -21,6 +21,18 @@ namespace FormulaBase
             }
         }
 
+        private bool m_IsAdd = false;
+
+        public void DetectAdd(int num = 0)
+        {
+            if (m_IsAdd && PnlMainMenu.PnlMainMenu.Instance != null)
+            {
+                m_IsAdd = false;
+                PnlMainMenu.PnlMainMenu.Instance.exp.FlyAll();
+                PnlMainMenu.PnlMainMenu.Instance.OnExpUpdate();
+            }
+        }
+
         public int GetExp()
         {
             FormulaHost account = AccountManagerComponent.Instance.GetAccount();
@@ -61,6 +73,11 @@ namespace FormulaBase
             bool result = account.AddDynamicValueRemote(SignKeys.EXP, _exp, isave, new HttpResponseDelegate((bool _result) =>
             {
                 this.ChangeExpCallBack(_result);
+                if (_exp > 0)
+                {
+                    m_IsAdd = _result;
+                    DetectAdd(_exp);
+                }
                 if (rsp != null)
                 {
                     rsp(_result);

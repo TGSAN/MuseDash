@@ -20,6 +20,18 @@ namespace FormulaBase
             }
         }
 
+        private bool m_IsAdd = false;
+
+        public void DetectAdd(int num = 0)
+        {
+            if (m_IsAdd && PnlMainMenu.PnlMainMenu.Instance != null)
+            {
+                m_IsAdd = false;
+                PnlMainMenu.PnlMainMenu.Instance.charm.FlyAll();
+                PnlMainMenu.PnlMainMenu.Instance.OnCharmUpdate();
+            }
+        }
+
         //---------------------------------------
         public int GetMaxCharm()
         {
@@ -63,6 +75,11 @@ namespace FormulaBase
                 if (rsp != null)
                 {
                     rsp(_result);
+                }
+                if (charm > 0)
+                {
+                    m_IsAdd = _result;
+                    DetectAdd(charm);
                 }
             }), true, 0, this.GetMaxCharm());
 

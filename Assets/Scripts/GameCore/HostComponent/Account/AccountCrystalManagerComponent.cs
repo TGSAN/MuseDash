@@ -21,6 +21,18 @@ namespace FormulaBase
             }
         }
 
+        private bool m_IsAdd = false;
+
+        public void DetectAdd(int num = 0)
+        {
+            if (m_IsAdd && PnlMainMenu.PnlMainMenu.Instance != null)
+            {
+                m_IsAdd = false;
+                PnlMainMenu.PnlMainMenu.Instance.crystal.FlyAll();
+                PnlMainMenu.PnlMainMenu.Instance.OnCrystalUpdate();
+            }
+        }
+
         //----------------------------------------
         public void SetDiamond(int diamond)
         {
@@ -70,6 +82,11 @@ namespace FormulaBase
             bool result = account.AddDynamicValueRemote(SignKeys.CRYSTAL, diamond, isave, new HttpResponseDelegate((bool _result) =>
             {
                 this.ChangeDiamondCallback(_result);
+                if (diamond > 0)
+                {
+                    m_IsAdd = _result;
+                    DetectAdd(diamond);
+                }
                 if (rsp != null)
                 {
                     rsp(_result);

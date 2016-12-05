@@ -425,13 +425,13 @@ namespace Assets.Scripts.NGUI
         private void OnTrophyChange()
         {
             var trophyNum = TaskStageTarget.Instance.GetXMax(TaskStageTarget.TASK_SIGNKEY_STAGE_EVLUATE);
-            var unLockNum = m_StageInfos[m_CurrentIdx].unLockNum;
+            var isLock = m_StageInfos[m_CurrentIdx].isLock;
             for (int i = 0; i < trophyParent.childCount; i++)
             {
                 var child = trophyParent.GetChild(i);
                 child.GetChild(0).gameObject.SetActive(i < trophyNum);
             }
-            btnTip.gameObject.SetActive(unLockNum > TaskStageTarget.Instance.GetTotalTrophy());
+            btnTip.gameObject.SetActive(isLock);
         }
 
         private void OnEnergyInfoChange(bool change)
