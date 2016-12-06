@@ -52,7 +52,6 @@ namespace Assets.Scripts.Common.Tools
             g.transform.localScale = Vector3.one * scale;
             g.transform.position = start;
             var path = new[] { start, midPos, end };
-            Debug.Log(end);
             g.transform.DOPath(path, time, PathType.CatmullRom).SetEase(speedCurve).OnComplete(() =>
             {
                 var pool = FastPoolManager.GetPool(go);

@@ -486,6 +486,7 @@ namespace FormulaBase
             if (host != null)
             {
                 host.SetDynamicData(SignKeys.ID, idx);
+                OnNewCosCheck(host);
                 //ItemManageComponent.Instance.AddItem(host);
             }
             return host;
@@ -532,6 +533,32 @@ namespace FormulaBase
                 }
             }
             */
+        }
+
+        private void OnNewCosCheck(FormulaHost host)
+        {
+            var id = host.GetDynamicIntByKey(SignKeys.ID);
+            var suitName = ConfigPool.Instance.GetConfigStringValue("items", id.ToString(), "suit");
+            if (suitName == "0") return;
+            var typeList = new List<int>();
+            foreach (var value in HostList.Values)
+            {
+                var suit = value.GetDynamicStrByKey(SignKeys.SUIT);
+                var idx = value.GetDynamicIntByKey(SignKeys.ID);
+
+                if (suit == suitName)
+                {
+                    if (!typeList.Contains(idx))
+                    {
+                        typeList.Add(idx);
+                    }
+                }
+            }
+
+            if (!typeList.Contains(id) && typeList.Count == 2)
+            {
+                PnlUnlockNewCos.PnlUnlockNewCos.Instance.OnShow(host);
+            }
         }
     }
 }
