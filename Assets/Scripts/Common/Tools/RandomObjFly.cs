@@ -11,9 +11,13 @@ namespace Assets.Scripts.Common.Tools
         public Transform startPos, endPos;
         public GameObject go;
         public float maxY, maxZ;
+        public float scale = 1.0f;
         public float time;
         public AnimationCurve speedCurve;
-        public int count = 20;
+        public int count = 10;
+        public bool rotateX, rotateY, rotateZ;
+        public float rotateSpeed = 400f;
+        public AnimationCurve rotateCurve;
         private ParticleSystem m_ParticleSystem;
         private GameObject[] m_Gos;
 
@@ -35,22 +39,28 @@ namespace Assets.Scripts.Common.Tools
 
         private void Fly(GameObject g)
         {
-            var distance = Vector3.Distance(startPos.position, endPos.position);
-            var xDirection = Vector3.Normalize(endPos.position - startPos.position);
+            var start = startPos.InverseTransformDirection(startPos.position);
+            var end = endPos.InverseTransformDirection(endPos.position);
+            var distance = Vector3.Distance(start, end);
+            var xDirection = Vector3.Normalize(end - start);
             var zDirection = Vector3.forward;
             var yDirection = Vector3.Cross(xDirection, zDirection);
             var x = m_ParticleSystem.velocityOverLifetime.x.Evaluate(Random.Range(0f, 1f), Random.Range(0f, 1f));
             var y = m_ParticleSystem.velocityOverLifetime.y.Evaluate(x, Random.Range(0f, 1f));
             var z = m_ParticleSystem.velocityOverLifetime.z.Evaluate(x, Random.Range(0f, 1f));
             var midPos = startPos.TransformPoint(x * distance * xDirection + y * maxY * yDirection + z * maxZ * zDirection);
-            g.transform.localScale = Vector3.one;
-            g.transform.position = startPos.position;
-            var path = new[] { startPos.position, midPos, endPos.position };
+            g.transform.localScale = Vector3.one * scale;
+            g.transform.position = start;
+            var path = new[] { start, midPos, end };
+            Debug.Log(end);
             g.transform.DOPath(path, time, PathType.CatmullRom).SetEase(speedCurve).OnComplete(() =>
             {
                 var pool = FastPoolManager.GetPool(go);
                 pool.FastDestroy(g);
             });
+
+            var rotateValue = rotateX ? Vector3.right : (rotateY ? Vector3.up : Vector3.forward) * rotateSpeed * time;
+            g.transform.DOLocalRotate(rotateValue, time, RotateMode.LocalAxisAdd).SetEase(rotateCurve);
         }
     }
 }

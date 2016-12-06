@@ -447,6 +447,10 @@ namespace FormulaBase
             var typeName = itemJson["type"].ToString();
             if (!IsCommonItem(typeName))
             {
+                if (typeName == "coin")
+                {
+                    AccountGoldManagerComponent.Instance.ChangeMoney(100);
+                }
                 return null;
             }
             FormulaHost host = null;
