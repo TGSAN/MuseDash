@@ -604,6 +604,11 @@ namespace FormulaBase
         public bool isLock;
         public List<FormulaHost> host;
 
+        public int ownerIdx
+        {
+            get { return uid / 10; }
+        }
+
         public CharCos(int i)
         {
             host = new List<FormulaHost>();
@@ -617,11 +622,17 @@ namespace FormulaBase
             owner = ((string)cos["owner"]).ToLower();
 
             var allEquips = EquipManageComponent.Instance.GetGirlEquipHosts(RoleManageComponent.Instance.GetID(owner), 0).ToList();
+            var idxList = new List<int>();
             allEquips.ForEach(equip =>
             {
                 if (equip.GetDynamicStrByKey(SignKeys.SUIT) == name)
                 {
-                    host.Add(equip);
+                    var idx = equip.GetDynamicIntByKey(SignKeys.ID);
+                    if (!idxList.Contains(idx))
+                    {
+                        idxList.Add(idx);
+                        host.Add(equip);
+                    }
                 }
             });
             isLock = host.Count < 3;

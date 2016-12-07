@@ -354,7 +354,15 @@ namespace PnlCharInfo
             {
                 btnApply.gameObject.SetActive(false);
             }
-            txtApply.gameObject.SetActive(!btnApply.gameObject.activeSelf);
+            var isLock = RoleManageComponent.Instance.GetRoleLockedState(idx);
+            if (isLock)
+            {
+                txtApply.gameObject.SetActive(false);
+            }
+            else
+            {
+                txtApply.gameObject.SetActive(!btnApply.gameObject.activeSelf);
+            }
         }
 
         public void OnSelectChange(Transform t)

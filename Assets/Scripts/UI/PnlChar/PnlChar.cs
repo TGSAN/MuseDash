@@ -1,4 +1,5 @@
 using FormulaBase;
+using PnlMainMenu;
 
 /// UI分析工具自动生成代码
 /// PnlCharUI主模块
@@ -50,6 +51,17 @@ namespace PnlChar
             {
                 return instance;
             }
+        }
+
+        public void OnShowCos(CharCos cos)
+        {
+            curRoleIdx = cos.ownerIdx;
+            OnClickBtnEnhancement.Do(PnlMainMenu.PnlMainMenu.Instance.goBtnEnhancement);
+            DOTweenUtils.Delay(() =>
+            {
+                animPath[cos.ownerIdx - 1] = cos.path;
+                PnlCharInfo.PnlCharInfo.Instance.OnRoleChange(cos.ownerIdx);
+            }, 0.2f);
         }
 
         public override void OnShow()

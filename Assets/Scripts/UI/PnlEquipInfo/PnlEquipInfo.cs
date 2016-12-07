@@ -361,7 +361,7 @@ namespace PnlEquipInfo
             for (int i = 0; i < upgradeTexs.Count; i++)
             {
                 var tex = upgradeTexs[i];
-                var sprite = tex.GetComponentInParent<UISprite>();
+                var sprite = tex.transform.parent.GetComponent<UISprite>();
                 var txt = upgradeTxts[i];
                 if (i < hostList.Count)
                 {

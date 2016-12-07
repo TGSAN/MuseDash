@@ -15,7 +15,7 @@ namespace PnlMainMenu
     public class PnlMainMenu : UIPhaseBase
     {
         private static PnlMainMenu instance = null;
-        public GameObject goSelectedSuitcase;
+        public GameObject goSelectedSuitcase, goBtnEnhancement;
         public UILabel txtEnergy, txtCharm, txtCharmMax;
         public UISprite sprRecoverTime, sprCharmBar, sprExpBar;
         public UITweener twnEnergy, twnCoin, twnCrystal;

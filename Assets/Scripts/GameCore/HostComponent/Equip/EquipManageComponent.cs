@@ -537,11 +537,13 @@ namespace FormulaBase
 
         private void OnNewCosCheck(FormulaHost host)
         {
+            var hostList = ItemManageComponent.Instance.GetEquipList;
             var id = host.GetDynamicIntByKey(SignKeys.ID);
             var suitName = ConfigPool.Instance.GetConfigStringValue("items", id.ToString(), "suit");
             if (suitName == "0") return;
             var typeList = new List<int>();
-            foreach (var value in HostList.Values)
+
+            foreach (var value in hostList)
             {
                 var suit = value.GetDynamicStrByKey(SignKeys.SUIT);
                 var idx = value.GetDynamicIntByKey(SignKeys.ID);
@@ -554,7 +556,6 @@ namespace FormulaBase
                     }
                 }
             }
-
             if (!typeList.Contains(id) && typeList.Count == 2)
             {
                 PnlUnlockNewCos.PnlUnlockNewCos.Instance.OnShow(host);

@@ -35,12 +35,29 @@ namespace PnlUnlockNewCos
             var charCos = new CharCos(suitName);
 
             txtName.text = suitName;
+            spiParent.DestroyChildren();
             ResourceLoader.Instance.Load(charCos.path, res =>
             {
-                var go = Instantiate(res, spiParent) as GameObject;
-                go.transform.localPosition = Vector3.zero;
-                go.transform.localEulerAngles = Vector3.zero;
+                if (res != null)
+                {
+                    var go = Instantiate(res) as GameObject;
+                    go.transform.SetParent(spiParent, false);
+                    go.GetComponent<Animator>().enabled = false;
+                    go.GetComponent<SpineSynchroObjects>().enabled = false;
+                    go.GetComponent<SpineMountController>().enabled = false;
+                    go.SetActive(true);
+                    go.transform.localPosition = Vector3.zero;
+                    go.transform.localEulerAngles = Vector3.zero;
+                    var skeletonAnim = go.GetComponent<SkeletonAnimation>();
+                    skeletonAnim.loop = true;
+                    skeletonAnim.AnimationName = "standby";
+                    go.GetComponent<Renderer>().sortingOrder = 100;
+                }
             });
+            UIEventListener.Get(btnCheck.gameObject).onClick = go =>
+            {
+                PnlChar.PnlChar.Instance.OnShowCos(charCos);
+            };
             gameObject.SetActive(true);
         }
     }
