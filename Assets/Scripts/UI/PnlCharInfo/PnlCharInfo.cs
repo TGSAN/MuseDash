@@ -292,6 +292,11 @@ namespace PnlCharInfo
 
         public void OnRoleChange(int idx)
         {
+            if (idx == PnlChar.PnlChar.Instance.curRoleIdx)
+            {
+                return;
+            }
+
             m_SelectedCosList = RoleManageComponent.Instance.GetClothList(idx);
             var allCharCos = RoleManageComponent.Instance.GetCloths(idx);
             var curPath = PnlChar.PnlChar.Instance.animPath[idx - 1];

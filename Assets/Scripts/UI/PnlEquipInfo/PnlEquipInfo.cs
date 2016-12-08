@@ -37,6 +37,7 @@ namespace PnlEquipInfo
         public List<UITexture> upgradeTexs = new List<UITexture>();
         public List<UILabel> upgradeTxts = new List<UILabel>();
         public Color[] colorName;
+        private UIPlayAnimation m_CharBack, m_UpgradeBack;
 
         public static PnlEquipInfo Instance
         {
@@ -69,10 +70,12 @@ namespace PnlEquipInfo
                 sprExpNextBar.gameObject.SetActive(m_IsUpgrade);
                 if (m_IsUpgrade)
                 {
+                    m_CharBack.clipName = "pnl_item_upgrade_out";
                     PnlChar.PnlChar.Instance.gameObject.SetActive(false);
                 }
                 else
                 {
+                    m_CharBack.clipName = "pnl_char_item_info_out";
                     OnUpgradeItemsRefresh();
                 }
             }
@@ -84,6 +87,7 @@ namespace PnlEquipInfo
             {
                 return;
             }
+            animator.enabled = true;
             animator.Play(animName);
         }
 
@@ -100,12 +104,8 @@ namespace PnlEquipInfo
         private void Awake()
         {
             animator = GetComponent<Animator>();
-        }
-
-        private void Update()
-        {
-            charBack.SetActive(PnlChar.PnlChar.Instance != null && PnlChar.PnlChar.Instance.gameObject.activeSelf && !itemUpgrade.activeSelf);
-            suitcaseBack.SetActive(PnlSuitcase.PnlSuitcase.Instance != null && PnlSuitcase.PnlSuitcase.Instance.gameObject.activeSelf);
+            m_CharBack = btnCharBack.GetComponent<UIPlayAnimation>();
+            m_UpgradeBack = btnUpgradeBack.GetComponent<UIPlayAnimation>();
         }
 
         public override void OnShow()
@@ -141,11 +141,21 @@ namespace PnlEquipInfo
             }
         }
 
-        public override void OnShow(FormulaHost h)
+        public void OnShow(FormulaHost h, bool playAnim = true, bool isChar = false)
         {
             gameObject.SetActive(true);
-            animator.enabled = true;
-            OnEnter();
+            if (playAnim)
+            {
+                animator.enabled = true;
+                if (isChar)
+                {
+                    Play("pnl_char_equip_info_in");
+                }
+                else
+                {
+                    OnEnter();
+                }
+            }
 
             Action updateInfo = () =>
             {
@@ -214,9 +224,9 @@ namespace PnlEquipInfo
                 }
                 if (PnlChar.PnlChar.Instance.gameObject.activeSelf)
                 {
-                    var isOwned = h.GetDynamicIntByKey(SignKeys.WHO) == 1;
-                    btnUpgrade.gameObject.SetActive(isOwned);
-                    btnApply.gameObject.SetActive(!isOwned);
+                    var isNotOwned = h.GetDynamicIntByKey(SignKeys.WHO) == 0;
+                    btnUpgrade.gameObject.SetActive(!isNotOwned);
+                    btnApply.gameObject.SetActive(isNotOwned);
                 }
                 else
                 {
@@ -299,35 +309,47 @@ namespace PnlEquipInfo
 
             UIEventListener.Get(btnCharBack.gameObject).onClick = (go) =>
             {
+                isUpgrade = false;
+                PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(false);
+                PnlChar.PnlChar.Instance.gameObject.SetActive(true);
             };
 
             UIEventListener.Get(btnUpgrade.gameObject).onClick = (go) =>
             {
+                m_UpgradeBack.clipName = PnlChar.PnlChar.Instance.gameObject.activeSelf
+             ? "char_item_upgrade_out"
+             : "item_upgrade_out";
                 if (UpgradeManager.instance.IsItemLvlMax(host))
                 {
                     CommonPanel.GetInstance().ShowText("物品已达最高等级，无法升级");
                 }
                 else
                 {
+                    //PnlSuitcase.PnlSuitcase.Instance.OnShow();
                     Play("item_upgrade_in");
                     isUpgrade = true;
                 }
             };
             UIEventListener.VoidDelegate callFunc = (go) =>
             {
-                var isShow = PnlMainMenu.PnlMainMenu.Instance.goSelectedSuitcase.activeSelf;
-                if (!isShow)
+                /* var isShow = PnlMainMenu.PnlMainMenu.Instance.goSelectedSuitcase.activeSelf;
+                 if (!isShow)
+                 {
+                     animator.enabled = false;
+                     btnUpgradeBack.transform.parent.gameObject.SetActive(false);
+                 }
+                 animator.enabled = true;
+                 gameObject.SetActive(isShow);
+                 PnlChar.PnlChar.Instance.gameObject.SetActive(!isShow);
+                 PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(isShow);*/
+                if (m_UpgradeBack.clipName == "char_item_upgrade_out")
                 {
-                    animator.enabled = false;
-                    btnUpgradeBack.transform.parent.gameObject.SetActive(false);
+                    PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(false);
+                    PnlChar.PnlChar.Instance.gameObject.SetActive(true);
                 }
-                animator.enabled = true;
-                gameObject.SetActive(isShow);
-                PnlChar.PnlChar.Instance.gameObject.SetActive(!isShow);
-                PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(isShow);
                 isUpgrade = false;
             };
-            //UIEventListener.Get(btnUpgradeBack.gameObject).onClick = callFunc;
+            UIEventListener.Get(btnUpgradeBack.gameObject).onClick = callFunc;
             UIEventListener.Get(btnConfirm.gameObject).onClick = (go) =>
             {
                 var hosts = PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost;
@@ -339,7 +361,7 @@ namespace PnlEquipInfo
                         PnlSuitcase.PnlSuitcase.Instance.SetUpgradeSelectedCell(null);
                         PnlSuitcase.PnlSuitcase.Instance.OnShow();
                         updateInfo();
-                        //callFunc(gameObject);
+                        callFunc(gameObject);
                     });
                 }
                 else

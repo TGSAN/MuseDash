@@ -1,5 +1,6 @@
 ﻿using DG.Tweening.Plugins;
 using FormulaBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -181,10 +182,13 @@ namespace Assets.Scripts.Common.Manager
             {
                 if (result)
                 {
-                    foreach (var id in curCapsule.itemsID)
+                    var texList = (from id in curCapsule.itemsID select ItemManageComponent.Instance.CreateItemByUID(id) into host where host != null select ResourceLoader.Instance.LoadItemTexture(host)).ToList();
+                    PnlMainMenu.PnlMainMenu.Instance.item.SetAllItem(texList.ToArray());
+                    PnlCapsuleOpen.PnlCapsuleOpen.Instance.onDisable = new Action(() =>
                     {
-                        ItemManageComponent.Instance.CreateItemByUID(id);
-                    }
+                        PnlMainMenu.PnlMainMenu.Instance.item.FlyAllItem();
+                    });
+
                     PopCapsule();
                 }
                 if (callFunc != null) callFunc(result);

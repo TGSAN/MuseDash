@@ -86,7 +86,16 @@ namespace PnlSuitcase
         public void SetLock(bool isTo)
         {
             m_Cells.ForEach(itemImageEquip =>
-            itemImageEquip.isLock = (isTo && !upgradeSelectedHost.Contains(itemImageEquip.host)) || itemImageEquip.host.GetDynamicIntByKey(SignKeys.WHO) != 0);
+            {
+                itemImageEquip.isLock =
+                    (isTo && !upgradeSelectedHost.Contains(itemImageEquip.host)) ||
+                    itemImageEquip.host.GetDynamicIntByKey(SignKeys.WHO) != 0;
+                if (PnlEquipInfo.PnlEquipInfo.Instance.host != null)
+                {
+                    itemImageEquip.isLock = itemImageEquip.host.GetDynamicIntByKey(SignKeys.BAGINID) ==
+                                            PnlEquipInfo.PnlEquipInfo.Instance.host.GetDynamicIntByKey(SignKeys.BAGINID);
+                }
+            });
         }
 
         public override void OnShow()

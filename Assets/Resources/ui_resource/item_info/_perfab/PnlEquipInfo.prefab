@@ -413,27 +413,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!1 &1000010934112488
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 4000010426341358}
-  - 114: {fileID: 114000011422014690}
-  - 65: {fileID: 65000012253307316}
-  - 114: {fileID: 114000011722101316}
-  - 114: {fileID: 114000014164599018}
-  - 114: {fileID: 114000010019373730}
-  - 114: {fileID: 114000013542850212}
-  m_Layer: 5
-  m_Name: BtnUpgrade
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1000011043097676
 GameObject:
   m_ObjectHideFlags: 1
@@ -1524,6 +1503,7 @@ GameObject:
   - 114: {fileID: 114000011950072724}
   - 114: {fileID: 114000013819069002}
   - 114: {fileID: 114000011947016902}
+  - 114: {fileID: 114000011795888112}
   m_Layer: 5
   m_Name: BtnBack
   m_TagString: Untagged
@@ -1598,6 +1578,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000014278035258
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010521789974}
+  - 114: {fileID: 114000013553553090}
+  - 114: {fileID: 114000011601786320}
+  - 114: {fileID: 114000012963203186}
+  - 114: {fileID: 114000012019392082}
+  - 65: {fileID: 65000011862229204}
+  m_Layer: 5
+  m_Name: BtnUpgrade1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!4 &4000010007657868
 Transform:
   m_ObjectHideFlags: 1
@@ -1713,7 +1713,7 @@ Transform:
   - {fileID: 4000010032561704}
   - {fileID: 4000010441120306}
   m_Father: {fileID: 4000013478919820}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!4 &4000010314390498
 Transform:
   m_ObjectHideFlags: 1
@@ -1769,20 +1769,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000012322881712}
   m_RootOrder: 0
---- !u!4 &4000010426341358
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010934112488}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -145, y: 58.00003, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 4000010872701836}
-  m_Father: {fileID: 4000013478919820}
-  m_RootOrder: 1
 --- !u!4 &4000010441120306
 Transform:
   m_ObjectHideFlags: 1
@@ -1809,6 +1795,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000014234206560}
   m_RootOrder: 0
+--- !u!4 &4000010521789974
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014278035258}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -145, y: 58.00003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 4000010872701836}
+  m_Father: {fileID: 4000013478919820}
+  m_RootOrder: 9
 --- !u!4 &4000010541646116
 Transform:
   m_ObjectHideFlags: 1
@@ -1915,7 +1915,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011989051036}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1937,7 +1937,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 4000010426341358}
+  m_Father: {fileID: 4000010521789974}
   m_RootOrder: 0
 --- !u!4 &4000010888809946
 Transform:
@@ -2168,7 +2168,7 @@ Transform:
   m_Children:
   - {fileID: 4000011815587536}
   m_Father: {fileID: 4000013478919820}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!4 &4000011457206286
 Transform:
   m_ObjectHideFlags: 1
@@ -2197,7 +2197,7 @@ Transform:
   - {fileID: 4000013408536646}
   - {fileID: 4000013865106962}
   m_Father: {fileID: 4000013478919820}
-  m_RootOrder: 9
+  m_RootOrder: 8
 --- !u!4 &4000011484419534
 Transform:
   m_ObjectHideFlags: 1
@@ -2332,7 +2332,7 @@ Transform:
   m_Children:
   - {fileID: 4000013953705690}
   m_Father: {fileID: 4000013478919820}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &4000012130052484
 Transform:
   m_ObjectHideFlags: 1
@@ -2348,7 +2348,7 @@ Transform:
   - {fileID: 4000010196125006}
   - {fileID: 4000011108203008}
   m_Father: {fileID: 4000013478919820}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!4 &4000012246372470
 Transform:
   m_ObjectHideFlags: 1
@@ -2487,7 +2487,7 @@ Transform:
   m_Children:
   - {fileID: 4000010818576878}
   m_Father: {fileID: 4000013478919820}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!4 &4000012810662408
 Transform:
   m_ObjectHideFlags: 1
@@ -2634,7 +2634,6 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000012670270984}
-  - {fileID: 4000010426341358}
   - {fileID: 4000012083899568}
   - {fileID: 4000014234206560}
   - {fileID: 4000012801676788}
@@ -2643,6 +2642,7 @@ Transform:
   - {fileID: 4000010278773514}
   - {fileID: 4000013606285788}
   - {fileID: 4000011467469890}
+  - {fileID: 4000010521789974}
   m_Father: {fileID: 4000010837597850}
   m_RootOrder: 0
 --- !u!4 &4000013479508270
@@ -2728,7 +2728,7 @@ Transform:
   - {fileID: 4000012246372470}
   - {fileID: 4000010147557084}
   m_Father: {fileID: 4000013478919820}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!4 &4000013661124268
 Transform:
   m_ObjectHideFlags: 1
@@ -2884,7 +2884,7 @@ Transform:
   - {fileID: 4000012446294588}
   - {fileID: 4000012448199534}
   m_Father: {fileID: 4000013478919820}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!23 &23000010477697872
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -3035,24 +3035,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 120, y: 120, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65000011862229204
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014278035258}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 237, y: 68, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65000012190199490
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011554770726}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 237, y: 68, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65000012253307316
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010934112488}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
@@ -3177,52 +3177,6 @@ MonoBehaviour:
   mAtlas: {fileID: 114000014215409208, guid: 9256cd86dee5025449d0d312ce57edd6, type: 2}
   mSpriteName: groove_space
   mFillCenter: 1
---- !u!114 &114000010019373730
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010934112488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  root: {fileID: 1000011989051036}
-  clickResponseObjects:
-  - {fileID: 0}
-  clickResponseParentNames:
-  - 
-  - 
-  - 
-  clickResponseObjectsIsShow: 01
-  clickResponseParentNamesIsShow: 010101
-  clickResponseObjectAnimations:
-  - 
-  clickResponseParentAnimations:
-  - 
-  - 
-  - 
-  isFoldObjs: 1
-  isFoldParentObjs: 1
-  isForceKeep: 0
-  isClickHideSelf: 0
-  isClickHideParent: 0
-  des: "\u672A\u6709\u63CF\u8FF0"
-  activeHostKeyId: 0
-  activeCondiction: LEVEL
-  activeValue: 
-  labelHostKeyId: 0
-  labelMatchSign: 
-  labelMatchSelfDefineSign: 
-  sliderHostKeyId: 0
-  sliderMatchSign: 
-  sliderMaxSign: 
-  isNeedTranslate: 0
-  onClickModuleName: OnClickBtnUpgrade
-  onTweenAniFinishedModuleName: 
-  onSliderModuleName: 
-  scrollerTableDataModuleName: 
 --- !u!114 &114000010058519356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4029,7 +3983,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3000
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -4190,7 +4144,7 @@ MonoBehaviour:
   txtLv: {fileID: 114000012364491678}
   grdEquips: {fileID: 114000010764593746}
   btnSale: {fileID: 114000011302041888}
-  btnUpgrade: {fileID: 114000011722101316}
+  btnUpgrade: {fileID: 114000011601786320}
   btnUpgradeBack: {fileID: 114000012361665954}
   btnCharBack: {fileID: 114000011029223628}
   btnConfirm: {fileID: 114000012055096548}
@@ -5665,59 +5619,6 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
---- !u!114 &114000011422014690
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010934112488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  bottomAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
-  mPivot: 4
-  mWidth: 237
-  mHeight: 68
-  mDepth: 158
-  autoResizeBoxCollider: 1
-  hideIfOffScreen: 0
-  keepAspectRatio: 0
-  aspectRatio: 3.485294
-  mType: 1
-  mFillDirection: 4
-  mFillAmount: 1
-  mInvert: 0
-  mFlip: 0
-  mApplyGradient: 0
-  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  centerType: 1
-  leftType: 1
-  rightType: 1
-  bottomType: 1
-  topType: 1
-  mAtlas: {fileID: 114000014215409208, guid: 9256cd86dee5025449d0d312ce57edd6, type: 2}
-  mSpriteName: yellow_button
-  mFillCenter: 1
 --- !u!114 &114000011526867400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5830,7 +5731,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3002
+  startingRenderQueue: 3004
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -5893,6 +5794,31 @@ MonoBehaviour:
   mAtlas: {fileID: 114000014215409208, guid: 9256cd86dee5025449d0d312ce57edd6, type: 2}
   mSpriteName: ability_star
   mFillCenter: 1
+--- !u!114 &114000011601786320
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014278035258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 1000014278035258}
+  hover: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 1, g: 0.87058824, b: 0.60784316, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: 1}
+  duration: 0.02
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick: []
 --- !u!114 &114000011635234464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5999,31 +5925,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 7813e9a99211745c984b111b3f050312, type: 2}
   mSpriteName: menu_button_back
   mFillCenter: 1
---- !u!114 &114000011722101316
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010934112488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweenTarget: {fileID: 1000010934112488}
-  hover: {r: 1, g: 1, b: 1, a: 1}
-  pressed: {r: 1, g: 0.87058824, b: 0.60784316, a: 1}
-  disabledColor: {r: 1, g: 1, b: 1, a: 1}
-  duration: 0.02
-  dragHighlight: 0
-  hoverSprite: 
-  pressedSprite: 
-  disabledSprite: 
-  hoverSprite2D: {fileID: 0}
-  pressedSprite2D: {fileID: 0}
-  disabledSprite2D: {fileID: 0}
-  pixelSnap: 0
-  onClick: []
 --- !u!114 &114000011733141564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6212,6 +6113,29 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: OnTweenFinishedSprArrow
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000011795888112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014012784644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animator: {fileID: 95000012637285898}
+  clipName: char_item_upgrade_out
+  trigger: 0
+  playDirection: 1
+  resetOnPlay: 0
+  clearSelection: 0
+  ifDisabledOnPlay: 0
+  disableWhenFinished: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
 --- !u!114 &114000011884579234
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6339,14 +6263,14 @@ MonoBehaviour:
   clickResponseObjects:
   - {fileID: 0}
   clickResponseParentNames:
-  - PnlEquipInfo
+  - 
   - 
   clickResponseObjectsIsShow: 01
   clickResponseParentNamesIsShow: 0101
   clickResponseObjectAnimations:
   - 
   clickResponseParentAnimations:
-  - item_upgrade_out
+  - 
   - 
   isFoldObjs: 0
   isFoldParentObjs: 1
@@ -6368,6 +6292,21 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
+--- !u!114 &114000012019392082
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014278035258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
+  trigger: 0
+  volume: 1
+  pitch: 1
 --- !u!114 &114000012021155948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7698,7 +7637,7 @@ MonoBehaviour:
   - {fileID: 114000012325564370}
   - {fileID: 114000010338265490}
   - {fileID: 114000013320468660}
-  - {fileID: 114000010019373730}
+  - {fileID: 0}
   - {fileID: 114000011163973324}
   - {fileID: 114000010359396548}
   - {fileID: 114000012495466960}
@@ -8305,6 +8244,21 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114000012963203186
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014278035258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10616d4ce51c5994086c006a7c1189e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 4000010872701836}
+  hover: {x: 0, y: 0, z: 0}
+  pressed: {x: 2, y: -3, z: 0}
+  duration: 0.02
 --- !u!114 &114000012971341666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9423,7 +9377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   animator: {fileID: 95000012637285898}
-  clipName: pnl_char_item_info_out
+  clipName: pnl_item_upgrade_out
   trigger: 0
   playDirection: 1
   resetOnPlay: 0
@@ -9598,21 +9552,59 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
---- !u!114 &114000013542850212
+--- !u!114 &114000013553553090
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010934112488}
+  m_GameObject: {fileID: 1000014278035258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
-  trigger: 0
-  volume: 1
-  pitch: 1
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 237
+  mHeight: 68
+  mDepth: 159
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 3.485294
+  mType: 1
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 114000014215409208, guid: 9256cd86dee5025449d0d312ce57edd6, type: 2}
+  mSpriteName: yellow_button
+  mFillCenter: 1
 --- !u!114 &114000013556785774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11249,21 +11241,6 @@ MonoBehaviour:
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
---- !u!114 &114000014164599018
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010934112488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10616d4ce51c5994086c006a7c1189e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweenTarget: {fileID: 4000010872701836}
-  hover: {x: 0, y: 0, z: 0}
-  pressed: {x: 2, y: -3, z: 0}
-  duration: 0.02
 --- !u!114 &114000014182782230
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11508,7 +11485,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 114
   mHeight: 32
-  mDepth: 159
+  mDepth: 160
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0

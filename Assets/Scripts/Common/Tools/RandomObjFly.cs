@@ -20,10 +20,40 @@ namespace Assets.Scripts.Common.Tools
         public AnimationCurve rotateCurve;
         private ParticleSystem m_ParticleSystem;
         private GameObject[] m_Gos;
+        private UIGrid m_Grid;
 
         private void Awake()
         {
             m_ParticleSystem = GetComponent<ParticleSystem>();
+            m_Grid = startPos.GetComponent<UIGrid>();
+        }
+
+        public void SetAllItem(Texture[] texs)
+        {
+            count = texs.Length;
+            m_Gos = new GameObject[count];
+            var pool = FastPoolManager.GetPool(go);
+            for (int i = 0; i < m_Gos.Length; i++)
+            {
+                var g = pool.FastInstantiate();
+                g.transform.SetParent(m_Grid.transform, false);
+                m_Grid.enabled = true;
+                g.GetComponent<UITexture>().mainTexture = texs[i];
+                g.transform.localScale = Vector3.one * scale;
+                m_Gos[i] = g;
+                g.SetActive(false);
+            }
+        }
+
+        public void FlyAllItem()
+        {
+            m_Grid.gameObject.SetActive(true);
+            foreach (var g in m_Gos)
+            {
+                startPos = g.transform;
+                g.SetActive(true);
+                Fly(g);
+            }
         }
 
         public void FlyAll()
@@ -32,8 +62,9 @@ namespace Assets.Scripts.Common.Tools
             var pool = FastPoolManager.GetPool(go);
             for (int i = 0; i < m_Gos.Length; i++)
             {
-                m_Gos[i] = pool.FastInstantiate();
-                Fly(m_Gos[i]);
+                var g = pool.FastInstantiate();
+                Fly(g);
+                m_Gos[i] = g;
             }
         }
 

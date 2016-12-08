@@ -123,7 +123,13 @@ namespace PnlChar
         {
             onRoleChange = new Action<int>(OnRoleChange);
             onRoleChange += PnlCharInfo.PnlCharInfo.Instance.OnRoleChange;
-            onRoleChange += idx => PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
+            onRoleChange += idx =>
+            {
+                if (idx != curRoleIdx)
+                {
+                    PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
+                }
+            };
             var maxCount = RoleManageComponent.Instance.GetRoleCount();
             UIEventListener.Get(btnLeft.gameObject).onClick += go =>
                {

@@ -17,6 +17,7 @@ namespace PnlCapsuleOpen
         public UIButton btnOpen, btnPurchase;
         public UITexture[] texItems;
         public GameObject[] capsules;
+        public Action onDisable;
         private static PnlCapsuleOpen instance = null;
         private string m_AnimName = string.Empty;
 
@@ -96,6 +97,10 @@ namespace PnlCapsuleOpen
 
         private void OnDisable()
         {
+            if (onDisable != null)
+            {
+                onDisable();
+            }
             btnPurchase.gameObject.SetActive(false);
             if (PnlMainMenu.PnlMainMenu.Instance != null)
             {

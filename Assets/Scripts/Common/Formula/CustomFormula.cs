@@ -6,7 +6,7 @@ namespace FormulaBase {
 			FormulaStruct[] formulas = FormulaData.Instance.Formulas;
 			switch(idx) {
 				case 0:
-					return ( formulaObject.GetParamValue (0) + ( formulaObject.GetParamValue (1) - 1 ) * formulaObject.GetParamValue (2) + 300  );
+					return ( formulaObject.GetParamValue (0) + ( formulaObject.GetParamValue (1) - 1 ) * formulaObject.GetParamValue (2) + 600  );
 				case 1:
 					return ( formulaObject.GetParamValue (0) );
 				case 2:

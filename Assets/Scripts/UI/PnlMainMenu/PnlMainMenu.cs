@@ -20,7 +20,7 @@ namespace PnlMainMenu
         public UISprite sprRecoverTime, sprCharmBar, sprExpBar;
         public UITweener twnEnergy, twnCoin, twnCrystal;
         public GameObject[] capsules;
-        public RandomObjFly coin, crystal, charm, exp, energy;
+        public RandomObjFly coin, crystal, charm, exp, energy, item;
         private Animator m_CapsuleAnimator;
 
         public static PnlMainMenu Instance

@@ -48,6 +48,14 @@ public class ResourceLoader : MonoBehaviour
         return ResourceLoader.Instance.Load(icon, res => tex.mainTexture = res as Texture);
     }
 
+    public Texture LoadItemTexture(FormulaHost host)
+    {
+        Texture t = null;
+        var icon = "items/icon/" + host.GetDynamicStrByKey(SignKeys.ICON);
+        ResourceLoader.Instance.Load(icon, res => t = res as Texture);
+        return t;
+    }
+
     public Coroutine Load(FormulaHost host, UITexture tex)
     {
         var icon = host.GetDynamicStrByKey(SignKeys.ICON);

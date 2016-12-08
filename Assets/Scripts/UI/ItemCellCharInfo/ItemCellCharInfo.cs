@@ -59,6 +59,7 @@ namespace ItemCellCharInfo
         public override void OnShow(FormulaBase.FormulaHost h)
         {
             this.host = h;
+            btnUpgrade.GetComponent<UIPlayAnimation>().animator = PnlEquipInfo.PnlEquipInfo.Instance.animator;
             SetTexByHost();
             SetTxtByHost();
         }
@@ -104,9 +105,10 @@ namespace ItemCellCharInfo
                     });
                 }
             }));
+            GetComponent<UIPlayAnimation>().animator = PnlEquipInfo.PnlEquipInfo.Instance.animator;
             UIEventListener.Get(gameObject).onClick = (go) =>
             {
-                PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
+                PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host, false);
             };
 
             UIEventListener.Get(btnUpgrade.gameObject).onClick = (go) =>
@@ -117,12 +119,9 @@ namespace ItemCellCharInfo
                 }
                 else
                 {
-                    PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host);
-                    DOTweenUtils.Delay(() =>
-                    {
-                        PnlEquipInfo.PnlEquipInfo.Instance.isUpgrade = true;
-                        PnlEquipInfo.PnlEquipInfo.Instance.Play("item_upgrade_in");
-                    }, 0.1f);
+                    PnlEquipInfo.PnlEquipInfo.Instance.OnShow(host, false);
+                    PnlEquipInfo.PnlEquipInfo.Instance.isUpgrade = true;
+                    //PnlEquipInfo.PnlEquipInfo.Instance.Play("pnl_item_upgrade_in");
                 }
             };
         }
