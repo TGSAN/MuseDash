@@ -148,7 +148,7 @@ public class UIPhaseEdit : EditorWindow {
 			PrefabUtility.ReplacePrefab (this._uiObject, _prefab2);
 		}
 
-		EditorApplication.SaveAssets ();
+		AssetDatabase.SaveAssets ();
 	}
 
 	private void DeepPhaseUI() {

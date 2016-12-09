@@ -65,7 +65,7 @@ public class SpineModeInspector : EditorWindow {
 		temp [0] = new PropertyModification ();
 		temp [0].target = dataObject;
 		PrefabUtility.SetPropertyModifications (dataObject, temp);
-		EditorApplication.SaveAssets ();
+		AssetDatabase.SaveAssets ();
 		EditorData.Instance.AfterSave ();
 	}
 

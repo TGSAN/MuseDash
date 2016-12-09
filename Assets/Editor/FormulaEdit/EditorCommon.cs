@@ -25,7 +25,7 @@ public class EditorCommon {
 		temp [0] = new PropertyModification ();
 		temp [0].target = dataObject;
 		PrefabUtility.SetPropertyModifications (dataObject, temp);
-		EditorApplication.SaveAssets ();
+		AssetDatabase.SaveAssets ();
 		EditorData.Instance.AfterSave ();
 	}
 
@@ -41,7 +41,7 @@ public class EditorCommon {
 		temp [0] = new PropertyModification ();
 		temp [0].target = dataObject;
 		PrefabUtility.SetPropertyModifications (dataObject, temp);
-		EditorApplication.SaveAssets ();
+		AssetDatabase.SaveAssets ();
 		FormulaData.Instance.AfterSave ();
 	}
 
@@ -57,7 +57,7 @@ public class EditorCommon {
 		temp [0] = new PropertyModification ();
 		temp [0].target = dataObject;
 		PrefabUtility.SetPropertyModifications (dataObject, temp);
-		EditorApplication.SaveAssets ();
+		AssetDatabase.SaveAssets ();
 		StateMachineData.Instance.AfterSave ();
 	}
 }

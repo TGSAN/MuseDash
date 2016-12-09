@@ -1,6 +1,6 @@
 ///自定义模块，可定制模块具体行为
 using System;
-using UnityEngine;
+
 
 namespace FormulaBase {
 	public class SettingComponent : CustomComponentBase {
@@ -26,7 +26,7 @@ namespace FormulaBase {
 		}
 
 		public string GetShowStr() {
-			uint tam = UnityEngine.Profiler.GetTotalReservedMemory ();
+			uint tam = UnityEngine.Profiling.Profiler.GetTotalReservedMemory ();
 			float m = tam / kbSize;
 			return this.GetFps () + "fps " + String.Format ("{0:F}", this.GetMemoryUsage ()) + "Mb\n" + String.Format ("{0:F}", m) + "Mb";
 		}
@@ -39,7 +39,7 @@ namespace FormulaBase {
 		/// <returns>The memory usage.</returns>
 		public float GetMemoryUsage() {
 			//UnityEngine.Profiler.GetTotalUnusedReservedMemory () + 
-			uint tam = UnityEngine.Profiler.GetTotalAllocatedMemory ();
+			uint tam = UnityEngine.Profiling.Profiler.GetTotalAllocatedMemory ();
 			// uint tam = UnityEngine.Profiler.GetTotalReservedMemory ();
 			float m = tam / kbSize;
 			return m;

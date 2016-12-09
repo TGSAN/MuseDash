@@ -80,7 +80,7 @@ namespace PnlVictory
             var isAchieve = TaskStageTarget.Instance.IsAchieveNow();
             best.SetActive(isClearAllDiff);
             trophyTaskTrue.SetActive(!isClearAllDiff && isAchieve);
-            trophyTaskFalse.SetActive(!best.activeSelf && !trophyTaskTrue.activeSelf);
+            trophyTaskFalse.SetActive(!trophyTaskTrue.activeSelf);
         }
 
         public override void OnHide()
