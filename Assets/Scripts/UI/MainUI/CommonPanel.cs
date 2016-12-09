@@ -79,6 +79,7 @@ public class CommonPanel : MonoBehaviour
 
     private void Start()
     {
+        transform.position = new Vector3(0, 0, -4f);
         this.SignltonCheck();
         //this.m_UIMask.Reset ();
     }

@@ -4,6 +4,7 @@ using FormulaBase;
 /// PnlUnlockNewCosUI主模块
 ///
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace PnlUnlockNewCos
@@ -12,7 +13,8 @@ namespace PnlUnlockNewCos
     {
         public Transform spiParent;
         public UILabel txtName;
-        public UIButton btnCheck;
+        public UIButton btnCheck, btnNext;
+        private List<CharCos> m_Coss = new List<CharCos>();
         private static PnlUnlockNewCos instance = null;
 
         public static PnlUnlockNewCos Instance
@@ -28,15 +30,12 @@ namespace PnlUnlockNewCos
             instance = this;
         }
 
-        public override void OnShow(FormulaHost host)
+        public void OnShow(CharCos cos)
         {
-            var suitName = ConfigPool.Instance.GetConfigStringValue("items", host.GetDynamicStrByKey(SignKeys.ID),
-                "suit");
-            var charCos = new CharCos(suitName);
-
-            txtName.text = suitName;
+            m_Coss.Add(cos);
+            txtName.text = cos.name;
             spiParent.DestroyChildren();
-            ResourceLoader.Instance.Load(charCos.path, res =>
+            ResourceLoader.Instance.Load(cos.path, res =>
             {
                 if (res != null)
                 {
@@ -56,7 +55,21 @@ namespace PnlUnlockNewCos
             });
             UIEventListener.Get(btnCheck.gameObject).onClick = go =>
             {
-                PnlChar.PnlChar.Instance.OnShowCos(charCos);
+                var curCos = m_Coss[m_Coss.Count - 1];
+                m_Coss.Remove(curCos);
+                if (m_Coss.Count == 0)
+                {
+                    PnlChar.PnlChar.Instance.OnShowCos(curCos);
+                }
+            };
+            UIEventListener.Get(btnNext.gameObject).onClick = go =>
+            {
+                var curCos = m_Coss[m_Coss.Count - 1];
+                m_Coss.Remove(curCos);
+                if (m_Coss.Count == 0)
+                {
+                    PnlChar.PnlChar.Instance.OnShowCos(curCos);
+                }
             };
             gameObject.SetActive(true);
         }
