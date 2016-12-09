@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Assets.Scripts.UI;
+using DG.Tweening;
 using FormulaBase;
 using System;
 using System.Collections;
@@ -105,6 +106,10 @@ namespace Assets.Scripts.NGUI
         public float changeValue = 5.0f;
         public float scale = 1.0f;
         public Action<int> onSongChange;
+
+        public List<GradientKVP> gradients;
+        public List<UIGradient> bkg, cube;
+        private int m_CurGradientIdx = 0;
 
         private Tweener m_SlideTweener;
         private Tweener m_NextTweener;
@@ -420,6 +425,7 @@ namespace Assets.Scripts.NGUI
         {
             OnEnergyInfoChange(true);
             OnTrophyChange();
+            m_CurGradientIdx = m_CurGradientIdx + 1 >= gradients.Count ? 0 : m_CurGradientIdx + 1;
         }
 
         private void OnTrophyChange()
@@ -606,6 +612,15 @@ namespace Assets.Scripts.NGUI
             var alphaTo = m_StageInfos[m_CurrentIdx].isLock ? 0.0f : 1.0f;
             DOTweenUtils.TweenAllAlphaTo(btnStart, alphaTo, btnFadeTime, 0.1f);
             btnStart.GetComponent<TweenAlpha>().enabled = !m_StageInfos[m_CurrentIdx].isLock;
+
+            /*var percent = 1 - (m_CellGroup[m_CurrentIdx].transform.localScale.x * 2 - 1);
+            var curGradientKvp = gradients[m_CurGradientIdx];
+            var nextGradientKvp = gradients[m_CurGradientIdx + 1 >= gradients.Count ? 0 : m_CurGradientIdx + 1];
+            var cubeGradient = GradientUtil.BlendGradient(curGradientKvp.key, nextGradientKvp.key, percent);
+            var bkgGradient = GradientUtil.BlendGradient(curGradientKvp.value, nextGradientKvp.value, percent);
+            cube.ForEach(g => g.color = cubeGradient);
+            bkg.ForEach(g => g.color = bkgGradient);*/
+
             var midIdx = Mathf.RoundToInt(m_ZAngle / angle + 2);
             midIdx %= m_CellGroup.Count;
             midIdx = midIdx < 0

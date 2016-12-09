@@ -29,7 +29,7 @@ public class ChestShow : MonoBehaviour
     //FormulaHost m_host2;
     private void OnEnable()
     {
-        CommonPanel.GetInstance().SetBlurSub(this.GetComponent<UIPanel>());
+        //CommonPanel.GetInstance().SetBlurSub(this.GetComponent<UIPanel>());
 
         Debug.LogWarning(this.gameObject.name);
         m_ShowChestAnimator.Play("Ge_UI_small_start");
@@ -77,7 +77,7 @@ public class ChestShow : MonoBehaviour
     {
         if (m_CloseBlur)
         {
-            CommonPanel.GetInstance().CloseBlur(null);
+            //CommonPanel.GetInstance().CloseBlur(null);
         }
         this.gameObject.SetActive(false);
     }
@@ -249,13 +249,13 @@ public class ChestShow : MonoBehaviour
     {
         ClickExitMask(null, false);
         //		m_host.Result (FormulaKeys.FORMULA_90);
-        CommonPanel.GetInstance().ShowEnSureSalePanel(m_host.GetDynamicIntByKey(SignKeys.SOLD), EnSureSaleChest, CancelSaleChest, m_host.GetDynamicIntByKey(SignKeys.QUALITY) > 1, true);
+        //CommonPanel.GetInstance().ShowEnSureSalePanel(m_host.GetDynamicIntByKey(SignKeys.SOLD), EnSureSaleChest, CancelSaleChest, m_host.GetDynamicIntByKey(SignKeys.QUALITY) > 1, true);
     }
 
     public void EnSureSaleChest()
     {
         Debug.Log("卖出宝箱");
-        CommonPanel.GetInstance().CloseBlur(null);
+        //CommonPanel.GetInstance().CloseBlur(null);
         this.gameObject.SetActive(false);
         //	ClickExitMask(this.gameObject);
         ItemManageComponent.Instance.SaleItem(m_host, SaleChestCallBack);
@@ -294,7 +294,7 @@ public class ChestShow : MonoBehaviour
 
         ClickExitMask(null, false);
         //		m_host.Result (FormulaKeys.FORMULA_90);
-        CommonPanel.GetInstance().ShowEnSureSalePanel(m_host.GetDynamicIntByKey(SignKeys.SOLD), EntureSaleChestInGrid, CancelSaleChestInGrid, m_host.GetDynamicIntByKey(SignKeys.QUALITY) > 1, true);
+        //CommonPanel.GetInstance().ShowEnSureSalePanel(m_host.GetDynamicIntByKey(SignKeys.SOLD), EntureSaleChestInGrid, CancelSaleChestInGrid, m_host.GetDynamicIntByKey(SignKeys.QUALITY) > 1, true);
     }
 
     public void EntureSaleChestInGrid()
@@ -358,7 +358,7 @@ public class ChestShow : MonoBehaviour
         {
             Messenger.Broadcast(bagPanel2.BroadcastBagItem);
             //CommonPanel.GetInstance().CloseBlur(this.gameObject);
-            CommonPanel.GetInstance().CloseBlur(null);
+            //CommonPanel.GetInstance().CloseBlur(null);
             Debug.Log("删除UI");
             UIManageSystem.g_Instance.RomoveUI();
         }
@@ -382,8 +382,6 @@ public class ChestShow : MonoBehaviour
                 CommonPanel.GetInstance().ShowText("钻石不足 请充值");
                 return;
             }
-
-            CommonPanel.GetInstance().ShowRewardCubePanel((int)m_host.GetDynamicDataByKey(SignKeys.QUALITY), ShowItem, m_host);
             this.gameObject.SetActive(false);
         })));
     }
