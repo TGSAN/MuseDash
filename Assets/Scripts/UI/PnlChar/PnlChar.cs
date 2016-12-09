@@ -34,6 +34,11 @@ namespace PnlChar
             get;
         }
 
+        public bool isChangeRole
+        {
+            get { return m_PreRoleIdx != curRoleIdx; }
+        }
+
         private int m_PreRoleIdx = 0;
         private List<FormulaHost> m_Equipments = new List<FormulaHost>();
         private readonly List<string> m_AnimPath = new List<string>();
@@ -60,6 +65,7 @@ namespace PnlChar
             DOTweenUtils.Delay(() =>
             {
                 animPath[cos.ownerIdx - 1] = cos.path;
+                m_PreRoleIdx = 0;
                 PnlCharInfo.PnlCharInfo.Instance.OnRoleChange(cos.ownerIdx);
             }, 0.2f);
         }
@@ -123,13 +129,13 @@ namespace PnlChar
         {
             onRoleChange = new Action<int>(idx =>
             {
-                if (curRoleIdx != m_PreRoleIdx)
+                if (isChangeRole)
                 {
                     PnlCharInfo.PnlCharInfo.Instance.OnExit();
                 }
             });
-            onRoleChange += OnRoleChange;
             onRoleChange += PnlCharInfo.PnlCharInfo.Instance.OnRoleChange;
+            onRoleChange += OnRoleChange;
             var maxCount = RoleManageComponent.Instance.GetRoleCount();
             UIEventListener.Get(btnLeft.gameObject).onClick += go =>
                {
