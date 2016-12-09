@@ -1,7 +1,9 @@
 ﻿using DG.Tweening;
 using Smart.Extensions;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.Common.Tools
 {
@@ -18,6 +20,7 @@ namespace Assets.Scripts.Common.Tools
         public bool rotateX, rotateY, rotateZ;
         public float rotateSpeed = 400f;
         public AnimationCurve rotateCurve;
+        public Vector2 delayRange;
         private ParticleSystem m_ParticleSystem;
         private GameObject[] m_Gos;
         private UIGrid m_Grid;
@@ -82,12 +85,18 @@ namespace Assets.Scripts.Common.Tools
             var midPos = startPos.TransformPoint(x * distance * xDirection + y * maxY * yDirection + z * maxZ * zDirection);
             g.transform.localScale = Vector3.one * scale;
             g.transform.position = start;
+            g.SetActive(false);
             var path = new[] { start, midPos, end };
+            var dt = Random.Range(delayRange.x, delayRange.y);
+            DOTweenUtils.Delay(() =>
+            {
+                g.SetActive(true);
+            }, dt);
             g.transform.DOPath(path, time, PathType.CatmullRom).SetEase(speedCurve).OnComplete(() =>
             {
                 var pool = FastPoolManager.GetPool(go);
                 pool.FastDestroy(g);
-            });
+            }).SetDelay(dt);
 
             var rotateValue = rotateX ? Vector3.right : (rotateY ? Vector3.up : Vector3.forward) * rotateSpeed * time;
             g.transform.DOLocalRotate(rotateValue, time, RotateMode.LocalAxisAdd).SetEase(rotateCurve);

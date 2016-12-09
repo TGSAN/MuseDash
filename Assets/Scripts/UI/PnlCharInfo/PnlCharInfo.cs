@@ -292,7 +292,7 @@ namespace PnlCharInfo
 
         public void OnRoleChange(int idx)
         {
-            if (idx == PnlChar.PnlChar.Instance.curRoleIdx)
+            if (!PnlChar.PnlChar.Instance.isChangeRole)
             {
                 return;
             }

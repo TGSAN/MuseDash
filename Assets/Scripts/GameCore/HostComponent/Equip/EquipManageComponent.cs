@@ -558,7 +558,8 @@ namespace FormulaBase
             }
             if (!typeList.Contains(id) && typeList.Count == 2)
             {
-                PnlUnlockNewCos.PnlUnlockNewCos.Instance.OnShow(host);
+                var charCos = new CharCos(suitName);
+                PnlUnlockNewCos.PnlUnlockNewCos.Instance.OnShow(charCos);
             }
         }
     }

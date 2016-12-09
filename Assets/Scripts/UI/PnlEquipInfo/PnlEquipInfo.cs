@@ -355,6 +355,7 @@ namespace PnlEquipInfo
                 var hosts = PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost;
                 if (hosts.Count > 0)
                 {
+                    Play("item_upgrade_out");
                     animator.enabled = true;
                     UpgradeManager.instance.ItemLevelUp(h, hosts, (result) =>
                     {
