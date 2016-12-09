@@ -16,12 +16,12 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000013642274676}
-  - 114: {fileID: 114000012257175348}
-  - 54: {fileID: 54000013433402504}
-  - 114: {fileID: 114000014100437746}
+  - component: {fileID: 4000013642274676}
+  - component: {fileID: 114000012257175348}
+  - component: {fileID: 54000013433402504}
+  - component: {fileID: 114000014100437746}
   m_Layer: 8
   m_Name: SceneUiRootMainScene
   m_TagString: Untagged
@@ -34,12 +34,12 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000011476147356}
-  - 20: {fileID: 20000013705413984}
-  - 114: {fileID: 114000012642125002}
-  - 114: {fileID: 114000010734187838}
+  - component: {fileID: 4000011476147356}
+  - component: {fileID: 20000013705413984}
+  - component: {fileID: 114000012642125002}
+  - component: {fileID: 114000010734187838}
   m_Layer: 8
   m_Name: UIRootCamera
   m_TagString: Untagged
@@ -56,10 +56,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013642274676}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000013642274676
 Transform:
   m_ObjectHideFlags: 1
@@ -69,11 +69,11 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000011476147356}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &20000013705413984
 Camera:
   m_ObjectHideFlags: 1
