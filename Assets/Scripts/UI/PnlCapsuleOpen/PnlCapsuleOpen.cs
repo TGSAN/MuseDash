@@ -14,10 +14,11 @@ namespace PnlCapsuleOpen
     public class PnlCapsuleOpen : UIPhaseBase
     {
         public UILabel txtCharm, txtCharmMax;
-        public UIButton btnOpen, btnPurchase;
+        public UIButton btnOpen, btnPurchase, btnExit;
         public UITexture[] texItems;
         public GameObject[] capsules;
-        public Action onDisable;
+        public UILabel[] txtItemName;
+        public Action onExit;
         private static PnlCapsuleOpen instance = null;
         private string m_AnimName = string.Empty;
 
@@ -59,10 +60,13 @@ namespace PnlCapsuleOpen
                 if (ItemManageComponent.Instance.IsCommonItem(itemConfig["type"].ToString()))
                 {
                     commonItemCount++;
+                    var itemName = itemConfig["name"].ToString();
+                    txtItemName[k].text = itemName;
                     var tex = texItems[k++];
                     tex.transform.parent.gameObject.SetActive(true);
                     var iconPath = "items/icon/" + itemConfig["icon"].ToString();
                     var quality = (int)itemConfig["quality"];
+
                     ResourceLoader.Instance.Load(iconPath, res => tex.mainTexture = res as Texture);
                     for (var j = 0; j < tex.transform.childCount; j++)
                     {
@@ -83,6 +87,14 @@ namespace PnlCapsuleOpen
                          StoreManageComponent.Instance.Host.Result(FormulaKeys.FORMULA_115))).ToString();
             btnOpen.gameObject.SetActive(!isPurchase);
             btnPurchase.gameObject.SetActive(isPurchase);
+
+            UIEventListener.Get(btnExit.gameObject).onClick = go =>
+            {
+                if (onExit != null)
+                {
+                    onExit();
+                }
+            };
         }
 
         private void PlayAnimation()
@@ -97,10 +109,6 @@ namespace PnlCapsuleOpen
 
         private void OnDisable()
         {
-            if (onDisable != null)
-            {
-                onDisable();
-            }
             btnPurchase.gameObject.SetActive(false);
             if (PnlMainMenu.PnlMainMenu.Instance != null)
             {
@@ -138,9 +146,9 @@ namespace PnlCapsuleOpen
                     {
                         if (r)
                         {
-                            PlayAnimation();
                             CapsuleManager.instance.OpenCapsule((result) =>
                             {
+                                PlayAnimation();
                                 if (result)
                                 {
                                     if (PnlSuitcase.PnlSuitcase.Instance != null)

@@ -16,10 +16,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000013724858902}
-  - 114: {fileID: 114000010889930654}
+  - component: {fileID: 4000013724858902}
+  - component: {fileID: 114000010889930654}
   m_Layer: 0
   m_Name: FastPoolManager
   m_TagString: Untagged
@@ -36,10 +36,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114000010889930654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -58,7 +58,7 @@ MonoBehaviour:
     PreloadCount: 20
     NotificationType: 0
     WarmOnLoad: 1
-    ParentOnCache: 1
+    ParentOnCache: 0
     useCustomID: 0
     customID: 1593
     cached_internal: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
     PreloadCount: 20
     NotificationType: 0
     WarmOnLoad: 1
-    ParentOnCache: 1
+    ParentOnCache: 0
     useCustomID: 0
     customID: 7687
     cached_internal: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
     PreloadCount: 20
     NotificationType: 0
     WarmOnLoad: 1
-    ParentOnCache: 1
+    ParentOnCache: 0
     useCustomID: 0
     customID: 8530
     cached_internal: 0
@@ -88,7 +88,7 @@ MonoBehaviour:
     PreloadCount: 20
     NotificationType: 0
     WarmOnLoad: 1
-    ParentOnCache: 1
+    ParentOnCache: 0
     useCustomID: 0
     customID: 7697
     cached_internal: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
     PreloadCount: 20
     NotificationType: 0
     WarmOnLoad: 1
-    ParentOnCache: 1
+    ParentOnCache: 0
     useCustomID: 0
     customID: 5886
     cached_internal: 0
