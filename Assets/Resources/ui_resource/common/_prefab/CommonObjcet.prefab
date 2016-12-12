@@ -695,7 +695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000012247472568
 GameObject:
   m_ObjectHideFlags: 1
@@ -1477,6 +1477,7 @@ GameObject:
   - component: {fileID: 212774036357413746}
   - component: {fileID: 65252547689912906}
   - component: {fileID: 114588280350234376}
+  - component: {fileID: 114616771891627932}
   m_Layer: 5
   m_Name: SprBg
   m_TagString: Untagged
@@ -6864,7 +6865,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 9.866667
+  aspectRatio: 0.26666668
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   mFont: {fileID: 0}
@@ -8087,11 +8088,11 @@ MonoBehaviour:
   leftAnchor:
     target: {fileID: 4000012269842944}
     relative: 0
-    absolute: -528
+    absolute: -663
   rightAnchor:
     target: {fileID: 4000012269842944}
     relative: 1
-    absolute: 528
+    absolute: 663
   bottomAnchor:
     target: {fileID: 4000012269842944}
     relative: 0
@@ -8103,7 +8104,7 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 0.9988489}
   mPivot: 4
-  mWidth: 1334
+  mWidth: 1604
   mHeight: 80
   mDepth: 10
   autoResizeBoxCollider: 0
@@ -9493,6 +9494,29 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick: []
+--- !u!114 &114616771891627932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1742535795302130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animator: {fileID: 95743983383655626}
+  clipName: pnl_prompt_in
+  trigger: 0
+  playDirection: -1
+  resetOnPlay: 0
+  clearSelection: 0
+  ifDisabledOnPlay: 0
+  disableWhenFinished: -1
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
 --- !u!114 &114721439443974230
 MonoBehaviour:
   m_ObjectHideFlags: 1
