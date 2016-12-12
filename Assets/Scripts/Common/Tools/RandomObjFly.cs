@@ -66,8 +66,8 @@ namespace Assets.Scripts.Common.Tools
             for (int i = 0; i < m_Gos.Length; i++)
             {
                 var g = pool.FastInstantiate();
-                Fly(g);
                 m_Gos[i] = g;
+                Fly(g);
             }
         }
 
@@ -96,6 +96,7 @@ namespace Assets.Scripts.Common.Tools
             {
                 var pool = FastPoolManager.GetPool(go);
                 pool.FastDestroy(g);
+                m_Gos.Remove(g);
             }).SetDelay(dt);
 
             var rotateValue = rotateX ? Vector3.right : (rotateY ? Vector3.up : Vector3.forward) * rotateSpeed * time;
