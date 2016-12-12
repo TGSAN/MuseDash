@@ -119,3 +119,20 @@ public class RandomUtils
         }
     }
 }
+
+public class GradientUtil
+{
+    public static Gradient BlendGradient(Gradient l, Gradient r, float percent)
+    {
+        var gradient = new Gradient();
+        var list = new List<GradientColorKey>();
+        for (int i = 0; i < l.colorKeys.Length; i++)
+        {
+            var c = Color.Lerp(l.colorKeys[i].color, r.colorKeys[i].color, percent);
+            var t = l.colorKeys[i].time;
+            list.Add(new GradientColorKey(c, t));
+        }
+        gradient.colorKeys = list.ToArray();
+        return gradient;
+    }
+}

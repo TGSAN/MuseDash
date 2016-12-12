@@ -12,7 +12,7 @@ namespace PnlVictory
 {
     public class PnlVictory : UIPhaseBase
     {
-        private static PnlVictory instance = null;
+        private static PnlVictory m_Instance = null;
         public GameObject[] goAll, goNoneAll;
         public GameObject best, trophyTaskFalse, trophyTaskTrue;
         public UIButton btn;
@@ -22,7 +22,7 @@ namespace PnlVictory
         {
             get
             {
-                return instance;
+                return m_Instance;
             }
         }
 
@@ -46,7 +46,7 @@ namespace PnlVictory
 
         public override void BeCatched()
         {
-            instance = this;
+            m_Instance = this;
             sprGrade.gameObject.SetActive(false);
         }
 
