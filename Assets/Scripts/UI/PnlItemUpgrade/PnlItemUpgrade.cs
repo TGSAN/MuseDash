@@ -16,6 +16,8 @@ namespace PnlItemUpgrade
         private static PnlItemUpgrade instance = null;
         public UITexture[] itemTexs;
         public UITexture mainTex1, mainTex2;
+        public UILabel txtName, txtLvl, txtName2;
+        public UISprite sprExp;
         public Animator animator1, animator2;
         public List<GameObject> goQualities;
 
@@ -44,6 +46,12 @@ namespace PnlItemUpgrade
         {
             gameObject.SetActive(true);
             animator1.gameObject.SetActive(true);
+            txtName.text = host.GetDynamicStrByKey(SignKeys.NAME);
+            txtName2.text = host.GetDynamicStrByKey(SignKeys.NAME);
+            txtLvl.text = host.GetDynamicIntByKey(SignKeys.LEVEL).ToString();
+            var expRequired = (float)ConfigPool.Instance.GetConfigIntValue("experience",
+                host.GetDynamicIntByKey(SignKeys.LEVEL).ToString(), "eqpt_exp");
+            sprExp.transform.localScale = new Vector3(host.GetDynamicDataByKey(SignKeys.EXP) / expRequired, 1, 1);
             ResourceLoader.Instance.LoadItemIcon(host, mainTex1);
             ResourceLoader.Instance.LoadItemIcon(host, mainTex2);
             for (int i = 0; i < hosts.Length; i++)

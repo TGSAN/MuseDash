@@ -10,6 +10,7 @@ public class ShowText : MonoBehaviour
     private Callback m_callBackFun = null;
     public TweenAlpha temp;
     public TweenScale twnScale;
+	public TweenAlpha textControl;
 
     public void Start()
     {
@@ -48,6 +49,11 @@ public class ShowText : MonoBehaviour
             temp.PlayForward();
             twnScale.ResetToBeginning();
             twnScale.PlayForward();
+			textControl.ResetToBeginning ();
+			textControl.PlayForward();
+			textControl.onFinished.Add(new EventDelegate(() => {
+				gameObject.SetActive (false);
+			}));
             ///TweenAlpha.Begin(this.gameObject,0.2f,255,0);
             //temp.onFinished.Add(new EventDelegate(AlphaFinish));
 
