@@ -4,6 +4,7 @@ using FormulaBase;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.NGUI
@@ -129,6 +130,7 @@ namespace Assets.Scripts.NGUI
         private readonly Dictionary<int, GameObject> m_CellGroup = new Dictionary<int, GameObject>();
         private readonly List<StageInfo> m_StageInfos = new List<StageInfo>();
         private readonly List<float> m_Angles = new List<float>();
+        private readonly Dictionary<float, GradientKVP> m_GradientDics = new Dictionary<float, GradientKVP>();
 
         public float offsetX { get; private set; }
 
@@ -365,6 +367,21 @@ namespace Assets.Scripts.NGUI
             minMaxSlide.y *= 2;
 #endif
             m_TrophySum = TaskStageTarget.Instance.GetTotalTrophy();
+
+            var idx = 0;
+            if (m_GradientDics.Count == 0)
+            {
+                for (int i = 0; i < m_StageInfos.Count; i++)
+                {
+                    var theAngle = i * 40f;
+                    m_GradientDics.Add(theAngle, gradients[idx]);
+                    idx++;
+                    if (idx >= gradients.Count)
+                    {
+                        idx = 0;
+                    }
+                }
+            }
         }
 
         private void InitUI()
@@ -580,15 +597,6 @@ namespace Assets.Scripts.NGUI
                 txtAuthorLast.alpha = lerpNumLast;
                 txtNameLast.transform.parent.localPosition = Vector3.Lerp(offsetForInfo, new Vector3(0, 220, 0), lerpNumLast);
 
-                //txtNameNext.transform.parent.gameObject.SetActive(false);
-                /*var nextIdx = offsetX > 0 ? m_CurrentIdx - 1 < 0 ? m_StageInfos.Count - 1 : m_CurrentIdx - 1 : m_CurrentIdx + 1 > m_StageInfos.Count - 1 ? 0 : m_CurrentIdx + 1;
-                txtNameNext.text = m_StageInfos[nextIdx].idx + " " + m_StageInfos[nextIdx].musicName;
-                txtAuthorNext.text = "Music by " + m_StageInfos[nextIdx].musicAuthor;
-                var lerpNumNext = 1 - scale * ((Mathf.Abs(pivot.transform.position.x - m_CellGroup[nextIdx].transform.position.x)) / ((Mathf.Sin(angle * Mathf.Deg2Rad) / 2) * radius));
-                txtNameNext.alpha = lerpNumNext;
-                txtAuthorNext.alpha = lerpNumNext;
-                txtNameNext.transform.parent.localPosition = Vector3.Lerp(new Vector3(-offsetForInfo.x, 220.0f, 0.0f), new Vector3(0, 220, 0), lerpNumNext);*/
-
                 var startX = -570;
                 var endX = 535;
                 var progressPercent = ((m_ZAngle / angle + 2) % (m_CellGroup.Count)) / (m_CellGroup.Count - 1);
@@ -609,17 +617,38 @@ namespace Assets.Scripts.NGUI
                 SceneAudioManager.Instance.bgm.Stop();
             }
 
+            var theAngle = Mathf.Abs(Mathf.Abs(m_ZAngle) % (m_CellGroup.Count * 40f) - 80f);
+            for (int i = 0; i < m_GradientDics.Count; i++)
+            {
+                var idx = i;
+                var pair = m_GradientDics.ToList()[idx];
+                idx++;
+                if (idx >= m_GradientDics.Count)
+                {
+                    idx = 0;
+                }
+                var nextPair = m_GradientDics.ToList()[idx];
+                var curAngle = pair.Key;
+                var nextAngle = nextPair.Key;
+                if (i == m_CellGroup.Count - 1)
+                {
+                    nextAngle = curAngle + 40f;
+                }
+                if (theAngle >= curAngle && theAngle < nextAngle)
+                {
+                    var curGradientKvp = pair.Value;
+                    var nextGradientKvp = nextPair.Value;
+                    var percent = (theAngle - curAngle) / (nextAngle - curAngle);
+                    var cubeGradient = GradientUtil.BlendGradient(curGradientKvp.key, nextGradientKvp.key, percent);
+                    var bkgGradient = GradientUtil.BlendGradient(curGradientKvp.value, nextGradientKvp.value, percent);
+                    cube.ForEach(g => g.color = cubeGradient);
+                    bkg.ForEach(g => g.color = bkgGradient);
+                }
+            }
+
             var alphaTo = m_StageInfos[m_CurrentIdx].isLock ? 0.0f : 1.0f;
             DOTweenUtils.TweenAllAlphaTo(btnStart, alphaTo, btnFadeTime, 0.1f);
             btnStart.GetComponent<TweenAlpha>().enabled = !m_StageInfos[m_CurrentIdx].isLock;
-
-            /*var percent = 1 - (m_CellGroup[m_CurrentIdx].transform.localScale.x * 2 - 1);
-            var curGradientKvp = gradients[m_CurGradientIdx];
-            var nextGradientKvp = gradients[m_CurGradientIdx + 1 >= gradients.Count ? 0 : m_CurGradientIdx + 1];
-            var cubeGradient = GradientUtil.BlendGradient(curGradientKvp.key, nextGradientKvp.key, percent);
-            var bkgGradient = GradientUtil.BlendGradient(curGradientKvp.value, nextGradientKvp.value, percent);
-            cube.ForEach(g => g.color = cubeGradient);
-            bkg.ForEach(g => g.color = bkgGradient);*/
 
             var midIdx = Mathf.RoundToInt(m_ZAngle / angle + 2);
             midIdx %= m_CellGroup.Count;

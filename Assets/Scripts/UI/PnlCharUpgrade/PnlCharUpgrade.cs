@@ -103,8 +103,9 @@ namespace PnlCharUpgrade
                     tex.transform.parent.gameObject.SetActive(true);
                     var formulaHost = hosts[i];
                     ResourceLoader.Instance.LoadItemIcon(formulaHost, tex);
-                    tex.GetComponentInParent<UISprite>().spriteName = "groove_" +
-                                                                      formulaHost.GetDynamicIntByKey(SignKeys.QUALITY).ToString();
+                    var sprite = tex.transform.parent.GetComponent<UISprite>();
+                    Debug.Log(sprite);
+                    sprite.spriteName = "groove_" + formulaHost.GetDynamicIntByKey(SignKeys.QUALITY).ToString();
                 }
                 else
                 {
