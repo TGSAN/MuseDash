@@ -55,51 +55,6 @@ public class GMOrderPanel : MonoBehaviour
                 PnlSuitcase.PnlSuitcase.Instance.UpdateSuitcase();
             }
         }, 0.5f);
-        /*//所有装备
-        LitJson.JsonData cfg1 = ConfigPool.Instance.GetConfigByName("items");
-        Debug.Log("Equipment_info" + cfg1.Count);
-        List<int> TempEquipList = new List<int>();
-        foreach (string temp in cfg1.Keys)
-        {
-            TempEquipList.Add(int.Parse(temp));
-        }
-        EquipManageComponent.Instance.CreateItem(TempEquipList);
-        //	所有材料
-        LitJson.JsonData cfg2 = ConfigPool.Instance.GetConfigByName("item");
-        Debug.Log("item" + cfg2.Count);
-        List<int> TempitemList = new List<int>();
-        int tempi = 0;
-        foreach (string temp in cfg2.Keys)
-        {
-            //			tempi++;
-            //			if(tempi>=20)
-            //				break;
-            TempitemList.Add(int.Parse(temp));
-        }
-        MaterialManageComponent.Instance.CreateItem(TempitemList);
-
-        //宠物
-        LitJson.JsonData cfg3 = ConfigPool.Instance.GetConfigByName("pet");
-        Debug.Log("pet" + cfg3.Count);
-        List<int> TempPetList = new List<int>();
-        foreach (string temp in cfg3.Keys)
-        {
-            TempPetList.Add(int.Parse(temp));
-        }
-        PetManageComponent.Instance.CreateItem(TempPetList);
-
-        //宝箱
-        LitJson.JsonData cfg4 = ConfigPool.Instance.GetConfigByName("chest");
-        Debug.Log("chest" + cfg4.Count);
-        List<int> TempChestList = new List<int>();
-        foreach (string temp in cfg4.Keys)
-        {
-            TempChestList.Add(int.Parse(temp));
-        }
-
-        ChestManageComponent.Instance.CreateItem(TempChestList);
-        ChestManageComponent.Instance.CreateItem(TempChestList);
-        ChestManageComponent.Instance.CreateItem(TempChestList);*/
     }
 
     public void AddMaterials()
@@ -132,10 +87,11 @@ public class GMOrderPanel : MonoBehaviour
         EquipManageComponent.Instance.CreateItem(TempEquipList);
     }
 
-    //	public void AddRoles()
-    //	{
-    //		RoleManageComponent.Instance.CreateRoles();
-    //	}
+    public void AddCharm()
+    {
+        AccountCharmComponent.Instance.ChangeCharm(50);
+    }
+
     // Use this for initialization
     private void Start()
     {
@@ -144,19 +100,6 @@ public class GMOrderPanel : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-    }
-
-    public UIPopupList m_PopupList;
-
-    public void ClickListOkButton()
-    {
-        switch (m_PopupList.value)
-        {
-            case "AddChest":
-                AddChest();
-
-                break;
-        }
     }
 
     public void AddChest()
