@@ -184,7 +184,7 @@ namespace Assets.Scripts.Common.Manager
                 {
                     var texList = (from id in curCapsule.itemsID select ItemManageComponent.Instance.CreateItemByUID(id) into host where host != null select ResourceLoader.Instance.LoadItemTexture(host)).ToList();
                     PnlMainMenu.PnlMainMenu.Instance.item.SetAllItem(texList.ToArray());
-                    PnlCapsuleOpen.PnlCapsuleOpen.Instance.onDisable = new Action(() =>
+                    PnlCapsuleOpen.PnlCapsuleOpen.Instance.onExit = new Action(() =>
                     {
                         PnlMainMenu.PnlMainMenu.Instance.item.FlyAllItem();
                     });

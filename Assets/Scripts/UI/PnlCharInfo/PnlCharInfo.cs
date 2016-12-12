@@ -158,8 +158,8 @@ namespace PnlCharInfo
                 txtNextLuck.text = luckTo.ToString();
                 txtNextLvl.text = afterLvl.ToString();
 
-                sprExpCurBar.fillAmount = originExpPercent;
-                sprExpNextBar.fillAmount = curExpPercent;
+                sprExpCurBar.transform.localScale = new Vector3(originExpPercent, 1f, 1f);
+                sprExpNextBar.transform.localScale = new Vector3(curExpPercent, 1f, 1f);
 
                 curRoleHost.SetDynamicData(SignKeys.LEVEL, originLvl);
                 curRoleHost.SetDynamicData(SignKeys.EXP, originExp);
