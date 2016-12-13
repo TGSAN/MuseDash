@@ -943,6 +943,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011335534280}
   - component: {fileID: 114000014222704898}
+  - component: {fileID: 114634633530792412}
   m_Layer: 5
   m_Name: SprNewSign
   m_TagString: Untagged
@@ -1209,6 +1210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013584019860}
   - component: {fileID: 114000013770910918}
+  - component: {fileID: 114471425001597250}
   m_Layer: 5
   m_Name: SprNewSign
   m_TagString: Untagged
@@ -1456,6 +1458,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013825207518}
   - component: {fileID: 114000013240465354}
+  - component: {fileID: 114335372071999286}
   m_Layer: 5
   m_Name: SprNewSign
   m_TagString: Untagged
@@ -1780,13 +1783,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010851282568}
   - component: {fileID: 114000012855379672}
+  - component: {fileID: 114747652288944104}
   m_Layer: 5
   m_Name: SprNewSign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000014220641278
 GameObject:
   m_ObjectHideFlags: 1
@@ -7979,7 +7983,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -11270,6 +11274,222 @@ MonoBehaviour:
   onFinished: []
   eventReceiver: {fileID: 0}
   callWhenFinished: 
+--- !u!114 &114335372071999286
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013130151296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e7459110b9666449485c40f25362a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 0
+  style: 2
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: -0.070918895
+      outSlope: -0.070918895
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.33593014
+      value: -0.004545074
+      inSlope: 1.8815118
+      outSlope: 1.8815118
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.6490832
+      value: 1.0058014
+      inSlope: 1.930097
+      outSlope: 1.930097
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: -0.116589345
+      outSlope: -0.116589345
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ignoreTimeScale: 1
+  delay: 0
+  duration: 0.5
+  steeperCurves: 0
+  tweenGroup: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+  from: {x: 1, y: 1, z: 1}
+  to: {x: 1.2, y: 1.2, z: 1}
+  updateTable: 0
+--- !u!114 &114471425001597250
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012422656368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e7459110b9666449485c40f25362a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 0
+  style: 2
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: -0.070918895
+      outSlope: -0.070918895
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.33593014
+      value: -0.004545074
+      inSlope: 1.8815118
+      outSlope: 1.8815118
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.6490832
+      value: 1.0058014
+      inSlope: 1.930097
+      outSlope: 1.930097
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: -0.116589345
+      outSlope: -0.116589345
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ignoreTimeScale: 1
+  delay: 0
+  duration: 0.5
+  steeperCurves: 0
+  tweenGroup: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+  from: {x: 1, y: 1, z: 1}
+  to: {x: 1.2, y: 1.2, z: 1}
+  updateTable: 0
+--- !u!114 &114634633530792412
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011822228162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e7459110b9666449485c40f25362a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 0
+  style: 2
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: -0.070918895
+      outSlope: -0.070918895
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.33593014
+      value: -0.004545074
+      inSlope: 1.8815118
+      outSlope: 1.8815118
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.6490832
+      value: 1.0058014
+      inSlope: 1.930097
+      outSlope: 1.930097
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: -0.116589345
+      outSlope: -0.116589345
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ignoreTimeScale: 1
+  delay: 0
+  duration: 0.5
+  steeperCurves: 0
+  tweenGroup: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+  from: {x: 1, y: 1, z: 1}
+  to: {x: 1.2, y: 1.2, z: 1}
+  updateTable: 0
+--- !u!114 &114747652288944104
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014164531280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e7459110b9666449485c40f25362a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 0
+  style: 2
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: -0.070918895
+      outSlope: -0.070918895
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.33593014
+      value: -0.004545074
+      inSlope: 1.8815118
+      outSlope: 1.8815118
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.6490832
+      value: 1.0058014
+      inSlope: 1.930097
+      outSlope: 1.930097
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: -0.116589345
+      outSlope: -0.116589345
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ignoreTimeScale: 1
+  delay: 0
+  duration: 0.5
+  steeperCurves: 0
+  tweenGroup: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+  from: {x: 1, y: 1, z: 1}
+  to: {x: 1.2, y: 1.2, z: 1}
+  updateTable: 0
 --- !u!198 &198000010488943378
 ParticleSystem:
   m_ObjectHideFlags: 1
