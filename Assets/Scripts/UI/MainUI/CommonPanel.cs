@@ -1,6 +1,7 @@
 ﻿using FormulaBase;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityStandardAssets.ImageEffects;
 
@@ -77,11 +78,10 @@ public class CommonPanel : MonoBehaviour
 
     public void ShowYesNo(string content, Callback yesCallFunc, Callback noCallFunc = null)
     {
-        gameObject.SetActive(true);
-        txtYesNoContent.text = content;
+        yesNoPanel.SetActive(true);
         var animator = yesNoPanel.GetComponent<Animator>();
         animator.Play("pnl_yes_or_no_in");
-
+        txtYesNoContent.text = content;
         UIEventListener.Get(btnYes.gameObject).onClick = go =>
         {
             if (yesCallFunc != null)
@@ -89,6 +89,10 @@ public class CommonPanel : MonoBehaviour
                 yesCallFunc();
             }
             animator.Play("pnl_yes_or_no_out");
+            DOTweenUtils.Delay(() =>
+            {
+                yesNoPanel.SetActive(false);
+            }, 0.2f);
         };
         UIEventListener.VoidDelegate quitCallFunc = go =>
         {
@@ -97,6 +101,10 @@ public class CommonPanel : MonoBehaviour
                 noCallFunc();
             }
             animator.Play("pnl_yes_or_no_out");
+            DOTweenUtils.Delay(() =>
+            {
+                yesNoPanel.SetActive(false);
+            }, 0.2f);
         };
         UIEventListener.Get(btnNo.gameObject).onClick = quitCallFunc;
         UIEventListener.Get(btnMask.gameObject).onClick = quitCallFunc;
