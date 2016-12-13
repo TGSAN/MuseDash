@@ -5,10 +5,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 474830}
-  - 114: {fileID: 11405424}
+  - component: {fileID: 474830}
+  - component: {fileID: 11405424}
   m_Layer: 0
   m_Name: CommonAtlas
   m_TagString: Untagged
@@ -25,10 +25,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11405424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,7 +122,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: darken
     x: 288
-    y: 590
+    y: 554
     width: 32
     height: 32
     borderLeft: 5
@@ -159,6 +159,19 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: show_text_base
+    x: 288
+    y: 590
+    width: 32
+    height: 32
+    borderLeft: 2
+    borderRight: 2
+    borderTop: 8
+    borderBottom: 8
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: slider
     x: 351
     y: 759
@@ -186,8 +199,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: slider_thumb
-    x: 288
-    y: 554
+    x: 446
+    y: 714
     width: 32
     height: 32
     borderLeft: 0

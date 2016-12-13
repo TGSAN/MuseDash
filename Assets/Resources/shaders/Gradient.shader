@@ -16,15 +16,15 @@
 	}
 		SubShader
 		{
-			Tags { "RenderType" = "Opaque" }
+			Tags { "RenderType" = "Transparent" }
 			LOD 100
 
 			Pass
 			{
+				Blend SrcAlpha OneMinusSrcAlpha
 				CGPROGRAM
 				#pragma vertex vert
 				#pragma fragment frag
-
 				#include "UnityCG.cginc"
 
 				struct appdata
@@ -59,27 +59,28 @@
 				fixed4 frag(v2f i) : SV_Target
 				{
 					fixed4 col = tex2D(_MainTex, i.uv);
-
-				half offset = sqrt(pow(i.uv.x - _UVStartRamp.x, 2) + pow(i.uv.y - _UVStartRamp.y, 2));
-				fixed4 color = fixed4(0, 0, 0, 1);
-				if (offset <= _Radius)
-				{
-					if (offset >= _X0 && offset <= _X1)
+					half offset = sqrt(pow(i.uv.x - _UVStartRamp.x, 2) + pow(i.uv.y - _UVStartRamp.y, 2));
+					fixed4 color = fixed4(0, 0, 0, 1);
+					if (offset <= _Radius)
 					{
-						color = lerp(_Color0, _Color1, (offset - _X0) / (_X1 - _X0));
+						if (offset >= _X0 && offset <= _X1)
+						{
+							color = lerp(_Color0, _Color1, (offset - _X0) / (_X1 - _X0));
+						}
+						else if (offset <= _X2 && _X2 != -1)
+						{
+							color = lerp(_Color1, _Color2, (offset - _X1) / (_X2 - _X1));
+						}
+						else if (offset <= _X3 && _X3 != -1)
+						{
+							color = lerp(_Color2, _Color3, (offset - _X2) / (_X3 - _X2));
+						}
 					}
-					else if (offset <= _X2 && _X2 != -1)
-					{
-						color = lerp(_Color1, _Color2, (offset - _X1) / (_X2 - _X1));
-					}
-					else if (offset <= _X3 && _X3 != -1)
-					{
-						color = lerp(_Color2, _Color3, (offset - _X2) / (_X3 - _X2));
-					}
+					fixed alpha = col.a;
+					col *= color;
+					col.a = alpha;
+					return col;
 				}
-				col *= color;
-				return col;
-			}
 		ENDCG
 		}
 		}

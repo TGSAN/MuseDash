@@ -1,40 +1,60 @@
-﻿using System.Collections;
+﻿using System;
 using UnityEngine;
 
-public class UIGradient : MonoBehaviour
+namespace Assets.Scripts.UI
 {
-    public float radius;
-    public Vector2 uv;
-    public Gradient color;
-    private Material m_Mtrl;
-
-    private void Awake()
+    [Serializable]
+    public class GradientKVP
     {
-        var sprite = GetComponent<UIBasicSprite>();
-        var shader = Resources.Load("shaders/Gradient") as Shader;
-        var material = new Material(shader);
-        material.SetTexture("_MainTex", sprite.mainTexture);
-        material.SetVector("_UVStartRamp", new Vector4(uv.x, uv.y, 0.0f, 0.0f));
-        material.SetFloat("_Radius", radius);
-        var length = Mathf.Min(color.colorKeys.Length, 4);
-        for (int i = 0; i < length; i++)
+        public Gradient key;
+        public Gradient value;
+
+        public GradientKVP(Gradient k, Gradient v)
         {
-            material.SetColor("_Color" + i, color.colorKeys[i].color);
-            material.SetFloat("_X" + i, color.colorKeys[i].time * radius);
+            key = k;
+            value = v;
         }
-        sprite.material = material;
-        m_Mtrl = material;
     }
 
-    private void Update()
+    public class UIGradient : MonoBehaviour
     {
-        m_Mtrl.SetVector("_UVStartRamp", new Vector4(uv.x, uv.y, 0.0f, 0.0f));
-        m_Mtrl.SetFloat("_Radius", radius);
-        var length = Mathf.Min(color.colorKeys.Length, 4);
-        for (int i = 0; i < length; i++)
+        public float radius;
+        public Vector2 uv;
+        public Gradient color;
+        private Material m_Mtrl;
+        private UIBasicSprite m_Sprite;
+
+        private void Awake()
         {
-            m_Mtrl.SetColor("_Color" + i, color.colorKeys[i].color);
-            m_Mtrl.SetFloat("_X" + i, color.colorKeys[i].time * radius);
+            var sprite = GetComponent<UIBasicSprite>();
+            var shader = Resources.Load("shaders/Gradient") as Shader;
+            var material = new Material(shader);
+            material.SetTexture("_MainTex", sprite.mainTexture);
+            material.SetVector("_UVStartRamp", new Vector4(uv.x, uv.y, 0.0f, 0.0f));
+            material.SetFloat("_Radius", radius);
+            var length = Mathf.Min(color.colorKeys.Length, 4);
+            for (int i = 0; i < length; i++)
+            {
+                material.SetColor("_Color" + i, color.colorKeys[i].color);
+                material.SetFloat("_X" + i, color.colorKeys[i].time * radius);
+            }
+            sprite.material = material;
+            m_Mtrl = material;
+            m_Sprite = sprite;
+        }
+
+        private void Update()
+        {
+            m_Mtrl.SetVector("_UVStartRamp", new Vector4(uv.x, uv.y, 0.0f, 0.0f));
+            m_Mtrl.SetFloat("_Radius", radius);
+            var length = Mathf.Min(color.colorKeys.Length, 4);
+            for (int i = 0; i < length; i++)
+            {
+                m_Mtrl.SetColor("_Color" + i, color.colorKeys[i].color);
+                m_Mtrl.SetFloat("_X" + i, color.colorKeys[i].time * radius);
+            }
+            m_Sprite.enabled = false;
+            m_Sprite.enabled = true;
         }
     }
 }

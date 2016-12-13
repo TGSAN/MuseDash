@@ -185,6 +185,13 @@ namespace PnlEquipInfo
                 txtStrengh.text = strengh.ToString();
                 txtDiscription.text = description;
                 txtSaleCoins.text = cost.ToString();
+
+                var lvl = h.GetDynamicIntByKey(SignKeys.LEVEL);
+                var originExp = h.GetDynamicIntByKey(SignKeys.EXP);
+                var originRequiredExp = ConfigPool.Instance.GetConfigIntValue("experience", lvl.ToString(), "eqpt_exp");
+                var originExpPercent = (float)originExp / (float)originRequiredExp;
+                sprExpCurBar.transform.localScale = new Vector3(originExpPercent, 1f, 1f);
+
                 txtSuicaseEffect.text = effect;
                 var allName = EquipManageComponent.Instance.GetEquipNameWithSameSuit(h);
                 if (allName.Count == 0)
@@ -425,8 +432,8 @@ namespace PnlEquipInfo
                 txtStaminaTo.text = staminaTo.ToString();
                 txtStrenghTo.text = strenghTo.ToString();
 
-                sprExpCurBar.fillAmount = originExpPercent;
-                sprExpNextBar.fillAmount = curExpPercent;
+                sprExpCurBar.transform.localScale = new Vector3(originExpPercent, 1f, 1f);
+                sprExpNextBar.transform.localScale = new Vector3(curExpPercent, 1f, 1f);
 
                 host.SetDynamicData(SignKeys.LEVEL, originLvl);
                 host.SetDynamicData(SignKeys.EXP, originExp);

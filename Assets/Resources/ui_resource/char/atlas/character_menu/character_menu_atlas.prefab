@@ -16,10 +16,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000010061335492}
-  - 114: {fileID: 114000014215409208}
+  - component: {fileID: 4000010061335492}
+  - component: {fileID: 114000014215409208}
   m_Layer: 0
   m_Name: character_menu_atlas
   m_TagString: Untagged
@@ -36,10 +36,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114000014215409208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -249,7 +249,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: item_image
-    x: 785
+    x: 711
     y: 348
     width: 70
     height: 70
@@ -262,8 +262,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: panel_base
-    x: 558
-    y: 40
+    x: 406
+    y: 10
     width: 32
     height: 32
     borderLeft: 5
@@ -275,8 +275,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: panel_base_2
-    x: 406
-    y: 10
+    x: 558
+    y: 40
     width: 32
     height: 32
     borderLeft: 5
@@ -301,7 +301,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: plus_sign
-    x: 711
+    x: 785
     y: 348
     width: 70
     height: 70
@@ -365,6 +365,19 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: sign_new
+    x: 624
+    y: 24
+    width: 24
+    height: 24
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: skill_description_base
     x: 500
     y: 10
@@ -379,7 +392,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: skin_1_false
-    x: 558
+    x: 652
     y: 422
     width: 90
     height: 90
@@ -392,7 +405,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: skin_1_true
-    x: 652
+    x: 746
     y: 422
     width: 90
     height: 90
@@ -418,19 +431,6 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: skin_2_true
-    x: 746
-    y: 422
-    width: 90
-    height: 90
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: skin_3_false
     x: 840
     y: 422
     width: 90
@@ -443,7 +443,7 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: skin_3_true
+  - name: skin_3_false
     x: 558
     y: 328
     width: 90
@@ -456,7 +456,7 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: skin_4_false
+  - name: skin_3_true
     x: 256
     y: 100
     width: 90
@@ -469,7 +469,7 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: skin_4_true
+  - name: skin_4_false
     x: 256
     y: 6
     width: 90
@@ -482,9 +482,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: skin_5_false
+  - name: skin_4_true
     x: 370
     y: 422
+    width: 90
+    height: 90
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: skin_5_false
+    x: 370
+    y: 234
     width: 90
     height: 90
     borderLeft: 0
@@ -497,7 +510,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: skin_5_true
     x: 370
-    y: 234
+    y: 140
     width: 90
     height: 90
     borderLeft: 0
@@ -510,19 +523,6 @@ MonoBehaviour:
     paddingBottom: 0
   - name: skin_6_false
     x: 370
-    y: 140
-    width: 90
-    height: 90
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: skin_6_true
-    x: 370
     y: 46
     width: 90
     height: 90
@@ -534,7 +534,7 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: skin_7_false
+  - name: skin_6_true
     x: 464
     y: 422
     width: 90
@@ -547,7 +547,7 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: skin_7_true
+  - name: skin_7_false
     x: 464
     y: 328
     width: 90
@@ -560,20 +560,7 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: skin_8_false
-    x: 464
-    y: 46
-    width: 90
-    height: 90
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: skin_8_true
+  - name: skin_7_true
     x: 464
     y: 234
     width: 90
@@ -586,9 +573,35 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: skin_icon
+  - name: skin_8_false
+    x: 558
+    y: 422
+    width: 90
+    height: 90
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: skin_8_true
     x: 464
     y: 140
+    width: 90
+    height: 90
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: skin_icon
+    x: 464
+    y: 46
     width: 90
     height: 90
     borderLeft: 0
