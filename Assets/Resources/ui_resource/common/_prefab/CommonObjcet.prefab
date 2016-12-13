@@ -256,7 +256,6 @@ GameObject:
   - component: {fileID: 114000011796187620}
   - component: {fileID: 65000010280773510}
   - component: {fileID: 114000014016896658}
-  - component: {fileID: 114000011058891778}
   - component: {fileID: 114000013092988086}
   - component: {fileID: 114000012292726156}
   m_Layer: 5
@@ -695,7 +694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000012247472568
 GameObject:
   m_ObjectHideFlags: 1
@@ -948,7 +947,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013314296988}
   - component: {fileID: 114000012816201088}
-  - component: {fileID: 114000012097595226}
   - component: {fileID: 65000010947595710}
   m_Layer: 5
   m_Name: SprYesOrNo
@@ -4897,21 +4895,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11446744, guid: e65a3de28a9f547b1bfd29f6b8556991, type: 2}
   mSpriteName: button_bule
   mFillCenter: 1
---- !u!114 &114000011058891778
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010612108306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: bb9ec12a4204849dfa197d228aeecd81, type: 3}
-  trigger: 0
-  volume: 1
-  pitch: 1
 --- !u!114 &114000011106611764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6043,18 +6026,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbd7598046c7468c8c186d495848222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114000012097595226
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013015956158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7aa9938a51134681a40f03794423160, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_label: {fileID: 0}
 --- !u!114 &114000012111245398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6533,7 +6504,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6579,7 +6550,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0

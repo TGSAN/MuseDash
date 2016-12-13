@@ -281,8 +281,13 @@ namespace FormulaBase
                 CommonPanel.GetInstance().ShowWaittingPanel(false);
                 return false;
             }
-            UnlockRole(idx, callBack);
-            return true;
+            var result = true;
+            CommonPanel.GetInstance().ShowYesNo("是否确认购买人物", () => UnlockRole(idx, callBack), () =>
+            {
+                CommonPanel.GetInstance().ShowWaittingPanel(false);
+                result = false;
+            });
+            return result;
         }
 
         public void UnlockRole(int _index, Callback _callBack = null)
