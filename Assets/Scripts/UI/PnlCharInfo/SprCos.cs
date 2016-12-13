@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class SprCos : MonoBehaviour
 {
-    public UIToggle selectedTgl, inGroupTgl;
+    public UIToggle selectedTgl;
+    public UISprite sprEquiped;
     public UISprite sprOff;
 
     public bool isSelected
@@ -18,15 +19,15 @@ public class SprCos : MonoBehaviour
         }
     }
 
-    public bool isInGroup
+    public bool isEquiped
     {
         get
         {
-            return inGroupTgl.value;
+            return sprEquiped.gameObject.activeSelf;
         }
         set
         {
-            inGroupTgl.value = value;
+            sprEquiped.gameObject.SetActive(value);
         }
     }
 

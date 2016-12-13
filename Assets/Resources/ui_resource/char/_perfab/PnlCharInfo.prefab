@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 4000014202841094}
   - component: {fileID: 114000011460535300}
   - component: {fileID: 65000011522452060}
-  - component: {fileID: 114000013866551884}
   - component: {fileID: 114000010359962126}
   - component: {fileID: 114000010829437016}
   - component: {fileID: 114000012242419324}
@@ -402,7 +401,6 @@ GameObject:
   - component: {fileID: 4000013005142580}
   - component: {fileID: 114000013207098098}
   - component: {fileID: 65000011046430138}
-  - component: {fileID: 114000010683794536}
   - component: {fileID: 114000012324400488}
   - component: {fileID: 114000012307257538}
   - component: {fileID: 114000011989728208}
@@ -559,10 +557,9 @@ GameObject:
   - component: {fileID: 4000011510456030}
   - component: {fileID: 114000012881016296}
   - component: {fileID: 65000010705766982}
-  - component: {fileID: 114000013627416546}
   - component: {fileID: 114000011566379880}
   - component: {fileID: 114000013842068144}
-  - component: {fileID: 114000011230127088}
+  - component: {fileID: 114115755921303898}
   m_Layer: 5
   m_Name: SprCos2
   m_TagString: Untagged
@@ -1555,7 +1552,6 @@ GameObject:
   - component: {fileID: 4000010691036506}
   - component: {fileID: 114000011400656986}
   - component: {fileID: 65000013696013750}
-  - component: {fileID: 114000012160537448}
   - component: {fileID: 114000011703416160}
   - component: {fileID: 114000011719092100}
   - component: {fileID: 114000013983711586}
@@ -3648,7 +3644,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.67058825, g: 0.7529412, b: 1, a: 0}
+  mColor: {r: 0.67058825, g: 0.7529412, b: 1, a: 1}
   mPivot: 4
   mWidth: 90
   mHeight: 32
@@ -4195,7 +4191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  group: 8
+  group: 4
   activeSprite: {fileID: 114000013383968538}
   invertSpriteState: 0
   activeAnimation: {fileID: 0}
@@ -4203,7 +4199,7 @@ MonoBehaviour:
   tween: {fileID: 0}
   startsActive: 0
   instantTween: 0
-  optionCanBeNone: 1
+  optionCanBeNone: 0
   onChange: []
   checkSprite: {fileID: 0}
   checkAnimation: {fileID: 0}
@@ -5087,32 +5083,6 @@ MonoBehaviour:
   mAtlas: {fileID: 114000014215409208, guid: 065a9f9a2625e1e46b008ee2236c6541, type: 2}
   mSpriteName: skin_1_true
   mFillCenter: 1
---- !u!114 &114000010683794536
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011330590280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  group: 0
-  activeSprite: {fileID: 114000012256564398}
-  invertSpriteState: 0
-  activeAnimation: {fileID: 0}
-  animator: {fileID: 0}
-  tween: {fileID: 0}
-  startsActive: 0
-  instantTween: 0
-  optionCanBeNone: 0
-  onChange: []
-  checkSprite: {fileID: 0}
-  checkAnimation: {fileID: 0}
-  eventReceiver: {fileID: 0}
-  functionName: OnActivate
-  startsChecked: 0
 --- !u!114 &114000010704355410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5509,7 +5479,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3008
+  startingRenderQueue: 3012
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6018,20 +5988,6 @@ MonoBehaviour:
   callWhenFinished: 
   from: 0.15
   to: 1
---- !u!114 &114000011230127088
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011737788164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89ce9ddeb2a865840999adf18a5c1720, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedTgl: {fileID: 114000011566379880}
-  inGroupTgl: {fileID: 114000013627416546}
-  sprOff: {fileID: 114000011478226652}
 --- !u!114 &114000011241078086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6537,7 +6493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  group: 8
+  group: 4
   activeSprite: {fileID: 114000011051237876}
   invertSpriteState: 0
   activeAnimation: {fileID: 0}
@@ -6545,7 +6501,7 @@ MonoBehaviour:
   tween: {fileID: 0}
   startsActive: 0
   instantTween: 0
-  optionCanBeNone: 1
+  optionCanBeNone: 0
   onChange: []
   checkSprite: {fileID: 0}
   checkAnimation: {fileID: 0}
@@ -6790,7 +6746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  group: 8
+  group: 4
   activeSprite: {fileID: 114000013514366672}
   invertSpriteState: 0
   activeAnimation: {fileID: 0}
@@ -6798,7 +6754,7 @@ MonoBehaviour:
   tween: {fileID: 0}
   startsActive: 0
   instantTween: 0
-  optionCanBeNone: 1
+  optionCanBeNone: 0
   onChange: []
   checkSprite: {fileID: 0}
   checkAnimation: {fileID: 0}
@@ -7126,7 +7082,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.6691177, g: 0.7535497, b: 1, a: 0}
+  mColor: {r: 0.6691177, g: 0.7535497, b: 1, a: 1}
   mPivot: 4
   mWidth: 90
   mHeight: 32
@@ -7507,7 +7463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedTgl: {fileID: 114000012324400488}
-  inGroupTgl: {fileID: 114000010683794536}
+  sprEquiped: {fileID: 114000012256564398}
   sprOff: {fileID: 114000013367752728}
 --- !u!114 &114000012011143766
 MonoBehaviour:
@@ -7683,32 +7639,6 @@ MonoBehaviour:
   mAtlas: {fileID: 114000014215409208, guid: 065a9f9a2625e1e46b008ee2236c6541, type: 2}
   mSpriteName: select_item
   mFillCenter: 1
---- !u!114 &114000012160537448
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014078726254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  group: 0
-  activeSprite: {fileID: 114000013131166652}
-  invertSpriteState: 0
-  activeAnimation: {fileID: 0}
-  animator: {fileID: 0}
-  tween: {fileID: 0}
-  startsActive: 0
-  instantTween: 0
-  optionCanBeNone: 0
-  onChange: []
-  checkSprite: {fileID: 0}
-  checkAnimation: {fileID: 0}
-  eventReceiver: {fileID: 0}
-  functionName: OnActivate
-  startsChecked: 0
 --- !u!114 &114000012178419472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7850,7 +7780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedTgl: {fileID: 114000010359962126}
-  inGroupTgl: {fileID: 114000013866551884}
+  sprEquiped: {fileID: 114000011833031308}
   sprOff: {fileID: 114000010629898580}
 --- !u!114 &114000012253961378
 MonoBehaviour:
@@ -7930,7 +7860,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.67058825, g: 0.7529412, b: 1, a: 0}
+  mColor: {r: 0.67058825, g: 0.7529412, b: 1, a: 1}
   mPivot: 4
   mWidth: 90
   mHeight: 32
@@ -8231,7 +8161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  group: 8
+  group: 4
   activeSprite: {fileID: 114000012116011370}
   invertSpriteState: 0
   activeAnimation: {fileID: 0}
@@ -8239,7 +8169,7 @@ MonoBehaviour:
   tween: {fileID: 0}
   startsActive: 0
   instantTween: 0
-  optionCanBeNone: 1
+  optionCanBeNone: 0
   onChange: []
   checkSprite: {fileID: 0}
   checkAnimation: {fileID: 0}
@@ -9620,7 +9550,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.67058825, g: 0.7529412, b: 1, a: 0}
+  mColor: {r: 0.67058825, g: 0.7529412, b: 1, a: 1}
   mPivot: 4
   mWidth: 90
   mHeight: 32
@@ -10371,7 +10301,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3006
+  startingRenderQueue: 3010
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -10493,32 +10423,6 @@ MonoBehaviour:
   hideInactive: 0
   keepWithinPanel: 0
   sorted: 0
---- !u!114 &114000013627416546
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011737788164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  group: 0
-  activeSprite: {fileID: 114000010143200872}
-  invertSpriteState: 0
-  activeAnimation: {fileID: 0}
-  animator: {fileID: 0}
-  tween: {fileID: 0}
-  startsActive: 0
-  instantTween: 0
-  optionCanBeNone: 0
-  onChange: []
-  checkSprite: {fileID: 0}
-  checkAnimation: {fileID: 0}
-  eventReceiver: {fileID: 0}
-  functionName: OnActivate
-  startsChecked: 0
 --- !u!114 &114000013627797662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11124,32 +11028,6 @@ MonoBehaviour:
     - obj: {fileID: 1000012178789172}
       field: 
     oneShot: 0
---- !u!114 &114000013866551884
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010035274652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  group: 0
-  activeSprite: {fileID: 114000011833031308}
-  invertSpriteState: 0
-  activeAnimation: {fileID: 0}
-  animator: {fileID: 0}
-  tween: {fileID: 0}
-  startsActive: 0
-  instantTween: 0
-  optionCanBeNone: 0
-  onChange: []
-  checkSprite: {fileID: 0}
-  checkAnimation: {fileID: 0}
-  eventReceiver: {fileID: 0}
-  functionName: OnActivate
-  startsChecked: 0
 --- !u!114 &114000013914031380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11330,7 +11208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedTgl: {fileID: 114000011703416160}
-  inGroupTgl: {fileID: 114000012160537448}
+  sprEquiped: {fileID: 114000013131166652}
   sprOff: {fileID: 114000010505246266}
 --- !u!114 &114000014060384408
 MonoBehaviour:
@@ -11673,6 +11551,20 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &114115755921303898
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011737788164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ce9ddeb2a865840999adf18a5c1720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedTgl: {fileID: 114000011566379880}
+  sprEquiped: {fileID: 114000010143200872}
+  sprOff: {fileID: 114000011478226652}
 --- !u!114 &114671427596485726
 MonoBehaviour:
   m_ObjectHideFlags: 1
