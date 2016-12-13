@@ -77,6 +77,7 @@ public class CommonPanel : MonoBehaviour
 
     public void ShowYesNo(string content, Callback yesCallFunc, Callback noCallFunc = null)
     {
+        gameObject.SetActive(true);
         txtYesNoContent.text = content;
         var animator = yesNoPanel.GetComponent<Animator>();
         animator.Play("pnl_yes_or_no_in");
