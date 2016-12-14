@@ -125,7 +125,7 @@ namespace FormulaBase
 
         public void Init()
         {
-            LitJson.JsonData cfg = ConfigPool.Instance.GetConfigByName("item");
+            LitJson.JsonData cfg = ConfigPool.Instance.GetConfigByName("items");
             if (cfg == null)
             {
                 return;
@@ -136,8 +136,6 @@ namespace FormulaBase
                 LitJson.JsonData _data = cfg[id];
                 RewardData temp = new RewardData();
                 temp.id = int.Parse(id);
-                temp.type = int.Parse(_data["SmallType"].ToString());
-                temp.Quality = int.Parse(_data["Quality"].ToString());
                 m_AllMaterial.Add(temp);
             }
         }

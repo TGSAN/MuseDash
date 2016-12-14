@@ -124,7 +124,7 @@ MonoBehaviour:
   - LUCK_FROM_EQUIP
   - SUIT
   - SUIT_EFFECT_DESC
-  - SUIT_GROUP
+  - TASK_GROUP
   - ACHIEVEMENT
   - CAPSULE
   - CHARM
@@ -3386,7 +3386,7 @@ MonoBehaviour:
     - ManageComponent
   - name: "\u8D26\u6237"
     fileName: Account
-    collapsedFormula: 1
+    collapsedFormula: 0
     collapsedSign: 1
     collapsedComponent: 1
     formulaSet: 
@@ -3433,7 +3433,7 @@ MonoBehaviour:
     fileName: Stage
     collapsedFormula: 1
     collapsedSign: 1
-    collapsedComponent: 0
+    collapsedComponent: 1
     formulaSet: 07000000060000002a0000005700000014000000590000005b0000005c0000005d0000005a0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f00000070000000
     singSet: 020000000700000008000000090000000a0000000b0000000c000000000000000e0000003c00000053000000
     signValueSet:
@@ -3646,6 +3646,17 @@ MonoBehaviour:
     singSet: 
     signValueSet: []
     componentNames: []
+  - name: "\u65E5\u5E38\u4EFB\u52A1"
+    fileName: DailyTask
+    collapsedFormula: 0
+    collapsedSign: 1
+    collapsedComponent: 1
+    formulaSet: 
+    singSet: 52000000
+    signValueSet:
+    - 0
+    componentNames:
+    - Manager
   ConfigReaders:
   - stage_value/goal_DIFFCULT
   - stage/EnergyCost_DIFFCULT

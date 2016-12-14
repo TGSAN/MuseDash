@@ -68,6 +68,7 @@ public class GameInit : MonoBehaviour
         #endregion 角色
 
         Debug.Log("初始化");
+        FormulaBase.DailyTaskManager.instance.Init();
         FormulaBase.AccountManagerComponent.Instance.Init();
         FormulaBase.AccountPhysicsManagerComponent.Instance.Init();
         FormulaBase.BagManageComponent.Instance.Init();

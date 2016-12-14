@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using FormulaBase;
+using System.Collections;
 using UnityEngine;
 
 public class Singleton<T> where T : new()
