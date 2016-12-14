@@ -10,7 +10,7 @@ namespace FormulaBase
 {
     public class DailyTask
     {
-        public int uid;
+        public string uid;
         public string description;
         public int coinAward;
         public int crystalAward;
@@ -41,6 +41,12 @@ namespace FormulaBase
             {
                 var taskGroup = Host.GetDynamicStrByKey(SignKeys.TASK_GROUP);
                 var groups = taskGroup.Split(',').ToList();
+                if (groups.Count < 3)
+                {
+                    InitTaskList();
+                    taskGroup = Host.GetDynamicStrByKey(SignKeys.TASK_GROUP);
+                    groups = taskGroup.Split(',').ToList();
+                }
                 var taskList = groups.Select(int.Parse).Select(idx => m_TaskConfig[idx - 1]).ToList();
                 return taskList;
             }
@@ -61,7 +67,7 @@ namespace FormulaBase
             {
                 Host = FomulaHostManager.Instance.LoadHost(HOST_IDX);
                 Host.SetAsUINotifyInstance();
-                Host.Save();
+                InitTaskList();
             }
         }
 
@@ -74,6 +80,21 @@ namespace FormulaBase
             }
             var randomIdx = UnityEngine.Random.Range(0, randomList.Count - 1);
             return randomList[randomIdx];
+        }
+
+        private void InitTaskList()
+        {
+            var randomList = new List<DailyTask>(m_TaskConfig);
+            var taskGroup = string.Empty;
+            for (int i = 0; i < 3; i++)
+            {
+                var randomIdx = UnityEngine.Random.Range(0, randomList.Count - 1);
+                var value = randomList[randomIdx];
+                taskGroup += value.uid + (i == 2 ? string.Empty : ",");
+                randomList.Remove(value);
+            }
+            Host.SetDynamicData(SignKeys.TASK_GROUP, taskGroup);
+            Host.Save();
         }
     }
 }
