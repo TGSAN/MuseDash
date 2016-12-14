@@ -1,16 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Boo.Lang;
+using Newtonsoft.Json;
 using UnityEngine;
 
-public class DailyTaskManager : MonoBehaviour {
+namespace Assets.Scripts.Common.Manager
+{
+    public class DailyTask
+    {
+        public string description;
+        public int coinAward;
+        public int crystalAward;
+        public string icon;
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public class DailyTaskManager : Singleton<DailyTaskManager>
+    {
+        private List<DailyTask> m_TaskConfig;
+
+        public DailyTaskManager()
+        {
+            ResourceLoader.Instance.Load("config/daily_task", res =>
+            {
+                var txt = res as TextAsset;
+                m_TaskConfig = JsonConvert.DeserializeObject<List<DailyTask>>(txt.text);
+            });
+        }
+    }
 }
