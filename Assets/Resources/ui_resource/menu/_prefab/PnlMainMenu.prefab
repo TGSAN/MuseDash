@@ -550,6 +550,7 @@ GameObject:
   - component: {fileID: 114000012207834246}
   - component: {fileID: 114000012904559082}
   - component: {fileID: 114000012565586082}
+  - component: {fileID: 114260781311484238}
   m_Layer: 5
   m_Name: BtnEnhancement
   m_TagString: Untagged
@@ -1803,7 +1804,7 @@ GameObject:
   - component: {fileID: 114000014168132296}
   - component: {fileID: 114000012968539696}
   - component: {fileID: 65891200193902520}
-  - component: {fileID: 114597826491274916}
+  - component: {fileID: 114681395838978078}
   m_Layer: 5
   m_Name: CoinIcon
   m_TagString: Untagged
@@ -4596,7 +4597,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014220641278}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 50, y: 50, z: 10}
@@ -8401,7 +8402,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -11710,6 +11711,47 @@ MonoBehaviour:
   from: {x: 0, y: 0, z: 1}
   to: {x: 1, y: 1, z: 1}
   updateTable: 0
+--- !u!114 &114260781311484238
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011282375678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4621ba7261c788b42a3cff76894531c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onCollisionEnter:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onCollisionExit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onCollisionStay:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onTriggerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onTriggerStay:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114335372071999286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11912,39 +11954,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 7813e9a99211745c984b111b3f050312, type: 2}
   mSpriteName: item_fly_light
   mFillCenter: 1
---- !u!114 &114597826491274916
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014220641278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1236174196, guid: 7eaaf8612fdab2b419c0194f0a0a1435, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  requireTag: Untagged
-  onEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 198453137252270786}
-        m_MethodName: Play
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-    m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  onExit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
-      PublicKeyToken=null
 --- !u!114 &114634633530792412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11999,6 +12008,135 @@ MonoBehaviour:
   from: {x: 1, y: 1, z: 1}
   to: {x: 1.2, y: 1.2, z: 1}
   updateTable: 0
+--- !u!114 &114681395838978078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014220641278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4621ba7261c788b42a3cff76894531c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onCollisionEnter:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onCollisionExit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onCollisionStay:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onTriggerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 198453137252270786}
+        m_MethodName: Clear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 198503833834165626}
+        m_MethodName: Clear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 198674997583696902}
+        m_MethodName: Clear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 198313037984171306}
+        m_MethodName: Clear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 198453137252270786}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 198503833834165626}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 198674997583696902}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 198313037984171306}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onTriggerStay:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114747652288944104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17346,7 +17484,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -47566277
+  randomSeed: 2044539846
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -38326,7 +38464,7 @@ ParticleSystem:
   speed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     scalar: 0
@@ -38370,7 +38508,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -337213213
+  randomSeed: -926696597
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -40963,7 +41101,7 @@ ParticleSystem:
   speed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     scalar: 0
@@ -41007,7 +41145,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -47129365
+  randomSeed: -837819621
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -43600,7 +43738,7 @@ ParticleSystem:
   speed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     scalar: 0
@@ -46171,7 +46309,7 @@ ParticleSystem:
   speed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     scalar: 0
@@ -48808,7 +48946,7 @@ ParticleSystem:
   speed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     scalar: 0
@@ -48852,7 +48990,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2086943947
+  randomSeed: -494653639
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -51379,7 +51517,7 @@ ParticleSystem:
   speed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     scalar: 0
@@ -51423,7 +51561,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1054784162
+  randomSeed: -1225406666
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -51899,10 +52037,10 @@ ParticleSystem:
     randomDirectionAmount: 0
     sphericalDirectionAmount: 0
   EmissionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 3
     rateOverTime:
-      scalar: 10
+      scalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -54016,7 +54154,7 @@ ParticleSystem:
   speed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     scalar: 0
@@ -54060,7 +54198,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1328383949
+  randomSeed: -1991551898
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -56587,7 +56725,7 @@ ParticleSystem:
   speed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     scalar: 0
@@ -59224,7 +59362,7 @@ ParticleSystem:
   speed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     scalar: 0
@@ -59268,7 +59406,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1223118230
+  randomSeed: 158323641
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -61861,7 +61999,7 @@ ParticleSystem:
   speed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     scalar: 0
@@ -61905,7 +62043,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 303865614
+  randomSeed: 503270968
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -64498,7 +64636,7 @@ ParticleSystem:
   speed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     scalar: 0
@@ -64542,7 +64680,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1758185024
+  randomSeed: -1837238508
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -67135,7 +67273,7 @@ ParticleSystem:
   speed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     scalar: 0

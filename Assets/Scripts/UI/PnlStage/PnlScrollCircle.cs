@@ -334,7 +334,7 @@ namespace Assets.Scripts.NGUI
             UIEventListener.Get(btnTip.gameObject).onClick = go =>
             {
                 var unLockNum = m_StageInfos[m_CurrentIdx].unLockNum;
-                CommonPanel.GetInstance().ShowText("需获得" + unLockNum.ToString() + "个奖杯才可以解锁！（当前:" + TaskStageTarget.Instance.GetTotalTrophy().ToString() + "个奖杯）");
+                CommonPanel.GetInstance().ShowText("需获得" + unLockNum.ToString() + "个奖杯才可以解锁！" + "\n" + "（当前:" + TaskStageTarget.Instance.GetTotalTrophy().ToString() + "个奖杯）");
             };
             UIEventListener.Get(btnTip.gameObject).onDragStart = onDragStart;
             UIEventListener.Get(btnTip.gameObject).onDrag = onDrag;

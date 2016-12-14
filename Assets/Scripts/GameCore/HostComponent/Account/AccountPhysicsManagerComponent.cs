@@ -31,7 +31,7 @@ namespace FormulaBase
             if (m_IsAdd && PnlMainMenu.PnlMainMenu.Instance != null)
             {
                 m_IsAdd = false;
-                PnlMainMenu.PnlMainMenu.Instance.energy.FlyAll();
+                //PnlMainMenu.PnlMainMenu.Instance.energy.FlyAll();
                 PnlMainMenu.PnlMainMenu.Instance.OnEnergyUpdate();
             }
         }

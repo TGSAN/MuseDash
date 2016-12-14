@@ -152,7 +152,7 @@ public class GirlManager : MonoBehaviour
         string clothPath = null;
         if (hero != null)
         {
-            var charCos = RoleManageComponent.Instance.GetRandomCloth(heroIndex);
+            var charCos = RoleManageComponent.Instance.GetCurCloth(heroIndex);
             clothPath = charCos.path;
         }
 
@@ -163,9 +163,9 @@ public class GirlManager : MonoBehaviour
         }
 
 #if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
-        heroIndex = AdminData.Instance.DefaultRoleIdx;
+        /*heroIndex = AdminData.Instance.DefaultRoleIdx;
         clothIdx = GameGlobal.DEBUG_CLOTH_UID;
-        clothPath = ConfigPool.Instance.GetConfigStringValue("char_cos", "uid", "path", clothIdx);
+        clothPath = ConfigPool.Instance.GetConfigStringValue("char_cos", "uid", "path", clothIdx);*/
 #endif
 
         this.girlnames[0] = clothPath;
