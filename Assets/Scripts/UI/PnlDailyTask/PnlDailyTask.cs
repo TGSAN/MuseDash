@@ -1,4 +1,5 @@
 using Assets.Scripts.Common.Manager;
+using FormulaBase;
 
 /// UI分析工具自动生成代码
 /// PnlDailyTaskUI主模块
@@ -23,8 +24,6 @@ namespace PnlDailyTask
         public override void BeCatched()
         {
             instance = this;
-
-            var a = DailyTaskManager.instance;
         }
 
         public override void OnShow()

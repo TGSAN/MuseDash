@@ -78,6 +78,10 @@ namespace FormulaBase {
 		/// 产出资源
 		///
 		public const int HOST_18 = 18;
+		///
+		/// 日常任务
+		///
+		public const int HOST_19 = 19;
 
 	}
 }
