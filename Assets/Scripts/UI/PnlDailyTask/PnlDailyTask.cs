@@ -24,6 +24,7 @@ namespace PnlDailyTask
         public override void BeCatched()
         {
             instance = this;
+            var a = DailyTaskManager.instance.curTaskList;
         }
 
         public override void OnShow()
