@@ -5,10 +5,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 474830}
-  - 114: {fileID: 11405424}
+  - component: {fileID: 474830}
+  - component: {fileID: 11405424}
   m_Layer: 0
   m_Name: stage_atlas
   m_TagString: Untagged
@@ -25,10 +25,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11405424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -43,8 +43,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 90a2910fa5718459aa61293fd192373b, type: 2}
   mSprites:
   - name: board
-    x: 912
-    y: 697
+    x: 511
+    y: 679
     width: 96
     height: 96
     borderLeft: 12
@@ -55,9 +55,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: darken
+    x: 775
+    y: 680
+    width: 16
+    height: 16
+    borderLeft: 2
+    borderRight: 2
+    borderTop: 2
+    borderBottom: 2
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: difficulty_1
-    x: 440
-    y: 630
+    x: 608
+    y: 765
     width: 10
     height: 10
     borderLeft: 0
@@ -69,8 +82,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: difficulty_2
-    x: 454
-    y: 630
+    x: 608
+    y: 754
     width: 10
     height: 10
     borderLeft: 2
@@ -82,8 +95,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: difficulty_3
-    x: 468
-    y: 630
+    x: 608
+    y: 743
     width: 10
     height: 10
     borderLeft: 1
@@ -95,8 +108,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: difficulty_4
-    x: 482
-    y: 630
+    x: 608
+    y: 732
     width: 10
     height: 10
     borderLeft: 0
@@ -108,8 +121,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: difficulty_5
-    x: 496
-    y: 630
+    x: 608
+    y: 721
     width: 10
     height: 10
     borderLeft: 1
@@ -121,8 +134,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: difficulty_6
-    x: 510
-    y: 630
+    x: 608
+    y: 710
     width: 10
     height: 10
     borderLeft: 1
@@ -134,8 +147,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: energy_base
-    x: 527
-    y: 531
+    x: 849
+    y: 778
     width: 159
     height: 89
     borderLeft: 0
@@ -146,11 +159,11 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: halo
+  - name: gradient
     x: 0
-    y: 624
-    width: 400
-    height: 400
+    y: 544
+    width: 508
+    height: 99
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -160,8 +173,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ico_trophy_bright
-    x: 133
-    y: 14
+    x: 798
+    y: 749
     width: 50
     height: 47
     borderLeft: 0
@@ -173,8 +186,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: locked
-    x: 788
-    y: 653
+    x: 621
+    y: 656
     width: 120
     height: 140
     borderLeft: 0
@@ -186,8 +199,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: sld_stage_base
-    x: 788
-    y: 625
+    x: 511
+    y: 654
     width: 60
     height: 24
     borderLeft: 20
@@ -199,8 +212,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: sld_stage_progress
-    x: 404
-    y: 628
+    x: 742
+    y: 651
     width: 32
     height: 12
     borderLeft: 0
@@ -212,8 +225,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: speaker
-    x: 974
-    y: 642
+    x: 798
+    y: 697
     width: 43
     height: 51
     borderLeft: 0
@@ -225,8 +238,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: speaker_base
-    x: 243
-    y: 512
+    x: 201
+    y: 435
     width: 280
     height: 108
     borderLeft: 0
@@ -238,7 +251,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: stage_base
-    x: 404
+    x: 0
     y: 644
     width: 380
     height: 380
@@ -251,8 +264,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: stage_bg_white
-    x: 204
-    y: 336
+    x: 572
+    y: 646
     width: 32
     height: 32
     borderLeft: 2
@@ -264,8 +277,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: star
-    x: 912
-    y: 637
+    x: 849
+    y: 648
     width: 58
     height: 56
     borderLeft: 0
@@ -277,8 +290,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: switch_button
-    x: 133
-    y: 65
+    x: 742
+    y: 697
     width: 55
     height: 99
     borderLeft: 0
@@ -290,8 +303,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: text_base
-    x: 204
-    y: 300
+    x: 742
+    y: 664
     width: 32
     height: 32
     borderLeft: 11
@@ -303,8 +316,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: trophy_base
-    x: 690
-    y: 548
+    x: 849
+    y: 705
     width: 75
     height: 72
     borderLeft: 0
@@ -316,8 +329,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: trophy_outline
-    x: 0
-    y: 41
+    x: 381
+    y: 652
     width: 129
     height: 123
     borderLeft: 0
@@ -329,8 +342,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: unlock_light
-    x: 0
-    y: 372
+    x: 381
+    y: 776
     width: 239
     height: 248
     borderLeft: 0
@@ -341,9 +354,22 @@ MonoBehaviour:
     paddingRight: 2
     paddingTop: 2
     paddingBottom: 0
+  - name: unlocked
+    x: 849
+    y: 868
+    width: 120
+    height: 156
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: white_circle
     x: 0
-    y: 168
+    y: 343
     width: 200
     height: 200
     borderLeft: 0
@@ -355,7 +381,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: white_circle_light
-    x: 788
+    x: 621
     y: 797
     width: 227
     height: 227
