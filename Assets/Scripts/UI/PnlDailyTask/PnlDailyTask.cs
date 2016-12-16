@@ -14,6 +14,8 @@ namespace PnlDailyTask
         public UISprite[] sprIcons, sprPercent;
         public UILabel[] txtDecs, txtValueTo, txtValueMax, txtAward;
         public GameObject[] coins, crystals;
+        public UILabel txtFinishTaskNum, txtAllTaskNum;
+        public UISprite sprTaskNumBar;
 
         private static PnlDailyTask instance = null;
 
@@ -32,6 +34,12 @@ namespace PnlDailyTask
 
         public override void OnShow()
         {
+            var curCount = DailyTaskManager.instance.awardTaskList.Count;
+            var maxCount = 10;
+            txtAllTaskNum.text = maxCount.ToString();
+            txtFinishTaskNum.text = curCount.ToString();
+            sprTaskNumBar.transform.localScale = curCount == 0 ? new Vector3(0, 1, 1) : Vector3.one;
+            sprTaskNumBar.width = (int)(680f * ((float)curCount / (float)maxCount));
             for (int i = 0; i < 3; i++)
             {
                 InitTaskBox(i);
@@ -44,11 +52,20 @@ namespace PnlDailyTask
 
         private void InitTaskBox(int idx)
         {
-            var dailyTask = DailyTaskManager.instance.curTaskList[idx];
+            sprIcons[idx].transform.parent.gameObject.SetActive(false);
+            var taskList = DailyTaskManager.instance.curTaskList;
+            if (idx >= taskList.Count) return;
+            sprIcons[idx].transform.parent.gameObject.SetActive(true);
+            var dailyTask = taskList[idx];
             var host = DailyTaskManager.instance.GetFormulaHost(int.Parse(dailyTask.uid));
+            var targetValue = host.GetDynamicIntByKey(SignKeys.DT_TARGET);
+            var curValue = host.GetDynamicIntByKey(SignKeys.DT_VALUE);
             sprIcons[idx].spriteName = dailyTask.icon;
-            sprPercent[idx].width = 720;
-            txtDecs[idx].text = dailyTask.description;
+            sprPercent[idx].transform.localScale = curValue == 0 ? new Vector3(0, 1, 1) : Vector3.one;
+            sprPercent[idx].width = (int)(720f * (float)curValue / (float)targetValue);
+            txtDecs[idx].text = dailyTask.description.Replace("(N)", targetValue.ToString());
+            txtValueTo[idx].text = curValue.ToString();
+            txtValueMax[idx].text = targetValue.ToString();
             if (dailyTask.coinAward > 0)
             {
                 txtAward[idx].text = dailyTask.coinAward.ToString();

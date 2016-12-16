@@ -128,19 +128,8 @@ MonoBehaviour:
   - CAPSULE
   - CHARM
   - FINISH_TIME
-  - DT_FOOD
-  - DT_UPGRADE_ITEM
-  - DT_EARPHONE
-  - DT_MUSIC_NOTE
-  - DT_COIN
-  - DT_PERFECT
-  - DT_CAPSULE
-  - DT_COMBO
-  - DT_HIDE_NOTE
   - DT_TARGET
   - DT_VALUE
-  - DT_S
-  - DT_A
   ConfigNames:
   - character
   - stage
@@ -3377,6 +3366,149 @@ MonoBehaviour:
       collapsed: 0
       paramname: "\u914D\u7F6E\u9879"
       condictions: []
+  - idx: 117
+    typeIdx: 4
+    name: "\u98DF\u7269\u503C"
+    formula: "( \u914D\u7F6E\u503C )"
+    fparams:
+    - idx: 0
+      dataSourceType: 4
+      dataSourceIndex: 0
+      dataSourceValue: 10
+      dataSourceName: 
+      collapsed: 1
+      paramname: "\u914D\u7F6E\u503C"
+      condictions: []
+  - idx: 118
+    typeIdx: 4
+    name: "\u7269\u54C1\u5347\u7EA7\u503C"
+    formula: "( \u914D\u7F6E\u503C )"
+    fparams:
+    - idx: 0
+      dataSourceType: 4
+      dataSourceIndex: 0
+      dataSourceValue: 10
+      dataSourceName: 
+      collapsed: 0
+      paramname: "\u914D\u7F6E\u503C"
+      condictions: []
+  - idx: 119
+    typeIdx: 4
+    name: "\u8D85\u7EA7\u8BC4\u4EF7\u503C"
+    formula: "( \u914D\u7F6E\u503C )"
+    fparams:
+    - idx: 0
+      dataSourceType: 4
+      dataSourceIndex: 0
+      dataSourceValue: 1
+      dataSourceName: 
+      collapsed: 0
+      paramname: "\u914D\u7F6E\u503C"
+      condictions: []
+  - idx: 120
+    typeIdx: 4
+    name: "\u4EFB\u610F\u5173\u5361\u8BC4\u4EF7\u503C"
+    formula: "( \u914D\u7F6E\u503C )"
+    fparams:
+    - idx: 0
+      dataSourceType: 4
+      dataSourceIndex: 42
+      dataSourceValue: 0
+      dataSourceName: "\u5173\u5361\u96BE\u5EA6"
+      collapsed: 0
+      paramname: "\u914D\u7F6E\u503C"
+      condictions: []
+  - idx: 121
+    typeIdx: 4
+    name: "\u4F69\u6234\u8033\u673A\u503C"
+    formula: "( \u914D\u7F6E\u503C )"
+    fparams:
+    - idx: 0
+      dataSourceType: 4
+      dataSourceIndex: 0
+      dataSourceValue: 5
+      dataSourceName: 
+      collapsed: 0
+      paramname: "\u914D\u7F6E\u503C"
+      condictions: []
+  - idx: 122
+    typeIdx: 4
+    name: "\u97F3\u7B26\u503C"
+    formula: "( \u914D\u7F6E\u503C )"
+    fparams:
+    - idx: 0
+      dataSourceType: 4
+      dataSourceIndex: 0
+      dataSourceValue: 30
+      dataSourceName: 
+      collapsed: 0
+      paramname: "\u914D\u7F6E\u503C"
+      condictions: []
+  - idx: 123
+    typeIdx: 4
+    name: "\u91D1\u5E01\u503C"
+    formula: "( \u914D\u7F6E\u503C )"
+    fparams:
+    - idx: 0
+      dataSourceType: 4
+      dataSourceIndex: 0
+      dataSourceValue: 50
+      dataSourceName: 
+      collapsed: 1
+      paramname: "\u914D\u7F6E\u503C"
+      condictions: []
+  - idx: 124
+    typeIdx: 4
+    name: "\u5B8C\u7F8E\u503C"
+    formula: "( \u914D\u7F6E\u503C )"
+    fparams:
+    - idx: 0
+      dataSourceType: 4
+      dataSourceIndex: 0
+      dataSourceValue: 500
+      dataSourceName: 
+      collapsed: 0
+      paramname: "\u914D\u7F6E\u503C"
+      condictions: []
+  - idx: 125
+    typeIdx: 4
+    name: "\u80F6\u56CA\u503C"
+    formula: "( \u914D\u7F6E\u503C )"
+    fparams:
+    - idx: 0
+      dataSourceType: 4
+      dataSourceIndex: 0
+      dataSourceValue: 3
+      dataSourceName: 
+      collapsed: 0
+      paramname: "\u914D\u7F6E\u503C"
+      condictions: []
+  - idx: 126
+    typeIdx: 4
+    name: "\u8FDE\u51FB\u503C"
+    formula: "( \u914D\u7F6E\u503C )"
+    fparams:
+    - idx: 0
+      dataSourceType: 4
+      dataSourceIndex: 0
+      dataSourceValue: 500
+      dataSourceName: 
+      collapsed: 0
+      paramname: "\u914D\u7F6E\u503C"
+      condictions: []
+  - idx: 127
+    typeIdx: 4
+    name: "\u661F\u661F\u503C"
+    formula: "( \u914D\u7F6E\u503C )"
+    fparams:
+    - idx: 0
+      dataSourceType: 4
+      dataSourceIndex: 0
+      dataSourceValue: 50
+      dataSourceName: 
+      collapsed: 0
+      paramname: "\u914D\u7F6E\u503C"
+      condictions: []
   Hosts:
   - name: "\u89D2\u8272"
     fileName: Role
@@ -3674,22 +3806,12 @@ MonoBehaviour:
     componentNames: []
   - name: "\u65E5\u5E38\u4EFB\u52A1"
     fileName: DailyTask
-    collapsedFormula: 0
+    collapsedFormula: 1
     collapsedSign: 1
     collapsedComponent: 1
-    formulaSet: 
-    singSet: 0200000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000
+    formulaSet: 7400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e0000007f000000
+    singSet: 0200000055000000560000005700000020000000
     signValueSet:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
     - 0
     - 0
     - 0

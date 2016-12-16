@@ -12,6 +12,8 @@ namespace PnlAnnouncement
 {
     public class PnlAnnouncement : UIPhaseBase
     {
+        public GameObject awardPre;
+        public UIGrid grid;
         private static PnlAnnouncement instance = null;
 
         public static PnlAnnouncement Instance
@@ -24,6 +26,13 @@ namespace PnlAnnouncement
 
         public override void OnShow()
         {
+            grid.transform.DestroyChildren();
+            for (int i = 0; i < DailyTaskManager.instance.awardTaskList.Count; i++)
+            {
+                var go = GameObject.Instantiate(awardPre, grid.transform, false);
+                go.transform.localPosition = Vector3.zero;
+            }
+            grid.enabled = true;
         }
 
         public override void OnHide()

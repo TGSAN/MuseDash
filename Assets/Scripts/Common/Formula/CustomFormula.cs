@@ -239,6 +239,28 @@ namespace FormulaBase {
 					return ( formulaObject.GetParamValue (0) );
 				case 116:
 					return ( formulaObject.GetParamValue (0) );
+				case 117:
+					return ( formulaObject.GetParamValue (0) );
+				case 118:
+					return ( formulaObject.GetParamValue (0) );
+				case 119:
+					return ( formulaObject.GetParamValue (0) );
+				case 120:
+					return ( formulaObject.GetParamValue (0) );
+				case 121:
+					return ( formulaObject.GetParamValue (0) );
+				case 122:
+					return ( formulaObject.GetParamValue (0) );
+				case 123:
+					return ( formulaObject.GetParamValue (0) );
+				case 124:
+					return ( formulaObject.GetParamValue (0) );
+				case 125:
+					return ( formulaObject.GetParamValue (0) );
+				case 126:
+					return ( formulaObject.GetParamValue (0) );
+				case 127:
+					return ( formulaObject.GetParamValue (0) );
 			}
 			return 0f;
 		}

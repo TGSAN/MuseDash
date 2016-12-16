@@ -82,7 +82,7 @@ public class TimerHostController : MonoBehaviour
             TimerComponent.Instance.TimeUp(_timerHost);
             if (_timerHost.objectID != null)
             {
-                if (m_CallFunc[_timerHost.objectID] != null)
+                if (m_CallFunc.ContainsKey(_timerHost.objectID) && m_CallFunc[_timerHost.objectID] != null)
                 {
                     m_CallFunc[_timerHost.objectID]();
                 }
