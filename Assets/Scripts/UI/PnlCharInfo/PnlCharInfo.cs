@@ -258,14 +258,17 @@ namespace PnlCharInfo
                 var idx = PnlChar.PnlChar.Instance.curRoleIdx;
                 var roleHost = RoleManageComponent.Instance.GetRole(idx);
                 var clothStr = m_SelectedCos.uid;
-                roleHost.SetDynamicData(SignKeys.CLOTH, clothStr);
-                roleHost.Save(result =>
+                RoleManageComponent.Instance.SetFightGirlIndex(idx, () =>
                 {
-                    if (result)
+                    roleHost.SetDynamicData(SignKeys.CLOTH, clothStr);
+                    roleHost.Save(result =>
                     {
-                        OnTglChange(idx);
-                        OnApplyShow(idx);
-                    }
+                        if (result)
+                        {
+                            OnTglChange(idx);
+                            OnApplyShow(idx);
+                        }
+                    });
                 });
             };
 
@@ -348,7 +351,14 @@ namespace PnlCharInfo
             }
 
             var curSuit = RoleManageComponent.Instance.GetRole(idx).GetDynamicIntByKey(SignKeys.CLOTH);
-            btnApply.gameObject.SetActive(curSuit != m_SelectedCos.uid);
+            if (RoleManageComponent.Instance.GetFightGirlIndex() != idx)
+            {
+                btnApply.gameObject.SetActive(true);
+            }
+            else
+            {
+                btnApply.gameObject.SetActive(curSuit != m_SelectedCos.uid);
+            }
             txtApply.gameObject.SetActive(!btnApply.gameObject.activeSelf);
         }
 

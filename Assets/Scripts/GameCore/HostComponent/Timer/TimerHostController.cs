@@ -1,30 +1,38 @@
-﻿using UnityEngine;
+﻿using DYUnityLib;
+using FormulaBase;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using DYUnityLib;
-using FormulaBase;
+using UnityEngine;
 
-public class TimerHostController : MonoBehaviour {
-	private static TimerHostController instance;
-	public static TimerHostController Instance {
-		get {
-			return instance;
-		}
-	}
+public class TimerHostController : MonoBehaviour
+{
+    private static TimerHostController instance;
 
-	private static int ONE_SECOND = (int)(1 / FixUpdateTimer.dInterval);
-	private int secondCounter = 0;
+    public static TimerHostController Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
 
-	private List<FormulaHost> _list;
+    private Dictionary<string, Callback> m_CallFunc = new Dictionary<string, Callback>();
 
-	void OnEnable () {
-		this.secondCounter = 0;
-		instance = this;
+    private static int ONE_SECOND = (int)(1 / FixUpdateTimer.dInterval);
+    private int secondCounter = 0;
 
-		TimerComponent.Instance.Init ();
-	}
+    private List<FormulaHost> _list;
 
-	/*
+    private void OnEnable()
+    {
+        this.secondCounter = 0;
+        instance = this;
+
+        TimerComponent.Instance.Init();
+    }
+
+    /*
 	// Use this for initialization
 	void Start () {
 		this.secondCounter = 0;
@@ -33,50 +41,71 @@ public class TimerHostController : MonoBehaviour {
 		TimerComponent.Instance.Init ();
 	}
 	*/
-	
-	void OnDestory() {
-		this._list.Clear ();
-		this._list = null;
-	}
-	
-	void FixedUpdate() {
-		// one second
-		this.secondCounter += 1;
-		if (this.secondCounter < ONE_SECOND) {
-			return;
-		}
 
-		this.secondCounter = 0;
+    private void OnDestory()
+    {
+        this._list.Clear();
+        this._list = null;
+    }
 
-		// check timers every one second
-		if (this._list == null || this._list.Count <= 0) {
-			return;
-		}
+    private void FixedUpdate()
+    {
+        // one second
+        this.secondCounter += 1;
+        if (this.secondCounter < ONE_SECOND)
+        {
+            return;
+        }
 
-		for (int i = 0; i < this._list.Count; i++) {
-			FormulaHost _timerHost = this._list [i];
-			if (_timerHost == null) {
-				continue;
-			}
+        this.secondCounter = 0;
 
-			if (_timerHost.GetRealTimeCountDownNow () > 0) {
-				continue;
-			}
+        // check timers every one second
+        if (this._list == null || this._list.Count <= 0)
+        {
+            return;
+        }
 
-			this._list [i] = null;
-			TimerComponent.Instance.TimeUp (_timerHost);
-		}
-	}
+        for (int i = 0; i < this._list.Count; i++)
+        {
+            FormulaHost _timerHost = this._list[i];
+            if (_timerHost == null)
+            {
+                continue;
+            }
 
-	public void AddTimerHost(FormulaHost host) {
-		if (this._list == null) {
-			this._list = new List<FormulaHost> ();
-		}
+            if (_timerHost.GetRealTimeCountDownNow() > 0)
+            {
+                continue;
+            }
 
-		if (this._list.Contains (host)) {
-			return;
-		}
+            this._list[i] = null;
+            TimerComponent.Instance.TimeUp(_timerHost);
+            if (_timerHost.objectID != null)
+            {
+                if (m_CallFunc[_timerHost.objectID] != null)
+                {
+                    m_CallFunc[_timerHost.objectID]();
+                }
+            }
+        }
+    }
 
-		this._list.Add (host);
-	}
+    public void AddTimerHost(FormulaHost host, Callback callFunc = null)
+    {
+        if (this._list == null)
+        {
+            this._list = new List<FormulaHost>();
+        }
+
+        if (this._list.Contains(host))
+        {
+            return;
+        }
+
+        this._list.Add(host);
+        if (callFunc != null)
+        {
+            m_CallFunc.Add(host.objectID, callFunc);
+        }
+    }
 }
