@@ -6763,11 +6763,23 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
-  isAnimateTxt: 0
-  txtAnimTime: 0
+  isAnimateTxt: 1
+  txtAnimTime: 2.4
   txtCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 2
+      time: 0.8
+      value: 0
+      inSlope: 5.0000005
+      outSlope: 5.0000005
+      tangentMode: 34
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 5.0000005
+      outSlope: 5.0000005
+      tangentMode: 34
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -7174,21 +7186,21 @@ MonoBehaviour:
   isFoldParentObjs: 0
   isForceKeep: 0
   isAnimateTxt: 1
-  txtAnimTime: 1
+  txtAnimTime: 2.4
   txtCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0.40416294
-      value: 0.026988877
-      inSlope: 1.6330155
-      outSlope: 1.6330155
+      time: 0.8
+      value: 0
+      inSlope: 5.0000005
+      outSlope: 5.0000005
       tangentMode: 34
     - serializedVersion: 2
       time: 1
       value: 1
-      inSlope: 1.6330155
-      outSlope: 1.6330155
+      inSlope: 5.0000005
+      outSlope: 5.0000005
       tangentMode: 34
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -9916,11 +9928,23 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
-  isAnimateTxt: 0
-  txtAnimTime: 0
+  isAnimateTxt: 1
+  txtAnimTime: 2.4
   txtCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 2
+      time: 0.8
+      value: 0
+      inSlope: 5.0000005
+      outSlope: 5.0000005
+      tangentMode: 34
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 5.0000005
+      outSlope: 5.0000005
+      tangentMode: 34
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -9928,10 +9952,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -12077,7 +12101,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014220641278}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
   m_Name: 
@@ -12092,7 +12116,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012190902610}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
   m_Name: 
@@ -12203,26 +12227,14 @@ MonoBehaviour:
     - serializedVersion: 2
       time: 0
       value: 0
-      inSlope: -0.070918895
-      outSlope: -0.070918895
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.33593014
-      value: -0.004545074
-      inSlope: 1.8815118
-      outSlope: 1.8815118
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.6490832
-      value: 1.0058014
-      inSlope: 1.930097
-      outSlope: 1.930097
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
       time: 1
-      value: 0
-      inSlope: -0.116589345
-      outSlope: -0.116589345
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -12236,7 +12248,7 @@ MonoBehaviour:
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: {x: 1, y: 1, z: 1}
-  to: {x: 1.2, y: 1.2, z: 1}
+  to: {x: 1.1, y: 1.1, z: 1}
   updateTable: 0
 --- !u!114 &114429155039740802
 MonoBehaviour:
@@ -12449,26 +12461,14 @@ MonoBehaviour:
     - serializedVersion: 2
       time: 0
       value: 0
-      inSlope: -0.070918895
-      outSlope: -0.070918895
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.33593014
-      value: -0.004545074
-      inSlope: 1.8815118
-      outSlope: 1.8815118
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.6490832
-      value: 1.0058014
-      inSlope: 1.930097
-      outSlope: 1.930097
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
       time: 1
-      value: 0
-      inSlope: -0.116589345
-      outSlope: -0.116589345
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -12482,7 +12482,7 @@ MonoBehaviour:
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: {x: 1, y: 1, z: 1}
-  to: {x: 1.2, y: 1.2, z: 1}
+  to: {x: 1.1, y: 1.1, z: 1}
   updateTable: 0
 --- !u!114 &114547125582911844
 MonoBehaviour:
@@ -12543,7 +12543,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011094180112}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
   m_Name: 
@@ -12722,26 +12722,14 @@ MonoBehaviour:
     - serializedVersion: 2
       time: 0
       value: 0
-      inSlope: -0.070918895
-      outSlope: -0.070918895
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.33593014
-      value: -0.004545074
-      inSlope: 1.8815118
-      outSlope: 1.8815118
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.6490832
-      value: 1.0058014
-      inSlope: 1.930097
-      outSlope: 1.930097
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
       time: 1
-      value: 0
-      inSlope: -0.116589345
-      outSlope: -0.116589345
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -12755,7 +12743,7 @@ MonoBehaviour:
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: {x: 1, y: 1, z: 1}
-  to: {x: 1.2, y: 1.2, z: 1}
+  to: {x: 1.1, y: 1.1, z: 1}
   updateTable: 0
 --- !u!114 &114681395838978078
 MonoBehaviour:
@@ -12927,26 +12915,14 @@ MonoBehaviour:
     - serializedVersion: 2
       time: 0
       value: 0
-      inSlope: -0.070918895
-      outSlope: -0.070918895
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.33593014
-      value: -0.004545074
-      inSlope: 1.8815118
-      outSlope: 1.8815118
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.6490832
-      value: 1.0058014
-      inSlope: 1.930097
-      outSlope: 1.930097
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
       time: 1
-      value: 0
-      inSlope: -0.116589345
-      outSlope: -0.116589345
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -12960,7 +12936,7 @@ MonoBehaviour:
   eventReceiver: {fileID: 0}
   callWhenFinished: 
   from: {x: 1, y: 1, z: 1}
-  to: {x: 1.2, y: 1.2, z: 1}
+  to: {x: 1.1, y: 1.1, z: 1}
   updateTable: 0
 --- !u!114 &114803213218403384
 MonoBehaviour:

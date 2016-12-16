@@ -16,10 +16,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000012746512410}
-  - 114: {fileID: 114000013309787588}
+  - component: {fileID: 4000012746512410}
+  - component: {fileID: 114000013309787588}
   m_Layer: 0
   m_Name: announcement
   m_TagString: Untagged
@@ -36,10 +36,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114000013309787588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54,7 +54,7 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: bb8d62c5467b1404fa13c51a61e2d34e, type: 2}
   mSprites:
   - name: bar
-    x: 498
+    x: 490
     y: 480
     width: 4
     height: 32
@@ -67,7 +67,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: bar_announcement
-    x: 490
+    x: 498
     y: 480
     width: 4
     height: 32
@@ -106,7 +106,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: button_blue
-    x: 100
+    x: 412
     y: 438
     width: 74
     height: 74
@@ -145,8 +145,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: icon_a
-    x: 178
-    y: 438
+    x: 0
+    y: 338
     width: 74
     height: 74
     borderLeft: 0
@@ -158,8 +158,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: icon_capsule
-    x: 256
-    y: 438
+    x: 0
+    y: 260
     width: 74
     height: 74
     borderLeft: 0
@@ -171,8 +171,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: icon_clear
-    x: 334
-    y: 438
+    x: 0
+    y: 182
     width: 74
     height: 74
     borderLeft: 0
@@ -184,7 +184,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: icon_coin
-    x: 412
+    x: 100
     y: 438
     width: 74
     height: 74
@@ -198,7 +198,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: icon_combo
     x: 0
-    y: 338
+    y: 104
     width: 74
     height: 74
     borderLeft: 0
@@ -211,45 +211,6 @@ MonoBehaviour:
     paddingBottom: 0
   - name: icon_earphone
     x: 0
-    y: 260
-    width: 74
-    height: 74
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: icon_feed
-    x: 0
-    y: 182
-    width: 74
-    height: 74
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: icon_musical_note
-    x: 0
-    y: 104
-    width: 74
-    height: 74
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: icon_perfect
-    x: 0
     y: 26
     width: 74
     height: 74
@@ -261,7 +222,33 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: icon_s
+  - name: icon_feed
+    x: 256
+    y: 438
+    width: 74
+    height: 74
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: icon_musical_note
+    x: 334
+    y: 438
+    width: 74
+    height: 74
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: icon_perfect
     x: 78
     y: 338
     width: 74
@@ -274,7 +261,7 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: icon_star
+  - name: icon_s
     x: 78
     y: 260
     width: 74
@@ -287,7 +274,7 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: icon_upgrade
+  - name: icon_star
     x: 78
     y: 182
     width: 74
@@ -300,8 +287,21 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: icon_upgrade
+    x: 178
+    y: 438
+    width: 74
+    height: 74
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: little_title_board
-    x: 256
+    x: 156
     y: 364
     width: 96
     height: 48
@@ -314,7 +314,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: little_title_board_chosen
-    x: 156
+    x: 256
     y: 364
     width: 96
     height: 48
