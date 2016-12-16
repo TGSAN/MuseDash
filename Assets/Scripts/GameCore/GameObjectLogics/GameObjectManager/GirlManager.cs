@@ -152,7 +152,7 @@ public class GirlManager : MonoBehaviour
         string clothPath = null;
         if (hero != null)
         {
-            var charCos = RoleManageComponent.Instance.GetRandomCloth(heroIndex);
+            var charCos = RoleManageComponent.Instance.GetCurCloth(heroIndex);
             clothPath = charCos.path;
         }
 

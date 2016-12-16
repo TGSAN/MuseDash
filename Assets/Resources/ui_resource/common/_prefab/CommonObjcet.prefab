@@ -256,7 +256,6 @@ GameObject:
   - component: {fileID: 114000011796187620}
   - component: {fileID: 65000010280773510}
   - component: {fileID: 114000014016896658}
-  - component: {fileID: 114000011058891778}
   - component: {fileID: 114000013092988086}
   - component: {fileID: 114000012292726156}
   m_Layer: 5
@@ -695,7 +694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000012247472568
 GameObject:
   m_ObjectHideFlags: 1
@@ -948,7 +947,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013314296988}
   - component: {fileID: 114000012816201088}
-  - component: {fileID: 114000012097595226}
   - component: {fileID: 65000010947595710}
   m_Layer: 5
   m_Name: SprYesOrNo
@@ -1477,6 +1475,7 @@ GameObject:
   - component: {fileID: 212774036357413746}
   - component: {fileID: 65252547689912906}
   - component: {fileID: 114588280350234376}
+  - component: {fileID: 114616771891627932}
   m_Layer: 5
   m_Name: SprBg
   m_TagString: Untagged
@@ -4896,21 +4895,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11446744, guid: e65a3de28a9f547b1bfd29f6b8556991, type: 2}
   mSpriteName: button_bule
   mFillCenter: 1
---- !u!114 &114000011058891778
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010612108306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: bb9ec12a4204849dfa197d228aeecd81, type: 3}
-  trigger: 0
-  volume: 1
-  pitch: 1
 --- !u!114 &114000011106611764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6042,18 +6026,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbd7598046c7468c8c186d495848222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114000012097595226
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013015956158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7aa9938a51134681a40f03794423160, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_label: {fileID: 0}
 --- !u!114 &114000012111245398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6532,7 +6504,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6578,7 +6550,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6864,7 +6836,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 9.866667
+  aspectRatio: 0.26666668
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   mFont: {fileID: 0}
@@ -8087,11 +8059,11 @@ MonoBehaviour:
   leftAnchor:
     target: {fileID: 4000012269842944}
     relative: 0
-    absolute: -528
+    absolute: -663
   rightAnchor:
     target: {fileID: 4000012269842944}
     relative: 1
-    absolute: 528
+    absolute: 663
   bottomAnchor:
     target: {fileID: 4000012269842944}
     relative: 0
@@ -8103,7 +8075,7 @@ MonoBehaviour:
   updateAnchors: 0
   mColor: {r: 1, g: 1, b: 1, a: 0.9988489}
   mPivot: 4
-  mWidth: 1334
+  mWidth: 1604
   mHeight: 80
   mDepth: 10
   autoResizeBoxCollider: 0
@@ -9493,6 +9465,29 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick: []
+--- !u!114 &114616771891627932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1742535795302130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  animator: {fileID: 95743983383655626}
+  clipName: pnl_prompt_in
+  trigger: 0
+  playDirection: -1
+  resetOnPlay: 0
+  clearSelection: 0
+  ifDisabledOnPlay: 0
+  disableWhenFinished: -1
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
 --- !u!114 &114721439443974230
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -118,6 +118,7 @@ namespace Assets.Scripts.Common
                     {
                         PnlCharUpgrade.PnlCharUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeResult);
                         PnlMainMenu.PnlMainMenu.Instance.OnEnergyUpdate(true);
+                        DailyTaskManager.instance.AddValue(expHosts.Count, 1);
                     }
                     if (callFunc != null)
                     {
@@ -194,6 +195,7 @@ namespace Assets.Scripts.Common
                     {
                         ItemManageComponent.Instance.DeleteListItem(expHosts);
                         PnlItemUpgrade.PnlItemUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeResult);
+                        DailyTaskManager.instance.AddValue(expHosts.Count, 2);
                     }
                     else
                     {

@@ -75,6 +75,7 @@ public class GameInit : MonoBehaviour
         FormulaBase.MaterialManageComponent.Instance.Init();    //初始化材料
         FormulaBase.PetManageComponent.Instance.Init();//初始化宠物
         FormulaBase.ItemManageComponent.Instance.Init();//背包初始化 放在所有道具之后
+        FormulaBase.DailyTaskManager.instance.Init();
     }
 
     private IEnumerator __Init()

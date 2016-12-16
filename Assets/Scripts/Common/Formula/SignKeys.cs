@@ -416,11 +416,6 @@ namespace FormulaBase
         public const string SUIT_EFFECT_DESC = "SUIT_EFFECT_DESC";
 
         ///
-        /// SUIT_GROUP
-        ///
-        public const string SUIT_GROUP = "SUIT_GROUP";
-
-        ///
         /// ACHIEVEMENT
         ///
         public const string ACHIEVEMENT = "ACHIEVEMENT";
@@ -434,5 +429,20 @@ namespace FormulaBase
         /// CHARM
         ///
         public const string CHARM = "CHARM";
+
+        ///
+        /// FINISH_TIME
+        ///
+        public const string FINISH_TIME = "FINISH_TIME";
+
+        ///
+        /// DT_TARGET
+        ///
+        public const string DT_TARGET = "DT_TARGET";
+
+        ///
+        /// DT_VALUE
+        ///
+        public const string DT_VALUE = "DT_VALUE";
     }
 }

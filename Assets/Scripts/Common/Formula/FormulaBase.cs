@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
 using UnityEngine;
@@ -568,7 +569,6 @@ namespace FormulaBase
             {
                 return;
             }
-
             Dictionary<string, FormulaHost> _data = this.hostPool[fileName];
             if (!_data.ContainsKey(host.objectID))
             {

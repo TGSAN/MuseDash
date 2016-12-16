@@ -29,10 +29,8 @@ namespace PnlCharInfo
         public UILabel txtEquipInfo, txtServantInfo;
 
         private Animator m_Animator;
-        private List<CharCos> m_SelectedCosList = new List<CharCos>();
         private CharCos m_SelectedCos;
         private List<SprCos> m_SprCosList = new List<SprCos>();
-        private int m_LastSelected = 1;
 
         private bool m_IsUpgrade = false;
 
@@ -85,8 +83,7 @@ namespace PnlCharInfo
             m_Animator = GetComponent<Animator>();
             instance = this;
             m_SprCosList = tglsParent.GetComponentsInChildren<SprCos>().ToList();
-            m_SelectedCosList = RoleManageComponent.Instance.GetClothList(RoleManageComponent.Instance.GetChoseRoleIdx());
-            m_SelectedCos = m_SelectedCosList[0];
+            m_SelectedCos = RoleManageComponent.Instance.GetCurCloth(RoleManageComponent.Instance.GetChoseRoleIdx());
         }
 
         private void OnEnable()
@@ -101,7 +98,7 @@ namespace PnlCharInfo
 
         public void OnUpgradeItemsRefresh()
         {
-            if (!gameObject.activeSelf)
+            if (!gameObject || !gameObject.activeSelf)
             {
                 return;
             }
@@ -229,17 +226,6 @@ namespace PnlCharInfo
                 }
                 PnlSuitcase.PnlSuitcase.Instance.ResetPos();
             };
-            /* UIEventListener.Get(btnBack.gameObject).onClick = (go) =>
-             {
-                 DOTweenUtils.Delay(() =>
-                 {
-                     m_Animator.Play("char_info_in");
-                 }, 0.1f);
-                 isUpgrade = false;
-                 var isShow = PnlMainMenu.PnlMainMenu.Instance.goSelectedSuitcase.activeSelf;
-                 PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(isShow);
-                 PnlSuitcase.PnlSuitcase.Instance.OnHide();
-             };*/
             UIEventListener.Get(btnConfirm.gameObject).onClick = (go) =>
             {
                 var hosts = PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost;
@@ -269,11 +255,21 @@ namespace PnlCharInfo
             };
             UIEventListener.Get(btnApply.gameObject).onClick = (go) =>
             {
-                var roleHost = RoleManageComponent.Instance.GetRole(PnlChar.PnlChar.Instance.curRoleIdx);
-                var clothStr = m_SelectedCosList.Aggregate(string.Empty, (current, charCose) => current + (charCose.uid + ","));
-                clothStr = clothStr.Substring(0, clothStr.Length - 1);
-                roleHost.SetDynamicData(SignKeys.SUIT_GROUP, clothStr);
-                roleHost.Save();
+                var idx = PnlChar.PnlChar.Instance.curRoleIdx;
+                var roleHost = RoleManageComponent.Instance.GetRole(idx);
+                var clothStr = m_SelectedCos.uid;
+                RoleManageComponent.Instance.SetFightGirlIndex(idx, () =>
+                {
+                    roleHost.SetDynamicData(SignKeys.CLOTH, clothStr);
+                    roleHost.Save(result =>
+                    {
+                        if (result)
+                        {
+                            OnTglChange(idx);
+                            OnApplyShow(idx);
+                        }
+                    });
+                });
             };
 
             foreach (var t in m_SprCosList)
@@ -282,22 +278,27 @@ namespace PnlCharInfo
                 tgl.onChange.Clear();
                 tgl.onChange.Add(new EventDelegate(() =>
                 {
-                    DOTweenUtils.Delay(() =>
-                    {
-                        OnSelectChange(tgl.transform);
-                    }, Time.deltaTime);
+                    OnSelectChange(tgl.transform);
                 }));
             }
         }
 
         public void OnRoleChange(int idx)
         {
-            if (!PnlChar.PnlChar.Instance.isChangeRole)
+            OnTglChange(idx);
+            OnApplyShow(idx);
+            OnUpgradeItemsRefresh();
+            OnPropertyBarShow(idx);
+            var isLock = RoleManageComponent.Instance.GetRoleLockedState(idx);
+            btnFeed.gameObject.SetActive(!isLock);
+            if (PnlChar.PnlChar.Instance.isChangeRole)
             {
-                return;
+                OnExit();
             }
+        }
 
-            m_SelectedCosList = RoleManageComponent.Instance.GetClothList(idx);
+        private void OnTglChange(int idx)
+        {
             var allCharCos = RoleManageComponent.Instance.GetCloths(idx);
             var curPath = PnlChar.PnlChar.Instance.animPath[idx - 1];
             var selectedSpiIdx = allCharCos.FindIndex(c => c.path == curPath);
@@ -310,23 +311,16 @@ namespace PnlCharInfo
                 {
                     var charCos = allCharCos[i];
                     sprCos.isSelected = charCos.uid == m_SelectedCos.uid;
-                    sprCos.isInGroup = m_SelectedCosList.Exists(c => c.uid == charCos.uid);
+                    sprCos.isEquiped = charCos.uid == RoleManageComponent.Instance.GetCurCloth(idx).uid;
                     sprCos.isLock = charCos.isLock;
                 }
                 else
                 {
-                    sprCos.isInGroup = false;
                     sprCos.isLock = true;
+                    sprCos.isEquiped = false;
                     sprCos.isSelected = false;
                 }
             }
-            OnApplyShow(idx);
-            OnUpgradeItemsRefresh();
-            OnPropertyBarShow(idx);
-            OnExit();
-            var isLock = RoleManageComponent.Instance.GetRoleLockedState(idx);
-            txtApply.gameObject.SetActive(!isLock);
-            btnFeed.gameObject.SetActive(!isLock);
         }
 
         private void OnPropertyBarShow(int idx)
@@ -348,26 +342,24 @@ namespace PnlCharInfo
 
         private void OnApplyShow(int idx)
         {
-            var clothStr = m_SelectedCosList.Aggregate(string.Empty, (current, charCose) => current + (charCose.uid + ","));
-            if (clothStr.Length > 0)
-            {
-                clothStr = clothStr.Substring(0, clothStr.Length - 1);
-            }
-            var suitStr = RoleManageComponent.Instance.GetRole(idx).GetDynamicStrByKey(SignKeys.SUIT_GROUP);
-            btnApply.gameObject.SetActive(suitStr != clothStr && !RoleManageComponent.Instance.GetRoleLockedState(idx));
-            if ((suitStr == "0" && clothStr == (idx * 10).ToString()) || string.IsNullOrEmpty(clothStr))
-            {
-                btnApply.gameObject.SetActive(false);
-            }
             var isLock = RoleManageComponent.Instance.GetRoleLockedState(idx);
             if (isLock)
             {
+                btnApply.gameObject.SetActive(false);
                 txtApply.gameObject.SetActive(false);
+                return;
+            }
+
+            var curSuit = RoleManageComponent.Instance.GetRole(idx).GetDynamicIntByKey(SignKeys.CLOTH);
+            if (RoleManageComponent.Instance.GetFightGirlIndex() != idx)
+            {
+                btnApply.gameObject.SetActive(true);
             }
             else
             {
-                txtApply.gameObject.SetActive(!btnApply.gameObject.activeSelf);
+                btnApply.gameObject.SetActive(curSuit != m_SelectedCos.uid);
             }
+            txtApply.gameObject.SetActive(!btnApply.gameObject.activeSelf);
         }
 
         public void OnSelectChange(Transform t)
@@ -377,38 +369,12 @@ namespace PnlCharInfo
             var sprCos = t.GetComponent<SprCos>();
             if (idx >= allCharCos.Count) return;
             var charCos = allCharCos[idx];
-            for (var i = 0; i < m_SprCosList.Count; i++)
-            {
-                if (m_SprCosList[i].isInGroup)
-                {
-                    m_LastSelected = i;
-                }
-            }
-            if (m_SprCosList.All(sprCose => !sprCose.isInGroup))
-            {
-                m_SprCosList[m_LastSelected].isInGroup = true;
-            }
 
             if (sprCos.isSelected)
             {
                 m_SelectedCos = charCos;
             }
-
-            if (sprCos.isInGroup)
-            {
-                if (!m_SelectedCosList.Exists(c => c.uid == charCos.uid))
-                {
-                    m_SelectedCosList.Add(charCos);
-                }
-            }
-            else
-            {
-                m_SelectedCosList.RemoveAll(c => c.uid == charCos.uid);
-            }
             PnlChar.PnlChar.Instance.OnSpiAnimLoad(PnlChar.PnlChar.Instance.curRoleIdx, m_SelectedCos.path);
-            var roleHost = RoleManageComponent.Instance.GetRole(PnlChar.PnlChar.Instance.curRoleIdx);
-            roleHost.SetDynamicData(SignKeys.CLOTH, m_SelectedCos.uid);
-            m_SelectedCosList.Sort((l, r) => l.uid - r.uid);
             OnApplyShow(PnlChar.PnlChar.Instance.curRoleIdx);
         }
     }

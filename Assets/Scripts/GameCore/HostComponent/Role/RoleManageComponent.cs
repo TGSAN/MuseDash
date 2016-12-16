@@ -79,6 +79,11 @@ namespace FormulaBase
             return idx;
         }
 
+        public FormulaHost GetChoseGirl()
+        {
+            return GetRole(GetChoseRoleIdx());
+        }
+
         public FormulaHost GetRole(string name)
         {
             return this.GetHostByKeyValue(SignKeys.NAME, name);
@@ -146,10 +151,11 @@ namespace FormulaBase
                 {
                     continue;
                 }
-                if (role.GetDynamicDataByKey(SignKeys.ID) == 1)
+                if (role.GetDynamicIntByKey(SignKeys.ID) == 1)
                 {
                     role.SetDynamicData(SignKeys.LOCKED, 0);
                 }
+
                 // 基本配置属性
                 role.Result(FormulaKeys.FORMULA_35);
 
@@ -173,12 +179,11 @@ namespace FormulaBase
             var maxLuck = (int)role.Result(FormulaKeys.FORMULA_47);
             role.SetDynamicData(SignKeys.MAX_LUCK, maxLuck);
 
-            //装备类型
+            //套装
             var cloth = role.GetDynamicIntByKey(SignKeys.CLOTH);
             if (cloth <= 0)
             {
-                cloth = ConfigPool.Instance.GetConfigIntValue("char_info", role.GetDynamicIntByKey(SignKeys.ID).ToString(), "char_info");
-                role.SetDynamicData(SignKeys.CLOTH, cloth);
+                role.SetDynamicData(SignKeys.CLOTH, role.GetDynamicIntByKey(SignKeys.ID) * 10);
             }
         }
 
@@ -281,8 +286,13 @@ namespace FormulaBase
                 CommonPanel.GetInstance().ShowWaittingPanel(false);
                 return false;
             }
-            UnlockRole(idx, callBack);
-            return true;
+            var result = true;
+            CommonPanel.GetInstance().ShowYesNo("是否确认购买人物", () => UnlockRole(idx, callBack), () =>
+            {
+                CommonPanel.GetInstance().ShowWaittingPanel(false);
+                result = false;
+            });
+            return result;
         }
 
         public void UnlockRole(int _index, Callback _callBack = null)
@@ -411,7 +421,7 @@ namespace FormulaBase
         }
 
         /// <summary>
-        /// 获取人物的套装
+        /// 获取人物所有的套装
         /// </summary>
         /// <param name="idx"></param>
         /// <returns></returns>
@@ -431,40 +441,11 @@ namespace FormulaBase
             return list;
         }
 
-        /// <summary>
-        /// 获取人物的随机选用套装
-        /// </summary>
-        /// <param name="idx"></param>
-        /// <returns></returns>
-        public List<CharCos> GetClothList(int idx)
+        public CharCos GetCurCloth(int idx)
         {
             var role = GetRole(idx);
-            var suitGroup = role.GetDynamicStrByKey(SignKeys.SUIT_GROUP);
-            if (suitGroup == "0")
-            {
-                suitGroup = (idx * 10).ToString();
-            }
-            var suitNumber = suitGroup.Split(',').ToList();
-            if (suitNumber.Contains("0"))
-            {
-                suitNumber.Remove("0");
-            }
-            var list = suitNumber.Select(s => new CharCos((float)int.Parse(s))).ToList();
-            return list;
-        }
-
-        /// <summary>
-        /// 从随机选用套装中选择一套
-        /// </summary>
-        /// <param name="idx"></param>
-        /// <returns></returns>
-        public CharCos GetRandomCloth(int idx)
-        {
-            var role = GetRole(idx);
-            var cloths = role.GetDynamicStrByKey(SignKeys.SUIT_GROUP);
-            var strs = cloths.Split(',');
-            var i = UnityEngine.Random.Range(0, strs.Length);
-            return new CharCos((float)int.Parse(strs[i]));
+            var clothIdx = role.GetDynamicIntByKey(SignKeys.CLOTH);
+            return new CharCos((float)clothIdx);
         }
 
         public void SetFightGirlClothByOrder(int order)

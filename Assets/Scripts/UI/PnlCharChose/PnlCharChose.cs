@@ -83,7 +83,7 @@ namespace PnlCharChose
                 }
                 else
                 {
-                    PnlChar.PnlChar.Instance.onRoleChange(choseType);
+                    PnlChar.PnlChar.Instance.onRoleChange(PnlChar.PnlChar.Instance.curRoleIdx);
                 }
             };
             btnLeft.onClick.Add(new EventDelegate(() =>
@@ -229,14 +229,7 @@ namespace PnlCharChose
         public override void OnShow(int choseIdx = 0)
         {
             gameObject.SetActive(true);
-            if (choseIdx > 0)
-            {
-                choseType = choseIdx;
-            }
-            else
-            {
-                choseType = FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
-            }
+            choseType = choseIdx > 0 ? choseIdx : FormulaBase.RoleManageComponent.Instance.GetFightGirlIndex();
             OnCharacterChange(choseType);
         }
 

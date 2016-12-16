@@ -182,6 +182,9 @@ namespace Assets.Scripts.Common.Manager
             {
                 if (result)
                 {
+                    //日常任务：开启胶囊
+                    DailyTaskManager.instance.AddValue(1, 9);
+
                     var texList = (from id in curCapsule.itemsID select ItemManageComponent.Instance.CreateItemByUID(id) into host where host != null select ResourceLoader.Instance.LoadItemTexture(host)).ToList();
                     PnlMainMenu.PnlMainMenu.Instance.item.SetAllItem(texList.ToArray());
                     PnlCapsuleOpen.PnlCapsuleOpen.Instance.onExit = new Action(() =>

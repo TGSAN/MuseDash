@@ -466,6 +466,54 @@ namespace FormulaBase {
 		/// 魔能兑换比例
 		///
 		public const int FORMULA_115 = 115;
+		///
+		/// 任务冷却秒数
+		///
+		public const int FORMULA_116 = 116;
+		///
+		/// 食物值
+		///
+		public const int FORMULA_117 = 117;
+		///
+		/// 物品升级值
+		///
+		public const int FORMULA_118 = 118;
+		///
+		/// 超级评价值
+		///
+		public const int FORMULA_119 = 119;
+		///
+		/// 任意关卡评价值
+		///
+		public const int FORMULA_120 = 120;
+		///
+		/// 佩戴耳机值
+		///
+		public const int FORMULA_121 = 121;
+		///
+		/// 音符值
+		///
+		public const int FORMULA_122 = 122;
+		///
+		/// 金币值
+		///
+		public const int FORMULA_123 = 123;
+		///
+		/// 完美值
+		///
+		public const int FORMULA_124 = 124;
+		///
+		/// 胶囊值
+		///
+		public const int FORMULA_125 = 125;
+		///
+		/// 连击值
+		///
+		public const int FORMULA_126 = 126;
+		///
+		/// 星星值
+		///
+		public const int FORMULA_127 = 127;
 
 	}
 }

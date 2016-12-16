@@ -5,10 +5,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 474830}
-  - 114: {fileID: 11405424}
+  - component: {fileID: 474830}
+  - component: {fileID: 11405424}
   m_Layer: 0
   m_Name: store_atlas
   m_TagString: Untagged
@@ -25,10 +25,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11405424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,7 +109,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: capsule_blue
     x: 0
-    y: 746
+    y: 464
     width: 271
     height: 278
     borderLeft: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: capsule_gold
     x: 0
-    y: 464
+    y: 182
     width: 271
     height: 278
     borderLeft: 0
@@ -186,8 +186,21 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: capsule_purple
+    x: 275
+    y: 746
+    width: 271
+    height: 278
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: capsule_question_mark
     x: 0
-    y: 182
+    y: 746
     width: 271
     height: 278
     borderLeft: 0
@@ -200,7 +213,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: capsule_white
     x: 275
-    y: 746
+    y: 464
     width: 271
     height: 278
     borderLeft: 0
@@ -264,19 +277,6 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 0
   - name: gift_icon_red
-    x: 216
-    y: 21
-    width: 42
-    height: 46
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: gift_icon_yellow
     x: 227
     y: 132
     width: 42
@@ -289,9 +289,35 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: gift_icon_yellow
+    x: 216
+    y: 21
+    width: 42
+    height: 46
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: gift_question_mark
+    x: 550
+    y: 464
+    width: 271
+    height: 278
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: gift_red
-    x: 275
-    y: 182
+    x: 550
+    y: 746
     width: 271
     height: 278
     borderLeft: 0
@@ -304,7 +330,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: gift_yellow
     x: 275
-    y: 464
+    y: 182
     width: 271
     height: 278
     borderLeft: 0
@@ -316,46 +342,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: handful_of_coin
-    x: 879
-    y: 857
-    width: 325
-    height: 167
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: handful_of_crystal
-    x: 550
-    y: 173
-    width: 325
-    height: 167
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: heap_of_coin
-    x: 550
-    y: 344
-    width: 325
-    height: 167
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: heap_of_crystal
-    x: 550
+    x: 1154
     y: 515
     width: 325
     height: 167
@@ -367,8 +354,8 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: many_coin
-    x: 550
+  - name: handful_of_crystal
+    x: 1483
     y: 686
     width: 325
     height: 167
@@ -380,9 +367,48 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: many_crystal
-    x: 550
+  - name: heap_of_coin
+    x: 1154
+    y: 686
+    width: 325
+    height: 167
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: heap_of_crystal
+    x: 1483
     y: 857
+    width: 325
+    height: 167
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: many_coin
+    x: 1154
+    y: 857
+    width: 325
+    height: 167
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: many_crystal
+    x: 825
+    y: 173
     width: 325
     height: 167
     borderLeft: 0
@@ -394,8 +420,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: many_heap_of_coin
-    x: 1208
-    y: 857
+    x: 825
+    y: 344
     width: 325
     height: 167
     borderLeft: 0
@@ -407,8 +433,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: many_heap_of_crystal
-    x: 1537
-    y: 857
+    x: 825
+    y: 515
     width: 325
     height: 167
     borderLeft: 0
@@ -420,7 +446,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: mountain_of_coin
-    x: 879
+    x: 825
     y: 686
     width: 325
     height: 167
@@ -433,8 +459,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: mountain_of_crystal
-    x: 879
-    y: 515
+    x: 825
+    y: 857
     width: 325
     height: 167
     borderLeft: 0
@@ -446,7 +472,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: some_of_coin
-    x: 879
+    x: 1154
     y: 344
     width: 325
     height: 167
@@ -459,7 +485,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: some_of_crystal
-    x: 879
+    x: 1154
     y: 173
     width: 325
     height: 167
