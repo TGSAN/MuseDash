@@ -466,6 +466,10 @@ namespace FormulaBase {
 		/// 魔能兑换比例
 		///
 		public const int FORMULA_115 = 115;
+		///
+		/// 任务冷却秒数
+		///
+		public const int FORMULA_116 = 116;
 
 	}
 }

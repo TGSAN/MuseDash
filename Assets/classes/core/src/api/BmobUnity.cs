@@ -1,4 +1,4 @@
-﻿#if UNITY_5 || UNITY_4 || UNITY_4_6 
+﻿#if UNITY_5 || UNITY_4 || UNITY_4_6
 #define Unity
 #endif
 
@@ -85,14 +85,11 @@ namespace System
         {
         }
     }
-
 }
-
 
 namespace cn.bmob.api
 {
-
-    public partial class Bmob : MonoBehaviour
+    public partial class Bmob : SingletonMonoBehaviour<Bmob>
     {
     }
 
@@ -101,11 +98,10 @@ namespace cn.bmob.api
     /// </summary>
     public class BmobUnity : Bmob
     {
-
         private MonoBehaviour go;
 
         /// <summary>
-        /// Unity Behavior 
+        /// Unity Behavior
         /// </summary>
         public void Update() { }
 
@@ -113,13 +109,13 @@ namespace cn.bmob.api
         {
             Configuration.PLATFORM = SDKTarget.Unity;
             go = this;
-
         }
 
         /// <summary>
         /// 仅用于在界面设置
         /// </summary>
         public String ApplicationId;
+
         public String RestKey;
 
         internal override string appKey
@@ -134,6 +130,7 @@ namespace cn.bmob.api
                 base.appKey = value;
             }
         }
+
         internal override String restKey
         {
             get { return RestKey; }
@@ -143,7 +140,6 @@ namespace cn.bmob.api
                 base.restKey = value;
             }
         }
-
 
         internal override void submit<T>(BmobCommand<T> command, BmobCallback<T> callback)
         {
@@ -185,7 +181,6 @@ namespace cn.bmob.api
 
             BmobDebug.T("[ BmobUnity ] after fetch www message, Response: '" + text + "', Error: ' " + error + "'");
 
-
             var status = new Status(200, error);
             if (www.responseHeaders.ContainsKey("STATUS"))
             {
@@ -203,9 +198,7 @@ namespace cn.bmob.api
                 callback(text, status, null);
             }
         }
-
     }
-
 }
 
 #endif
