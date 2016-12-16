@@ -1,5 +1,6 @@
 using cn.bmob.api;
 using cn.bmob.io;
+using LitJson;
 using Newtonsoft.Json;
 
 ///自定义模块，可定制模块具体行为
@@ -46,7 +47,6 @@ namespace FormulaBase
                 var originValue = host.GetDynamicIntByKey(SignKeys.DT_VALUE);
                 var afterValue = originValue + value;
                 var targetValue = host.GetDynamicIntByKey(SignKeys.DT_TARGET);
-                Debug.Log(originValue + "====" + value);
                 host.SetDynamicData(SignKeys.DT_VALUE, afterValue);
                 host.Save(result =>
                 {
@@ -104,7 +104,7 @@ namespace FormulaBase
                 var txt = res as TextAsset;
                 if (txt != null)
                 {
-                    m_TaskConfig = JsonConvert.DeserializeObject<List<DailyTask>>(txt.text);
+                    m_TaskConfig = JsonMapper.ToObject<List<DailyTask>>(txt.text);
                 }
             });
 
