@@ -26,6 +26,7 @@ namespace PnlUnlockSong
 
         public override void OnShow(int idx)
         {
+			gameObject.SetActive (true);
             InitLabel(idx);
             InitTex(idx);
         }
