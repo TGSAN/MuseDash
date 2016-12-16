@@ -346,6 +346,58 @@ namespace FormulaBase {
 		/// FINISH_TIME
 		///
 		public const string FINISH_TIME = "FINISH_TIME";
+		///
+		/// DT_FOOD
+		///
+		public const string DT_FOOD = "DT_FOOD";
+		///
+		/// DT_UPGRADE_ITEM
+		///
+		public const string DT_UPGRADE_ITEM = "DT_UPGRADE_ITEM";
+		///
+		/// DT_EARPHONE
+		///
+		public const string DT_EARPHONE = "DT_EARPHONE";
+		///
+		/// DT_MUSIC_NOTE
+		///
+		public const string DT_MUSIC_NOTE = "DT_MUSIC_NOTE";
+		///
+		/// DT_COIN
+		///
+		public const string DT_COIN = "DT_COIN";
+		///
+		/// DT_PERFECT
+		///
+		public const string DT_PERFECT = "DT_PERFECT";
+		///
+		/// DT_CAPSULE
+		///
+		public const string DT_CAPSULE = "DT_CAPSULE";
+		///
+		/// DT_COMBO
+		///
+		public const string DT_COMBO = "DT_COMBO";
+		///
+		/// DT_HIDE_NOTE
+		///
+		public const string DT_HIDE_NOTE = "DT_HIDE_NOTE";
+		///
+		/// DT_TARGET
+		///
+		public const string DT_TARGET = "DT_TARGET";
+		///
+		/// DT_VALUE
+		///
+		public const string DT_VALUE = "DT_VALUE";
+		///
+		/// DT_S
+		///
+		public const string DT_S = "DT_S";
+		///
+		/// DT_A
+		///
+		public const string DT_A = "DT_A";
 
 	}
 }

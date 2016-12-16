@@ -237,6 +237,8 @@ namespace FormulaBase {
 					return ( formulaObject.GetParamValue (0) );
 				case 115:
 					return ( formulaObject.GetParamValue (0) );
+				case 116:
+					return ( formulaObject.GetParamValue (0) );
 			}
 			return 0f;
 		}

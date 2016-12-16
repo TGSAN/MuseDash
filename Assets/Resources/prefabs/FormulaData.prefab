@@ -128,6 +128,19 @@ MonoBehaviour:
   - CAPSULE
   - CHARM
   - FINISH_TIME
+  - DT_FOOD
+  - DT_UPGRADE_ITEM
+  - DT_EARPHONE
+  - DT_MUSIC_NOTE
+  - DT_COIN
+  - DT_PERFECT
+  - DT_CAPSULE
+  - DT_COMBO
+  - DT_HIDE_NOTE
+  - DT_TARGET
+  - DT_VALUE
+  - DT_S
+  - DT_A
   ConfigNames:
   - character
   - stage
@@ -160,7 +173,7 @@ MonoBehaviour:
   - "\u4EA7\u51FA\u8D44\u6E90"
   - "\u88C5\u5907"
   - "\u98DF\u7269"
-  - nothing
+  - "\u65E5\u5E38\u4EFB\u52A1"
   - nothing
   - "\u6218\u6597\u76F8\u5173"
   - "\u9B54\u65B9"
@@ -3351,6 +3364,19 @@ MonoBehaviour:
       collapsed: 0
       paramname: "\u914D\u7F6E\u9879"
       condictions: []
+  - idx: 116
+    typeIdx: 4
+    name: "\u4EFB\u52A1\u51B7\u5374\u79D2\u6570"
+    formula: "( \u914D\u7F6E\u9879 )"
+    fparams:
+    - idx: 0
+      dataSourceType: 4
+      dataSourceIndex: 0
+      dataSourceValue: 21600
+      dataSourceName: 
+      collapsed: 0
+      paramname: "\u914D\u7F6E\u9879"
+      condictions: []
   Hosts:
   - name: "\u89D2\u8272"
     fileName: Role
@@ -3652,8 +3678,22 @@ MonoBehaviour:
     collapsedSign: 1
     collapsedComponent: 1
     formulaSet: 
-    singSet: 02000000
+    singSet: 0200000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000
     signValueSet:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
     - 0
     componentNames:
     - Manager

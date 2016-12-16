@@ -163,9 +163,9 @@ public class GirlManager : MonoBehaviour
         }
 
 #if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
-        /*heroIndex = AdminData.Instance.DefaultRoleIdx;
+        heroIndex = AdminData.Instance.DefaultRoleIdx;
         clothIdx = GameGlobal.DEBUG_CLOTH_UID;
-        clothPath = ConfigPool.Instance.GetConfigStringValue("char_cos", "uid", "path", clothIdx);*/
+        clothPath = ConfigPool.Instance.GetConfigStringValue("char_cos", "uid", "path", clothIdx);
 #endif
 
         this.girlnames[0] = clothPath;
