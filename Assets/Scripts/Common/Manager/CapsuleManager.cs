@@ -162,6 +162,7 @@ namespace Assets.Scripts.Common.Manager
             {
                 var capsuleStr = AccountManagerComponent.Instance.GetCapsuleStr();
                 var list = Capsule.StringToList(capsuleStr);
+                list.Sort((l, r) => r.id - l.id);
                 return list.FirstOrDefault();
             }
         }

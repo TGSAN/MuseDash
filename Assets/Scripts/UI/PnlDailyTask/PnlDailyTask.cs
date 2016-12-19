@@ -34,13 +34,13 @@ namespace PnlDailyTask
 
         public override void OnShow()
         {
-            var curCount = DailyTaskManager.instance.awardTaskList.Count;
+            var curCount = DailyTaskManager.instance.endTaskList.Count;
             var maxCount = 10;
             txtAllTaskNum.text = maxCount.ToString();
             txtFinishTaskNum.text = curCount.ToString();
             sprTaskNumBar.transform.localScale = curCount == 0 ? new Vector3(0, 1, 1) : Vector3.one;
             sprTaskNumBar.width = (int)(680f * ((float)curCount / (float)maxCount));
-            for (int i = 0; i < 3; i++)
+            for (var i = 0; i < 3; i++)
             {
                 InitTaskBox(i);
             }
