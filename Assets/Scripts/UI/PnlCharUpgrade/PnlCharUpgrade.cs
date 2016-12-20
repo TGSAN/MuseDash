@@ -104,7 +104,6 @@ namespace PnlCharUpgrade
                     var formulaHost = hosts[i];
                     ResourceLoader.Instance.LoadItemIcon(formulaHost, tex);
                     var sprite = tex.transform.parent.GetComponent<UISprite>();
-                    Debug.Log(sprite);
                     sprite.spriteName = "groove_" + formulaHost.GetDynamicIntByKey(SignKeys.QUALITY).ToString();
                 }
                 else

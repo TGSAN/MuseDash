@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.UI;
 using DG.Tweening;
 using FormulaBase;
+using GameLogic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -169,6 +170,7 @@ namespace Assets.Scripts.NGUI
             OnScrolling();
             OnSongInfoChange();
             UpdatePos();
+            Debug.Log(GameGlobal.IS_EARPHONE);
         }
 
         #region 初始化
@@ -762,6 +764,7 @@ namespace Assets.Scripts.NGUI
             }
 
             string musicPath = m_StageInfos[m_CurrentIdx].musicPath;
+            musicPath = musicPath.Replace("music", "demo") + "_demo";
             Debug.Log("Stage select load music : " + musicPath);
             this.m_Coroutine = ResourceLoader.Instance.Load(musicPath, this.LoadSync);
         }

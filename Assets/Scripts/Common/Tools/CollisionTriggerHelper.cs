@@ -40,5 +40,9 @@ namespace Assets.Scripts.Common.Tools
         {
             onCollisionStay.Invoke(col.gameObject);
         }
+
+        private void Update()
+        {
+        }
     }
 }

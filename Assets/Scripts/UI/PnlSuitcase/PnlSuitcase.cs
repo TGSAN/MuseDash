@@ -88,12 +88,15 @@ namespace PnlSuitcase
             m_Cells.ForEach(itemImageEquip =>
             {
                 itemImageEquip.isLock =
-                    (isTo && !upgradeSelectedHost.Contains(itemImageEquip.host)) ||
+                    (isTo && !upgradeSelectedHost.Exists(h => h.GetDynamicIntByKey(SignKeys.BAGINID) == itemImageEquip.host.GetDynamicIntByKey(SignKeys.BAGINID))) ||
                     itemImageEquip.host.GetDynamicIntByKey(SignKeys.WHO) != 0;
                 if (PnlEquipInfo.PnlEquipInfo.Instance.host != null)
                 {
-                    itemImageEquip.isLock = itemImageEquip.host.GetDynamicIntByKey(SignKeys.BAGINID) ==
-                                            PnlEquipInfo.PnlEquipInfo.Instance.host.GetDynamicIntByKey(SignKeys.BAGINID);
+                    if (itemImageEquip.host.GetDynamicIntByKey(SignKeys.BAGINID) ==
+                                            PnlEquipInfo.PnlEquipInfo.Instance.host.GetDynamicIntByKey(SignKeys.BAGINID))
+                    {
+                        itemImageEquip.isLock = true;
+                    }
                 }
             });
         }

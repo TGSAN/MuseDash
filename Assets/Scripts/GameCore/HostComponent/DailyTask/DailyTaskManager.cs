@@ -85,7 +85,13 @@ namespace FormulaBase
         {
             get
             {
-                return (from host in HostList.Values.ToList() where host.GetDynamicIntByKey(SignKeys.FINISH_TIME) == 0 && host.GetDynamicIntByKey(SignKeys.LOCKED) == 0 select host.GetDynamicIntByKey(SignKeys.ID) into id select m_TaskConfig[id - 1]).ToList();
+                if (HostList == null || HostList.Count == 0)
+                {
+                    GetList("DailyTask");
+                }
+                var list = (from host in HostList.Values.ToList() where host.GetDynamicIntByKey(SignKeys.FINISH_TIME) == 0 select host.GetDynamicIntByKey(SignKeys.ID) into id select m_TaskConfig[id - 1]).ToList();
+                list.Sort((l, r) => int.Parse(l.uid) - int.Parse(r.uid));
+                return list;
             }
         }
 
@@ -93,7 +99,27 @@ namespace FormulaBase
         {
             get
             {
-                return (from host in HostList.Values.ToList() where host.GetDynamicIntByKey(SignKeys.FINISH_TIME) != 0 && host.GetDynamicIntByKey(SignKeys.LOCKED) == 0 select host.GetDynamicIntByKey(SignKeys.ID) into id select m_TaskConfig[id - 1]).ToList();
+                if (HostList == null || HostList.Count == 0)
+                {
+                    GetList("DailyTask");
+                }
+                var list = (from host in HostList.Values.ToList() where host.GetDynamicIntByKey(SignKeys.LOCKED) == 1 select host.GetDynamicIntByKey(SignKeys.ID) into id select m_TaskConfig[id - 1]).ToList();
+                list.Sort((l, r) => int.Parse(l.uid) - int.Parse(r.uid));
+                return list;
+            }
+        }
+
+        public List<DailyTask> endTaskList
+        {
+            get
+            {
+                if (HostList == null || HostList.Count == 0)
+                {
+                    GetList("DailyTask");
+                }
+                var list = (from host in HostList.Values.ToList() where host.GetDynamicIntByKey(SignKeys.LOCKED) == 2 || host.GetDynamicIntByKey(SignKeys.LOCKED) == 1 select host.GetDynamicIntByKey(SignKeys.ID) into id select m_TaskConfig[id - 1]).ToList();
+                list.Sort((l, r) => int.Parse(l.uid) - int.Parse(r.uid));
+                return list;
             }
         }
 
@@ -117,9 +143,8 @@ namespace FormulaBase
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    NewDailyTask();
+                    NewDailyTask(SaveList);
                 }
-                SaveList();
             }
             else
             {
@@ -151,7 +176,7 @@ namespace FormulaBase
             var taskConfig = m_TaskConfig[uid - 1];
             var awardCoin = taskConfig.coinAward;
             var awardCrystal = taskConfig.crystalAward;
-            host.SetDynamicData(SignKeys.LOCKED, 1);
+            host.SetDynamicData(SignKeys.LOCKED, 2);
             host.Save(result =>
             {
                 if (result)
@@ -175,9 +200,13 @@ namespace FormulaBase
             BmobUnity.instance.Timestamp((resp, exception) =>
             {
                 host.SetDynamicData(SignKeys.FINISH_TIME, resp.timestamp.Get());
+                host.SetDynamicData(SignKeys.LOCKED, 1);
                 host.Save(result =>
                 {
-                    CheckDailyTask(host, resp.timestamp.Get());
+                    if (result)
+                    {
+                        CheckDailyTask(host, resp.timestamp.Get());
+                    }
                 });
             });
         }
@@ -188,8 +217,7 @@ namespace FormulaBase
             if (finishTime == 0) return;
             Action finishFunc = () =>
             {
-                NewDailyTask();
-                SaveList();
+                NewDailyTask(SaveList);
             };
             var dt = (int)host.Result(FormulaKeys.FORMULA_116) - (curTime - finishTime);
             if (dt <= 0)
@@ -206,9 +234,9 @@ namespace FormulaBase
             }
         }
 
-        private void SaveList(HttpEndResponseDelegate callFunc = null)
+        private void SaveList()
         {
-            FormulaHost.SaveList(HostList.Values.ToList(), callFunc);
+            GetList("DailyTask");
         }
 
         private DailyTask GetRandomDailyTaskData()
@@ -222,7 +250,7 @@ namespace FormulaBase
             return randomList[randomIdx];
         }
 
-        private void NewDailyTask()
+        private void NewDailyTask(Callback callFunc)
         {
             var taskData = GetRandomDailyTaskData();
             var dailyTaskHost = FomulaHostManager.Instance.CreateHost("DailyTask");
@@ -230,7 +258,10 @@ namespace FormulaBase
             dailyTaskHost.SetDynamicData(SignKeys.ID, id);
             dailyTaskHost.SetDynamicData(SignKeys.DT_TARGET, dailyTaskHost.Result(116 + id));
             FomulaHostManager.Instance.AddHost(dailyTaskHost);
-            HostList.Add(taskData.uid.ToString(), dailyTaskHost);
+            dailyTaskHost.Save(result =>
+            {
+                callFunc();
+            });
         }
     }
 }

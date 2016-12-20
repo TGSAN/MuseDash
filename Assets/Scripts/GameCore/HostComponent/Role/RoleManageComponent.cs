@@ -158,7 +158,6 @@ namespace FormulaBase
 
                 // 基本配置属性
                 role.Result(FormulaKeys.FORMULA_35);
-
                 // 更新动态属性
                 UpdateProperty(role);
             }

@@ -71,17 +71,17 @@ namespace FormulaBase
             }
 
             CommonPanel.GetInstance().ShowWaittingPanel(true);
+            if (money > 0)
+            {
+                m_IsAdd = true;
+                DetectAdd(money);
+            }
             bool result = account.AddDynamicValueRemote(SignKeys.GOLD, money, isave, new HttpResponseDelegate((bool _result) =>
             {
                 this.ChangeMoneyCallBack(_result);
                 if (rsp != null)
                 {
                     rsp(_result);
-                }
-                if (money > 0)
-                {
-                    m_IsAdd = _result;
-                    DetectAdd(money);
                 }
             }), true, 0, this.GetMaxMoney());
 
