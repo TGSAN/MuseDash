@@ -141,6 +141,7 @@ namespace PnlCapsuleOpen
                         {
                             CapsuleManager.instance.OpenCapsule((result) =>
                             {
+											Debug.Log("============1");
                                 PlayAnimation();
                                 if (result)
                                 {
