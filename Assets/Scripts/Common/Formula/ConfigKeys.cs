@@ -84,6 +84,7 @@ namespace FormulaBase {
 			{ "monkey_song3", "stage/stage_v1/json/"},
 			{ "night_wander1", "stage/stage_v1/json/"},
 			{ "osoujibiyori1", "stage/stage_v1/json/"},
+			{ "plastic_adventure1", "stage/stage_v1/json/"},
 			{ "pops_up_the_mind_wings1", "stage/stage_v1/json/"},
 			{ "pops_up_the_mind_wings2", "stage/stage_v1/json/"},
 			{ "pops_up_the_mind_wings3", "stage/stage_v1/json/"},
