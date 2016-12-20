@@ -16,7 +16,6 @@ public class TaskBox : MonoBehaviour
     {
         m_Grid = transform.parent.GetComponent<UIGrid>();
         var idx = transform.GetSiblingIndex();
-        Debug.Log(idx + "====");
         var dailyTask = DailyTaskManager.instance.awardTaskList[idx];
         var host = DailyTaskManager.instance.GetFormulaHost(int.Parse(dailyTask.uid));
         var target = host.GetDynamicIntByKey(SignKeys.DT_TARGET);

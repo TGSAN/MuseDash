@@ -26,7 +26,7 @@ namespace PnlUnlockSong
 
         public override void OnShow(int idx)
         {
-			gameObject.SetActive (true);
+            gameObject.SetActive(true);
             InitLabel(idx);
             InitTex(idx);
         }
@@ -71,8 +71,8 @@ namespace PnlUnlockSong
         private void InitLabel(int idx)
         {
             var songName = ConfigPool.Instance.GetConfigStringValue("stage", idx.ToString(), "name");
-			var author = ConfigPool.Instance.GetConfigStringValue("stage", idx.ToString(), "author");
-			var trophy = ConfigPool.Instance.GetConfigStringValue("stage", idx.ToString(), "unlock");
+            var author = ConfigPool.Instance.GetConfigStringValue("stage", idx.ToString(), "author");
+            var trophy = ConfigPool.Instance.GetConfigStringValue("stage", idx.ToString(), "unlock");
             txtName.text = songName;
             txtAuthor.text = author;
             Txttrophy.text = trophy;
@@ -80,7 +80,7 @@ namespace PnlUnlockSong
 
         private void InitTex(int idx)
         {
-			var texName = ConfigPool.Instance.GetConfigStringValue("stage", idx.ToString(), "cover");
+            var texName = ConfigPool.Instance.GetConfigStringValue("stage", idx.ToString(), "cover");
             this.m_LoadTxeCoroutine = ResourceLoader.Instance.Load(texName, obj =>
             {
                 var t = obj as Texture;
