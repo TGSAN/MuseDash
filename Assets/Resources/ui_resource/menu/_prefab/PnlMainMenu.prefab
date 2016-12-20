@@ -1504,6 +1504,8 @@ GameObject:
   - component: {fileID: 114000013974068346}
   - component: {fileID: 114000012193938296}
   - component: {fileID: 114375705042404242}
+  - component: {fileID: 114415340035788402}
+  - component: {fileID: 114351080652798130}
   m_Layer: 5
   m_Name: BtnSuitcaseSelect
   m_TagString: Untagged
@@ -2032,24 +2034,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1690293317584016
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4890298974191584}
-  - component: {fileID: 114547125582911844}
-  - component: {fileID: 114429155039740802}
-  - component: {fileID: 114179934401448516}
-  m_Layer: 5
-  m_Name: SprItemFlyIn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!1 &1763493493220850
 GameObject:
   m_ObjectHideFlags: 1
@@ -2145,6 +2129,8 @@ GameObject:
   - component: {fileID: 4690129215914570}
   - component: {fileID: 114770935460579534}
   - component: {fileID: 114425305618673730}
+  - component: {fileID: 114601999329986934}
+  - component: {fileID: 114210676205283548}
   m_Layer: 5
   m_Name: SprSuitcaseSign
   m_TagString: Untagged
@@ -2503,7 +2489,6 @@ Transform:
   - {fileID: 4000010965571360}
   - {fileID: 4000012800056078}
   - {fileID: 4000013825207518}
-  - {fileID: 4890298974191584}
   - {fileID: 4690129215914570}
   - {fileID: 4329940306767464}
   m_Father: {fileID: 4000012183093214}
@@ -3695,7 +3680,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4000011089133630}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4369742463764510
 Transform:
@@ -3793,7 +3778,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4000011089133630}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4785416363028768
 Transform:
@@ -3808,19 +3793,6 @@ Transform:
   m_Father: {fileID: 4400429923039338}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -132.93399, y: 0, z: 0}
---- !u!4 &4890298974191584
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1690293317584016}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 84, y: -65, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4000011089133630}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4919330363917266
 Transform:
   m_ObjectHideFlags: 1
@@ -8730,7 +8702,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3002
+  startingRenderQueue: 3004
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -11506,7 +11478,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 0.34509805, g: 0.19215687, b: 0.59607846, a: 1}
   mPivot: 7
   mWidth: 100
   mHeight: 62
@@ -11529,7 +11501,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11405424, guid: 7813e9a99211745c984b111b3f050312, type: 2}
-  mSpriteName: suitcase_sign_light
+  mSpriteName: suitcase_sign_white
   mFillCenter: 1
 --- !u!114 &114000013981293674
 MonoBehaviour:
@@ -12189,7 +12161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 076383f70e2f2214eabb6352d9cf303a, type: 3}
-  trigger: 6
+  trigger: 5
   volume: 1
   pitch: 1
 --- !u!114 &114150448768283696
@@ -12207,48 +12179,29 @@ MonoBehaviour:
   trigger: 6
   volume: 1
   pitch: 1
---- !u!114 &114179934401448516
+--- !u!114 &114210676205283548
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1690293317584016}
+  m_GameObject: {fileID: 1930354605244672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75e7459110b9666449485c40f25362a5, type: 3}
+  m_Script: {fileID: 11500000, guid: eaee0fa3c7a782f43ac65b3fea68c1d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  method: 0
-  style: 1
-  animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 3.100169
-      outSlope: 3.100169
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  ignoreTimeScale: 1
-  delay: 0
-  duration: 0.2
-  steeperCurves: 0
+  tweenTarget: {fileID: 1930354605244672}
   tweenGroup: 0
+  trigger: 7
+  playDirection: 1
+  resetOnPlay: 1
+  resetIfDisabled: 0
+  ifDisabledOnPlay: 0
+  disableWhenFinished: 0
+  includeChildren: 0
   onFinished: []
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: {x: 0, y: 0, z: 1}
-  to: {x: 1, y: 1, z: 1}
-  updateTable: 0
 --- !u!114 &114260781311484238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12379,6 +12332,29 @@ MonoBehaviour:
   from: {x: 1, y: 1, z: 1}
   to: {x: 1.1, y: 1.1, z: 1}
   updateTable: 0
+--- !u!114 &114351080652798130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013215768442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaee0fa3c7a782f43ac65b3fea68c1d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 1000013215768442}
+  tweenGroup: 0
+  trigger: 7
+  playDirection: 1
+  resetOnPlay: 1
+  resetIfDisabled: 0
+  ifDisabledOnPlay: 0
+  disableWhenFinished: 0
+  includeChildren: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
 --- !u!114 &114375705042404242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12444,10 +12420,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 8355a6909041c4a47ba33a8a20af2ce5, type: 3}
-  trigger: 6
+  audioClip: {fileID: 8300000, guid: a88a2840c35877645b622d6c60c41833, type: 3}
+  trigger: 5
   volume: 1
   pitch: 1
+--- !u!114 &114415340035788402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013215768442}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa4a4a103e4fed43a7e9e9df4a6915c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 3.6168637
+      outSlope: 3.6168637
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ignoreTimeScale: 1
+  delay: 0
+  duration: 0.3
+  steeperCurves: 0
+  tweenGroup: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+  from: {r: 0.34509805, g: 0.19215687, b: 0.59607846, a: 1}
+  to: {r: 0.68235296, g: 0.6039216, b: 1, a: 1}
 --- !u!114 &114425305618673730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12502,47 +12525,6 @@ MonoBehaviour:
   from: {x: 1, y: 1, z: 1}
   to: {x: 1.1, y: 1.1, z: 1}
   updateTable: 0
---- !u!114 &114429155039740802
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1690293317584016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e2747e3775af504da1a4d5a46c5a1ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  method: 0
-  style: 1
-  animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  ignoreTimeScale: 1
-  delay: 0
-  duration: 0.2
-  steeperCurves: 0
-  tweenGroup: 0
-  onFinished: []
-  eventReceiver: {fileID: 0}
-  callWhenFinished: 
-  from: 1
-  to: 0
 --- !u!114 &114430878942581722
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12661,8 +12643,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 114559321521070610}
-        m_MethodName: set_enabled
-        m_Mode: 6
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12672,8 +12654,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 114559321521070610}
-        m_MethodName: set_enabled
-        m_Mode: 6
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12696,6 +12678,17 @@ MonoBehaviour:
       - m_Target: {fileID: 114607079575438442}
         m_MethodName: Play
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 114559321521070610}
+        m_MethodName: Play
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12805,59 +12798,6 @@ MonoBehaviour:
   from: {x: 1, y: 1, z: 1}
   to: {x: 1.1, y: 1.1, z: 1}
   updateTable: 0
---- !u!114 &114547125582911844
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1690293317584016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  bottomAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
-  mPivot: 4
-  mWidth: 146
-  mHeight: 146
-  mDepth: 193
-  autoResizeBoxCollider: 0
-  hideIfOffScreen: 0
-  keepAspectRatio: 0
-  aspectRatio: 1
-  mType: 0
-  mFillDirection: 4
-  mFillAmount: 1
-  mInvert: 0
-  mFlip: 0
-  mApplyGradient: 0
-  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  centerType: 1
-  leftType: 1
-  rightType: 1
-  bottomType: 1
-  topType: 1
-  mAtlas: {fileID: 11405424, guid: 7813e9a99211745c984b111b3f050312, type: 2}
-  mSpriteName: item_fly_light
-  mFillCenter: 1
 --- !u!114 &114559321521070610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12870,9 +12810,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: dcd9de79ea1444a969dd9e5c572f7318, type: 3}
-  trigger: 6
+  trigger: 5
   volume: 1
   pitch: 1
+--- !u!114 &114601999329986934
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1930354605244672}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa4a4a103e4fed43a7e9e9df4a6915c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 3.6168637
+      outSlope: 3.6168637
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ignoreTimeScale: 1
+  delay: 0
+  duration: 0.3
+  steeperCurves: 0
+  tweenGroup: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+  from: {r: 0.105882354, g: 0, b: 0.16078432, a: 1}
+  to: {r: 0.68235296, g: 0.6039216, b: 1, a: 1}
 --- !u!114 &114607079575438442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13166,40 +13153,7 @@ MonoBehaviour:
   onTriggerEnter:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114425305618673730}
-        m_MethodName: ResetToBeginning
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114425305618673730}
-        m_MethodName: Play
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 114375705042404242}
-        m_MethodName: ResetToBeginning
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114375705042404242}
+      - m_Target: {fileID: 114351080652798130}
         m_MethodName: Play
         m_Mode: 6
         m_Arguments:
@@ -13211,8 +13165,8 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 114390675494411686}
-        m_MethodName: set_enabled
-        m_Mode: 6
+        m_MethodName: Play
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13221,8 +13175,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114390675494411686}
-        m_MethodName: set_enabled
+      - m_Target: {fileID: 114210676205283548}
+        m_MethodName: Play
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13404,8 +13358,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 114048734141391076}
-        m_MethodName: set_enabled
-        m_Mode: 6
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13415,8 +13369,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 114048734141391076}
-        m_MethodName: set_enabled
-        m_Mode: 6
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13439,6 +13393,17 @@ MonoBehaviour:
       - m_Target: {fileID: 114722852135705178}
         m_MethodName: Play
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 114048734141391076}
+        m_MethodName: Play
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13576,7 +13541,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 0.105882354, g: 0, b: 0.16078432, a: 1}
   mPivot: 7
   mWidth: 100
   mHeight: 62
@@ -13599,7 +13564,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11405424, guid: 7813e9a99211745c984b111b3f050312, type: 2}
-  mSpriteName: suitcase_sign
+  mSpriteName: suitcase_sign_white
   mFillCenter: 1
 --- !u!114 &114791452865512104
 MonoBehaviour:
