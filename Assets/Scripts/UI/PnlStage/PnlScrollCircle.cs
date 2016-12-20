@@ -170,7 +170,6 @@ namespace Assets.Scripts.NGUI
             OnScrolling();
             OnSongInfoChange();
             UpdatePos();
-            Debug.Log(GameGlobal.IS_EARPHONE);
         }
 
         #region 初始化

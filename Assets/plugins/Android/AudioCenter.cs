@@ -11,7 +11,13 @@ public class AudioCenter : MonoBehaviour
 		public static AndroidJavaClass unityActivityClass ;
 		public static AndroidJavaObject activityObj ;
 		public static AndroidJavaObject soundObj = null;
+        public static AndroidJavaObject earphoneDetector = null;
         public static Dictionary<string, int> clipDics { get; private set; }
+
+        public static bool IsInEarphone()
+        {
+            return earphoneDetector.Call<bool>("IsEarphoneOn");
+        }
 
 		public static bool playSound( string soundName ) {
             if (!clipDics.ContainsKey(soundName))
@@ -125,6 +131,7 @@ public class AudioCenter : MonoBehaviour
 			activityObj = unityActivityClass.GetStatic<AndroidJavaObject>( "currentActivity" );
 			//soundObj = new AndroidJavaObject( "com.catsknead.androidsoundfix.AudioCenter", 1, activityObj, activityObj );
 			soundObj = new AndroidJavaObject( "com.catsknead.androidsoundfix.AudioCenter", 200, activityObj );
+            earphoneDetector = new AndroidJavaObject( "com.prpr.musedash.EarphoneDetector");
             clipDics =  new Dictionary<string, int>();
 #endif
     }

@@ -22,9 +22,10 @@ namespace GameLogic
             {
 #if UNITY_IOS && !UNITY_EDITOR
                 return IsEarphone();
-#else
-                return true;
+#elif UNITY_ANDROID && !UNITY_EDITOR
+                return AudioCenter.IsInEarphone();
 #endif
+                return true;
             }
         }
 
@@ -55,6 +56,7 @@ namespace GameLogic
             }
         }
 
+        public const float EARPHONE_DETECT_TIME = 5f;
         public const int LIMITE_INT = 999999;
         public const float TIME_SCALE = 1f;
         public const decimal DEFAULT_MUSIC_LEN = 240m;
