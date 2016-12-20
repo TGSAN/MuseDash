@@ -237,7 +237,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010354452828}
   - component: {fileID: 114000011792286402}
-  - component: {fileID: 114000011842292716}
   m_Layer: 5
   m_Name: TxtAuthor
   m_TagString: Untagged
@@ -319,7 +318,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013583065528}
   - component: {fileID: 114000011526661852}
-  - component: {fileID: 114000013269775978}
   m_Layer: 5
   m_Name: TxtSongName
   m_TagString: Untagged
@@ -1036,8 +1034,8 @@ MonoBehaviour:
   - {fileID: 114000013497038112}
   - {fileID: 114000010311503970}
   - {fileID: 114096483466819390}
-  - {fileID: 114000013269775978}
-  - {fileID: 114000011842292716}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 114621456770229642}
 --- !u!114 &114000010398319842
 MonoBehaviour:
@@ -1648,52 +1646,6 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
---- !u!114 &114000011842292716
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012525812152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  root: {fileID: 1000012434066324}
-  clickResponseObjects: []
-  clickResponseParentNames: []
-  clickResponseObjectsIsShow: 
-  clickResponseParentNamesIsShow: 
-  clickResponseObjectAnimations: []
-  clickResponseParentAnimations: []
-  isFoldObjs: 0
-  isFoldParentObjs: 0
-  isForceKeep: 0
-  isAnimateTxt: 0
-  txtAnimTime: 0
-  txtCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  isClickHideSelf: 0
-  isClickHideParent: 0
-  des: "\u4F5C\u8005\u540D"
-  activeHostKeyId: 0
-  activeCondiction: LEVEL
-  activeValue: 
-  labelHostKeyId: 3
-  labelMatchSign: AUTHOR
-  labelMatchSelfDefineSign: 
-  sliderHostKeyId: 0
-  sliderMatchSign: 
-  sliderMaxSign: 
-  isNeedTranslate: 0
-  onClickModuleName: 
-  onTweenAniFinishedModuleName: 
-  onSliderModuleName: 
-  scrollerTableDataModuleName: 
 --- !u!114 &114000011944358688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2010,52 +1962,6 @@ MonoBehaviour:
   isNeedTranslate: 0
   onClickModuleName: 
   onTweenAniFinishedModuleName: OnTweenFinishedSprPurpleShine
-  onSliderModuleName: 
-  scrollerTableDataModuleName: 
---- !u!114 &114000013269775978
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014214172878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  root: {fileID: 1000012434066324}
-  clickResponseObjects: []
-  clickResponseParentNames: []
-  clickResponseObjectsIsShow: 
-  clickResponseParentNamesIsShow: 
-  clickResponseObjectAnimations: []
-  clickResponseParentAnimations: []
-  isFoldObjs: 0
-  isFoldParentObjs: 0
-  isForceKeep: 0
-  isAnimateTxt: 0
-  txtAnimTime: 0
-  txtCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  isClickHideSelf: 0
-  isClickHideParent: 0
-  des: "\u6B4C\u66F2\u540D"
-  activeHostKeyId: 0
-  activeCondiction: LEVEL
-  activeValue: 
-  labelHostKeyId: 3
-  labelMatchSign: NAME
-  labelMatchSelfDefineSign: 
-  sliderHostKeyId: 0
-  sliderMatchSign: 
-  sliderMaxSign: 
-  isNeedTranslate: 0
-  onClickModuleName: 
-  onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
 --- !u!114 &114000013497038112
@@ -2734,7 +2640,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 663053095
+  randomSeed: -1950780374
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5275,7 +5181,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1657147592
+  randomSeed: -1137075175
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7792,7 +7698,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1040136036
+  randomSeed: -1289841941
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10345,7 +10251,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -438942291
+  randomSeed: -864604539
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -12862,7 +12768,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 152847508
+  randomSeed: -641318593
   InitialModule:
     serializedVersion: 3
     enabled: 1

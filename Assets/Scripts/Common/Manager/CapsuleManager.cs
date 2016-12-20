@@ -47,7 +47,7 @@ namespace Assets.Scripts.Common.Manager
             name = capsuleConfig["name"].ToString();
             description = capsuleConfig["description"].ToString();
             items = new Dictionary<int, Dictionary<ItemID, int>>();
-
+            Debug.Log(i + "=====");
             for (int j = 0; j < config.Count; j++)
             {
                 var capsuleItem = config[j];
@@ -94,6 +94,7 @@ namespace Assets.Scripts.Common.Manager
                     }
                 }
             }
+            itemsID.Sort();
         }
 
         public static string ConfigToString()
@@ -156,14 +157,19 @@ namespace Assets.Scripts.Common.Manager
 
     public class CapsuleManager : Singleton<CapsuleManager>
     {
+        private Capsule m_CurCapsule;
+
         public Capsule curCapsule
         {
             get
             {
-                var capsuleStr = AccountManagerComponent.Instance.GetCapsuleStr();
-                var list = Capsule.StringToList(capsuleStr);
-                list.Sort((l, r) => r.id - l.id);
-                return list.FirstOrDefault();
+                if (m_CurCapsule == null)
+                {
+                    var capsuleStr = AccountManagerComponent.Instance.GetCapsuleStr();
+                    var list = Capsule.StringToList(capsuleStr);
+                    m_CurCapsule = list.FirstOrDefault();
+                }
+                return m_CurCapsule;
             }
         }
 
@@ -175,6 +181,7 @@ namespace Assets.Scripts.Common.Manager
             list = ArrayUtils<Capsule>.RandomSort(list.ToArray()).ToList();
             var str = Capsule.ListToString(list);
             AccountManagerComponent.Instance.SetCapsuleStr(str);
+            m_CurCapsule = null;
         }
 
         public void OpenCapsule(HttpResponseDelegate callFunc = null)
@@ -184,15 +191,69 @@ namespace Assets.Scripts.Common.Manager
                 if (result)
                 {
                     //日常任务：开启胶囊
-                    DailyTaskManager.instance.AddValue(1, 9);
-
-                    var texList = (from id in curCapsule.itemsID select ItemManageComponent.Instance.CreateItemByUID(id) into host where host != null select ResourceLoader.Instance.LoadItemTexture(host)).ToList();
-                    PnlMainMenu.PnlMainMenu.Instance.item.SetAllItem(texList.ToArray());
+                    DailyTaskManager.instance.AddValue(1, DailyTaskManager.CAPSULE_IDX);
+                    var notCommonObjIdx = new Dictionary<int, int>();
+                    var texList = new List<Texture>();
+                    var idx = 0;
+                    ItemManageComponent.Instance.CreateItemListByUID(curCapsule.itemsID.ToArray());
+                    foreach (var i in curCapsule.itemsID)
+                    {
+                        var id = ItemManageComponent.Instance.UIDToID(i);
+                        var iconPath = "items/icon/" + ConfigPool.Instance.GetConfigStringValue("items", id.ToString(), "icon");
+                        var typeName = ConfigPool.Instance.GetConfigStringValue("items", id.ToString(), "type");
+                        var isCommon = ItemManageComponent.Instance.IsCommonItem(typeName);
+                        var theIdx = idx;
+                        ResourceLoader.Instance.Load(iconPath, res =>
+                        {
+                            if (res != null)
+                            {
+                                texList.Add(res as Texture);
+                                if (!isCommon)
+                                {
+                                    notCommonObjIdx.Add(theIdx, id);
+                                }
+                            }
+                        });
+                        idx++;
+                    }
+                    var allItemGO = PnlMainMenu.PnlMainMenu.Instance.item.SetAllItem(texList.ToArray());
                     PnlCapsuleOpen.PnlCapsuleOpen.Instance.onExit = new Action(() =>
                     {
-                        PnlMainMenu.PnlMainMenu.Instance.item.FlyAllItem();
+                        PnlMainMenu.PnlMainMenu.Instance.item.FlyAllItem(notCommonObjIdx.Keys.ToList());
+                        var i = 0;
+                        foreach (var itemID in notCommonObjIdx.Values.ToList())
+                        {
+                            var key = notCommonObjIdx.ToList()[i++].Key;
+                            var go = allItemGO[key];
+                            var typeName = ItemManageComponent.Instance.GetTypeName(itemID);
+                            var price = (int)ConfigPool.Instance.GetConfigValue("items", itemID.ToString(), "price");
+                            if (typeName == "coin")
+                            {
+                                PnlMainMenu.PnlMainMenu.Instance.coin.SetPos(go.transform.position, Vector3.zero);
+                                AccountGoldManagerComponent.Instance.ChangeMoney(price);
+                            }
+                            else if (typeName == "crystal")
+                            {
+                                PnlMainMenu.PnlMainMenu.Instance.crystal.SetPos(go.transform.position, Vector3.zero);
+                                AccountCrystalManagerComponent.Instance.ChangeCrystal(price);
+                            }
+                            else if (typeName == "charm")
+                            {
+                                PnlMainMenu.PnlMainMenu.Instance.charm.SetPos(go.transform.position, Vector3.zero);
+                                AccountCharmComponent.Instance.ChangeCharm(price);
+                            }
+                            else if (typeName == "exp")
+                            {
+                                PnlMainMenu.PnlMainMenu.Instance.exp.SetPos(go.transform.position, Vector3.zero);
+                                AccountLevelManagerComponent.Instance.ChangeExp(price);
+                            }
+                            else if (typeName == "energy")
+                            {
+                                PnlMainMenu.PnlMainMenu.Instance.energy.SetPos(go.transform.position, Vector3.zero);
+                                AccountPhysicsManagerComponent.Instance.ChangePhysical(price);
+                            }
+                        }
                     });
-
                     PopCapsule();
                 }
                 if (callFunc != null) callFunc(result);

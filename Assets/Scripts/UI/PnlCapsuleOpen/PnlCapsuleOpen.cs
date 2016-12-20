@@ -52,33 +52,26 @@ namespace PnlCapsuleOpen
             }
 
             texItems.ToList().ForEach(t => t.transform.parent.gameObject.SetActive(false));
-            var commonItemCount = 0;
-            for (int i = 0, k = 0; i < curCapsule.itemsID.Count; i++)
+            for (int i = 0, k = 0; i < curCapsule.itemsID.Count; i++, k++)
             {
                 var id = curCapsule.itemsID[i];
                 var itemConfig = ItemManageComponent.Instance.GetItemConfigByUID(id);
-                if (ItemManageComponent.Instance.IsCommonItem(itemConfig["type"].ToString()))
-                {
-                    commonItemCount++;
-                    var itemName = itemConfig["name"].ToString();
-                    txtItemName[k].text = itemName;
-                    var tex = texItems[k++];
-                    tex.transform.parent.gameObject.SetActive(true);
-                    var iconPath = "items/icon/" + itemConfig["icon"].ToString();
-                    var quality = (int)itemConfig["quality"];
+                var itemName = itemConfig["name"].ToString();
+                txtItemName[k].text = itemName;
+                var tex = texItems[k];
 
-                    ResourceLoader.Instance.Load(iconPath, res => tex.mainTexture = res as Texture);
-                    for (var j = 0; j < tex.transform.childCount; j++)
-                    {
-                        var go = tex.transform.GetChild(j).gameObject;
-                        go.SetActive((j + 1) == quality);
-                    }
-                }
-                else
+                tex.transform.parent.gameObject.SetActive(true);
+                var iconPath = "items/icon/" + itemConfig["icon"].ToString();
+                var quality = (int)itemConfig["quality"];
+                Debug.Log(tex.gameObject.name + "====" + iconPath);
+                ResourceLoader.Instance.Load(iconPath, res => tex.mainTexture = res as Texture);
+                for (var j = 0; j < tex.transform.childCount; j++)
                 {
+                    var go = tex.transform.GetChild(j).gameObject;
+                    go.SetActive((j + 1) == quality);
                 }
             }
-            m_AnimName = "capsule_open_item" + commonItemCount.ToString();
+            m_AnimName = "capsule_open_item" + curCapsule.itemsID.Count.ToString();
 
             var isPurchase = AccountCharmComponent.Instance.GetCharm() < CapsuleManager.instance.curCapsule.charmRequire;
             btnPurchase.GetComponentInChildren<UILabel>().text =

@@ -255,6 +255,20 @@ namespace FormulaBase
             return true;
         }
 
+        public int UIDToID(int uid)
+        {
+            var itemConfig = ConfigPool.Instance.GetConfigByName("items");
+            for (int i = 0; i < itemConfig.Count; i++)
+            {
+                var jData = itemConfig[i];
+                if ((int)jData["uid"] == uid)
+                {
+                    return i + 1;
+                }
+            }
+            return 0;
+        }
+
         public bool Contains(int i)
         {
             return GetAllItem.Any(item => item.GetDynamicIntByKey(SignKeys.BAGINID) == i);
@@ -427,13 +441,13 @@ namespace FormulaBase
 
         public FormulaHost[] CreateAllItems()
         {
-            var formulaList = new List<FormulaHost>();
             var items = ConfigPool.Instance.GetConfigByName("items");
+            var itemIDs = new List<int>();
             for (int i = 1; i <= items.Count; i++)
             {
-                formulaList.Add(CreateItem(i, 99));
+                itemIDs.Add(i);
             }
-            return formulaList.ToArray();
+            return CreateItemList(itemIDs.ToArray(), 99);
         }
 
         public bool IsCommonItem(string itemType)
@@ -441,16 +455,26 @@ namespace FormulaBase
             return !(itemType == "coin" || itemType == "crystal" || itemType == "charm" || itemType == "energy");
         }
 
-        public FormulaHost CreateItem(int idx, int num = 1)
+        public string GetTypeName(int itemID)
+        {
+            var itemJson = ConfigPool.Instance.GetConfigValue("items", itemID.ToString());
+            var typeName = itemJson["type"].ToString();
+            return typeName;
+        }
+
+        public FormulaHost[] CreateItemList(int[] idx, int num = 1)
+        {
+            var hostList = idx.Select(i => CreateItem(i, num, false)).Where(host => host != null).ToList();
+            AddItemList(hostList);
+            return hostList.ToArray();
+        }
+
+        public FormulaHost CreateItem(int idx, int num = 1, bool isSave = true)
         {
             var itemJson = ConfigPool.Instance.GetConfigValue("items", idx.ToString());
-            var typeName = itemJson["type"].ToString();
+            var typeName = GetTypeName(idx);
             if (!IsCommonItem(typeName))
             {
-                if (typeName == "coin")
-                {
-                    AccountGoldManagerComponent.Instance.ChangeMoney(100);
-                }
                 return null;
             }
             FormulaHost host = null;
@@ -484,7 +508,10 @@ namespace FormulaBase
             host.SetDynamicData(SignKeys.QUALITY, itemJson["quality"].ToString());
             host.SetDynamicData(SignKeys.SUIT_EFFECT_DESC, itemJson["suit_effect_description"].ToString());
             host.SetDynamicData(SignKeys.EFFECT_DESC, itemJson["effect_description"].ToString());
-            AddItem(host);
+            if (isSave)
+            {
+                AddItem(host);
+            }
             return host;
         }
 
@@ -500,6 +527,12 @@ namespace FormulaBase
                 }
             }
             return null;
+        }
+
+        public FormulaHost[] CreateItemListByUID(int[] uids, int count = 1)
+        {
+            var idList = uids.Select(UIDToID).ToList();
+            return CreateItemList(idList.ToArray(), count);
         }
 
         public void CheckChestTimeCallBack(cn.bmob.response.EndPointCallbackData<Hashtable> response)
@@ -787,7 +820,7 @@ namespace FormulaBase
             }
         }
 
-        public void AddItem(FormulaHost _host)
+        public void AddItem(FormulaHost _host, Callback callFunc = null)
         {
             //BagManageComponent.Instance.SetBagHaveNew();
             CommonPanel.GetInstance().ShowWaittingPanel();
@@ -797,7 +830,14 @@ namespace FormulaBase
                 case "Equip":
                     _host.SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
                     m_Equip.Add(_host);
-                    _host.Save(new HttpResponseDelegate(CallBackAdditem));
+                    _host.Save(new HttpResponseDelegate(result =>
+                    {
+                        CallBackAdditem(result);
+                        if (callFunc != null)
+                        {
+                            callFunc();
+                        }
+                    }));
                     break;
 
                 case "Material":
@@ -807,7 +847,14 @@ namespace FormulaBase
                         _host.SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
                         m_Material.Add(_host);
                     }
-                    _host.Save(new HttpResponseDelegate(CallBackAdditem));
+                    _host.Save(new HttpResponseDelegate(result =>
+                    {
+                        CallBackAdditem(result);
+                        if (callFunc != null)
+                        {
+                            callFunc();
+                        }
+                    }));
                     break;
 
                 case "Pet":
@@ -824,7 +871,14 @@ namespace FormulaBase
                         _host.SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
                         m_Pet.Add(_host);
                     }
-                    _host.Save(new HttpResponseDelegate(CallBackAdditem));
+                    _host.Save(new HttpResponseDelegate(result =>
+                    {
+                        CallBackAdditem(result);
+                        if (callFunc != null)
+                        {
+                            callFunc();
+                        }
+                    }));
                     break;
             }
         }
