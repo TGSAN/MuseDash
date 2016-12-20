@@ -63,7 +63,6 @@ namespace PnlCapsuleOpen
                 tex.transform.parent.gameObject.SetActive(true);
                 var iconPath = "items/icon/" + itemConfig["icon"].ToString();
                 var quality = (int)itemConfig["quality"];
-                Debug.Log(tex.gameObject.name + "====" + iconPath);
                 ResourceLoader.Instance.Load(iconPath, res => tex.mainTexture = res as Texture);
                 for (var j = 0; j < tex.transform.childCount; j++)
                 {
@@ -141,7 +140,7 @@ namespace PnlCapsuleOpen
                         {
                             CapsuleManager.instance.OpenCapsule((result) =>
                             {
-											Debug.Log("============1");
+                                Debug.Log("============1");
                                 PlayAnimation();
                                 if (result)
                                 {

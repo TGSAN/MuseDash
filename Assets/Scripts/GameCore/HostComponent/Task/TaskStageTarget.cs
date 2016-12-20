@@ -17,6 +17,7 @@ namespace FormulaBase
         public static bool isNextUnlock = false;
         public static int nextUnlockIdx = 1;
         public static bool isChange = false;
+        public static bool isInEarphone = true;
 
         public static TaskStageTarget Instance
         {
@@ -421,6 +422,7 @@ namespace FormulaBase
             this.Host.SetDynamicData(TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT, 0);
             this.Host.SetDynamicData(TASK_SIGNKEY_HIDE_NODE_COUNT, 0);
             this.Host.SetDynamicData(TASK_SIGNKEY_MAX_COMBO, 0);
+            isInEarphone = true;
         }
 
         public bool OnStageFinished()
@@ -443,7 +445,10 @@ namespace FormulaBase
             //在关卡（MusicName）中获得1次S评价或a评价
             DailyTaskManager.instance.DetectValue(s => Host.GetDynamicIntByKey(SignKeys.ID) == int.Parse(s) && (GetStagePJ() == "a" || GetStagePJ() == "s"), DailyTaskManager.A_IDX);
             //戴耳机完成任意5个不用关卡
-            DailyTaskManager.instance.AddValue(1, DailyTaskManager.EARPHONE_IDX);
+            if (isInEarphone)
+            {
+                DailyTaskManager.instance.AddValue(1, DailyTaskManager.EARPHONE_IDX);
+            }
             //累计收集30个音符
             DailyTaskManager.instance.AddValue(GetNoteItemCount(), DailyTaskManager.MUSIC_NOTE_IDX);
             //累计收集N个金币
