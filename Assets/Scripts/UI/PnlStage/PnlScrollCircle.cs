@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.UI;
 using DG.Tweening;
 using FormulaBase;
+using GameLogic;
 using System;
 using System.Collections;
 using System.Collections.Generic;

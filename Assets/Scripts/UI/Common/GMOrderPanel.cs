@@ -44,6 +44,11 @@ public class GMOrderPanel : MonoBehaviour
         Application.Quit();
     }
 
+    public void ClearPlayerData()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
     public void AddItem()
     {
         Debug.Log("GM命令添加物品");

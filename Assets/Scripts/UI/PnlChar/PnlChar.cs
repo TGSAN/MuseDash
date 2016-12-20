@@ -258,7 +258,22 @@ namespace PnlChar
 
         public void OnSpiAnimLoad(int idx, string p = null)
         {
-            var path = p ?? m_AnimPath[idx - 1];
+            var path = string.Empty;
+            if (p != null)
+            {
+                path = p;
+            }
+            else
+            {
+                if (m_AnimPath.Count > idx - 1)
+                {
+                    path = m_AnimPath[idx - 1];
+                }
+            }
+            if (string.IsNullOrEmpty(path))
+            {
+                return;
+            }
             if (m_SpiAniGODic.ContainsKey(idx))
             {
                 var goName = StringUtils.LastAfter(path, '/') + "(Clone)";

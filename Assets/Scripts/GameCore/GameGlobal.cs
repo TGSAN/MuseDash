@@ -1,6 +1,7 @@
 using DYUnityLib;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace GameLogic
@@ -11,6 +12,22 @@ namespace GameLogic
         public static bool IS_NODE_DEBUG = false;
         public static bool IS_UNLOCK_ALL_STAGE = false;
         public static bool ENABLE_LOCAL_SAVE = false;
+
+        [DllImport("__Internal")]
+        public static extern bool IsEarphone();
+
+        public static bool IS_EARPHONE
+        {
+            get
+            {
+#if UNITY_IOS && !UNITY_EDITOR
+                return IsEarphone();
+#elif UNITY_ANDROID && !UNITY_EDITOR
+                return AudioCenter.IsInEarphone();
+#endif
+                return true;
+            }
+        }
 
         //public static uint DEBUG_DEFAULT_STAGE = 0;
         public static uint DEBUG_DEFAULT_STAGE
@@ -39,6 +56,7 @@ namespace GameLogic
             }
         }
 
+        public const float EARPHONE_DETECT_TIME = 5f;
         public const int LIMITE_INT = 999999;
         public const float TIME_SCALE = 1f;
         public const decimal DEFAULT_MUSIC_LEN = 240m;

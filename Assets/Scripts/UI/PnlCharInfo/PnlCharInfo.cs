@@ -180,7 +180,7 @@ namespace PnlCharInfo
         private void InitUI()
         {
             DOTweenUtils.Delay(InitPnlItemsChoose, Time.deltaTime);
-            DOTweenUtils.Delay(OnUpgradeItemsRefresh, 0.4f);
+            DOTweenUtils.Delay(OnUpgradeItemsRefresh, 1f);
         }
 
         private void InitPnlItemsChoose()

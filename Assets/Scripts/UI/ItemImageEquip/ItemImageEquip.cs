@@ -14,6 +14,7 @@ namespace ItemImageEquip
         public UISprite sprSelected, sprOn, sprLock, sprBkg, sprPlusSign;
         public GameObject btnIsEquip;
         public UILabel txtCount;
+        public UIPlayTween playTween;
 
         public static ItemImageEquip Instance
         {
@@ -46,7 +47,12 @@ namespace ItemImageEquip
             get { return sprSelected.gameObject.activeSelf; }
             set
             {
+                playTween.enabled = isSelected;
                 sprSelected.gameObject.SetActive(value);
+                if (PnlSuitcase.PnlSuitcase.Instance.isUpgrade)
+                {
+                    sprSelected.gameObject.SetActive(false);
+                }
             }
         }
 

@@ -77,7 +77,11 @@ namespace PnlServantInfo
 
             var isOwned = h.GetDynamicIntByKey(SignKeys.WHO) == 1;
             btnUpgrade.gameObject.SetActive(isOwned);
-            btnApply.gameObject.SetActive(!isOwned);
+            btnApply.gameObject.SetActive(!btnUpgrade.gameObject.activeSelf);
+            if (h.GetDynamicStrByKey(SignKeys.TYPE) == "debris")
+            {
+                btnApply.gameObject.SetActive(false);
+            }
         }
 
         public override void OnHide()
