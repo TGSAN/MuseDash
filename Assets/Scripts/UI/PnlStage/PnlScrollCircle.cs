@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.UI;
 using DG.Tweening;
 using FormulaBase;
+using GameLogic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -169,6 +170,7 @@ namespace Assets.Scripts.NGUI
             OnScrolling();
             OnSongInfoChange();
             UpdatePos();
+            Debug.Log(GameGlobal.IS_EARPHONE);
         }
 
         #region 初始化
