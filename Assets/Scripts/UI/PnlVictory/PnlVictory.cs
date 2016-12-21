@@ -78,7 +78,6 @@ namespace PnlVictory
 
             var isClearAllDiff = FightMenuPanel.Instance.isAchieve;
             var isAchieve = TaskStageTarget.Instance.IsAchieve();
-            Debug.Log("===========" + isClearAllDiff + "===========" + isAchieve);
             best.SetActive(isClearAllDiff);
             trophyTaskTrue.SetActive(!isClearAllDiff && isAchieve);
             trophyTaskFalse.SetActive(!trophyTaskTrue.activeSelf);
