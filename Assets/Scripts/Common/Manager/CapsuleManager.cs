@@ -47,7 +47,6 @@ namespace Assets.Scripts.Common.Manager
             name = capsuleConfig["name"].ToString();
             description = capsuleConfig["description"].ToString();
             items = new Dictionary<int, Dictionary<ItemID, int>>();
-            Debug.Log(i + "=====");
             for (int j = 0; j < config.Count; j++)
             {
                 var capsuleItem = config[j];

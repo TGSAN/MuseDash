@@ -141,10 +141,19 @@ namespace FormulaBase
             // 如果没有服务器数据,用配置生成本地对象
             if (HostList != null && HostList.Count <= 0)
             {
-                for (int i = 0; i < 3; i++)
+                Action callFunc = null;
+                callFunc = () =>
                 {
-                    NewDailyTask(SaveList);
-                }
+                    NewDailyTask(() =>
+                    {
+                        SaveList();
+                        if (HostList.Count < 3)
+                        {
+                            callFunc();
+                        }
+                    });
+                };
+                callFunc();
             }
             else
             {
@@ -217,7 +226,11 @@ namespace FormulaBase
             if (finishTime == 0) return;
             Action finishFunc = () =>
             {
-                NewDailyTask(SaveList);
+                host.SetDynamicData(SignKeys.FINISH_TIME, 0f);
+                host.Save(result =>
+                {
+                    NewDailyTask(SaveList);
+                });
             };
             var dt = (int)host.Result(FormulaKeys.FORMULA_116) - (curTime - finishTime);
             if (dt <= 0)

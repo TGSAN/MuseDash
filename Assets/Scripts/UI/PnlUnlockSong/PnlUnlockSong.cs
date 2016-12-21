@@ -15,6 +15,7 @@ namespace PnlUnlockSong
         public UITexture texIcon;
         public UILabel txtName, txtAuthor, Txttrophy;
         public GameObject bkg;
+        public Action onDisable;
 
         public static PnlUnlockSong Instance
         {
@@ -35,8 +36,12 @@ namespace PnlUnlockSong
         {
         }
 
-        public override void OnHide()
+        private void OnDisable()
         {
+            if (onDisable != null)
+            {
+                onDisable();
+            }
         }
 
         private void Start()
