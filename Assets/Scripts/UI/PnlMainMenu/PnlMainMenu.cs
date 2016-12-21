@@ -22,6 +22,7 @@ namespace PnlMainMenu
         public GameObject[] capsules;
         public RandomObjFly coin, crystal, charm, exp, energy, item;
         private Animator m_CapsuleAnimator;
+        private bool m_IsUnlockNextSong = false;
 
         public static PnlMainMenu Instance
         {
@@ -34,6 +35,7 @@ namespace PnlMainMenu
         public override void BeCatched()
         {
             instance = this;
+            m_IsUnlockNextSong = TaskStageTarget.isNextUnlock;
         }
 
         public override void OnShow()
@@ -41,12 +43,13 @@ namespace PnlMainMenu
             gameObject.SetActive(true);
             OnUpdateInfo();
 
-            if (!TaskStageTarget.isNextUnlock)
+            if (!m_IsUnlockNextSong)
             {
                 DOTweenUtils.Delay(UpdateEvent, 1.0f);
             }
             else
             {
+                m_IsUnlockNextSong = false;
                 DOTweenUtils.Delay(() =>
                 {
                     PnlUnlockSong.PnlUnlockSong.Instance.onDisable += UpdateEvent;
