@@ -40,19 +40,31 @@ namespace PnlMainMenu
         {
             gameObject.SetActive(true);
             OnUpdateInfo();
-            UpdateEvent();
+
+            if (!TaskStageTarget.isNextUnlock)
+            {
+                DOTweenUtils.Delay(UpdateEvent, 1.0f);
+            }
+            else
+            {
+                DOTweenUtils.Delay(() =>
+                {
+                    PnlUnlockSong.PnlUnlockSong.Instance.onDisable += UpdateEvent;
+                }, 1.0f);
+            }
         }
 
         private void UpdateEvent()
         {
-            DOTweenUtils.Delay(() =>
+            AccountGoldManagerComponent.Instance.DetectAdd();
+            AccountPhysicsManagerComponent.Instance.DetectAdd();
+            AccountCharmComponent.Instance.DetectAdd();
+            AccountCrystalManagerComponent.Instance.DetectAdd();
+            AccountLevelManagerComponent.Instance.DetectAdd();
+            if (PnlUnlockSong.PnlUnlockSong.Instance != null)
             {
-                AccountGoldManagerComponent.Instance.DetectAdd();
-                AccountPhysicsManagerComponent.Instance.DetectAdd();
-                AccountCharmComponent.Instance.DetectAdd();
-                AccountCrystalManagerComponent.Instance.DetectAdd();
-                AccountLevelManagerComponent.Instance.DetectAdd();
-            }, 1.0f);
+                PnlUnlockSong.PnlUnlockSong.Instance.onDisable = null;
+            }
         }
 
         public void OnUpdateInfo()

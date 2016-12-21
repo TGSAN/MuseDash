@@ -77,7 +77,8 @@ namespace PnlVictory
             SoundEffectComponent.Instance.SayByCurrentRole(GameGlobal.SOUND_TYPE_LAST_NODE);
 
             var isClearAllDiff = FightMenuPanel.Instance.isAchieve;
-            var isAchieve = TaskStageTarget.Instance.IsAchieveNow();
+            var isAchieve = TaskStageTarget.Instance.IsAchieve();
+            Debug.Log("===========" + isClearAllDiff + "===========" + isAchieve);
             best.SetActive(isClearAllDiff);
             trophyTaskTrue.SetActive(!isClearAllDiff && isAchieve);
             trophyTaskFalse.SetActive(!trophyTaskTrue.activeSelf);

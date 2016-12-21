@@ -287,7 +287,7 @@ namespace FormulaBase
             return host.GetDynamicIntByKey(SignKeys.DIFFCULT) > 3;
         }
 
-        public bool IsAchieveNow(FormulaHost host = null)
+        public bool IsAchieve(FormulaHost host = null)
         {
             host = host ?? this.Host;
             return
