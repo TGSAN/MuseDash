@@ -189,12 +189,12 @@ namespace Assets.Scripts.Common.Manager
             {
                 if (result)
                 {
+                    var equipHosts = ItemManageComponent.Instance.CreateItemListByUID(curCapsule.itemsID.ToArray());
                     //日常任务：开启胶囊
                     DailyTaskManager.instance.AddValue(1, DailyTaskManager.CAPSULE_IDX);
                     var notCommonObjIdx = new Dictionary<int, int>();
                     var texList = new List<Texture>();
                     var idx = 0;
-                    ItemManageComponent.Instance.CreateItemListByUID(curCapsule.itemsID.ToArray());
                     foreach (var i in curCapsule.itemsID)
                     {
                         var id = ItemManageComponent.Instance.UIDToID(i);
@@ -218,6 +218,8 @@ namespace Assets.Scripts.Common.Manager
                     var allItemGO = PnlMainMenu.PnlMainMenu.Instance.item.SetAllItem(texList.ToArray());
                     PnlCapsuleOpen.PnlCapsuleOpen.Instance.onExit = new Action(() =>
                     {
+                        //开启新套装
+                        equipHosts.ToList().ForEach(h => EquipManageComponent.Instance.OnNewCosCheck(h));
                         PnlMainMenu.PnlMainMenu.Instance.item.FlyAllItem(notCommonObjIdx.Keys.ToList());
                         var i = 0;
                         foreach (var itemID in notCommonObjIdx.Values.ToList())

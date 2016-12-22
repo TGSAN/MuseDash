@@ -35,13 +35,16 @@ namespace PnlCapsuleOpen
             }
         }
 
-        private void Start()
+        private void Awake()
         {
             animator = GetComponent<Animator>();
         }
 
         public override void OnShow()
         {
+            gameObject.SetActive(true);
+            animator.enabled = true;
+            animator.Play("capsule_open_in");
             var curCapsule = CapsuleManager.instance.curCapsule;
             txtCharm.text = AccountCharmComponent.Instance.GetCharm().ToString();
             txtCharmMax.text = curCapsule.charmRequire.ToString();

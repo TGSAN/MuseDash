@@ -486,7 +486,6 @@ namespace FormulaBase
             if (host != null)
             {
                 host.SetDynamicData(SignKeys.ID, idx);
-                OnNewCosCheck(host);
                 //ItemManageComponent.Instance.AddItem(host);
             }
             return host;
@@ -535,7 +534,7 @@ namespace FormulaBase
             */
         }
 
-        private void OnNewCosCheck(FormulaHost host)
+        public void OnNewCosCheck(FormulaHost host)
         {
             var hostList = ItemManageComponent.Instance.GetEquipList;
             var id = host.GetDynamicIntByKey(SignKeys.ID);

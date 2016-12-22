@@ -61,6 +61,15 @@ namespace FormulaBase
             account.SetDynamicData(SignKeys.GOLD, money);
         }
 
+        public void PlayAnimate(int change)
+        {
+            if (change > 0)
+            {
+                m_IsAdd = true;
+                DetectAdd(change);
+            }
+        }
+
         // TODO : add money here
         public bool ChangeMoney(int money, bool isave = true, HttpResponseDelegate rsp = null)
         {
@@ -71,13 +80,10 @@ namespace FormulaBase
             }
 
             CommonPanel.GetInstance().ShowWaittingPanel(true);
-            if (money > 0)
-            {
-                m_IsAdd = true;
-                DetectAdd(money);
-            }
+
             bool result = account.AddDynamicValueRemote(SignKeys.GOLD, money, isave, new HttpResponseDelegate((bool _result) =>
             {
+                m_IsAdd = true;
                 this.ChangeMoneyCallBack(_result);
                 if (rsp != null)
                 {

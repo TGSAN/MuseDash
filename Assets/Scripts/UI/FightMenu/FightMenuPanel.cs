@@ -27,9 +27,7 @@ public class FightMenuPanel : MonoBehaviour
     public TweenPosition twnAchievement;
     public UITweener[] twnTrophys;
     public GameObject trophyShow;
-
-    public TweenScale m_FeverScaleLabel;                        //Fever文字的缩放
-    public TweenAlpha m_FeverLabelAlpha;                        //Fever文字的透明度
+    public GameObject trophyGold;
 
     [HideInInspector]
     public bool isAchieve;
@@ -149,6 +147,7 @@ public class FightMenuPanel : MonoBehaviour
                         twnAchievement.gameObject.SetActive(true);
                         twnAchievement.Play(true);
                     }
+                    trophyGold.SetActive(true);
                     twnTrophys.ToList().ForEach(t =>
                     {
                         if (t)
