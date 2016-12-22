@@ -159,7 +159,7 @@ public class FightMenuPanel : MonoBehaviour
                             t.Play(true);
                         }
                     });
-                }, () => TaskStageTarget.Instance.IsAchieveNow());
+                }, () => TaskStageTarget.Instance.IsAchieve());
             }, 1.0f);
         }
         trophyShow.SetActive(!isAchieve);

@@ -22,6 +22,7 @@ namespace PnlMainMenu
         public GameObject[] capsules;
         public RandomObjFly coin, crystal, charm, exp, energy, item;
         private Animator m_CapsuleAnimator;
+        private bool m_IsUnlockNextSong = false;
 
         public static PnlMainMenu Instance
         {
@@ -34,25 +35,39 @@ namespace PnlMainMenu
         public override void BeCatched()
         {
             instance = this;
+            m_IsUnlockNextSong = TaskStageTarget.isNextUnlock;
         }
 
         public override void OnShow()
         {
             gameObject.SetActive(true);
             OnUpdateInfo();
-            UpdateEvent();
+
+            if (!m_IsUnlockNextSong)
+            {
+                DOTweenUtils.Delay(UpdateEvent, 1.0f);
+            }
+            else
+            {
+                m_IsUnlockNextSong = false;
+                DOTweenUtils.Delay(() =>
+                {
+                    PnlUnlockSong.PnlUnlockSong.Instance.onDisable += UpdateEvent;
+                }, 1.0f);
+            }
         }
 
         private void UpdateEvent()
         {
-            DOTweenUtils.Delay(() =>
+            AccountGoldManagerComponent.Instance.DetectAdd();
+            AccountPhysicsManagerComponent.Instance.DetectAdd();
+            AccountCharmComponent.Instance.DetectAdd();
+            AccountCrystalManagerComponent.Instance.DetectAdd();
+            AccountLevelManagerComponent.Instance.DetectAdd();
+            if (PnlUnlockSong.PnlUnlockSong.Instance != null)
             {
-                AccountGoldManagerComponent.Instance.DetectAdd();
-                AccountPhysicsManagerComponent.Instance.DetectAdd();
-                AccountCharmComponent.Instance.DetectAdd();
-                AccountCrystalManagerComponent.Instance.DetectAdd();
-                AccountLevelManagerComponent.Instance.DetectAdd();
-            }, 1.0f);
+                PnlUnlockSong.PnlUnlockSong.Instance.onDisable = null;
+            }
         }
 
         public void OnUpdateInfo()
