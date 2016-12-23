@@ -85,6 +85,5 @@ namespace cn.bmob.io
             output.Put("password", this.password);
             output.Put("email", this.email);
         }
-
     }
 }

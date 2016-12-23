@@ -497,7 +497,7 @@ namespace FormulaBase
         /// </summary>
         public void LoadAllHost(HttpEndResponseDelegate _rsp = null)
         {
-            string uid = ExpandBmobCommon.GetUid();
+            string uid = ExpandBmobCommon.GetObjectId();
             if (uid == null)
             {
                 if (GameLogic.GameGlobal.ENABLE_LOCAL_SAVE)
@@ -542,20 +542,36 @@ namespace FormulaBase
 
         public void DeleteAllHost(HttpEndResponseDelegate rsp = null)
         {
-            this.hostPool.Clear();
-            string uid = ExpandBmobCommon.GetUid();
-            if (uid == null)
+            string uid = ExpandBmobCommon.GetObjectId();
+            if (string.IsNullOrEmpty(uid))
             {
-                if (GameLogic.GameGlobal.ENABLE_LOCAL_SAVE)
-                {
-                }
-
                 PlayerPrefs.DeleteAll();
             }
             else
             {
-                ExpandBmobData.Instance.DeleteAll(uid, rsp);
+                DeleteUserAllData(uid, r =>
+                {
+                    this.hostPool.Clear();
+                    if (rsp != null) rsp(r);
+                    PlayerPrefs.DeleteAll();
+                });
             }
+        }
+
+        public void DeleteUserAllData(string uid, HttpEndResponseDelegate rsp)
+        {
+            var allHost = new List<FormulaHost>();
+            foreach (var value in hostPool.Values)
+            {
+                allHost.AddRange(value.Values);
+            }
+            ExpandBmobData.Instance.DeleteUser(uid, result =>
+            {
+                if (result)
+                {
+                    ExpandBmobData.Instance.DeleteList(allHost, rsp);
+                }
+            });
         }
 
         public void DeleteHost(FormulaHost host, HttpResponseDelegate rsp = null)
@@ -594,7 +610,7 @@ namespace FormulaBase
             else
             {
                 // server delete
-                ExpandBmobData.Instance.Delete(uid, host, rsp);
+                ExpandBmobData.Instance.Delete(host, rsp);
             }
         }
 

@@ -1,11 +1,10 @@
-﻿using System;
-
+﻿using cn.bmob.exception;
 using cn.bmob.io;
+using cn.bmob.tools;
+using SimpleJson;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using cn.bmob.tools;
-using cn.bmob.exception;
-using SimpleJson;
 
 namespace cn.bmob.json
 {
@@ -17,8 +16,12 @@ namespace cn.bmob.json
         {
             private Boolean isPrint = false;
 
-            public BmobWritableConverter() { }
-            public BmobWritableConverter(Boolean isPrint) {
+            public BmobWritableConverter()
+            {
+            }
+
+            public BmobWritableConverter(Boolean isPrint)
+            {
                 this.isPrint = isPrint;
             }
 
@@ -29,7 +32,7 @@ namespace cn.bmob.json
                 {
                     Type objectType = input.GetType();
 
-                    if (/*typeof(IBmobWritable).IsAssignableFrom(objectType)*/ input is IBmobWritable )
+                    if (/*typeof(IBmobWritable).IsAssignableFrom(objectType)*/ input is IBmobWritable)
                     {
                         IBmobWritable obj = (IBmobWritable)input;
                         BmobOutput tOutput = new BmobOutput();
@@ -44,7 +47,6 @@ namespace cn.bmob.json
                          objectType == typeof(BmobBoolean) ||
                          objectType == typeof(BmobACL))
                     {
-
                         object value = 0;
                         if (input is BmobInt)
                             value = (input as BmobInt).Get();
@@ -60,7 +62,6 @@ namespace cn.bmob.json
                         output = value;
                         return true;
                     }
-
                 }
                 catch (Exception e)
                 {
@@ -75,10 +76,9 @@ namespace cn.bmob.json
             {
                 throw new NotSupportedException("在BmobInput中处理!!!");
             }
-
         }
 
-        #endregion
+        #endregion 注册自定义的IBmobOject/IBmobValue序列化
 
         /// <summary>
         /// 使用反射进行序列化
@@ -109,8 +109,8 @@ namespace cn.bmob.json
         // 先转成Dictionary（解析为基础类型）然后在进行处理。
         public Object ToObject(String json)
         {
+            UnityEngine.Debug.Log(json);
             return SimpleJson.SimpleJson.DeserializeObject(json);
         }
-
     }
 }

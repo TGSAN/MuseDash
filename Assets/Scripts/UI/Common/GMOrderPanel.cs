@@ -32,9 +32,7 @@ public class GMOrderPanel : MonoBehaviour
 
     public void DeleteAccountData()
     {
-        CustomComponentBase.DeleteAllHost();
-
-        //AccountManagerComponent.Instance.DeletePlayerData(new HttpEndResponseDelegate(DeleteAccountCallBack));
+        AccountManagerComponent.Instance.DeletePlayerData(new HttpEndResponseDelegate(DeleteAccountCallBack));
     }
 
     private void DeleteAccountCallBack(cn.bmob.response.EndPointCallbackData<Hashtable> response)
