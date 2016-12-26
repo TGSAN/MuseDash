@@ -42,6 +42,12 @@ public class ExpandBmobCommon
         return _uid;
     }
 
+    public static string GetObjectId()
+    {
+        var uid = ExpandBmobUser.curUser.objectId;
+        return uid;
+    }
+
     /// <summary>
     /// Determines if is handset the specified str_handset.
     ///

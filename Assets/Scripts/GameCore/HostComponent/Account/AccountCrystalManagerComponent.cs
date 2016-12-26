@@ -56,6 +56,15 @@ namespace FormulaBase
             return (int)account.GetDynamicDataByKey(SignKeys.CRYSTAL);
         }
 
+        public void PlayAnimate(int change)
+        {
+            if (change > 0)
+            {
+                m_IsAdd = true;
+                DetectAdd(change);
+            }
+        }
+
         // TODO : add diamond here
         /// <summary>
         /// Changes the diamond.
@@ -81,12 +90,8 @@ namespace FormulaBase
             CommonPanel.GetInstance().ShowWaittingPanel(true);
             bool result = account.AddDynamicValueRemote(SignKeys.CRYSTAL, diamond, isave, new HttpResponseDelegate((bool _result) =>
             {
+                m_IsAdd = true;
                 this.ChangeDiamondCallback(_result);
-                if (diamond > 0)
-                {
-                    m_IsAdd = _result;
-                    DetectAdd(diamond);
-                }
                 if (rsp != null)
                 {
                     rsp(_result);

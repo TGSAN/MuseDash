@@ -63,7 +63,7 @@ namespace FormulaBase
         {
             foreach (var host in HostList.Values.ToList().Where(host => host.GetDynamicIntByKey(SignKeys.ID) == taskID && host.GetDynamicIntByKey(SignKeys.FINISH_TIME) == 0))
             {
-                var r = callFunc(Host.GetDynamicStrByKey(SignKeys.DT_VALUE));
+                var r = callFunc(Host.GetDynamicStrByKey(SignKeys.DT_TARGET));
                 var id = host.GetDynamicIntByKey(SignKeys.ID);
                 host.Save(result =>
                 {

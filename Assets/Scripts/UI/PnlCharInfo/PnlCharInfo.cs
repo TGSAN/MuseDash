@@ -98,7 +98,7 @@ namespace PnlCharInfo
 
         public void OnUpgradeItemsRefresh()
         {
-            if (!gameObject || !gameObject.activeSelf)
+            if (!gameObject || !gameObject.activeSelf || !PnlSuitcase.PnlSuitcase.Instance)
             {
                 return;
             }

@@ -63,7 +63,14 @@ namespace PnlDailyTask
             sprIcons[idx].spriteName = dailyTask.icon;
             sprPercent[idx].transform.localScale = curValue == 0 ? new Vector3(0, 1, 1) : Vector3.one;
             sprPercent[idx].width = (int)(720f * (float)curValue / (float)targetValue);
-            txtDecs[idx].text = dailyTask.description.Replace("(N)", targetValue.ToString());
+            if (dailyTask.description.Contains("(N)"))
+            {
+                txtDecs[idx].text = dailyTask.description.Replace("(N)", targetValue.ToString());
+            }
+            if (dailyTask.description.Contains("(S)"))
+            {
+                txtDecs[idx].text = dailyTask.description.Replace("(S)", TaskStageTarget.Instance.GetAllMusicNames()[targetValue - 1]);
+            }
             txtValueTo[idx].text = curValue.ToString();
             txtValueMax[idx].text = targetValue.ToString();
             if (dailyTask.coinAward > 0)

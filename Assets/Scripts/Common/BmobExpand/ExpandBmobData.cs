@@ -2,6 +2,7 @@ using cn.bmob.api;
 using cn.bmob.io;
 using cn.bmob.json;
 using FormulaBase;
+using HutongGames.PlayMaker.Actions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ public class ExpandBmobGameObject : BmobTable
 {
     public String fileName { get; set; }
     public String data { get; set; }
+    public BmobPointer<BmobUser> user { get; set; }
 
     public override void readFields(BmobInput input)
     {
@@ -18,6 +20,7 @@ public class ExpandBmobGameObject : BmobTable
 
         this.fileName = input.getString("fileName");
         this.data = input.getString("data");
+        this.user = input.Get<BmobPointer<BmobUser>>("user");
     }
 
     public override void write(BmobOutput output, Boolean all)
@@ -26,6 +29,7 @@ public class ExpandBmobGameObject : BmobTable
 
         output.Put("fileName", this.fileName);
         output.Put("data", this.data);
+        output.Put("user", this.user);
     }
 }
 
@@ -34,6 +38,9 @@ public class ExpandBmobData : MonoBehaviour
     private BmobUnity Bmob;
 
     private static ExpandBmobData instance = null;
+
+    private const string USER_DATA_TABLE_NAME = "UserData";
+    private const string USER_TABLE_NAME = "_User";
 
     public static ExpandBmobData Instance
     {
@@ -50,11 +57,11 @@ public class ExpandBmobData : MonoBehaviour
         this.Bmob = this.gameObject.GetComponent<BmobUnity>();
     }
 
-    public void FineOne(string uid, string objectId, string fileName, HttpAddDelegate rsp)
+    public void FineOne(string objectId, string fileName, HttpAddDelegate rsp)
     {
         BmobQuery query = new BmobQuery();
         query.WhereEqualTo("objectId", objectId);
-        Bmob.Find<ExpandBmobGameObject>(uid, query, (resp, exception) =>
+        Bmob.Find<ExpandBmobGameObject>(USER_DATA_TABLE_NAME, query, (resp, exception) =>
         {
             if (exception != null)
             {
@@ -88,16 +95,16 @@ public class ExpandBmobData : MonoBehaviour
     ///
     /// Table name is uid.
     /// </summary>
-    /// <param name="uid">Uid.</param>
-    public void Add(string uid, FormulaHost host, HttpResponseDelegate rsp)
+    /// <param name="tableName">Uid.</param>
+    public void Add(FormulaHost host, HttpResponseDelegate rsp)
     {
         ExpandBmobGameObject data = new ExpandBmobGameObject();
-
-        System.Random rnd = new System.Random();
+        var user = new BmobPointer<BmobUser>(ExpandBmobUser.curUser);
+        data.user = user;
         data.fileName = host.GetFileName();
         data.data = host.SignToJson().ToJson();
         ExpandBmobHeartBeat.Instance.AddWait();
-        Bmob.Create(uid, data, (resp, exception) =>
+        Bmob.Create(USER_DATA_TABLE_NAME, data, (resp, exception) =>
         {
             ExpandBmobHeartBeat.Instance.DelWait();
             if (exception != null)
@@ -129,7 +136,7 @@ public class ExpandBmobData : MonoBehaviour
             if (host.IsDirty)
             {
                 host.IsDirty = false;
-                this.UpdateRow(uid, host, rsp);
+                this.UpdateRow(host, rsp);
             }
             else
             {
@@ -142,68 +149,63 @@ public class ExpandBmobData : MonoBehaviour
         });
     }
 
-    public void UpdateList(string uid, List<FormulaHost> hosts, HttpEndResponseDelegate rsp = null)
+    public void UpdateList(List<FormulaHost> hosts, HttpEndResponseDelegate rsp = null)
     {
         if (hosts == null || hosts.Count <= 0)
         {
             return;
         }
 
-        SimpleJson.JsonObject param = new SimpleJson.JsonObject();
-        param["uid"] = uid;
         List<FormulaHost> createList = new List<FormulaHost>();
         List<FormulaHost> updateList = new List<FormulaHost>();
         List<FormulaHost> deleteList = new List<FormulaHost>();
-        List<ExpandBmobGameObject> arrayEBInsert = new List<ExpandBmobGameObject>();
-        List<ExpandBmobGameObject> arrayEBUpadate = new List<ExpandBmobGameObject>();
-        List<ExpandBmobGameObject> arrayEBDelete = new List<ExpandBmobGameObject>();
+        var dicEbInsert = new Dictionary<ExpandBmobGameObject, string>();
+        var dicEbUpdate = new Dictionary<ExpandBmobGameObject, string>();
+        var dicEbDelete = new Dictionary<ExpandBmobGameObject, string>();
+        var user = new BmobPointer<BmobUser>(ExpandBmobUser.curUser);
         foreach (FormulaHost host in hosts)
         {
-            SimpleJson.JsonObject obj = new SimpleJson.JsonObject();
-            obj["fileName"] = host.GetFileName();
-            obj["data"] = host.SignToJson().ToJson();
-
             ExpandBmobGameObject data = new ExpandBmobGameObject();
             data.fileName = host.GetFileName();
             data.data = host.SignToJson().ToJson();
-
+            data.user = user;
+            var tableName = USER_DATA_TABLE_NAME;
             if (host.objectID != null)
             {
-                obj["objectID"] = host.objectID;
                 updateList.Add(host);
                 data.objectId = host.objectID;
-                arrayEBUpadate.Add(data);
+                dicEbUpdate.Add(data, tableName);
             }
             else
             {
                 createList.Add(host);
-                arrayEBInsert.Add(data);
+                dicEbInsert.Add(data, tableName);
             }
 
             if (host.objectID != null && host.IsDelete)
             {
                 deleteList.Add(host);
-                arrayEBDelete.Add(data);
+                dicEbDelete.Add(data, tableName);
             }
         }
 
-        Debug.Log("--Save list with " + arrayEBUpadate.Count + "/" + arrayEBInsert.Count);
+        Debug.Log("--Save list with " + dicEbUpdate.Count + "/" + dicEbInsert.Count);
         BmobBatch uBatch = new BmobBatch();
-        for (int i = 0; i < arrayEBInsert.Count; i++)
+        foreach (var pair in dicEbInsert)
         {
-            uBatch.Create(uid, arrayEBInsert[i]);
+            uBatch.Create(pair.Value, pair.Key);
         }
 
-        for (int i = 0; i < arrayEBUpadate.Count; i++)
+        foreach (var pair in dicEbUpdate)
         {
-            ExpandBmobGameObject _dt = arrayEBUpadate[i];
-            uBatch.Update(uid, _dt.objectId, _dt);
+            ExpandBmobGameObject _dt = pair.Key;
+            uBatch.Update(pair.Value, _dt.objectId, _dt);
         }
 
-        for (int i = 0; i < arrayEBDelete.Count; i++)
+        foreach (var pair in dicEbDelete)
         {
-            ExpandBmobGameObject _dt = arrayEBUpadate[i];
-            uBatch.Delete(uid, _dt.objectId);
+            ExpandBmobGameObject _dt = pair.Key;
+            uBatch.Delete(pair.Value, _dt.objectId);
         }
 
         this.Bmob.Batch(uBatch, (resp, exception) =>
@@ -294,7 +296,7 @@ public class ExpandBmobData : MonoBehaviour
         });
     }
 
-    public void DeleteList(string uid, List<FormulaHost> hosts, HttpEndResponseDelegate rsp = null)
+    public void DeleteList(List<FormulaHost> hosts, HttpEndResponseDelegate rsp = null)
     {
         if (hosts == null || hosts.Count <= 0)
         {
@@ -302,7 +304,6 @@ public class ExpandBmobData : MonoBehaviour
         }
 
         SimpleJson.JsonObject param = new SimpleJson.JsonObject();
-        param["uid"] = uid;
         SimpleJson.JsonArray arrayDelete = new SimpleJson.JsonArray();
         foreach (FormulaHost host in hosts)
         {
@@ -339,12 +340,13 @@ public class ExpandBmobData : MonoBehaviour
         ExpandBmobCall.Instance.Call("DeleteList", param, _rsp);
     }
 
-    public void UpdateRow(string uid, FormulaHost host, HttpResponseDelegate rsp)
+    public void UpdateRow(FormulaHost host, HttpResponseDelegate rsp)
     {
+        var tableName = USER_DATA_TABLE_NAME;
         if (host.objectID == null && host.localObjectId == null)
         {
             host.SetLocalObjectId();
-            this.Add(uid, host, rsp);
+            this.Add(host, rsp);
             return;
         }
 
@@ -356,8 +358,9 @@ public class ExpandBmobData : MonoBehaviour
 
         ExpandBmobGameObject data = new ExpandBmobGameObject();
         data.data = host.SignToJson().ToJson();
-        ExpandBmobHeartBeat.Instance.AddWait();
-        Bmob.Update(uid, host.objectID, data, (resp, exception) =>
+        var user = new BmobPointer<BmobUser>(ExpandBmobUser.curUser);
+        data.user = user;
+        Bmob.Update(tableName, host.objectID, data, (resp, exception) =>
         {
             ExpandBmobHeartBeat.Instance.DelWait();
             if (exception != null)
@@ -394,10 +397,10 @@ public class ExpandBmobData : MonoBehaviour
         });
     }
 
-    public void UpdateRow(string table, string objectId, IBmobWritable data, HttpResponseDelegate rsp)
+    public void UpdateRow(string tableName, string objectId, IBmobWritable data, HttpResponseDelegate rsp)
     {
         ExpandBmobHeartBeat.Instance.AddWait();
-        Bmob.Update(table, objectId, data, (resp, exception) =>
+        Bmob.Update(tableName, objectId, data, (resp, exception) =>
         {
             ExpandBmobHeartBeat.Instance.DelWait();
             if (exception != null)
@@ -421,7 +424,35 @@ public class ExpandBmobData : MonoBehaviour
         });
     }
 
-    public void Delete(string uid, FormulaHost host, HttpResponseDelegate rsp)
+    public void DeleteUser(string uid, HttpResponseDelegate rsp)
+    {
+        ExpandBmobHeartBeat.Instance.AddWait();
+        Bmob.Delete(USER_TABLE_NAME, uid, (resp, exception) =>
+        {
+            ExpandBmobHeartBeat.Instance.DelWait();
+            if (exception != null)
+            {
+                string failMsg = "删除数据失败, 失败原因为： " + exception.Message;
+                print(failMsg);
+                CommonPanel.GetInstance().ShowText(failMsg);
+                if (rsp != null)
+                {
+                    rsp(false);
+                }
+
+                return;
+            }
+
+            print("删除成功, @" + resp.msg);
+
+            if (rsp != null)
+            {
+                rsp(true);
+            }
+        });
+    }
+
+    public void Delete(FormulaHost host, HttpResponseDelegate rsp)
     {
         if (host.objectID == null)
         {
@@ -429,7 +460,7 @@ public class ExpandBmobData : MonoBehaviour
         }
 
         ExpandBmobHeartBeat.Instance.AddWait();
-        Bmob.Delete(uid, host.objectID, (resp, exception) =>
+        Bmob.Delete(USER_DATA_TABLE_NAME, host.objectID, (resp, exception) =>
         {
             ExpandBmobHeartBeat.Instance.DelWait();
             if (exception != null)
@@ -461,7 +492,7 @@ public class ExpandBmobData : MonoBehaviour
     public void LoadAll(string uid, HttpEndResponseDelegate delgat)
     {
         SimpleJson.JsonObject _param = new SimpleJson.JsonObject();
-        _param["table_name"] = uid;
+        _param["objectId"] = uid;
         ExpandBmobHeartBeat.Instance.AddWait();
         Bmob.Endpoint<Hashtable>("LoadTable", _param, (resp, exception) =>
         {
@@ -473,21 +504,6 @@ public class ExpandBmobData : MonoBehaviour
                 CommonPanel.GetInstance().ShowText(failMsg);
                 return;
             }
-
-            if (delgat != null)
-            {
-                delgat(resp);
-            }
-        });
-    }
-
-    public void DeleteAll(string uid, HttpEndResponseDelegate delgat)
-    {
-        SimpleJson.JsonObject param = new SimpleJson.JsonObject();
-        param.Add("table_name", uid);
-        ExpandBmobCall.Instance.Call("DeleteTable", param, (resp) =>
-        {
-            print("账号" + uid + "数据删除成功 : " + resp);
             if (delgat != null)
             {
                 delgat(resp);

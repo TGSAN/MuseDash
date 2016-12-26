@@ -442,7 +442,6 @@ namespace FormulaBase
             {
                 return false;
             }
-
             float val = this.GetDynamicDataByKey(key);
             float result = val + value;
             // local check
@@ -460,7 +459,7 @@ namespace FormulaBase
             }
 
             // remote check, add
-            ExpandBmobData.Instance.FineOne(uid, this.objectID, this.GetFileName(), new HttpAddDelegate((FormulaHost tempHost) =>
+            ExpandBmobData.Instance.FineOne(this.objectID, this.GetFileName(), new HttpAddDelegate((FormulaHost tempHost) =>
             {
                 float __val = tempHost.GetDynamicDataByKey(key);
                 result = __val + value;
@@ -751,7 +750,7 @@ namespace FormulaBase
             }
             else
             {
-                ExpandBmobData.Instance.UpdateRow(uid, this, rsp);
+                ExpandBmobData.Instance.UpdateRow(this, rsp);
             }
         }
 
@@ -760,7 +759,7 @@ namespace FormulaBase
             string uid = ExpandBmobCommon.GetUid();
             if (uid != null)
             {
-                ExpandBmobData.Instance.UpdateList(uid, hosts, rsp);
+                ExpandBmobData.Instance.UpdateList(hosts, rsp);
             }
         }
 
@@ -769,7 +768,7 @@ namespace FormulaBase
             string uid = ExpandBmobCommon.GetUid();
             if (uid != null)
             {
-                ExpandBmobData.Instance.DeleteList(uid, hosts, rsp);
+                ExpandBmobData.Instance.DeleteList(hosts, rsp);
             }
         }
 
