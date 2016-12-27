@@ -992,12 +992,12 @@ GameObject:
   - component: {fileID: 114000011286564810}
   - component: {fileID: 114000013320468660}
   m_Layer: 5
-  m_Name: TxtLabel
+  m_Name: TxtLabel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000012714780268
 GameObject:
   m_ObjectHideFlags: 1
@@ -1599,6 +1599,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1725769007338908
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4100732193113962}
+  - component: {fileID: 114791426543422470}
+  - component: {fileID: 114954512348193186}
+  m_Layer: 5
+  m_Name: TxtLabel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4000010007657868
 Transform:
   m_ObjectHideFlags: 1
@@ -2224,7 +2241,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4000012670270984}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000011728756222
 Transform:
@@ -2471,6 +2488,7 @@ Transform:
   m_Children:
   - {fileID: 4000010374810558}
   - {fileID: 4000010007657868}
+  - {fileID: 4100732193113962}
   - {fileID: 4000011665771878}
   m_Father: {fileID: 4000013478919820}
   m_RootOrder: 0
@@ -2884,6 +2902,19 @@ Transform:
   - {fileID: 4000012446294588}
   - {fileID: 4000012448199534}
   m_Father: {fileID: 4000013478919820}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4100732193113962
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1725769007338908}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 30, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4000012670270984}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23000010477697872
@@ -3310,6 +3341,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -3552,6 +3591,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -3714,6 +3761,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -3756,6 +3811,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -3829,12 +3892,12 @@ MonoBehaviour:
       time: 0
       value: 0
       inSlope: 0
-      outSlope: 1
+      outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
       time: 1
       value: 1
-      inSlope: 1
+      inSlope: 0
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
@@ -3848,7 +3911,7 @@ MonoBehaviour:
   onFinished: []
   eventReceiver: {fileID: 0}
   callWhenFinished: 
-  from: 0
+  from: 0.15
   to: 1
 --- !u!114 &114000010420960240
 MonoBehaviour:
@@ -3871,6 +3934,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -3992,7 +4063,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3002
+  startingRenderQueue: 3004
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -4199,6 +4270,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -4237,6 +4316,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -4419,6 +4506,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -4525,6 +4620,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -4878,6 +4981,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -5143,6 +5254,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -5206,6 +5325,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -5297,6 +5424,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -5335,6 +5470,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -5373,6 +5516,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -5471,7 +5622,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: bb22fb5beacef47a6816ba69bce73b56, type: 3}
   mFont: {fileID: 0}
-  mText: "\u8BF7\u4ECE\u5DE6\u8FB9\u9009\u62E9\u6750\u6599\u3002"
+  mText: "\u7D20\u6750\u586B\u6EE1\u4E86\uFF01"
   mFontSize: 30
   mFontStyle: 0
   mAlignment: 0
@@ -5545,6 +5696,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -5651,6 +5810,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -5689,6 +5856,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -5742,7 +5917,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3006
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -6025,6 +6200,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -6069,6 +6252,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 1
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -6107,6 +6298,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -6168,6 +6367,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -6286,6 +6493,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 1
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -6553,6 +6768,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -6591,6 +6814,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -6652,6 +6883,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -6758,6 +6997,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -6857,6 +7104,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -7010,6 +7265,14 @@ MonoBehaviour:
   isFoldObjs: 1
   isFoldParentObjs: 1
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -7048,6 +7311,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -7338,6 +7609,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -7497,6 +7776,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -7572,6 +7859,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -7610,6 +7905,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -7649,7 +7952,7 @@ MonoBehaviour:
   - {fileID: 114000013556785774}
   - {fileID: 114000012325564370}
   - {fileID: 114000010338265490}
-  - {fileID: 114000013320468660}
+  - {fileID: 114954512348193186}
   - {fileID: 114000010359396548}
   - {fileID: 114000012495466960}
   - {fileID: 114000014138421954}
@@ -7907,6 +8210,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -8013,6 +8324,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -8134,6 +8453,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -8172,6 +8499,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -8429,6 +8764,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -8520,6 +8863,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -8558,6 +8909,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -8596,6 +8955,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -8634,6 +9001,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -9004,6 +9379,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -9110,6 +9493,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -9495,6 +9886,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 1
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -9548,6 +9947,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -9639,6 +10046,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -9774,6 +10189,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -10202,6 +10625,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -10812,6 +11243,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -11057,6 +11496,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -11184,6 +11631,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -11249,6 +11704,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -11461,6 +11924,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -11613,6 +12084,14 @@ MonoBehaviour:
   isFoldObjs: 0
   isFoldParentObjs: 0
   isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isClickHideSelf: 0
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
@@ -11627,6 +12106,120 @@ MonoBehaviour:
   sliderMaxSign: 
   isNeedTranslate: 0
   onClickModuleName: OnClickBtnUpgrade1
+  onTweenAniFinishedModuleName: 
+  onSliderModuleName: 
+  scrollerTableDataModuleName: 
+--- !u!114 &114791426543422470
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1725769007338908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 50
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 172
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 0.33642814, g: 0.17517298, b: 0.5955882, a: 1}
+  mPivot: 4
+  mWidth: 270
+  mHeight: 30
+  mDepth: 158
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 9
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 12800000, guid: bb22fb5beacef47a6816ba69bce73b56, type: 3}
+  mFont: {fileID: 0}
+  mText: "\u8BF7\u4ECE\u5DE6\u8FB9\u9009\u62E9\u6750\u6599\u3002"
+  mFontSize: 30
+  mFontStyle: 0
+  mAlignment: 0
+  mEncoding: 1
+  mMaxLineCount: 0
+  mEffectStyle: 0
+  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 1, y: 1}
+  mOverflow: 2
+  mMaterial: {fileID: 0}
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  mUseFloatSpacing: 0
+  mFloatSpacingX: 0
+  mFloatSpacingY: 0
+  mOverflowEllipsis: 0
+  mOverflowWidth: 0
+  mModifier: 0
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
+--- !u!114 &114954512348193186
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1725769007338908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 1000011989051036}
+  clickResponseObjects: []
+  clickResponseParentNames: []
+  clickResponseObjectsIsShow: 
+  clickResponseParentNamesIsShow: 
+  clickResponseObjectAnimations: []
+  clickResponseParentAnimations: []
+  isFoldObjs: 0
+  isFoldParentObjs: 0
+  isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  isClickHideSelf: 0
+  isClickHideParent: 0
+  des: "\u672A\u6709\u63CF\u8FF0"
+  activeHostKeyId: 0
+  activeCondiction: LEVEL
+  activeValue: 
+  labelHostKeyId: 0
+  labelMatchSign: LEVEL
+  labelMatchSelfDefineSign: 
+  sliderHostKeyId: 0
+  sliderMatchSign: 
+  sliderMaxSign: 
+  isNeedTranslate: 0
+  onClickModuleName: 
   onTweenAniFinishedModuleName: 
   onSliderModuleName: 
   scrollerTableDataModuleName: 
