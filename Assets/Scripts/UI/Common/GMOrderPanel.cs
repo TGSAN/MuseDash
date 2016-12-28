@@ -17,7 +17,7 @@ public class GMOrderPanel : MonoBehaviour
 
     public void GetDiamond()
     {
-        AccountCrystalManagerComponent.Instance.ChangeCrystal(100);
+        AccountCrystalManagerComponent.Instance.ChangeCrystal(500);
     }
 
     public void GetPhysical()

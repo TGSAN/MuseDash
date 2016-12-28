@@ -5,10 +5,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 474830}
-  - 114: {fileID: 11405424}
+  - component: {fileID: 474830}
+  - component: {fileID: 11405424}
   m_Layer: 0
   m_Name: hero_up_atlas
   m_TagString: Untagged
@@ -25,10 +25,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11405424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -42,48 +42,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: aff417f1ef66a40fa84194a2dec5c594, type: 2}
   mSprites:
-  - name: buro_cool
-    x: 262
-    y: 1450
-    width: 260
-    height: 276
+  - name: buro_full
+    x: 0
+    y: 453
+    width: 491
+    height: 519
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 45
-    paddingRight: 45
-    paddingTop: 38
-    paddingBottom: 4
-  - name: buro_great
-    x: 526
-    y: 1468
-    width: 266
-    height: 258
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 42
-    paddingRight: 42
-    paddingTop: 47
-    paddingBottom: 13
-  - name: buro_perfect
-    x: 700
-    y: 1780
-    width: 274
-    height: 268
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 38
+    paddingLeft: 86
     paddingRight: 38
-    paddingTop: 50
+    paddingTop: 86
+    paddingBottom: 10
+  - name: buro_surperise
+    x: 0
+    y: 1535
+    width: 537
+    height: 513
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 78
+    paddingRight: 0
+    paddingTop: 102
+    paddingBottom: 0
+  - name: doughnut
+    x: 1879
+    y: 1979
+    width: 145
+    height: 69
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
     paddingBottom: 0
   - name: flash
-    x: 234
-    y: 1103
+    x: 541
+    y: 1642
     width: 234
     height: 226
     borderLeft: 0
@@ -94,9 +94,35 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: font_1
+    x: 1351
+    y: 1682
+    width: 227
+    height: 114
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: font_2
+    x: 779
+    y: 1681
+    width: 197
+    height: 187
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: light_fx
     x: 0
-    y: 1333
+    y: 56
     width: 258
     height: 393
     borderLeft: 0
@@ -107,24 +133,76 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: lumi_cool_bg
+  - name: line_1
+    x: 980
+    y: 1669
+    width: 185
+    height: 199
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: line_2
+    x: 1169
+    y: 1667
+    width: 178
+    height: 201
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: marija_full
+    x: 496
+    y: 427
+    width: 371
+    height: 525
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 118
+    paddingRight: 126
+    paddingTop: 68
+    paddingBottom: 22
+  - name: marija_surperise
     x: 0
-    y: 45
-    width: 16
-    height: 750
-    borderLeft: 5
-    borderRight: 5
+    y: 976
+    width: 492
+    height: 555
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 70
+    paddingRight: 53
+    paddingTop: 60
+    paddingBottom: 0
+  - name: plate
+    x: 1351
+    y: 1800
+    width: 458
+    height: 68
+    borderLeft: 0
+    borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: lumi_great_bg
-    x: 20
-    y: 45
-    width: 16
-    height: 750
+  - name: shadow
+    x: 1582
+    y: 1762
+    width: 329
+    height: 34
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -133,61 +211,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: lumi_perfect_bg
-    x: 40
-    y: 45
-    width: 16
-    height: 750
-    borderLeft: 4
-    borderRight: 4
+  - name: sigh
+    x: 1879
+    y: 1891
+    width: 86
+    height: 84
+    borderLeft: 0
+    borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0
     paddingRight: 0
     paddingTop: 0
-    paddingBottom: 0
-  - name: marija_cool
-    x: 472
-    y: 1076
-    width: 176
-    height: 253
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 87
-    paddingRight: 87
-    paddingTop: 54
-    paddingBottom: 11
-  - name: marija_great
-    x: 0
-    y: 1067
-    width: 230
-    height: 262
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 60
-    paddingRight: 60
-    paddingTop: 46
-    paddingBottom: 10
-  - name: marija_perfect
-    x: 354
-    y: 1746
-    width: 342
-    height: 302
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 4
-    paddingRight: 4
-    paddingTop: 16
     paddingBottom: 0
   - name: star
-    x: 262
-    y: 1390
+    x: 1969
+    y: 1919
     width: 58
     height: 56
     borderLeft: 0
@@ -199,8 +238,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: star_white
-    x: 324
-    y: 1390
+    x: 541
+    y: 1582
     width: 58
     height: 56
     borderLeft: 0
@@ -211,37 +250,11 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: urchin_cool
-    x: 0
-    y: 799
-    width: 176
-    height: 264
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 87
-    paddingRight: 87
-    paddingTop: 38
-    paddingBottom: 16
-  - name: urchin_great
-    x: 796
-    y: 1456
-    width: 194
-    height: 270
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 78
-    paddingRight: 78
-    paddingTop: 36
-    paddingBottom: 12
-  - name: urchin_perfect
-    x: 0
-    y: 1730
-    width: 350
-    height: 318
+  - name: table
+    x: 541
+    y: 1872
+    width: 1334
+    height: 176
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -250,9 +263,48 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: urchin_full
+    x: 1266
+    y: 1021
+    width: 344
+    height: 510
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 134
+    paddingRight: 137
+    paddingTop: 53
+    paddingBottom: 52
+  - name: urchin_hungry
+    x: 496
+    y: 956
+    width: 392
+    height: 575
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 58
+    paddingRight: 165
+    paddingTop: 0
+    paddingBottom: 40
+  - name: urchin_surperise
+    x: 892
+    y: 1016
+    width: 370
+    height: 515
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 98
+    paddingRight: 147
+    paddingTop: 55
+    paddingBottom: 45
   - name: WhiteBoard
-    x: 978
-    y: 2016
+    x: 1969
+    y: 1883
     width: 32
     height: 32
     borderLeft: 4

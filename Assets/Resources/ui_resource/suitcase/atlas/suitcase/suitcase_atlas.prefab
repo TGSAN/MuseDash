@@ -16,10 +16,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000010061335492}
-  - 114: {fileID: 114000014215409208}
+  - component: {fileID: 4000010061335492}
+  - component: {fileID: 114000014215409208}
   m_Layer: 0
   m_Name: suitcase_atlas
   m_TagString: Untagged
@@ -36,10 +36,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114000014215409208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54,7 +54,7 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: a663bd5c56f5cc641989235a19ab6455, type: 2}
   mSprites:
   - name: bg_color
-    x: 132
+    x: 264
     y: 412
     width: 32
     height: 32
@@ -67,8 +67,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: groove_1
-    x: 372
-    y: 392
+    x: 0
+    y: 192
     width: 120
     height: 120
     borderLeft: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: groove_2
     x: 0
-    y: 192
+    y: 68
     width: 120
     height: 120
     borderLeft: 0
@@ -93,8 +93,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: groove_3
-    x: 0
-    y: 68
+    x: 124
+    y: 192
     width: 120
     height: 120
     borderLeft: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: groove_4
     x: 124
-    y: 192
+    y: 68
     width: 120
     height: 120
     borderLeft: 0
@@ -119,8 +119,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: groove_space
-    x: 124
-    y: 68
+    x: 248
+    y: 192
     width: 120
     height: 120
     borderLeft: 15
@@ -132,32 +132,6 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: groove_space 2
-    x: 248
-    y: 192
-    width: 120
-    height: 120
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: item_image
-    x: 248
-    y: 118
-    width: 70
-    height: 70
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: item_mask
     x: 372
     y: 192
     width: 120
@@ -170,8 +144,34 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: item_image
+    x: 372
+    y: 118
+    width: 70
+    height: 70
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: item_mask
+    x: 248
+    y: 68
+    width: 120
+    height: 120
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: panel_base
-    x: 168
+    x: 300
     y: 412
     width: 32
     height: 32
@@ -184,7 +184,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: panel_base_2
-    x: 204
+    x: 336
     y: 412
     width: 32
     height: 32
@@ -197,7 +197,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: select_item
-    x: 0
+    x: 132
     y: 384
     width: 128
     height: 128
@@ -210,10 +210,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: select_materail
-    x: 132
-    y: 385
-    width: 26
-    height: 23
+    x: 0
+    y: 384
+    width: 128
+    height: 128
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: suitcase_base
-    x: 240
+    x: 372
     y: 412
     width: 32
     height: 32
@@ -236,7 +236,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: tag_button
-    x: 132
+    x: 264
     y: 448
     width: 236
     height: 64
