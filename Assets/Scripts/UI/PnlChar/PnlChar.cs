@@ -132,6 +132,7 @@ namespace PnlChar
                 if (isChangeRole)
                 {
                     PnlCharInfo.PnlCharInfo.Instance.OnExit();
+                    PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
                 }
             });
             onRoleChange += PnlCharInfo.PnlCharInfo.Instance.OnRoleChange;
