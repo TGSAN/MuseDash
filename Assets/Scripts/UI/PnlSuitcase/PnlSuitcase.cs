@@ -13,8 +13,7 @@ namespace PnlSuitcase
     {
         private static PnlSuitcase instance = null;
         public UIGrid grid;
-        public UIToggle tglEquip, tglFood, tglServant, tglAll;
-        public Action onTypeChange;
+        public UIToggle tglEquip, tglFood, tglServant;
         public GameObject cellPreb;
         private List<ItemImageEquip.ItemImageEquip> m_Cells;
         private FormulaHost m_SelectedHost;
@@ -35,7 +34,7 @@ namespace PnlSuitcase
                         itemImageEquip.isLock = false;
                     }
                     upgradeSelectedHost.Clear();
-                    SetTypeActive(true, false, false, false);
+                    SetTypeActive(true, false, false);
                 }
                 else
                 {
@@ -47,17 +46,16 @@ namespace PnlSuitcase
                     {
                         if (PnlEquipInfo.PnlEquipInfo.Instance.gameObject.activeSelf)
                         {
-                            SetTypeActive(false, true, false, false);
+                            SetTypeActive(true, false, false);
                         }
                         else
                         {
-                            SetTypeActive(false, false, true, false);
+                            SetTypeActive(false, true, false);
                         }
                     }
                     tglEquip.enabled = !m_IsUpgrade;
                     tglFood.enabled = !m_IsUpgrade;
                     tglServant.enabled = !m_IsUpgrade;
-                    tglAll.enabled = !m_IsUpgrade;
                 }, 0.1f);
             }
         }
@@ -80,7 +78,6 @@ namespace PnlSuitcase
         {
             selectedTglIdx = 0;
             m_Cells = new List<ItemImageEquip.ItemImageEquip>();
-            onTypeChange += OnTypeChange;
         }
 
         public void SetLock(bool isTo)
@@ -177,9 +174,8 @@ namespace PnlSuitcase
             PnlEquipInfo.PnlEquipInfo.Instance.OnUpgradeItemsRefresh();
         }
 
-        public void SetTypeActive(bool all, bool equip, bool food, bool servant)
+        public void SetTypeActive(bool equip, bool food, bool servant)
         {
-            //tglAll.value = all;
             tglEquip.value = equip;
             tglFood.value = food;
             tglServant.value = servant;
@@ -240,7 +236,7 @@ namespace PnlSuitcase
                         PnlServantInfo.PnlServantInfo.Instance.OnExit();
                     }
                 }
-                cell.gameObject.SetActive(isEquip || isFood || isServant || tglAll.value);
+                cell.gameObject.SetActive(isEquip || isFood || isServant);
             }
             grid.enabled = true;
             ResetPos();

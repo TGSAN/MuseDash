@@ -62,7 +62,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000010659043926
 GameObject:
   m_ObjectHideFlags: 1
@@ -862,7 +862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  group: 4
+  group: 3
   activeSprite: {fileID: 114000012715583692}
   invertSpriteState: 0
   activeAnimation: {fileID: 0}
@@ -892,7 +892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  group: 4
+  group: 3
   activeSprite: {fileID: 114000012903163686}
   invertSpriteState: 0
   activeAnimation: {fileID: 0}
@@ -1058,10 +1058,10 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
-  labelMatchSign: 
+  labelMatchSign: LEVEL
   labelMatchSelfDefineSign: 
   sliderHostKeyId: 0
   sliderMatchSign: 
@@ -1088,7 +1088,6 @@ MonoBehaviour:
   tglEquip: {fileID: 114000012134955442}
   tglFood: {fileID: 114000010134453086}
   tglServant: {fileID: 114000010135959974}
-  tglAll: {fileID: 0}
   cellPreb: {fileID: 1000011386559160, guid: 40a04e82f7d7d47a7ab09cc54223c8f0, type: 2}
 --- !u!114 &114000010443677648
 MonoBehaviour:
@@ -1815,13 +1814,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446d504799d99174383957fca80713c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  group: 4
+  group: 3
   activeSprite: {fileID: 114000011425777818}
   invertSpriteState: 0
   activeAnimation: {fileID: 0}
   animator: {fileID: 0}
   tween: {fileID: 0}
-  startsActive: 0
+  startsActive: 1
   instantTween: 0
   optionCanBeNone: 0
   onChange:
