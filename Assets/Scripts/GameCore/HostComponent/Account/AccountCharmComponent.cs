@@ -80,7 +80,7 @@ namespace FormulaBase
             CommonPanel.GetInstance().ShowWaittingPanel(true);
             bool result = account.AddDynamicValueRemote(SignKeys.CHARM, charm, isave, new HttpResponseDelegate((bool r) =>
             {
-                m_IsAdd = true;
+                m_IsAdd = charm > 0;
                 this.ChangeMoneyCallBack(r);
                 if (rsp != null)
                 {

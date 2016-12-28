@@ -51,6 +51,7 @@ namespace ItemImageEquip
                 sprSelected.gameObject.SetActive(value);
                 if (PnlSuitcase.PnlSuitcase.Instance.isUpgrade)
                 {
+                    playTween.enabled = false;
                     sprSelected.gameObject.SetActive(false);
                 }
             }

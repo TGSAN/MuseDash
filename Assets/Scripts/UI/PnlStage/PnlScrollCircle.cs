@@ -763,7 +763,7 @@ namespace Assets.Scripts.NGUI
             }
 
             string musicPath = m_StageInfos[m_CurrentIdx].musicPath;
-            musicPath = musicPath.Replace("music", "demo") + "_demo";
+            musicPath = musicPath.Replace("music/", "demo/") + "_demo";
             Debug.Log("Stage select load music : " + musicPath);
             this.m_Coroutine = ResourceLoader.Instance.Load(musicPath, this.LoadSync);
         }

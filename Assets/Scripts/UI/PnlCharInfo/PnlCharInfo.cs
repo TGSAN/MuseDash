@@ -179,12 +179,13 @@ namespace PnlCharInfo
 
         private void InitUI()
         {
-            DOTweenUtils.Delay(InitPnlItemsChoose, Time.deltaTime);
-            DOTweenUtils.Delay(OnUpgradeItemsRefresh, 1f);
+            InitPnlItemsChoose();
+            OnUpgradeItemsRefresh();
         }
 
         private void InitPnlItemsChoose()
         {
+            if (PnlChar.PnlChar.Instance == null) return;
             cellItemParent.GetComponent<UIGrid>().enabled = true;
             cellItemParent.DestroyChildren();
             var allEquipments =
@@ -205,6 +206,11 @@ namespace PnlCharInfo
 
         private void InitEvent()
         {
+            //退出升级状态
+            UIEventListener.Get(btnBack.gameObject).onClick = go =>
+            {
+                isUpgrade = false;
+            };
             UIEventListener.Get(btnFeed.gameObject).onClick = (go) =>
             {
                 var curRoleHost = RoleManageComponent.Instance.GetGirlByIdx(PnlChar.PnlChar.Instance.curRoleIdx);
@@ -214,15 +220,14 @@ namespace PnlCharInfo
                 }
                 else
                 {
-                    isUpgrade = true;
-                    gameObject.SetActive(false);
+                    gameObject.SetActive(true);
+                    m_Animator.Play("cos_change");
+                    PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(true);
+                    PnlChar.PnlChar.Instance.gameObject.SetActive(false);
                     DOTweenUtils.Delay(() =>
                     {
-                        gameObject.SetActive(true);
-                        m_Animator.Play("cos_change");
-                        PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(true);
-                        PnlChar.PnlChar.Instance.gameObject.SetActive(false);
-                    }, 0.1f);
+                        isUpgrade = true;
+                    }, 0.3f);
                 }
                 PnlSuitcase.PnlSuitcase.Instance.ResetPos();
             };
