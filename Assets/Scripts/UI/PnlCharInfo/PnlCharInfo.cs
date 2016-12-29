@@ -27,7 +27,7 @@ namespace PnlCharInfo
         public Transform tglsParent;
         public UISprite sprVigour, sprStamina, sprStrengh, sprLuck;
         public UILabel txtEquipInfo, txtServantInfo;
-
+        public GameObject txtTip1, txtTip2;
         private Animator m_Animator;
         private CharCos m_SelectedCos;
         private List<SprCos> m_SprCosList = new List<SprCos>();
