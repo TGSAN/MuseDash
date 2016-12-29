@@ -1599,9 +1599,9 @@ GameObject:
   - component: {fileID: 65000013515953154}
   - component: {fileID: 114000011739466818}
   - component: {fileID: 114000010890181484}
-  - component: {fileID: 114000012609582492}
   - component: {fileID: 114000013527925318}
   - component: {fileID: 114000013628975088}
+  - component: {fileID: 114365535946318998}
   m_Layer: 5
   m_Name: TglResourse
   m_TagString: Untagged
@@ -5598,7 +5598,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013820440518}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0000009536743, z: 0}
+  m_LocalPosition: {x: 930, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000014053937670}
@@ -6109,7 +6109,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013361068310}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0000009536743, z: 0}
+  m_LocalPosition: {x: 310, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000013096866550}
@@ -6688,7 +6688,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012057758032}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0000009536743, z: 0}
+  m_LocalPosition: {x: 1240, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000010832719058}
@@ -7228,7 +7228,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011952415100}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0000009536743, z: 0}
+  m_LocalPosition: {x: 620, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000011717181906}
@@ -9264,12 +9264,12 @@ MonoBehaviour:
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 1
   mWidth: 1164
-  mHeight: 558
+  mHeight: 575
   mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.0860214
+  aspectRatio: 2.0243478
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -9283,8 +9283,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11405424, guid: 685ab1af597914997b134cceb4ad9f48, type: 2}
-  mSpriteName: bg_light
+  mAtlas: {fileID: 114000014215409208, guid: 16eabfe9c7826c34ba402df1690462d5, type: 2}
+  mSpriteName: panel_base
   mFillCenter: 1
 --- !u!114 &114000010089803644
 MonoBehaviour:
@@ -12037,7 +12037,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3005
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -12636,12 +12636,12 @@ MonoBehaviour:
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 385
-  mHeight: 65
+  mHeight: 68
   mDepth: 3
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 5.923077
+  aspectRatio: 5.6617646
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -12655,8 +12655,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11405424, guid: 685ab1af597914997b134cceb4ad9f48, type: 2}
-  mSpriteName: tag_button_chosen
+  mAtlas: {fileID: 114000014215409208, guid: 16eabfe9c7826c34ba402df1690462d5, type: 2}
+  mSpriteName: tag_button
   mFillCenter: 1
 --- !u!114 &114000010795033950
 MonoBehaviour:
@@ -16014,7 +16014,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.08627451, g: 0.03137255, b: 0.15686275, a: 1}
+  mColor: {r: 0.1882353, g: 0.08235294, b: 0.3529412, a: 1}
   mPivot: 4
   mWidth: 144
   mHeight: 36
@@ -21400,29 +21400,6 @@ MonoBehaviour:
   from: {x: 85, y: -15, z: 0}
   to: {x: -1119, y: -15, z: 0}
   worldSpace: 0
---- !u!114 &114000012609582492
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011278522212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f093ad5830afe44aba6efa8b8a5d5b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  animator: {fileID: 95000013314379466}
-  clipName: resourse_in
-  trigger: 0
-  playDirection: 1
-  resetOnPlay: 1
-  clearSelection: 0
-  ifDisabledOnPlay: 1
-  disableWhenFinished: 0
-  onFinished: []
-  eventReceiver: {fileID: 0}
-  callWhenFinished: 
 --- !u!114 &114000012615981316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21454,12 +21431,12 @@ MonoBehaviour:
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 385
-  mHeight: 65
+  mHeight: 68
   mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 5.923077
+  aspectRatio: 5.6617646
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -21473,8 +21450,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11405424, guid: 685ab1af597914997b134cceb4ad9f48, type: 2}
-  mSpriteName: tag_button
+  mAtlas: {fileID: 114000014215409208, guid: 16eabfe9c7826c34ba402df1690462d5, type: 2}
+  mSpriteName: tag_button_2
   mFillCenter: 1
 --- !u!114 &114000012622218500
 MonoBehaviour:
@@ -23003,12 +22980,12 @@ MonoBehaviour:
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 385
-  mHeight: 65
+  mHeight: 68
   mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 5.923077
+  aspectRatio: 5.6617646
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -23022,8 +22999,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11405424, guid: 685ab1af597914997b134cceb4ad9f48, type: 2}
-  mSpriteName: tag_button
+  mAtlas: {fileID: 114000014215409208, guid: 16eabfe9c7826c34ba402df1690462d5, type: 2}
+  mSpriteName: tag_button_2
   mFillCenter: 1
 --- !u!114 &114000012827174918
 MonoBehaviour:
@@ -25777,7 +25754,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.08627451, g: 0.03137255, b: 0.15686275, a: 1}
+  mColor: {r: 0.1882353, g: 0.08235294, b: 0.3529412, a: 1}
   mPivot: 4
   mWidth: 144
   mHeight: 36
@@ -25997,7 +25974,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.08627451, g: 0.03137255, b: 0.15686275, a: 1}
+  mColor: {r: 0.1882353, g: 0.08235294, b: 0.3529412, a: 1}
   mPivot: 4
   mWidth: 144
   mHeight: 36
@@ -26800,7 +26777,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3005
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -27218,12 +27195,12 @@ MonoBehaviour:
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 385
-  mHeight: 65
+  mHeight: 68
   mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 5.923077
+  aspectRatio: 5.6617646
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -27237,8 +27214,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11405424, guid: 685ab1af597914997b134cceb4ad9f48, type: 2}
-  mSpriteName: tag_button
+  mAtlas: {fileID: 114000014215409208, guid: 16eabfe9c7826c34ba402df1690462d5, type: 2}
+  mSpriteName: tag_button_2
   mFillCenter: 1
 --- !u!114 &114000013608485806
 MonoBehaviour:
@@ -27799,12 +27776,12 @@ MonoBehaviour:
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 385
-  mHeight: 65
+  mHeight: 68
   mDepth: 3
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 5.923077
+  aspectRatio: 5.6617646
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -27818,8 +27795,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11405424, guid: 685ab1af597914997b134cceb4ad9f48, type: 2}
-  mSpriteName: tag_button_chosen
+  mAtlas: {fileID: 114000014215409208, guid: 16eabfe9c7826c34ba402df1690462d5, type: 2}
+  mSpriteName: tag_button
   mFillCenter: 1
 --- !u!114 &114000013800240930
 MonoBehaviour:
@@ -28225,12 +28202,12 @@ MonoBehaviour:
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 385
-  mHeight: 65
+  mHeight: 68
   mDepth: 3
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 5.923077
+  aspectRatio: 5.6617646
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -28244,8 +28221,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11405424, guid: 685ab1af597914997b134cceb4ad9f48, type: 2}
-  mSpriteName: tag_button_chosen
+  mAtlas: {fileID: 114000014215409208, guid: 16eabfe9c7826c34ba402df1690462d5, type: 2}
+  mSpriteName: tag_button
   mFillCenter: 1
 --- !u!114 &114000013877863142
 MonoBehaviour:
@@ -30504,12 +30481,12 @@ MonoBehaviour:
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 1164
-  mHeight: 16
+  mHeight: 14
   mDepth: 2
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 72.75
+  aspectRatio: 83.14286
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -30523,8 +30500,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11405424, guid: 685ab1af597914997b134cceb4ad9f48, type: 2}
-  mSpriteName: bg_light
+  mAtlas: {fileID: 114000014215409208, guid: 16eabfe9c7826c34ba402df1690462d5, type: 2}
+  mSpriteName: mask
   mFillCenter: 1
 --- !u!114 &114000014285465742
 MonoBehaviour:
@@ -30551,6 +30528,19 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick: []
+--- !u!114 &114365535946318998
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011278522212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a147c24165da4b8936f4a453da17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1000011230195880}
+  state: 1
 --- !u!212 &212000011316480004
 SpriteRenderer:
   m_ObjectHideFlags: 1
