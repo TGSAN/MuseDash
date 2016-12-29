@@ -226,31 +226,32 @@ namespace Assets.Scripts.Common.Manager
                         {
                             var key = notCommonObjIdx.ToList()[i++].Key;
                             var go = allItemGO[key];
+                            var startPos = go.transform.position;
                             var typeName = ItemManageComponent.Instance.GetTypeName(itemID);
                             var price = (int)ConfigPool.Instance.GetConfigValue("items", itemID.ToString(), "price");
                             if (typeName == "coin")
                             {
-                                PnlMainMenu.PnlMainMenu.Instance.coin.SetPos(go.transform.position, Vector3.zero);
+                                PnlMainMenu.PnlMainMenu.Instance.coin.SetPos(startPos, Vector3.zero);
                                 AccountGoldManagerComponent.Instance.ChangeMoney(price);
                             }
                             else if (typeName == "crystal")
                             {
-                                PnlMainMenu.PnlMainMenu.Instance.crystal.SetPos(go.transform.position, Vector3.zero);
+                                PnlMainMenu.PnlMainMenu.Instance.crystal.SetPos(startPos, Vector3.zero);
                                 AccountCrystalManagerComponent.Instance.ChangeCrystal(price);
                             }
                             else if (typeName == "charm")
                             {
-                                PnlMainMenu.PnlMainMenu.Instance.charm.SetPos(go.transform.position, Vector3.zero);
+                                PnlMainMenu.PnlMainMenu.Instance.charm.SetPos(startPos, Vector3.zero);
                                 AccountCharmComponent.Instance.ChangeCharm(price);
                             }
                             else if (typeName == "exp")
                             {
-                                PnlMainMenu.PnlMainMenu.Instance.exp.SetPos(go.transform.position, Vector3.zero);
+                                PnlMainMenu.PnlMainMenu.Instance.exp.SetPos(startPos, Vector3.zero);
                                 AccountLevelManagerComponent.Instance.ChangeExp(price);
                             }
                             else if (typeName == "energy")
                             {
-                                PnlMainMenu.PnlMainMenu.Instance.energy.SetPos(go.transform.position, Vector3.zero);
+                                PnlMainMenu.PnlMainMenu.Instance.energy.SetPos(startPos, Vector3.zero);
                                 AccountPhysicsManagerComponent.Instance.ChangePhysical(price);
                             }
                         }
