@@ -26,6 +26,7 @@ namespace Assets.Scripts.Common.Tools
         private GameObject[] m_Gos;
         private UIGrid m_Grid;
         private Vector3 m_OrginStartPos, m_OriginEndPos;
+        private List<Vector3> m_StartPoss = new List<Vector3>();
 
         private void Awake()
         {
@@ -37,13 +38,8 @@ namespace Assets.Scripts.Common.Tools
 
         public void SetPos(Vector3 start, Vector3 end)
         {
-            startPos.position = start;
+            m_StartPoss.Add(start);
             endPos.position = end == Vector3.zero ? m_OriginEndPos : end;
-        }
-
-        public void Reset()
-        {
-            SetPos(m_OrginStartPos, m_OriginEndPos);
         }
 
         public GameObject[] SetAllItem(Texture[] texs)
@@ -75,7 +71,7 @@ namespace Assets.Scripts.Common.Tools
                 g.SetActive(true);
                 startPos = g.transform;
                 var isVisible = inVisibleIdx != null && !inVisibleIdx.Contains(m_Gos.IndexOf(g));
-                Fly(g, isVisible);
+                Fly(g, Vector3.zero, isVisible);
             }
             m_Gos = null;
         }
@@ -84,19 +80,24 @@ namespace Assets.Scripts.Common.Tools
         {
             m_Gos = new GameObject[count];
             var pool = FastPoolManager.GetPool(go);
+            var sPos = m_OrginStartPos;
+            if (m_StartPoss.Count > 0)
+            {
+                sPos = m_StartPoss[m_StartPoss.Count - 1];
+                m_StartPoss.RemoveAt(m_StartPoss.Count - 1);
+            }
             for (int i = 0; i < m_Gos.Length; i++)
             {
                 var g = pool.FastInstantiate();
                 m_Gos[i] = g;
-                Fly(g);
+                Fly(g, sPos);
             }
             m_Gos = null;
-            Reset();
         }
 
-        private void Fly(GameObject g, bool isVisble = true, Callback finishFunc = null)
+        private void Fly(GameObject g, Vector3 sPos, bool isVisble = true, Callback finishFunc = null)
         {
-            var start = startPos.InverseTransformDirection(startPos.position);
+            var start = startPos.InverseTransformDirection(sPos == Vector3.zero ? startPos.position : sPos);
             var end = endPos.InverseTransformDirection(endPos.position);
             var distance = Vector3.Distance(start, end);
             var xDirection = Vector3.Normalize(end - start);

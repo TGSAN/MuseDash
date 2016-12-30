@@ -90,7 +90,7 @@ namespace FormulaBase
             CommonPanel.GetInstance().ShowWaittingPanel(true);
             bool result = account.AddDynamicValueRemote(SignKeys.CRYSTAL, diamond, isave, new HttpResponseDelegate((bool _result) =>
             {
-                m_IsAdd = true;
+                m_IsAdd = diamond > 0;
                 this.ChangeDiamondCallback(_result);
                 if (rsp != null)
                 {

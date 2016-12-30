@@ -599,22 +599,22 @@ namespace FormulaBase
                 switch (temp)
                 {
                     case "Equip":
-                        NGUIDebug.Log("Sale Equip");
+                        //NGUIDebug.Log("Sale Equip");
                         m_Equip.Remove(_listhost[i]);
                         break;
 
                     case "Material":
-                        NGUIDebug.Log("Sale Mtaerial");
+                        //NGUIDebug.Log("Sale Mtaerial");
                         m_Material.Remove(_listhost[i]);
                         break;
 
                     case "Pet":
-                        NGUIDebug.Log("Sale Pet");
+                        //NGUIDebug.Log("Sale Pet");
                         m_Pet.Remove(_listhost[i]);
                         break;
 
                     case "Chest":
-                        NGUIDebug.Log("Sale Chest");
+                        //NGUIDebug.Log("Sale Chest");
                         m_Chest.Remove(_listhost[i]);
                         break;
                 }
@@ -820,7 +820,7 @@ namespace FormulaBase
             }
         }
 
-        public void AddItem(FormulaHost _host, Callback callFunc = null)
+        public FormulaHost AddItem(FormulaHost _host, Callback callFunc = null, bool isSave = true)
         {
             //BagManageComponent.Instance.SetBagHaveNew();
             CommonPanel.GetInstance().ShowWaittingPanel();
@@ -830,14 +830,6 @@ namespace FormulaBase
                 case "Equip":
                     _host.SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
                     m_Equip.Add(_host);
-                    _host.Save(new HttpResponseDelegate(result =>
-                    {
-                        CallBackAdditem(result);
-                        if (callFunc != null)
-                        {
-                            callFunc();
-                        }
-                    }));
                     break;
 
                 case "Material":
@@ -847,14 +839,6 @@ namespace FormulaBase
                         _host.SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
                         m_Material.Add(_host);
                     }
-                    _host.Save(new HttpResponseDelegate(result =>
-                    {
-                        CallBackAdditem(result);
-                        if (callFunc != null)
-                        {
-                            callFunc();
-                        }
-                    }));
                     break;
 
                 case "Pet":
@@ -871,16 +855,21 @@ namespace FormulaBase
                         _host.SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
                         m_Pet.Add(_host);
                     }
-                    _host.Save(new HttpResponseDelegate(result =>
-                    {
-                        CallBackAdditem(result);
-                        if (callFunc != null)
-                        {
-                            callFunc();
-                        }
-                    }));
                     break;
             }
+
+            if (isSave)
+            {
+                _host.Save(new HttpResponseDelegate(result =>
+                {
+                    CallBackAdditem(result);
+                    if (callFunc != null)
+                    {
+                        callFunc();
+                    }
+                }));
+            }
+            return _host;
         }
 
         public void AddItemList(List<FormulaHost> _listHost)
@@ -888,65 +877,7 @@ namespace FormulaBase
             //BagManageComponent.Instance.SetBagHaveNew();
             for (int i = 0; i < _listHost.Count; i++)
             {
-                string itemType = _listHost[i].GetFileName();
-                FormulaHost t_host = null;
-                switch (itemType)
-                {
-                    case "Equip":
-                        if (_listHost[i].GetDynamicIntByKey(SignKeys.BAGINID) == 0)
-                        {//没有的东西
-                            _listHost[i].SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
-                            m_Equip.Add(_listHost[i]);
-                        }
-                        break;
-
-                    case "Material":
-                        t_host = MaterialManageComponent.Instance.HaveTheSameID(_listHost[i].GetDynamicIntByKey("ID"));
-                        if (t_host == null)
-                        {//有没有材料
-                            _listHost[i].SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
-                            m_Material.Add(_listHost[i]);
-                        }
-                        else
-                        {
-                            _listHost[i] = t_host;
-                        }
-                        break;
-
-                    case "Pet":
-                        //_listHost[i].Result(FormulaKeys.FORMULA_91);
-                        if ((int)_listHost[i].GetDynamicDataByKey(SignKeys.SMALLlTYPE) == 6)
-                        {//碎片
-                            t_host = PetManageComponent.Instance.HaveTheSameID(_listHost[i].GetDynamicIntByKey("ID"));
-                            if (t_host == null)
-                            {
-                                _listHost[i].SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
-                                m_Pet.Add(_listHost[i]);
-                            }
-                            else
-                            {
-                                _listHost[i] = t_host;
-                            }
-                        }
-                        else
-                        {
-                            if (_listHost[i].GetDynamicIntByKey(SignKeys.BAGINID) == 0)
-                            {//没有的东西
-                                _listHost[i].SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
-                                m_Pet.Add(_listHost[i]);
-                            }
-                        }
-                        break;
-
-                    case "Chest":
-                        if (_listHost[i].GetDynamicIntByKey(SignKeys.BAGINID) == 0)
-                        {//没有的东西
-                            Debugger.Log("添加宝箱 : " + _listHost[i].objectID);
-                            _listHost[i].SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
-                            m_Chest.Add(_listHost[i]);
-                        }
-                        break;
-                }
+                _listHost[i] = AddItem(_listHost[i], null, false);
             }
 
             FormulaHost.SaveList(_listHost, new HttpEndResponseDelegate(AddItemListCallBack));//所有的都是添加物品

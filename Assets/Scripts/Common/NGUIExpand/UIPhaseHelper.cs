@@ -527,27 +527,36 @@ public class UIPhaseHelper : MonoBehaviour
         //动画
         var originValue = 0;
         var afterValue = 0;
+
         if (int.TryParse(_label.text, out originValue) && int.TryParse(value.ToString(), out afterValue))
         {
-            switch (key)
+            if (originValue == -1)
             {
-                case "GOLD":
-                    {
-                        AccountGoldManagerComponent.Instance.PlayAnimate(afterValue - originValue);
-                    }
-                    break;
+                this._label.text = value.ToString();
+                return;
+            }
+            if (afterValue - originValue > 0)
+            {
+                switch (key)
+                {
+                    case "GOLD":
+                        {
+                            AccountGoldManagerComponent.Instance.PlayAnimate(afterValue - originValue);
+                        }
+                        break;
 
-                case "CRYSTAL":
-                    {
-                        AccountCrystalManagerComponent.Instance.PlayAnimate(afterValue - originValue);
-                    }
-                    break;
+                    case "CRYSTAL":
+                        {
+                            AccountCrystalManagerComponent.Instance.PlayAnimate(afterValue - originValue);
+                        }
+                        break;
 
-                case "CHARM":
-                    {
-                        AccountCharmComponent.Instance.PlayAnimate(afterValue - originValue);
-                    }
-                    break;
+                    case "CHARM":
+                        {
+                            AccountCharmComponent.Instance.PlayAnimate(afterValue - originValue);
+                        }
+                        break;
+                }
             }
         }
 

@@ -92,7 +92,7 @@ namespace PnlMainMenu
             var curCapsule = CapsuleManager.instance.curCapsule;
             var curCharm = AccountCharmComponent.Instance.GetCharm();
             var maxCharm = curCapsule.charmRequire;
-            txtCharm.text = curCharm.ToString();
+            //txtCharm.text = curCharm.ToString();
             txtCharmMax.text = maxCharm.ToString();
             sprCharmBar.width = (int)(300f * Mathf.Min((float)curCharm / (float)maxCharm, 1.0f));
 

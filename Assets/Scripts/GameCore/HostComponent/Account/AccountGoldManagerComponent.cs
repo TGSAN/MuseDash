@@ -83,7 +83,7 @@ namespace FormulaBase
 
             bool result = account.AddDynamicValueRemote(SignKeys.GOLD, money, isave, new HttpResponseDelegate((bool _result) =>
             {
-                m_IsAdd = true;
+                m_IsAdd = money > 0;
                 this.ChangeMoneyCallBack(_result);
                 if (rsp != null)
                 {

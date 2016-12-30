@@ -121,7 +121,7 @@ namespace PnlChar
             }
             for (int i = 1; i <= RoleManageComponent.Instance.GetRoleCount(); i++)
             {
-                OnSpiAnimLoad(i);
+                OnSpiAnimLoad(i, null, false);
             }
         }
 
@@ -132,6 +132,7 @@ namespace PnlChar
                 if (isChangeRole)
                 {
                     PnlCharInfo.PnlCharInfo.Instance.OnExit();
+                    PnlEquipInfo.PnlEquipInfo.Instance.OnExit();
                 }
             });
             onRoleChange += PnlCharInfo.PnlCharInfo.Instance.OnRoleChange;
@@ -256,7 +257,7 @@ namespace PnlChar
             }
         }
 
-        public void OnSpiAnimLoad(int idx, string p = null)
+        public void OnSpiAnimLoad(int idx, string p = null, bool isShow = true)
         {
             var path = string.Empty;
             if (p != null)
@@ -321,6 +322,10 @@ namespace PnlChar
                 foreach (var pair in m_SpiAniGODic)
                 {
                     pair.Value.SetActive(pair.Key == idx);
+                    if (!isShow)
+                    {
+                        pair.Value.SetActive(false);
+                    }
                 }
             });
         }

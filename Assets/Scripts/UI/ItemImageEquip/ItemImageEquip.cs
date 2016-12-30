@@ -51,6 +51,7 @@ namespace ItemImageEquip
                 sprSelected.gameObject.SetActive(value);
                 if (PnlSuitcase.PnlSuitcase.Instance.isUpgrade)
                 {
+                    playTween.enabled = false;
                     sprSelected.gameObject.SetActive(false);
                 }
             }
@@ -76,7 +77,10 @@ namespace ItemImageEquip
                 }
                 if (PnlSuitcase.PnlSuitcase.Instance.isUpgrade)
                 {
-                    PnlSuitcase.PnlSuitcase.Instance.SetLock(PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost.Count >= 3);
+                    var isOverThree = PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost.Count >= 3;
+                    PnlSuitcase.PnlSuitcase.Instance.SetLock(isOverThree);
+                    PnlCharInfo.PnlCharInfo.Instance.txtTip1.SetActive(!isOverThree);
+                    PnlCharInfo.PnlCharInfo.Instance.txtTip2.SetActive(isOverThree);
                 }
             }
         }
