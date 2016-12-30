@@ -279,14 +279,15 @@ namespace FormulaBase
         public bool PurchaseRole(int idx, Callback callBack = null)
         {
             var roleHost = GetRole(idx);
-            if (roleHost.GetDynamicIntByKey(SignKeys.SOLD) > AccountCrystalManagerComponent.Instance.GetCrystal())
+            var sold = roleHost.GetDynamicIntByKey(SignKeys.SOLD);
+            if (sold > AccountCrystalManagerComponent.Instance.GetCrystal())
             {
                 CommonPanel.GetInstance().ShowText("钻石不足哟~~");
                 CommonPanel.GetInstance().ShowWaittingPanel(false);
                 return false;
             }
             var result = true;
-            CommonPanel.GetInstance().ShowYesNo("是否确认购买人物", () => UnlockRole(idx, callBack), () =>
+            CommonPanel.GetInstance().ShowYesNo("是否确认用" + sold + "钻石购买人物", () => UnlockRole(idx, callBack), () =>
             {
                 CommonPanel.GetInstance().ShowWaittingPanel(false);
                 result = false;

@@ -63,7 +63,7 @@ namespace Assets.Scripts.Common.Tools
             return m_Gos;
         }
 
-        public void FlyAllItem(List<int> inVisibleIdx = null)
+        public void FlyAllItem(List<int> inVisibleIdx = null, Callback finishCallFunc = null)
         {
             m_Grid.gameObject.SetActive(true);
             foreach (var g in m_Gos)
@@ -71,7 +71,8 @@ namespace Assets.Scripts.Common.Tools
                 g.SetActive(true);
                 startPos = g.transform;
                 var isVisible = inVisibleIdx != null && !inVisibleIdx.Contains(m_Gos.IndexOf(g));
-                Fly(g, Vector3.zero, isVisible);
+                var isLast = m_Gos.IndexOf(g) == m_Gos.Length - 1;
+                Fly(g, Vector3.zero, isVisible, isLast ? finishCallFunc : null);
             }
             m_Gos = null;
         }

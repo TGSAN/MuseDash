@@ -1,6 +1,7 @@
 using Assets.Scripts.Common.Manager;
 using Assets.Scripts.Common.Tools;
 using com.ootii.Messages;
+using DG.Tweening;
 using FormulaBase;
 using PnlStore;
 
@@ -16,11 +17,14 @@ namespace PnlMainMenu
     {
         private static PnlMainMenu instance = null;
         public GameObject goSelectedSuitcase, goBtnEnhancement;
+        public UIButton btnSuitcase;
         public UILabel txtEnergy, txtCharm, txtCharmMax;
         public UISprite sprRecoverTime, sprCharmBar, sprExpBar;
         public UITweener twnEnergy, twnCoin, twnCrystal;
         public GameObject[] capsules;
         public RandomObjFly coin, crystal, charm, exp, energy, item;
+        public float barTime = 1.0f;
+        public AnimationCurve barCurve;
         private Animator m_CapsuleAnimator;
         private bool m_IsUnlockNextSong = false;
 
@@ -36,6 +40,10 @@ namespace PnlMainMenu
         {
             instance = this;
             m_IsUnlockNextSong = TaskStageTarget.isNextUnlock;
+            UIEventListener.Get(btnSuitcase.gameObject).onClick = go =>
+            {
+                PnlSuitcase.PnlSuitcase.Instance.SetTypeActive(true, false, false);
+            };
         }
 
         public override void OnShow()
@@ -86,7 +94,7 @@ namespace PnlMainMenu
             sprExpBar.transform.localScale = new Vector3(Mathf.Min((float)curExp / (float)expNextLvl, 1f), 1f, 1f);
         }
 
-        public void OnCharmUpdate(bool isUpdate = false, Action callFunc = null)
+        public void OnCharmUpdate(bool isUpdate = false, Action callFunc = null, bool isCapsuleShake = true)
         {
             GameObject capsule = null;
             var curCapsule = CapsuleManager.instance.curCapsule;
@@ -94,8 +102,8 @@ namespace PnlMainMenu
             var maxCharm = curCapsule.charmRequire;
             //txtCharm.text = curCharm.ToString();
             txtCharmMax.text = maxCharm.ToString();
-            sprCharmBar.width = (int)(300f * Mathf.Min((float)curCharm / (float)maxCharm, 1.0f));
-
+            var barValue = 300f * Mathf.Min((float)curCharm / (float)maxCharm, 1.0f);
+            DOTween.To(() => sprCharmBar.width, x => sprCharmBar.width = (int)x, barValue, barTime);
             for (var i = 0; i < capsules.Length; i++)
             {
                 if (i == curCapsule.path)
@@ -110,7 +118,7 @@ namespace PnlMainMenu
                 m_CapsuleAnimator.enabled = true;
                 if (m_CapsuleAnimator.isActiveAndEnabled)
                 {
-                    m_CapsuleAnimator.Play(curCharm >= maxCharm ? "capsule_unlocked" : "capsule_in_nolight");
+                    m_CapsuleAnimator.Play(curCharm >= maxCharm && isCapsuleShake ? "capsule_unlocked" : "capsule_in_nolight");
                 }
             }
         }

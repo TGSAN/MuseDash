@@ -36,6 +36,11 @@ namespace PnlCharUpgrade
         public void OnShow(FormulaHost roleHost, FormulaHost[] hosts, UpgradeInfo result)
         {
             gameObject.SetActive(true);
+            DOTweenUtils.Delay(() =>
+            {
+                gameObject.SetActive(false);
+            }, 6.4f);
+            return;
             var sprName = roleHost.GetDynamicStrByKey(SignKeys.NAME) + "_" + result.result.ToString().ToLower();
             sprChar.spriteName = sprName;
             sprCharFade.spriteName = sprName;
@@ -111,10 +116,6 @@ namespace PnlCharUpgrade
                     tex.transform.parent.gameObject.SetActive(false);
                 }
             }
-            DOTweenUtils.Delay(() =>
-            {
-                gameObject.SetActive(false);
-            }, 6.4f);
         }
 
         public override void BeCatched()

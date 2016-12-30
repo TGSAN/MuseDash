@@ -183,9 +183,9 @@ namespace Assets.Scripts.Common.Manager
             m_CurCapsule = null;
         }
 
-        public void OpenCapsule(HttpResponseDelegate callFunc = null)
+        public void OpenCapsule(HttpResponseDelegate callFunc = null, bool changeCharm = true)
         {
-            AccountCharmComponent.Instance.ChangeCharm(-curCapsule.charmRequire, true, result =>
+            Action<bool> playCallFunc = (result) =>
             {
                 if (result)
                 {
@@ -198,7 +198,8 @@ namespace Assets.Scripts.Common.Manager
                     foreach (var i in curCapsule.itemsID)
                     {
                         var id = ItemManageComponent.Instance.UIDToID(i);
-                        var iconPath = "items/icon/" + ConfigPool.Instance.GetConfigStringValue("items", id.ToString(), "icon");
+                        var iconPath = "items/icon/" +
+                                       ConfigPool.Instance.GetConfigStringValue("items", id.ToString(), "icon");
                         var typeName = ConfigPool.Instance.GetConfigStringValue("items", id.ToString(), "type");
                         var isCommon = ItemManageComponent.Instance.IsCommonItem(typeName);
                         var theIdx = idx;
@@ -220,7 +221,13 @@ namespace Assets.Scripts.Common.Manager
                     {
                         //开启新套装
                         equipHosts.ToList().ForEach(h => EquipManageComponent.Instance.OnNewCosCheck(h));
-                        PnlMainMenu.PnlMainMenu.Instance.item.FlyAllItem(notCommonObjIdx.Keys.ToList());
+                        PnlMainMenu.PnlMainMenu.Instance.item.FlyAllItem(notCommonObjIdx.Keys.ToList(), () =>
+                        {
+                            if (PnlSuitcase.PnlSuitcase.Instance != null)
+                            {
+                                PnlSuitcase.PnlSuitcase.Instance.UpdateSuitcase();
+                            }
+                        });
                         var i = 0;
                         foreach (var itemID in notCommonObjIdx.Values.ToList())
                         {
@@ -258,8 +265,20 @@ namespace Assets.Scripts.Common.Manager
                     });
                     PopCapsule();
                 }
+
                 if (callFunc != null) callFunc(result);
-            });
+            };
+            if (changeCharm)
+            {
+                AccountCharmComponent.Instance.ChangeCharm(-curCapsule.charmRequire, true, result =>
+                {
+                    playCallFunc(result);
+                });
+            }
+            else
+            {
+                playCallFunc(true);
+            }
         }
     }
 }

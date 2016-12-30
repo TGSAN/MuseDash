@@ -198,6 +198,10 @@ namespace FormulaBase
                     {
                         AccountGoldManagerComponent.Instance.ChangeMoney(awardCoin);
                     }
+                    BmobUnity.instance.Timestamp((resp, exception) =>
+                    {
+                        CheckDailyTask(host, resp.timestamp.Get());
+                    });
                 }
             });
         }

@@ -9341,6 +9341,7 @@ MonoBehaviour:
   HideAnimation: 
   goSelectedSuitcase: {fileID: 1000013215768442}
   goBtnEnhancement: {fileID: 1000011282375678}
+  btnSuitcase: {fileID: 114000012769264882}
   txtEnergy: {fileID: 114000012120225394}
   txtCharm: {fileID: 114000011672148776}
   txtCharmMax: {fileID: 114000010430561218}
@@ -9361,6 +9362,25 @@ MonoBehaviour:
   exp: {fileID: 114000013699142526}
   energy: {fileID: 114000013313590258}
   item: {fileID: 114000011775823636}
+  barTime: 1
+  barCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114000012651584222
 MonoBehaviour:
   m_ObjectHideFlags: 1

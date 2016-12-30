@@ -107,7 +107,7 @@ namespace PnlCapsuleOpen
             btnPurchase.gameObject.SetActive(false);
             if (PnlMainMenu.PnlMainMenu.Instance != null)
             {
-                PnlMainMenu.PnlMainMenu.Instance.OnCharmUpdate();
+                PnlMainMenu.PnlMainMenu.Instance.OnCharmUpdate(false, null, false);
             }
         }
 
@@ -117,15 +117,11 @@ namespace PnlCapsuleOpen
             instance = this;
             btnOpen.onClick.Add(new EventDelegate(() =>
             {
-                PlayAnimation();
                 CapsuleManager.instance.OpenCapsule((result) =>
                 {
                     if (result)
                     {
-                        if (PnlSuitcase.PnlSuitcase.Instance != null)
-                        {
-                            PnlSuitcase.PnlSuitcase.Instance.UpdateSuitcase();
-                        }
+                        PlayAnimation();
                     }
                 });
             }));
@@ -137,23 +133,14 @@ namespace PnlCapsuleOpen
                 var text = "确认用" + crystalRequired.ToString() + "钻石购买吗？";
                 Callback callback = () =>
                 {
-                    AccountCrystalManagerComponent.Instance.ChangeCrystal(-crystalRequired, true, r =>
+                    CapsuleManager.instance.OpenCapsule((result) =>
                     {
-                        if (r)
+                        if (result)
                         {
-                            CapsuleManager.instance.OpenCapsule((result) =>
-                            {
-                                PlayAnimation();
-                                if (result)
-                                {
-                                    if (PnlSuitcase.PnlSuitcase.Instance != null)
-                                    {
-                                        PnlSuitcase.PnlSuitcase.Instance.UpdateSuitcase();
-                                    }
-                                }
-                            });
+                            PlayAnimation();
+                            AccountCrystalManagerComponent.Instance.ChangeCrystal(-crystalRequired, true);
                         }
-                    });
+                    }, false);
                 };
                 if (crystalRequired > curCrystal)
                 {
