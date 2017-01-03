@@ -244,7 +244,6 @@ namespace GameLogic
                 sd.hitRange[GameMusic.GREAT_RANGE_INDEX] = sd.great_range;
                 sd.hitRange[GameMusic.COOL_RANGE_INDEX] = sd.cool_range;
                 sd.hitRangeAll = sd.perfect_range + sd.great_range + sd.cool_range;
-
                 this.Add(sd);
             }
         }
