@@ -176,9 +176,6 @@ namespace FormulaBase
                 {
                     if (templist[i].GetDynamicIntByKey(SignKeys.STACK_NUMBER) != 1)//可以堆叠
                     {
-                        int stackNumber = templist[i].GetDynamicIntByKey(SignKeys.STACKITEMNUMBER);
-                        stackNumber++;
-                        templist[i].SetDynamicData(SignKeys.STACKITEMNUMBER, stackNumber);
                         return templist[i];
                     }
                 }

@@ -360,7 +360,7 @@ public class ActiveAnimation : MonoBehaviour
         aa.Play(clipName, playDirection);
 
         if (aa.mAnim != null) aa.mAnim.Sample();
-        else if (aa.mAnimator != null) aa.mAnimator.Update(0f);
+        else if (aa.mAnimator != null && aa.mAnimator.gameObject.activeInHierarchy) aa.mAnimator.Update(0f);
         return aa;
     }
 }

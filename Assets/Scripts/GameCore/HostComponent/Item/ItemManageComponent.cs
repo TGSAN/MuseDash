@@ -301,12 +301,9 @@ namespace FormulaBase
                 Debugger.LogWarning("角色拥有的材料数量:" + _materialdic.Count);
                 foreach (string oid in _materialdic.Keys)
                 {
-                    m_Material.Add(_materialdic[oid]);
-                    int temp = (int)_materialdic[oid].Result(FormulaKeys.FORMULA_19);
-                    if (temp > id)
-                    {
-                        id = temp + 1;
-                    }
+                    var h = _materialdic[oid];
+                    m_Material.Add(h);
+                    id = Mathf.Max(id, h.GetDynamicIntByKey(SignKeys.BAGINID));
                 }
                 //	Debugger.Log("material count is :"+m_Material.Count);
             }
@@ -322,19 +319,16 @@ namespace FormulaBase
                 Debugger.LogWarning("角色拥有的装备数量:" + _EquipList.Count);
                 foreach (string oid in _EquipList.Keys)
                 {
-                    if (_EquipList[oid].GetDynamicDataByKey(SignKeys.EQUIPEDQUEUE) == 0)
+                    var h = _EquipList[oid];
+                    if (h.GetDynamicDataByKey(SignKeys.EQUIPEDQUEUE) == 0)
                     {
-                        m_Equip.Add(_EquipList[oid]);
+                        m_Equip.Add(h);
                     }
                     else
                     {
-                        EquipManageComponent.Instance.AddEquipedItem(_EquipList[oid]);
+                        EquipManageComponent.Instance.AddEquipedItem(h);
                     }
-                    int temp = (int)_EquipList[oid].GetDynamicDataByKey(SignKeys.BAGINID);
-                    if (temp > id)
-                    {
-                        id = temp + 1;
-                    }
+                    id = Mathf.Max(id, h.GetDynamicIntByKey(SignKeys.BAGINID));
                 }
             }
             //加载所有宠物
@@ -349,23 +343,23 @@ namespace FormulaBase
                 Debugger.LogWarning("角色拥有的宠物碎片和宠物数量:" + _PetList.Count);
                 foreach (string oid in _PetList.Keys)
                 {
-                    if (_PetList[oid].GetDynamicDataByKey(SignKeys.EQUIPEDQUEUE) == 0)
+                    var h = _PetList[oid];
+
+                    if (h.GetDynamicDataByKey(SignKeys.EQUIPEDQUEUE) == 0)
                     {
-                        m_Pet.Add(_PetList[oid]);
+                        m_Pet.Add(h);
                     }
                     else
                     {
-                        PetManageComponent.Instance.AddEquipedPet(_PetList[oid]);
+                        PetManageComponent.Instance.AddEquipedPet(h);
                     }
-                    int temp = (int)_PetList[oid].GetDynamicDataByKey(SignKeys.BAGINID);
-
-                    if (temp > id)
-                    {
-                        id = temp + 1;
-                    }
+                    id = Mathf.Max(id, h.GetDynamicIntByKey(SignKeys.BAGINID));
                 }
                 CheckChestTime();
             }
+
+            id++;
+            Debug.Log(id);
         }
 
         public void CheckChestTime()
@@ -447,7 +441,7 @@ namespace FormulaBase
             {
                 itemIDs.Add(i);
             }
-            return CreateItemList(itemIDs.ToArray(), 99);
+            return CreateItemList(itemIDs.ToArray());
         }
 
         public bool IsCommonItem(string itemType)
@@ -481,8 +475,7 @@ namespace FormulaBase
             if (typeName == "food")
             {
                 host = MaterialManageComponent.Instance.CreateItem(idx);
-                num += host.GetDynamicIntByKey(SignKeys.STACKITEMNUMBER);
-                host.SetDynamicData(SignKeys.STACKITEMNUMBER, num);
+                host.SetDynamicData(SignKeys.STACKITEMNUMBER, 1);
             }
             else if (typeName == "servant")
             {
@@ -834,11 +827,8 @@ namespace FormulaBase
 
                 case "Material":
                     //有没有材料
-                    if (!ContainsType(_host.GetDynamicIntByKey(SignKeys.ID)))
-                    {
-                        _host.SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
-                        m_Material.Add(_host);
-                    }
+                    _host.SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
+                    m_Material.Add(_host);
                     break;
 
                 case "Pet":
@@ -846,7 +836,7 @@ namespace FormulaBase
                     {
                         if (!ContainsType(_host.GetDynamicIntByKey(SignKeys.ID)))
                         {
-                            _host.SetDynamicData(SignKeys.BAGINID, id++);//添加获取物品 时间系数
+                            _host.SetDynamicData(SignKeys.BAGINID, id++); //添加获取物品 时间系数
                             m_Pet.Add(_host);
                         }
                     }

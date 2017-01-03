@@ -34,29 +34,25 @@ namespace PnlSuitcase
                         itemImageEquip.isLock = false;
                     }
                     upgradeSelectedHost.Clear();
-                    SetTypeActive(true, false, false);
                 }
                 else
                 {
                     OnShow();
                 }
-                DOTweenUtils.Delay(() =>
+                if (m_IsUpgrade)
                 {
-                    if (m_IsUpgrade)
+                    if (PnlEquipInfo.PnlEquipInfo.Instance.gameObject.activeSelf)
                     {
-                        if (PnlEquipInfo.PnlEquipInfo.Instance.gameObject.activeSelf)
-                        {
-                            SetTypeActive(true, false, false);
-                        }
-                        else
-                        {
-                            SetTypeActive(false, true, false);
-                        }
+                        SetTypeActive(true, false, false);
                     }
-                    tglEquip.enabled = !m_IsUpgrade;
-                    tglFood.enabled = !m_IsUpgrade;
-                    tglServant.enabled = !m_IsUpgrade;
-                }, 0.1f);
+                    else
+                    {
+                        SetTypeActive(false, true, false);
+                    }
+                }
+                tglEquip.enabled = !m_IsUpgrade;
+                tglFood.enabled = !m_IsUpgrade;
+                tglServant.enabled = !m_IsUpgrade;
             }
         }
 
@@ -145,6 +141,7 @@ namespace PnlSuitcase
                 m_Cells.Add(cellScript);
             }
             grid.enabled = true;
+            OnTypeChange();
         }
 
         public void SetSelectedCell(FormulaHost h)
@@ -236,6 +233,7 @@ namespace PnlSuitcase
                         PnlServantInfo.PnlServantInfo.Instance.OnExit();
                     }
                 }
+                cell.isSelected = false;
                 cell.gameObject.SetActive(isEquip || isFood || isServant);
             }
             grid.enabled = true;

@@ -72,8 +72,11 @@ namespace ItemImageEquip
                 }
                 else
                 {
-                    sprOn.gameObject.SetActive(false);
-                    PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost.Remove(host);
+                    if (sprOn != null)
+                    {
+                        sprOn.gameObject.SetActive(false);
+                        PnlSuitcase.PnlSuitcase.Instance.upgradeSelectedHost.Remove(host);
+                    }
                 }
                 if (PnlSuitcase.PnlSuitcase.Instance.isUpgrade)
                 {
@@ -204,12 +207,12 @@ namespace ItemImageEquip
 
                 return;
             }
-            txtLvl.gameObject.SetActive(true);
-            txtLv.gameObject.SetActive(true);
+            txtLvl.gameObject.SetActive(ItemManageComponent.Instance.IsServant(host) || ItemManageComponent.Instance.IsEquipment(host));
+            txtLv.gameObject.SetActive(txtLvl.gameObject.activeSelf);
             texIcon.gameObject.SetActive(true);
             if (txtCount != null)
             {
-                txtCount.gameObject.SetActive(true);
+                txtCount.gameObject.SetActive(ItemManageComponent.Instance.IsServantDebris(host));
             }
             var lvl = host.GetDynamicIntByKey(FormulaBase.SignKeys.LEVEL);
             var type = host.GetDynamicStrByKey(FormulaBase.SignKeys.TYPE);

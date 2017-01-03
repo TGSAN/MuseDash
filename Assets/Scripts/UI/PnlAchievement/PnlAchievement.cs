@@ -32,6 +32,8 @@ namespace PnlAchievement
         public UILabel[] labels;
         public UILabel txtEnergyCost;
         public UILabel txtTargetScore;
+        public GameObject goTrophyScore;
+        public UIButton btnTip;
 
         public TweenFill slideCombo;
         public TweenFill slidePerfect;
@@ -48,6 +50,7 @@ namespace PnlAchievement
 
         public override void OnShow(int idx)
         {
+            var stageHost = TaskStageTarget.Instance.GetStageByIdx(idx);
             if (!TaskStageTarget.Instance.Contains(idx))
             {
                 labels.ToList().ForEach(l => l.text = "0");
@@ -57,6 +60,14 @@ namespace PnlAchievement
             {
                 t.SetActive(false);
             }
+            if (stageHost != null)
+            {
+                goTrophyScore.SetActive(!TaskStageTarget.Instance.IsUnLockAllDiff(stageHost));
+            }
+            UIEventListener.Get(btnTip.gameObject).onClick = go =>
+            {
+                CommonPanel.GetInstance().ShowText("当前歌曲已获得奖杯数：" + (stageHost == null ? "0" : stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_EVLUATE + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL).ToString()).ToString());
+            };
             gameObject.SetActive(true);
             m_Idx = idx;
             this.StartCoroutine(this.__OnShow(0.1f));
