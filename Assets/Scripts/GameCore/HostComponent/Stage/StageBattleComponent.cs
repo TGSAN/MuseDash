@@ -790,14 +790,27 @@ namespace FormulaBase
                     _tno.result = GameMusic.PERFECT;
 
                     decimal _r = _i * FixUpdateTimer.dInterval;
-                    if (_r > hrPerfect || -_r < -hrPerfect)
+                    if (_r < 0)
                     {
-                        _tno.result = GameMusic.GREAT;
+                        if (-_r > hrPerfect)
+                        {
+                            _tno.result = GameMusic.GREAT;
+                        }
+                        if (-_r > hrGreate)
+                        {
+                            _tno.result = GameMusic.COOL;
+                        }
                     }
-
-                    if (_r > hrGreate || -_r < -hrGreate)
+                    else
                     {
-                        _tno.result = GameMusic.COOL;
+                        if (_r > hrPerfect)
+                        {
+                            _tno.result = GameMusic.GREAT;
+                        }
+                        if (_r > hrGreate)
+                        {
+                            _tno.result = GameMusic.COOL;
+                        }
                     }
 
                     int _tnoIdx = _s - _i;
@@ -851,6 +864,16 @@ namespace FormulaBase
             }
 
             return this._timeNodeOrder[_t];
+        }
+
+        public int GetPerfectIdxByTick(decimal tick)
+        {
+            var t = (int)(tick / FixUpdateTimer.dInterval);
+            while (!this._timeNodeOrder.ContainsKey(t))
+            {
+                t++;
+            }
+            return t;
         }
 
         public int GetStagePhysical()

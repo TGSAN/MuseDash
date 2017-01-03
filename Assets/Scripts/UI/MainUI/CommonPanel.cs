@@ -10,12 +10,13 @@ public class CommonPanel : MonoBehaviour
     public ShowText showText;
     public GameObject waittingPanel;
     public GameObject yesNoPanel, btnYes, btnNo, btnMask;
-    public UILabel txtYesNoContent;
+    public UILabel txtYesNoContent, TxtDebug;
 
     public GameObject GMRobot;                //GM机器人
     public UIMask UIMask;                     //各界面间的渐黑
     public UIGrid debugGrid;
     public GameObject theDebugPrefab;
+    public bool showDebug;
     private static CommonPanel m_Instance;
 
     public static CommonPanel GetInstance()
@@ -131,6 +132,18 @@ public class CommonPanel : MonoBehaviour
                 Destroy(go);
             }, 10.0f);
         }
+    }
+
+    public void DebugTxt(string info)
+    {
+        TxtDebug.gameObject.SetActive(showDebug);
+        TxtDebug.text = info;
+    }
+
+    public void SetDebugTxtVisible()
+    {
+        showDebug = !showDebug;
+        TxtDebug.gameObject.SetActive(showDebug);
     }
 
     /// <summary>
