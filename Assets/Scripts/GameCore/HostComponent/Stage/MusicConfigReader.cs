@@ -305,7 +305,6 @@ namespace GameLogic
                 md.tick = decimal.Round(sd.time, 2);
                 md.configData = sd;
                 md.SetAttackRangeRate(-1f);
-
                 string nodeId = md.configData.note_uid;
                 if (md.objId <= 0 || nodeId == null)
                 {

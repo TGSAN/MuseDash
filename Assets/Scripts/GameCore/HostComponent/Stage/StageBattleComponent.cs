@@ -8,6 +8,7 @@ using GameLogic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -780,7 +781,7 @@ namespace FormulaBase
                 decimal hrPerfect = md.nodeData.perfect_range;
                 decimal hrGreate = md.nodeData.perfect_range + md.nodeData.great_range;
 
-                for (int _i = 0; _i < _ivrtotal; _i++)
+                for (int _i = -_ivrtotal / 2; _i < _ivrtotal / 2; _i++)
                 {
                     TimeNodeOrder _tno = new TimeNodeOrder();
                     _tno.idx = md.objId;
@@ -789,18 +790,17 @@ namespace FormulaBase
                     _tno.result = GameMusic.PERFECT;
 
                     decimal _r = _i * FixUpdateTimer.dInterval;
-                    if (_r > hrPerfect)
+                    if (_r > hrPerfect || -_r < -hrPerfect)
                     {
                         _tno.result = GameMusic.GREAT;
                     }
 
-                    if (_r > hrGreate)
+                    if (_r > hrGreate || -_r < -hrGreate)
                     {
                         _tno.result = GameMusic.COOL;
                     }
 
                     int _tnoIdx = _s - _i;
-
                     if (!this._timeNodeOrder.ContainsKey(_tnoIdx))
                     {
                         this._timeNodeOrder[_tnoIdx] = new List<TimeNodeOrder>();

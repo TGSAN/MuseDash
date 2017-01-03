@@ -343,7 +343,6 @@ namespace GameLogic
 
                 //3, Phase play result(punch or jump ok, cool/great/perfect) of current hit node.
                 uint resultCode = tno.result;
-                Debug.Log(resultCode + "=======" + tno.idx);
                 if (tno.mustJump != this.IsJump())
                 {
                     resultCode = GameMusic.NONE;
