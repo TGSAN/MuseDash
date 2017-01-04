@@ -5,14 +5,14 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 480932}
-  - 33: {fileID: 3304694}
-  - 23: {fileID: 2382570}
-  - 114: {fileID: 11462214}
-  - 114: {fileID: 11413786}
-  - 114: {fileID: 114000013196485540}
+  - component: {fileID: 480932}
+  - component: {fileID: 3304694}
+  - component: {fileID: 2382570}
+  - component: {fileID: 11462214}
+  - component: {fileID: 11413786}
+  - component: {fileID: 114000013196485540}
   m_Layer: 0
   m_Name: 050202_sud_160
   m_TagString: Untagged
@@ -47,7 +47,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: d35d44345028bab43be2dcb9bde22760, type: 2}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -55,7 +57,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89

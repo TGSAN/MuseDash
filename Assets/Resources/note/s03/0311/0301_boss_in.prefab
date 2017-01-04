@@ -5,13 +5,13 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 434906}
-  - 33: {fileID: 3337244}
-  - 23: {fileID: 2366162}
-  - 114: {fileID: 11465818}
-  - 114: {fileID: 114000013615404544}
+  - component: {fileID: 434906}
+  - component: {fileID: 3337244}
+  - component: {fileID: 2366162}
+  - component: {fileID: 11465818}
+  - component: {fileID: 114000013615404544}
   m_Layer: 0
   m_Name: 0301_boss_in
   m_TagString: Untagged
@@ -46,7 +46,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: cc19168b3fed1aa4ba99d3b433fce5d2, type: 2}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -54,7 +56,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -136,4 +138,4 @@ MonoBehaviour:
     actionIdx: 00000000010000000200000003000000040000000000000000000000000000000000000000000000
     actionEventIdx: 01000000010000000100000001000000010000000000000000000000000000000000000000000000
   actionMode: 0
-  startDelay: 3
+  startDelay: 2
