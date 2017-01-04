@@ -35,6 +35,15 @@ public class GMOrderPanel : MonoBehaviour
         AccountManagerComponent.Instance.DeletePlayerData(new HttpEndResponseDelegate(DeleteAccountCallBack));
     }
 
+    public void SetMusicDelayPlayTime(UILabel label)
+    {
+        var output = 0.0f;
+        if (float.TryParse(label.text, out output))
+        {
+            GameGlobal.MUSIC_DELAY_FOR_LOAD_TIME = output;
+        }
+    }
+
     private void DeleteAccountCallBack(cn.bmob.response.EndPointCallbackData<Hashtable> response)
     {
         Debug.Log("删除数据的反馈");

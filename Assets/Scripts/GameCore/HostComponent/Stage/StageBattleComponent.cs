@@ -630,24 +630,16 @@ namespace FormulaBase
 
             GameGlobal.gGameMusic.PlayMusic();
 
-#if UNITY_ANDROID && !UNITY_EDITOR
             //延迟0.1s用于音频加载不同步缓冲
             AudioManager.Instance.SetBgmVolume(0f);
             DOTweenUtils.Delay(() =>
             {
                 AudioManager.Instance.SetBgmVolume(1.0f);
-                AudioManager.Instance.SetBackGroundMusicProgress(0.1f);
-                DOTweenUtils.Delay(() =>
-                {
-                    GameGlobal.gGameMusic.Run();
-                    GameGlobal.gGameMusicScene.Run();
-                    Debug.Log("Stage start");
-                }, 0.1f);
-            }, 0.1f);
-#else
-            GameGlobal.gGameMusic.Run();
-            GameGlobal.gGameMusicScene.Run();
-#endif
+                AudioManager.Instance.SetBackGroundMusicProgress(0.0f);
+                GameGlobal.gGameMusic.Run();
+                GameGlobal.gGameMusicScene.Run();
+                Debug.Log("Stage start");
+            }, GameGlobal.MUSIC_DELAY_FOR_LOAD_TIME);
 
             //UserUI.Instance.SetGUIActive (false);
         }

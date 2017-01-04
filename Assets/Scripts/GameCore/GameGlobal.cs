@@ -62,7 +62,7 @@ namespace GameLogic
         public const decimal DEFAULT_MUSIC_LEN = 240m;
         public const decimal DEFAULT_END_CD = 0.5m;
         public const decimal CONTINUE_ATTACK_IVR = 0.5m;
-        public const decimal COMEOUT_TIME_MAX = 2m;
+        public const decimal COMEOUT_TIME_MAX = 3m;
         public const int TOUCH_PHASE_COUNT = 5;
 
         // combo distance
@@ -108,6 +108,7 @@ namespace GameLogic
         public const int SKILL_CARRY_LIMITE = 5;
         public const int ROLE_CARRY_LIMITE = 5;
         public const uint FEVER_MAX = 100;
+        public static float MUSIC_DELAY_FOR_LOAD_TIME = 0.0f;
 
         public const uint PLAY_RESULT_LOCK_LEVEL_LONG_PRESS = 1;
         public const uint PLAY_RESULT_LOCK_LEVEL_BUFF = 2;
