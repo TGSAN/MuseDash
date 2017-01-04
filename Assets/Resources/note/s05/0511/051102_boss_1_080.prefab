@@ -5,15 +5,15 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 451122}
-  - 33: {fileID: 3338738}
-  - 23: {fileID: 2362022}
-  - 114: {fileID: 11451738}
-  - 114: {fileID: 11438004}
-  - 114: {fileID: 114000010925788626}
-  - 114: {fileID: 114000012125447682}
+  - component: {fileID: 451122}
+  - component: {fileID: 3338738}
+  - component: {fileID: 2362022}
+  - component: {fileID: 11451738}
+  - component: {fileID: 11438004}
+  - component: {fileID: 114000010925788626}
+  - component: {fileID: 114000012125447682}
   m_Layer: 0
   m_Name: 051102_boss_1_080
   m_TagString: Untagged
@@ -48,7 +48,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: 13baa19120a290a458fff6d76893f26b, type: 2}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -56,7 +58,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89

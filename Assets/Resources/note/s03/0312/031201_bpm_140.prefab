@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 11405166}
   - component: {fileID: 11480166}
   - component: {fileID: 114000010394971064}
+  - component: {fileID: 95634694845583924}
   m_Layer: 0
   m_Name: 031201_bpm_140
   m_TagString: Untagged
@@ -190,7 +191,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1721604350721614
 GameObject:
   m_ObjectHideFlags: 1
@@ -249,6 +250,23 @@ Transform:
   m_Father: {fileID: 4400753874884382}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &95634694845583924
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190260}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 69583ce0a26ddfb4b917144682a60df8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000010394971064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -273,7 +291,7 @@ ParticleSystem:
   serializedVersion: 5
   lengthInSec: 2
   speed: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   autoRandomSeed: 1
@@ -319,7 +337,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -379137528
+  randomSeed: 599540185
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -2790,7 +2808,7 @@ ParticleSystem:
   serializedVersion: 5
   lengthInSec: 2
   speed: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   autoRandomSeed: 1
@@ -2836,7 +2854,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1046189523
+  randomSeed: 621914649
   InitialModule:
     serializedVersion: 3
     enabled: 1

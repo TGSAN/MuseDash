@@ -5,14 +5,14 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 439912}
-  - 33: {fileID: 3314432}
-  - 23: {fileID: 2314250}
-  - 114: {fileID: 11450074}
-  - 114: {fileID: 11441930}
-  - 114: {fileID: 114000013692239838}
+  - component: {fileID: 439912}
+  - component: {fileID: 3314432}
+  - component: {fileID: 2314250}
+  - component: {fileID: 11450074}
+  - component: {fileID: 11441930}
+  - component: {fileID: 114000013692239838}
   m_Layer: 0
   m_Name: 000601_box
   m_TagString: Untagged
@@ -47,7 +47,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: 70a60f8995a321a4d85604807b786f12, type: 2}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -55,7 +57,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89

@@ -5,14 +5,14 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 475460}
-  - 33: {fileID: 3314428}
-  - 23: {fileID: 2382234}
-  - 114: {fileID: 11461372}
-  - 114: {fileID: 11435138}
-  - 114: {fileID: 114000012055281172}
+  - component: {fileID: 475460}
+  - component: {fileID: 3314428}
+  - component: {fileID: 2382234}
+  - component: {fileID: 11461372}
+  - component: {fileID: 11435138}
+  - component: {fileID: 114000012055281172}
   m_Layer: 0
   m_Name: 050704_jumphit_080
   m_TagString: Untagged
@@ -47,7 +47,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: 604624aa49f8c6e47906a9cce1fa48ef, type: 2}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -55,7 +57,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
