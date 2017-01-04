@@ -51,7 +51,6 @@ namespace GameLogic
                 Debug.Log("Spine Object Controller is null with " + idx);
                 return;
             }
-
             if (!bsc.ControllerMissCheck(idx, currentTick))
             {
                 return;

@@ -21,6 +21,7 @@ namespace FormulaBase
         public uint result;
         public bool mustJump;
         public bool enableJump;
+        public bool isPerfectNode;
     }
 
     public class StageBattleComponent : CustomComponentBase
@@ -777,43 +778,54 @@ namespace FormulaBase
                 }
 
                 int _s = (int)(md.tick / FixUpdateTimer.dInterval);
-                int _ivrtotal = (int)(md.nodeData.hitRangeAll / FixUpdateTimer.dInterval);
-                decimal hrPerfect = md.nodeData.perfect_range;
-                decimal hrGreate = md.nodeData.perfect_range + md.nodeData.great_range;
-
-                for (int _i = -_ivrtotal / 2; _i < _ivrtotal / 2; _i++)
+                int aIvrtotal = (int)(md.nodeData.hitRangeA / FixUpdateTimer.dInterval);
+                var bIvrtotal = (int)(md.nodeData.hitRangeB / FixUpdateTimer.dInterval);
+                decimal aPerfectRange = md.nodeData.a_perfect_range;
+                decimal aGreatRange = md.nodeData.a_perfect_range + md.nodeData.a_great_range;
+                decimal bPerfectRange = md.nodeData.b_perfect_range;
+                decimal bGreatRange = md.nodeData.b_perfect_range + md.nodeData.b_great_range;
+                for (int _i = 0; _i <= aIvrtotal; _i++)
                 {
                     TimeNodeOrder _tno = new TimeNodeOrder();
                     _tno.idx = md.objId;
                     _tno.mustJump = md.nodeData.jump_note;
                     _tno.enableJump = (md.nodeData.enable_jump == 1);
                     _tno.result = GameMusic.PERFECT;
-
+                    _tno.isPerfectNode = _i == 0;
                     decimal _r = _i * FixUpdateTimer.dInterval;
-                    if (_r < 0)
+                    if (_r > aPerfectRange)
                     {
-                        if (-_r > hrPerfect)
-                        {
-                            _tno.result = GameMusic.GREAT;
-                        }
-                        if (-_r > hrGreate)
-                        {
-                            _tno.result = GameMusic.COOL;
-                        }
+                        _tno.result = GameMusic.GREAT;
                     }
-                    else
+                    if (_r > aGreatRange)
                     {
-                        if (_r > hrPerfect)
-                        {
-                            _tno.result = GameMusic.GREAT;
-                        }
-                        if (_r > hrGreate)
-                        {
-                            _tno.result = GameMusic.COOL;
-                        }
+                        _tno.result = GameMusic.COOL;
+                    }
+                    int _tnoIdx = _s + _i;
+                    if (!this._timeNodeOrder.ContainsKey(_tnoIdx))
+                    {
+                        this._timeNodeOrder[_tnoIdx] = new List<TimeNodeOrder>();
                     }
 
-                    int _tnoIdx = _s - _i;
+                    this._timeNodeOrder[_tnoIdx].Add(_tno);
+                }
+                for (int _i = -bIvrtotal; _i < 0; _i++)
+                {
+                    TimeNodeOrder _tno = new TimeNodeOrder();
+                    _tno.idx = md.objId;
+                    _tno.mustJump = md.nodeData.jump_note;
+                    _tno.enableJump = (md.nodeData.enable_jump == 1);
+                    _tno.result = GameMusic.PERFECT;
+                    decimal _r = _i * FixUpdateTimer.dInterval;
+                    if (-_r > bPerfectRange)
+                    {
+                        _tno.result = GameMusic.GREAT;
+                    }
+                    if (-_r > bGreatRange)
+                    {
+                        _tno.result = GameMusic.COOL;
+                    }
+                    int _tnoIdx = _s + _i;
                     if (!this._timeNodeOrder.ContainsKey(_tnoIdx))
                     {
                         this._timeNodeOrder[_tnoIdx] = new List<TimeNodeOrder>();
@@ -869,11 +881,21 @@ namespace FormulaBase
         public int GetPerfectIdxByTick(decimal tick)
         {
             var t = (int)(tick / FixUpdateTimer.dInterval);
-            while (!this._timeNodeOrder.ContainsKey(t))
+            var t1 = t;
+            while (!(this._timeNodeOrder.ContainsKey(t1) && this._timeNodeOrder[t1].Exists(n => n.isPerfectNode)))
             {
-                t++;
+                t1++;
             }
-            return t;
+            var t2 = t;
+            while (!(this._timeNodeOrder.ContainsKey(t2) && this._timeNodeOrder[t2].Exists(n => n.isPerfectNode)) && t2 > 0)
+            {
+                t2--;
+            }
+            if (Mathf.Abs(t - t1) < Mathf.Abs(t - t2))
+            {
+                return t1;
+            }
+            return t2;
         }
 
         public int GetStagePhysical()

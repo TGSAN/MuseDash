@@ -46,9 +46,13 @@ namespace GameLogic
         public string boss_hurt;
         public string char_action;
 
-        public decimal perfect_range;
-        public decimal great_range;
-        public decimal cool_range;
+        public decimal a_perfect_range;
+        public decimal a_great_range;
+        public decimal a_cool_range;
+
+        public decimal b_perfect_range;
+        public decimal b_great_range;
+        public decimal b_cool_range;
 
         public int damage;
         public int prop_value;
@@ -61,7 +65,8 @@ namespace GameLogic
         public bool jump_note;
         public bool isShowPlayEffect;
         public decimal[] hitRange;
-        public decimal hitRangeAll;
+        public decimal hitRangeA;
+        public decimal hitRangeB;
     }
 
     public struct MusicConfigData
@@ -124,7 +129,7 @@ namespace GameLogic
 
         public uint ResultPhaser(decimal passedTick)
         {               //(check) check attack point position here
-            decimal result = this.Tick() - passedTick;
+            /*decimal result = this.Tick() - passedTick;
             decimal perfectRange = this.nodeData.hitRange[GameMusic.PERFECT_RANGE_INDEX];
             decimal greateRange = this.nodeData.hitRange[GameMusic.GREAT_RANGE_INDEX];
             decimal coolRange = this.nodeData.hitRange[GameMusic.COOL_RANGE_INDEX];
@@ -159,7 +164,7 @@ namespace GameLogic
             {
                 return GameMusic.COOL;
             }
-
+*/
             return GameMusic.NONE;
         }
     }
@@ -177,7 +182,7 @@ namespace GameLogic
 
         public static NodeConfigReader Instance = new NodeConfigReader();
 
-        private const uint lenHitRange = 3;
+        private const uint lenHitRange = 6;
 
         // override Init
         public override void Init()
@@ -240,10 +245,14 @@ namespace GameLogic
                 }
 
                 sd.hitRange = new decimal[lenHitRange];
-                sd.hitRange[GameMusic.PERFECT_RANGE_INDEX] = sd.perfect_range;
-                sd.hitRange[GameMusic.GREAT_RANGE_INDEX] = sd.great_range;
-                sd.hitRange[GameMusic.COOL_RANGE_INDEX] = sd.cool_range;
-                sd.hitRangeAll = sd.perfect_range + sd.great_range + sd.cool_range;
+                sd.hitRange[GameMusic.A_PERFECT_RANGE_INDEX] = sd.a_perfect_range;
+                sd.hitRange[GameMusic.A_GREAT_RANGE_INDEX] = sd.a_great_range;
+                sd.hitRange[GameMusic.A_COOL_RANGE_INDEX] = sd.a_cool_range;
+                sd.hitRange[GameMusic.B_PERFECT_RANGE_INDEX] = sd.b_perfect_range;
+                sd.hitRange[GameMusic.B_GREAT_RANGE_INDEX] = sd.b_great_range;
+                sd.hitRange[GameMusic.B_COOL_RANGE_INDEX] = sd.b_cool_range;
+                sd.hitRangeA = sd.a_perfect_range + sd.a_great_range + sd.a_cool_range;
+                sd.hitRangeB = sd.b_perfect_range + sd.b_great_range + sd.b_cool_range;
                 this.Add(sd);
             }
         }
