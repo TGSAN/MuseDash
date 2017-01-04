@@ -65,7 +65,7 @@ namespace FormulaBase
             return count;
         }
 
-        public int GetChoseRoleIdx()
+/*        public int GetChoseRoleIdx()
         {
             var idx = 1;
             foreach (var formulaHost in HostList.Values)
@@ -77,12 +77,12 @@ namespace FormulaBase
                 }
             }
             return idx;
-        }
+        } 
 
         public FormulaHost GetChoseGirl()
         {
             return GetRole(GetChoseRoleIdx());
-        }
+        }*/
 
         public FormulaHost GetRole(string name)
         {
@@ -122,10 +122,10 @@ namespace FormulaBase
             //初始化角色信息
             UpdateRoleInfo(hostList);
             // 初始化战斗角色
-            this.SetFightGirlIndex(GetChoseRoleIdx(), () =>
-            {
-                this.SetFightGirlCallBack(null);
-            });
+//            this.SetFightGirlIndex(GetChoseRoleIdx(), () =>
+//            {
+//                this.SetFightGirlCallBack(null);
+//            });
             this.SetFightGirlClothByOrder(1);
         }
 
@@ -402,9 +402,9 @@ namespace FormulaBase
             {
                 CommonPanel.GetInstance().ShowWaittingPanel();
             }
-            if (PnlAdventure.PnlAdventure.Instance != null)
+            if (PnlHome.PnlHome.Instance != null)
             {
-                PnlAdventure.PnlAdventure.Instance.ChoseGirl();
+				PnlHome.PnlHome.Instance.ChoseGirl();
             }
             if (_callBack != null)
             {

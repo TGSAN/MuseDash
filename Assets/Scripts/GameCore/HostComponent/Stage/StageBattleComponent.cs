@@ -707,7 +707,7 @@ namespace FormulaBase
 
         private void OnExit()
         {
-            PnlAdventure.PnlAdventure.backFromBattle = true;
+			PnlHome.PnlHome.backFromBattle = true;
             SceneManager.LoadScene(GameGlobal.LOADING_SCENE_NAME);
         }
 

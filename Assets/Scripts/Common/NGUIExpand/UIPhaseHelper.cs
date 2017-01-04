@@ -88,6 +88,7 @@ public class UIPhaseHelper : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+		
         this.Init();
     }
 
@@ -102,7 +103,9 @@ public class UIPhaseHelper : MonoBehaviour
         {
             return;
         }
-
+		if (root == null) {
+			Debug.Log (gameObject.name + "====");
+		}
         UIRootHelper urh = this.root.GetComponent<UIRootHelper>();
         this._label = this.gameObject.GetComponent<UILabel>();
         this._button = this.gameObject.GetComponent<UIButton>();

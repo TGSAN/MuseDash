@@ -113,7 +113,7 @@ namespace PnlSuitcase
         public override void OnHide()
         {
             PnlEquipInfo.PnlEquipInfo.Instance.OnHide();
-            PnlFoodInfo.PnlFoodInfo.Instance.OnHide();
+            //PnlFoodInfo.PnlFoodInfo.Instance.OnHide();
             PnlServantInfo.PnlServantInfo.Instance.OnHide();
             SetSelectedCell(null);
         }
@@ -211,11 +211,11 @@ namespace PnlSuitcase
                 {
                     if (m_SelectedHost != null && m_SelectedHost.GetFileName() == "Material")
                     {
-                        PnlFoodInfo.PnlFoodInfo.Instance.OnHide();
+                        //PnlFoodInfo.PnlFoodInfo.Instance.OnHide();
                     }
                     else
                     {
-                        PnlFoodInfo.PnlFoodInfo.Instance.OnExit();
+                        //PnlFoodInfo.PnlFoodInfo.Instance.OnExit();
                     }
                 }
                 if (tglServant.value)

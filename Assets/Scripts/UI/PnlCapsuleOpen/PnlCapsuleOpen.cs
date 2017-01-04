@@ -107,7 +107,7 @@ namespace PnlCapsuleOpen
             btnPurchase.gameObject.SetActive(false);
             if (PnlMainMenu.PnlMainMenu.Instance != null)
             {
-                PnlMainMenu.PnlMainMenu.Instance.OnCharmUpdate(false, null, false);
+//                PnlMainMenu.PnlMainMenu.Instance.OnCharmUpdate(false, null, false);
             }
         }
 

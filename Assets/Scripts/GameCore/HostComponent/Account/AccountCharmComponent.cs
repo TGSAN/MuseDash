@@ -27,8 +27,8 @@ namespace FormulaBase
             if (m_IsAdd && PnlMainMenu.PnlMainMenu.Instance != null)
             {
                 m_IsAdd = false;
-                PnlMainMenu.PnlMainMenu.Instance.charm.FlyAll();
-                PnlMainMenu.PnlMainMenu.Instance.OnCharmUpdate();
+//                PnlMainMenu.PnlMainMenu.Instance.charm.FlyAll();
+//                PnlMainMenu.PnlMainMenu.Instance.OnCharmUpdate();
             }
         }
 

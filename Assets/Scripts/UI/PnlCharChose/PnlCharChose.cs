@@ -79,7 +79,7 @@ namespace PnlCharChose
                 OnHide();
                 if (!PnlChar.PnlChar.Instance.gameObject.activeSelf)
                 {
-                    PnlAdventure.PnlAdventure.Instance.OnShow();
+					PnlHome.PnlHome.Instance.OnShow();
                 }
                 else
                 {

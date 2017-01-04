@@ -16,10 +16,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000013098504356}
-  - 114: {fileID: 114000011775949898}
+  - component: {fileID: 4000013098504356}
+  - component: {fileID: 114000011775949898}
   m_Layer: 0
   m_Name: achievement_atlas
   m_TagString: Untagged
@@ -36,10 +36,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114000011775949898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54,8 +54,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: f0efc3a594cc9894f9aa4228a342137e, type: 2}
   mSprites:
   - name: achievement_line
-    x: 326
-    y: 800
+    x: 267
+    y: 827
     width: 32
     height: 6
     borderLeft: 1
@@ -67,8 +67,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: achievement_progress
-    x: 471
-    y: 922
+    x: 0
+    y: 586
     width: 510
     height: 48
     borderLeft: 0
@@ -80,8 +80,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: achievement_progress_base
-    x: 471
-    y: 974
+    x: 0
+    y: 636
     width: 510
     height: 50
     borderLeft: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: achievemt_button
-    x: 254
+    x: 0
     y: 810
     width: 213
     height: 214
@@ -106,8 +106,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: default_head_icon
-    x: 741
-    y: 778
+    x: 375
+    y: 954
     width: 70
     height: 70
     borderLeft: 0
@@ -119,8 +119,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: mask
-    x: 254
-    y: 774
+    x: 267
+    y: 835
     width: 32
     height: 32
     borderLeft: 0
@@ -132,8 +132,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: player_image
-    x: 815
-    y: 778
+    x: 303
+    y: 954
     width: 70
     height: 70
     borderLeft: 0
@@ -145,8 +145,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: rank_base
-    x: 665
-    y: 852
+    x: 0
+    y: 520
     width: 344
     height: 16
     borderLeft: 3
@@ -158,21 +158,21 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: rank_label
-    x: 471
-    y: 788
-    width: 100
-    height: 80
-    borderLeft: 77
-    borderRight: 9
-    borderTop: 9
-    borderBottom: 9
+    x: 303
+    y: 886
+    width: 32
+    height: 32
+    borderLeft: 10
+    borderRight: 10
+    borderTop: 10
+    borderBottom: 10
     paddingLeft: 0
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
   - name: socre_base
     x: 0
-    y: 622
+    y: 370
     width: 32
     height: 148
     borderLeft: 1
@@ -185,9 +185,9 @@ MonoBehaviour:
     paddingBottom: 0
   - name: start_button
     x: 0
-    y: 774
-    width: 250
-    height: 250
+    y: 688
+    width: 333
+    height: 120
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -197,8 +197,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: trophy_base
-    x: 290
-    y: 774
+    x: 303
+    y: 920
     width: 32
     height: 32
     borderLeft: 1
@@ -210,8 +210,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: trophy_icon
-    x: 943
-    y: 800
+    x: 447
+    y: 976
     width: 50
     height: 48
     borderLeft: 0
@@ -223,8 +223,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: trophy_icon_gray
-    x: 575
-    y: 787
+    x: 215
+    y: 943
     width: 86
     height: 81
     borderLeft: 0
@@ -236,8 +236,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: trophy_info_button
-    x: 889
-    y: 798
+    x: 215
+    y: 817
     width: 50
     height: 50
     borderLeft: 0
@@ -249,8 +249,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: trophy_label
-    x: 665
-    y: 776
+    x: 215
+    y: 869
     width: 72
     height: 72
     borderLeft: 9
@@ -262,8 +262,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: trophy_score_label
-    x: 471
-    y: 872
+    x: 0
+    y: 538
     width: 454
     height: 46
     borderLeft: 35

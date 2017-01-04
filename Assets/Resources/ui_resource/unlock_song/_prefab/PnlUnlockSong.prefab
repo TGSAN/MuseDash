@@ -199,7 +199,6 @@ GameObject:
   - component: {fileID: 4000010794820392}
   - component: {fileID: 114000013973099588}
   - component: {fileID: 65000011125559400}
-  - component: {fileID: 114000012306418692}
   m_Layer: 5
   m_Name: SprMask
   m_TagString: Untagged
@@ -227,7 +226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000012525812152
 GameObject:
   m_ObjectHideFlags: 1
@@ -237,6 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010354452828}
   - component: {fileID: 114000011792286402}
+  - component: {fileID: 114704713419477990}
   m_Layer: 5
   m_Name: TxtAuthor
   m_TagString: Untagged
@@ -318,6 +318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013583065528}
   - component: {fileID: 114000011526661852}
+  - component: {fileID: 114042948938083102}
   m_Layer: 5
   m_Name: TxtSongName
   m_TagString: Untagged
@@ -557,7 +558,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012434066324}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 4000012235210754}
@@ -1034,8 +1035,9 @@ MonoBehaviour:
   - {fileID: 114000013497038112}
   - {fileID: 114000010311503970}
   - {fileID: 114096483466819390}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114000012999495388}
+  - {fileID: 114042948938083102}
+  - {fileID: 114704713419477990}
   - {fileID: 114621456770229642}
 --- !u!114 &114000010398319842
 MonoBehaviour:
@@ -1699,58 +1701,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 65f66dd2f3cd949b28da34f9929d6faf, type: 2}
   mSpriteName: white_circle
   mFillCenter: 1
---- !u!114 &114000012306418692
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011597561862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  root: {fileID: 1000012434066324}
-  clickResponseObjects:
-  - {fileID: 0}
-  clickResponseParentNames:
-  - 
-  - 
-  clickResponseObjectsIsShow: 01
-  clickResponseParentNamesIsShow: 0101
-  clickResponseObjectAnimations:
-  - 
-  clickResponseParentAnimations:
-  - 
-  - 
-  isFoldObjs: 0
-  isFoldParentObjs: 1
-  isForceKeep: 0
-  isAnimateTxt: 0
-  txtAnimTime: 0
-  txtCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  isClickHideSelf: 0
-  isClickHideParent: 0
-  des: "\u672A\u6709\u63CF\u8FF0"
-  activeHostKeyId: 0
-  activeCondiction: LEVEL
-  activeValue: 
-  labelHostKeyId: 0
-  labelMatchSign: 
-  labelMatchSelfDefineSign: 
-  sliderHostKeyId: 0
-  sliderMatchSign: 
-  sliderMaxSign: 
-  isNeedTranslate: 0
-  onClickModuleName: OnClickBtnMask
-  onTweenAniFinishedModuleName: 
-  onSliderModuleName: 
-  scrollerTableDataModuleName: 
 --- !u!114 &114000012381750818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1961,7 +1911,7 @@ MonoBehaviour:
   sliderMaxSign: 
   isNeedTranslate: 0
   onClickModuleName: 
-  onTweenAniFinishedModuleName: OnTweenFinishedSprPurpleShine
+  onTweenAniFinishedModuleName: OnTweenFinishedSprPurpleShine2
   onSliderModuleName: 
   scrollerTableDataModuleName: 
 --- !u!114 &114000013497038112
@@ -2141,6 +2091,52 @@ MonoBehaviour:
   mAtlas: {fileID: 0}
   mSpriteName: trophy_icon
   mFillCenter: 1
+--- !u!114 &114042948938083102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014214172878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 1000012434066324}
+  clickResponseObjects: []
+  clickResponseParentNames: []
+  clickResponseObjectsIsShow: 
+  clickResponseParentNamesIsShow: 
+  clickResponseObjectAnimations: []
+  clickResponseParentAnimations: []
+  isFoldObjs: 0
+  isFoldParentObjs: 0
+  isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  isClickHideSelf: 0
+  isClickHideParent: 0
+  des: "\u672A\u6709\u63CF\u8FF0"
+  activeHostKeyId: 0
+  activeCondiction: 
+  activeValue: 
+  labelHostKeyId: 0
+  labelMatchSign: 
+  labelMatchSelfDefineSign: 
+  sliderHostKeyId: 0
+  sliderMatchSign: 
+  sliderMaxSign: 
+  isNeedTranslate: 0
+  onClickModuleName: 
+  onTweenAniFinishedModuleName: 
+  onSliderModuleName: 
+  scrollerTableDataModuleName: 
 --- !u!114 &114043648885855928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2482,6 +2478,52 @@ MonoBehaviour:
   mAtlas: {fileID: 11405424, guid: 65f66dd2f3cd949b28da34f9929d6faf, type: 2}
   mSpriteName: locked
   mFillCenter: 1
+--- !u!114 &114704713419477990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012525812152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ff9de8e01e94b62860118127b430b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 1000012434066324}
+  clickResponseObjects: []
+  clickResponseParentNames: []
+  clickResponseObjectsIsShow: 
+  clickResponseParentNamesIsShow: 
+  clickResponseObjectAnimations: []
+  clickResponseParentAnimations: []
+  isFoldObjs: 0
+  isFoldParentObjs: 0
+  isForceKeep: 0
+  isAnimateTxt: 0
+  txtAnimTime: 0
+  txtCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  isClickHideSelf: 0
+  isClickHideParent: 0
+  des: "\u672A\u6709\u63CF\u8FF0"
+  activeHostKeyId: 0
+  activeCondiction: 
+  activeValue: 
+  labelHostKeyId: 0
+  labelMatchSign: 
+  labelMatchSelfDefineSign: 
+  sliderHostKeyId: 0
+  sliderMatchSign: 
+  sliderMaxSign: 
+  isNeedTranslate: 0
+  onClickModuleName: 
+  onTweenAniFinishedModuleName: 
+  onSliderModuleName: 
+  scrollerTableDataModuleName: 
 --- !u!114 &114783856654124250
 MonoBehaviour:
   m_ObjectHideFlags: 1

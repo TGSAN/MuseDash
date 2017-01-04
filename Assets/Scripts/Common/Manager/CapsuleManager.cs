@@ -246,16 +246,16 @@ namespace Assets.Scripts.Common.Manager
                                 PnlMainMenu.PnlMainMenu.Instance.crystal.SetPos(startPos, Vector3.zero);
                                 AccountCrystalManagerComponent.Instance.ChangeCrystal(price);
                             }
-                            else if (typeName == "charm")
-                            {
-                                PnlMainMenu.PnlMainMenu.Instance.charm.SetPos(startPos, Vector3.zero);
-                                AccountCharmComponent.Instance.ChangeCharm(price);
-                            }
-                            else if (typeName == "exp")
-                            {
-                                PnlMainMenu.PnlMainMenu.Instance.exp.SetPos(startPos, Vector3.zero);
-                                AccountLevelManagerComponent.Instance.ChangeExp(price);
-                            }
+//                            else if (typeName == "charm")
+//                            {
+//                                PnlMainMenu.PnlMainMenu.Instance.charm.SetPos(startPos, Vector3.zero);
+//                                AccountCharmComponent.Instance.ChangeCharm(price);
+//                            }
+//                            else if (typeName == "exp")
+//                            {
+//                                PnlMainMenu.PnlMainMenu.Instance.exp.SetPos(startPos, Vector3.zero);
+//                                AccountLevelManagerComponent.Instance.ChangeExp(price);
+//                            }
                             else if (typeName == "energy")
                             {
                                 PnlMainMenu.PnlMainMenu.Instance.energy.SetPos(startPos, Vector3.zero);

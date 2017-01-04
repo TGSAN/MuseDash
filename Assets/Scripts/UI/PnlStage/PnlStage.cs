@@ -32,7 +32,7 @@ namespace PnlStage
 
         public override void OnHide()
         {
-            PnlAdventure.PnlAdventure.Instance.PlayBGM();
+			PnlHome.PnlHome.Instance.PlayBGM();
         }
 
         public void OnSongChanged(int idx)

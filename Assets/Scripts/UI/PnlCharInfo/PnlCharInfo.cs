@@ -83,7 +83,7 @@ namespace PnlCharInfo
             m_Animator = GetComponent<Animator>();
             instance = this;
             m_SprCosList = tglsParent.GetComponentsInChildren<SprCos>().ToList();
-            m_SelectedCos = RoleManageComponent.Instance.GetCurCloth(RoleManageComponent.Instance.GetChoseRoleIdx());
+//            m_SelectedCos = RoleManageComponent.Instance.GetCurCloth(RoleManageComponent.Instance.GetChoseRoleIdx());
         }
 
         private void OnEnable()
@@ -207,10 +207,10 @@ namespace PnlCharInfo
         private void InitEvent()
         {
             //退出升级状态
-            UIEventListener.Get(btnBack.gameObject).onClick = go =>
-            {
-                isUpgrade = false;
-            };
+//            UIEventListener.Get(btnBack.gameObject).onClick = go =>
+//            {
+//                isUpgrade = false;
+//            };
             UIEventListener.Get(btnFeed.gameObject).onClick = (go) =>
             {
                 var curRoleHost = RoleManageComponent.Instance.GetGirlByIdx(PnlChar.PnlChar.Instance.curRoleIdx);
@@ -247,8 +247,8 @@ namespace PnlCharInfo
                             isUpgrade = false;
                             m_Animator.Play("cos_change_out");
                             PnlChar.PnlChar.Instance.gameObject.SetActive(true);
-                            var isShow = PnlMainMenu.PnlMainMenu.Instance.goSelectedSuitcase.activeSelf;
-                            PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(isShow);
+//                            var isShow = PnlMainMenu.PnlMainMenu.Instance.goSelectedSuitcase.activeSelf;
+//                            PnlSuitcase.PnlSuitcase.Instance.gameObject.SetActive(isShow);
                             PnlSuitcase.PnlSuitcase.Instance.OnHide();
                         });
                     }

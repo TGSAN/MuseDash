@@ -61,7 +61,7 @@ namespace PnlChar
         public void OnShowCos(CharCos cos)
         {
             curRoleIdx = cos.ownerIdx;
-            OnClickBtnEnhancement.Do(PnlMainMenu.PnlMainMenu.Instance.goBtnEnhancement);
+//            OnClickBtnEnhancement.Do(PnlMainMenu.PnlMainMenu.Instance.goBtnEnhancement);
             DOTweenUtils.Delay(() =>
             {
                 animPath[cos.ownerIdx - 1] = cos.path;
@@ -78,7 +78,7 @@ namespace PnlChar
         public override void OnHide()
         {
             PnlEquipInfo.PnlEquipInfo.Instance.OnHide();
-            PnlFoodInfo.PnlFoodInfo.Instance.OnHide();
+            //PnlFoodInfo.PnlFoodInfo.Instance.OnHide();
             PnlServantInfo.PnlServantInfo.Instance.OnHide();
         }
 

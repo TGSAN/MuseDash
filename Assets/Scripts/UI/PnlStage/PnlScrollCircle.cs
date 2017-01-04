@@ -93,8 +93,6 @@ namespace Assets.Scripts.NGUI
         public GameObject energy, difficulty;
         public GameObject btnStart, btnTip;
         public UISprite sprSongProgress;
-        public Transform trophyParent;
-        public UILabel txtTrophySum;
         public GameObject goPnlUnlockSong;
 
         [Header("音频")]
@@ -287,7 +285,7 @@ namespace Assets.Scripts.NGUI
             UIEventListener.Get(btnStart).onDragEnd = onDragEnd;
             UIEventListener.Get(btnStart).onClick = (go) =>
             {
-                if (!m_FinishEnter || m_StageInfos[m_CurrentIdx].isLock)
+                if (!m_FinishEnter)
                 {
                     CommonPanel.GetInstance().ShowText("需获得" + m_StageInfos[m_CurrentIdx].unLockNum.ToString() + "个奖杯才可以解锁！（当前：" + TaskStageTarget.Instance.GetTotalTrophy().ToString() + "奖杯）");
                     return;
@@ -400,7 +398,7 @@ namespace Assets.Scripts.NGUI
                 }
                 m_CellGroup.Add(i, item);
             }
-            txtTrophySum.text = m_TrophySum.ToString();
+            //txtTrophySum.text = m_TrophySum.ToString();
         }
 
         #endregion 初始化
@@ -450,11 +448,7 @@ namespace Assets.Scripts.NGUI
         {
             var trophyNum = TaskStageTarget.Instance.GetXMax(TaskStageTarget.TASK_SIGNKEY_STAGE_EVLUATE);
             var isLock = m_StageInfos[m_CurrentIdx].isLock;
-            for (int i = 0; i < trophyParent.childCount; i++)
-            {
-                var child = trophyParent.GetChild(i);
-                child.GetChild(0).gameObject.SetActive(i < trophyNum);
-            }
+           
             btnTip.gameObject.SetActive(isLock);
         }
 
