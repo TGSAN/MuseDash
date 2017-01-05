@@ -1,174 +1,198 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using FormulaBase;
 using GameLogic;
-using FormulaBase;
+using System.Collections;
+using UnityEngine;
 
-public abstract class BaseEnemyObjectController : BaseSpineObjectController {
-	private const string POINT_CENTER = "pc";
-	private static string[] listResultMap = new string[]{"", "", ACTION_KEYS.COMEOUT1, ACTION_KEYS.COMEOUT2, ACTION_KEYS.COMEOUT3, ACTION_KEYS.JUMP};
+public abstract class BaseEnemyObjectController : BaseSpineObjectController
+{
+    private const string POINT_CENTER = "pc";
+    private static string[] listResultMap = new string[] { "", "", ACTION_KEYS.COMEOUT1, ACTION_KEYS.COMEOUT2, ACTION_KEYS.COMEOUT3, ACTION_KEYS.JUMP };
 
-	[SerializeField]
-	public bool attackedDoNothing = false;
+    [SerializeField]
+    public bool attackedDoNothing = false;
 
-	public bool IsEmptyNode() {
-		SkeletonAnimation sklAni = this.gameObject.GetComponent<SkeletonAnimation> ();
-		return sklAni == null;
-	}
+    public bool IsEmptyNode()
+    {
+        SkeletonAnimation sklAni = this.gameObject.GetComponent<SkeletonAnimation>();
+        return sklAni == null;
+    }
 
-	public void AttackedSuccessful(uint result, bool isDead = true) {  // (mark) all obeject has been attack here!
-		if (this.attackedDoNothing) {
-			return;
-		}
+    public void AttackedSuccessful(uint result, bool isDead = true)
+    {  // (mark) all obeject has been attack here!
+        if (this.attackedDoNothing)
+        {
+            return;
+        }
 
-		this.OnControllerAttacked ((int)result, isDead);
-		GameGlobal.gGameMusicScene.OnObjBeAttacked (this.idx);
-		this.OnAttackDestory ();
-	}
+        this.OnControllerAttacked((int)result, isDead);
+        GameGlobal.gGameMusicScene.OnObjBeAttacked(this.idx);
+        this.OnAttackDestory();
+    }
 
-	public virtual bool IsShotPause() {
-		return false;
-	}
-	
-	public virtual void SetShotPause(decimal tick) {
-	}
+    public virtual bool IsShotPause()
+    {
+        return false;
+    }
 
-	public virtual void OnAttackDestory() {
+    public virtual void SetShotPause(decimal tick)
+    {
+    }
 
-	}
+    public virtual void OnAttackDestory()
+    {
+    }
 
-	public override void SetIdx (int idx) {
-		this.idx = idx;
-	}
+    public override void SetIdx(int idx)
+    {
+        this.idx = idx;
+    }
 
-	public override void Init () {
-	}
+    public override void Init()
+    {
+    }
 
-	public override bool ControllerMissCheck (int idx, decimal currentTick) {
-		bool isJumpping = GirlManager.Instance.IsJumpingAction ();
-		decimal missHardTime = GameGlobal.gGameMissPlay.GetMissHardTime ();
-		MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx (idx);
-		if (md.nodeData.hit_type == GameMusic.NONE) {
-			return false;
-		}
+    public override bool ControllerMissCheck(int idx, decimal currentTick)
+    {
+        bool isJumpping = GirlManager.Instance.IsJumpingAction();
+        decimal missHardTime = GameGlobal.gGameMissPlay.GetMissHardTime();
+        MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
+        if (md.nodeData.hit_type == GameMusic.NONE)
+        {
+            return false;
+        }
 
-		if (BattleEnemyManager.Instance.IsDead (idx)) {
-			return false;
-		}
-		
-		//if (md.IsShotPausing ()) {
-		//	return false;
-		//}
+        if (BattleEnemyManager.Instance.IsDead(idx))
+        {
+            return false;
+        }
+        //if (md.IsShotPausing ()) {
+        //	return false;
+        //}
+        if (currentTick == GameGlobal.MISS_NO_CHECK_TICK)
+        { // && md.Tick () != currentTick) {
+            return false;
+        }
 
-		if (currentTick == GameGlobal.MISS_NO_CHECK_TICK) { // && md.Tick () != currentTick) {
-			return false;
-		}
+        if (md.nodeData.jump_note && isJumpping)
+        {
+            return false;
+        }
+        if ((md.nodeData.enable_jump == 1) && isJumpping)
+        {
+            return false;
+        }
+        if (md.nodeData.type == GameGlobal.NODE_TYPE_AIR_BEAT && !isJumpping)
+        {
+            return false;
+        }
+        if (md.IsPressTemp())
+        {
+            return true;
+        }
+        if (missHardTime > 0)
+        {
+            BattleEnemyManager.Instance.SetPlayResult(idx, GameMusic.MISS);
+            return false;
+        }
+        return true;
+    }
 
-		if (md.nodeData.jump_note && isJumpping) {
-			return false;
-		}
+    public override void OnControllerStart()
+    {
+        Animator ani = this.gameObject.GetComponent<Animator>();
+        if (ani != null)
+        {
+            ani.Stop();
+        }
 
-		if ((md.nodeData.enable_jump == 1) && isJumpping) {
-			return false;
-		}
+        SpineActionController.Play(ACTION_KEYS.COMEIN, this.gameObject);
+        string aniName = BattleEnemyManager.Instance.GetNodeBossAnimationByIdx(this.idx);
+        if (aniName != null)
+        {
+            Boss.Instance.Play(aniName);
+        }
 
-		if (md.nodeData.type == GameGlobal.NODE_TYPE_AIR_BEAT && !isJumpping) {
-			return false;
-		}
+        StartCoroutine(this.AfterControllerStart());
+    }
 
-		if (md.IsPressTemp ()) {
-			return true;
-		}
+    public IEnumerator AfterControllerStart()
+    {
+        yield return new WaitForSeconds(0.1f);
+        SpineMountController smc = this.gameObject.GetComponent<SpineMountController>();
+        if (smc != null)
+        {
+            smc.enabled = true;
+            smc.OnControllerStart();
+        }
+    }
 
-		if (missHardTime > 0) {
-			BattleEnemyManager.Instance.SetPlayResult (idx, GameMusic.MISS);
-			return false;
-		}
+    public override void OnControllerAttacked(int result, bool isDeaded)
+    {
+        if (!isDeaded)
+        {
+            SpineActionController.Play(ACTION_KEYS.HURT, this.gameObject);
+            return;
+        }
 
-		return true;
-	}
+        string actionKey = listResultMap[result];
 
-	public override void OnControllerStart () {
-		Animator ani = this.gameObject.GetComponent<Animator> ();
-		if (ani != null) {
-			ani.Stop ();
-		}
+        Vector3 orgpos = this.gameObject.transform.position;
+        Vector3 bonepos = SpineActionController.GetBoneRealPosition(POINT_CENTER, this.gameObject);
+        this.gameObject.transform.position = new Vector3(orgpos.x + bonepos.x, orgpos.y + bonepos.y, orgpos.z + bonepos.z);
+        SpineActionController.Play(actionKey, this.gameObject);
 
-		SpineActionController.Play (ACTION_KEYS.COMEIN, this.gameObject);
-		string aniName = BattleEnemyManager.Instance.GetNodeBossAnimationByIdx(this.idx);
-		if (aniName != null) {
-			Boss.Instance.Play (aniName);
-		}
+        string hitAnimation = BattleEnemyManager.Instance.GetNodeBossHitAnimationByIdx(this.idx);
+        Boss.Instance.Play(hitAnimation);
+    }
 
-		StartCoroutine(this.AfterControllerStart());
-	}
+    public override bool OnControllerMiss(int idx)
+    {
+        bool isShowMiss = this.__OnControllerMiss(idx);     // (mark) player gain damage here!
+        BattleEnemyManager.Instance.SetPlayResult(idx, GameMusic.MISS);
+        if (isShowMiss)
+        {
+            //CharBehaviour.GirlInstance.ShowLabel (GameMusic.MISS);
+            // hurt show
+            AttacksController.Instance.BeAttacked();
+        }
 
-	public IEnumerator AfterControllerStart () {
-		yield return new WaitForSeconds (0.1f);
-		SpineMountController smc = this.gameObject.GetComponent<SpineMountController> ();
-		if (smc != null) {
-			smc.enabled = true;
-			smc.OnControllerStart ();
-		}
-	}
+        this.OnAttackDestory();
 
-	public override void OnControllerAttacked (int result, bool isDeaded) {
-		if (!isDeaded) {
-			SpineActionController.Play (ACTION_KEYS.HURT, this.gameObject);
-			return;
-		}
-		
-		string actionKey = listResultMap [result];
+        return isShowMiss;
+    }
 
-		Vector3 orgpos = this.gameObject.transform.position;
-		Vector3 bonepos = SpineActionController.GetBoneRealPosition (POINT_CENTER, this.gameObject);
-		this.gameObject.transform.position = new Vector3 (orgpos.x + bonepos.x, orgpos.y + bonepos.y, orgpos.z + bonepos.z);
-		SpineActionController.Play (actionKey, this.gameObject);
+    private bool __OnControllerMiss(int idx)
+    {
+        ArrayList musicData = StageBattleComponent.Instance.GetMusicData();
+        MusicData md = (MusicData)musicData[idx];
+        if (md.nodeData.hit_type == GameMusic.NONE)
+        {
+            return false;
+        }
 
-		string hitAnimation = BattleEnemyManager.Instance.GetNodeBossHitAnimationByIdx (this.idx);
-		Boss.Instance.Play (hitAnimation);
-	}
+        if (!md.nodeData.missCombo)
+        {
+            return false;
+        }
 
-	public override bool OnControllerMiss (int idx) {
-		bool isShowMiss = this.__OnControllerMiss (idx);		// (mark) player gain damage here!
-		BattleEnemyManager.Instance.SetPlayResult (idx, GameMusic.MISS);
-		if (isShowMiss) {
-			//CharBehaviour.GirlInstance.ShowLabel (GameMusic.MISS);
-			// hurt show
-			AttacksController.Instance.BeAttacked ();
-		}
+        // Fire buff event.
+        if (!GameGlobal.IS_DEBUG)
+        {
+            int hurtValue = BattleEnemyManager.Instance.GetDamageValueByIndex(idx);
+            BattleRoleAttributeComponent.Instance.Hurt(-hurtValue);
+        }
 
-		this.OnAttackDestory ();
+        GameGlobal.gGameMissPlay.SetMissHardTime(GameMusic.MISS_AVOID_TIME);
 
-		return isShowMiss;
-	}
+        if (!BattleRoleAttributeComponent.Instance.IsComboProtect())
+        {
+            StageBattleComponent.Instance.SetCombo(0);
+            CharPanel.Instance.StopCombo();
+            EffectManager.Instance.StopCombo();
+        }
 
-	private bool __OnControllerMiss(int idx) {
-		ArrayList musicData = StageBattleComponent.Instance.GetMusicData ();
-		MusicData md = (MusicData)musicData [idx];
-		if (md.nodeData.hit_type == GameMusic.NONE) {
-			return false;
-		}
-		
-		if (!md.nodeData.missCombo) {
-			return false;
-		}
-		
-		// Fire buff event.
-		if (!GameGlobal.IS_DEBUG) {
-			int hurtValue = BattleEnemyManager.Instance.GetDamageValueByIndex (idx);
-			BattleRoleAttributeComponent.Instance.Hurt (-hurtValue);
-		}
-		
-		GameGlobal.gGameMissPlay.SetMissHardTime (GameMusic.MISS_AVOID_TIME);
+        GameGlobal.gGameMusicScene.OnObjBeMissed(this.idx);
 
-		if (!BattleRoleAttributeComponent.Instance.IsComboProtect ()) {
-			StageBattleComponent.Instance.SetCombo (0);
-			CharPanel.Instance.StopCombo ();
-			EffectManager.Instance.StopCombo ();
-		}
-
-		GameGlobal.gGameMusicScene.OnObjBeMissed (this.idx);
-		
-		return true;
-	}
+        return true;
+    }
 }

@@ -320,10 +320,8 @@ namespace GameLogic
             if (CommonPanel.GetInstance().showDebug)
             {
                 var perfectTime = (StageBattleComponent.Instance.GetPerfectIdxByTick(passedTick)) * 0.01m;
-                Debug.Log(passedTick);
                 CommonPanel.GetInstance().DebugTxt((perfectTime - passedTick).ToString());
             }
-
             List<TimeNodeOrder> tnos = StageBattleComponent.Instance.GetTimeNodeByTick(passedTick);
             if (tnos == null || tnos.Count <= 0)
             {

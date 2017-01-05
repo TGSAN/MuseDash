@@ -27,9 +27,13 @@ namespace GameLogic
         //private const float SLIDETOUCHOFFSETX = 500.0f;
         //public const float SLIDETOUCHOFFSETY = 20.0f;
 
-        public const int COOL_RANGE_INDEX = 2;
-        public const int GREAT_RANGE_INDEX = 1;
-        public const int PERFECT_RANGE_INDEX = 0;
+        public const int A_COOL_RANGE_INDEX = 2;
+        public const int A_GREAT_RANGE_INDEX = 1;
+        public const int A_PERFECT_RANGE_INDEX = 0;
+
+        public const int B_COOL_RANGE_INDEX = 5;
+        public const int B_GREAT_RANGE_INDEX = 4;
+        public const int B_PERFECT_RANGE_INDEX = 3;
 
         public const int NODE_IS_NOT_A_BOSS = 0;
         public const int NODE_IS_BOSS_BODY_ATTACK = 1;
@@ -163,9 +167,13 @@ namespace GameLogic
                 Debug.Log("Miss tick " + ts + " has no pair node");
                 return;
             }
-
             int idx = this._missMap[_missTickIdx];
-            GameGlobal.gGameMissPlay.MissCube(idx, ts);
+            var mdNote = StageBattleComponent.Instance.GetMusicDataByIdx(idx).nodeData;
+            var negative_perfect_range = (float)mdNote.hitRangeB;
+            DOTweenUtils.Delay(() =>
+            {
+                GameGlobal.gGameMissPlay.MissCube(idx, ts);
+            }, negative_perfect_range);
         }
 
         // First tick of this.objTimer
