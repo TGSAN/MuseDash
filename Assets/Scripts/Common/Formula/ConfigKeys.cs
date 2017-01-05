@@ -92,6 +92,7 @@ namespace FormulaBase {
 			{ "pops_up_the_mind_wings2", "stage/stage_v1/json/"},
 			{ "pops_up_the_mind_wings3", "stage/stage_v1/json/"},
 			{ "pops_up_the_mind_wings_easy1", "stage/stage_v1/json/"},
+			{ "press_test1", "stage/stage_v1/json/"},
 			{ "raintable1", "stage/stage_v1/json/"},
 			{ "raintable2", "stage/stage_v1/json/"},
 			{ "raintable3", "stage/stage_v1/json/"},
