@@ -462,7 +462,7 @@ namespace FormulaBase
             // 怪物配置等级
             MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
             int level = md.configData.level;
-
+            var length = md.configData.length;
             string nodeId = BattleEnemyManager.Instance.GetNodeUidByIdx(idx);
             int cfgIdx = NodeConfigReader.GetNodeIdxByNodeid(nodeId);
             _enemy.SetDynamicData(SignKeys.ID, idx);
@@ -477,6 +477,9 @@ namespace FormulaBase
             if (playResult == GameMusic.NONE)
             {
                 GameObject _obj = this.CreateObj(idx);
+                if (length != 0)
+                {
+                }
                 _enemy.SetDynamicData(SignKeys.GAME_OBJECT, _obj);
             }
             else

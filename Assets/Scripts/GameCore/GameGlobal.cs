@@ -64,6 +64,7 @@ namespace GameLogic
         public const decimal CONTINUE_ATTACK_IVR = 0.5m;
         public const decimal COMEOUT_TIME_MAX = 3m;
         public const int TOUCH_PHASE_COUNT = 5;
+        public const decimal LONG_PRESS_FREQUENCY = 0.2m;
 
         // combo distance
         public const int COMBO_INTERVAL = 10;

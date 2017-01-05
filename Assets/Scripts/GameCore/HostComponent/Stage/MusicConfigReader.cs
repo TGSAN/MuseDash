@@ -75,6 +75,7 @@ namespace GameLogic
         public decimal time;
         public int level;
         public string note_uid;
+        public decimal length;
     }
 
     public struct MusicData
@@ -86,6 +87,11 @@ namespace GameLogic
         private decimal shotPause;
         private float attackRangeRate;
         private int size;       // size 0 is not  anything,1 is big,2 is small
+
+        public bool isLongPressStart
+        {
+            get { return configData.length > 0; }
+        }
 
         public void SetShotPause(decimal _tick)
         {

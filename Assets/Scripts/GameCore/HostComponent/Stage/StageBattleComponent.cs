@@ -22,6 +22,7 @@ namespace FormulaBase
         public bool mustJump;
         public bool enableJump;
         public bool isPerfectNode;
+        public bool isLongPress;
     }
 
     public class StageBattleComponent : CustomComponentBase
@@ -54,6 +55,7 @@ namespace FormulaBase
         private ArrayList musicTickData = null;
 
         private Dictionary<int, List<TimeNodeOrder>> _timeNodeOrder = null;
+        public TimeNodeOrder preTimeNode;
 
         public void InitById(int idx)
         {
@@ -824,6 +826,25 @@ namespace FormulaBase
                     }
 
                     this._timeNodeOrder[_tnoIdx].Add(_tno);
+                }
+                if (md.isLongPressStart)
+                {
+                    var startIdx = (int)(md.tick + GameGlobal.LONG_PRESS_FREQUENCY / FixUpdateTimer.dInterval);
+                    var count = md.configData.length / GameGlobal.LONG_PRESS_FREQUENCY;
+                    for (int j = startIdx; j < startIdx + count; j++)
+                    {
+                        TimeNodeOrder tno = new TimeNodeOrder();
+                        tno.isLongPress = true;
+                        tno.idx = md.objId;
+                        tno.mustJump = md.nodeData.jump_note;
+                        tno.enableJump = (md.nodeData.enable_jump == 1);
+                        if (!this._timeNodeOrder.ContainsKey(j))
+                        {
+                            this._timeNodeOrder[j] = new List<TimeNodeOrder>();
+                        }
+
+                        this._timeNodeOrder[j].Add(tno);
+                    }
                 }
             }
         }

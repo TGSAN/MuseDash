@@ -369,6 +369,11 @@ namespace GameLogic
                     }
                 }
 
+                if (tno.isLongPress)
+                {
+                    resultCode = StageBattleComponent.Instance.preTimeNode.result;
+                }
+
                 //4, Touch succeed, do touch result.
                 this.TouchResult(_idx, resultCode, actionType); //(mark)  show result by id
 
