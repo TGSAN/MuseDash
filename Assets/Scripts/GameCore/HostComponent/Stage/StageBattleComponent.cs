@@ -903,7 +903,7 @@ namespace FormulaBase
         {
             var t = (int)(tick / FixUpdateTimer.dInterval);
             var t1 = t;
-            while (!(this._timeNodeOrder.ContainsKey(t1) && this._timeNodeOrder[t1].Exists(n => n.isPerfectNode)) && t1 < GetMusicData().Count)
+            while (!(this._timeNodeOrder.ContainsKey(t1) && this._timeNodeOrder[t1].Exists(n => n.isPerfectNode)) && t1 < 20000)
             {
                 t1++;
             }
