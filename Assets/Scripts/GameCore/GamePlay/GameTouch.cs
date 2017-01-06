@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace GameLogic
 {
@@ -329,7 +330,7 @@ namespace GameLogic
                 {
                     AttacksController.Instance.ShowAttack(AttacksController.FAIL_PLAY_IDX1, GameMusic.NONE, actionType);
                 }
-
+                StageBattleComponent.Instance.curLPSIdx = -1;
                 return;
             }
 
@@ -358,7 +359,6 @@ namespace GameLogic
                 {
                     resultCode = GameMusic.JUMPOVER;
                 }
-
                 // Jump beat check
                 MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx(_idx);
                 if (md.nodeData.type == GameGlobal.NODE_TYPE_AIR_BEAT)
@@ -369,19 +369,23 @@ namespace GameLogic
                     }
                 }
 
-                if (tno.isLongPress)
-                {
-                    resultCode = StageBattleComponent.Instance.preTimeNode.result;
-                }
-
                 //4, Touch succeed, do touch result.
                 this.TouchResult(_idx, resultCode, actionType); //(mark)  show result by id
 
+                if (md.isLongPressStart)
+                {
+                    var go = (GameObject)BattleEnemyManager.Instance.GetHost(_idx).GetDynamicObjByKey(SignKeys.GAME_OBJECT);
+                    Object.Destroy(go);
+                }
                 if (GameGlobal.IS_DEBUG)
                 {
                     Debug.Log(_idx + " play result is " + resultCode);
                 }
 
+                if (md.isLongPressStart)
+                {
+                    StageBattleComponent.Instance.curLPSIdx = _idx;
+                }
                 break;
             }
         }

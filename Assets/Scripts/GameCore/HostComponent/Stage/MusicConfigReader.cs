@@ -84,13 +84,20 @@ namespace GameLogic
         public decimal tick;
         public MusicConfigData configData;
         public NodeConfigData nodeData;
+        public bool isLongPress;
         private decimal shotPause;
         private float attackRangeRate;
         private int size;       // size 0 is not  anything,1 is big,2 is small
+        public bool isLongPressEnd;
 
         public bool isLongPressStart
         {
             get { return configData.length > 0; }
+        }
+
+        public int longPressCount
+        {
+            get { return (int)(configData.length / GameGlobal.LONG_PRESS_FREQUENCY); }
         }
 
         public void SetShotPause(decimal _tick)
@@ -305,6 +312,7 @@ namespace GameLogic
             JsonData _data = ConfigPool.Instance.GetConfigByName(filename);
             // Start from 1
             this.Add(new MusicData());
+            var idx = 1;
             for (int i = 0; i < _data.Count; i++)
             {
                 MusicConfigData sd = new MusicConfigData();
@@ -316,7 +324,7 @@ namespace GameLogic
                 }
 
                 MusicData md = new MusicData();
-                md.objId = sd.id;
+                md.objId = idx++;
                 md.tick = decimal.Round(sd.time, 2);
                 md.configData = sd;
                 md.SetAttackRangeRate(-1f);
@@ -334,8 +342,26 @@ namespace GameLogic
                         break;
                     }
                 }
-
+                md.isLongPress = false;
+                md.isLongPressEnd = false;
                 this.Add(md);
+
+                if (md.isLongPressStart)
+                {
+                    var count = md.longPressCount;
+                    for (int j = 1; j <= count; j++)
+                    {
+                        var longPressMd = new MusicData();
+                        longPressMd.objId = idx++;
+                        longPressMd.tick = md.tick + GameGlobal.LONG_PRESS_FREQUENCY * j;
+                        longPressMd.configData = md.configData;
+                        longPressMd.isLongPress = true;
+                        longPressMd.SetAttackRangeRate(md.GetAttackrangeRate());
+                        longPressMd.nodeData = md.nodeData;
+                        longPressMd.isLongPressEnd = j == count;
+                        this.Add(longPressMd);
+                    }
+                }
             }
         }
 

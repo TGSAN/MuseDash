@@ -55,7 +55,16 @@ namespace FormulaBase
         private ArrayList musicTickData = null;
 
         private Dictionary<int, List<TimeNodeOrder>> _timeNodeOrder = null;
-        public TimeNodeOrder preTimeNode;
+        public int curLPSIdx = 0;
+
+        public uint GetCurLPSPlayResult()
+        {
+            if (curLPSIdx == -1)
+            {
+                return GameMusic.GREAT;
+            }
+            return BattleEnemyManager.Instance.GetPlayResult(curLPSIdx);
+        }
 
         public void InitById(int idx)
         {
@@ -770,81 +779,80 @@ namespace FormulaBase
                 {
                     continue;
                 }
-
-                int _s = (int)(md.tick / FixUpdateTimer.dInterval);
-                int aIvrtotal = (int)(md.nodeData.hitRangeA / FixUpdateTimer.dInterval);
-                var bIvrtotal = (int)(md.nodeData.hitRangeB / FixUpdateTimer.dInterval);
-                decimal aPerfectRange = md.nodeData.a_perfect_range;
-                decimal aGreatRange = md.nodeData.a_perfect_range + md.nodeData.a_great_range;
-                decimal bPerfectRange = md.nodeData.b_perfect_range;
-                decimal bGreatRange = md.nodeData.b_perfect_range + md.nodeData.b_great_range;
-                for (int _i = 0; _i <= aIvrtotal; _i++)
+                int s = (int)(md.tick / FixUpdateTimer.dInterval);
+                if (!md.isLongPress)
                 {
-                    TimeNodeOrder _tno = new TimeNodeOrder();
-                    _tno.idx = md.objId;
-                    _tno.mustJump = md.nodeData.jump_note;
-                    _tno.enableJump = (md.nodeData.enable_jump == 1);
-                    _tno.result = GameMusic.PERFECT;
-                    _tno.isPerfectNode = _i == 0;
-                    decimal _r = _i * FixUpdateTimer.dInterval;
-                    if (_r > aPerfectRange)
-                    {
-                        _tno.result = GameMusic.GREAT;
-                    }
-                    if (_r > aGreatRange)
-                    {
-                        _tno.result = GameMusic.COOL;
-                    }
-                    int _tnoIdx = _s + _i;
-                    if (!this._timeNodeOrder.ContainsKey(_tnoIdx))
-                    {
-                        this._timeNodeOrder[_tnoIdx] = new List<TimeNodeOrder>();
-                    }
-
-                    this._timeNodeOrder[_tnoIdx].Add(_tno);
-                }
-                for (int _i = -bIvrtotal; _i < 0; _i++)
-                {
-                    TimeNodeOrder _tno = new TimeNodeOrder();
-                    _tno.idx = md.objId;
-                    _tno.mustJump = md.nodeData.jump_note;
-                    _tno.enableJump = (md.nodeData.enable_jump == 1);
-                    _tno.result = GameMusic.PERFECT;
-                    decimal _r = _i * FixUpdateTimer.dInterval;
-                    if (-_r > bPerfectRange)
-                    {
-                        _tno.result = GameMusic.GREAT;
-                    }
-                    if (-_r > bGreatRange)
-                    {
-                        _tno.result = GameMusic.COOL;
-                    }
-                    int _tnoIdx = _s + _i;
-                    if (!this._timeNodeOrder.ContainsKey(_tnoIdx))
-                    {
-                        this._timeNodeOrder[_tnoIdx] = new List<TimeNodeOrder>();
-                    }
-
-                    this._timeNodeOrder[_tnoIdx].Add(_tno);
-                }
-                if (md.isLongPressStart)
-                {
-                    var startIdx = (int)(md.tick + GameGlobal.LONG_PRESS_FREQUENCY / FixUpdateTimer.dInterval);
-                    var count = md.configData.length / GameGlobal.LONG_PRESS_FREQUENCY;
-                    for (int j = startIdx; j < startIdx + count; j++)
+                    int aIvrtotal = (int)(md.nodeData.hitRangeA / FixUpdateTimer.dInterval);
+                    var bIvrtotal = (int)(md.nodeData.hitRangeB / FixUpdateTimer.dInterval);
+                    decimal aPerfectRange = md.nodeData.a_perfect_range;
+                    decimal aGreatRange = md.nodeData.a_perfect_range + md.nodeData.a_great_range;
+                    decimal bPerfectRange = md.nodeData.b_perfect_range;
+                    decimal bGreatRange = md.nodeData.b_perfect_range + md.nodeData.b_great_range;
+                    for (int j = 0; j <= aIvrtotal; j++)
                     {
                         TimeNodeOrder tno = new TimeNodeOrder();
-                        tno.isLongPress = true;
                         tno.idx = md.objId;
                         tno.mustJump = md.nodeData.jump_note;
                         tno.enableJump = (md.nodeData.enable_jump == 1);
-                        if (!this._timeNodeOrder.ContainsKey(j))
+                        tno.result = GameMusic.PERFECT;
+                        tno.isPerfectNode = j == 0;
+                        decimal r = j * FixUpdateTimer.dInterval;
+                        if (r > aPerfectRange)
                         {
-                            this._timeNodeOrder[j] = new List<TimeNodeOrder>();
+                            tno.result = GameMusic.GREAT;
+                        }
+                        if (r > aGreatRange)
+                        {
+                            tno.result = GameMusic.COOL;
+                        }
+                        int tnoIdx = s + j;
+                        if (!this._timeNodeOrder.ContainsKey(tnoIdx))
+                        {
+                            this._timeNodeOrder[tnoIdx] = new List<TimeNodeOrder>();
                         }
 
-                        this._timeNodeOrder[j].Add(tno);
+                        this._timeNodeOrder[tnoIdx].Add(tno);
                     }
+                    for (int j = -bIvrtotal; j < 0; j++)
+                    {
+                        TimeNodeOrder tno = new TimeNodeOrder();
+                        tno.idx = md.objId;
+                        tno.mustJump = md.nodeData.jump_note;
+                        tno.enableJump = (md.nodeData.enable_jump == 1);
+                        tno.result = GameMusic.PERFECT;
+                        decimal _r = j * FixUpdateTimer.dInterval;
+                        if (-_r > bPerfectRange)
+                        {
+                            tno.result = GameMusic.GREAT;
+                        }
+                        if (-_r > bGreatRange)
+                        {
+                            tno.result = GameMusic.COOL;
+                        }
+                        int tnoIdx = s + j;
+                        if (!this._timeNodeOrder.ContainsKey(tnoIdx))
+                        {
+                            this._timeNodeOrder[tnoIdx] = new List<TimeNodeOrder>();
+                        }
+
+                        this._timeNodeOrder[tnoIdx].Add(tno);
+                    }
+                }
+                else
+                {
+                    TimeNodeOrder tno = new TimeNodeOrder();
+                    tno.idx = md.objId;
+                    tno.mustJump = md.nodeData.jump_note;
+                    tno.enableJump = (md.nodeData.enable_jump == 1);
+                    tno.result = GameMusic.GREAT;
+                    tno.isPerfectNode = true;
+                    var tnoIdx = s;
+                    if (!this._timeNodeOrder.ContainsKey(tnoIdx))
+                    {
+                        this._timeNodeOrder[tnoIdx] = new List<TimeNodeOrder>();
+                    }
+
+                    this._timeNodeOrder[tnoIdx].Add(tno);
                 }
             }
         }
@@ -895,7 +903,7 @@ namespace FormulaBase
         {
             var t = (int)(tick / FixUpdateTimer.dInterval);
             var t1 = t;
-            while (!(this._timeNodeOrder.ContainsKey(t1) && this._timeNodeOrder[t1].Exists(n => n.isPerfectNode)))
+            while (!(this._timeNodeOrder.ContainsKey(t1) && this._timeNodeOrder[t1].Exists(n => n.isPerfectNode)) && t1 < GetMusicData().Count)
             {
                 t1++;
             }

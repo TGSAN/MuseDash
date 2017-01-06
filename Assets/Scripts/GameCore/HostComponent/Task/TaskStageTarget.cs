@@ -122,7 +122,7 @@ namespace FormulaBase
         public const string TASK_SIGNKEY_JUMPOVER_BOSS_COUNT = "TASK_SIGNKEY_JUMPOVER_BOSS_COUNT";
 
         /// <summary>
-        /// 有效长按成功次数统计
+        /// 有效成功次数统计
         /// </summary>
         public const string TASK_SIGNKEY_LONGPRESS_FIN_COUNT = "TASK_SIGNKEY_LONGPRESS_FIN_COUNT";
 

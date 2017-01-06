@@ -454,15 +454,13 @@ namespace FormulaBase
         /// 对于host对象中已经有被使用记录(play result)的将不会创建gameobject对象
         /// </summary>
         /// <param name="idx">Index.</param>
-        public void CreateBattleEnemy(int idx)
+        public void CreateBattleEnemy(int idx, bool isVisible = true)
         {
+            MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
             FormulaHost _enemy = FomulaHostManager.Instance.CreateHost(HOST_IDX);
             this.enemy[idx] = _enemy;
 
             // 怪物配置等级
-            MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
-            int level = md.configData.level;
-            var length = md.configData.length;
             string nodeId = BattleEnemyManager.Instance.GetNodeUidByIdx(idx);
             int cfgIdx = NodeConfigReader.GetNodeIdxByNodeid(nodeId);
             _enemy.SetDynamicData(SignKeys.ID, idx);
@@ -476,10 +474,7 @@ namespace FormulaBase
             _enemy.SetDynamicData(SignKeys.GAME_OBJECT, null);
             if (playResult == GameMusic.NONE)
             {
-                GameObject _obj = this.CreateObj(idx);
-                if (length != 0)
-                {
-                }
+                GameObject _obj = this.CreateObj(idx, !md.isLongPress);
                 _enemy.SetDynamicData(SignKeys.GAME_OBJECT, _obj);
             }
             else
@@ -488,7 +483,6 @@ namespace FormulaBase
             }
 
             this.currentGenIdx = idx;
-
             if (GameGlobal.gGameMusic.LastOne(idx))
             {
                 GirlManager.Instance.StopAutoReduceEnergy();
@@ -506,7 +500,7 @@ namespace FormulaBase
             return name;
         }
 
-        private GameObject CreateObj(int idx)
+        private GameObject CreateObj(int idx, bool isVisible = true)
         {
             GameObject obj = null;
             string filename = this.GetObjPath(idx);
@@ -546,7 +540,6 @@ namespace FormulaBase
 
             SpineActionController sac = obj.GetComponent<SpineActionController>();
             sac.Init(idx);
-
             obj.SetActive(true);
             //SpineActionController.Pause(obj);
 
