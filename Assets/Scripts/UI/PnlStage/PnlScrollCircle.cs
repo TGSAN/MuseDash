@@ -292,7 +292,7 @@ namespace Assets.Scripts.NGUI
                 }
                 m_FinishEnter = false;
                 btnStart.gameObject.GetComponent<AudioSource>().Play();
-                PnlAchievement.PnlAchievement.Instance.OnShow(currentSongIdx);
+				PnlStageInfo.PnlStageInfo.Instance.OnShow(currentSongIdx);
             };
 
             UIEventListener.Get(gameObject).onDragStart = onDragStart;
