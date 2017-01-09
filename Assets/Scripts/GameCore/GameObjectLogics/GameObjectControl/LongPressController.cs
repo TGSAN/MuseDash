@@ -11,6 +11,8 @@ public class LongPressController : BaseEnemyObjectController
 
     public void SetLength(float length)
     {
+        length /= (float)GameGlobal.LONG_PRESS_FREQUENCY;
+        var renderer = transform.GetChild(0);
     }
 
     public override void Init()
@@ -37,7 +39,6 @@ public class LongPressController : BaseEnemyObjectController
     public override bool OnControllerMiss(int idx)
     {
         var md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
-
         GameKernel.Instance.IsUnderLongPress = true;
 #if !UNITY_EDITOR && !UNITY_EDITOR_OSX && !UNITY_EDITOR_64
 		if (GameGlobal.gGameTouchPlay.IsPunch (Input.touchCount)) {

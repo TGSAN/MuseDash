@@ -372,11 +372,6 @@ namespace GameLogic
                 //4, Touch succeed, do touch result.
                 this.TouchResult(_idx, resultCode, actionType); //(mark)  show result by id
 
-                if (md.isLongPressStart)
-                {
-                    var go = (GameObject)BattleEnemyManager.Instance.GetHost(_idx).GetDynamicObjByKey(SignKeys.GAME_OBJECT);
-                    Object.Destroy(go);
-                }
                 if (GameGlobal.IS_DEBUG)
                 {
                     Debug.Log(_idx + " play result is " + resultCode);

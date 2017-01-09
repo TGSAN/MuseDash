@@ -169,11 +169,27 @@ namespace GameLogic
             }
             int idx = this._missMap[_missTickIdx];
             var mdNote = StageBattleComponent.Instance.GetMusicDataByIdx(idx).nodeData;
-            var negative_perfect_range = (float)mdNote.hitRangeB;
-            DOTweenUtils.Delay(() =>
+            var negativePerfectRange = (decimal)mdNote.hitRangeB; ;
+            DelayMissCube(negativePerfectRange, ts);
+        }
+
+        private void DelayMissCube(decimal dt, decimal curTimeDecimal)
+        {
+            var eventID = GameGlobal.MISS_CUBE_DELAY;
+            gTrigger.UnRegEvent(eventID);
+            EventTrigger eTouch = gTrigger.RegEvent(eventID);
+            eTouch.Trigger += (sender, triggerId, args) =>
             {
-                GameGlobal.gGameMissPlay.MissCube(idx, ts);
-            }, negative_perfect_range);
+                int missTickIdx = (int)(curTimeDecimal / FixUpdateTimer.dInterval);
+                if (!this._missMap.ContainsKey(missTickIdx))
+                {
+                    Debug.Log("Miss tick " + curTimeDecimal + " has no pair node");
+                    return;
+                }
+                int idx = this._missMap[missTickIdx];
+                GameGlobal.gGameMissPlay.MissCube(idx, curTimeDecimal);
+            };
+            GameGlobal.gGameMusicScene.stepTimer.AddTickEvent(curTimeDecimal + dt, eventID);
         }
 
         // First tick of this.objTimer

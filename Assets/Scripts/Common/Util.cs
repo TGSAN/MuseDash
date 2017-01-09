@@ -92,6 +92,16 @@ public class StringUtils
     {
         return str.Split(split)[0];
     }
+
+    public static string FirstToLower(string str)
+    {
+        return str.Substring(0, 1).ToLower() + str.Substring(1);
+    }
+
+    public static string FirstToUpper(string str)
+    {
+        return str.Substring(0, 1).ToUpper() + str.Substring(1);
+    }
 }
 
 public class RandomUtils

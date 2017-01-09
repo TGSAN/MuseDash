@@ -11,7 +11,7 @@ using UnityEngine;
  * then, SceneName will be load async and will be show after LoadingScene
  */
 
-public class SceneLoader : MonoBehaviour
+public class SceneLoader : SingletonMonoBehaviour<SceneLoader>
 {
     // Load end value, unity say that 90% is already save as 100% ... wtf
     // If want to 100%, allowSceneActivation must be true.
@@ -25,7 +25,7 @@ public class SceneLoader : MonoBehaviour
     private static string __sceneName = null;
     private static string[] _str = { "interlude_01", "interlude_02", "interlude_03", "interlude_04", "interlude_05", "interlude_06" };
 
-    private oTimer loadTimer = null;
+    public oTimer loadTimer = null;
     private Hashtable loadedMap = new Hashtable();
 
     // 场景切换等待异常计数器

@@ -1,10 +1,10 @@
 /******************************************************************************
  * Spine Runtimes Software License
  * Version 2.3
- * 
+ *
  * Copyright (c) 2013-2015, Esoteric Software
  * All rights reserved.
- * 
+ *
  * You are granted a perpetual, non-exclusive, non-sublicensable and
  * non-transferable license to use, install, execute and perform the Spine
  * Runtimes Software (the "Software") and derivative works solely for personal
@@ -16,7 +16,7 @@
  * or other intellectual property or proprietary rights notices on or in the
  * Software, including any copy thereof. Redistributions in binary or source
  * form must include this license and terms.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY ESOTERIC SOFTWARE "AS IS" AND ANY EXPRESS OR
  * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
@@ -37,95 +37,110 @@ using Spine;
 
 [ExecuteInEditMode]
 [AddComponentMenu("Spine/SkeletonAnimation")]
-public class SkeletonAnimation : SkeletonRenderer, ISkeletonAnimation {
-	public float timeScale = 1;
-	public bool loop;
-	public Spine.AnimationState state;
+public class SkeletonAnimation : SkeletonRenderer, ISkeletonAnimation
+{
+    public float timeScale = 1;
+    public bool loop;
+    public Spine.AnimationState state;
 
-	
+    public event UpdateBonesDelegate UpdateLocal
+    {
+        add { _UpdateLocal += value; }
+        remove { _UpdateLocal -= value; }
+    }
 
-	public event UpdateBonesDelegate UpdateLocal {
-		add { _UpdateLocal += value; }
-		remove { _UpdateLocal -= value; }
-	}
+    public event UpdateBonesDelegate UpdateWorld
+    {
+        add { _UpdateWorld += value; }
+        remove { _UpdateWorld -= value; }
+    }
 
-	public event UpdateBonesDelegate UpdateWorld {
-		add { _UpdateWorld += value; }
-		remove { _UpdateWorld -= value; }
-	}
+    public event UpdateBonesDelegate UpdateComplete
+    {
+        add { _UpdateComplete += value; }
+        remove { _UpdateComplete -= value; }
+    }
 
-	public event UpdateBonesDelegate UpdateComplete {
-		add { _UpdateComplete += value; }
-		remove { _UpdateComplete -= value; }
-	}
+    protected event UpdateBonesDelegate _UpdateLocal;
 
-	protected event UpdateBonesDelegate _UpdateLocal;
-	protected event UpdateBonesDelegate _UpdateWorld;
-	protected event UpdateBonesDelegate _UpdateComplete;
+    protected event UpdateBonesDelegate _UpdateWorld;
 
-	public Skeleton Skeleton {
-		get {
-			return this.skeleton;
-		}
-	}
+    protected event UpdateBonesDelegate _UpdateComplete;
 
-	[SerializeField]
-	private String
-		_animationName;
+    public Skeleton Skeleton
+    {
+        get
+        {
+            return this.skeleton;
+        }
+    }
 
-	public String AnimationName {
-		get {
-			TrackEntry entry = state.GetCurrent(0);
-			return entry == null ? null : entry.Animation.Name;
-		}
-		set {
-			if (_animationName == value)
-				return;
-			_animationName = value;
-			if (value == null || value.Length == 0)
-				state.ClearTrack(0);
-			else
-				state.SetAnimation(0, value, loop);
-		}
-	}
+    [SerializeField]
+    private String
+        _animationName;
 
-	public override void Reset () {
-		base.Reset();
-		if (!valid)
-			return;
+    public String AnimationName
+    {
+        get
+        {
+            TrackEntry entry = state.GetCurrent(0);
+            return entry == null ? null : entry.Animation.Name;
+        }
+        set
+        {
+            if (_animationName == value)
+                return;
+            _animationName = value;
+            if (value == null || value.Length == 0)
+                state.ClearTrack(0);
+            else
+                state.SetAnimation(0, value, loop);
+        }
+    }
 
-		state = new Spine.AnimationState(skeletonDataAsset.GetAnimationStateData());
-		if (_animationName != null && _animationName.Length > 0) {
-			state.SetAnimation(0, _animationName, loop);
-			Update(0);
-		}
-	}
+    public override void Reset()
+    {
+        base.Reset();
+        if (!valid)
+            return;
 
-	public virtual void Update () {
-		Update(Time.deltaTime);
-	}
+        state = new Spine.AnimationState(skeletonDataAsset.GetAnimationStateData());
+        if (_animationName != null && _animationName.Length > 0)
+        {
+            state.SetAnimation(0, _animationName, loop);
+            Update(0);
+        }
+    }
 
-	public virtual void Update (float deltaTime) {
-		if (!valid)
-			return;
+    public virtual void Update()
+    {
+        Update(Time.deltaTime);
+    }
 
-		deltaTime *= timeScale;
-		skeleton.Update(deltaTime);
-		state.Update(deltaTime);
-		state.Apply(skeleton);
+    public virtual void Update(float deltaTime)
+    {
+        if (!valid)
+            return;
 
-		if (_UpdateLocal != null) 
-			_UpdateLocal(this);
+        deltaTime *= timeScale;
+        skeleton.Update(deltaTime);
+        state.Update(deltaTime);
+        state.Apply(skeleton);
 
-		skeleton.UpdateWorldTransform();
+        if (_UpdateLocal != null)
+            _UpdateLocal(this);
 
-		if (_UpdateWorld != null) { 
-			_UpdateWorld(this);
-			skeleton.UpdateWorldTransform();
-		}
+        skeleton.UpdateWorldTransform();
 
-		if (_UpdateComplete != null) { 
-			_UpdateComplete(this);
-		}
-	}
+        if (_UpdateWorld != null)
+        {
+            _UpdateWorld(this);
+            skeleton.UpdateWorldTransform();
+        }
+
+        if (_UpdateComplete != null)
+        {
+            _UpdateComplete(this);
+        }
+    }
 }

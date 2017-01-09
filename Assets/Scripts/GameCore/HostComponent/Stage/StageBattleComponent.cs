@@ -480,7 +480,6 @@ namespace FormulaBase
                 {
                     initController = obj.AddComponent<NodeInitController>();
                 }
-
                 initController.Init(idx);
 
                 SpineActionController sac = obj.GetComponent<SpineActionController>();
@@ -650,8 +649,7 @@ namespace FormulaBase
                 GameGlobal.gGameMusic.Run();
                 GameGlobal.gGameMusicScene.Run();
                 Debug.Log("Stage start");
-            }, GameGlobal.MUSIC_DELAY_FOR_LOAD_TIME);
-
+            }, (float)GameGlobal.MUSIC_DELAY_FOR_LOAD_TIME);
             //UserUI.Instance.SetGUIActive (false);
         }
 

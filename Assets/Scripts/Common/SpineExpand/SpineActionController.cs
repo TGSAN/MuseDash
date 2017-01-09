@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using UnityEngine;
 
 [Serializable]
@@ -27,7 +28,6 @@ public class SpineActionController : MonoBehaviour
     public static Type[] TYPE_POLL;
 
     public BaseSpineObjectController objController;
-
     private int protectLevel;
     private string currentActionName;
     private SpineEventFactory eventFactory;
@@ -45,6 +45,7 @@ public class SpineActionController : MonoBehaviour
     public int actionMode;
 
     public float startDelay;
+    public float duration;
 
     public static void InitTypePoll()
     {
@@ -105,11 +106,6 @@ public class SpineActionController : MonoBehaviour
 
         this.objController.SetIdx(idx);
         this.objController.Init();
-        var md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
-        if (md.isLongPressStart)
-        {
-            ((LongPressController)objController).SetLength((float)md.configData.length);
-        }
 
         SkeletonAnimation ska = this.gameObject.GetComponent<SkeletonAnimation>();
         if (ska != null && ska.skeleton != null)
@@ -127,6 +123,12 @@ public class SpineActionController : MonoBehaviour
         {
             this.SetSynchroObjects(sso.synchroObjects);
         }
+
+        var md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
+        if (md.isLongPressStart)
+        {
+            ((LongPressController)objController).SetLength((float)md.configData.length);
+        }
     }
 
     public void OnControllerStart()
@@ -135,7 +137,21 @@ public class SpineActionController : MonoBehaviour
         {
             return;
         }
-
+        if (actionMode == 12)
+        {
+            var size = 6.67f;
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                var child = transform.GetChild(i);
+                child.gameObject.SetActive(true);
+            }
+            transform.position = new Vector3(size, transform.position.y, transform.position.z);
+            transform.DOMoveX(-size * 19f, duration * 10f).SetEase(Ease.Linear).OnComplete(() =>
+            {
+                GameObject.Destroy(gameObject);
+            });
+            return;
+        }
         this.objController.OnControllerStart();
     }
 

@@ -355,6 +355,7 @@ namespace GameLogic
                         longPressMd.objId = idx++;
                         longPressMd.tick = md.tick + GameGlobal.LONG_PRESS_FREQUENCY * j;
                         longPressMd.configData = md.configData;
+                        longPressMd.configData.length = 0;
                         longPressMd.isLongPress = true;
                         longPressMd.SetAttackRangeRate(md.GetAttackrangeRate());
                         longPressMd.nodeData = md.nodeData;

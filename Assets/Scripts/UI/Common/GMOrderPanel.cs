@@ -37,8 +37,8 @@ public class GMOrderPanel : MonoBehaviour
 
     public void SetMusicDelayPlayTime(UILabel label)
     {
-        var output = 0.0f;
-        if (float.TryParse(label.text, out output))
+        var output = 0.0m;
+        if (decimal.TryParse(label.text, out output))
         {
             GameGlobal.MUSIC_DELAY_FOR_LOAD_TIME = output;
         }

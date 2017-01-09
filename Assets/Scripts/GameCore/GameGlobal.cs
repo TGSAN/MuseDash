@@ -109,7 +109,7 @@ namespace GameLogic
         public const int SKILL_CARRY_LIMITE = 5;
         public const int ROLE_CARRY_LIMITE = 5;
         public const uint FEVER_MAX = 100;
-        public static float MUSIC_DELAY_FOR_LOAD_TIME = 0.0f;
+        public static decimal MUSIC_DELAY_FOR_LOAD_TIME = 3.0m;
 
         public const uint PLAY_RESULT_LOCK_LEVEL_LONG_PRESS = 1;
         public const uint PLAY_RESULT_LOCK_LEVEL_BUFF = 2;
@@ -204,6 +204,7 @@ namespace GameLogic
         public const uint GAME_CONDICTION = 140;
         public const uint SCENO_OBJ_STEP_EVENT = 141;
         public const uint SKILL_EVENT_ADD_HP = 142;
+        public const uint MISS_CUBE_DELAY = 143;
 
         // Global config loader
         public static ConfigLoader gConfigLoader = new ConfigLoader();

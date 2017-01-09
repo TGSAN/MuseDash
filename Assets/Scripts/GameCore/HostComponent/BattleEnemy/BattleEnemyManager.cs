@@ -540,9 +540,9 @@ namespace FormulaBase
 
             SpineActionController sac = obj.GetComponent<SpineActionController>();
             sac.Init(idx);
-            obj.SetActive(true);
+            obj.SetActive(isVisible);
             //SpineActionController.Pause(obj);
-
+            //Debug.Log(System.Environment.TickCount);
             return obj;
         }
     }
