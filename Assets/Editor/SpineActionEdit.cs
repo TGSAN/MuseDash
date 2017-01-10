@@ -61,6 +61,7 @@ public class SpineActionEdit : Editor
         if (spa.actionMode == 12)
         {
             spa.duration = EditorGUILayout.FloatField(new GUIContent("长按节点穿越时间"), spa.duration);
+            spa.rendererPreb = (GameObject)EditorGUILayout.ObjectField(new GUIContent("渲染预制"), spa.rendererPreb, typeof(GameObject));
             return;
         }
         for (int j = 0; j < spa.DataCount(); j++)

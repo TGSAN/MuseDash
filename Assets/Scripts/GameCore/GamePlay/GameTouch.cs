@@ -274,6 +274,19 @@ namespace GameLogic
 
         private void MoveTouchPhaser()
         {
+            if (StageBattleComponent.Instance.curLPSIdx < 0 || !GameGlobal.gGameTouchPlay.IsPunch())
+            {
+                return;
+            }
+            var parentMD = StageBattleComponent.Instance.GetMusicDataByIdx(StageBattleComponent.Instance.curLPSIdx);
+            if (parentMD.configData.length <= 0) return;
+            decimal passedTick = GameGlobal.gGameMusic.GetMusicPassTick();
+            var curPercent = (passedTick - parentMD.tick) / parentMD.configData.length;
+            curPercent = curPercent > 1m ? 1m : curPercent;
+            var startPercent = (beginTouchTick - parentMD.tick) / parentMD.configData.length;
+            startPercent = startPercent < 0 ? 0 : startPercent;
+            var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
+            go.GetComponent<SpineActionController>().Clip(startPercent, curPercent);
         }
 
         private void MutilTouchPhaser()
@@ -317,7 +330,6 @@ namespace GameLogic
             this.SetPressStateByScreen(forcePressState);
             //2, Get current play time to choose current hit node.
             decimal passedTick = GameGlobal.gGameMusic.GetMusicPassTick();
-
             if (CommonPanel.GetInstance().showDebug)
             {
                 var perfectTime = (StageBattleComponent.Instance.GetPerfectIdxByTick(passedTick)) * 0.01m;
@@ -330,7 +342,6 @@ namespace GameLogic
                 {
                     AttacksController.Instance.ShowAttack(AttacksController.FAIL_PLAY_IDX1, GameMusic.NONE, actionType);
                 }
-                StageBattleComponent.Instance.curLPSIdx = -1;
                 return;
             }
 
@@ -375,11 +386,6 @@ namespace GameLogic
                 if (GameGlobal.IS_DEBUG)
                 {
                     Debug.Log(_idx + " play result is " + resultCode);
-                }
-
-                if (md.isLongPressStart)
-                {
-                    StageBattleComponent.Instance.curLPSIdx = _idx;
                 }
                 break;
             }

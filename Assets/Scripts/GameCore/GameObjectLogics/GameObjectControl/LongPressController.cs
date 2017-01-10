@@ -9,12 +9,6 @@ public class LongPressController : BaseEnemyObjectController
 {
     public static int psidx = -1;
 
-    public void SetLength(float length)
-    {
-        length /= (float)GameGlobal.LONG_PRESS_FREQUENCY;
-        var renderer = transform.GetChild(0);
-    }
-
     public override void Init()
     {
         base.Init();
@@ -40,6 +34,7 @@ public class LongPressController : BaseEnemyObjectController
     {
         var md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
         GameKernel.Instance.IsUnderLongPress = true;
+
 #if !UNITY_EDITOR && !UNITY_EDITOR_OSX && !UNITY_EDITOR_64
 		if (GameGlobal.gGameTouchPlay.IsPunch (Input.touchCount)) {
 #else
@@ -52,7 +47,7 @@ public class LongPressController : BaseEnemyObjectController
             BattleEnemyManager.Instance.SetPlayResult(idx, result);
             GameGlobal.gGameMissPlay.SetMissHardTime(0);
             AttacksController.Instance.ShowPressGirl(true);
-            GameObject.Destroy(this.gameObject);
+            //GameObject.Destroy(this.gameObject);
         }
         else
         {
@@ -64,11 +59,12 @@ public class LongPressController : BaseEnemyObjectController
                 GameKernel.Instance.IsLongPressFailed = true;
                 GirlManager.Instance.BeAttackEffect();
                 AttacksController.Instance.BeAttacked();
+                StageBattleComponent.Instance.curLPSIdx = -1;
             }
             else
             {
                 GirlManager.Instance.UnLockActionProtect();
-                GameObject.Destroy(this.gameObject);
+                //GameObject.Destroy(this.gameObject);
                 foreach (var girl in GirlManager.Instance.Girls)
                 {
                     if (girl != null)

@@ -168,8 +168,17 @@ namespace GameLogic
                 return;
             }
             int idx = this._missMap[_missTickIdx];
-            var mdNote = StageBattleComponent.Instance.GetMusicDataByIdx(idx).nodeData;
-            var negativePerfectRange = (decimal)mdNote.hitRangeB; ;
+            var md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
+            var mdNote = md.nodeData;
+            var negativePerfectRange = (decimal)mdNote.hitRangeB;
+            if (md.isLongPressStart)
+            {
+                StageBattleComponent.Instance.curLPSIdx = md.objId;
+            }
+            if (md.isLongPress)
+            {
+                StageBattleComponent.Instance.curLPSIdx = md.longPressPIdx;
+            }
             DelayMissCube(negativePerfectRange, ts);
         }
 

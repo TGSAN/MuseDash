@@ -33,7 +33,10 @@ public class DOTweenUtils
         {
             if (stopFunc())
             {
-                completeFunc();
+                if (completeFunc != null)
+                {
+                    completeFunc();
+                }
                 seq.Kill();
                 return;
             }

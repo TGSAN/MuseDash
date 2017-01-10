@@ -8,9 +8,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 439912}
-  - component: {fileID: 3314432}
-  - component: {fileID: 2314250}
-  - component: {fileID: 11450074}
   - component: {fileID: 11441930}
   m_Layer: 0
   m_Name: 000802_press_100
@@ -32,44 +29,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &2314250
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 154096}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_MotionVectors: 0
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_Materials:
-  - {fileID: 2100000, guid: ed7eedf9737246c4b8a9e68289712a4a, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!33 &3314432
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 154096}
-  m_Mesh: {fileID: 0}
 --- !u!114 &11441930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,30 +54,9 @@ MonoBehaviour:
     actionEventIdx: 01000000010000000100000001000000000000000000000000000000000000000000000000000000
   actionMode: 12
   startDelay: 1
---- !u!114 &11450074
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 154096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 040adc87b85c7ab4ebe3999832562451, type: 2}
-  initialSkinName: default
-  calculateNormals: 0
-  calculateTangents: 0
-  zSpacing: 0
-  renderMeshes: 1
-  immutableTriangles: 0
-  frontFacing: 0
-  logErrors: 0
-  submeshSeparators: []
-  timeScale: 1
-  loop: 0
-  _animationName: 
+  duration: 1.8
+  rendererPreb: {fileID: 1069401333770404, guid: 8d97981c8bbf00441886d0e2fc1624b5,
+    type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -4,6 +4,8 @@
 	{
 		_MainTex("Texture", 2D) = "white" {}
 		_Length("Length", float) = 1.0
+		_LengthClipX("LengthClipX", float) = 0
+		_LengthClipY("LengthClipY", float) = 0
 		_ClipRange("ClipRangeA", Vector) = (0, 0, 0, 0)
 	}
 		SubShader
@@ -39,6 +41,8 @@
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
 			float4 _UVStartRamp;
+			float _LengthClipX;
+			float _LengthClipY;
 			float _Length;
 			vector _ClipRange;
 
@@ -55,12 +59,17 @@
 			fixed4 frag(v2f i) : SV_Target
 			{
 				fixed4 col = tex2D(_MainTex, i.uv);
-				float v = 0.5625;
+				float v = 0.5625 / 2;
 				if(i.uv.x >= _ClipRange.x * v && i.uv.x <= _ClipRange.y * v)
 				{
 					col.a = 0.0;
 				}
 				if(i.uv.x >= _ClipRange.z * v && i.uv.x <= _ClipRange.w * v)
+				{
+					col.a = 0.0;
+				}
+
+				if(i.uv.x >= _LengthClipX * v && i.uv.x <= _LengthClipY * v)
 				{
 					col.a = 0.0;
 				}

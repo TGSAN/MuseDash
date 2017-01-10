@@ -46,6 +46,10 @@ public class SpineActionController : MonoBehaviour
 
     public float startDelay;
     public float duration;
+    public GameObject rendererPreb;
+    private List<Material> m_Mtrls = new List<Material>();
+    private List<Renderer> m_Renderers = new List<Renderer>();
+    private decimal m_Length = 0m;
 
     public static void InitTypePoll()
     {
@@ -127,7 +131,66 @@ public class SpineActionController : MonoBehaviour
         var md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
         if (md.isLongPressStart)
         {
-            ((LongPressController)objController).SetLength((float)md.configData.length);
+            SetLength(md.configData.length);
+        }
+    }
+
+    public void Clip(decimal percentStart, decimal percentEnd)
+    {
+        var startIdx = Mathf.FloorToInt((float)(percentStart * m_Length));
+        var endIdx = Mathf.FloorToInt((float)(percentEnd * m_Length));
+        for (int i = startIdx; i <= endIdx && i < m_Mtrls.Count; i++)
+        {
+            var clipRange = m_Mtrls[i].GetVector("_ClipRange");
+            clipRange.x = clipRange.z;
+            clipRange.y = clipRange.w;
+            clipRange.z = 0;
+            clipRange.w = 1f;
+            if (i == startIdx)
+            {
+                var rest = percentStart * m_Length - startIdx;
+                clipRange.z = (float)rest;
+            }
+            if (i == endIdx)
+            {
+                var rest = percentEnd * m_Length - endIdx;
+                clipRange.w = (float)rest;
+            }
+            m_Mtrls[i].SetVector("_ClipRange", clipRange);
+        }
+    }
+
+    public void SetLength(decimal length)
+    {
+        length /= GameGlobal.LONG_PRESS_FREQUENCY;
+        var count = Mathf.CeilToInt((float)length);
+        var shader = Resources.Load("shaders/SkeleClip") as Shader;
+        m_Length = length;
+        for (int i = 0; i < count; i++)
+        {
+            var r = GameObject.Instantiate(rendererPreb, transform);
+            r.SetActive(false);
+            r.transform.localPosition = new Vector3(i * 1.4155f, 0f, 0f);
+            var material = new Material(shader);
+            var theRenderer = r.GetComponent<Renderer>();
+            var originMtrl = theRenderer.material;
+            material.mainTexture = originMtrl.mainTexture;
+            m_Mtrls.Add(material);
+            m_Renderers.Add(theRenderer);
+            if (i == count - 1)
+            {
+                var rest = count - length;
+                m_Mtrls[i].SetFloat("_LengthClipX", 1f - (float)rest);
+                m_Mtrls[i].SetFloat("_LengthClipY", 1f);
+            }
+        }
+    }
+
+    private void Update()
+    {
+        for (int i = 0; i < m_Renderers.Count; i++)
+        {
+            m_Renderers[i].material = m_Mtrls[i];
         }
     }
 

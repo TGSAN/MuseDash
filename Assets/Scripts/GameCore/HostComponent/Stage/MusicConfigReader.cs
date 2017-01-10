@@ -89,6 +89,7 @@ namespace GameLogic
         private float attackRangeRate;
         private int size;       // size 0 is not  anything,1 is big,2 is small
         public bool isLongPressEnd;
+        public int longPressPIdx;
 
         public bool isLongPressStart
         {
@@ -360,6 +361,7 @@ namespace GameLogic
                         longPressMd.SetAttackRangeRate(md.GetAttackrangeRate());
                         longPressMd.nodeData = md.nodeData;
                         longPressMd.isLongPressEnd = j == count;
+                        longPressMd.longPressPIdx = md.objId;
                         this.Add(longPressMd);
                     }
                 }

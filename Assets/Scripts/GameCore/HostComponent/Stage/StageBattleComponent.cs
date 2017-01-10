@@ -63,7 +63,12 @@ namespace FormulaBase
             {
                 return GameMusic.GREAT;
             }
-            return BattleEnemyManager.Instance.GetPlayResult(curLPSIdx);
+            var result = BattleEnemyManager.Instance.GetPlayResult(curLPSIdx);
+            if (result != GameMusic.GREAT || result != GameMusic.PERFECT)
+            {
+                return GameMusic.GREAT;
+            }
+            return result;
         }
 
         public void InitById(int idx)
