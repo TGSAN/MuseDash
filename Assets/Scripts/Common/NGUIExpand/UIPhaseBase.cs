@@ -9,6 +9,7 @@ public class UIPhaseBase : MonoBehaviour
     private Animation _ani;
     private Animator _animator;
     private UIRootHelper _urh;
+    public static UIPanel lastestPnl;
 
     [SerializeField]
     /// <summary>
@@ -167,6 +168,11 @@ public class UIPhaseBase : MonoBehaviour
 
     public void Hide(string hideAnimation = null)
     {
+        var pnl = GetComponent<UIPanel>();
+        if (pnl != null)
+        {
+            lastestPnl = pnl;
+        }
         this.Init();
         if (this._urh == null)
         {
