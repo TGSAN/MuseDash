@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using DYUnityLib;
 using UnityEngine;
 
 [Serializable]
@@ -135,38 +136,24 @@ public class SpineActionController : MonoBehaviour
         }
     }
 
-    public void Clip(decimal percentStart, decimal percentEnd)
+    public void Clip(int startIdx, int idx)
     {
-        Debug.Log(percentStart + "====" + percentEnd);
+        var idxLength = (int)(m_Length / FixUpdateTimer.dInterval);
+        if (idx > idxLength) return;
         var tex = (Texture2D)m_Mtrl.GetTexture("_ClipTex");
-        var colors = new List<Color>();
-        if (tex == null)
+        var colors = tex.GetPixels();
+        for (int i = startIdx; i < idx; i++)
         {
-            tex = new Texture2D(1, 1);
+            colors[i] = new Color(1f, 0f, 0f, 1f);
         }
-        else
-        {
-            colors = new List<Color>(tex.GetPixels());
-        }
-        var color = new Color((float)percentStart, (float)percentEnd, 1.0f, 1.0f);
-        var idx = colors.FindIndex(c => Math.Abs(c.r - color.r) < 0.001f);
-        if (idx != -1)
-        {
-            colors[idx] = color;
-        }
-        else
-        {
-            colors.Add(color);
-        }
-
-        tex.SetPixels(colors.ToArray());
+        tex.SetPixels(colors);
+        tex.Apply();
         m_Mtrl.SetTexture("_ClipTex", tex);
     }
 
     public void SetLength(decimal length)
     {
         m_Length = length;
-        var maxLength = 5m;
         var shader = Resources.Load("shaders/SkeleClip") as Shader;
         var r = GameObject.Instantiate(rendererPreb, transform);
         r.SetActive(false);
@@ -175,9 +162,12 @@ public class SpineActionController : MonoBehaviour
         m_Renderer = r.GetComponent<Renderer>();
         var originMtrl = m_Renderer.material;
         m_Mtrl.mainTexture = originMtrl.mainTexture;
-        var rest = (maxLength - m_Length) / maxLength;
-        m_Mtrl.SetFloat("_LengthClipX", 1f - (float)rest);
-        m_Mtrl.SetFloat("_LengthClipY", 1f);
+        var originLength = 70.5f;
+        m_Mtrl.SetFloat("_Length", originLength * (float)m_Length / 10f);
+
+        var idxLength = (int)(m_Length / FixUpdateTimer.dInterval);
+        var tex = new Texture2D(idxLength, 1);
+        m_Mtrl.SetTexture("_ClipTex", tex);
     }
 
     private void Update()
