@@ -47,6 +47,7 @@ public class SpineActionController : MonoBehaviour
 
     public float startDelay;
     public float duration;
+    public float lengthRate;
     public GameObject rendererPreb;
     private Material m_Mtrl;
     private Renderer m_Renderer;
@@ -138,22 +139,27 @@ public class SpineActionController : MonoBehaviour
 
     public void Clip(int startIdx, int idx)
     {
-        var idxLength = (int)(m_Length / FixUpdateTimer.dInterval);
-        if (idx > idxLength) return;
+        var idxLength = Mathf.FloorToInt((float)(10m / FixUpdateTimer.dInterval));
+        if (idx > idxLength)
+        {
+            idx = idxLength;
+        }
         var tex = (Texture2D)m_Mtrl.GetTexture("_ClipTex");
         var colors = tex.GetPixels();
         for (int i = startIdx; i < idx; i++)
         {
-            colors[i] = new Color(1f, 0f, 0f, 1f);
+            if (i < idxLength)
+            {
+                colors[i] = new Color(1f, 0f, 0f, 1f);
+            }
         }
         tex.SetPixels(colors);
         tex.Apply();
-        m_Mtrl.SetTexture("_ClipTex", tex);
     }
 
-    public void SetLength(decimal length)
+    public void SetLength(decimal time)
     {
-        m_Length = length;
+        m_Length = time * (decimal)lengthRate;
         var shader = Resources.Load("shaders/SkeleClip") as Shader;
         var r = GameObject.Instantiate(rendererPreb, transform);
         r.SetActive(false);
@@ -162,12 +168,30 @@ public class SpineActionController : MonoBehaviour
         m_Renderer = r.GetComponent<Renderer>();
         var originMtrl = m_Renderer.material;
         m_Mtrl.mainTexture = originMtrl.mainTexture;
-        var originLength = 70.5f;
-        m_Mtrl.SetFloat("_Length", originLength * (float)m_Length / 10f);
 
-        var idxLength = (int)(m_Length / FixUpdateTimer.dInterval);
+        var idxLength = Mathf.FloorToInt((float)(10m / FixUpdateTimer.dInterval));
+        var endIdx = Mathf.FloorToInt((float)(m_Length / FixUpdateTimer.dInterval));
         var tex = new Texture2D(idxLength, 1);
+        var colors = tex.GetPixels();
+        for (int i = 0; i < idxLength; i++)
+        {
+            if (i > endIdx)
+            {
+                colors[i] = new Color(1f, 0f, 0f, 1f);
+            }
+            else
+            {
+                colors[i] = new Color(0f, 0f, 0f, 1f);
+            }
+        }
+        tex.SetPixels(colors);
+        tex.Apply();
         m_Mtrl.SetTexture("_ClipTex", tex);
+    }
+
+    public decimal GetLength()
+    {
+        return m_Length;
     }
 
     private void Update()

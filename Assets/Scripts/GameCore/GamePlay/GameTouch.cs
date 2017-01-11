@@ -278,14 +278,16 @@ namespace GameLogic
             {
                 return;
             }
-            var parentMD = StageBattleComponent.Instance.GetMusicDataByIdx(StageBattleComponent.Instance.curLPSIdx);
-            if (parentMD.configData.length <= 0) return;
-            decimal passedTick = GameGlobal.gGameMusic.GetMusicPassTick();
-            var startIdx = (int)((beginTouchTick - parentMD.tick) / FixUpdateTimer.dInterval);
-            startIdx = startIdx < 0 ? 0 : startIdx;
-            var idx = (int)((passedTick - parentMD.tick) / FixUpdateTimer.dInterval);
+            var parentMd = StageBattleComponent.Instance.GetMusicDataByIdx(StageBattleComponent.Instance.curLPSIdx);
+            if (parentMd.configData.length <= 0) return;
             var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
-            go.GetComponent<SpineActionController>().Clip(startIdx, idx + 1);
+            var sac = go.GetComponent<SpineActionController>();
+
+            decimal passedTick = GameGlobal.gGameMusic.GetMusicPassTick();
+            var startIdx = (int)((beginTouchTick - parentMd.tick) / FixUpdateTimer.dInterval);
+            startIdx = startIdx < 0 ? 0 : startIdx;
+            var idx = (passedTick - parentMd.tick) / FixUpdateTimer.dInterval * (decimal)(1.93333f / sac.duration);
+            sac.Clip(startIdx, (int)idx);
         }
 
         private void MutilTouchPhaser()

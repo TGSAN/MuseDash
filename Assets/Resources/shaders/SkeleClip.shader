@@ -8,7 +8,7 @@ Shader "Unlit/SkeleClip"
 	{
 		_MainTex("Texture", 2D) = "white" {}
 		_ClipTex("Texture", 2D) = "white" {}
-		_Length("Length", float) = 5.0
+		_Length("Length", float) = 69.34
 	}
 		SubShader
 	{
@@ -44,7 +44,6 @@ Shader "Unlit/SkeleClip"
 			sampler2D _MainTex;
 			sampler2D _ClipTex;
 			float4 _MainTex_ST;
-			float4 _UVStartRamp;
 			float _Length;
 
 			v2f vert(appdata v)
@@ -61,14 +60,11 @@ Shader "Unlit/SkeleClip"
 			{
 				fixed4 col = tex2D(_MainTex, i.uv);
 				float localX = i.pos.x;
-				float clipValue = localX > _Length ? -1.0 : 1.0;
-				clip(clipValue);
 
-				float2 uvMask = float2(localX / _Length, 0.5);
-				fixed4 mask = tex2D(_ClipTex, uvMask);
+				float x = localX / _Length;
+				float4 mask = tex2D(_ClipTex, float2(x, 0.0));
 				float maskValue = mask.r == 1.0 ? -1.0 : 1.0;
 				clip(maskValue);
-
 				return col;
 			}
 	ENDCG
