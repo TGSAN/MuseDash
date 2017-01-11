@@ -47,8 +47,8 @@ public class SpineActionController : MonoBehaviour
     public float startDelay;
     public float duration;
     public GameObject rendererPreb;
-    private List<Material> m_Mtrls = new List<Material>();
-    private List<Renderer> m_Renderers = new List<Renderer>();
+    private Material m_Mtrl;
+    private Renderer m_Renderer;
     private decimal m_Length = 0m;
 
     public static void InitTypePoll()
@@ -137,60 +137,54 @@ public class SpineActionController : MonoBehaviour
 
     public void Clip(decimal percentStart, decimal percentEnd)
     {
-        var startIdx = Mathf.FloorToInt((float)(percentStart * m_Length));
-        var endIdx = Mathf.FloorToInt((float)(percentEnd * m_Length));
-        for (int i = startIdx; i <= endIdx && i < m_Mtrls.Count; i++)
+        Debug.Log(percentStart + "====" + percentEnd);
+        var tex = (Texture2D)m_Mtrl.GetTexture("_ClipTex");
+        var colors = new List<Color>();
+        if (tex == null)
         {
-            var clipRange = m_Mtrls[i].GetVector("_ClipRange");
-            clipRange.x = clipRange.z;
-            clipRange.y = clipRange.w;
-            clipRange.z = 0;
-            clipRange.w = 1f;
-            if (i == startIdx)
-            {
-                var rest = percentStart * m_Length - startIdx;
-                clipRange.z = (float)rest;
-            }
-            if (i == endIdx)
-            {
-                var rest = percentEnd * m_Length - endIdx;
-                clipRange.w = (float)rest;
-            }
-            m_Mtrls[i].SetVector("_ClipRange", clipRange);
+            tex = new Texture2D(1, 1);
         }
+        else
+        {
+            colors = new List<Color>(tex.GetPixels());
+        }
+        var color = new Color((float)percentStart, (float)percentEnd, 1.0f);
+        var idx = colors.FindIndex(c => Math.Abs(c.r - color.r) < 0.001f);
+        if (idx != -1)
+        {
+            colors[idx] = color;
+        }
+        else
+        {
+            colors.Add(color);
+        }
+
+        tex.SetPixels(colors.ToArray());
+        m_Mtrl.SetTexture("_ClipTex", tex);
     }
 
     public void SetLength(decimal length)
     {
-        length /= GameGlobal.LONG_PRESS_FREQUENCY;
-        var count = Mathf.CeilToInt((float)length);
-        var shader = Resources.Load("shaders/SkeleClip") as Shader;
         m_Length = length;
-        for (int i = 0; i < count; i++)
-        {
-            var r = GameObject.Instantiate(rendererPreb, transform);
-            r.SetActive(false);
-            r.transform.localPosition = new Vector3(i * 1.4155f, 0f, 0f);
-            var material = new Material(shader);
-            var theRenderer = r.GetComponent<Renderer>();
-            var originMtrl = theRenderer.material;
-            material.mainTexture = originMtrl.mainTexture;
-            m_Mtrls.Add(material);
-            m_Renderers.Add(theRenderer);
-            if (i == count - 1)
-            {
-                var rest = count - length;
-                m_Mtrls[i].SetFloat("_LengthClipX", 1f - (float)rest);
-                m_Mtrls[i].SetFloat("_LengthClipY", 1f);
-            }
-        }
+        var maxLength = 5m;
+        var shader = Resources.Load("shaders/SkeleClip") as Shader;
+        var r = GameObject.Instantiate(rendererPreb, transform);
+        r.SetActive(false);
+        r.transform.localPosition = Vector3.zero;
+        m_Mtrl = new Material(shader);
+        m_Renderer = r.GetComponent<Renderer>();
+        var originMtrl = m_Renderer.material;
+        m_Mtrl.mainTexture = originMtrl.mainTexture;
+        var rest = (maxLength - m_Length) / maxLength;
+        m_Mtrl.SetFloat("_LengthClipX", 1f - (float)rest);
+        m_Mtrl.SetFloat("_LengthClipY", 1f);
     }
 
     private void Update()
     {
-        for (int i = 0; i < m_Renderers.Count; i++)
+        if (m_Renderer && m_Mtrl)
         {
-            m_Renderers[i].material = m_Mtrls[i];
+            m_Renderer.material = m_Mtrl;
         }
     }
 

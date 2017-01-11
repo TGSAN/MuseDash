@@ -3,10 +3,9 @@
 	Properties
 	{
 		_MainTex("Texture", 2D) = "white" {}
-		_Length("Length", float) = 1.0
+		_ClipTex("Texture", 2D) = "white" {}
 		_LengthClipX("LengthClipX", float) = 0
 		_LengthClipY("LengthClipY", float) = 0
-		_ClipRange("ClipRangeA", Vector) = (0, 0, 0, 0)
 	}
 		SubShader
 	{
@@ -39,17 +38,15 @@
 			};
 
 			sampler2D _MainTex;
+			sampler2D _ClipTex;
 			float4 _MainTex_ST;
 			float4 _UVStartRamp;
 			float _LengthClipX;
 			float _LengthClipY;
-			float _Length;
-			vector _ClipRange;
 
 			v2f vert(appdata v)
 			{
 				v2f o;
-				v.vertex.x *= _Length;
 				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				UNITY_TRANSFER_FOG(o, o.vertex);
@@ -60,14 +57,6 @@
 			{
 				fixed4 col = tex2D(_MainTex, i.uv);
 				float v = 0.5625 / 2;
-				if(i.uv.x >= _ClipRange.x * v && i.uv.x <= _ClipRange.y * v)
-				{
-					col.a = 0.0;
-				}
-				if(i.uv.x >= _ClipRange.z * v && i.uv.x <= _ClipRange.w * v)
-				{
-					col.a = 0.0;
-				}
 
 				if(i.uv.x >= _LengthClipX * v && i.uv.x <= _LengthClipY * v)
 				{
