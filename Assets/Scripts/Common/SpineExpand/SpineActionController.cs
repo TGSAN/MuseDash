@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using DYUnityLib;
 using UnityEngine;
 
 [Serializable]
@@ -46,9 +47,10 @@ public class SpineActionController : MonoBehaviour
 
     public float startDelay;
     public float duration;
+    public float lengthRate;
     public GameObject rendererPreb;
-    private List<Material> m_Mtrls = new List<Material>();
-    private List<Renderer> m_Renderers = new List<Renderer>();
+    private Material m_Mtrl;
+    private Renderer m_Renderer;
     private decimal m_Length = 0m;
 
     public static void InitTypePoll()
@@ -135,62 +137,68 @@ public class SpineActionController : MonoBehaviour
         }
     }
 
-    public void Clip(decimal percentStart, decimal percentEnd)
+    public void Clip(int startIdx, int idx)
     {
-        var startIdx = Mathf.FloorToInt((float)(percentStart * m_Length));
-        var endIdx = Mathf.FloorToInt((float)(percentEnd * m_Length));
-        for (int i = startIdx; i <= endIdx && i < m_Mtrls.Count; i++)
+        var idxLength = Mathf.FloorToInt((float)(10m / FixUpdateTimer.dInterval));
+        if (idx > idxLength)
         {
-            var clipRange = m_Mtrls[i].GetVector("_ClipRange");
-            clipRange.x = clipRange.z;
-            clipRange.y = clipRange.w;
-            clipRange.z = 0;
-            clipRange.w = 1f;
-            if (i == startIdx)
-            {
-                var rest = percentStart * m_Length - startIdx;
-                clipRange.z = (float)rest;
-            }
-            if (i == endIdx)
-            {
-                var rest = percentEnd * m_Length - endIdx;
-                clipRange.w = (float)rest;
-            }
-            m_Mtrls[i].SetVector("_ClipRange", clipRange);
+            idx = idxLength;
         }
+        var tex = (Texture2D)m_Mtrl.GetTexture("_ClipTex");
+        var colors = tex.GetPixels();
+        for (int i = startIdx; i < idx; i++)
+        {
+            if (i < idxLength)
+            {
+                colors[i] = new Color(1f, 0f, 0f, 1f);
+            }
+        }
+        tex.SetPixels(colors);
+        tex.Apply();
     }
 
-    public void SetLength(decimal length)
+    public void SetLength(decimal time)
     {
-        length /= GameGlobal.LONG_PRESS_FREQUENCY;
-        var count = Mathf.CeilToInt((float)length);
+        m_Length = time * (decimal)lengthRate;
         var shader = Resources.Load("shaders/SkeleClip") as Shader;
-        m_Length = length;
-        for (int i = 0; i < count; i++)
+        var r = GameObject.Instantiate(rendererPreb, transform);
+        r.SetActive(false);
+        r.transform.localPosition = Vector3.zero;
+        m_Mtrl = new Material(shader);
+        m_Renderer = r.GetComponent<Renderer>();
+        var originMtrl = m_Renderer.material;
+        m_Mtrl.mainTexture = originMtrl.mainTexture;
+
+        var idxLength = Mathf.FloorToInt((float)(10m / FixUpdateTimer.dInterval));
+        var endIdx = Mathf.FloorToInt((float)(m_Length / FixUpdateTimer.dInterval));
+        var tex = new Texture2D(idxLength, 1);
+        var colors = tex.GetPixels();
+        for (int i = 0; i < idxLength; i++)
         {
-            var r = GameObject.Instantiate(rendererPreb, transform);
-            r.SetActive(false);
-            r.transform.localPosition = new Vector3(i * 1.4155f, 0f, 0f);
-            var material = new Material(shader);
-            var theRenderer = r.GetComponent<Renderer>();
-            var originMtrl = theRenderer.material;
-            material.mainTexture = originMtrl.mainTexture;
-            m_Mtrls.Add(material);
-            m_Renderers.Add(theRenderer);
-            if (i == count - 1)
+            if (i > endIdx)
             {
-                var rest = count - length;
-                m_Mtrls[i].SetFloat("_LengthClipX", 1f - (float)rest);
-                m_Mtrls[i].SetFloat("_LengthClipY", 1f);
+                colors[i] = new Color(1f, 0f, 0f, 1f);
+            }
+            else
+            {
+                colors[i] = new Color(0f, 0f, 0f, 1f);
             }
         }
+        tex.SetPixels(colors);
+        tex.Apply();
+        m_Mtrl.SetTexture("_ClipTex", tex);
+    }
+
+    public decimal GetLength()
+    {
+        return m_Length;
     }
 
     private void Update()
     {
-        for (int i = 0; i < m_Renderers.Count; i++)
+        if (m_Renderer && m_Mtrl)
         {
-            m_Renderers[i].material = m_Mtrls[i];
+            m_Renderer.material = m_Mtrl;
         }
     }
 

@@ -64,7 +64,7 @@ namespace FormulaBase
                 return GameMusic.GREAT;
             }
             var result = BattleEnemyManager.Instance.GetPlayResult(curLPSIdx);
-            if (result != GameMusic.GREAT || result != GameMusic.PERFECT)
+            if (result != GameMusic.PERFECT)
             {
                 return GameMusic.GREAT;
             }
@@ -785,6 +785,10 @@ namespace FormulaBase
                 int s = (int)(md.tick / FixUpdateTimer.dInterval);
                 if (!md.isLongPress)
                 {
+                    if (md.isLongPressStart)
+                    {
+                        s = (int)((md.tick - 0.1m) / FixUpdateTimer.dInterval);
+                    }
                     int aIvrtotal = (int)(md.nodeData.hitRangeA / FixUpdateTimer.dInterval);
                     var bIvrtotal = (int)(md.nodeData.hitRangeB / FixUpdateTimer.dInterval);
                     decimal aPerfectRange = md.nodeData.a_perfect_range;
