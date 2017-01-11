@@ -148,7 +148,7 @@ public class SpineActionController : MonoBehaviour
         {
             colors = new List<Color>(tex.GetPixels());
         }
-        var color = new Color((float)percentStart, (float)percentEnd, 1.0f);
+        var color = new Color((float)percentStart, (float)percentEnd, 1.0f, 1.0f);
         var idx = colors.FindIndex(c => Math.Abs(c.r - color.r) < 0.001f);
         if (idx != -1)
         {
