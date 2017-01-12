@@ -152,6 +152,10 @@ namespace GameLogic
                     }
                 }
             }
+            if (StageBattleComponent.Instance.IsAutoPlay())
+            {
+                AutoPlay();
+            }
         }
 
         // Call for process something about miss.
@@ -168,6 +172,7 @@ namespace GameLogic
                 return;
             }
             int idx = this._missMap[_missTickIdx];
+
             var md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
             var mdNote = md.nodeData;
             var negativePerfectRange = (decimal)mdNote.hitRangeB;
@@ -179,7 +184,37 @@ namespace GameLogic
             {
                 StageBattleComponent.Instance.curLPSIdx = md.longPressPIdx;
             }
+
             DelayMissCube(negativePerfectRange, ts);
+        }
+
+        private void AutoPlay()
+        {
+            var ts = GetMusicPassTick();
+
+            var nextOffsetTsIdx = (int)((ts + 0.2m) / FixUpdateTimer.dInterval);
+            if (_missMap.ContainsKey(nextOffsetTsIdx))
+            {
+                var nextOffsetIdx = this._missMap[nextOffsetTsIdx];
+                var nextOffsetMd = StageBattleComponent.Instance.GetMusicDataByIdx(nextOffsetIdx);
+                if (nextOffsetMd.nodeData.type == GameLogic.GameGlobal.NODE_TYPE_AIR_BEAT)
+                {
+                    GameGlobal.gGameTouchPlay.TouchActionResult(GameMusic.TOUCH_ACTION_SIGNLE_PRESS, GameGlobal.PRESS_STATE_JUMP);
+                }
+            }
+
+            var tsIdx = (int)(ts / FixUpdateTimer.dInterval);
+            if (_missMap.ContainsKey(tsIdx))
+            {
+                var idx = this._missMap[tsIdx];
+                MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
+                uint pd = GameGlobal.PRESS_STATE_PUMCH;
+                if (md.nodeData.jump_note)
+                {
+                    pd = GameGlobal.PRESS_STATE_JUMP;
+                }
+                GameGlobal.gGameTouchPlay.TouchActionResult(GameMusic.TOUCH_ACTION_SIGNLE_PRESS, pd);
+            }
         }
 
         private void DelayMissCube(decimal dt, decimal curTimeDecimal)
