@@ -61,20 +61,7 @@ namespace GameLogic
                 ArmActionController.Instance.OnControllerMiss(idx);
             }
 
-            if (StageBattleComponent.Instance.IsAutoPlay())
-            {
-                MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
-                uint pd = GameGlobal.PRESS_STATE_PUMCH;
-                if (md.nodeData.jump_note)
-                {
-                    pd = GameGlobal.PRESS_STATE_JUMP;
-                }
-                GameGlobal.gGameTouchPlay.TouchActionResult(GameMusic.TOUCH_ACTION_SIGNLE_PRESS, pd);
-            }
-            else
-            {
-                bsc.OnControllerMiss(idx);
-            }
+            bsc.OnControllerMiss(idx);
 
             if (GameGlobal.IS_DEBUG)
             {
