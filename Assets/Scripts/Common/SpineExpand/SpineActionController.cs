@@ -168,12 +168,6 @@ public class SpineActionController : MonoBehaviour
             }
         }
 
-        if (idx > (m_Length + md.nodeData.b_great_range) / FixUpdateTimer.dInterval)
-        {
-            AudioManager.Instance.girlEffect.Stop();
-            AudioManager.Instance.girlEffect.loop = false;
-        }
-
         var idxLength = Mathf.FloorToInt((float)(10m / FixUpdateTimer.dInterval));
         if (idx > idxLength)
         {
@@ -200,6 +194,7 @@ public class SpineActionController : MonoBehaviour
             var emit = p.emission;
             emit.enabled = isTo;
         });
+        AudioManager.Instance.girlEffect.loop = isTo;
     }
 
     public void SetLength(decimal time)
