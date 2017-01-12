@@ -294,6 +294,10 @@ namespace GameLogic
             var idx = (passedTick - parentMd.tick) / FixUpdateTimer.dInterval * (decimal)(1.93333f / sac.duration)/* - 10m * (decimal)(1.93333f - sac.duration)*/;
 
             startIdx = startIdx < 0 ? 0 : startIdx;
+            if (sac.lengthRate == 1f)
+            {
+                idx += 5;
+            }
             if (startIdx < 0 || idx > sac.GetLength() / FixUpdateTimer.dInterval)
             {
                 sac.PlayLongPressEffect(false);
