@@ -49,9 +49,13 @@ public class SpineActionController : MonoBehaviour
     public float duration;
     public float lengthRate;
     public GameObject rendererPreb;
+    public GameObject detroyEffect;
+    public GameObject clipEffect;
+    public float rotateRuration = 1.0f;
     private Material m_Mtrl;
     private Renderer m_Renderer;
     private decimal m_Length = 0m;
+    private int m_Idx = 0;
 
     public static void InitTypePoll()
     {
@@ -96,6 +100,7 @@ public class SpineActionController : MonoBehaviour
 
     public void Init(int idx)
     {
+        m_Idx = idx;
         if (this.eventFactory == null)
         {
             this.eventFactory = this.gameObject.AddComponent<SpineEventFactory>();
@@ -139,11 +144,42 @@ public class SpineActionController : MonoBehaviour
 
     public void Clip(int startIdx, int idx)
     {
+        var md = StageBattleComponent.Instance.GetMusicDataByIdx(m_Idx);
+        //Ïû³ýÐÇÐÇ
+        if (startIdx <= (md.nodeData.a_great_range * (decimal)lengthRate) / FixUpdateTimer.dInterval)
+        {
+            startIdx = 0;
+            var stars = gameObject.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>();
+            var startStarIdx = stars.ToList().FindIndex(s => s.gameObject.name.Contains("_top"));
+            if (startStarIdx != -1)
+            {
+                detroyEffect = GameObject.Instantiate(detroyEffect);
+                Destroy(stars[startStarIdx].gameObject);
+            }
+        }
+        if (idx >= (m_Length - md.nodeData.a_great_range) / FixUpdateTimer.dInterval && idx <= (m_Length + md.nodeData.b_great_range) / FixUpdateTimer.dInterval)
+        {
+            var stars = gameObject.transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>();
+            var endIdx = stars.ToList().FindIndex(s => s.gameObject.name.Contains("_end"));
+            if (endIdx != -1)
+            {
+                detroyEffect = GameObject.Instantiate(detroyEffect);
+                Destroy(stars[endIdx].gameObject);
+            }
+        }
+
+        if (idx > (m_Length + md.nodeData.b_great_range) / FixUpdateTimer.dInterval)
+        {
+            AudioManager.Instance.girlEffect.Stop();
+            AudioManager.Instance.girlEffect.loop = false;
+        }
+
         var idxLength = Mathf.FloorToInt((float)(10m / FixUpdateTimer.dInterval));
         if (idx > idxLength)
         {
             idx = idxLength;
         }
+
         var tex = (Texture2D)m_Mtrl.GetTexture("_ClipTex");
         var colors = tex.GetPixels();
         for (int i = startIdx; i < idx; i++)
@@ -155,6 +191,15 @@ public class SpineActionController : MonoBehaviour
         }
         tex.SetPixels(colors);
         tex.Apply();
+    }
+
+    public void PlayLongPressEffect(bool isTo)
+    {
+        clipEffect.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(p =>
+        {
+            var emit = p.emission;
+            emit.enabled = isTo;
+        });
     }
 
     public void SetLength(decimal time)
@@ -187,6 +232,20 @@ public class SpineActionController : MonoBehaviour
         tex.SetPixels(colors);
         tex.Apply();
         m_Mtrl.SetTexture("_ClipTex", tex);
+        var originLength = m_Mtrl.GetFloat("_Length");
+
+        var startStart = transform.GetChild(0).GetChild(0).gameObject;
+        startStart.transform.DOLocalRotate(new Vector3(0, 0, 360), rotateRuration, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).SetLoops(-1);
+        var endStart = GameObject.Instantiate(startStart, startStart.transform.parent);
+        endStart.transform.DOLocalRotate(new Vector3(0, 0, 360), rotateRuration, RotateMode.LocalAxisAdd).SetEase(Ease.Linear).SetLoops(-1);
+        endStart.transform.localPosition = startStart.transform.localPosition + Vector3.right * originLength * (float)(m_Length / 10m);
+        endStart.name = endStart.name.Replace("top", "end");
+        clipEffect = GameObject.Instantiate(clipEffect);
+        clipEffect.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(p =>
+        {
+            var emit = p.emission;
+            emit.enabled = false;
+        });
     }
 
     public decimal GetLength()

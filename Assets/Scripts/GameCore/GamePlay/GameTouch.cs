@@ -224,6 +224,13 @@ namespace GameLogic
             this.beginTouchTick = -1m;
 
             this.SetPressState(GameGlobal.PRESS_STATE_NONE);
+
+            if (BattleEnemyManager.Instance.Enemies.ContainsKey(StageBattleComponent.Instance.curLPSIdx))
+            {
+                var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
+                var sac = go.GetComponent<SpineActionController>();
+                sac.PlayLongPressEffect(false);
+            }
         }
 
         private void BeginTouchPhaser()
@@ -282,11 +289,19 @@ namespace GameLogic
             if (parentMd.configData.length <= 0) return;
             var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
             var sac = go.GetComponent<SpineActionController>();
-
             decimal passedTick = GameGlobal.gGameMusic.GetMusicPassTick();
-            var startIdx = (int)((beginTouchTick - parentMd.tick) / FixUpdateTimer.dInterval);
+            var startIdx = (int)((beginTouchTick - parentMd.tick) / FixUpdateTimer.dInterval * (decimal)(1.93333f / sac.duration));
+            var idx = (passedTick - parentMd.tick) / FixUpdateTimer.dInterval * (decimal)(1.93333f / sac.duration)/* - 10m * (decimal)(1.93333f - sac.duration)*/;
+
             startIdx = startIdx < 0 ? 0 : startIdx;
-            var idx = (passedTick - parentMd.tick) / FixUpdateTimer.dInterval * (decimal)(1.93333f / sac.duration);
+            if (startIdx < 0 || idx > sac.GetLength() / FixUpdateTimer.dInterval)
+            {
+                sac.PlayLongPressEffect(false);
+            }
+            else
+            {
+                sac.PlayLongPressEffect(true);
+            }
             sac.Clip(startIdx, (int)idx);
         }
 

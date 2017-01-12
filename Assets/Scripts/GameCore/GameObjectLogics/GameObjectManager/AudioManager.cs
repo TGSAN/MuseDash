@@ -10,7 +10,7 @@ public class AudioManager
     private static AudioManager instance = null;
 
     private AudioSource backGroundMusic;
-    private AudioSource girlEffect;
+    public AudioSource girlEffect;
     private AudioSource nodeEffect;
     private AudioClip girlJump;
     private AudioClip girlSlide;
@@ -359,6 +359,21 @@ public class AudioManager
         {
             return;
         }
+        //长按音效播放方式特别
+        if (name == "note/key_audio/press_atk")
+        {
+            if (this.audioDic.ContainsKey(name))
+            {
+                this.girlEffect.clip = this.audioDic[name];
+                if (!this.girlEffect.isPlaying)
+                {
+                    this.girlEffect.Play();
+                    this.girlEffect.loop = true;
+                }
+                return;
+            }
+        }
+        this.girlEffect.loop = false;
 #if UNITY_ANDROID && !UNITY_EDITOR
         name = StringUtils.LastAfter(name, '/');
         var result = AudioCenter.playSound(name);
