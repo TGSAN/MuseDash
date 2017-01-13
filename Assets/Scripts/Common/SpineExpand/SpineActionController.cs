@@ -194,7 +194,7 @@ public class SpineActionController : MonoBehaviour
             var emit = p.emission;
             emit.enabled = isTo;
         });
-        AudioManager.Instance.girlEffect.loop = isTo;
+
         if (!isTo)
         {
             if (AudioManager.Instance.girlEffect.loop)
@@ -202,6 +202,7 @@ public class SpineActionController : MonoBehaviour
                 AudioManager.Instance.girlEffect.Stop();
             }
         }
+        AudioManager.Instance.girlEffect.loop = isTo;
     }
 
     public void SetLength(decimal time)
