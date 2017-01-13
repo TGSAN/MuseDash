@@ -238,6 +238,7 @@ namespace GameLogic
 
         public void BeginTouchPhaser()
         {
+            this.beginTouchTick = GameGlobal.gGameMusic.GetMusicPassTick();
             uint _tempState = GameGlobal.PRESS_STATE_NONE;
             if (Input.GetKey(GameGlobal.KC_JUMP) || Input.GetKey(GameGlobal.KC_PUMCH))
             {
@@ -277,7 +278,6 @@ namespace GameLogic
 
             this.touchDisY = 0;
             this.touchTempY = 0;
-            this.beginTouchTick = GameGlobal.gGameMusic.GetMusicPassTick();
 
             this.TouchActionResult(GameMusic.TOUCH_ACTION_SIGNLE_PRESS);
         }
@@ -308,7 +308,7 @@ namespace GameLogic
                 idx += 5;
             }
 
-            if (startIdx < 0 || idx > sac.GetLength() / FixUpdateTimer.dInterval)
+            if (startIdx < 0 || idx > (sac.GetLength() / FixUpdateTimer.dInterval))
             {
                 sac.PlayLongPressEffect(false);
             }
