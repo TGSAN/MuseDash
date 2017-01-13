@@ -281,7 +281,12 @@ namespace GameLogic
 
         public void MoveTouchPhaser()
         {
-            if (StageBattleComponent.Instance.curLPSIdx < 0 || !GameGlobal.gGameTouchPlay.IsPunch())
+            var isPunch = GameGlobal.gGameTouchPlay.IsPunch();
+
+#if !UNITY_EDITOR
+            isPunch = GameGlobal.gGameTouchPlay.IsPunch(0);
+#endif
+            if (StageBattleComponent.Instance.curLPSIdx < 0 || !isPunch)
             {
                 return;
             }
