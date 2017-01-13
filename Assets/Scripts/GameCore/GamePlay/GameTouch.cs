@@ -284,7 +284,7 @@ namespace GameLogic
             var isPunch = GameGlobal.gGameTouchPlay.IsPunch();
 
 #if !UNITY_EDITOR
-            isPunch = GameGlobal.gGameTouchPlay.IsPunch(0);
+            isPunch = GameGlobal.gGameTouchPlay.IsPunch(1);
 #endif
             if (StageBattleComponent.Instance.curLPSIdx < 0 || !isPunch)
             {
