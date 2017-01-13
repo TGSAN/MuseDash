@@ -212,7 +212,7 @@ public class AttacksController : MonoBehaviour
         GirlManager.Instance.AttackWithExchange(GameMusic.NONE, actKey);
     }
 
-    private void PlayJumpAnim()
+    public void PlayJumpAnim()
     {
         GirlManager.Instance.AttacksWithoutExchange(GameMusic.JUMPOVER, ACTION_KEYS.JUMP);
         AudioManager.Instance.PlayGirlHitByName(JUMP_AUDIO);

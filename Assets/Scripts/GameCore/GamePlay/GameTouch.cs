@@ -90,7 +90,7 @@ namespace GameLogic
             }
         }
 
-        private void SetPressState(uint state)
+        public void SetPressState(uint state)
         {
             this.pressState = state;
             if (this.IsPunch())

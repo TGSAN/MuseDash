@@ -814,7 +814,7 @@ namespace FormulaBase
             for (int i = 0; i < this.musicTickData.Count; i++)
             {
                 MusicData md = (MusicData)this.musicTickData[i];
-                if (md.nodeData.hit_type <= GameMusic.NONE)
+                if (md.nodeData.hit_type <= GameMusic.NONE || (md.nodeData.type == GameGlobal.NODE_TYPE_BOSS && i == 1))
                 {
                     continue;
                 }

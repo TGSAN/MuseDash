@@ -201,7 +201,10 @@ namespace GameLogic
                 var nextOffsetMd = StageBattleComponent.Instance.GetMusicDataByIdx(nextOffsetIdx);
                 if (nextOffsetMd.nodeData.type == GameLogic.GameGlobal.NODE_TYPE_AIR_BEAT)
                 {
-                    GameGlobal.gGameTouchPlay.TouchActionResult(GameMusic.TOUCH_ACTION_SIGNLE_PRESS, GameGlobal.PRESS_STATE_JUMP);
+                    if (!GirlManager.Instance.IsJumpingAction())
+                    {
+                        AttacksController.Instance.PlayJumpAnim();
+                    }
                 }
                 return;
             }
@@ -211,6 +214,10 @@ namespace GameLogic
             {
                 var idx = this._missMap[tsIdx];
                 MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
+                if (md.nodeData.type == GameGlobal.NODE_TYPE_BOSS && idx == 1)
+                {
+                    return;
+                }
                 uint pd = GameGlobal.PRESS_STATE_PUMCH;
                 if (md.nodeData.jump_note)
                 {

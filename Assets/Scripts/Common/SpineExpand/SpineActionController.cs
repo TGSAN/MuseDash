@@ -198,6 +198,7 @@ public class SpineActionController : MonoBehaviour
         if (!isTo)
         {
             AudioManager.Instance.girlEffect.Stop();
+            AudioManager.Instance.ResetAudioClip();
         }
     }
 
