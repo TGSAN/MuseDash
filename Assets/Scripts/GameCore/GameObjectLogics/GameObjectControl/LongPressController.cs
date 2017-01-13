@@ -46,7 +46,7 @@ public class LongPressController : BaseEnemyObjectController
             GameGlobal.gGameTouchPlay.TouchResult(idx, result, GameMusic.TOUCH_ACTION_SIGNLE_PRESS); //(mark) attack node damage to it
             BattleEnemyManager.Instance.SetPlayResult(idx, result);
             GameGlobal.gGameMissPlay.SetMissHardTime(0);
-            AttacksController.Instance.ShowPressGirl(true);
+            AttacksController.Instance.ShowPressGirl(!md.isLongPressEnd);
             //GameObject.Destroy(this.gameObject);
         }
         else

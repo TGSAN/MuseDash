@@ -184,8 +184,10 @@ namespace GameLogic
             {
                 StageBattleComponent.Instance.curLPSIdx = md.longPressPIdx;
             }
-
-            DelayMissCube(negativePerfectRange, ts);
+            if (!StageBattleComponent.Instance.IsAutoPlay())
+            {
+                DelayMissCube(negativePerfectRange, ts);
+            }
         }
 
         private void AutoPlay()
@@ -213,7 +215,23 @@ namespace GameLogic
                 {
                     pd = GameGlobal.PRESS_STATE_JUMP;
                 }
-                GameGlobal.gGameTouchPlay.TouchActionResult(GameMusic.TOUCH_ACTION_SIGNLE_PRESS, pd);
+
+                if (md.isLongPressStart || md.isLongPress)
+                {
+                    GameGlobal.gGameTouchPlay.TouchActionResult(GameMusic.TOUCH_ACTION_LONG_PRESS, pd);
+                    GameTouchPlay.instance.MoveTouchPhaser();
+                }
+                else
+                {
+                    GameGlobal.gGameTouchPlay.TouchActionResult(GameMusic.TOUCH_ACTION_SIGNLE_PRESS, pd);
+                    GameTouchPlay.instance.BeginTouchPhaser();
+                }
+
+                if (md.isLongPressEnd)
+                {
+                    GameGlobal.gGameTouchPlay.TouchActionResult(GameMusic.TOUCH_ACTION_NONE, pd);
+                    GameTouchPlay.instance.EndTouchPhaser();
+                }
             }
         }
 

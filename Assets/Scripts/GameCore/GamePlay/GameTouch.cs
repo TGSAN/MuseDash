@@ -8,7 +8,7 @@ using Object = UnityEngine.Object;
 
 namespace GameLogic
 {
-    public class GameTouchPlay
+    public class GameTouchPlay : Singleton<GameTouchPlay>
     {
         public const uint COMBO_SHOW_MIN = 5;
         public const uint COMBO_EFFECT_PLAY_MIN = 15;
@@ -212,12 +212,12 @@ namespace GameLogic
 
             if (this.touchPhase == gTrigger.DYUL_EVENT_TOUCH_MOVE)
             {
-                this.MoveTouchPhaser();
+                MoveTouchPhaser();
                 return;
             }
         }
 
-        private void EndTouchPhaser()
+        public void EndTouchPhaser()
         {
             this.touchDisY = 0;
             this.touchTempY = 0;
@@ -233,7 +233,7 @@ namespace GameLogic
             }
         }
 
-        private void BeginTouchPhaser()
+        public void BeginTouchPhaser()
         {
             uint _tempState = GameGlobal.PRESS_STATE_NONE;
             if (Input.GetKey(GameGlobal.KC_JUMP) || Input.GetKey(GameGlobal.KC_PUMCH))
@@ -279,7 +279,7 @@ namespace GameLogic
             this.TouchActionResult(GameMusic.TOUCH_ACTION_SIGNLE_PRESS);
         }
 
-        private void MoveTouchPhaser()
+        public void MoveTouchPhaser()
         {
             if (StageBattleComponent.Instance.curLPSIdx < 0 || !GameGlobal.gGameTouchPlay.IsPunch())
             {
@@ -290,14 +290,16 @@ namespace GameLogic
             var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
             var sac = go.GetComponent<SpineActionController>();
             decimal passedTick = GameGlobal.gGameMusic.GetMusicPassTick();
-            var startIdx = (int)((beginTouchTick - parentMd.tick) / FixUpdateTimer.dInterval * (decimal)(1.93333f / sac.duration));
-            var idx = (passedTick - parentMd.tick) / FixUpdateTimer.dInterval * (decimal)(1.93333f / sac.duration)/* - 10m * (decimal)(1.93333f - sac.duration)*/;
+            var rate = (decimal)(1.93333f / sac.duration);
+            var startIdx = (int)((beginTouchTick - parentMd.tick) / FixUpdateTimer.dInterval * rate);
+            var idx = (passedTick - parentMd.tick) / FixUpdateTimer.dInterval * rate;
 
             startIdx = startIdx < 0 ? 0 : startIdx;
             if (sac.lengthRate == 1f)
             {
                 idx += 5;
             }
+
             if (startIdx < 0 || idx > sac.GetLength() / FixUpdateTimer.dInterval)
             {
                 sac.PlayLongPressEffect(false);
@@ -431,7 +433,7 @@ namespace GameLogic
             BattleRoleAttributeComponent.Instance.AfterAttackScore(idx, (int)resultCode, (int)actionType);
 
             MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
-            if (md.nodeData.addCombo)
+            if (md.nodeData.addCombo && !md.isLongPress)
             {
                 this.PlayComboPhaser(resultCode, md.nodeData.isShowPlayEffect);
             }

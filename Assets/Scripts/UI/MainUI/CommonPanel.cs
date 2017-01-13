@@ -16,6 +16,7 @@ public class CommonPanel : MonoBehaviour
     public UIMask UIMask;                     //各界面间的渐黑
     public UIGrid debugGrid;
     public GameObject theDebugPrefab;
+    public UIToggle tglAutoPlay;
     public bool showDebug;
     private static CommonPanel m_Instance;
 
@@ -109,6 +110,14 @@ public class CommonPanel : MonoBehaviour
         };
         UIEventListener.Get(btnNo.gameObject).onClick = quitCallFunc;
         UIEventListener.Get(btnMask.gameObject).onClick = quitCallFunc;
+    }
+
+    public void SetAutoPlay(bool isTo)
+    {
+        if (StageBattleComponent.Instance != null)
+        {
+            StageBattleComponent.Instance.SetAutoPlay(tglAutoPlay.value);
+        }
     }
 
     /// <summary>
