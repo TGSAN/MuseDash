@@ -644,18 +644,54 @@ namespace FormulaBase
             }
 
             GameGlobal.gGameMusic.PlayMusic();
-
-            //延迟0.1s用于音频加载不同步缓冲
             AudioManager.Instance.SetBgmVolume(0f);
-            DOTweenUtils.Delay(() =>
+
+            DelayStartGame();
+
+            //UserUI.Instance.SetGUIActive (false);
+        }
+
+        private void DelayStartGame()
+        {
+            var delayTimer = new FixUpdateTimer();
+            delayTimer.Init(10m);
+            delayTimer.Run();
+            var musicDelay = GameGlobal.DELAY_FOR_MUSIC;
+            var gameDelay = GameGlobal.DELAY_FOR_GAMESTART;
+            var gameEventID = GameGlobal.DELAY_START_GAME;
+            var musicEventID = GameGlobal.DELAY_PLAY_MUSIC;
+
+            EventTrigger.TriggerHandler startGame = (s, t, a) =>
+            {
+                GameGlobal.gGameMusic.Run();
+                GameGlobal.gGameMusicScene.Run();
+                Debug.Log("Game start");
+            };
+
+            EventTrigger.TriggerHandler startMusic = (s, t, a) =>
             {
                 AudioManager.Instance.SetBgmVolume(1.0f);
                 AudioManager.Instance.SetBackGroundMusicProgress(0.0f);
-                GameGlobal.gGameMusic.Run();
-                GameGlobal.gGameMusicScene.Run();
-                Debug.Log("Stage start");
-            }, (float)GameGlobal.MUSIC_DELAY_FOR_LOAD_TIME);
-            //UserUI.Instance.SetGUIActive (false);
+                Debug.Log("Music start");
+            };
+
+            gTrigger.UnRegEvent(gameEventID);
+            var trigger = gTrigger.RegEvent(gameEventID);
+            trigger.Trigger += startGame;
+
+            if (musicDelay == gameDelay)
+            {
+                trigger.Trigger += startMusic;
+            }
+            else
+            {
+                gTrigger.UnRegEvent(musicEventID);
+                var musicTrigger = gTrigger.RegEvent(musicEventID);
+                musicTrigger.Trigger += startMusic;
+                delayTimer.AddTickEvent(musicDelay, musicEventID);
+            }
+
+            delayTimer.AddTickEvent(gameDelay, gameEventID);
         }
 
         // ResetMusicData

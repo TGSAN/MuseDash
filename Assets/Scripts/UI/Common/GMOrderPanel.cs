@@ -40,7 +40,16 @@ public class GMOrderPanel : MonoBehaviour
         var output = 0.0m;
         if (decimal.TryParse(label.text, out output))
         {
-            GameGlobal.MUSIC_DELAY_FOR_LOAD_TIME = output;
+            GameGlobal.DELAY_FOR_MUSIC = output;
+        }
+    }
+
+    public void SetGameDelayPlayTime(UILabel label)
+    {
+        var output = 0.0m;
+        if (decimal.TryParse(label.text, out output))
+        {
+            GameGlobal.DELAY_FOR_GAMESTART = output;
         }
     }
 
