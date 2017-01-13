@@ -131,6 +131,7 @@ public class CommonPanel : MonoBehaviour
             return;
         }
         debugGrid.enabled = true;
+        debugGrid.gameObject.SetActive(true);
         var go = GameObject.Instantiate(theDebugPrefab, debugGrid.transform, false) as GameObject;
         if (go != null)
         {
