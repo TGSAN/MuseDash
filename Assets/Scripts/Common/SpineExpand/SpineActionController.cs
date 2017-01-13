@@ -56,6 +56,7 @@ public class SpineActionController : MonoBehaviour
     private Renderer m_Renderer;
     private decimal m_Length = 0m;
     private int m_Idx = 0;
+    private List<ParticleSystem> m_ClipParticles = new List<ParticleSystem>();
 
     public static void InitTypePoll()
     {
@@ -189,7 +190,7 @@ public class SpineActionController : MonoBehaviour
 
     public void PlayLongPressEffect(bool isTo)
     {
-        clipEffect.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(p =>
+        m_ClipParticles.ForEach(p =>
         {
             var emit = p.emission;
             emit.enabled = isTo;
@@ -244,7 +245,8 @@ public class SpineActionController : MonoBehaviour
         endStart.transform.localPosition = startStart.transform.localPosition + Vector3.right * originLength * (float)(m_Length / 10m);
         endStart.name = endStart.name.Replace("top", "end");
         clipEffect = GameObject.Instantiate(clipEffect);
-        clipEffect.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(p =>
+        m_ClipParticles = clipEffect.GetComponentsInChildren<ParticleSystem>().ToList();
+        m_ClipParticles.ForEach(p =>
         {
             var emit = p.emission;
             emit.enabled = false;
