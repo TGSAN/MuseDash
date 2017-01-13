@@ -70,11 +70,7 @@ public class GameInit : MonoBehaviour
         Debug.Log("初始化");
         FormulaBase.AccountManagerComponent.Instance.Init();
         FormulaBase.AccountPhysicsManagerComponent.Instance.Init();
-        FormulaBase.BagManageComponent.Instance.Init();
-        FormulaBase.EquipManageComponent.Instance.Init();//初始化装s备
-        FormulaBase.MaterialManageComponent.Instance.Init();    //初始化材料
-        FormulaBase.PetManageComponent.Instance.Init();//初始化宠物
-        FormulaBase.ItemManageComponent.Instance.Init();//背包初始化 放在所有道具之后
+//        FormulaBase.BagManageComponent.Instance.Init();
         FormulaBase.DailyTaskManager.instance.Init();
     }
 

@@ -17,7 +17,7 @@ public class BgmRefreshEdit : EditorWindow {
 	private string path = "stage/";
 
 
-	[MenuItem("RHY/stage bgm 统一刷新")]
+	[MenuItem("MD/stage bgm 统一刷新")]
 	static void Init () {
 		BgmRefreshEdit window = (BgmRefreshEdit)EditorWindow.GetWindow (typeof(BgmRefreshEdit));
 		window.Show ();

@@ -16,7 +16,7 @@ namespace PnlAchievement
         private static PnlAchievement instance = null;
         public Transform highScore, maxCombo, clear;
         public UILabel txtHighScore, txtMaxCombo, txtClear;
-        private readonly List<BtnItemBoard.BtnItemBoard> m_BtnDic = new List<BtnItemBoard.BtnItemBoard>();
+//        private readonly List<BtnItemBoard.BtnItemBoard> m_BtnDic = new List<BtnItemBoard.BtnItemBoard>();
 
         public static PnlAchievement Instance
         {
@@ -28,9 +28,9 @@ namespace PnlAchievement
 
         private void Awake()
         {
-			highScore.GetComponentsInChildren<BtnItemBoard.BtnItemBoard>().ToList().ForEach(btnItemBoard => m_BtnDic.Add(btnItemBoard));
-			maxCombo.GetComponentsInChildren<BtnItemBoard.BtnItemBoard>().ToList().ForEach(btnItemBoard => m_BtnDic.Add(btnItemBoard));
-			clear.GetComponentsInChildren<BtnItemBoard.BtnItemBoard>().ToList().ForEach(btnItemBoard => m_BtnDic.Add(btnItemBoard));
+			//highScore.GetComponentsInChildren<BtnItemBoard.BtnItemBoard>().ToList().ForEach(btnItemBoard => m_BtnDic.Add(btnItemBoard));
+			//maxCombo.GetComponentsInChildren<BtnItemBoard.BtnItemBoard>().ToList().ForEach(btnItemBoard => m_BtnDic.Add(btnItemBoard));
+			//clear.GetComponentsInChildren<BtnItemBoard.BtnItemBoard>().ToList().ForEach(btnItemBoard => m_BtnDic.Add(btnItemBoard));
         }
 
         public override void OnShow()
@@ -41,11 +41,11 @@ namespace PnlAchievement
             txtClear.text = AchievementManager.instance.GetClearCount(stageID).ToString();
 
             var allAchievements = AchievementManager.instance.GetAchievements();
-            for (var i = 0; i < m_BtnDic.Count; i++)
+//            for (var i = 0; i < m_BtnDic.Count; i++)
             {
-                var btn = m_BtnDic[i];
-                var ach = allAchievements[i];
-                btn.OnShow(ach);
+//                var btn = m_BtnDic[i];
+//                var ach = allAchievements[i];
+//                btn.OnShow(ach);
             }
         }
 

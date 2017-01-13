@@ -177,7 +177,7 @@ public class UIManageSystem : System.Object {
 		{
 			RomoveUI(0);
 		}
-		ItemManageComponent.Instance.ClearChosedItem();
+//		ItemManageComponent.Instance.ClearChosedItem();
 
 	}
 	/// <summary>

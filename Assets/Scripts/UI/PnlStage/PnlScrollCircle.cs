@@ -486,7 +486,8 @@ namespace Assets.Scripts.NGUI
                     m_DiffSeq.Complete();
                 }
                 m_DiffSeq = DOTween.Sequence();
-                var dt = animDT / difficulty.transform.childCount;
+                //var dt = animDT / difficulty.transform.childCount;
+				var dt = 10;
                 if (m_PreDiff < diff)
                 {
                     for (int i = m_PreDiff; i < difficulty.transform.childCount; i++)
@@ -509,11 +510,13 @@ namespace Assets.Scripts.NGUI
                         var idx = i;
                         m_DiffSeq.AppendCallback(() =>
                         {
+								/*
                             if (difficulty.transform.childCount > idx)
                             {
                                 var child = difficulty.transform.GetChild(idx);
                                 child.gameObject.SetActive(isVisiable);
                             }
+                            */
                         });
                         m_DiffSeq.AppendInterval(dt);
                     }

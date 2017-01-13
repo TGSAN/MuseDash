@@ -9,7 +9,7 @@ public class SpineActionInspector : EditorWindow {
 	private static string ADD_BUTTON = "+";
 	private static string DEL_BUTTON = "-";
 
-	[MenuItem("RHY/Spine扩展/动作关键字编辑")]
+	[MenuItem("MD/Spine扩展/动作关键字编辑")]
 	static void Init () {
 		SpineActionInspector window = (SpineActionInspector)EditorWindow.GetWindow (typeof(SpineActionInspector));
 		window.Show ();

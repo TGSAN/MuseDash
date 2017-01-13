@@ -116,7 +116,7 @@ namespace Assets.Scripts.Common
                     }
                     else
                     {
-                        PnlCharUpgrade.PnlCharUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeResult);
+//                        PnlCharUpgrade.PnlCharUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeResult);
                         PnlMainMenu.PnlMainMenu.Instance.OnEnergyUpdate(true);
                         DailyTaskManager.instance.AddValue(expHosts.Count, DailyTaskManager.FOOD_IDX);
                     }
@@ -193,8 +193,8 @@ namespace Assets.Scripts.Common
                 {
                     if (result)
                     {
-                        ItemManageComponent.Instance.DeleteListItem(expHosts);
-                        PnlItemUpgrade.PnlItemUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeResult);
+//                        ItemManageComponent.Instance.DeleteListItem(expHosts);
+//                        PnlItemUpgrade.PnlItemUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeResult);
                         DailyTaskManager.instance.AddValue(expHosts.Count, DailyTaskManager.UPGRADE_ITEM_IDX);
                     }
                     else

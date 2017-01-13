@@ -6,7 +6,9 @@ using UnityEngine;
 namespace PnlAchievement {
 	public class OnClickBtnBack : UIPhaseOnClickBase {
 		public static void Do(GameObject gameObject) {
+			Debug.Log ("===========");
 				OnDo(gameObject);
+			PnlStageInfo.PnlStageInfo.Instance.OnHide ();
 		}
 	}
 }

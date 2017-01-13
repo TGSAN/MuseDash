@@ -3,7 +3,7 @@
 /// 
 using System;
 using UnityEngine;
-namespace PnlTask {
+namespace PnlDailyTask {
 	public class OnClickBtnMask : UIPhaseOnClickBase {
 		public static void Do(GameObject gameObject) {
 				OnDo(gameObject);

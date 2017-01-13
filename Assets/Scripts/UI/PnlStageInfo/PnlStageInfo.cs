@@ -25,36 +25,14 @@ namespace PnlStageInfo
                 return instance;
             }
         }
-
-//        public int sliderWidth;
-//        public UISprite nextTrophyShow;
-//        public List<GameObject> trophys;
+			
         public UILabel[] labels;
         public UILabel txtEnergyCost;
-//        public UILabel txtTargetScore;
-//        public GameObject goTrophyScore;
-//        public UIButton btnTip;
 
         public override void OnShow(int idx)
         {
             var stageHost = TaskStageTarget.Instance.GetStageByIdx(idx);
-            if (!TaskStageTarget.Instance.Contains(idx))
-            {
-                labels.ToList().ForEach(l => l.text = "0");
-//                txtTargetScore.text = ConfigPool.Instance.GetConfigIntValue("stage_value", idx.ToString(), "goal_1").ToString();
-            }
-//            foreach (GameObject t in this.trophys)
-//            {
-//                t.SetActive(false);
-//            }
-//            if (stageHost != null)
-//            {
-//                goTrophyScore.SetActive(!TaskStageTarget.Instance.IsUnLockAllDiff(stageHost));
-//            }
-//            UIEventListener.Get(btnTip.gameObject).onClick = go =>
-//            {
-//                CommonPanel.GetInstance().ShowText("当前歌曲已获得奖杯数：" + (stageHost == null ? "0" : stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_EVLUATE + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL).ToString()).ToString());
-//            };
+
             gameObject.SetActive(true);
             m_Idx = idx;
             this.StartCoroutine(this.__OnShow(0.1f));
@@ -69,7 +47,6 @@ namespace PnlStageInfo
                 PnlScrollCircle.instance.FinishEnter = true;
                 Debug.Log("Back to PnlScrollCircle.");
             }
-
             this.gameObject.SetActive(false);
         }
 
@@ -79,12 +56,6 @@ namespace PnlStageInfo
 
             int rank = TaskStageTarget.Instance.GetStageEvluateMax();
             rank = rank > 3 ? 3 : rank;
-
-//            for (int i = 0; i < rank; i++)
-//            {
-//                GameObject t = this.trophys[i];
-//                t.SetActive(i < rank);
-//            }
 
             var stageHost = TaskStageTarget.Instance.GetStageByIdx(m_Idx);
             if (stageHost != null)
@@ -110,10 +81,7 @@ namespace PnlStageInfo
                 var clearCount = (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_CLEAR_COUNT);
 
             }
-            /* this.ShowRankProgress(TaskStageTarget.TASK_SIGNKEY_MAX_COMBO, "Combo_", this.slideCombo);
-            this.ShowRankProgress(TaskStageTarget.TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT, "Perfect_", this.slidePerfect);
-            this.ShowRankProgress(TaskStageTarget.TASK_SIGNKEY_HIDE_NODE_COUNT, "Star_", this.slideStars);
-            this.ShowRankProgress(TaskStageTarget.TASK_SIGNKEY_STAGE_CLEAR_COUNT, "Clear_", this.slideClear);*/
+
         }
 
         public override void BeCatched()
@@ -121,40 +89,34 @@ namespace PnlStageInfo
             instance = this;
         }
 
-        private void PlayProgress(float to, TweenFill twn)
-        {
-            twn.enabled = true;
-            twn.from = 0;
-            twn.to = to;
-            twn.ResetToBeginning();
-            twn.PlayForward();
-        }
+//        private void PlayProgress(float to, TweenFill twn)
+//        {
+//            twn.enabled = true;
+//            twn.from = 0;
+//            twn.to = to;
+//            twn.ResetToBeginning();
+//            twn.PlayForward();
+//        }
 
-        private void ShowRankProgress(string taskKey, string cfgKey, TweenWidth slider)
-        {
-            float rateBase = 0.2f;
-            float rank = 0;
-            int sid = StageBattleComponent.Instance.GetId();
-            string strSid = sid.ToString();
-            int vmax = TaskStageTarget.Instance.GetXMax(taskKey);
-            foreach (string strRank in GameGlobal.STAGE_EVLUATE_MAP)
-            {
-                string _cfgKey = cfgKey + strRank;
-                int _cfgValue = ConfigPool.Instance.GetConfigIntValue(StageRewardComponent.REWARD_CONFIG_NAME, strSid, _cfgKey);
-                if (vmax <= _cfgValue)
-                {
-                    break;
-                }
-
-                rank += 1;
-            }
-
-//            int rate = (int)(rateBase * rank * this.sliderWidth);
-//            slider.enabled = true;
-//            slider.from = 0;
-//            slider.to = rate;
-//            slider.ResetToBeginning();
-//            slider.PlayForward();
-        }
+//        private void ShowRankProgress(string taskKey, string cfgKey, TweenWidth slider)
+//        {
+//            float rateBase = 0.2f;
+//            float rank = 0;
+//            int sid = StageBattleComponent.Instance.GetId();
+//            string strSid = sid.ToString();
+//            int vmax = TaskStageTarget.Instance.GetXMax(taskKey);
+//            foreach (string strRank in GameGlobal.STAGE_EVLUATE_MAP)
+//            {
+//                string _cfgKey = cfgKey + strRank;
+//                int _cfgValue = ConfigPool.Instance.GetConfigIntValue(StageRewardComponent.REWARD_CONFIG_NAME, strSid, _cfgKey);
+//                if (vmax <= _cfgValue)
+//                {
+//                    break;
+//                }
+//
+//                rank += 1;
+//            }
+//				
+//        }
     }
 }

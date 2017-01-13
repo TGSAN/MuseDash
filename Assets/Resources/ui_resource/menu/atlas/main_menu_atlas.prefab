@@ -44,7 +44,7 @@ MonoBehaviour:
   mSprites:
   - name: achievement_button
     x: 0
-    y: 91
+    y: 353
     width: 143
     height: 132
     borderLeft: 0
@@ -56,10 +56,23 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: back_button
-    x: 0
-    y: 3
-    width: 130
-    height: 86
+    x: 202
+    y: 682
+    width: 180
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: back_button_base
+    x: 814
+    y: 688
+    width: 143
+    height: 94
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -69,8 +82,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: black_block
-    x: 467
-    y: 338
+    x: 377
+    y: 926
     width: 32
     height: 32
     borderLeft: 0
@@ -81,11 +94,11 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: button_GM_off
-    x: 147
-    y: 44
-    width: 128
-    height: 128
+  - name: decorate
+    x: 626
+    y: 844
+    width: 360
+    height: 80
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -94,13 +107,52 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: button_GM_on
-    x: 335
-    y: 143
-    width: 128
-    height: 128
-    borderLeft: 0
-    borderRight: 0
+  - name: energy_sld
+    x: 626
+    y: 786
+    width: 308
+    height: 56
+    borderLeft: 40
+    borderRight: 40
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: energy_sld_base
+    x: 202
+    y: 616
+    width: 160
+    height: 64
+    borderLeft: 60
+    borderRight: 60
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: exp_sld
+    x: 0
+    y: 7
+    width: 140
+    height: 44
+    borderLeft: 25
+    borderRight: 25
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: exp_sld_base
+    x: 936
+    y: 798
+    width: 60
+    height: 44
+    borderLeft: 25
+    borderRight: 25
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0
@@ -109,7 +161,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: item_fly_light
     x: 0
-    y: 225
+    y: 487
     width: 145
     height: 145
     borderLeft: 0
@@ -121,8 +173,21 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: m_button_news
-    x: 147
-    y: 273
+    x: 0
+    y: 254
+    width: 186
+    height: 97
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: m_button_option
+    x: 0
+    y: 155
     width: 186
     height: 97
     borderLeft: 0
@@ -134,23 +199,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: m_button_servant
-    x: 0
-    y: 372
+    x: 202
+    y: 784
     width: 210
     height: 140
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: m_button_option
-    x: 147
-    y: 174
-    width: 186
-    height: 97
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -160,8 +212,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: m_button_task
-    x: 212
-    y: 372
+    x: 414
+    y: 784
     width: 210
     height: 140
     borderLeft: 0
@@ -172,35 +224,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: menu_button_back
-    x: 467
-    y: 308
-    width: 23
-    height: 28
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: store_button
-    x: 335
-    y: 284
-    width: 130
-    height: 86
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
   - name: message_icon
-    x: 424
-    y: 432
+    x: 887
+    y: 944
     width: 80
     height: 80
     borderLeft: 0
@@ -211,9 +237,35 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: option_button
+    x: 384
+    y: 694
+    width: 200
+    height: 88
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: property_base
+    x: 0
+    y: 750
+    width: 200
+    height: 174
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: resourse_base
-    x: 335
-    y: 77
+    x: 202
+    y: 448
     width: 64
     height: 64
     borderLeft: 10
@@ -225,8 +277,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: resourse_EnergyRecover_base
-    x: 424
-    y: 397
+    x: 969
+    y: 991
     width: 32
     height: 33
     borderLeft: 0
@@ -238,10 +290,101 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: resourse_EnergyRecover_spin
-    x: 458
-    y: 397
+    x: 969
+    y: 956
     width: 32
     height: 33
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: servant_button
+    x: 0
+    y: 634
+    width: 190
+    height: 114
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: slide_button
+    x: 202
+    y: 514
+    width: 82
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: stage_button
+    x: 286
+    y: 536
+    width: 64
+    height: 78
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: stage_button_base
+    x: 0
+    y: 926
+    width: 375
+    height: 98
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: store_button
+    x: 0
+    y: 53
+    width: 180
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: up_base
+    x: 377
+    y: 960
+    width: 508
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: upgrade_button
+    x: 586
+    y: 716
+    width: 226
+    height: 66
     borderLeft: 0
     borderRight: 0
     borderTop: 0

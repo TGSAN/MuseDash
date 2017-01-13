@@ -233,7 +233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1291289551566478
 GameObject:
   m_ObjectHideFlags: 1
@@ -903,7 +903,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1699211023108500}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -410, y: 0, z: 0}
+  m_LocalPosition: {x: -366, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4600099664315664}
@@ -998,7 +998,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1013119091375786}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 410, y: 290, z: 50}
+  m_LocalPosition: {x: 410, y: 290, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4692424841376678}
@@ -1484,7 +1484,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1279935002200220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.5}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 4130594970367108}
@@ -1572,7 +1572,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 860, y: 530, z: 1}
+  m_Size: {x: 900, y: 620, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65136396122871408
 BoxCollider:
@@ -1584,7 +1584,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 60, y: 60, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65443876656040092
 BoxCollider:
@@ -2601,7 +2601,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 114000010556935760, guid: 7f9a5e8cec10cfd40b3d53f14d2c6b65, type: 2}
-  mSpriteName: item_board
+  mSpriteName: button_x
   mFillCenter: 1
 --- !u!114 &114257782046183318
 MonoBehaviour:
@@ -2949,13 +2949,13 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3024
+  startingRenderQueue: 3036
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
   mClipSoftness: {x: 4, y: 4}
-  mDepth: 200
+  mDepth: 10
   mSortingOrder: 50
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
@@ -3333,8 +3333,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 1013119091375786}
-  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
-  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  hover: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 0.6489966, g: 0.44599462, b: 0.72206485, a: 1}
   disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   duration: 0.2
   dragHighlight: 0
@@ -3578,14 +3578,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 1279935002200220}
-  clickResponseObjects: []
-  clickResponseParentNames: []
-  clickResponseObjectsIsShow: 
-  clickResponseParentNamesIsShow: 
-  clickResponseObjectAnimations: []
-  clickResponseParentAnimations: []
+  clickResponseObjects:
+  - {fileID: 0}
+  clickResponseParentNames:
+  - PnlTask
+  - 
+  clickResponseObjectsIsShow: 01
+  clickResponseParentNamesIsShow: 0001
+  clickResponseObjectAnimations:
+  - 
+  clickResponseParentAnimations:
+  - 
+  - 
   isFoldObjs: 0
-  isFoldParentObjs: 0
+  isFoldParentObjs: 1
   isForceKeep: 0
   isAnimateTxt: 0
   txtAnimTime: 0
@@ -3599,7 +3605,7 @@ MonoBehaviour:
   isClickHideParent: 0
   des: "\u672A\u6709\u63CF\u8FF0"
   activeHostKeyId: 0
-  activeCondiction: 
+  activeCondiction: LEVEL
   activeValue: 
   labelHostKeyId: 0
   labelMatchSign: 
@@ -4933,7 +4939,7 @@ MonoBehaviour:
     absolute: 0
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
-  mPivot: 6
+  mPivot: 7
   mWidth: 100
   mHeight: 100
   mDepth: 2
@@ -5860,8 +5866,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 71
+  m_SortingOrder: 45
   m_Sprite: {fileID: 21300000, guid: f290462f2e2ccba4598f0bc491dd0663, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.85}
   m_FlipX: 0
   m_FlipY: 0
