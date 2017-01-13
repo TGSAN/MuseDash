@@ -197,8 +197,10 @@ public class SpineActionController : MonoBehaviour
         AudioManager.Instance.girlEffect.loop = isTo;
         if (!isTo)
         {
-            AudioManager.Instance.girlEffect.Stop();
-            AudioManager.Instance.ResetAudioClip();
+            if (AudioManager.Instance.girlEffect.loop)
+            {
+                AudioManager.Instance.girlEffect.Stop();
+            }
         }
     }
 

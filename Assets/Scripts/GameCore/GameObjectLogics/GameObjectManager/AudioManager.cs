@@ -23,7 +23,6 @@ public class AudioManager
     private AudioClip hurtEffect;
     private Dictionary<string, AudioClip> audioDic;
     private ArrayList audios = new ArrayList();
-    private AudioClip m_PreClip = null;
 
     private float volume = 1f;
     private string playingMusicName = null;
@@ -353,11 +352,6 @@ public class AudioManager
         this.backGroundMusic.UnPause();
     }
 
-    public void ResetAudioClip()
-    {
-        this.girlEffect.clip = m_PreClip;
-    }
-
     // -------------------------------------------------------
     public void PlayGirlHitByName(string name)
     {
@@ -372,7 +366,6 @@ public class AudioManager
             {
                 if (this.girlEffect.clip != this.audioDic[name])
                 {
-                    m_PreClip = this.girlEffect.clip;
                     this.girlEffect.clip = this.audioDic[name];
                 }
                 if (!this.girlEffect.isPlaying)

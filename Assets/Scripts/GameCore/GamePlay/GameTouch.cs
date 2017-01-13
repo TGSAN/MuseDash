@@ -288,6 +288,10 @@ namespace GameLogic
             var parentMd = StageBattleComponent.Instance.GetMusicDataByIdx(StageBattleComponent.Instance.curLPSIdx);
             if (parentMd.configData.length <= 0) return;
             var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
+            if (go == null)
+            {
+                return;
+            }
             var sac = go.GetComponent<SpineActionController>();
             decimal passedTick = GameGlobal.gGameMusic.GetMusicPassTick();
             var rate = (decimal)(1.93333f / sac.duration);
