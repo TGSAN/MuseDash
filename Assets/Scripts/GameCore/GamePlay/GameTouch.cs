@@ -228,8 +228,11 @@ namespace GameLogic
             if (BattleEnemyManager.Instance.Enemies.ContainsKey(StageBattleComponent.Instance.curLPSIdx))
             {
                 var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
-                var sac = go.GetComponent<SpineActionController>();
-                sac.PlayLongPressEffect(false);
+                if (go != null)
+                {
+                    var sac = go.GetComponent<SpineActionController>();
+                    sac.PlayLongPressEffect(false);
+                }
             }
         }
 
@@ -295,7 +298,6 @@ namespace GameLogic
             var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
             if (go == null) return;
             var sac = go.GetComponent<SpineActionController>();
-            if (sac == null) return;
             decimal passedTick = GameGlobal.gGameMusic.GetMusicPassTick();
             var rate = (decimal)(1.93333f / sac.duration);
             var startIdx = (int)((beginTouchTick - parentMd.tick) / FixUpdateTimer.dInterval * rate);
