@@ -203,6 +203,7 @@ namespace GameLogic
                 {
                     GameGlobal.gGameTouchPlay.TouchActionResult(GameMusic.TOUCH_ACTION_SIGNLE_PRESS, GameGlobal.PRESS_STATE_JUMP);
                 }
+                return;
             }
 
             var tsIdx = (int)(ts / FixUpdateTimer.dInterval);
