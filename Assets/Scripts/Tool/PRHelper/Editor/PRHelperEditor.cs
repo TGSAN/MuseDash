@@ -155,24 +155,24 @@ namespace Assets.Scripts.Tool.PRHelper.Editor
         }
     }
 
-    /* [CustomPropertyDrawer(typeof(PRHelperNode.PlayAudio))]
-     public class PlayAudioDrawer : PropertyDrawer
-     {
-         private float m_GOHeight = 15;
-         private float m_ActiveHeight = 15;
-         private float m_Gap = 5;
+    [CustomPropertyDrawer(typeof(PRHelperNode.PlayAudio))]
+    public class PlayAudioDrawer : PropertyDrawer
+    {
+        private float m_GOHeight = 15;
+        private float m_ActiveHeight = 15;
+        private float m_Gap = 5;
 
-         public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
-         {
-             rect = EditorUtil.MakePropertyField("audioClip", property, rect, m_Gap, m_GOHeight);
-             EditorUtil.MakePropertyField("isActive", property, rect, m_Gap, m_ActiveHeight);
-         }
+        public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
+        {
+            rect = EditorUtil.MakePropertyField("audioClip", property, rect, m_Gap, m_GOHeight);
+            EditorUtil.MakePropertyField("isActive", property, rect, m_Gap, m_ActiveHeight);
+        }
 
-         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-         {
-             return m_GOHeight + 2 * m_Gap + m_ActiveHeight;
-         }
-     }*/
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            return m_GOHeight + 2 * m_Gap + m_ActiveHeight;
+        }
+    }
 
     [CustomPropertyDrawer(typeof(DOTweenAnimation))]
     public class PlayTwnDrawer : PropertyDrawer

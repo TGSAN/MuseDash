@@ -184,6 +184,11 @@ namespace GameLogic
             {
                 StageBattleComponent.Instance.curLPSIdx = md.longPressPIdx;
             }
+            if (!(md.isLongPress || md.isLongPressStart || md.isLongPressEnd))
+            {
+                StageBattleComponent.Instance.curLPSIdx = -1;
+            }
+
             if (!StageBattleComponent.Instance.IsAutoPlay())
             {
                 DelayMissCube(negativePerfectRange, ts);

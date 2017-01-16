@@ -285,9 +285,8 @@ namespace GameLogic
         public void MoveTouchPhaser()
         {
             var isPunch = GameGlobal.gGameTouchPlay.IsPunch();
-
-#if !UNITY_EDITOR
-            isPunch = GameGlobal.gGameTouchPlay.IsPunch(1);
+#if !UNITY_EDITOR && !UNITY_EDITOR_OSX && !UNITY_EDITOR_64
+            isPunch = GameGlobal.gGameTouchPlay.IsPunch (Input.touchCount);
 #endif
             if (StageBattleComponent.Instance.curLPSIdx < 0 || !isPunch)
             {
@@ -296,6 +295,7 @@ namespace GameLogic
             var parentMd = StageBattleComponent.Instance.GetMusicDataByIdx(StageBattleComponent.Instance.curLPSIdx);
             if (parentMd.configData.length <= 0) return;
             var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
+            if (!go) return;
             var sac = go.GetComponent<SpineActionController>();
             decimal passedTick = GameGlobal.gGameMusic.GetMusicPassTick();
             var rate = (decimal)(1.93333f / sac.duration);
