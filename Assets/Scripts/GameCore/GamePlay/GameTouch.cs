@@ -200,6 +200,7 @@ namespace GameLogic
             this.touchPhase = (uint)args[0];
             if (this.touchPhase == gTrigger.DYUL_EVENT_TOUCH_ENDED)
             {
+                Debug.Log("============End Phase");
                 this.EndTouchPhaser();
                 return;
             }
