@@ -227,6 +227,8 @@ namespace GameLogic
             this.SetPressState(GameGlobal.PRESS_STATE_NONE);
 
             var isTouchEnd = true;
+
+            isTouchEnd = Input.GetTouch(0).phase == TouchPhase.Ended;
 #if !UNITY_EDITOR && !UNITY_EDITOR_OSX && !UNITY_EDITOR_64
             isTouchEnd = Input.GetTouch(Input.touchCount).phase == TouchPhase.Ended;
 #endif
