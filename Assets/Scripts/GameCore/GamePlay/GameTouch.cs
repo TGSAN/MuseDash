@@ -226,13 +226,20 @@ namespace GameLogic
 
             this.SetPressState(GameGlobal.PRESS_STATE_NONE);
 
-            if (BattleEnemyManager.Instance.Enemies.ContainsKey(StageBattleComponent.Instance.curLPSIdx))
+            var isTouchEnd = true;
+#if !UNITY_EDITOR && !UNITY_EDITOR_OSX && !UNITY_EDITOR_64
+            isTouchEnd = Input.GetTouch(Input.touchCount).phase == TouchPhase.Ended;
+#endif
+            if (isTouchEnd)
             {
-                var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
-                if (go != null)
+                if (BattleEnemyManager.Instance.Enemies.ContainsKey(StageBattleComponent.Instance.curLPSIdx))
                 {
-                    var sac = go.GetComponent<SpineActionController>();
-                    sac.PlayLongPressEffect(false);
+                    var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
+                    if (go != null)
+                    {
+                        var sac = go.GetComponent<SpineActionController>();
+                        sac.PlayLongPressEffect(false);
+                    }
                 }
             }
         }
