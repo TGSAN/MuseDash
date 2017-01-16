@@ -200,7 +200,6 @@ namespace GameLogic
             this.touchPhase = (uint)args[0];
             if (this.touchPhase == gTrigger.DYUL_EVENT_TOUCH_ENDED)
             {
-                Debug.Log("============End Phase");
                 this.EndTouchPhaser();
                 return;
             }
@@ -230,7 +229,7 @@ namespace GameLogic
 
             isTouchEnd = Input.GetTouch(0).phase == TouchPhase.Ended;
 #if !UNITY_EDITOR && !UNITY_EDITOR_OSX && !UNITY_EDITOR_64
-            isTouchEnd = Input.GetTouch(Input.touchCount).phase == TouchPhase.Ended;
+            isTouchEnd = Input.GetTouch(0).phase == TouchPhase.Ended;
 #endif
             if (isTouchEnd)
             {
