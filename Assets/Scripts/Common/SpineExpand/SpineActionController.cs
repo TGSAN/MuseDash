@@ -190,11 +190,12 @@ public class SpineActionController : MonoBehaviour
 
     public void PlayLongPressEffect(bool isTo)
     {
-        m_ClipParticles.ForEach(p =>
+        foreach (var clipParticle in m_ClipParticles)
         {
-            var emit = p.emission;
+            var emit = clipParticle.emission;
+            Debug.Log(clipParticle.name + "=====" + isTo);
             emit.enabled = isTo;
-        });
+        }
 
         if (!isTo)
         {
