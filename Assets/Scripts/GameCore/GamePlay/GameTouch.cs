@@ -308,12 +308,15 @@ namespace GameLogic
                 idx += 5;
             }
 
+            Debug.Log(startIdx + "=================" + idx);
             if (startIdx < 0 || idx > (sac.GetLength() / FixUpdateTimer.dInterval))
             {
+                Debug.Log("false =================");
                 sac.PlayLongPressEffect(false);
             }
             else
             {
+                Debug.Log("true =================");
                 sac.PlayLongPressEffect(true);
             }
             sac.Clip(startIdx, (int)idx);
