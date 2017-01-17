@@ -129,7 +129,6 @@ public class EffectManager : MonoBehaviour
         {
             return;
         }
-
         this.pressEffect.SetActive(isShow);
         Animator ani = this.pressEffect.GetComponent<Animator>();
         if (ani == null)
@@ -139,7 +138,6 @@ public class EffectManager : MonoBehaviour
 
         ani.Stop();
         ani.Rebind();
-        Debug.Log(isShow + "======");
         ani.Play("press_succeed_fx");
     }
 

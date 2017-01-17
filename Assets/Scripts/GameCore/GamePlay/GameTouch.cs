@@ -300,6 +300,7 @@ namespace GameLogic
 #endif
             if (StageBattleComponent.Instance.curLPSIdx < 0 || !isPunch)
             {
+                BattleEnemyManager.Instance.SetLongPressEffect(false);
                 return;
             }
             var parentMd = StageBattleComponent.Instance.GetMusicDataByIdx(StageBattleComponent.Instance.curLPSIdx);
@@ -318,7 +319,7 @@ namespace GameLogic
                 idx += 5;
             }
 
-            if (startIdx < 0 || idx > (sac.GetLength() / FixUpdateTimer.dInterval) || StageBattleComponent.Instance.curLPSIdx == -1)
+            if (startIdx < 0 || idx > (sac.GetLength() / FixUpdateTimer.dInterval))
             {
                 BattleEnemyManager.Instance.SetLongPressEffect(false);
             }

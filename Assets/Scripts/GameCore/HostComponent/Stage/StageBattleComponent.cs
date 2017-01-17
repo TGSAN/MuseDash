@@ -86,7 +86,7 @@ namespace FormulaBase
 
         public uint GetCurLPSPlayResult()
         {
-            if (curLPSIdx == -1)
+            if (curLPSIdx == -1 || GameKernel.Instance.IsLongPressFailed)
             {
                 return GameMusic.GREAT;
             }

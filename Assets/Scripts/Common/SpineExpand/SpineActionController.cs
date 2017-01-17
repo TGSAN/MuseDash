@@ -56,7 +56,24 @@ public class SpineActionController : MonoBehaviour
     private Renderer m_Renderer;
     private decimal m_Length = 0m;
     private int m_Idx = 0;
-    private List<ParticleSystem> m_ClipParticles = new List<ParticleSystem>();
+    public List<ParticleSystem> clipParticles = new List<ParticleSystem>();
+
+    public static SpineActionController curSac
+    {
+        get
+        {
+            if (BattleEnemyManager.Instance.Enemies.ContainsKey(StageBattleComponent.Instance.curLPSIdx))
+            {
+                var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
+                if (go != null)
+                {
+                    var sac = go.GetComponent<SpineActionController>();
+                    return sac;
+                }
+            }
+            return null;
+        }
+    }
 
     public static void InitTypePoll()
     {
@@ -211,12 +228,15 @@ public class SpineActionController : MonoBehaviour
         tex.Apply();
     }
 
-    public void PlayLongPressEffect(bool isTo)
+    public static void PlayLongPressEffect(bool isTo)
     {
-        foreach (var clipParticle in m_ClipParticles)
+        if (curSac != null)
         {
-            var emit = clipParticle.emission;
-            emit.enabled = isTo;
+            foreach (var clipParticle in curSac.clipParticles)
+            {
+                var emit = clipParticle.emission;
+                emit.enabled = isTo;
+            }
         }
 
         if (!isTo)
@@ -225,8 +245,10 @@ public class SpineActionController : MonoBehaviour
             {
                 AudioManager.Instance.girlEffect.Stop();
             }
+            GirlActionController.instance.BackToNormalRun();
         }
-        //AttacksController.Instance.ShowPressGirl(isTo);
+        AttacksController.Instance.ShowPressGirl(isTo);
+
         AudioManager.Instance.girlEffect.loop = isTo;
     }
 
@@ -269,8 +291,8 @@ public class SpineActionController : MonoBehaviour
         endStart.transform.localPosition = startStart.transform.localPosition + Vector3.right * originLength * (float)(m_Length / 10m);
         endStart.name = endStart.name.Replace("top", "end");
         clipEffect = GameObject.Instantiate(clipEffect);
-        m_ClipParticles = clipEffect.GetComponentsInChildren<ParticleSystem>().ToList();
-        m_ClipParticles.ForEach(p =>
+        clipParticles = clipEffect.GetComponentsInChildren<ParticleSystem>().ToList();
+        clipParticles.ForEach(p =>
         {
             var emit = p.emission;
             emit.enabled = false;
@@ -799,7 +821,7 @@ public class SpineActionController : MonoBehaviour
         }
     }
 
-    private string GetCurrentAnimationName()
+    public string GetCurrentAnimationName()
     {
         if (this.GetSkeletonAnimation() == null)
         {

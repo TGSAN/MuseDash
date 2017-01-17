@@ -386,15 +386,7 @@ namespace FormulaBase
 
         public void SetLongPressEffect(bool isTo)
         {
-            if (BattleEnemyManager.Instance.Enemies.ContainsKey(StageBattleComponent.Instance.curLPSIdx))
-            {
-                var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
-                if (go != null)
-                {
-                    var sac = go.GetComponent<SpineActionController>();
-                    sac.PlayLongPressEffect(isTo);
-                }
-            }
+            SpineActionController.PlayLongPressEffect(isTo);
         }
 
         public void SetPlayResultAfterTime(decimal tick, uint result)
