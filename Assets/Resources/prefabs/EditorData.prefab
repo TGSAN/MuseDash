@@ -5,10 +5,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 452678}
-  - 114: {fileID: 11416448}
+  - component: {fileID: 452678}
+  - component: {fileID: 11416448}
   m_Layer: 0
   m_Name: EditorData
   m_TagString: 
@@ -70,6 +70,9 @@ MonoBehaviour:
   - char_press
   - standby_air
   - outside
+  - char_jumphit
+  - char_downhit
+  - char_downpress
   SpineActionDes:
   - "\u8FDB\u573A"
   - "\u9000\u573A"
@@ -100,6 +103,9 @@ MonoBehaviour:
   - "\u89D2\u8272\u957F\u6309"
   - "\u7A7A\u4E2D\u505C\u6EDE"
   - "boss\u5728\u573A\u5916"
+  - "\u89D2\u8272\u7A7A\u4E2D\u6253\u51FB"
+  - "\u89D2\u8272\u4E0B\u843D\u6253\u51FB"
+  - "\u89D2\u8272\u4E0B\u843D\u957F\u6309"
   SpineEventName:
   - DoNothing
   - DestorySelf

@@ -73,6 +73,7 @@ namespace FormulaBase {
 			{ "ikz2", "stage/stage_v1/json/"},
 			{ "ikz3", "stage/stage_v1/json/"},
 			{ "iyaiya1", "stage/stage_v1/json/"},
+			{ "jump_test1", "stage/stage_v1/json/"},
 			{ "lets_dance_boys2", "stage/stage_v1/json/"},
 			{ "lets_dance_boys3", "stage/stage_v1/json/"},
 			{ "lucky_love2", "stage/stage_v1/json/"},
