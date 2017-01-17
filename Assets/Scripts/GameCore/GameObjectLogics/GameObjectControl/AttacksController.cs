@@ -190,7 +190,7 @@ public class AttacksController : MonoBehaviour
                 actKey = ACTION_KEYS.ATTACK_GREAT;
             }
         }
-
+        Debug.Log(actKey + "===");
         if (isContinue)
         {
             GirlManager.Instance.AttacksWithoutExchange(result, actKey);
