@@ -226,22 +226,23 @@ namespace GameLogic
             this.SetPressState(GameGlobal.PRESS_STATE_NONE);
 
             var isTouchEnd = true;
-
-            isTouchEnd = Input.GetTouch(0).phase == TouchPhase.Ended;
 #if !UNITY_EDITOR && !UNITY_EDITOR_OSX && !UNITY_EDITOR_64
             isTouchEnd = Input.GetTouch(0).phase == TouchPhase.Ended;
 #endif
             if (isTouchEnd)
             {
-                if (BattleEnemyManager.Instance.Enemies.ContainsKey(StageBattleComponent.Instance.curLPSIdx))
+                var curTimeNodeOrder = StageBattleComponent.Instance.curTimeNodeOrder;
+                if (curTimeNodeOrder != null && curTimeNodeOrder.isLongPressEnd)
                 {
-                    var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
-                    if (go != null)
+                    if (BattleEnemyManager.Instance.Enemies.ContainsKey(StageBattleComponent.Instance.curLPSIdx))
                     {
+                        var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
+                        if (!go) return;
                         var sac = go.GetComponent<SpineActionController>();
-                        sac.PlayLongPressEffect(false);
+                        sac.DestroyLongPress();
                     }
                 }
+                BattleEnemyManager.Instance.SetLongPressEffect(false);
             }
         }
 
@@ -317,13 +318,13 @@ namespace GameLogic
                 idx += 5;
             }
 
-            if (startIdx < 0 || idx > (sac.GetLength() / FixUpdateTimer.dInterval))
+            if (startIdx < 0 || idx > (sac.GetLength() / FixUpdateTimer.dInterval) || StageBattleComponent.Instance.curLPSIdx == -1)
             {
-                sac.PlayLongPressEffect(false);
+                BattleEnemyManager.Instance.SetLongPressEffect(false);
             }
             else
             {
-                sac.PlayLongPressEffect(true);
+                BattleEnemyManager.Instance.SetLongPressEffect(true);
             }
             sac.Clip(startIdx, (int)idx);
         }

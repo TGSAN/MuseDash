@@ -35,72 +35,68 @@ public class LongPressController : BaseEnemyObjectController
         var md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
         GameKernel.Instance.IsUnderLongPress = true;
 
+        var isPunch = GameGlobal.gGameTouchPlay.IsPunch();
 #if !UNITY_EDITOR && !UNITY_EDITOR_OSX && !UNITY_EDITOR_64
-		if (GameGlobal.gGameTouchPlay.IsPunch (Input.touchCount)) {
-#else
-        if (GameGlobal.gGameTouchPlay.IsPunch())
-        {
+        isPunch = GameGlobal.gGameTouchPlay.IsPunch (Input.touchCount);
 #endif
-            var result = StageBattleComponent.Instance.GetCurLPSPlayResult();
-            BattleEnemyManager.Instance.AddHp(this.idx, -1);
-            GameGlobal.gGameTouchPlay.TouchResult(idx, result, GameMusic.TOUCH_ACTION_SIGNLE_PRESS); //(mark) attack node damage to it
-            BattleEnemyManager.Instance.SetPlayResult(idx, result);
-            GameGlobal.gGameMissPlay.SetMissHardTime(0);
-            AttacksController.Instance.ShowPressGirl(!md.isLongPressEnd);
-            //GameObject.Destroy(this.gameObject);
-        }
-        else
+
+        if (!md.isLongPressEnd)
         {
-            if (!GameKernel.Instance.IsOnFeverState())
+            if (isPunch)
             {
-                GirlManager.Instance.UnLockActionProtect();
-                base.OnControllerMiss(idx);
+                var result = StageBattleComponent.Instance.GetCurLPSPlayResult();
+                BattleEnemyManager.Instance.AddHp(this.idx, -1);
+                GameGlobal.gGameTouchPlay.TouchResult(idx, result, GameMusic.TOUCH_ACTION_SIGNLE_PRESS); //(mark) attack node damage to it
+                BattleEnemyManager.Instance.SetPlayResult(idx, result);
                 GameGlobal.gGameMissPlay.SetMissHardTime(0);
-                GameKernel.Instance.IsLongPressFailed = true;
-                GirlManager.Instance.BeAttackEffect();
-                AttacksController.Instance.BeAttacked();
-                StageBattleComponent.Instance.curLPSIdx = -1;
+
+                BattleEnemyManager.Instance.SetLongPressEffect(true);
+                //GameObject.Destroy(this.gameObject);
             }
             else
             {
-                GirlManager.Instance.UnLockActionProtect();
-                //GameObject.Destroy(this.gameObject);
-                foreach (var girl in GirlManager.Instance.Girls)
+                if (!GameKernel.Instance.IsOnFeverState())
                 {
-                    if (girl != null)
+                    GirlManager.Instance.UnLockActionProtect();
+                    base.OnControllerMiss(idx);
+                    GameGlobal.gGameMissPlay.SetMissHardTime(0);
+                    GameKernel.Instance.IsLongPressFailed = true;
+                    GirlManager.Instance.BeAttackEffect();
+                    AttacksController.Instance.BeAttacked();
+                    StageBattleComponent.Instance.curLPSIdx = -1;
+                }
+                else
+                {
+                    GirlManager.Instance.UnLockActionProtect();
+                    //GameObject.Destroy(this.gameObject);
+                    foreach (var girl in GirlManager.Instance.Girls)
                     {
-                        if (SpineActionController.CurrentAnimationName(girl) != "run")
+                        if (girl != null)
                         {
-                            SpineActionController.Play(ACTION_KEYS.RUN, girl);
+                            if (SpineActionController.CurrentAnimationName(girl) != "run")
+                            {
+                                SpineActionController.Play(ACTION_KEYS.RUN, girl);
+                            }
                         }
                     }
                 }
             }
         }
-        if (md.isLongPressEnd)
+        else
         {
             GameKernel.Instance.IsUnderLongPress = false;
-
-            if (GameKernel.Instance.IsLongPressFailed)
-            {
-                StageTeachComponent.Instance.SetPlayResult(idx, GameMusic.MISS);
-            }
-            else
-            {
-                var result = StageBattleComponent.Instance.GetCurLPSPlayResult();
-                StageTeachComponent.Instance.SetPlayResult(idx, result);
-                TaskStageTarget.Instance.AddLongPressFinishCount(1);
-                StageTeachComponent.Instance.AddPlayCountRecord(1);
-            }
-
             GameKernel.Instance.IsLongPressFailed = false;
 
-            AttacksController.Instance.ShowPressGirl(false);
+            var result = StageBattleComponent.Instance.GetCurLPSPlayResult();
+            StageTeachComponent.Instance.SetPlayResult(idx, result);
+            TaskStageTarget.Instance.AddLongPressFinishCount(1);
+            StageTeachComponent.Instance.AddPlayCountRecord(1);
+
             GirlManager.Instance.UnLockActionProtect();
             GirlManager.Instance.AttacksWithoutExchange(GameMusic.NONE, ACTION_KEYS.RUN);
-
-            return false;
+            BattleEnemyManager.Instance.SetLongPressEffect(false);
         }
+
         return true;
     }
 }

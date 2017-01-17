@@ -164,8 +164,14 @@ public class SpineActionController : MonoBehaviour
             var endIdx = stars.ToList().FindIndex(s => s.gameObject.name.Contains("_end"));
             if (endIdx != -1)
             {
-                detroyEffect = GameObject.Instantiate(detroyEffect);
-                Destroy(stars[endIdx].gameObject);
+                if (detroyEffect != null)
+                {
+                    detroyEffect = GameObject.Instantiate(detroyEffect);
+                    Destroy(stars[endIdx].gameObject);
+                    detroyEffect = null;
+                    DestroyLongPress();
+                    BattleEnemyManager.Instance.SetLongPressEffect(false);
+                }
             }
         }
 
@@ -188,6 +194,23 @@ public class SpineActionController : MonoBehaviour
         tex.Apply();
     }
 
+    public void DestroyLongPress()
+    {
+        if (detroyEffect != null)
+        {
+            GameObject.Instantiate(detroyEffect);
+        }
+        gameObject.SetActive(false);
+        var tex = (Texture2D)m_Mtrl.GetTexture("_ClipTex");
+        var colors = tex.GetPixels();
+        for (int i = 0; i < colors.Length; i++)
+        {
+            colors[i] = new Color(1f, 0f, 0f, 1f);
+        }
+        tex.SetPixels(colors);
+        tex.Apply();
+    }
+
     public void PlayLongPressEffect(bool isTo)
     {
         foreach (var clipParticle in m_ClipParticles)
@@ -203,6 +226,7 @@ public class SpineActionController : MonoBehaviour
                 AudioManager.Instance.girlEffect.Stop();
             }
         }
+        //AttacksController.Instance.ShowPressGirl(isTo);
         AudioManager.Instance.girlEffect.loop = isTo;
     }
 

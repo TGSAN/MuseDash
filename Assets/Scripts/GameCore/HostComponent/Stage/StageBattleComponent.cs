@@ -15,14 +15,14 @@ using UnityEngine.SceneManagement;
 
 namespace FormulaBase
 {
-    public struct TimeNodeOrder
+    public class TimeNodeOrder
     {
         public int idx;
         public uint result;
         public bool mustJump;
         public bool enableJump;
         public bool isPerfectNode;
-        public bool isLongPress;
+        public bool isLongPressEnd;
     }
 
     public class StageBattleComponent : CustomComponentBase
@@ -56,6 +56,33 @@ namespace FormulaBase
 
         private Dictionary<int, List<TimeNodeOrder>> _timeNodeOrder = null;
         public int curLPSIdx = 0;
+
+        public MusicData curMusicData
+        {
+            get
+            {
+                var curTick = GameGlobal.gGameMusic.GetMusicPassTick();
+                var idx = GameGlobal.gGameMusic.GetMusicIndexByGenTick(curTick);
+                var md = new MusicData();
+                md.objId = -1;
+                if (idx != -1) md = GetMusicDataByIdx(idx);
+                return md;
+            }
+        }
+
+        public TimeNodeOrder curTimeNodeOrder
+        {
+            get
+            {
+                var curTick = GameGlobal.gGameMusic.GetMusicPassTick();
+                var idx = (int)(curTick / FixUpdateTimer.dInterval);
+                if (_timeNodeOrder.ContainsKey(idx))
+                {
+                    return this._timeNodeOrder[idx][0];
+                }
+                return null;
+            }
+        }
 
         public uint GetCurLPSPlayResult()
         {
@@ -821,10 +848,6 @@ namespace FormulaBase
                 int s = (int)(md.tick / FixUpdateTimer.dInterval);
                 if (!md.isLongPress)
                 {
-                    if (md.isLongPressStart)
-                    {
-                        s = (int)((md.tick - 0.1m) / FixUpdateTimer.dInterval);
-                    }
                     int aIvrtotal = (int)(md.nodeData.hitRangeA / FixUpdateTimer.dInterval);
                     var bIvrtotal = (int)(md.nodeData.hitRangeB / FixUpdateTimer.dInterval);
                     decimal aPerfectRange = md.nodeData.a_perfect_range;
@@ -839,6 +862,7 @@ namespace FormulaBase
                         tno.enableJump = (md.nodeData.enable_jump == 1);
                         tno.result = GameMusic.PERFECT;
                         tno.isPerfectNode = j == 0;
+                        tno.isLongPressEnd = md.isLongPressEnd;
                         decimal r = j * FixUpdateTimer.dInterval;
                         if (r > aPerfectRange)
                         {
@@ -863,6 +887,8 @@ namespace FormulaBase
                         tno.mustJump = md.nodeData.jump_note;
                         tno.enableJump = (md.nodeData.enable_jump == 1);
                         tno.result = GameMusic.PERFECT;
+                        tno.isLongPressEnd = md.isLongPressEnd;
+                        tno.isPerfectNode = false;
                         decimal _r = j * FixUpdateTimer.dInterval;
                         if (-_r > bPerfectRange)
                         {

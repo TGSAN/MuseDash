@@ -67,7 +67,6 @@ namespace GameLogic
             }
 
             bsc.OnControllerMiss(idx);
-
             if (GameGlobal.IS_DEBUG)
             {
                 Debug.Log("Miss at " + idx);

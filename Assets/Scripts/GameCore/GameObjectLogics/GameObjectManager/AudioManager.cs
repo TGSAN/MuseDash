@@ -3,6 +3,7 @@ using GameLogic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class AudioManager
@@ -366,12 +367,14 @@ public class AudioManager
             {
                 if (this.girlEffect.clip != this.audioDic[name])
                 {
+                    this.girlEffect.loop = true;
                     this.girlEffect.clip = this.audioDic[name];
+                    this.girlEffect.Play();
                 }
                 if (!this.girlEffect.isPlaying)
                 {
-                    this.girlEffect.Play();
                     this.girlEffect.loop = true;
+                    this.girlEffect.Play();
                 }
                 return;
             }

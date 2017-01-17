@@ -199,7 +199,7 @@ namespace GameLogic
         {
             var ts = GetMusicPassTick();
 
-            var nextOffsetTsIdx = (int)((ts + 0.2m) / FixUpdateTimer.dInterval);
+            var nextOffsetTsIdx = (int)((ts + 0.1m) / FixUpdateTimer.dInterval);
             if (_missMap.ContainsKey(nextOffsetTsIdx))
             {
                 var nextOffsetIdx = this._missMap[nextOffsetTsIdx];

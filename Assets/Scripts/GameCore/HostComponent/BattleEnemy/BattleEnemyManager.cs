@@ -384,6 +384,19 @@ namespace FormulaBase
             BattleRoleAttributeComponent.Instance.FireSkill(result);
         }
 
+        public void SetLongPressEffect(bool isTo)
+        {
+            if (BattleEnemyManager.Instance.Enemies.ContainsKey(StageBattleComponent.Instance.curLPSIdx))
+            {
+                var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
+                if (go != null)
+                {
+                    var sac = go.GetComponent<SpineActionController>();
+                    sac.PlayLongPressEffect(isTo);
+                }
+            }
+        }
+
         public void SetPlayResultAfterTime(decimal tick, uint result)
         {
             ArrayList musicData = StageBattleComponent.Instance.GetMusicData();
