@@ -156,19 +156,37 @@ public class GirlActionController : BaseSpineObjectController
         {
             _atkName = (actKey != null && actKey.Length > 2) ? actKey : ACTION_KEYS.ATTACK_PERFECT;
         }
+        _atkName = JumpAttack(_atkName, result);
 
         SpineActionController.Play(_atkName, this.gameObject, tick);
     }
 
-    /*
-	public void ResetAttacker() {
-		if (this.actionIndex != ATTACKER_INDEX) {
-			return;
-		}
+    private string JumpAttack(string atkName, uint result)
+    {
+        if (!GirlManager.Instance.IsJumpingAction() || result == GameMusic.NONE || atkName == ACTION_KEYS.JUMP) return atkName;
+        var md = StageBattleComponent.Instance.neareastMusicData;
+        var isAirNode = md.nodeData.type == GameGlobal.NODE_TYPE_AIR_BEAT;
+        if (!isAirNode)
+        {
+            GirlManager.Instance.SetJumpingAction(false);
+            atkName = ACTION_KEYS.JUMP_DOWN_ATTACK;
+        }
+        else
+        {
+            atkName = ACTION_KEYS.JUMP_ATTACK;
+        }
+        return atkName;
+    }
 
-		SpineActionController.Play (ACTION_KEYS.RUN, this.gameObject);
-	}
-*/
+    /*
+    public void ResetAttacker() {
+        if (this.actionIndex != ATTACKER_INDEX) {
+            return;
+        }
+
+        SpineActionController.Play (ACTION_KEYS.RUN, this.gameObject);
+    }
+    */
 
     private void InitSkills()
     {

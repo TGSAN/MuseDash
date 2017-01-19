@@ -59,15 +59,33 @@ namespace FormulaBase
         private Dictionary<int, List<TimeNodeOrder>> _timeNodeOrder = null;
         public int curLPSIdx = 0;
 
-        public MusicData curMusicData
+        public MusicData neareastMusicData
         {
             get
             {
-                var idx = curIdx;
-                var md = new MusicData();
-                md.objId = -1;
-                if (idx != -1) md = GetMusicDataByIdx(idx);
-                return md;
+                var curTick = GameGlobal.gGameMusic.GetMusicPassTick();
+                var maxTick = (decimal)AudioManager.Instance.GetBackGroundMusicLength();
+                var nextMd = new MusicData();
+                nextMd.objId = -1;
+                var tick = curTick;
+                while (nextMd.objId == -1 && tick < maxTick)
+                {
+                    nextMd = GameGlobal.gGameMusic.GetMusicDataByTick(tick);
+                    tick += FixUpdateTimer.dInterval;
+                }
+
+                var preMd = new MusicData();
+                preMd.objId = -1;
+                tick = curTick;
+                while (preMd.objId == -1 && tick > 0)
+                {
+                    preMd = GameGlobal.gGameMusic.GetMusicDataByTick(tick);
+                    tick -= FixUpdateTimer.dInterval;
+                }
+
+                var outMd = Mathf.Abs((float)(preMd.tick - curTick)) > Mathf.Abs((float)(nextMd.tick - curTick)) ? nextMd : preMd;
+
+                return outMd;
             }
         }
 

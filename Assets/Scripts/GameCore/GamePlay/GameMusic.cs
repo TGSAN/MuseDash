@@ -191,13 +191,24 @@ namespace GameLogic
 
             if (!StageBattleComponent.Instance.IsAutoPlay())
             {
-                if (md.isLongPress)
+                var isPunch = GameGlobal.gGameTouchPlay.IsPunch();
+#if !UNITY_EDITOR && !UNITY_EDITOR_OSX && !UNITY_EDITOR_64
+        isPunch = GameGlobal.gGameTouchPlay.IsPunch (Input.touchCount);
+#endif
+                if ((md.isLongPressStart || md.isLongPressEnd) && isPunch)
                 {
                     GameGlobal.gGameMissPlay.MissCube(idx, ts);
                 }
                 else
                 {
-                    DelayMissCube(negativePerfectRange, ts);
+                    if (md.isLongPress)
+                    {
+                        GameGlobal.gGameMissPlay.MissCube(idx, ts);
+                    }
+                    else
+                    {
+                        DelayMissCube(negativePerfectRange, ts);
+                    }
                 }
             }
         }
@@ -453,6 +464,33 @@ namespace GameLogic
             }
 
             return -1;
+        }
+
+        public MusicData GetMusicDataByTick(decimal genTick)
+        {
+            ArrayList musicData = StageBattleComponent.Instance.GetMusicData();
+            var md = new MusicData();
+            md.objId = -1;
+            if (musicData == null)
+            {
+                return md;
+            }
+
+            if (musicData.Count <= 0)
+            {
+                return md;
+            }
+
+            for (int i = 0; i < musicData.Count; i++)
+            {
+                MusicData m = (MusicData)musicData[i];
+                if (m.tick == genTick)
+                {
+                    md = m;
+                }
+            }
+
+            return md;
         }
 
         public int GetNodeIdByIdx(int idx)
