@@ -8,6 +8,8 @@ using UnityEngine;
 public class LongPressController : BaseEnemyObjectController
 {
     public static int psidx = -1;
+    public bool isActive = true;
+    public bool isEndTouch = false;
 
     public override void Init()
     {
@@ -32,6 +34,7 @@ public class LongPressController : BaseEnemyObjectController
 
     public override bool OnControllerMiss(int idx)
     {
+        if (!isActive) return false;
         var md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
         GameKernel.Instance.IsUnderLongPress = true;
 
@@ -39,8 +42,7 @@ public class LongPressController : BaseEnemyObjectController
 #if !UNITY_EDITOR && !UNITY_EDITOR_OSX && !UNITY_EDITOR_64
         isPunch = GameGlobal.gGameTouchPlay.IsPunch (Input.touchCount);
 #endif
-
-        if (!md.isLongPressEnd)
+        if (!md.isLongPressEnd && !isEndTouch)
         {
             if (isPunch)
             {
@@ -49,9 +51,7 @@ public class LongPressController : BaseEnemyObjectController
                 GameGlobal.gGameTouchPlay.TouchResult(idx, result, GameMusic.TOUCH_ACTION_SIGNLE_PRESS); //(mark) attack node damage to it
                 BattleEnemyManager.Instance.SetPlayResult(idx, result);
                 GameGlobal.gGameMissPlay.SetMissHardTime(0);
-
                 BattleEnemyManager.Instance.SetLongPressEffect(true);
-                //GameObject.Destroy(this.gameObject);
             }
             else
             {
@@ -68,7 +68,6 @@ public class LongPressController : BaseEnemyObjectController
                 else
                 {
                     GirlManager.Instance.UnLockActionProtect();
-                    //GameObject.Destroy(this.gameObject);
                     foreach (var girl in GirlManager.Instance.Girls)
                     {
                         if (girl != null)
@@ -84,17 +83,58 @@ public class LongPressController : BaseEnemyObjectController
         }
         else
         {
-            GameKernel.Instance.IsUnderLongPress = false;
-            GameKernel.Instance.IsLongPressFailed = false;
+            if (isPunch || isEndTouch)
+            {
+                var result = StageBattleComponent.Instance.GetCurLPSPlayResult();
+                GameGlobal.gGameTouchPlay.TouchResult(idx, result, GameMusic.TOUCH_ACTION_SIGNLE_PRESS);
+                StageTeachComponent.Instance.SetPlayResult(idx, result);
+                TaskStageTarget.Instance.AddLongPressFinishCount(1);
+                StageTeachComponent.Instance.AddPlayCountRecord(1);
 
-            var result = StageBattleComponent.Instance.GetCurLPSPlayResult();
-            StageTeachComponent.Instance.SetPlayResult(idx, result);
-            TaskStageTarget.Instance.AddLongPressFinishCount(1);
-            StageTeachComponent.Instance.AddPlayCountRecord(1);
+                GirlManager.Instance.UnLockActionProtect();
 
-            GirlManager.Instance.UnLockActionProtect();
-            GirlManager.Instance.AttacksWithoutExchange(GameMusic.NONE, ACTION_KEYS.RUN);
+                var go = BattleEnemyManager.Instance.GetObj(StageBattleComponent.Instance.curLPSIdx);
+                if (go)
+                {
+                    var sac = go.GetComponent<SpineActionController>();
+                    if (sac)
+                    {
+                        sac.DestroyLongPress();
+                    }
+                }
+                isActive = false;
+            }
+            else
+            {
+                if (!GameKernel.Instance.IsOnFeverState())
+                {
+                    GirlManager.Instance.UnLockActionProtect();
+                    base.OnControllerMiss(idx);
+                    GameGlobal.gGameMissPlay.SetMissHardTime(0);
+                    GameKernel.Instance.IsLongPressFailed = true;
+                    GirlManager.Instance.BeAttackEffect();
+                    AttacksController.Instance.BeAttacked();
+                    StageBattleComponent.Instance.curLPSIdx = -1;
+                }
+                else
+                {
+                    GirlManager.Instance.UnLockActionProtect();
+                    foreach (var girl in GirlManager.Instance.Girls)
+                    {
+                        if (girl != null)
+                        {
+                            if (SpineActionController.CurrentAnimationName(girl) != "run")
+                            {
+                                SpineActionController.Play(ACTION_KEYS.RUN, girl);
+                            }
+                        }
+                    }
+                }
+            }
+
             BattleEnemyManager.Instance.SetLongPressEffect(false);
+            GameKernel.Instance.IsLongPressFailed = false;
+            GameKernel.Instance.IsUnderLongPress = false;
         }
 
         return true;

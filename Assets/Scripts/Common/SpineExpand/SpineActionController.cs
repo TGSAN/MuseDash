@@ -64,7 +64,7 @@ public class SpineActionController : MonoBehaviour
         {
             if (BattleEnemyManager.Instance.Enemies.ContainsKey(StageBattleComponent.Instance.curLPSIdx))
             {
-                var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
+                var go = BattleEnemyManager.Instance.GetObj(StageBattleComponent.Instance.curLPSIdx);
                 if (go != null)
                 {
                     var sac = go.GetComponent<SpineActionController>();
@@ -73,6 +73,11 @@ public class SpineActionController : MonoBehaviour
             }
             return null;
         }
+    }
+
+    public static List<ParticleSystem> curParticles
+    {
+        get; private set;
     }
 
     public static void InitTypePoll()
@@ -183,9 +188,7 @@ public class SpineActionController : MonoBehaviour
             {
                 if (detroyEffect != null)
                 {
-                    detroyEffect = GameObject.Instantiate(detroyEffect);
                     Destroy(stars[endIdx].gameObject);
-                    detroyEffect = null;
                     DestroyLongPress();
                     BattleEnemyManager.Instance.SetLongPressEffect(false);
                 }
@@ -213,29 +216,42 @@ public class SpineActionController : MonoBehaviour
 
     public void DestroyLongPress()
     {
-        if (detroyEffect != null)
-        {
-            GameObject.Instantiate(detroyEffect);
-        }
+        if (!gameObject.activeSelf) return;
         gameObject.SetActive(false);
-        var tex = (Texture2D)m_Mtrl.GetTexture("_ClipTex");
-        var colors = tex.GetPixels();
-        for (int i = 0; i < colors.Length; i++)
+        detroyEffect = GameObject.Instantiate(detroyEffect);
+        if (m_Mtrl != null)
         {
-            colors[i] = new Color(1f, 0f, 0f, 1f);
+            var tex = (Texture2D)m_Mtrl.GetTexture("_ClipTex");
+            var colors = tex.GetPixels();
+            for (int i = 0; i < colors.Length; i++)
+            {
+                colors[i] = new Color(1f, 0f, 0f, 1f);
+            }
+            tex.SetPixels(colors);
+            tex.Apply();
         }
-        tex.SetPixels(colors);
-        tex.Apply();
     }
 
     public static void PlayLongPressEffect(bool isTo)
     {
         if (curSac != null)
         {
+            curParticles = curSac.clipParticles;
             foreach (var clipParticle in curSac.clipParticles)
             {
                 var emit = clipParticle.emission;
                 emit.enabled = isTo;
+            }
+        }
+        else
+        {
+            if (curParticles != null)
+            {
+                foreach (var clipParticle in curParticles)
+                {
+                    var emit = clipParticle.emission;
+                    emit.enabled = isTo;
+                }
             }
         }
 
@@ -399,17 +415,17 @@ public class SpineActionController : MonoBehaviour
     //
     //(check) play animation by spine or unity
     //
-    private static void PlayAnimator(string actionKey, GameObject obj)
+    private static bool PlayAnimator(string actionKey, GameObject obj)
     {
         if (obj == null)
         {
-            return;
+            return false;
         }
 
         Animator ani = obj.GetComponent<Animator>();
         if (ani == null)
         {
-            return;
+            return false;
         }
 
         /*
@@ -432,13 +448,14 @@ public class SpineActionController : MonoBehaviour
 
         if (!ani.HasState(0, Animator.StringToHash(actionKey)))
         {
-            return;
+            return false;
         }
 
         ani.speed = 1f;
         ani.Stop();
         ani.Rebind();
         ani.Play(actionKey);
+        return true;
     }
 
     /// <summary>
@@ -467,7 +484,7 @@ public class SpineActionController : MonoBehaviour
             return;
         }
 
-        //sac.ResumeCurrentAnimation ();
+        //sac.ResumeCurrentAnimation();
         sac.PlayByKey(actionKey);
         if (tick > 0)
         {

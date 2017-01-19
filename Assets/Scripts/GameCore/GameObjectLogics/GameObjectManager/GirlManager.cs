@@ -352,7 +352,6 @@ public class GirlManager : MonoBehaviour
             this.AttacksWithoutExchange(result, actKey);
             return;
         }
-
         for (int i = 0; i < this.girls.Length; i++)
         {
             GameObject _girl = this.girls[i];

@@ -234,12 +234,23 @@ namespace GameLogic
                 var curTimeNodeOrder = StageBattleComponent.Instance.curTimeNodeOrder;
                 if (curTimeNodeOrder != null && curTimeNodeOrder.isLongPressEnd)
                 {
-                    if (BattleEnemyManager.Instance.Enemies.ContainsKey(StageBattleComponent.Instance.curLPSIdx))
+                    var startMd = StageBattleComponent.Instance.GetMusicDataByIdx(StageBattleComponent.Instance.curLPSIdx);
+                    var lastIdx = StageBattleComponent.Instance.curLPSIdx + Mathf.CeilToInt((float)(startMd.configData.length / GameGlobal.LONG_PRESS_FREQUENCY));
+                    var go = BattleEnemyManager.Instance.GetObj(lastIdx);
+                    if (go != null)
                     {
-                        var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
-                        if (!go) return;
-                        var sac = go.GetComponent<SpineActionController>();
-                        sac.DestroyLongPress();
+                        var longPressCtrl = go.GetComponent<LongPressController>();
+                        longPressCtrl.isEndTouch = true;
+                        longPressCtrl.OnControllerMiss(lastIdx);
+
+                        for (int i = StageBattleComponent.Instance.curLPSIdx; i < lastIdx; i++)
+                        {
+                            var theGo = BattleEnemyManager.Instance.GetObj(i);
+                            if (theGo)
+                            {
+                                theGo.GetComponent<LongPressController>().isActive = false;
+                            }
+                        }
                     }
                 }
                 BattleEnemyManager.Instance.SetLongPressEffect(false);
@@ -288,8 +299,17 @@ namespace GameLogic
 
             this.touchDisY = 0;
             this.touchTempY = 0;
-
-            this.TouchActionResult(GameMusic.TOUCH_ACTION_SIGNLE_PRESS);
+            if (StageBattleComponent.Instance.curTimeNodeOrder != null)
+            {
+                if (!StageBattleComponent.Instance.curTimeNodeOrder.isLongPressEnd && !StageBattleComponent.Instance.curTimeNodeOrder.isLongPress)
+                {
+                    this.TouchActionResult(GameMusic.TOUCH_ACTION_SIGNLE_PRESS);
+                }
+            }
+            else
+            {
+                this.TouchActionResult(GameMusic.TOUCH_ACTION_SIGNLE_PRESS);
+            }
         }
 
         public void MoveTouchPhaser()
@@ -305,16 +325,17 @@ namespace GameLogic
             }
             var parentMd = StageBattleComponent.Instance.GetMusicDataByIdx(StageBattleComponent.Instance.curLPSIdx);
             if (parentMd.configData.length <= 0) return;
-            var go = (GameObject)BattleEnemyManager.Instance.Enemies[StageBattleComponent.Instance.curLPSIdx].GetDynamicObjByKey(SignKeys.GAME_OBJECT);
+            var go = BattleEnemyManager.Instance.GetObj(StageBattleComponent.Instance.curLPSIdx);
             if (!go) return;
             var sac = go.GetComponent<SpineActionController>();
+            if (!sac) return;
             decimal passedTick = GameGlobal.gGameMusic.GetMusicPassTick();
             var rate = (decimal)(1.93333f / sac.duration);
             var startIdx = (int)((beginTouchTick - parentMd.tick) / FixUpdateTimer.dInterval * rate);
             var idx = (passedTick - parentMd.tick) / FixUpdateTimer.dInterval * rate;
 
             startIdx = startIdx < 0 ? 0 : startIdx;
-            if (sac.lengthRate == 1f)
+            if (Math.Abs(sac.lengthRate - 1f) <= 0.0f)
             {
                 idx += 5;
             }
@@ -326,8 +347,8 @@ namespace GameLogic
             else
             {
                 BattleEnemyManager.Instance.SetLongPressEffect(true);
+                sac.Clip(startIdx, (int)idx);
             }
-            sac.Clip(startIdx, (int)idx);
         }
 
         private void MutilTouchPhaser()

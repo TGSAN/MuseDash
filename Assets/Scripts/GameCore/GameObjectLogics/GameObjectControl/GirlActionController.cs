@@ -232,7 +232,6 @@ public class GirlActionController : BaseSpineObjectController
         //}
 
         // string _actKey = (actKey != null && actKey.Length > 2) ? actKey : ACTION_KEYS.ATTACK_MISS;
-        Debug.Log(actKey);
         SpineActionController.Play(actKey, this.gameObject);
     }
 }

@@ -182,6 +182,10 @@ public class AttacksController : MonoBehaviour
     private void PlayAttackAnim(int id, uint actionType, bool isContinue, uint result)
     {
         string actKey = BattleEnemyManager.Instance.GetNodeRoleActKeyByIdx(id);
+        if (actKey == "char_press" && GirlManager.Instance.IsJumpingAction())
+        {
+            return;
+        }
         if (actKey == "char_atk")
         {
             actKey = ACTION_KEYS.ATTACK_PERFECT;
@@ -190,7 +194,6 @@ public class AttacksController : MonoBehaviour
                 actKey = ACTION_KEYS.ATTACK_GREAT;
             }
         }
-        Debug.Log(actKey + "===");
         if (isContinue)
         {
             GirlManager.Instance.AttacksWithoutExchange(result, actKey);

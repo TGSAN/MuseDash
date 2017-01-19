@@ -191,7 +191,14 @@ namespace GameLogic
 
             if (!StageBattleComponent.Instance.IsAutoPlay())
             {
-                DelayMissCube(negativePerfectRange, ts);
+                if (md.isLongPress)
+                {
+                    GameGlobal.gGameMissPlay.MissCube(idx, ts);
+                }
+                else
+                {
+                    DelayMissCube(negativePerfectRange, ts);
+                }
             }
         }
 

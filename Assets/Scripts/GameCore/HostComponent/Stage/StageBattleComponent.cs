@@ -22,7 +22,9 @@ namespace FormulaBase
         public bool mustJump;
         public bool enableJump;
         public bool isPerfectNode;
+        public bool isLongPressStart;
         public bool isLongPressEnd;
+        public bool isLongPress;
     }
 
     public class StageBattleComponent : CustomComponentBase
@@ -61,8 +63,7 @@ namespace FormulaBase
         {
             get
             {
-                var curTick = GameGlobal.gGameMusic.GetMusicPassTick();
-                var idx = GameGlobal.gGameMusic.GetMusicIndexByGenTick(curTick);
+                var idx = curIdx;
                 var md = new MusicData();
                 md.objId = -1;
                 if (idx != -1) md = GetMusicDataByIdx(idx);
@@ -74,13 +75,22 @@ namespace FormulaBase
         {
             get
             {
-                var curTick = GameGlobal.gGameMusic.GetMusicPassTick();
-                var idx = (int)(curTick / FixUpdateTimer.dInterval);
+                var idx = curIdx;
                 if (_timeNodeOrder.ContainsKey(idx))
                 {
                     return this._timeNodeOrder[idx][0];
                 }
                 return null;
+            }
+        }
+
+        public int curIdx
+        {
+            get
+            {
+                var curTick = GameGlobal.gGameMusic.GetMusicPassTick();
+                var idx = curTick / FixUpdateTimer.dInterval;
+                return (int)idx;
             }
         }
 
@@ -859,6 +869,9 @@ namespace FormulaBase
                         TimeNodeOrder tno = new TimeNodeOrder();
                         tno.idx = md.objId;
                         tno.mustJump = md.nodeData.jump_note;
+                        tno.isLongPressEnd = md.isLongPressEnd;
+                        tno.isLongPressStart = md.isLongPressStart;
+                        tno.isLongPress = md.isLongPress;
                         tno.enableJump = (md.nodeData.enable_jump == 1);
                         tno.result = GameMusic.PERFECT;
                         tno.isPerfectNode = j == 0;
@@ -887,7 +900,10 @@ namespace FormulaBase
                         tno.mustJump = md.nodeData.jump_note;
                         tno.enableJump = (md.nodeData.enable_jump == 1);
                         tno.result = GameMusic.PERFECT;
+                        tno.mustJump = md.nodeData.jump_note;
                         tno.isLongPressEnd = md.isLongPressEnd;
+                        tno.isLongPressStart = md.isLongPressStart;
+                        tno.isLongPress = md.isLongPress;
                         tno.isPerfectNode = false;
                         decimal _r = j * FixUpdateTimer.dInterval;
                         if (-_r > bPerfectRange)
@@ -915,6 +931,10 @@ namespace FormulaBase
                     tno.enableJump = (md.nodeData.enable_jump == 1);
                     tno.result = GameMusic.GREAT;
                     tno.isPerfectNode = true;
+                    tno.mustJump = md.nodeData.jump_note;
+                    tno.isLongPressEnd = md.isLongPressEnd;
+                    tno.isLongPressStart = md.isLongPressStart;
+                    tno.isLongPress = md.isLongPress;
                     var tnoIdx = s;
                     if (!this._timeNodeOrder.ContainsKey(tnoIdx))
                     {

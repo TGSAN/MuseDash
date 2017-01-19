@@ -65,7 +65,6 @@ namespace GameLogic
             {
                 ArmActionController.Instance.OnControllerMiss(idx);
             }
-
             bsc.OnControllerMiss(idx);
             if (GameGlobal.IS_DEBUG)
             {

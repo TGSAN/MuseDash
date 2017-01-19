@@ -98,7 +98,7 @@ namespace GameLogic
 
         public int longPressCount
         {
-            get { return (int)(configData.length / GameGlobal.LONG_PRESS_FREQUENCY); }
+            get { return Mathf.CeilToInt((float)(configData.length / GameGlobal.LONG_PRESS_FREQUENCY)); }
         }
 
         public void SetShotPause(decimal _tick)
@@ -357,11 +357,19 @@ namespace GameLogic
                         longPressMd.tick = md.tick + GameGlobal.LONG_PRESS_FREQUENCY * j;
                         longPressMd.configData = md.configData;
                         longPressMd.configData.length = 0;
-                        longPressMd.isLongPress = j != count;
+                        longPressMd.isLongPress = true;
+                        longPressMd.isLongPressEnd = false;
                         longPressMd.SetAttackRangeRate(md.GetAttackrangeRate());
                         longPressMd.nodeData = md.nodeData;
-                        longPressMd.isLongPressEnd = j == count;
+
                         longPressMd.longPressPIdx = md.objId;
+
+                        if (j == count)
+                        {
+                            longPressMd.isLongPress = false;
+                            longPressMd.isLongPressEnd = true;
+                            longPressMd.tick = md.tick + md.configData.length;
+                        }
                         this.Add(longPressMd);
                     }
                 }

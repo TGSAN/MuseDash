@@ -164,6 +164,10 @@ public abstract class BaseEnemyObjectController : BaseSpineObjectController
     private bool __OnControllerMiss(int idx)
     {
         ArrayList musicData = StageBattleComponent.Instance.GetMusicData();
+        if (idx < 0 || idx > musicData.Count)
+        {
+            return false;
+        }
         MusicData md = (MusicData)musicData[idx];
         if (md.nodeData.hit_type == GameMusic.NONE)
         {
