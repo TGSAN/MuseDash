@@ -17,7 +17,7 @@ namespace GameLogic
         public override void Do(Spine.AnimationState state, int trackIndex, int loopCount)
         {
             var curAnimName = GirlActionController.instance.curAnimName;
-            var isJumping = (curAnimName == ACTION_KEYS.JUMP_ATTACK) || (curAnimName == ACTION_KEYS.JUMP);
+            var isJumping = (curAnimName == ACTION_KEYS.JUMP_ATTACK) || (curAnimName == ACTION_KEYS.JUMP) || (curAnimName == ACTION_KEYS.JUMP_HURT);
             GirlManager.Instance.SetJumpingAction(isJumping);
             SpineActionController.Play(ACTION_KEYS.RUN, this.gameObject);
         }
