@@ -182,18 +182,7 @@ public class AttacksController : MonoBehaviour
     private void PlayAttackAnim(int id, uint actionType, bool isContinue, uint result)
     {
         string actKey = BattleEnemyManager.Instance.GetNodeRoleActKeyByIdx(id);
-        if (actKey == "char_press" && GirlManager.Instance.IsJumpingAction())
-        {
-            return;
-        }
-        if (actKey == "char_atk")
-        {
-            actKey = ACTION_KEYS.ATTACK_PERFECT;
-            if (result == GameMusic.GREAT)
-            {
-                actKey = ACTION_KEYS.ATTACK_GREAT;
-            }
-        }
+        actKey = AtkScore(actKey, result);
         if (isContinue)
         {
             GirlManager.Instance.AttacksWithoutExchange(result, actKey);
@@ -202,6 +191,19 @@ public class AttacksController : MonoBehaviour
         {
             GirlManager.Instance.AttackWithExchange(result, actKey);
         }
+    }
+
+    private string AtkScore(string actKey, uint result)
+    {
+        if (actKey == "char_atk")
+        {
+            actKey = ACTION_KEYS.ATTACK_PERFECT;
+            if (result == GameMusic.GREAT)
+            {
+                actKey = ACTION_KEYS.ATTACK_GREAT;
+            }
+        }
+        return actKey;
     }
 
     private void PlayRandomHitNothingAnim()

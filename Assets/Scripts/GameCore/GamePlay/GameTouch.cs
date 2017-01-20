@@ -477,15 +477,6 @@ namespace GameLogic
             {
                 this.PlayComboPhaser(resultCode, md.nodeData.isShowPlayEffect);
             }
-
-            // Jump beat pause
-            if (md.nodeData.type == GameGlobal.NODE_TYPE_AIR_BEAT)
-            {
-                if (GirlManager.Instance.IsJumpingAction())
-                {
-                    GirlManager.Instance.JumpBeatPause();
-                }
-            }
         }
 
         private bool IsPlayEmpty(int idx, uint actionType)

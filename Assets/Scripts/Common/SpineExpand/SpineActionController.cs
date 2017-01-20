@@ -467,7 +467,6 @@ public class SpineActionController : MonoBehaviour
     public static void Play(string actionKey, GameObject obj, float tick = 0)
     {
         PlayAnimator(actionKey, obj);
-
         if (obj == null)
         {
             return;

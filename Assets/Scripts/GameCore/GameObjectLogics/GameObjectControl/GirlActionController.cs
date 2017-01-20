@@ -19,6 +19,14 @@ public class GirlActionController : BaseSpineObjectController
         get; private set;
     }
 
+    public string curAnimName
+    {
+        get
+        {
+            return gameObject.GetComponent<SpineActionController>().GetCurrentActionName();
+        }
+    }
+
     public override void OnControllerStart()
     {
         SpineActionController.SetSynchroObjectsActive(this.gameObject, true);
@@ -156,19 +164,50 @@ public class GirlActionController : BaseSpineObjectController
         {
             _atkName = (actKey != null && actKey.Length > 2) ? actKey : ACTION_KEYS.ATTACK_PERFECT;
         }
-
+        _atkName = JumpAttack(_atkName, result);
+        Debug.Log(_atkName + "===");
         SpineActionController.Play(_atkName, this.gameObject, tick);
     }
 
-    /*
-	public void ResetAttacker() {
-		if (this.actionIndex != ATTACKER_INDEX) {
-			return;
-		}
+    private string JumpAttack(string atkName, uint result)
+    {
+        if (!GirlManager.Instance.IsJumpingAction() || result == GameMusic.NONE || atkName == ACTION_KEYS.JUMP) return atkName;
+        if (atkName == ACTION_KEYS.HURT || atkName == ACTION_KEYS.JUMP_HURT)
+        {
+            GirlManager.Instance.SetJumpingAction(false);
+            return atkName;
+        }
+        var md = StageBattleComponent.Instance.neareastMusicData;
+        var isAirNode = md.nodeData.type == GameGlobal.NODE_TYPE_AIR_BEAT;
+        var isLongPress = md.isLongPressStart || md.isLongPress || md.isLongPressEnd;
+        if (!isAirNode)
+        {
+            GirlManager.Instance.SetJumpingAction(false);
+            atkName = ACTION_KEYS.JUMP_DOWN_ATTACK;
+        }
+        else
+        {
+            GirlManager.Instance.SetJumpingAction(true);
+            atkName = ACTION_KEYS.JUMP_ATTACK;
+        }
 
-		SpineActionController.Play (ACTION_KEYS.RUN, this.gameObject);
-	}
-*/
+        if (isLongPress)
+        {
+            GirlManager.Instance.SetJumpingAction(false);
+            atkName = ACTION_KEYS.JUMP_DOWN_PRESS;
+        }
+        return atkName;
+    }
+
+    /*
+    public void ResetAttacker() {
+        if (this.actionIndex != ATTACKER_INDEX) {
+            return;
+        }
+
+        SpineActionController.Play (ACTION_KEYS.RUN, this.gameObject);
+    }
+    */
 
     private void InitSkills()
     {
