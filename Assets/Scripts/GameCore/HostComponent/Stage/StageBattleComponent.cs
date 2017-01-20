@@ -77,10 +77,15 @@ namespace FormulaBase
                 var preMd = new MusicData();
                 preMd.objId = -1;
                 tick = curTick;
-                while (preMd.objId == -1 && tick > 0)
+                var isDead = false;
+                while (preMd.objId == -1 && tick > 0 && !isDead)
                 {
                     preMd = GameGlobal.gGameMusic.GetMusicDataByTick(tick);
                     tick -= FixUpdateTimer.dInterval;
+                    if (preMd.objId != -1)
+                    {
+                        isDead = BattleEnemyManager.Instance.IsDead(preMd.objId);
+                    }
                 }
 
                 var outMd = Mathf.Abs((float)(preMd.tick - curTick)) > Mathf.Abs((float)(nextMd.tick - curTick)) ? nextMd : preMd;

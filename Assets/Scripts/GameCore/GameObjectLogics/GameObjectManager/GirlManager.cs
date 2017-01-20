@@ -446,7 +446,6 @@ public class GirlManager : MonoBehaviour
             {
                 continue;
             }
-
             SpineActionController.Play(ACTION_KEYS.CHAR_DEAD, girl);
         }
     }
