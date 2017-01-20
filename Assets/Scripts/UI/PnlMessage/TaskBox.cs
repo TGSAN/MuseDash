@@ -16,8 +16,8 @@ public class TaskBox : MonoBehaviour
     {
         m_Grid = transform.parent.GetComponent<UIGrid>();
         var idx = transform.GetSiblingIndex();
-        var dailyTask = DailyTaskManager.instance.awardTaskList[idx];
-        var host = DailyTaskManager.instance.GetFormulaHost(int.Parse(dailyTask.uid));
+        var dailyTask = TaskManager.instance.awardTaskList[idx];
+        var host = TaskManager.instance.GetFormulaHost(int.Parse(dailyTask.uid));
         var target = host.GetDynamicIntByKey(SignKeys.DT_TARGET);
         sprIcon.spriteName = dailyTask.icon;
         txtDes.text = dailyTask.description.Replace("(N)", target.ToString());
@@ -28,7 +28,7 @@ public class TaskBox : MonoBehaviour
         {
             Destroy(gameObject);
             m_Grid.enabled = true;
-            DailyTaskManager.instance.AwardDailyTask(int.Parse(dailyTask.uid));
+            TaskManager.instance.AwardDailyTask(int.Parse(dailyTask.uid));
         };
     }
 }

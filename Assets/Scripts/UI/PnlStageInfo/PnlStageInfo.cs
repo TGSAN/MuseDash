@@ -29,6 +29,11 @@ namespace PnlStageInfo
         public UILabel[] labels;
         public UILabel txtEnergyCost;
 
+		public override void OnShow()
+		{
+			OnShow(PnlScrollCircle.currentSongIdx);
+		}
+
         public override void OnShow(int idx)
         {
             var stageHost = TaskStageTarget.Instance.GetStageByIdx(idx);

@@ -71,7 +71,7 @@ public class GameInit : MonoBehaviour
         FormulaBase.AccountManagerComponent.Instance.Init();
         FormulaBase.AccountPhysicsManagerComponent.Instance.Init();
 //        FormulaBase.BagManageComponent.Instance.Init();
-        FormulaBase.DailyTaskManager.instance.Init();
+        FormulaBase.TaskManager.instance.Init();
     }
 
     private IEnumerator __Init()

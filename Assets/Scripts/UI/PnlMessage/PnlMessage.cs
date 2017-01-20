@@ -8,15 +8,15 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-namespace PnlAnnouncement
+namespace PnlMessage
 {
-    public class PnlAnnouncement : UIPhaseBase
+    public class PnlMessage : UIPhaseBase
     {
         public GameObject awardPre;
         public UIGrid grid;
-        private static PnlAnnouncement instance = null;
+        private static PnlMessage instance = null;
 
-        public static PnlAnnouncement Instance
+        public static PnlMessage Instance
         {
             get
             {
@@ -27,7 +27,7 @@ namespace PnlAnnouncement
         public override void OnShow()
         {
             grid.transform.DestroyChildren();
-            for (int i = 0; i < DailyTaskManager.instance.awardTaskList.Count; i++)
+            for (int i = 0; i < TaskManager.instance.awardTaskList.Count; i++)
             {
                 var go = GameObject.Instantiate(awardPre, grid.transform, false);
                 go.transform.localPosition = Vector3.zero;

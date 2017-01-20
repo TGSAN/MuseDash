@@ -4,6 +4,7 @@ using System.Collections;
 using GameLogic;
 using System.Collections.Generic;
 using System.Linq;
+using Spine.Unity;
 
 [Serializable]
 public struct SkeletActionData {
@@ -338,7 +339,7 @@ public class SpineActionController : MonoBehaviour {
 		}
 
 		float wx, wy;
-		bone.localToWorld (bone.x, bone.y, out wx, out wy);
+		bone.LocalToWorld (bone.x, bone.y, out wx, out wy);
 		return new Vector3 (wx, wy, 0);
 	}
 
@@ -382,7 +383,7 @@ public class SpineActionController : MonoBehaviour {
 			return;
 		}
 
-		this.skAnimation.Reset ();
+		this.skAnimation.Initialize (false);
 	}
 
 	private void SetCurrentAnimationTime(float tick) {
@@ -441,7 +442,7 @@ public class SpineActionController : MonoBehaviour {
 			int idx = data.actionIdx [i];
 			int eventIdx = data.actionEventIdx [i];
 			string name = this.skAnimationsName [idx];
-			Spine.AnimationState.CompleteDelegate comDlg = SpineEventFactory.GetFunction (this.gameObject, eventIdx);
+			Spine.AnimationState.TrackEntryDelegate comDlg = SpineEventFactory.GetFunction (this.gameObject, eventIdx);
 			Spine.TrackEntry entry = this.AddAnimation (name, data.isEndLoop, 0);
 			if (entry != null && comDlg != null) {
 				entry.Complete += comDlg;
@@ -458,7 +459,7 @@ public class SpineActionController : MonoBehaviour {
 				}
 
 				int eventIdx = data.actionEventIdx[i];
-				Spine.AnimationState.CompleteDelegate comDlg = SpineEventFactory.GetFunction(this.gameObject, eventIdx);
+				Spine.AnimationState.TrackEntryDelegate comDlg = SpineEventFactory.GetFunction(this.gameObject, eventIdx);
 				if (comDlg == null) {
 					continue;
 				}

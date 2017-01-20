@@ -9,10 +9,11 @@
 // ------------------------------------------------------------------------------
 using System;
 using UnityEngine;
+using Spine;
 
 namespace GameLogic {
 	public class OnJumpEnd : DoNothing {
-	public override void Do (Spine.AnimationState state, int trackIndex, int loopCount) {
+		public override void Do (TrackEntry entry) {
 			GirlManager.Instance.SetJumpingAction (false);
 			SpineActionController.Play (ACTION_KEYS.RUN, this.gameObject);
 		}

@@ -27,6 +27,7 @@ namespace PnlStage
 
         public override void OnShow()
         {
+			gameObject.SetActive (true);
             PnlScrollCircle.instance.OnShow();
         }
 

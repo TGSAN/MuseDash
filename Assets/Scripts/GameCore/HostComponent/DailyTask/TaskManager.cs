@@ -21,11 +21,11 @@ namespace FormulaBase
         public string icon;
     }
 
-    public class DailyTaskManager : CustomComponentBase
+    public class TaskManager : CustomComponentBase
     {
         private List<DailyTask> m_TaskConfig;
         private const int HOST_IDX = 19;
-        private static DailyTaskManager m_Instance = null;
+        private static TaskManager m_Instance = null;
 
         public const int FOOD_IDX = 1;
         public const int UPGRADE_ITEM_IDX = 2;
@@ -76,9 +76,9 @@ namespace FormulaBase
             }
         }
 
-        public static DailyTaskManager instance
+        public static TaskManager instance
         {
-            get { return m_Instance ?? (m_Instance = new DailyTaskManager()); }
+            get { return m_Instance ?? (m_Instance = new TaskManager()); }
         }
 
         public List<DailyTask> curTaskList

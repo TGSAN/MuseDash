@@ -9,10 +9,11 @@
 // ------------------------------------------------------------------------------
 using System;
 using UnityEngine;
+using Spine;
 
 namespace GameLogic {
 	public class AttackToNormalRun : DoNothing {
-		public override void Do (Spine.AnimationState state, int trackIndex, int loopCount) {
+		public override void Do (TrackEntry entry) {
 			// Air run.
 			if (GirlManager.Instance.IsJumpingAction ()) {
 				//SpineActionController.Play (ACTION_KEYS.AIR_STAND, this.gameObject);

@@ -291,8 +291,8 @@ namespace Assets.Scripts.NGUI
                     return;
                 }
                 m_FinishEnter = false;
-                btnStart.gameObject.GetComponent<AudioSource>().Play();
-				PnlStageInfo.PnlStageInfo.Instance.OnShow(currentSongIdx);
+                //btnStart.gameObject.GetComponent<AudioSource>().Play();
+			
             };
 
             UIEventListener.Get(gameObject).onDragStart = onDragStart;
@@ -821,7 +821,7 @@ namespace Assets.Scripts.NGUI
                 StopCoroutine(m_Coroutine);
             }
 
-            m_Coroutine = StartCoroutine(LoadCoroutine(this.loadDelay));
+            //m_Coroutine = StartCoroutine(LoadCoroutine(this.loadDelay));
         }
 
         public void ResetPos()

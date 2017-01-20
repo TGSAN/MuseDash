@@ -5,10 +5,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 401476}
-  - 114: {fileID: 11446744}
+  - component: {fileID: 401476}
+  - component: {fileID: 11446744}
   m_Layer: 0
   m_Name: gm_atlas
   m_TagString: Untagged
@@ -42,9 +42,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 0589c843a2a0d4f449ede5bb09e65d5e, type: 2}
   mSprites:
-  - name: button_bule
+  - name: base
     x: 0
-    y: 319
+    y: 7
+    width: 120
+    height: 120
+    borderLeft: 20
+    borderRight: 20
+    borderTop: 80
+    borderBottom: 20
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: button_bule
+    x: 227
+    y: 192
     width: 64
     height: 64
     borderLeft: 10
@@ -56,12 +69,12 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: button_green
-    x: 65
-    y: 319
+    x: 227
+    y: 127
     width: 64
     height: 64
-    borderLeft: 0
-    borderRight: 0
+    borderLeft: 20
+    borderRight: 20
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0
@@ -69,8 +82,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: button_red
-    x: 130
-    y: 319
+    x: 227
+    y: 62
     width: 64
     height: 64
     borderLeft: 10
@@ -82,8 +95,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: button_yellow
-    x: 0
-    y: 254
+    x: 292
+    y: 192
     width: 64
     height: 64
     borderLeft: 10
@@ -96,7 +109,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: gm_button_off
     x: 128
-    y: 384
+    y: 128
     width: 98
     height: 128
     borderLeft: 0
@@ -109,7 +122,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: gm_button_on
     x: 0
-    y: 384
+    y: 128
     width: 127
     height: 128
     borderLeft: 0
@@ -118,6 +131,45 @@ MonoBehaviour:
     borderBottom: 0
     paddingLeft: 0
     paddingRight: 1
+    paddingTop: 0
+    paddingBottom: 0
+  - name: mask
+    x: 128
+    y: 4
+    width: 48
+    height: 48
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: small_board
+    x: 128
+    y: 53
+    width: 74
+    height: 74
+    borderLeft: 20
+    borderRight: 20
+    borderTop: 20
+    borderBottom: 20
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: toggle
+    x: 227
+    y: 1
+    width: 60
+    height: 60
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
   mPixelSize: 1

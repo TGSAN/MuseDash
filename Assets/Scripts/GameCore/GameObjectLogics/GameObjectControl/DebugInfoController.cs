@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using GameLogic;
+using Spine.Unity;
 
 public class DebugInfoController : MonoBehaviour {
 	private GameObject parentObject = null;

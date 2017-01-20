@@ -441,24 +441,24 @@ namespace FormulaBase
 
             //日常任务相关
             //在任意关卡中获得1次S评价
-            DailyTaskManager.instance.DetectValue(s => GetStagePJ() == "s", DailyTaskManager.S_IDX);
+            TaskManager.instance.DetectValue(s => GetStagePJ() == "s", TaskManager.S_IDX);
             //在关卡（MusicName）中获得1次S评价或a评价
-            DailyTaskManager.instance.DetectValue(s => Host.GetDynamicIntByKey(SignKeys.ID) == int.Parse(s) && (GetStagePJ() == "a" || GetStagePJ() == "s"), DailyTaskManager.A_IDX);
+            TaskManager.instance.DetectValue(s => Host.GetDynamicIntByKey(SignKeys.ID) == int.Parse(s) && (GetStagePJ() == "a" || GetStagePJ() == "s"), TaskManager.A_IDX);
             //戴耳机完成任意5个不用关卡
             if (isInEarphone)
             {
-                DailyTaskManager.instance.AddValue(1, DailyTaskManager.EARPHONE_IDX);
+                TaskManager.instance.AddValue(1, TaskManager.EARPHONE_IDX);
             }
             //累计收集30个音符
-            DailyTaskManager.instance.AddValue(GetNoteItemCount(), DailyTaskManager.MUSIC_NOTE_IDX);
+            TaskManager.instance.AddValue(GetNoteItemCount(), TaskManager.MUSIC_NOTE_IDX);
             //累计收集N个金币
-            DailyTaskManager.instance.AddValue(GetGoldItemCount(), DailyTaskManager.COIN_IDX);
+            TaskManager.instance.AddValue(GetGoldItemCount(), TaskManager.COIN_IDX);
             //累计击打500个perfect
-            DailyTaskManager.instance.AddValue(Host.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL), DailyTaskManager.PERFECT_IDX);
+            TaskManager.instance.AddValue(Host.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL), TaskManager.PERFECT_IDX);
             //在任意关卡获得N连击数
-            DailyTaskManager.instance.DetectValue(s => GetComboMax() >= int.Parse(s), DailyTaskManager.COMBO_IDX);
+            TaskManager.instance.DetectValue(s => GetComboMax() >= int.Parse(s), TaskManager.COMBO_IDX);
             //累计击中N个会隐形的星星
-            DailyTaskManager.instance.AddValue(GetHideNodeCount(), DailyTaskManager.HIDE_NOTE_IDX);
+            TaskManager.instance.AddValue(GetHideNodeCount(), TaskManager.HIDE_NOTE_IDX);
 
             // 完成难度分数目标后，自动增加难度，同时增加奖杯
             if (score >= scoreTarget && diff <= 3)

@@ -9,6 +9,7 @@
 // ------------------------------------------------------------------------------
 using System;
 using UnityEngine;
+using Spine;
 
 namespace GameLogic {
 	public class DoNothing {
@@ -23,7 +24,7 @@ namespace GameLogic {
 			this.gameObject = obj;
 		}
 
-		public virtual void Do (Spine.AnimationState state, int trackIndex, int loopCount) {
+		public virtual void Do (TrackEntry entry) {
 		}
 	}
 }

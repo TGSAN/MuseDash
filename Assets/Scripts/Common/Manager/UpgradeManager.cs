@@ -118,7 +118,7 @@ namespace Assets.Scripts.Common
                     {
 //                        PnlCharUpgrade.PnlCharUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeResult);
                         PnlMainMenu.PnlMainMenu.Instance.OnEnergyUpdate(true);
-                        DailyTaskManager.instance.AddValue(expHosts.Count, DailyTaskManager.FOOD_IDX);
+                        TaskManager.instance.AddValue(expHosts.Count, TaskManager.FOOD_IDX);
                     }
                     if (callFunc != null)
                     {
@@ -195,7 +195,7 @@ namespace Assets.Scripts.Common
                     {
 //                        ItemManageComponent.Instance.DeleteListItem(expHosts);
 //                        PnlItemUpgrade.PnlItemUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeResult);
-                        DailyTaskManager.instance.AddValue(expHosts.Count, DailyTaskManager.UPGRADE_ITEM_IDX);
+                        TaskManager.instance.AddValue(expHosts.Count, TaskManager.UPGRADE_ITEM_IDX);
                     }
                     else
                     {

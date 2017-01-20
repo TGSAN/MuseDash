@@ -2,6 +2,7 @@
 using System.Collections;
 using GameLogic;
 using FormulaBase;
+using Spine.Unity;
 
 public abstract class BaseEnemyObjectController : BaseSpineObjectController {
 	private const string POINT_CENTER = "pc";
