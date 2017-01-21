@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Common;
 using UnityEngine;
 
 namespace Assets.Scripts.NGUI
@@ -292,7 +293,6 @@ namespace Assets.Scripts.NGUI
                 }
                 m_FinishEnter = false;
                 //btnStart.gameObject.GetComponent<AudioSource>().Play();
-			
             };
 
             UIEventListener.Get(gameObject).onDragStart = onDragStart;
@@ -448,7 +448,7 @@ namespace Assets.Scripts.NGUI
         {
             var trophyNum = TaskStageTarget.Instance.GetXMax(TaskStageTarget.TASK_SIGNKEY_STAGE_EVLUATE);
             var isLock = m_StageInfos[m_CurrentIdx].isLock;
-           
+
             btnTip.gameObject.SetActive(isLock);
         }
 
@@ -487,7 +487,7 @@ namespace Assets.Scripts.NGUI
                 }
                 m_DiffSeq = DOTween.Sequence();
                 //var dt = animDT / difficulty.transform.childCount;
-				var dt = 10;
+                var dt = 10;
                 if (m_PreDiff < diff)
                 {
                     for (int i = m_PreDiff; i < difficulty.transform.childCount; i++)
@@ -510,13 +510,13 @@ namespace Assets.Scripts.NGUI
                         var idx = i;
                         m_DiffSeq.AppendCallback(() =>
                         {
-								/*
-                            if (difficulty.transform.childCount > idx)
-                            {
-                                var child = difficulty.transform.GetChild(idx);
-                                child.gameObject.SetActive(isVisiable);
-                            }
-                            */
+                            /*
+                        if (difficulty.transform.childCount > idx)
+                        {
+                            var child = difficulty.transform.GetChild(idx);
+                            child.gameObject.SetActive(isVisiable);
+                        }
+                        */
                         });
                         m_DiffSeq.AppendInterval(dt);
                     }
@@ -637,15 +637,15 @@ namespace Assets.Scripts.NGUI
                     var curGradientKvp = pair.Value;
                     var nextGradientKvp = nextPair.Value;
                     var percent = (theAngle - curAngle) / (nextAngle - curAngle);
-                    var cubeGradient = GradientUtil.BlendGradient(curGradientKvp.key, nextGradientKvp.key, percent);
-                    var bkgGradient = GradientUtil.BlendGradient(curGradientKvp.value, nextGradientKvp.value, percent);
+                    var cubeGradient = GradientUtils.BlendGradient(curGradientKvp.key, nextGradientKvp.key, percent);
+                    var bkgGradient = GradientUtils.BlendGradient(curGradientKvp.value, nextGradientKvp.value, percent);
                     cube.ForEach(g => g.color = cubeGradient);
                     bkg.ForEach(g => g.color = bkgGradient);
                 }
             }
 
             var alphaTo = m_StageInfos[m_CurrentIdx].isLock ? 0.0f : 1.0f;
-            DOTweenUtils.TweenAllAlphaTo(btnStart, alphaTo, btnFadeTime, 0.1f);
+            //DOTweenUtils.TweenAllAlphaTo(btnStart, alphaTo, btnFadeTime, 0.1f);
             btnStart.GetComponent<TweenAlpha>().enabled = !m_StageInfos[m_CurrentIdx].isLock;
 
             var midIdx = Mathf.RoundToInt(m_ZAngle / angle + 2);

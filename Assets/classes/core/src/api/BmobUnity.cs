@@ -14,6 +14,7 @@ using cn.bmob.config;
 using cn.bmob.exception;
 using cn.bmob.response;
 using System.Text.RegularExpressions;
+using Assets.Scripts.Common;
 
 #if Unity
 

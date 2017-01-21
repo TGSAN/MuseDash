@@ -4,6 +4,7 @@
 /// PnlUnlockSongUI主模块
 ///
 using System;
+using Assets.Scripts.Common;
 using UnityEngine;
 
 namespace PnlUnlockSong
