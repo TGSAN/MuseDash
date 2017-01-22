@@ -25,9 +25,9 @@ namespace Assets.Scripts.Tool.PRHelper
 
         private void Awake()
         {
-            OnEventInvoke(PREvents.EventType.OnAwake);
             if (nodes == null) nodes = new PRHelperNode[0];
             nodes.ToList().ForEach(n => n.Init(gameObject));
+            OnEventInvoke(PREvents.EventType.OnAwake);
         }
 
         public void Play(string key)
