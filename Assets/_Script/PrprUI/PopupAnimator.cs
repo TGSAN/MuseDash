@@ -25,7 +25,7 @@ public class PopupAnimator : MonoBehaviour {
 	protected Canvas m_canvas;
 
 	protected void Start () {
-		m_canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+		m_canvas = GameObject.Find("UIManager").GetComponent<Canvas>();
 	}
 		
 	public virtual void OpenPopup()

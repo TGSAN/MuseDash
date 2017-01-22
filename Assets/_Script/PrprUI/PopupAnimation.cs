@@ -71,7 +71,7 @@ public class PopupAnimation : MonoBehaviour
 		image.CrossFadeAlpha(1.0f, 0.1f, false);
 		button.onClick.AddListener(Close);
 		//决定上面创建 的BtnCancel的的层级位置。
-		var parent = GameObject.Find("Canvas");
+		var parent = GameObject.Find("UIManager");
 		m_CancelButton.transform.localScale = new Vector3(1, 1, 1);
 		m_CancelButton.GetComponent<RectTransform>().sizeDelta = parent.GetComponent<RectTransform>().sizeDelta;
 		m_CancelButton.transform.SetParent(parent.transform, false);
