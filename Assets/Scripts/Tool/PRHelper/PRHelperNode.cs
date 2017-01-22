@@ -9,7 +9,7 @@ namespace Assets.Scripts.Tool.PRHelper
     public class PRHelperNode
     {
         public string key;
-        public bool isActive;
+        public bool isActive = true;
         public NodeType nodeType;
 
         //UI_Action_PlayAnimtion
@@ -27,6 +27,10 @@ namespace Assets.Scripts.Tool.PRHelper
         //UI_Action_Active
         public Active active;
 
+        //UI_Action_PlayPopup
+        public PlayPopup playPopup;
+
+        //UI_Event
         public PREvents pREvents;
 
         public void Play()

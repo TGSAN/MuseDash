@@ -27,6 +27,8 @@ namespace Assets.Scripts.Tool.PRHelper
             sb.Append(Environment.NewLine);
             sb.Append("{");
             sb.Append(Environment.NewLine);
+            sb.Append("    [Serializable]");
+            sb.Append(Environment.NewLine);
             sb.Append("    public class " + nodeName);
             sb.Append(Environment.NewLine);
             sb.Append("    {");

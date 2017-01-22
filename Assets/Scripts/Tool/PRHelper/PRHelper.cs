@@ -29,6 +29,11 @@ namespace Assets.Scripts.Tool.PRHelper
             nodes.ToList().ForEach(n => n.Init());
         }
 
+        public void Play(string key)
+        {
+            this[key].Play();
+        }
+
         public static UnityEventGameObject OnEvent(GameObject go, PREvents.EventType eventType)
         {
             var prHelper = go.GetComponent<PRHelper>() ?? go.AddComponent<PRHelper>();

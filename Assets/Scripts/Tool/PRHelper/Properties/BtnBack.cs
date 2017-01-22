@@ -8,7 +8,7 @@ namespace Assets.Scripts.Tool.PRHelper.Properties
     public class BtnBack
     {
         public Button button;
-        public string prePnlName;
+        public string curPnlName;
         public string nextPnlName;
 
         public void Init()
@@ -17,16 +17,22 @@ namespace Assets.Scripts.Tool.PRHelper.Properties
             {
                 button.onClick.AddListener(() =>
                 {
-                    var peek = UIManager.instance.peek;
-                    if (peek == null) return;
-                    Debug.Log(peek.name);
-                    if (prePnlName == UIManager.instance.peek.name)
+                    var top = UIManager.instance.top;
+                    if (top == null) return;
+                    if (curPnlName == top.name)
                     {
-                        var nextPnl = UIManager.instance.pnlGameObjects.Find(p => p.name == nextPnlName);
-                        nextPnl.SetActive(true);
+                        var nextPnl = UIManager.instance[nextPnlName];
+                        if (nextPnl == null)
+                        {
+                            UIManager.instance.peek.SetActive(true);
+                        }
+                        else
+                        {
+                            nextPnl.SetActive(true);
+                        }
 
-                        var prePnl = UIManager.instance.pnlGameObjects.Find(p => p.name == prePnlName);
-                        prePnl.SetActive(false);
+                        var curPnl = UIManager.instance[curPnlName];
+                        curPnl.SetActive(false);
                     }
                 });
             }

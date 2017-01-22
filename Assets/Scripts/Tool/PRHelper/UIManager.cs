@@ -9,8 +9,44 @@ namespace Assets.Scripts.Tool.PRHelper
 {
     public class UIManager : SingletonMonoBehaviour<UIManager>
     {
-        public List<GameObject> pnlGameObjects = new List<GameObject>();
+        [SerializeField]
+        private List<GameObject> m_PnlGameObjects = new List<GameObject>();
+
         private Stack<GameObject> m_InactiveStack = new Stack<GameObject>();
+
+        public GameObject top
+        {
+            get
+            {
+                if (m_PnlGameObjects.Count == 0) return null;
+                var pnls = new List<GameObject>(m_PnlGameObjects);
+                pnls.RemoveAll(p => p.name == "PnlMenu");
+                pnls.Sort((l, r) =>
+                {
+                    if (l.activeSelf && !r.activeSelf)
+                    {
+                        return -1;
+                    }
+
+                    if (!l.activeSelf && r.activeSelf)
+                    {
+                        return 1;
+                    }
+
+                    if (!l.activeSelf && !r.activeSelf)
+                    {
+                        return 0;
+                    }
+
+                    if (l.transform.parent != r.transform.parent)
+                    {
+                        return l.transform.parent.GetSiblingIndex() - r.transform.parent.GetSiblingIndex();
+                    }
+                    return l.transform.GetSiblingIndex() - r.transform.GetSiblingIndex();
+                });
+                return pnls[0];
+            }
+        }
 
         public GameObject peek
         {
@@ -26,7 +62,15 @@ namespace Assets.Scripts.Tool.PRHelper
 
         public string[] pnlNames
         {
-            get { return pnlGameObjects.Select(p => p.name).ToArray(); }
+            get { return m_PnlGameObjects.Select(p => p.name).ToArray(); }
+        }
+
+        public GameObject this[string n]
+        {
+            get
+            {
+                return m_PnlGameObjects.Find(p => p.name == n);
+            }
         }
 
         public void Push(GameObject pnlGO)
@@ -38,11 +82,9 @@ namespace Assets.Scripts.Tool.PRHelper
         {
             if (m_InactiveStack.Count == 0) return;
             var list = new List<GameObject>();
-            var thePeek = m_InactiveStack.Pop();
-            while (thePeek != null)
+            while (m_InactiveStack.Count > 0)
             {
-                list.Add(thePeek);
-                thePeek = m_InactiveStack.Pop();
+                list.Add(m_InactiveStack.Pop());
             }
             if (list.Contains(pnlGO))
             {
@@ -50,19 +92,25 @@ namespace Assets.Scripts.Tool.PRHelper
             }
             m_InactiveStack = new Stack<GameObject>();
             list.Reverse();
-            foreach (var gameObject in list)
+            foreach (var go in list)
             {
-                m_InactiveStack.Push(gameObject);
+                m_InactiveStack.Push(go);
             }
-            list.ForEach(g => Debug.Log(g.name));
         }
 
         public void Awake()
         {
-            foreach (var pnlGameObject in pnlGameObjects)
+            foreach (var pnlGameObject in m_PnlGameObjects)
             {
-                PRHelper.OnEvent(pnlGameObject, PREvents.EventType.OnDisable).AddListener(Push);
-                PRHelper.OnEvent(pnlGameObject, PREvents.EventType.OnEnable).AddListener(Pop);
+                var go = pnlGameObject;
+                PRHelper.OnEvent(pnlGameObject, PREvents.EventType.OnDisable).AddListener(g =>
+                {
+                    Push(go);
+                });
+                PRHelper.OnEvent(pnlGameObject, PREvents.EventType.OnEnable).AddListener(g =>
+                {
+                    Pop(go);
+                });
             }
         }
     }

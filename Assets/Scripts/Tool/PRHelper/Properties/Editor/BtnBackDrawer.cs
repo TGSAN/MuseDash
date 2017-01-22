@@ -1,4 +1,5 @@
 using System.Linq;
+using Assets.Scripts.Common;
 using Assets.Scripts.Tool.PRHelper.Editor;
 using UnityEditor;
 using UnityEngine;
@@ -16,18 +17,20 @@ namespace Assets.Scripts.Tool.PRHelper.Properties.Editor
             var btnProperty = property.FindPropertyRelative("button");
             rect = EditorUtils.MakePropertyField(btnProperty, rect, m_Gap, m_Height);
 
+            var pnlNames = UIManager.instance.pnlNames;
+            pnlNames = ArrayUtils<string>.Add(pnlNames, "None");
             rect = new Rect(rect.x, rect.y + m_Height + m_Gap, rect.width, rect.height);
-            var pnlNames = EditorUtils.GetGUIContentArray(UIManager.instance.pnlNames);
-            var preNameProperty = property.FindPropertyRelative("prePnlName");
-            var preIdx = UIManager.instance.pnlNames.ToList().FindIndex(p => p == preNameProperty.stringValue);
-            var preNameIdx = EditorGUI.Popup(rect, new GUIContent("Previous Panel Name"), preIdx == -1 ? 0 : preIdx, pnlNames);
-            preNameProperty.stringValue = pnlNames[preNameIdx].text;
+            var pnlContents = EditorUtils.GetGUIContentArray(pnlNames);
+            var curNameProperty = property.FindPropertyRelative("curPnlName");
+            var curIdx = pnlNames.ToList().FindIndex(p => p == curNameProperty.stringValue);
+            var curNameIdx = EditorGUI.Popup(rect, new GUIContent("Current Panel Name"), curIdx == -1 ? 0 : curIdx, pnlContents);
+            curNameProperty.stringValue = pnlContents[curNameIdx].text;
 
             rect = new Rect(rect.x, rect.y + m_Height + m_Gap, rect.width, rect.height);
             var nextNameProperty = property.FindPropertyRelative("nextPnlName");
-            var nextIdx = UIManager.instance.pnlNames.ToList().FindIndex(p => p == nextNameProperty.stringValue);
-            var nextNameIdx = EditorGUI.Popup(rect, new GUIContent("Next Panel Name"), nextIdx == -1 ? 0 : nextIdx, pnlNames);
-            nextNameProperty.stringValue = pnlNames[nextNameIdx].text;
+            var nextIdx = pnlNames.ToList().FindIndex(p => p == nextNameProperty.stringValue);
+            var nextNameIdx = EditorGUI.Popup(rect, new GUIContent("Next Panel Name"), nextIdx == -1 ? pnlContents.Length : nextIdx, pnlContents);
+            nextNameProperty.stringValue = nextNameIdx >= pnlContents.Length ? "None" : pnlContents[nextNameIdx].text;
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
