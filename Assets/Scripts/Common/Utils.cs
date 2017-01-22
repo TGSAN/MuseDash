@@ -20,6 +20,33 @@ namespace Assets.Scripts.Common
             seq.Play();
             return seq;
         }
+
+        public static Sequence Update(Action completeFunc, Func<bool> stopFunc)
+        {
+            var seq = DOTween.Sequence();
+            seq.AppendInterval(float.MaxValue);
+            seq.OnUpdate(() =>
+            {
+                if (stopFunc())
+                {
+                    if (completeFunc != null)
+                    {
+                        completeFunc();
+                    }
+                    seq.Kill();
+                    return;
+                }
+            });
+            seq.Play();
+            return seq;
+        }
+
+        public static Tweener[] TweenAllAlphaTo(GameObject go, float alpha, float dt, float near)
+        {
+            /*var childTexs = go.GetComponentsInChildren<UIWidget>();
+            return (from uiWidget in childTexs where !(Mathf.Abs(uiWidget.alpha - alpha) <= near) select DOTween.To(() => uiWidget.alpha, x => uiWidget.alpha = x, alpha, dt)).Cast<Tweener>().ToArray();*/
+            return null;
+        }
     }
 
     public class ArrayUtils<T>

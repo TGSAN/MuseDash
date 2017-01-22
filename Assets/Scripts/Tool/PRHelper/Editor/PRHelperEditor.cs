@@ -1,7 +1,5 @@
 ﻿using System;
 using Assets.Scripts.Common;
-using Assets.Scripts.Tool.PRHelper.Properties;
-using DG.Tweening;
 using EasyEditor;
 using UnityEditor;
 using UnityEngine;
@@ -51,6 +49,14 @@ namespace Assets.Scripts.Tool.PRHelper.Editor
             {
                 HideGroup("Create New Node");
             }
+        }
+
+        [Inspector(group = "Create New Node")]
+        public void CreateNode()
+        {
+            var pRHelper = (PRHelper)target;
+            if (string.IsNullOrEmpty(pRHelper.newNodeName)) return;
+            PRNodeMaker.MakerPRNode(pRHelper.newNodeName);
         }
 
         [Inspector(group = "Node Function", order = 0)]

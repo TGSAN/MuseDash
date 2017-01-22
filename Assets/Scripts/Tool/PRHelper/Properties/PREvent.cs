@@ -41,9 +41,17 @@ namespace Assets.Scripts.Tool.PRHelper.Properties
             public UnityEventGameObject unityEvent;
             public Button button;
             public GameObject gameObject;
+
+            public PREvent(EventType type, UnityEventGameObject e, GameObject go = null, Button btn = null)
+            {
+                eventType = type;
+                unityEvent = e;
+                gameObject = go;
+                button = btn;
+            }
         }
 
-        public List<PREvent> events;
+        public List<PREvent> events = new List<PREvent>();
 
         public void Play()
         {

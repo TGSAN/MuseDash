@@ -1,6 +1,7 @@
 ﻿using System;
 using Assets.Scripts.Common;
 using Assets.Scripts.Tool.PRHelper.Properties;
+using UnityEngine;
 
 namespace Assets.Scripts.Tool.PRHelper
 {
@@ -20,6 +21,9 @@ namespace Assets.Scripts.Tool.PRHelper
         //UI_Action_PlayAudio
         public PlayAudio playAudio;
 
+        //UI_Action_BtnBack
+        public BtnBack btnBack;
+
         //UI_Action_Active
         public Active active;
 
@@ -37,7 +41,10 @@ namespace Assets.Scripts.Tool.PRHelper
 
         public void Init()
         {
+            if (!isActive) return;
+            if (pREvents == null) pREvents = new PREvents();
             pREvents.Init();
+            if (btnBack != null) btnBack.Init();
         }
     }
 }

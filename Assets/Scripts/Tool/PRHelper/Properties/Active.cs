@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Tool.PRHelper.Properties
@@ -11,7 +12,6 @@ namespace Assets.Scripts.Tool.PRHelper.Properties
 
         public void Play()
         {
-            Debug.Log("Set Active");
             go.SetActive(isActive);
         }
     }
