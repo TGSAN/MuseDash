@@ -1,0 +1,18 @@
+﻿namespace Assets.Scripts.Common
+{
+    public class StringCommon
+    {
+        public const string PRPRToolHead = "PRPR Studio Tools/";
+        public const string ResourcesPathInAssets = "Assets/Resources/";
+        public const string ConfigPoolMenuItem = PRPRToolHead + "Packager/Package Json Configs";
+        public const string ConfigPoolPathInResources = "Configs/Json Configs";
+        public const string ConfigPoolPathInAssets = ResourcesPathInAssets + ConfigPoolPathInResources + ".asset";
+        public const string PRNodePathInAsset = "/Scripts/Tool/PRHelper/Properties";
+        public const string PRNodeDrawerPathInAsset = PRNodePathInAsset + "/Editor";
+
+        public const string FormulaTreeMenuItem = PRPRToolHead + "FormulaTree Editor";
+
+        public static string FormulaTreePathInAssets = ResourcesPathInAssets + FormulaTreePathInResources + ".asset";
+        public static string FormulaTreePathInResources = "Formulas/Formula Data";
+    }
+}

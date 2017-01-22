@@ -1,54 +1,117 @@
-﻿using FormulaBase;
-using System.Collections;
+﻿using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
-public class Singleton<T> where T : new()
+namespace Assets.Scripts.Common
 {
-    private static T m_Instance;
-
-    /// <summary>
-    /// Get singleton instance
-    /// </summary>
-    ///
-    public static T instance
+    public class Singleton<T> where T : new()
     {
-        get
+        private static T m_Instance;
+
+        /// <summary>
+        /// Get singleton instance
+        /// </summary>
+        ///
+        public static T instance
         {
-            if (m_Instance == null) m_Instance = new T();
-            return m_Instance;
+            get
+            {
+                if (m_Instance == null) m_Instance = new T();
+                return m_Instance;
+            }
         }
     }
-}
 
-public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
-{
-    private static T m_Instance;
-
-    /// <summary>
-    /// Get singleton instance
-    /// </summary>
-    public static T instance
+    public class SingletonScriptObject<T> : ScriptableObject where T : ScriptableObject
     {
-        get
+        protected static T m_Instance;
+
+        /// <summary>
+        /// Get singleton instance
+        /// </summary>
+        public static T instance
         {
-            if (m_Instance == null)
+            get
             {
-                m_Instance = FindObjectOfType<T>();
                 if (m_Instance == null)
                 {
-                    Debug.LogFormat("There is no a {0} in the scene", typeof(T).ToString());
-                    //m_Instance = new GameObject(typeof(T).Name).AddComponent<T>();
+                    m_Instance = ScriptableObject.CreateInstance<T>();
                 }
+                return m_Instance;
             }
-            return m_Instance;
+        }
+
+        public void DestroyInstance()
+        {
+            ScriptableObject.Destroy(m_Instance);
+            m_Instance = null;
         }
     }
 
-    protected void Awake()
+    public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
     {
-        if (this != instance)
+        private static T m_Instance;
+
+        /// <summary>
+        /// Get singleton instance
+        /// </summary>
+        public static T instance
         {
-            Destroy(this.gameObject);
+            get
+            {
+                if (m_Instance == null)
+                {
+                    m_Instance = FindObjectOfType<T>();
+                    if (m_Instance == null)
+                    {
+                        Debug.LogWarningFormat("There is no a {0} in the scene", typeof(T).ToString());
+                        m_Instance = new GameObject(typeof(T).Name).AddComponent<T>();
+                    }
+                }
+                return m_Instance;
+            }
+        }
+
+        public void DestroyInstance()
+        {
+#if UNITY_EDITOR
+            DestroyImmediate(gameObject);
+#else
+            Destroy(gameObject);
+#endif
+            m_Instance = null;
+        }
+
+        private void Awake()
+        {
+            if (this != instance)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
+
+    public class SingtonEditor<T> : EditorWindow where T : EditorWindow
+    {
+        private static T m_Instance;
+
+        /// <summary>
+        /// Get singleton instance
+        /// </summary>
+        public static T instance
+        {
+            get
+            {
+                if (m_Instance == null)
+                {
+                    m_Instance = EditorWindow.GetWindow<T>();
+                    if (m_Instance == null)
+                    {
+                        Debug.LogWarningFormat("There is no a {0} in the editor", typeof(T).ToString());
+                    }
+                }
+                return m_Instance;
+            }
         }
     }
 }
