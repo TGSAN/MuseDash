@@ -9,6 +9,7 @@ namespace Assets.Scripts.Tool.PRHelper.Properties.Editor
     public class PREventsDrawer : PropertyDrawer
     {
         private readonly float m_Gap = 20;
+        private readonly float m_Height = 20;
         private readonly float m_TypeWidth = 150;
         private readonly float m_TypeHeight = 10;
         private readonly float m_AddButtonHeight = 15;
@@ -39,14 +40,14 @@ namespace Assets.Scripts.Tool.PRHelper.Properties.Editor
         {
             var eventsProperty = property.FindPropertyRelative("events");
             var eventTypeCount = eventsProperty.arraySize;
-            var eventTotalHeight = 25f;
+            var eventTotalHeight = eventTypeCount == 0 ? 25f : 0;
             for (int i = 0; i < eventTypeCount; i++)
             {
                 var eventProperty = eventsProperty.GetArrayElementAtIndex(i);
                 var unityEventProperty = eventProperty.FindPropertyRelative("unityEvent");
                 var eventCount = EditorUtils.GetUnityEventCount(unityEventProperty);
                 eventCount = eventCount == 0 ? 1 : eventCount;
-                var extraHeight = m_EventExtraHeight + m_TypeHeight + m_Gap / 2;
+                var extraHeight = m_EventExtraHeight + m_TypeHeight + m_Height * 3;
                 eventTotalHeight += eventCount * m_SingleEventHeight + extraHeight;
             }
             return eventTotalHeight;
@@ -56,13 +57,39 @@ namespace Assets.Scripts.Tool.PRHelper.Properties.Editor
         {
             var eventProperty = property.GetArrayElementAtIndex(idx);
             var eventType = eventProperty.FindPropertyRelative("eventType");
-            var enumRect = new Rect(rect.x, rect.y + rect.height, m_TypeWidth, m_TypeHeight);
-            eventType.enumValueIndex = EditorGUI.Popup(enumRect, eventType.enumValueIndex, eventType.enumNames);
 
             var EType = (PREvents.EventType)Enum.Parse(typeof(PREvents.EventType), eventType.enumNames[eventType.enumValueIndex]);
             switch (EType)
             {
+                case PREvents.EventType.OnAwake:
+                case PREvents.EventType.OnStart:
+                case PREvents.EventType.OnEnable:
+                case PREvents.EventType.OnUpdate:
+                case PREvents.EventType.OnFixedUpdate:
+                case PREvents.EventType.OnDisable:
+                case PREvents.EventType.OnDestroy:
+                case PREvents.EventType.OnCollisionEnter:
+                case PREvents.EventType.OnCollisionStay:
+                case PREvents.EventType.OnCollisionExit:
+                case PREvents.EventType.OnTriggerEnter:
+                case PREvents.EventType.OnTriggerStay:
+                case PREvents.EventType.OnTriggerExit:
+                    rect = new Rect(rect.x, rect.y - m_Height, rect.width, rect.height);
+                    rect = EditorUtils.MakePropertyField("gameObject", eventProperty, rect, m_Gap, m_Height);
+                    break;
+
+                case PREvents.EventType.OnButton:
+                case PREvents.EventType.OnButtonClick:
+                case PREvents.EventType.OnButtonDown:
+                case PREvents.EventType.OnButtonHover:
+                case PREvents.EventType.OnButtonUp:
+                    rect = new Rect(rect.x, rect.y - m_Height, rect.width, rect.height);
+                    rect = EditorUtils.MakePropertyField("button", eventProperty, rect, m_Gap, m_Height);
+                    break;
             }
+
+            var enumRect = new Rect(rect.x, rect.y + rect.height, m_TypeWidth, m_TypeHeight);
+            eventType.enumValueIndex = EditorGUI.Popup(enumRect, eventType.enumValueIndex, eventType.enumNames);
 
             var unityEventPorperty = eventProperty.FindPropertyRelative("unityEvent");
             rect = EditorUtils.MakeEventPropertyField(unityEventPorperty, rect, m_Gap, m_SingleEventHeight, m_EventExtraHeight);
@@ -77,6 +104,7 @@ namespace Assets.Scripts.Tool.PRHelper.Properties.Editor
             {
                 property.DeleteArrayElementAtIndex(idx);
             }
+            rect = new Rect(rect.x, rect.y + m_Height, rect.width, rect.height);
             return rect;
         }
     }

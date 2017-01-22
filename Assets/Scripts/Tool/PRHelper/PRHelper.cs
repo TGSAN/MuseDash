@@ -25,8 +25,9 @@ namespace Assets.Scripts.Tool.PRHelper
 
         private void Awake()
         {
+            OnEventInvoke(PREvents.EventType.OnAwake);
             if (nodes == null) nodes = new PRHelperNode[0];
-            nodes.ToList().ForEach(n => n.Init());
+            nodes.ToList().ForEach(n => n.Init(gameObject));
         }
 
         public void Play(string key)
@@ -68,12 +69,17 @@ namespace Assets.Scripts.Tool.PRHelper
 
         #region Event Func
 
-        private void OnEventInvoke(PREvents.EventType eventType)
+        private void OnEventInvoke(PREvents.EventType eventType, object args = null)
         {
             nodes.ToList().ForEach(n =>
             {
-                n.pREvents.events.Where(e => e.eventType == eventType).ToList().ForEach(e => e.unityEvent.Invoke(null));
+                n.pREvents.events.Where(e => e.eventType == eventType).ToList().ForEach(e => e.unityEvent.Invoke(args as GameObject));
             });
+        }
+
+        private void Start()
+        {
+            OnEventInvoke(PREvents.EventType.OnStart);
         }
 
         private void OnEnable()
@@ -84,6 +90,51 @@ namespace Assets.Scripts.Tool.PRHelper
         private void OnDisable()
         {
             OnEventInvoke(PREvents.EventType.OnDisable);
+        }
+
+        private void OnUpdate()
+        {
+            OnEventInvoke(PREvents.EventType.OnUpdate);
+        }
+
+        private void OnFixedUpdate()
+        {
+            OnEventInvoke(PREvents.EventType.OnFixedUpdate);
+        }
+
+        private void OnDestroy()
+        {
+            OnEventInvoke(PREvents.EventType.OnDestroy);
+        }
+
+        private void OnTriggerEnter(Collider col)
+        {
+            OnEventInvoke(PREvents.EventType.OnTriggerEnter, col);
+        }
+
+        private void OnTriggerStay(Collider col)
+        {
+            OnEventInvoke(PREvents.EventType.OnTriggerStay, col);
+        }
+
+        private void OnTriggerExit(Collider col)
+        {
+            OnEventInvoke(PREvents.EventType.OnTriggerExit, col);
+        }
+
+        private void OnCollisionEnter(Collision col)
+        {
+            OnEventInvoke(PREvents.EventType.OnCollisionEnter, col);
+        }
+
+        private void OnCollisionStay(Collision col)
+        {
+            OnEventInvoke(PREvents.EventType.OnCollisionStay, col);
+        }
+
+        private void OnCollisionExit(Collision col)
+        {
+            OnEventInvoke(PREvents.EventType.OnCollisionExit, col);
         }
 
         #endregion Event Func

@@ -11,8 +11,9 @@ namespace Assets.Scripts.Tool.PRHelper.Properties
         public string curPnlName;
         public string nextPnlName;
 
-        public void Init()
+        public void Init(GameObject go)
         {
+            button = button ?? go.GetComponent<Button>();
             if (button != null)
             {
                 button.onClick.AddListener(() =>

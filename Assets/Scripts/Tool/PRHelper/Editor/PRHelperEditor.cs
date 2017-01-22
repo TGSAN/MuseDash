@@ -30,7 +30,7 @@ namespace Assets.Scripts.Tool.PRHelper.Editor
 
         public override void OnInspectorGUI()
         {
-            GUILayout.Box("我蕾保我代码不出错", skin.GetStyle("BoxLogo"));
+            GUILayout.Box(String.Empty, skin.GetStyle("BoxLogo"));
             base.OnInspectorGUI();
         }
 

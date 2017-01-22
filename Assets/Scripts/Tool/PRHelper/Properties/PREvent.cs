@@ -58,22 +58,25 @@ namespace Assets.Scripts.Tool.PRHelper.Properties
             Debug.Log("Play Event");
         }
 
-        public void Init()
+        public void Init(GameObject go)
         {
-            events.ForEach(e =>
+            foreach (var e in events)
             {
+                e.gameObject = e.gameObject == null ? go : e.gameObject;
+                e.button = e.button == null ? go.GetComponent<Button>() : e.button;
                 switch (e.eventType)
                 {
-                    /* case EventType.OnNGUIButtonClick:
-                     {
-                         e.NGUIButton.onClick.Add(new EventDelegate(() =>
-                         {
-                             e.unityEvent.Invoke(null);
-                         }));
-                     }
-                     break;*/
+                    case EventType.OnButtonClick:
+                        {
+                            var e1 = e;
+                            e.button.onClick.AddListener(() =>
+                            {
+                                e1.unityEvent.Invoke(null);
+                            });
+                        }
+                        break;
                 }
-            });
+            }
         }
     }
 }

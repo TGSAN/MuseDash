@@ -43,12 +43,12 @@ namespace Assets.Scripts.Tool.PRHelper
             node.GetType().GetMethod("Play").Invoke(node, null);
         }
 
-        public void Init()
+        public void Init(GameObject go)
         {
             if (!isActive) return;
             if (pREvents == null) pREvents = new PREvents();
-            pREvents.Init();
-            if (btnBack != null) btnBack.Init();
+            pREvents.Init(go);
+            if (btnBack != null) btnBack.Init(go);
         }
     }
 }
