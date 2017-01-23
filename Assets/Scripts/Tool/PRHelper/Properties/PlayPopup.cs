@@ -16,8 +16,8 @@ namespace Assets.Scripts.Tool.PRHelper.Properties
         public Color bkgColor;
         public float speed;
         public float distance;
-        public float moveInDt;
-        public float moveOutDt;
+        //public float moveInDt;
+        //public float moveOutDt;
         public Ease moveInEase;
         public Ease moveOutEase;
 
@@ -48,10 +48,10 @@ namespace Assets.Scripts.Tool.PRHelper.Properties
 
             var boards = gameObject.GetComponentsInChildren<Image>();
             var txts = gameObject.GetComponentsInChildren<Text>();
-            gameObject.transform.DOLocalMoveY(distance, speed).From().SetEase(moveInEase).SetDelay(moveInDt);
+            gameObject.transform.DOLocalMoveY(distance, speed).From().SetEase(moveInEase).SetDelay(0.15f);
 
-            boards.ToList().ForEach(b => b.DOFade(0, 0.1f).From().SetDelay(moveInDt));
-            txts.ToList().ForEach(t => t.DOFade(0, 0.1f).From().SetDelay(moveInDt));
+			boards.ToList().ForEach(b => b.DOFade(0, 0.1f).From().SetDelay(0.15f));
+			txts.ToList().ForEach(t => t.DOFade(0, 0.1f).From().SetDelay(0.15f));
 
             var btnCancell = btnCancellGO.AddComponent<Button>();
             btnCancell.onClick.AddListener(() =>

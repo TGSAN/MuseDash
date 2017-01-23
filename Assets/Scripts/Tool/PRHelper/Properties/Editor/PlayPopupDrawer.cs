@@ -23,8 +23,8 @@ namespace Assets.Scripts.Tool.PRHelper.Properties.Editor
             rect = EditorUtils.MakePropertyField("bkgColor", property, rect, m_Gap, m_Height);
             rect = EditorUtils.MakePropertyField("speed", property, rect, m_Gap, m_Height);
             rect = EditorUtils.MakePropertyField("distance", property, rect, m_Gap, m_Height);
-            rect = EditorUtils.MakePropertyField("moveInDt", property, rect, m_Gap, m_Height);
-            rect = EditorUtils.MakePropertyField("moveOutDt", property, rect, m_Gap, m_Height);
+            //rect = EditorUtils.MakePropertyField("moveInDt", property, rect, m_Gap, m_Height);
+            //rect = EditorUtils.MakePropertyField("moveOutDt", property, rect, m_Gap, m_Height);
             rect = EditorUtils.MakePropertyField("moveInEase", property, rect, m_Gap, m_Height);
             rect = EditorUtils.MakePropertyField("moveOutEase", property, rect, m_Gap, m_Height);
         }
