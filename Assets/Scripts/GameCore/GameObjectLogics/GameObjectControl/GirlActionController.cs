@@ -165,7 +165,6 @@ public class GirlActionController : BaseSpineObjectController
             _atkName = (actKey != null && actKey.Length > 2) ? actKey : ACTION_KEYS.ATTACK_PERFECT;
         }
         _atkName = JumpAttack(_atkName, result);
-        Debug.Log(_atkName + "===");
         SpineActionController.Play(_atkName, this.gameObject, tick);
     }
 
