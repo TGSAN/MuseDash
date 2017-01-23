@@ -139,7 +139,7 @@ namespace Assets.Scripts.NGUI
             get { return this.m_CatchClip; }
         }
 
-        public bool FinishEnter
+        public bool finishEnter
         {
             get
             {
@@ -433,7 +433,7 @@ namespace Assets.Scripts.NGUI
         private void OnScrollEnd()
         {
             m_IsSliding = false;
-            PnlStage.PnlStage.Instance.OnSongChanged(m_CurrentIdx + 1);
+            PnlStageOld.PnlStageOld.Instance.OnSongChanged(m_CurrentIdx + 1);
             onSongChange(m_CurrentIdx);
         }
 

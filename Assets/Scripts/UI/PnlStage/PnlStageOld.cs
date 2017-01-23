@@ -9,13 +9,13 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace PnlStage
+namespace PnlStageOld
 {
-    public class PnlStage : UIPhaseBase
+    public class PnlStageOld : UIPhaseBase
     {
-        private static PnlStage instance = null;
+        private static PnlStageOld instance = null;
 
-        public static PnlStage Instance
+        public static PnlStageOld Instance
         {
             get { return instance; }
         }
@@ -27,13 +27,13 @@ namespace PnlStage
 
         public override void OnShow()
         {
-			gameObject.SetActive (true);
+            gameObject.SetActive(true);
             PnlScrollCircle.instance.OnShow();
         }
 
         public override void OnHide()
         {
-			PnlHome.PnlHome.Instance.PlayBGM();
+            PnlHome.PnlHome.Instance.PlayBGM();
         }
 
         public void OnSongChanged(int idx)
