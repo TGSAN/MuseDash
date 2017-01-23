@@ -139,7 +139,7 @@ namespace Assets.Scripts.NGUI
             get { return this.m_CatchClip; }
         }
 
-        public bool FinishEnter
+        public bool finishEnter
         {
             get
             {

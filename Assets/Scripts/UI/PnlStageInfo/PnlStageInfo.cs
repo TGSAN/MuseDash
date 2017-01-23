@@ -15,24 +15,24 @@ namespace PnlStageInfo
 {
     public class PnlStageInfo : UIPhaseBase
     {
-		private static PnlStageInfo instance = null;
+        private static PnlStageInfo instance = null;
         private int m_Idx;
 
-		public static PnlStageInfo Instance
+        public static PnlStageInfo Instance
         {
             get
             {
                 return instance;
             }
         }
-			
+
         public UILabel[] labels;
         public UILabel txtEnergyCost;
 
-		public override void OnShow()
-		{
-			OnShow(PnlScrollCircle.currentSongIdx);
-		}
+        public override void OnShow()
+        {
+            OnShow(PnlScrollCircle.currentSongIdx);
+        }
 
         public override void OnShow(int idx)
         {
@@ -49,7 +49,7 @@ namespace PnlStageInfo
         {
             if (PnlScrollCircle.instance != null)
             {
-                PnlScrollCircle.instance.FinishEnter = true;
+                PnlScrollCircle.instance.finishEnter = true;
                 Debug.Log("Back to PnlScrollCircle.");
             }
             this.gameObject.SetActive(false);
@@ -84,9 +84,7 @@ namespace PnlStageInfo
                 var comboCount = (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_MAX_COMBO);
                 var starCount = (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_HIDE_NODE_COUNT + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
                 var clearCount = (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_STAGE_CLEAR_COUNT);
-
             }
-
         }
 
         public override void BeCatched()
@@ -94,34 +92,34 @@ namespace PnlStageInfo
             instance = this;
         }
 
-//        private void PlayProgress(float to, TweenFill twn)
-//        {
-//            twn.enabled = true;
-//            twn.from = 0;
-//            twn.to = to;
-//            twn.ResetToBeginning();
-//            twn.PlayForward();
-//        }
+        //        private void PlayProgress(float to, TweenFill twn)
+        //        {
+        //            twn.enabled = true;
+        //            twn.from = 0;
+        //            twn.to = to;
+        //            twn.ResetToBeginning();
+        //            twn.PlayForward();
+        //        }
 
-//        private void ShowRankProgress(string taskKey, string cfgKey, TweenWidth slider)
-//        {
-//            float rateBase = 0.2f;
-//            float rank = 0;
-//            int sid = StageBattleComponent.Instance.GetId();
-//            string strSid = sid.ToString();
-//            int vmax = TaskStageTarget.Instance.GetXMax(taskKey);
-//            foreach (string strRank in GameGlobal.STAGE_EVLUATE_MAP)
-//            {
-//                string _cfgKey = cfgKey + strRank;
-//                int _cfgValue = ConfigPool.Instance.GetConfigIntValue(StageRewardComponent.REWARD_CONFIG_NAME, strSid, _cfgKey);
-//                if (vmax <= _cfgValue)
-//                {
-//                    break;
-//                }
-//
-//                rank += 1;
-//            }
-//				
-//        }
+        //        private void ShowRankProgress(string taskKey, string cfgKey, TweenWidth slider)
+        //        {
+        //            float rateBase = 0.2f;
+        //            float rank = 0;
+        //            int sid = StageBattleComponent.Instance.GetId();
+        //            string strSid = sid.ToString();
+        //            int vmax = TaskStageTarget.Instance.GetXMax(taskKey);
+        //            foreach (string strRank in GameGlobal.STAGE_EVLUATE_MAP)
+        //            {
+        //                string _cfgKey = cfgKey + strRank;
+        //                int _cfgValue = ConfigPool.Instance.GetConfigIntValue(StageRewardComponent.REWARD_CONFIG_NAME, strSid, _cfgKey);
+        //                if (vmax <= _cfgValue)
+        //                {
+        //                    break;
+        //                }
+        //
+        //                rank += 1;
+        //            }
+        //
+        //        }
     }
 }
