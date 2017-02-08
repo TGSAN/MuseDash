@@ -38,11 +38,11 @@ namespace Assets.Scripts.Tool.PRHelper.Properties
         public class PREvent
         {
             public EventType eventType;
-            public UnityEventGameObject unityEvent;
+            public UnityEventObject unityEvent;
             public Button button;
             public GameObject gameObject;
 
-            public PREvent(EventType type, UnityEventGameObject e, GameObject go = null, Button btn = null)
+            public PREvent(EventType type, UnityEventObject e, GameObject go = null, Button btn = null)
             {
                 eventType = type;
                 unityEvent = e;
@@ -62,8 +62,8 @@ namespace Assets.Scripts.Tool.PRHelper.Properties
         {
             foreach (var e in events)
             {
-                e.gameObject = e.gameObject == null ? go : e.gameObject;
-                e.button = e.button == null ? go.GetComponent<Button>() : e.button;
+                e.gameObject = e.gameObject ?? go;
+                e.button = e.button ?? go.GetComponent<Button>();
                 switch (e.eventType)
                 {
                     case EventType.OnButtonClick:

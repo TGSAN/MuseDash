@@ -1,8 +1,7 @@
-﻿using System.Linq;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
-namespace Assets.Scripts.Tool.PRHelper.Editor
+namespace Assets.Scripts.Tool.Commons
 {
     public class EditorUtils
     {

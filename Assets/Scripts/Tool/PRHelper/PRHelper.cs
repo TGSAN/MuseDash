@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Tool.PRHelper.Properties;
 using EasyEditor;
@@ -16,17 +17,16 @@ namespace Assets.Scripts.Tool.PRHelper
         public string newNodeName;
 
         [Inspector(group = "Node Function")]
-        public PRHelperNode[] nodes;
+        public List<PRHelperNode> nodes = new List<PRHelperNode>();
 
         public PRHelperNode this[string key]
         {
-            get { return nodes.ToList().Find(n => n.key == key); }
+            get { return nodes.Find(n => n.key == key); }
         }
 
         private void Awake()
         {
-            if (nodes == null) nodes = new PRHelperNode[0];
-            nodes.ToList().ForEach(n => n.Init(gameObject));
+            nodes.ForEach(n => n.Init(gameObject));
             OnEventInvoke(PREvents.EventType.OnAwake);
         }
 
@@ -35,25 +35,12 @@ namespace Assets.Scripts.Tool.PRHelper
             this[key].Play();
         }
 
-        public static UnityEventGameObject OnEvent(GameObject go, PREvents.EventType eventType)
+        #region static Func
+
+        public static UnityEventObject OnEvent(PRHelperNode node, PREvents.EventType eventType)
         {
-            var prHelper = go.GetComponent<PRHelper>() ?? go.AddComponent<PRHelper>();
-            if (prHelper.nodes == null)
-            {
-                prHelper.nodes = new PRHelperNode[0];
-            }
-            var allNodes = prHelper.nodes.ToList();
-            var node = allNodes.Find(n => n.nodeType == NodeType.Event_PREvents);
-            if (node == null)
-            {
-                node = new PRHelperNode();
-                node.pREvents = new PREvents();
-                node.nodeType = NodeType.Event_PREvents;
-                node.isActive = true;
-                allNodes.Add(node);
-            }
             var prEvent = node.pREvents.events.Find(e => e.eventType == eventType);
-            var unityEvent = new UnityEventGameObject();
+            var unityEvent = new UnityEventObject();
             if (prEvent == null)
             {
                 prEvent = new PREvents.PREvent(eventType, unityEvent);
@@ -63,15 +50,31 @@ namespace Assets.Scripts.Tool.PRHelper
             {
                 unityEvent = prEvent.unityEvent;
             }
-            prHelper.nodes = allNodes.ToArray();
             return unityEvent;
         }
+
+        public static UnityEventObject OnEvent(GameObject go, PREvents.EventType eventType)
+        {
+            var prHelper = go.GetComponent<PRHelper>() ?? go.AddComponent<PRHelper>();
+            var node = prHelper.nodes.Find(n => n.nodeType == NodeType.VM_PREvents);
+            if (node == null)
+            {
+                node = new PRHelperNode();
+                node.pREvents = new PREvents();
+                node.nodeType = NodeType.VM_PREvents;
+                node.isActive = true;
+                prHelper.nodes.Add(node);
+            }
+            return OnEvent(node, eventType);
+        }
+
+        #endregion static Func
 
         #region Event Func
 
         private void OnEventInvoke(PREvents.EventType eventType, object args = null)
         {
-            nodes.ToList().ForEach(n =>
+            nodes.ForEach(n =>
             {
                 n.pREvents.events.Where(e => e.eventType == eventType).ToList().ForEach(e => e.unityEvent.Invoke(args as GameObject));
             });
@@ -92,12 +95,12 @@ namespace Assets.Scripts.Tool.PRHelper
             OnEventInvoke(PREvents.EventType.OnDisable);
         }
 
-        private void OnUpdate()
+        private void Update()
         {
             OnEventInvoke(PREvents.EventType.OnUpdate);
         }
 
-        private void OnFixedUpdate()
+        private void FixedUpdate()
         {
             OnEventInvoke(PREvents.EventType.OnFixedUpdate);
         }

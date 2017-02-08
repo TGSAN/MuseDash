@@ -3,13 +3,16 @@
     public enum NodeType
     {
         None,
-        UI_Action_PlayAnimation,
-        UI_Action_PlayTween,
-        UI_Action_PlayAudio,
-        UI_Action_Active,
-        UI_Action_BtnBack,
-        UI_Action_PlayPopup,
-        UI_Data_TextBinding,
-        Event_PREvents,
+
+        Model_TextBinding,
+
+        View_PlayAnimation,
+        View_PlayTween,
+        View_PlayAudio,
+        View_Active,
+        View_BtnBack,
+        View_PlayPopup,
+
+        VM_PREvents,
     }
 }

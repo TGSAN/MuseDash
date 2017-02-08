@@ -10,6 +10,9 @@
         public const string PRNodePathInAsset = "/Scripts/Tool/PRHelper/Properties";
         public const string PRNodeDrawerPathInAsset = PRNodePathInAsset + "/Editor";
 
+        public const string PRFormulaTreeEditorSkinPathInAsset =
+            "Assets/Scripts/Tool/FormulaTreeManager/Editor/Skins/FormulaTreeSkin.guiskin";
+
         public const string FormulaTreeMenuItem = PRPRToolHead + "FormulaTree Editor";
 
         public static string FormulaTreePathInAssets = ResourcesPathInAssets + FormulaTreePathInResources + ".asset";

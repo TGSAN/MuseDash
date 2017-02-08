@@ -1,4 +1,5 @@
 using System.Linq;
+using Assets.Scripts.Tool.Commons;
 using Assets.Scripts.Tool.PRHelper.Editor;
 using UnityEditor;
 using UnityEngine;
@@ -14,6 +15,10 @@ namespace Assets.Scripts.Tool.PRHelper.Properties.Editor
         public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
         {
             var pnlNames = UIManager.instance.pnlNames;
+            if (pnlNames.Length <= 0)
+            {
+                return;
+            }
             rect = new Rect(rect.x, rect.y + m_Height + m_Gap, rect.width, rect.height);
             var pnlContents = EditorUtils.GetGUIContentArray(pnlNames);
             var nameProperty = property.FindPropertyRelative("pnlName");
