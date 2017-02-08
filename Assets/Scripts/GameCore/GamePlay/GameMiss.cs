@@ -31,7 +31,8 @@ namespace GameLogic
 
         public void MissCube(int idx, decimal currentTick)
         {
-            if (StageBattleComponent.Instance.GetMusicDataByIdx(idx).nodeData.type == GameGlobal.NODE_TYPE_BOSS && idx == 1)
+            var md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
+            if (md.nodeData.type == GameGlobal.NODE_TYPE_BOSS && idx == 1)
             {
                 return;
             }

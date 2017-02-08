@@ -259,6 +259,10 @@ namespace GameLogic
 
         public void BeginTouchPhaser()
         {
+            var t = StageBattleComponent.Instance.timeFromMusicStart;
+            var md = StageBattleComponent.Instance.neareastMusicData;
+            CommonPanel.GetInstance().DebugInfo("Hit time offset: " + (t - (float)md.configData.time));
+
             this.beginTouchTick = GameGlobal.gGameMusic.GetMusicPassTick();
             uint _tempState = GameGlobal.PRESS_STATE_NONE;
             if (Input.GetKey(GameGlobal.KC_JUMP) || Input.GetKey(GameGlobal.KC_PUMCH))
@@ -299,6 +303,7 @@ namespace GameLogic
 
             this.touchDisY = 0;
             this.touchTempY = 0;
+
             if (StageBattleComponent.Instance.curTimeNodeOrder != null)
             {
                 if (!StageBattleComponent.Instance.curTimeNodeOrder.isLongPressEnd && !StageBattleComponent.Instance.curTimeNodeOrder.isLongPress)

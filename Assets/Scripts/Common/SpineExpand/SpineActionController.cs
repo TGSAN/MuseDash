@@ -49,13 +49,14 @@ public class SpineActionController : MonoBehaviour
     public float duration;
     public float lengthRate;
     public GameObject rendererPreb;
-    public GameObject detroyEffect;
+    public GameObject destroyEffect;
     public GameObject clipEffect;
     public float rotateRuration = 1.0f;
     private Material m_Mtrl;
     private Renderer m_Renderer;
     private decimal m_Length = 0m;
     private int m_Idx = 0;
+    private static bool m_InitFlag = false;
     public List<ParticleSystem> clipParticles = new List<ParticleSystem>();
 
     public static SpineActionController curSac
@@ -96,6 +97,11 @@ public class SpineActionController : MonoBehaviour
     }
 
     // -----------------------------  Inst about -------------------------------------------
+    private void Awake()
+    {
+        InitEffect();
+    }
+
     private void Start()
     {
 #if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
@@ -119,6 +125,19 @@ public class SpineActionController : MonoBehaviour
             }
         }
 #endif
+    }
+
+    private void InitEffect()
+    {
+        if (m_InitFlag) return;
+        if (clipEffect == null) return;
+        clipEffect = GameObject.Instantiate(clipEffect);
+        clipEffect.SetActive(false);
+        destroyEffect = GameObject.Instantiate(destroyEffect);
+        destroyEffect.SetActive(false);
+        rendererPreb = GameObject.Instantiate(rendererPreb);
+        rendererPreb.SetActive(false);
+        m_InitFlag = true;
     }
 
     public void Init(int idx)
@@ -176,7 +195,8 @@ public class SpineActionController : MonoBehaviour
             var startStarIdx = stars.ToList().FindIndex(s => s.gameObject.name.Contains("_top"));
             if (startStarIdx != -1)
             {
-                detroyEffect = GameObject.Instantiate(detroyEffect);
+                destroyEffect = GameObject.Instantiate(destroyEffect);
+                destroyEffect.SetActive(true);
                 Destroy(stars[startStarIdx].gameObject);
             }
         }
@@ -186,7 +206,7 @@ public class SpineActionController : MonoBehaviour
             var endIdx = stars.ToList().FindIndex(s => s.gameObject.name.Contains("_end"));
             if (endIdx != -1)
             {
-                if (detroyEffect != null)
+                if (destroyEffect != null)
                 {
                     Destroy(stars[endIdx].gameObject);
                     DestroyLongPress();
@@ -218,7 +238,7 @@ public class SpineActionController : MonoBehaviour
     {
         if (!gameObject.activeSelf) return;
         gameObject.SetActive(false);
-        detroyEffect = GameObject.Instantiate(detroyEffect);
+        destroyEffect = GameObject.Instantiate(destroyEffect);
         if (m_Mtrl != null)
         {
             var tex = (Texture2D)m_Mtrl.GetTexture("_ClipTex");
@@ -307,6 +327,7 @@ public class SpineActionController : MonoBehaviour
         endStart.transform.localPosition = startStart.transform.localPosition + Vector3.right * originLength * (float)(m_Length / 10m);
         endStart.name = endStart.name.Replace("top", "end");
         clipEffect = GameObject.Instantiate(clipEffect);
+        clipEffect.SetActive(true);
         clipParticles = clipEffect.GetComponentsInChildren<ParticleSystem>().ToList();
         clipParticles.ForEach(p =>
         {

@@ -95,6 +95,14 @@ public class GMOrderPanel : MonoBehaviour
         MaterialManageComponent.Instance.CreateItem(TempitemList);
     }
 
+    public void DestroyScene()
+    {
+        if (SceneObjectController.Instance != null)
+        {
+            Destroy(SceneObjectController.Instance.gameObject);
+        }
+    }
+
     public void AddEquip()
     {
         LitJson.JsonData cfg1 = ConfigPool.Instance.GetConfigByName("Equipment_info");

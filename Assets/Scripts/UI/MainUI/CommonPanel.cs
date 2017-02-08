@@ -126,17 +126,19 @@ public class CommonPanel : MonoBehaviour
     /// <param name="info"></param>
     public void DebugInfo(string info)
     {
-        if (debugGrid == null)
+        if (debugGrid == null || !showDebug)
         {
             return;
         }
         debugGrid.enabled = true;
         debugGrid.gameObject.SetActive(true);
         var go = GameObject.Instantiate(theDebugPrefab, debugGrid.transform, false) as GameObject;
+
         if (go != null)
         {
             var label = go.GetComponent<UILabel>();
             label.text = info;
+            go.transform.SetSiblingIndex(0);
             DOTweenUtils.Delay(() =>
             {
                 Destroy(go);
@@ -146,6 +148,10 @@ public class CommonPanel : MonoBehaviour
 
     public void DebugTxt(string info)
     {
+        if (float.Parse(info) == 0.0f)
+        {
+            info = string.Empty;
+        }
         TxtDebug.gameObject.SetActive(showDebug);
         TxtDebug.text = info;
     }
