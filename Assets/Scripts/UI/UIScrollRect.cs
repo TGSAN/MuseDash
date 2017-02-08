@@ -22,7 +22,7 @@ namespace Assets.Scripts.UI
 
         public override void OnDrag(PointerEventData eventData)
         {
-            base.OnEndDrag(eventData);
+			base.OnDrag(eventData);
             if (onDrag != null) onDrag.Invoke(eventData);
         }
 
