@@ -126,7 +126,7 @@ public class CommonPanel : MonoBehaviour
     /// <param name="info"></param>
     public void DebugInfo(string info)
     {
-        if (debugGrid == null)
+        if (debugGrid == null || !showDebug)
         {
             return;
         }
@@ -148,6 +148,10 @@ public class CommonPanel : MonoBehaviour
 
     public void DebugTxt(string info)
     {
+        if (float.Parse(info) == 0.0f)
+        {
+            info = string.Empty;
+        }
         TxtDebug.gameObject.SetActive(showDebug);
         TxtDebug.text = info;
     }
