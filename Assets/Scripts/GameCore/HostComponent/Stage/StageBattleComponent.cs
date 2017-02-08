@@ -58,6 +58,12 @@ namespace FormulaBase
 
         private Dictionary<int, List<TimeNodeOrder>> _timeNodeOrder = null;
         public int curLPSIdx = 0;
+        public int musicStartTime = 0;
+
+        public float timeFromMusicStart
+        {
+            get { return (Environment.TickCount - musicStartTime) / 1000f; }
+        }
 
         public MusicData neareastMusicData
         {
@@ -725,33 +731,34 @@ namespace FormulaBase
             {
                 GameGlobal.gGameMusic.Run();
                 GameGlobal.gGameMusicScene.Run();
-                Debug.Log("Game start");
+                var time = StageBattleComponent.Instance.timeFromMusicStart;
+                CommonPanel.GetInstance().DebugInfo("Game start at time: " + time);
             };
 
             EventTrigger.TriggerHandler startMusic = (s, t, a) =>
             {
                 AudioManager.Instance.SetBgmVolume(1.0f);
                 AudioManager.Instance.SetBackGroundMusicProgress(0.0f);
-                Debug.Log("Music start");
+                musicStartTime = Environment.TickCount;
+                CommonPanel.GetInstance().DebugInfo("Music start at time: " + 0);
             };
 
-            gTrigger.UnRegEvent(gameEventID);
-            var trigger = gTrigger.RegEvent(gameEventID);
-            trigger.Trigger += startGame;
+            gTrigger.UnRegEvent(musicEventID);
+            var musicTrigger = gTrigger.RegEvent(musicEventID);
+            musicTrigger.Trigger += startMusic;
 
             if (musicDelay == gameDelay)
             {
-                trigger.Trigger += startMusic;
+                musicTrigger.Trigger += startGame;
             }
             else
             {
-                gTrigger.UnRegEvent(musicEventID);
-                var musicTrigger = gTrigger.RegEvent(musicEventID);
-                musicTrigger.Trigger += startMusic;
-                delayTimer.AddTickEvent(musicDelay, musicEventID);
+                gTrigger.UnRegEvent(gameEventID);
+                var trigger = gTrigger.RegEvent(gameEventID);
+                trigger.Trigger += startGame;
+                delayTimer.AddTickEvent(gameDelay, gameEventID);
             }
-
-            delayTimer.AddTickEvent(gameDelay, gameEventID);
+            delayTimer.AddTickEvent(musicDelay, musicEventID);
         }
 
         // ResetMusicData

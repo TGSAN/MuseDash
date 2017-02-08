@@ -46,7 +46,6 @@ public class LongPressController : BaseEnemyObjectController
         {
             if (isPunch)
             {
-                Debug.Log(GameGlobal.gGameMusic.GetMusicPassTick() + "====");
                 var result = StageBattleComponent.Instance.GetCurLPSPlayResult();
                 BattleEnemyManager.Instance.AddHp(this.idx, -1);
                 GameGlobal.gGameTouchPlay.TouchResult(idx, result, GameMusic.TOUCH_ACTION_SIGNLE_PRESS); //(mark) attack node damage to it

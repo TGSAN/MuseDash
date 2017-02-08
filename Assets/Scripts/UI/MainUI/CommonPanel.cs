@@ -133,10 +133,12 @@ public class CommonPanel : MonoBehaviour
         debugGrid.enabled = true;
         debugGrid.gameObject.SetActive(true);
         var go = GameObject.Instantiate(theDebugPrefab, debugGrid.transform, false) as GameObject;
+
         if (go != null)
         {
             var label = go.GetComponent<UILabel>();
             label.text = info;
+            go.transform.SetSiblingIndex(0);
             DOTweenUtils.Delay(() =>
             {
                 Destroy(go);

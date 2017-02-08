@@ -64,7 +64,7 @@ public class SpineActionEdit : Editor
             spa.lengthRate = EditorGUILayout.FloatField(new GUIContent("长度比例"), spa.lengthRate);
             spa.rotateRuration = EditorGUILayout.FloatField(new GUIContent("星星旋转一圈时间"), spa.rotateRuration);
             spa.rendererPreb = (GameObject)EditorGUILayout.ObjectField(new GUIContent("渲染预制"), spa.rendererPreb, typeof(GameObject));
-            spa.detroyEffect = (GameObject)EditorGUILayout.ObjectField(new GUIContent("星星消失粒子特效"), spa.detroyEffect, typeof(GameObject));
+            spa.destroyEffect = (GameObject)EditorGUILayout.ObjectField(new GUIContent("星星消失粒子特效"), spa.destroyEffect, typeof(GameObject));
             spa.clipEffect = (GameObject)EditorGUILayout.ObjectField(new GUIContent("长按粒子特效"), spa.clipEffect, typeof(GameObject));
             return;
         }

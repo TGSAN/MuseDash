@@ -480,7 +480,11 @@ namespace FormulaBase
 
             // 跳过普通note不应有分数（enable_jump）
             MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx(idx);
-            if (md.nodeData.enable_jump == 1 && GirlManager.Instance.IsJumpingAction())
+            var isPunch = GameGlobal.gGameTouchPlay.IsPunch();
+#if !UNITY_EDITOR && !UNITY_EDITOR_OSX && !UNITY_EDITOR_64
+            isPunch = GameGlobal.gGameTouchPlay.IsPunch (Input.touchCount);
+#endif
+            if (md.nodeData.enable_jump == 1 && GirlManager.Instance.IsJumpingAction() && !isPunch)
             {
                 return;
             }
