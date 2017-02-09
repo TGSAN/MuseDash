@@ -12,7 +12,7 @@ public class NormalEnemyController : BaseEnemyObjectController
         {
             return;
         }
-
+        //gameObject.SetActive(false);
         GameObject.Destroy(this.gameObject);
     }
 

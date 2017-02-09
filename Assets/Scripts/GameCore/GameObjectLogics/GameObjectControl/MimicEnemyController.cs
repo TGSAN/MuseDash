@@ -6,152 +6,178 @@ using DYUnityLib;
 
 /// <summary>
 /// Mimic enemy controller.
-/// 
+///
 /// 宝箱怪
 /// </summary>
-public class MimicEnemyController: BaseEnemyObjectController {
-	private const float THROW_ITEM_DELAY = 0.01f;
-	private FormulaHost throwItem = null;
-	void Update() {
-		if (this.throwItem == null) {
-			return;
-		}
+public class MimicEnemyController : BaseEnemyObjectController
+{
+    private const float THROW_ITEM_DELAY = 0.01f;
+    private FormulaHost throwItem = null;
 
-		float t = this.throwItem.GetDynamicDataByKey (SignKeys.BATTLE_HP);
-		if (t > 0) {
-			this.throwItem.SetDynamicData (SignKeys.BATTLE_HP, t - FixUpdateTimer.fInterval);
-			return;
-		}
+    private void Update()
+    {
+        if (this.throwItem == null)
+        {
+            return;
+        }
 
-		this.ThrowItem ();
-	}
+        float t = this.throwItem.GetDynamicDataByKey(SignKeys.BATTLE_HP);
+        if (t > 0)
+        {
+            this.throwItem.SetDynamicData(SignKeys.BATTLE_HP, t - FixUpdateTimer.fInterval);
+            return;
+        }
 
-	public override void OnControllerStart () {
-		base.OnControllerStart ();
-		Animator ani = this.gameObject.GetComponent<Animator> ();
-		if (ani != null) {
-			ani.StartRecording (0);
-		}
+        this.ThrowItem();
+    }
 
-		this.throwItem = MimicParentController.Instance.GetNextItem ();
-	}
+    public override void OnControllerStart()
+    {
+        base.OnControllerStart();
+        Animator ani = this.gameObject.GetComponent<Animator>();
+        if (ani != null)
+        {
+            ani.StartRecording(0);
+        }
 
-	/// <summary>
-	/// Raises the controller attacked event.
-	/// 
-	/// On catched Mimic.
-	/// </summary>
-	/// <param name="result">Result.</param>
-	/// <param name="isDeaded">If set to <c>true</c> is deaded.</param>
-	public override void OnControllerAttacked (int result, bool isDeaded) {
-		this.Catched ();
-	}
+        this.throwItem = MimicParentController.Instance.GetNextItem();
+    }
 
-	/// <summary>
-	/// Raises the controller miss event.
-	/// 
-	/// On mimic excape.
-	/// </summary>
-	/// <param name="idx">Index.</param>
-	public override bool OnControllerMiss (int idx) {
-		this.Excaped ();
-		return false;
-	}
+    /// <summary>
+    /// Raises the controller attacked event.
+    ///
+    /// On catched Mimic.
+    /// </summary>
+    /// <param name="result">Result.</param>
+    /// <param name="isDeaded">If set to <c>true</c> is deaded.</param>
+    public override void OnControllerAttacked(int result, bool isDeaded)
+    {
+        this.Catched();
+    }
 
-	/// <summary>
-	/// Throws the item.
-	/// 
-	/// Mimic throw gold, score, hp-bag and so on.
-	/// </summary>
-	private void ThrowItem() {
-		if (this.throwItem == null) {
-			return;
-		}
+    /// <summary>
+    /// Raises the controller miss event.
+    ///
+    /// On mimic excape.
+    /// </summary>
+    /// <param name="idx">Index.</param>
+    public override bool OnControllerMiss(int idx)
+    {
+        this.Excaped();
+        return false;
+    }
 
-		SpineActionController.Play (ACTION_KEYS.SUMMON1, this.gameObject);
-		GameObject obj = (GameObject)this.throwItem.GetDynamicObjByKey (SignKeys.GAME_OBJECT);
-		StartCoroutine (this.OnThrowItem (obj));
-		Animator ani = this.gameObject.GetComponent<Animator> ();
-		if (ani != null) {
-			ani.speed = 1;
-		}
+    /// <summary>
+    /// Throws the item.
+    ///
+    /// Mimic throw gold, score, hp-bag and so on.
+    /// </summary>
+    private void ThrowItem()
+    {
+        if (this.throwItem == null)
+        {
+            return;
+        }
 
-		this.throwItem = MimicParentController.Instance.GetNextItem ();
-	}
+        SpineActionController.Play(ACTION_KEYS.SUMMON1, this.gameObject);
+        GameObject obj = (GameObject)this.throwItem.GetDynamicObjByKey(SignKeys.GAME_OBJECT);
+        StartCoroutine(this.OnThrowItem(obj));
+        Animator ani = this.gameObject.GetComponent<Animator>();
+        if (ani != null)
+        {
+            ani.speed = 1;
+        }
 
-	private IEnumerator OnThrowItem(GameObject obj) {
-		yield return new WaitForSeconds (THROW_ITEM_DELAY);
+        this.throwItem = MimicParentController.Instance.GetNextItem();
+    }
 
-		// Choose item and run it.
-		if (obj != null) {
-			obj.SetActive (true);
-			BaseEnemyObjectController controller = obj.GetComponent<BaseEnemyObjectController> ();
-			if (controller != null) {
-				controller.OnControllerStart ();
-			}
-		}
-	}
+    private IEnumerator OnThrowItem(GameObject obj)
+    {
+        yield return new WaitForSeconds(THROW_ITEM_DELAY);
 
-	/// <summary>
-	/// Catched this instance.
-	/// 
-	/// On mimic comein finished, be catched.
-	/// </summary>
-	private void Catched() {
-		if (this.gameObject == null) {
-			return;
-		}
+        // Choose item and run it.
+        if (obj != null)
+        {
+            obj.SetActive(true);
+            BaseEnemyObjectController controller = obj.GetComponent<BaseEnemyObjectController>();
+            if (controller != null)
+            {
+                controller.OnControllerStart();
+            }
+        }
+    }
 
-		this.StopPhysicBlock ();
-		SpineActionController.Play (ACTION_KEYS.CHAR_DEAD, this.gameObject);
-	}
+    /// <summary>
+    /// Catched this instance.
+    ///
+    /// On mimic comein finished, be catched.
+    /// </summary>
+    private void Catched()
+    {
+        if (this.gameObject == null)
+        {
+            return;
+        }
 
-	/// <summary>
-	/// Excaped this instance.
-	/// 
-	/// After play die, mimic will excape with no come back.
-	/// </summary>
-	private void Excaped() {
-		if (this.gameObject == null) {
-			return;
-		}
+        this.StopPhysicBlock();
+        SpineActionController.Play(ACTION_KEYS.CHAR_DEAD, this.gameObject);
+    }
 
-		this.StopPhysicBlock ();
-		SpineActionController.Play (ACTION_KEYS.COMEOUT, this.gameObject);
+    /// <summary>
+    /// Excaped this instance.
+    ///
+    /// After play die, mimic will excape with no come back.
+    /// </summary>
+    private void Excaped()
+    {
+        if (this.gameObject == null)
+        {
+            return;
+        }
 
-		// Play back comein unity animation.
-		Animator ani = this.gameObject.GetComponent<Animator> ();
-		if (ani != null) {
-			ani.StopRecording ();
-			ani.StartPlayback ();
-			ani.speed = -1;
+        this.StopPhysicBlock();
+        SpineActionController.Play(ACTION_KEYS.COMEOUT, this.gameObject);
 
-			StartCoroutine (this.ExcapeEnded ((float)ani.GetTime ()));
-		}
-	}
+        // Play back comein unity animation.
+        Animator ani = this.gameObject.GetComponent<Animator>();
+        if (ani != null)
+        {
+            ani.StopRecording();
+            ani.StartPlayback();
+            ani.speed = -1;
 
-	private IEnumerator ExcapeEnded(float t) {
-		yield return new WaitForSeconds (t);
+            StartCoroutine(this.ExcapeEnded((float)ani.GetTime()));
+        }
+    }
 
-		Animator ani = this.gameObject.GetComponent<Animator> ();
-		if (ani != null) {
-			ani.StopPlayback ();
-		}
+    private IEnumerator ExcapeEnded(float t)
+    {
+        yield return new WaitForSeconds(t);
 
-		GameObject.Destroy (this.gameObject);
-	}
+        Animator ani = this.gameObject.GetComponent<Animator>();
+        if (ani != null)
+        {
+            ani.StopPlayback();
+        }
+        gameObject.SetActive(false);
+        //GameObject.Destroy (this.gameObject);
+    }
 
-	private void StopPhysicBlock() {
-		if (this.gameObject == null) {
-			return;
-		}
+    private void StopPhysicBlock()
+    {
+        if (this.gameObject == null)
+        {
+            return;
+        }
 
-		SpineMountController smc = this.gameObject.GetComponent<SpineMountController> ();
-		if (smc != null) {
-			GameObject mountObj = smc.GetMountObjectByIdx (0);
-			if (mountObj != null) {
-				mountObj.SetActive (false);
-			}
-		}
-	}
+        SpineMountController smc = this.gameObject.GetComponent<SpineMountController>();
+        if (smc != null)
+        {
+            GameObject mountObj = smc.GetMountObjectByIdx(0);
+            if (mountObj != null)
+            {
+                mountObj.SetActive(false);
+            }
+        }
+    }
 }

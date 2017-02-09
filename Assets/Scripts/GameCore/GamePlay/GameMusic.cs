@@ -58,7 +58,7 @@ namespace GameLogic
         private string currentFileName = null;
 
         // time step record base on music time
-        private decimal lastMusicTick = 0m;
+        private float lastMusicTick = 0f;
 
         // for debug
         private int debugTRIdx = 0;
@@ -75,10 +75,11 @@ namespace GameLogic
                 FixUpdateTimer.RollTimer();
                 return;
             }
-            decimal bgts = (decimal)AudioManager.Instance.GetBackGroundMusicTime();
-            bgts = bgts - bgts % FixUpdateTimer.dInterval;
-            int c = (int)((bgts - this.lastMusicTick) / FixUpdateTimer.dInterval);
-            this.lastMusicTick = bgts;
+
+            var curTick = Environment.TickCount / 1000f;
+            int c = Mathf.RoundToInt((this.lastMusicTick - curTick) / FixUpdateTimer.fInterval);
+            c = c <= 0 ? 1 : c;
+            this.lastMusicTick = curTick;
             for (int i = 0; i < c; i++)
             {
                 FixUpdateTimer.RollTimer();
@@ -154,7 +155,7 @@ namespace GameLogic
             }
             if (StageBattleComponent.Instance.IsAutoPlay())
             {
-                AutoPlay();
+                AutoPlay((decimal)args[0]);
             }
         }
 
@@ -188,7 +189,6 @@ namespace GameLogic
             {
                 StageBattleComponent.Instance.curLPSIdx = -1;
             }
-
             if (!StageBattleComponent.Instance.IsAutoPlay())
             {
                 var isPunch = GameGlobal.gGameTouchPlay.IsPunch();
@@ -213,10 +213,8 @@ namespace GameLogic
             }
         }
 
-        private void AutoPlay()
+        private void AutoPlay(decimal ts)
         {
-            var ts = GetMusicPassTick();
-
             var nextOffsetTsIdx = (int)((ts + 0.1m) / FixUpdateTimer.dInterval);
             if (_missMap.ContainsKey(nextOffsetTsIdx))
             {
@@ -232,7 +230,7 @@ namespace GameLogic
                 return;
             }
 
-            var tsIdx = (int)(ts / FixUpdateTimer.dInterval);
+            var tsIdx = Mathf.RoundToInt((float)(ts / FixUpdateTimer.dInterval));
             if (_missMap.ContainsKey(tsIdx))
             {
                 var idx = this._missMap[tsIdx];
@@ -656,8 +654,8 @@ namespace GameLogic
 
         public void MusicJump(decimal tick)
         {
-            this.lastMusicTick = tick - FixUpdateTimer.dInterval;
-            this.lastMusicTick = (this.lastMusicTick < 0m) ? 0m : this.lastMusicTick;
+            this.lastMusicTick = (float)(tick - FixUpdateTimer.dInterval);
+            this.lastMusicTick = (this.lastMusicTick < 0f) ? 0f : this.lastMusicTick;
 
             CharPanel.Instance.StopCombo();
             // GameGlobal.gStage.SetCurrentGenIdxForce (0);

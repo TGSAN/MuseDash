@@ -59,6 +59,7 @@ namespace FormulaBase
         private Dictionary<int, List<TimeNodeOrder>> _timeNodeOrder = null;
         public int curLPSIdx = 0;
         public int musicStartTime = 0;
+        public int musicPauseTick = 0;
 
         public float timeFromMusicStart
         {
@@ -234,6 +235,18 @@ namespace FormulaBase
             }
 
             return list;
+        }
+
+        public void Pause()
+        {
+            musicPauseTick = Environment.TickCount;
+            FixUpdateTimer.PauseTimer();
+        }
+
+        public void Resume()
+        {
+            musicStartTime += (Environment.TickCount - musicPauseTick);
+            FixUpdateTimer.ResumeTimer();
         }
 
         public bool IsAllCombo()

@@ -42,7 +42,8 @@ namespace GameLogic
             Debug.Log("name to be destroy is: " + name);
 
             SceneObjectController.Instance.SceneObjectPool[name] = null;
-            GameObject.Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
+            //GameObject.Destroy(this.gameObject);
         }
     }
 }

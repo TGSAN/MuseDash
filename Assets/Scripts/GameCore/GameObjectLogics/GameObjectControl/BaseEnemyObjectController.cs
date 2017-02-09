@@ -24,6 +24,8 @@ public abstract class BaseEnemyObjectController : BaseSpineObjectController
             return;
         }
 
+        //GameObject.Destroy(gameObject);
+
         this.OnControllerAttacked((int)result, isDead);
         GameGlobal.gGameMusicScene.OnObjBeAttacked(this.idx);
         this.OnAttackDestory();

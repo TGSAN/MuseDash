@@ -99,9 +99,13 @@ namespace GameLogic
             {
                 return;
             }
+
+            var t = StageBattleComponent.Instance.timeFromMusicStart;
+            CommonPanel.GetInstance().DebugInfo("Create Node offset: " + (ts - (decimal)t));
             // Create scene object here.
             BattleEnemyManager.Instance.CreateBattleEnemy(idx);
-            //Debug.Log (idx + " gen at > " + ts);
+            //Debug.Log(idx + " gen at > " + ts);
+
             if (GameGlobal.IS_DEBUG)
             {
                 Debug.Log(idx + " gen at > " + ts);

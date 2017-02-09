@@ -416,7 +416,7 @@ namespace FormulaBase
                 GameObject _obj = this.GetObj(i);
                 if (_obj != null)
                 {
-                    GameObject.Destroy(_obj);
+                    _obj.SetActive(false);
                     GameGlobal.gGameMusicScene.PreLoad(i);
                 }
 

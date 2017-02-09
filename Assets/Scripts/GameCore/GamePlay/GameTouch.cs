@@ -259,9 +259,9 @@ namespace GameLogic
 
         public void BeginTouchPhaser()
         {
-            var t = StageBattleComponent.Instance.timeFromMusicStart;
+            /*var t = StageBattleComponent.Instance.timeFromMusicStart;
             var md = StageBattleComponent.Instance.neareastMusicData;
-            CommonPanel.GetInstance().DebugInfo("Hit time offset: " + (t - (float)md.configData.time));
+            CommonPanel.GetInstance().DebugInfo("Hit time offset: " + (t - (float)md.configData.time));*/
 
             this.beginTouchTick = GameGlobal.gGameMusic.GetMusicPassTick();
             uint _tempState = GameGlobal.PRESS_STATE_NONE;
