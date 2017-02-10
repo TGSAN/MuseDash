@@ -65,6 +65,7 @@ namespace GameLogic
 
         private decimal[] debugTouchRecord = null;
         private Dictionary<int, int> _missMap = null;
+        public const float frameRate = 60f;
 
         // This is used for Fix update, with standard time is music time.
         // When music time grow with unit 0.01, FixUpdateTimer.RollTimer is called.
@@ -76,9 +77,14 @@ namespace GameLogic
                 return;
             }
 
-            var curTick = AudioManager.Instance.GetBackGroundMusicATime();
-            var c = Mathf.RoundToInt((curTick - this.lastMusicTick) / (Mathf.Pow(FixUpdateTimer.fInterval, 2)));
-            c = c <= 0 ? 1 : c;
+            var curTick = Environment.TickCount;
+            if (this.lastMusicTick == 0f)
+            {
+                this.lastMusicTick = curTick;
+            }
+            //var curTick = AudioManager.Instance.GetBackGroundMusicATime();
+            var c = Mathf.Abs(Mathf.RoundToInt((curTick - this.lastMusicTick) * frameRate));
+            c = c == 0 ? 1 : c;
             this.lastMusicTick = curTick;
             for (var i = 0; i < c; i++)
             {
