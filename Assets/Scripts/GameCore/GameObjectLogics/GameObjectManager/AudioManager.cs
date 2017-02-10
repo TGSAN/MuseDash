@@ -397,8 +397,7 @@ public class AudioManager
         if (this.audioDic.ContainsKey(name))
         {
             this.girlEffect.PlayOneShot(this.audioDic[name]);
-            var t = AudioManager.instance.GetBackGroundMusicATime();
-            CommonPanel.GetInstance().DebugInfo("Hit Node offset: " + ((decimal)t - StageBattleComponent.Instance.neareastMusicData.configData.time));
+            CommonPanel.GetInstance().DebugInfo("Hit Node offset: " + ((decimal)StageBattleComponent.Instance.timeFromMusicStart - StageBattleComponent.Instance.neareastMusicData.configData.time));
         }
 #endif
     }
