@@ -1,9 +1,10 @@
+using System;
 using DYUnityLib;
 using FormulaBase;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace GameLogic
 {
