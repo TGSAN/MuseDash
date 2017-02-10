@@ -17,7 +17,6 @@ namespace PausePanel
             Time.timeScale = GameGlobal.TIME_SCALE;
             AudioManager.Instance.ResumeBackGroundMusic();
             AudioManager.Instance.SetBackGroundMusicTimeScale(GameGlobal.TIME_SCALE);
-            StageBattleComponent.Instance.Resume();
         }
     }
 }

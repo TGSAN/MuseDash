@@ -47,8 +47,6 @@ namespace PnlFail
         private void Pause()
         {
             AudioManager.Instance.PauseBackGroundMusic();
-            FixUpdateTimer.PauseTimer();
-            StageBattleComponent.Instance.Pause();
             Time.timeScale = 0;
         }
 

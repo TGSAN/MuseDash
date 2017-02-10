@@ -76,9 +76,13 @@ namespace GameLogic
                 return;
             }
 
-            var curTick = Environment.TickCount / 1000f;
-            int c = Mathf.RoundToInt((this.lastMusicTick - curTick) / FixUpdateTimer.fInterval);
-            c = c <= 0 ? 1 : c;
+            var curTick = StageBattleComponent.Instance.realTimeTick;
+            if (this.lastMusicTick == 0)
+            {
+                this.lastMusicTick = curTick;
+            }
+            int c = Mathf.Abs(Mathf.RoundToInt((curTick - this.lastMusicTick) / 10f / Mathf.Pow(FixUpdateTimer.fInterval, 1)));
+            c = c == 0 ? 1 : c;
             this.lastMusicTick = curTick;
             for (int i = 0; i < c; i++)
             {

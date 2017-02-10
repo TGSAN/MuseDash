@@ -112,7 +112,6 @@ namespace DYUnityLib
         private uint defaultEvent;
         private bool isPause;
         private int startTick;
-        private int pauseTick = 0;
         private bool isTick = false;
 
         private Hashtable eventTbl = new Hashtable();
@@ -162,7 +161,6 @@ namespace DYUnityLib
 
         public void Pause()
         {
-            pauseTick = Environment.TickCount;
             if (this.eventTbl == null)
             {
                 return;
@@ -173,7 +171,6 @@ namespace DYUnityLib
 
         public void Resume()
         {
-            this.startTick = this.startTick + (Environment.TickCount - pauseTick);
             this.isPause = false;
         }
 
@@ -336,9 +333,9 @@ namespace DYUnityLib
             }
             if (startTick == 0)
             {
-                startTick = StageBattleComponent.Instance.musicStartTime == 0 ? Environment.TickCount : StageBattleComponent.Instance.musicStartTime;
+                startTick = StageBattleComponent.Instance.musicStartTime == 0 ? StageBattleComponent.Instance.realTimeTick : StageBattleComponent.Instance.musicStartTime;
             }
-            var curTick = (decimal)((Environment.TickCount - startTick) / 1000f);
+            var curTick = (decimal)((StageBattleComponent.Instance.realTimeTick - startTick) / 1000f);
             var curPassedTick = Mathf.RoundToInt((float)curTick * (float)precision);
 
             if (curPassedTick == this.passedTick) return;
@@ -358,13 +355,6 @@ namespace DYUnityLib
         {
             this.prePassedTick = this.passedTick;
             this.passedTick = tick;
-        }
-
-        private void SetPassTick()
-        {
-            var curTick = (decimal)((Environment.TickCount - startTick) / 1000f);
-            var curPassedTick = Mathf.RoundToInt((float)curTick * (float)precision);
-            this.passedTick = curPassedTick;
         }
     }
 }

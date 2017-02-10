@@ -91,6 +91,16 @@ public class AudioManager
         return this.backGroundMusic.time;
     }
 
+    public float GetBackGroundMusicATime()
+    {
+        if (this.backGroundMusic == null || this.backGroundMusic.clip == null)
+        {
+            return 0;
+        }
+
+        return ((float)this.backGroundMusic.timeSamples / (float)this.backGroundMusic.clip.samples) * GetBackGroundMusicLength();
+    }
+
     public float GetBackGroundMusicLeave()
     {
         return this.GetBackGroundMusicLength() - this.GetBackGroundMusicTime();
@@ -387,6 +397,8 @@ public class AudioManager
         if (this.audioDic.ContainsKey(name))
         {
             this.girlEffect.PlayOneShot(this.audioDic[name]);
+            var t = AudioManager.instance.GetBackGroundMusicATime();
+            CommonPanel.GetInstance().DebugInfo("Hit Node offset: " + ((decimal)t - StageBattleComponent.Instance.neareastMusicData.configData.time));
         }
 #endif
     }

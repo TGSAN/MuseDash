@@ -28,7 +28,6 @@ namespace PnlBattle
                 Time.timeScale = 0;
                 //UserUI.Instance.SetGUIActive (true);
                 AudioManager.Instance.PauseBackGroundMusic();
-                StageBattleComponent.Instance.Pause();
             }
 
             OnDo(gameObject);
