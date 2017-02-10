@@ -17,7 +17,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using Assets.Scripts.Tool.PRHelper;
+using Assets.Scripts.NewUI;
 using UnityEngine;
 
 public class PopupAnimator : MonoBehaviour

@@ -10,7 +10,7 @@
 //-----------------------------------------------------------------------------------------------
 
 using System.Collections;
-using Assets.Scripts.Tool.PRHelper;
+using Assets.Scripts.NewUI;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;

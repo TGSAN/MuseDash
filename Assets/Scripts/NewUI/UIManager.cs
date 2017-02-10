@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Common;
-using Assets.Scripts.Tool.PRHelper.Properties;
-using GameLogic;
+using Assets.Scripts.Tools.PRHelper.Properties;
 using UnityEngine;
 
-namespace Assets.Scripts.Tool.PRHelper
+namespace Assets.Scripts.NewUI
 {
     public class UIManager : SingletonMonoBehaviour<UIManager>
     {
@@ -103,11 +102,11 @@ namespace Assets.Scripts.Tool.PRHelper
             foreach (var pnlGameObject in m_PnlGameObjects)
             {
                 var go = pnlGameObject;
-                PRHelper.OnEvent(pnlGameObject, PREvents.EventType.OnDisable).AddListener(g =>
+                Tools.PRHelper.PRHelper.OnEvent(pnlGameObject, PREvents.EventType.OnDisable).AddListener(g =>
                 {
                     Push(go);
                 });
-                PRHelper.OnEvent(pnlGameObject, PREvents.EventType.OnEnable).AddListener(g =>
+                Tools.PRHelper.PRHelper.OnEvent(pnlGameObject, PREvents.EventType.OnEnable).AddListener(g =>
                 {
                     Pop(go);
                 });

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Common;
 using Assets.Scripts.NGUI;
-using Assets.Scripts.Tool.PRHelper;
 using Assets.Scripts.UI;
 using DG.Tweening;
 using FormulaBase;
