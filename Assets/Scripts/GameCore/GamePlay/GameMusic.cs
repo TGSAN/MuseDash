@@ -65,7 +65,7 @@ namespace GameLogic
 
         private decimal[] debugTouchRecord = null;
         private Dictionary<int, int> _missMap = null;
-        public const float frameRate = 60f;
+        public const float frameRate = 1f;
 
         // This is used for Fix update, with standard time is music time.
         // When music time grow with unit 0.01, FixUpdateTimer.RollTimer is called.
