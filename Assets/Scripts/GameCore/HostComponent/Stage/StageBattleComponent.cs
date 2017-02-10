@@ -58,12 +58,10 @@ namespace FormulaBase
 
         private Dictionary<int, List<TimeNodeOrder>> _timeNodeOrder = null;
         public int curLPSIdx = 0;
-        public int musicStartTime = 0;
-        public int musicPauseTick = 0;
 
         public float timeFromMusicStart
         {
-            get { return (Environment.TickCount - musicStartTime) / 1000f; }
+            get { return AudioManager.Instance.GetBackGroundMusicATime(); }
         }
 
         public MusicData neareastMusicData
@@ -239,13 +237,11 @@ namespace FormulaBase
 
         public void Pause()
         {
-            musicPauseTick = Environment.TickCount;
             FixUpdateTimer.PauseTimer();
         }
 
         public void Resume()
         {
-            musicStartTime += (Environment.TickCount - musicPauseTick);
             FixUpdateTimer.ResumeTimer();
         }
 
@@ -752,7 +748,6 @@ namespace FormulaBase
             {
                 AudioManager.Instance.SetBgmVolume(1.0f);
                 AudioManager.Instance.SetBackGroundMusicProgress(0.0f);
-                musicStartTime = Environment.TickCount;
                 CommonPanel.GetInstance().DebugInfo("Music start at time: " + 0);
             };
 

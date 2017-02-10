@@ -76,10 +76,11 @@ namespace GameLogic
                 return;
             }
 
-            var curTick = Environment.TickCount / 1000f;
+            var curTick = AudioManager.Instance.GetBackGroundMusicATime();
             int c = Mathf.RoundToInt((this.lastMusicTick - curTick) / FixUpdateTimer.fInterval);
             c = c <= 0 ? 1 : c;
             this.lastMusicTick = curTick;
+
             for (int i = 0; i < c; i++)
             {
                 FixUpdateTimer.RollTimer();

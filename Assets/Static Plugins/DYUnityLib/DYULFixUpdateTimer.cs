@@ -334,11 +334,7 @@ namespace DYUnityLib
             {
                 return;
             }
-            if (startTick == 0)
-            {
-                startTick = StageBattleComponent.Instance.musicStartTime == 0 ? Environment.TickCount : StageBattleComponent.Instance.musicStartTime;
-            }
-            var curTick = (decimal)((Environment.TickCount - startTick) / 1000f);
+            var curTick = StageBattleComponent.Instance.timeFromMusicStart;
             var curPassedTick = Mathf.RoundToInt((float)curTick * (float)precision);
 
             if (curPassedTick == this.passedTick) return;

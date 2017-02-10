@@ -3,6 +3,7 @@ using GameLogic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using DG.Tweening;
 using UnityEngine;
 
@@ -79,6 +80,17 @@ public class AudioManager
         }
 
         return this.backGroundMusic.timeSamples;
+    }
+
+    public float GetBackGroundMusicATime()
+    {
+        if (this.backGroundMusic == null || this.backGroundMusic.clip == null)
+        {
+            return 0;
+        }
+        var rate = (float)GetBackGroundMusicSample() / (float)this.backGroundMusic.clip.samples;
+        var t = GetBackGroundMusicLength() * rate;
+        return t;
     }
 
     public float GetBackGroundMusicTime()
@@ -387,6 +399,7 @@ public class AudioManager
         if (this.audioDic.ContainsKey(name))
         {
             this.girlEffect.PlayOneShot(this.audioDic[name]);
+            CommonPanel.GetInstance().DebugInfo("Hit Node Offset: " + Math.Round(StageBattleComponent.Instance.timeFromMusicStart - (float)StageBattleComponent.Instance.neareastMusicData.configData.time, 5));
         }
 #endif
     }
