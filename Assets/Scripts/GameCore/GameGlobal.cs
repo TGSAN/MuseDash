@@ -1,6 +1,7 @@
 using DYUnityLib;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -229,6 +230,8 @@ namespace GameLogic
 
         // Global music obj pointer
         public static GameMusicScene gGameMusicScene = null;
+
+        public static Stopwatch stopwatch = new Stopwatch();
 
         // Global GirlJump During Time
         public const float JUMP_WHOLE_TIME = 0.2f;

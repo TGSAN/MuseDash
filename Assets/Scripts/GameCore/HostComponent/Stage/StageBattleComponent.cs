@@ -67,7 +67,7 @@ namespace FormulaBase
 
         public int realTimeTick
         {
-            get { return Mathf.RoundToInt(Time.time * 1000f); }
+            get { return Mathf.RoundToInt(GameGlobal.stopwatch.ElapsedMilliseconds); }
         }
 
         public MusicData neareastMusicData
@@ -736,6 +736,7 @@ namespace FormulaBase
             {
                 GameGlobal.gGameMusic.Run();
                 GameGlobal.gGameMusicScene.Run();
+
                 var time = StageBattleComponent.Instance.timeFromMusicStart;
                 CommonPanel.GetInstance().DebugInfo("Game start at time: " + time);
             };
@@ -744,6 +745,7 @@ namespace FormulaBase
             {
                 AudioManager.Instance.SetBgmVolume(1.0f);
                 AudioManager.Instance.SetBackGroundMusicProgress(0.0f);
+
                 musicStartTime = StageBattleComponent.Instance.realTimeTick;
                 CommonPanel.GetInstance().DebugInfo("Music start at time: " + 0);
             };

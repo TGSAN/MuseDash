@@ -1,4 +1,5 @@
-﻿using DYUnityLib;
+﻿using System;
+using DYUnityLib;
 using FormulaBase;
 using GameLogic;
 using System.Collections;
@@ -14,14 +15,18 @@ public class GameSceneMainController : MonoBehaviour
     private float secondCounter = 0f;
     private GameObject gameCamera;
 
+    private void Awake()
+    {
+        GameGlobal.stopwatch.Reset();
+        GameGlobal.stopwatch.Start();
+    }
+
     private void Start()
     {
         this._ScreenFit();
-
         this.secondCounter = 0f;
         Application.targetFrameRate = 60;
         GameGlobal.gCamera = this;
-
 #if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
         if (StageBattleComponent.Instance.Host == null)
         {
@@ -55,7 +60,6 @@ public class GameSceneMainController : MonoBehaviour
 
         GameGlobal.gTouch.TouchEvntPhase();
         GameGlobal.gGameMusic.GameMusicFixTimerUpdate();
-
         this.FpsMemoryShowUpdate();
     }
 

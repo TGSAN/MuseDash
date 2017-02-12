@@ -5,6 +5,7 @@ using System;
 using DYUnityLib;
 using UnityEngine;
 using FormulaBase;
+using GameLogic;
 
 namespace PnlBattle
 {
@@ -28,6 +29,7 @@ namespace PnlBattle
                 Time.timeScale = 0;
                 //UserUI.Instance.SetGUIActive (true);
                 AudioManager.Instance.PauseBackGroundMusic();
+                GameGlobal.stopwatch.Stop();
             }
 
             OnDo(gameObject);

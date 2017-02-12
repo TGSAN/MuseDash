@@ -5,6 +5,7 @@ using System;
 using UnityEngine;
 using FormulaBase;
 using DYUnityLib;
+using GameLogic;
 
 namespace PnlFail
 {
@@ -47,6 +48,7 @@ namespace PnlFail
         private void Pause()
         {
             AudioManager.Instance.PauseBackGroundMusic();
+            GameGlobal.stopwatch.Stop();
             Time.timeScale = 0;
         }
 
