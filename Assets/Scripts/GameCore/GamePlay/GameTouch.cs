@@ -393,11 +393,6 @@ namespace GameLogic
             this.SetPressStateByScreen(forcePressState);
             //2, Get current play time to choose current hit node.
             decimal passedTick = GameGlobal.gGameMusic.GetMusicPassTick();
-            if (CommonPanel.GetInstance().showDebug)
-            {
-                var perfectTime = (StageBattleComponent.Instance.GetPerfectIdxByTick(passedTick)) * 0.01m;
-                //CommonPanel.GetInstance().DebugTxt((perfectTime - passedTick).ToString());
-            }
             List<TimeNodeOrder> tnos = StageBattleComponent.Instance.GetTimeNodeByTick(passedTick);
             if (tnos == null || tnos.Count <= 0)
             {
@@ -407,7 +402,6 @@ namespace GameLogic
                 }
                 return;
             }
-
             for (int i = 0; i < tnos.Count; i++)
             {
                 TimeNodeOrder tno = tnos[i];
@@ -452,6 +446,7 @@ namespace GameLogic
                 }
                 break;
             }
+            Debug.Log(GameGlobal.stopwatch.ElapsedMilliseconds + "====4");
         }
 
         public void TouchResult(int idx, uint resultCode, uint actionType)

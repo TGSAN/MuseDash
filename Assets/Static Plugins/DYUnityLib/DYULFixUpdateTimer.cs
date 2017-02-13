@@ -319,10 +319,12 @@ namespace DYUnityLib
                 }
             }
             //Debug.Log(" Trig event ---->>> " + this.defaultEvent + " at " + (this.passedTick * dInterval));
-            for (int i = this.prePassedTick + 1; i <= this.passedTick; i++)
+            /*for (int i = this.prePassedTick + 1; i <= this.passedTick; i++)
             {
                 gTrigger.FireEvent(this.defaultEvent, i * dInterval);
-            }
+            }*/
+
+            gTrigger.FireEvent(this.defaultEvent, this.passedTick * dInterval);
         }
 
         private void OnTick()
@@ -340,7 +342,6 @@ namespace DYUnityLib
 
             if (curPassedTick == this.passedTick) return;
             SetPassTick(curPassedTick);
-
             if (this.iType == TIMER_TYPE_STEP_ARRAY)
             {
                 this.__OnTickStepArray();
@@ -355,6 +356,13 @@ namespace DYUnityLib
         {
             this.prePassedTick = this.passedTick;
             this.passedTick = tick;
+        }
+
+        private void SetPassTick()
+        {
+            var curTick = (decimal)((StageBattleComponent.Instance.realTimeTick - startTick) / 1000f);
+            var curPassedTick = Mathf.RoundToInt((float)curTick * (float)precision);
+            this.passedTick = curPassedTick;
         }
     }
 }
