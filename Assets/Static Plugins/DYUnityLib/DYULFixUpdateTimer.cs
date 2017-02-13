@@ -319,12 +319,10 @@ namespace DYUnityLib
                 }
             }
             //Debug.Log(" Trig event ---->>> " + this.defaultEvent + " at " + (this.passedTick * dInterval));
-            /*for (int i = this.prePassedTick + 1; i <= this.passedTick; i++)
+            for (int i = this.prePassedTick + 1; i <= this.passedTick; i++)
             {
                 gTrigger.FireEvent(this.defaultEvent, i * dInterval);
-            }*/
-
-            gTrigger.FireEvent(this.defaultEvent, this.passedTick * dInterval);
+            }
         }
 
         private void OnTick()

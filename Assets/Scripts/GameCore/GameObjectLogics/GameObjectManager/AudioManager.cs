@@ -88,7 +88,7 @@ public class AudioManager
             return 0;
         }
 
-        return this.backGroundMusic.time;
+        return StageBattleComponent.Instance.timeFromMusicStart;
     }
 
     public float GetBackGroundMusicATime()

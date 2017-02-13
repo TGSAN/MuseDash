@@ -81,10 +81,10 @@ namespace GameLogic
             {
                 this.lastMusicTick = curTick;
             }
-            int c = Mathf.Abs(Mathf.RoundToInt((curTick - this.lastMusicTick) / 100f / Mathf.Pow(FixUpdateTimer.fInterval, 1)));
-            c = c <= 0 ? 1 : c;
+            int c = Mathf.RoundToInt((curTick - this.lastMusicTick) / Mathf.Pow(FixUpdateTimer.fInterval, 1) / 10f);
+            c = c == 0 ? 1 : c;
             this.lastMusicTick = curTick;
-            for (int i = 0; i < c; i++)
+            for (int i = 0; i < 100; i++)
             {
                 FixUpdateTimer.RollTimer();
             }

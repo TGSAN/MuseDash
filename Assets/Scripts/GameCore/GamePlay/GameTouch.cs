@@ -446,7 +446,6 @@ namespace GameLogic
                 }
                 break;
             }
-            Debug.Log(GameGlobal.stopwatch.ElapsedMilliseconds + "====4");
         }
 
         public void TouchResult(int idx, uint resultCode, uint actionType)
