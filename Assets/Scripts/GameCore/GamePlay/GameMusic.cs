@@ -82,7 +82,7 @@ namespace GameLogic
                 this.lastMusicTick = curTick;
             }
             int c = Mathf.Abs(Mathf.RoundToInt((curTick - this.lastMusicTick) / 10f / Mathf.Pow(FixUpdateTimer.fInterval, 1)));
-            c = c == 0 ? 1 : c;
+            c = 1;
             this.lastMusicTick = curTick;
             for (int i = 0; i < c; i++)
             {
