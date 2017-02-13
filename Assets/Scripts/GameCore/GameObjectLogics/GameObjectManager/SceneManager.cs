@@ -103,6 +103,7 @@ namespace GameLogic
 
             // Create scene object here.
             BattleEnemyManager.Instance.CreateBattleEnemy(idx);
+            CommonPanel.GetInstance().DebugInfo("Create Node offset: " + (ts - (decimal)StageBattleComponent.Instance.timeFromMusicStart));
             //Debug.Log(idx + " gen at > " + ts);
 
             if (GameGlobal.IS_DEBUG)
