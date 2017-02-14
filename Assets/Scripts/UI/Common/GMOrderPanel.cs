@@ -44,6 +44,15 @@ public class GMOrderPanel : MonoBehaviour
         }
     }
 
+    public void SetTickLoop(UILabel label)
+    {
+        var output = 0;
+        if (int.TryParse(label.text, out output))
+        {
+            GameGlobal.tickLoop = output;
+        }
+    }
+
     public void SetGameDelayPlayTime(UILabel label)
     {
         var output = 0.0m;

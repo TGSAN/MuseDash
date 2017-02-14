@@ -716,15 +716,18 @@ namespace FormulaBase
 
             GameGlobal.gGameMusic.PlayMusic();
             AudioManager.Instance.SetBgmVolume(0f);
-
             DelayStartGame();
-
             //UserUI.Instance.SetGUIActive (false);
         }
 
         private void DelayStartGame()
         {
             var delayTimer = new FixUpdateTimer();
+            var dt = 0f;
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+            dt = (float)GameGlobal.DELAY_FOR_ANDRIOD;
+#endif
             delayTimer.Init(10m);
             delayTimer.Run();
             var musicDelay = GameGlobal.DELAY_FOR_MUSIC;
@@ -736,17 +739,14 @@ namespace FormulaBase
             {
                 GameGlobal.gGameMusic.Run();
                 GameGlobal.gGameMusicScene.Run();
-
-                var time = StageBattleComponent.Instance.timeFromMusicStart;
-                CommonPanel.GetInstance().DebugInfo("Game start at time: " + time);
+                CommonPanel.GetInstance().DebugInfo("Game start at time: " + StageBattleComponent.Instance.timeFromMusicStart);
             };
 
             EventTrigger.TriggerHandler startMusic = (s, t, a) =>
             {
+                AudioManager.Instance.SetBackGroundMusicProgress(dt);
                 AudioManager.Instance.SetBgmVolume(1.0f);
-                AudioManager.Instance.SetBackGroundMusicProgress(0.0f);
-
-                musicStartTime = StageBattleComponent.Instance.realTimeTick;
+                musicStartTime = StageBattleComponent.Instance.realTimeTick + Mathf.RoundToInt(dt * 1000f);
                 CommonPanel.GetInstance().DebugInfo("Music start at time: " + 0);
             };
 

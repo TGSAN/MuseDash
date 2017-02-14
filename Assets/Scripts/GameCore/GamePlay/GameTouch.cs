@@ -203,7 +203,6 @@ namespace GameLogic
                 this.EndTouchPhaser();
                 return;
             }
-
             if (this.touchPhase == gTrigger.DYUL_EVENT_TOUCH_BEGAN)
             {
                 this.BeginTouchPhaser();
@@ -321,7 +320,7 @@ namespace GameLogic
 #endif
             if (StageBattleComponent.Instance.curLPSIdx < 0 || !isPunch)
             {
-                BattleEnemyManager.Instance.SetLongPressEffect(false);
+                //BattleEnemyManager.Instance.SetLongPressEffect(false);
                 return;
             }
             var parentMd = StageBattleComponent.Instance.GetMusicDataByIdx(StageBattleComponent.Instance.curLPSIdx);

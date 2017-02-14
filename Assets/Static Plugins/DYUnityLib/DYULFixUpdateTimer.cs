@@ -2,8 +2,10 @@
 using DYUnityLib;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Boo.Lang;
 using FormulaBase;
+using GameLogic;
 using UnityEngine;
 
 /*
@@ -63,10 +65,13 @@ namespace DYUnityLib
 
         public static void RollTimer()
         {
-            for (int j = 0; j < timers.Count; j++)
+            for (int i = 0; i < GameGlobal.tickLoop; i++)
             {
-                var ft = (FixUpdateTimer)timers[j];
-                ft.OnTick();
+                for (int j = 0; j < timers.Count; j++)
+                {
+                    var ft = (FixUpdateTimer)timers[j];
+                    ft.OnTick();
+                }
             }
         }
 

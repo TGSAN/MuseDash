@@ -66,6 +66,7 @@ namespace GameLogic
         public const decimal COMEOUT_TIME_MAX = 3m;
         public const int TOUCH_PHASE_COUNT = 5;
         public const decimal LONG_PRESS_FREQUENCY = 0.2m;
+        public static int tickLoop = 1;
 
         // combo distance
         public const int COMBO_INTERVAL = 10;
@@ -112,6 +113,7 @@ namespace GameLogic
         public const uint FEVER_MAX = 100;
         public static decimal DELAY_FOR_MUSIC = 0.0m;
         public static decimal DELAY_FOR_GAMESTART = 0.0m;
+        public static decimal DELAY_FOR_ANDRIOD = 0.1m;
 
         public const uint PLAY_RESULT_LOCK_LEVEL_LONG_PRESS = 1;
         public const uint PLAY_RESULT_LOCK_LEVEL_BUFF = 2;

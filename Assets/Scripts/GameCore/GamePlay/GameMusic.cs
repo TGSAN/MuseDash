@@ -81,13 +81,8 @@ namespace GameLogic
             {
                 this.lastMusicTick = curTick;
             }
-            int c = Mathf.RoundToInt((curTick - this.lastMusicTick) / Mathf.Pow(FixUpdateTimer.fInterval, 1) / 10f);
-            c = c == 0 ? 1 : c;
             this.lastMusicTick = curTick;
-            for (int i = 0; i < 100; i++)
-            {
-                FixUpdateTimer.RollTimer();
-            }
+            FixUpdateTimer.RollTimer();
         }
 
         // Call for process something about cool down, progress bar, debug show, ect

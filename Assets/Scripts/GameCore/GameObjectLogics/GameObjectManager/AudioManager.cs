@@ -238,6 +238,18 @@ public class AudioManager
             return;
         }
 
+        //长按音效播放方式特别
+        if (name == "note/key_audio/press_atk")
+        {
+            if (!audioDic.ContainsKey(name))
+            {
+                var clip = Resources.Load(name) as AudioClip;
+                audioDic.Add(name, clip);
+                this.girlEffect.PlayOneShot(clip, 0.0f);
+            }
+            return;
+        }
+
 #if UNITY_ANDROID && !UNITY_EDITOR
         name = StringUtils.LastAfter(name, '/');
         AudioCenter.loadSound(name);
@@ -333,6 +345,21 @@ public class AudioManager
         this.backGroundMusic.Play();
     }
 
+    public void SetBackGroundMusicTimeSample(int t)
+    {
+        if (t < 0)
+        {
+            return;
+        }
+
+        if (t > this.backGroundMusic.clip.samples)
+        {
+            return;
+        }
+
+        this.backGroundMusic.time = t;
+    }
+
     public void SetBackGroundMusicTimeScale(float tsc)
     {
         if (this.backGroundMusic == null)
@@ -394,6 +421,7 @@ public class AudioManager
         name = StringUtils.LastAfter(name, '/');
         var result = AudioCenter.playSound(name);
 #else
+
         if (this.audioDic.ContainsKey(name))
         {
             this.girlEffect.PlayOneShot(this.audioDic[name]);
