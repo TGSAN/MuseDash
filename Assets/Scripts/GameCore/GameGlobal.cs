@@ -1,6 +1,7 @@
 using DYUnityLib;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -65,6 +66,7 @@ namespace GameLogic
         public const decimal COMEOUT_TIME_MAX = 3m;
         public const int TOUCH_PHASE_COUNT = 5;
         public const decimal LONG_PRESS_FREQUENCY = 0.2m;
+        public static int tickLoop = 1;
 
         // combo distance
         public const int COMBO_INTERVAL = 10;
@@ -111,6 +113,7 @@ namespace GameLogic
         public const uint FEVER_MAX = 100;
         public static decimal DELAY_FOR_MUSIC = 0.0m;
         public static decimal DELAY_FOR_GAMESTART = 0.0m;
+        public static decimal DELAY_FOR_ANDRIOD = 0.1m;
 
         public const uint PLAY_RESULT_LOCK_LEVEL_LONG_PRESS = 1;
         public const uint PLAY_RESULT_LOCK_LEVEL_BUFF = 2;
@@ -229,6 +232,8 @@ namespace GameLogic
 
         // Global music obj pointer
         public static GameMusicScene gGameMusicScene = null;
+
+        public static Stopwatch stopwatch = new Stopwatch();
 
         // Global GirlJump During Time
         public const float JUMP_WHOLE_TIME = 0.2f;

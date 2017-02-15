@@ -1,5 +1,11 @@
-﻿using DYUnityLib;
+﻿using System;
+using DYUnityLib;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Boo.Lang;
+using FormulaBase;
+using GameLogic;
 using UnityEngine;
 
 /*
@@ -59,10 +65,13 @@ namespace DYUnityLib
 
         public static void RollTimer()
         {
-            for (int i = 0; i < timers.Count; i++)
+            for (int i = 0; i < GameGlobal.tickLoop; i++)
             {
-                FixUpdateTimer ft = (FixUpdateTimer)timers[i];
-                ft.OnTick();
+                for (int j = 0; j < timers.Count; j++)
+                {
+                    var ft = (FixUpdateTimer)timers[j];
+                    ft.OnTick();
+                }
             }
         }
 
@@ -101,11 +110,14 @@ namespace DYUnityLib
         private const int precision = 100;
         public const decimal dInterval = 0.01m;
         public const float fInterval = 0.01f;
-        private int passedTick;
+        private int passedTick = -1;
+        private int prePassedTick;
         private int passedCount;
         private int totalTick;
         private uint defaultEvent;
         private bool isPause;
+        private int startTick;
+        private bool isTick = false;
 
         private Hashtable eventTbl = new Hashtable();
 
@@ -115,7 +127,7 @@ namespace DYUnityLib
         public void Init(decimal totalTick, int timerType = TIMER_TYPE_EVENT_ARRAY)
         {
             this.isPause = true;
-            this.passedTick = 0;
+            this.passedTick = -1;
             this.passedCount = 0;
             this.iType = timerType;
             this.totalTick = (int)(totalTick * precision);
@@ -129,8 +141,10 @@ namespace DYUnityLib
         public void Run()
         {
             //			this.Cancle ();
-            this.passedTick = 0;
+            this.passedTick = -1;
             this.passedCount = 0;
+            this.prePassedTick = 0;
+            this.startTick = 0;
             this.Resume();
         }
 
@@ -142,7 +156,7 @@ namespace DYUnityLib
         public void Cancle()
         {
             // Debug.Log ("Cancle Timer at " + this.passedTick);
-            this.passedTick = 0;
+            this.passedTick = -1;
             this.passedCount = 0;
             if (timers.Contains(this))
             {
@@ -177,7 +191,7 @@ namespace DYUnityLib
                 this.defaultEvent = eventIndex;
             }
 
-            int _tick = (int)(tick * precision);
+            int _tick = Mathf.RoundToInt((float)(tick * (decimal)precision));
             this.eventTbl[_tick] = eventIndex;
         }
 
@@ -244,7 +258,8 @@ namespace DYUnityLib
         public void SetProgress(decimal tick)
         {
             int tempPassCount = 0;
-            this.passedTick = (int)(tick * precision);
+            var tickCount = Mathf.RoundToInt((float)tick * (float)precision);
+            SetPassTick(tickCount);
             foreach (DictionaryEntry de in this.eventTbl)
             {
                 int _idx = int.Parse(de.Key.ToString());
@@ -262,7 +277,6 @@ namespace DYUnityLib
             {
                 return;
             }
-
             // Over time check.
             if (this.totalTick >= 0)
             {
@@ -273,19 +287,28 @@ namespace DYUnityLib
                 }
             }
 
-            object oIdx = this.eventTbl[this.passedTick];
-            if (oIdx == null)
+            var oIdxs = new Dictionary<int, object>();
+            for (int i = prePassedTick + 1; i <= passedTick; i++)
+            {
+                var e = eventTbl[i];
+                if (e != null)
+                {
+                    oIdxs.Add(i, e);
+                }
+            }
+
+            if (oIdxs.Count <= 0)
             {
                 return;
             }
-            uint eventIndex = (uint)oIdx;
-            if (eventIndex <= 0)
+
+            foreach (var oIdx in oIdxs)
             {
-                return;
+                var eventIndex = (uint)oIdx.Value;
+                if (eventIndex <= 0) continue;
+                gTrigger.FireEvent(eventIndex, oIdx.Key * dInterval);
             }
-            // Trig event
-            //Debug.Log(" Trig event ---->>> " + eventIndex + " at " + (this.passedTick * dInterval) + "==== passedTicked:" + this.passedTick);
-            gTrigger.FireEvent(eventIndex, this.passedTick * dInterval);
+
             this.passedCount += 1;
         }
 
@@ -300,9 +323,11 @@ namespace DYUnityLib
                     return;
                 }
             }
-
             //Debug.Log(" Trig event ---->>> " + this.defaultEvent + " at " + (this.passedTick * dInterval));
-            gTrigger.FireEvent(this.defaultEvent, this.passedTick * dInterval);
+            for (int i = this.prePassedTick + 1; i <= this.passedTick; i++)
+            {
+                gTrigger.FireEvent(this.defaultEvent, i * dInterval);
+            }
         }
 
         private void OnTick()
@@ -311,20 +336,36 @@ namespace DYUnityLib
             {
                 return;
             }
+            if (startTick == 0)
+            {
+                startTick = StageBattleComponent.Instance.musicStartTime == 0 ? StageBattleComponent.Instance.realTimeTick : StageBattleComponent.Instance.musicStartTime;
+            }
+            var curTick = (decimal)((StageBattleComponent.Instance.realTimeTick - startTick) / 1000f);
+            var curPassedTick = Mathf.RoundToInt((float)curTick * (float)precision);
 
+            if (curPassedTick == this.passedTick) return;
+            SetPassTick(curPassedTick);
             if (this.iType == TIMER_TYPE_STEP_ARRAY)
             {
                 this.__OnTickStepArray();
-                this.passedTick += interval;
-                return;
             }
-
-            if (this.iType == TIMER_TYPE_EVENT_ARRAY)
+            else if (this.iType == TIMER_TYPE_EVENT_ARRAY)
             {
                 this.__OnTickEventArray();
-                this.passedTick += interval;
-                return;
             }
+        }
+
+        private void SetPassTick(int tick)
+        {
+            this.prePassedTick = this.passedTick;
+            this.passedTick = tick;
+        }
+
+        private void SetPassTick()
+        {
+            var curTick = (decimal)((StageBattleComponent.Instance.realTimeTick - startTick) / 1000f);
+            var curPassedTick = Mathf.RoundToInt((float)curTick * (float)precision);
+            this.passedTick = curPassedTick;
         }
     }
 }

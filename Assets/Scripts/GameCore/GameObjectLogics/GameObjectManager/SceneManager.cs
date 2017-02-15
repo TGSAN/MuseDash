@@ -1,9 +1,10 @@
+using System;
 using DYUnityLib;
 using FormulaBase;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace GameLogic
 {
@@ -99,9 +100,12 @@ namespace GameLogic
             {
                 return;
             }
+
             // Create scene object here.
             BattleEnemyManager.Instance.CreateBattleEnemy(idx);
-            //Debug.Log (idx + " gen at > " + ts);
+            CommonPanel.GetInstance().DebugInfo("Create Node offset: " + (ts - (decimal)StageBattleComponent.Instance.timeFromMusicStart));
+            //Debug.Log(idx + " gen at > " + ts);
+
             if (GameGlobal.IS_DEBUG)
             {
                 Debug.Log(idx + " gen at > " + ts);

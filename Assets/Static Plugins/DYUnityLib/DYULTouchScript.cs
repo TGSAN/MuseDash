@@ -35,28 +35,31 @@ using System.Collections;
 6 在使用touchScripte的对象的update中调用
 	this.touchScripte.TouchEvntPhase ();
  */
+
 using UnityEngine.EventSystems;
 
+namespace DYUnityLib
+{
+    public class TouchScript
+    {
+        private const int CANCLE = -1;
+        private const int BEGIN = 0;
+        private const int MOVE = 1;
+        private const int END = 2;
 
-namespace DYUnityLib {
-	public class TouchScript {
-		private const int CANCLE = -1;
-		private const int BEGIN = 0;
-		private const int MOVE = 1;
-		private const int END = 2;
+        private int _state = CANCLE;
+        private int _singleFignerId = -1;
+        private int[] _states = new int[] { CANCLE, CANCLE };
+        private float touchx = 0;
+        private float touchy = 0;
 
-		private int _state = CANCLE;
-		private int _singleFignerId = -1;
-		private int[] _states = new int[]{CANCLE, CANCLE};
-		private float touchx = 0;
-		private float touchy = 0;
+        private UICamera uiCamera = null;
 
-		private UICamera uiCamera = null;
+        private ArrayList customEvent = new ArrayList();
 
-		private ArrayList customEvent = new ArrayList();
-
-		public void AssignTouchPosition() {
-			#if !UNITY_EDITOR && !UNITY_EDITOR_OSX && !UNITY_EDITOR_64
+        public void AssignTouchPosition()
+        {
+#if !UNITY_EDITOR && !UNITY_EDITOR_OSX && !UNITY_EDITOR_64
 			if (Input.touchCount > 0) {
 				if (Input.touchCount == 1) {
 					Touch _tch = Input.GetTouch (0);
@@ -78,116 +81,139 @@ namespace DYUnityLib {
 				touchx = tch.position.x;
 				touchy = tch.position.y;
 			}
-			#else
-			if (Input.anyKey) {
-				touchx = Input.mousePosition.x;
-				touchy = Input.mousePosition.y;
-			}
-			#endif
-		}
+#else
+            if (Input.anyKey)
+            {
+                touchx = Input.mousePosition.x;
+                touchy = Input.mousePosition.y;
+            }
+#endif
+        }
 
-		public float GetTouchX() {
-			return this.touchx;
-		}
+        public float GetTouchX()
+        {
+            return this.touchx;
+        }
 
-		public float GetTouchY() {
-			return this.touchy;
-		}
+        public float GetTouchY()
+        {
+            return this.touchy;
+        }
 
-		public void AddCustomEvent(EventTrigger e) {
-			if (e == null) {
-				return;
-			}
+        public void AddCustomEvent(EventTrigger e)
+        {
+            if (e == null)
+            {
+                return;
+            }
 
-			if (this.customEvent.Contains (e)) {
-				return;
-			}
+            if (this.customEvent.Contains(e))
+            {
+                return;
+            }
 
-			this.customEvent.Add (e);
-		}
+            this.customEvent.Add(e);
+        }
 
-		public void RemoveCustomEvent(EventTrigger e) {
-			if (e == null) {
-				return;
-			}
+        public void RemoveCustomEvent(EventTrigger e)
+        {
+            if (e == null)
+            {
+                return;
+            }
 
-			if (!this.customEvent.Contains (e)) {
-				return;
-			}
+            if (!this.customEvent.Contains(e))
+            {
+                return;
+            }
 
-			this.customEvent.Remove (e);
-		}
+            this.customEvent.Remove(e);
+        }
 
-		public void ClearCustomEvent() {
-			if (this.customEvent == null) {
-				return;
-			}
+        public void ClearCustomEvent()
+        {
+            if (this.customEvent == null)
+            {
+                return;
+            }
 
-			this.customEvent.Clear ();
-		}
+            this.customEvent.Clear();
+        }
 
-		public void RegUICamera(UICamera obj) {
-			this.uiCamera = obj;
+        public void RegUICamera(UICamera obj)
+        {
+            this.uiCamera = obj;
 
-			if (obj == null) {
-				return;
-			}
+            if (obj == null)
+            {
+                return;
+            }
 
-			Debug.Log ("Reg ngui ui camera " + obj.name);
-		}
+            Debug.Log("Reg ngui ui camera " + obj.name);
+        }
 
-		public void TouchTrigger(object sender, uint triggerId, params object[] args) {
-			// Debug.Log ("Raise Touch Event " + e.triggerArgs);
-			if (this.customEvent == null) {
-				return;
-			}
+        public void TouchTrigger(object sender, uint triggerId, params object[] args)
+        {
+            // Debug.Log ("Raise Touch Event " + e.triggerArgs);
+            if (this.customEvent == null)
+            {
+                return;
+            }
 
-			if (this.customEvent.Count <= 0) {
-				return;
-			}
+            if (this.customEvent.Count <= 0)
+            {
+                return;
+            }
 
-			#if !UNITY_EDITOR && !UNITY_EDITOR_OSX && !UNITY_EDITOR_64
+#if !UNITY_EDITOR && !UNITY_EDITOR_OSX && !UNITY_EDITOR_64
 			int tc = Input.touchCount;
 			Ray ray = this.uiCamera.cachedCamera.ScreenPointToRay (Input.GetTouch(tc - 1).position);
-			#else
-			if (this.uiCamera == null || this.uiCamera.cachedCamera == null) {
-				return;
-			}
+#else
+            if (this.uiCamera == null || this.uiCamera.cachedCamera == null)
+            {
+                return;
+            }
 
-			Ray ray = this.uiCamera.cachedCamera.ScreenPointToRay (Input.mousePosition);
-			#endif
+            Ray ray = this.uiCamera.cachedCamera.ScreenPointToRay(Input.mousePosition);
+#endif
 
-			RaycastHit hit;
-			if (Physics.Raycast (ray, out hit) && hit.collider.gameObject.tag == "UI") {
-				return;
-			}
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.tag == "UI")
+            {
+                return;
+            }
 
-			foreach (EventTrigger _e in this.customEvent) {
-				if (_e == null) {
-					continue;
-				}
+            foreach (EventTrigger _e in this.customEvent)
+            {
+                if (_e == null)
+                {
+                    continue;
+                }
 
-				gTrigger.FireEvent (_e.id, triggerId);
-			}
-		}
-		
-		public int GetTouchCount() {
-			return Input.touchCount;
-		}
+                gTrigger.FireEvent(_e.id, triggerId);
+            }
+        }
 
-		public void OnStart() {
-			//zhuce事件
-			EventTrigger eBegan = gTrigger.RegEvent (gTrigger.DYUL_EVENT_TOUCH_BEGAN);
-			EventTrigger eEnded = gTrigger.RegEvent (gTrigger.DYUL_EVENT_TOUCH_ENDED);
-			EventTrigger eMoved = gTrigger.RegEvent (gTrigger.DYUL_EVENT_TOUCH_MOVE);
+        public int GetTouchCount()
+        {
+            return Input.touchCount;
+        }
 
-			eBegan.Trigger += TouchTrigger;
-			eEnded.Trigger += TouchTrigger;
-			eMoved.Trigger += TouchTrigger;
-		}
+        public void OnStart()
+        {
+            //zhuce事件
+            EventTrigger eBegan = gTrigger.RegEvent(gTrigger.DYUL_EVENT_TOUCH_BEGAN);
+            EventTrigger eEnded = gTrigger.RegEvent(gTrigger.DYUL_EVENT_TOUCH_ENDED);
+            EventTrigger eMoved = gTrigger.RegEvent(gTrigger.DYUL_EVENT_TOUCH_MOVE);
 
-		public void TouchEvntPhase() {
-			#if !UNITY_EDITOR && !UNITY_EDITOR_OSX && !UNITY_EDITOR_64
+            eBegan.Trigger += TouchTrigger;
+            eEnded.Trigger += TouchTrigger;
+            eMoved.Trigger += TouchTrigger;
+        }
+
+        public void TouchEvntPhase()
+        {
+#if !UNITY_EDITOR && !UNITY_EDITOR_OSX && !UNITY_EDITOR_64
 			int c = Input.touchCount;
 			if (c >= this._states.Length + 1) {
 				return;
@@ -204,7 +230,7 @@ namespace DYUnityLib {
 					gTrigger.FireEvent(gTrigger.DYUL_EVENT_TOUCH_BEGAN);
 					return;
 				}
-				
+
 				// Move
 				this._states [c] = MOVE;
 				// Do move.
@@ -233,39 +259,43 @@ namespace DYUnityLib {
 				gTrigger.FireEvent(gTrigger.DYUL_EVENT_TOUCH_ENDED);
 				return;
 			}
-			
+
 			this._states [0] = CANCLE;
-			
-			#else
-			// Begin
-			if (Input.anyKeyDown) {
-				if (this._state != BEGIN) {
-					this._state = BEGIN;
-					// Do begin.
-					gTrigger.FireEvent(gTrigger.DYUL_EVENT_TOUCH_BEGAN);
-				}
-				
-				return;
-			}
-			
-			// Move
-			if (Input.anyKey) {
-				this._state = MOVE;
-				// Do move.
-				gTrigger.FireEvent(gTrigger.DYUL_EVENT_TOUCH_MOVE);
-				return;
-			}
-			
-			// End
-			if (this._state > CANCLE && this._state != END) {
-				this._state = END;
-				// Do end.
-				gTrigger.FireEvent(gTrigger.DYUL_EVENT_TOUCH_ENDED);
-				return;
-			}
-			
-			this._state = CANCLE;
-			#endif
-		}
-	}
+
+#else
+            // Begin
+            if (Input.anyKeyDown)
+            {
+                if (this._state != BEGIN)
+                {
+                    this._state = BEGIN;
+                    // Do begin.
+                    gTrigger.FireEvent(gTrigger.DYUL_EVENT_TOUCH_BEGAN);
+                }
+
+                return;
+            }
+
+            // Move
+            if (Input.anyKey)
+            {
+                this._state = MOVE;
+                // Do move.
+                gTrigger.FireEvent(gTrigger.DYUL_EVENT_TOUCH_MOVE);
+                return;
+            }
+
+            // End
+            if (this._state > CANCLE && this._state != END)
+            {
+                this._state = END;
+                // Do end.
+                gTrigger.FireEvent(gTrigger.DYUL_EVENT_TOUCH_ENDED);
+                return;
+            }
+
+            this._state = CANCLE;
+#endif
+        }
+    }
 }

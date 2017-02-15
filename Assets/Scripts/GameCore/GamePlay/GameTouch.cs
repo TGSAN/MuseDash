@@ -203,7 +203,6 @@ namespace GameLogic
                 this.EndTouchPhaser();
                 return;
             }
-
             if (this.touchPhase == gTrigger.DYUL_EVENT_TOUCH_BEGAN)
             {
                 this.BeginTouchPhaser();
@@ -259,10 +258,6 @@ namespace GameLogic
 
         public void BeginTouchPhaser()
         {
-            var t = StageBattleComponent.Instance.timeFromMusicStart;
-            var md = StageBattleComponent.Instance.neareastMusicData;
-            CommonPanel.GetInstance().DebugInfo("Hit time offset: " + (t - (float)md.configData.time));
-
             this.beginTouchTick = GameGlobal.gGameMusic.GetMusicPassTick();
             uint _tempState = GameGlobal.PRESS_STATE_NONE;
             if (Input.GetKey(GameGlobal.KC_JUMP) || Input.GetKey(GameGlobal.KC_PUMCH))
@@ -325,7 +320,7 @@ namespace GameLogic
 #endif
             if (StageBattleComponent.Instance.curLPSIdx < 0 || !isPunch)
             {
-                BattleEnemyManager.Instance.SetLongPressEffect(false);
+                //BattleEnemyManager.Instance.SetLongPressEffect(false);
                 return;
             }
             var parentMd = StageBattleComponent.Instance.GetMusicDataByIdx(StageBattleComponent.Instance.curLPSIdx);
@@ -397,11 +392,6 @@ namespace GameLogic
             this.SetPressStateByScreen(forcePressState);
             //2, Get current play time to choose current hit node.
             decimal passedTick = GameGlobal.gGameMusic.GetMusicPassTick();
-            if (CommonPanel.GetInstance().showDebug)
-            {
-                var perfectTime = (StageBattleComponent.Instance.GetPerfectIdxByTick(passedTick)) * 0.01m;
-                CommonPanel.GetInstance().DebugTxt((perfectTime - passedTick).ToString());
-            }
             List<TimeNodeOrder> tnos = StageBattleComponent.Instance.GetTimeNodeByTick(passedTick);
             if (tnos == null || tnos.Count <= 0)
             {
@@ -411,7 +401,6 @@ namespace GameLogic
                 }
                 return;
             }
-
             for (int i = 0; i < tnos.Count; i++)
             {
                 TimeNodeOrder tno = tnos[i];
