@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731316, g: 0.38074896, b: 0.3587254, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -91,6 +91,23 @@ NavMeshSettings:
     cellSize: 0.16666667
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &322513437 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1197462562204074, guid: 137daa7bb5a194580a431f4e0395c4ca,
+    type: 2}
+  m_PrefabInternal: {fileID: 2135972756}
+--- !u!114 &322513439 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+    type: 2}
+  m_PrefabInternal: {fileID: 2135972756}
+  m_Script: {fileID: 11500000, guid: 9ceeb32605dbb8542b3f91c475477f42, type: 3}
+--- !u!114 &322513440 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114947988889608616, guid: 137daa7bb5a194580a431f4e0395c4ca,
+    type: 2}
+  m_PrefabInternal: {fileID: 2135972756}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1157636423
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,6 +279,31 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].pREvents.events.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[1].pREvents.events.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].pREvents.events.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[1].pREvents.events.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224814794033553832, guid: 137daa7bb5a194580a431f4e0395c4ca,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -375,6 +417,264 @@ Prefab:
     - target: {fileID: 224168882577960424, guid: 137daa7bb5a194580a431f4e0395c4ca,
         type: 2}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].btnBack.curPnlName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].btnBack.nextPnlName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].key
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].nodeType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playPopup.pnlName
+      value: PnlElfin
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playPopup.moveInEase
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playPopup.moveOutEase
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].pREvents.events.Array.data[0].eventType
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].pREvents.events.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 322513439}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].pREvents.events.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].pREvents.events.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].pREvents.events.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].pREvents.events.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Popup
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].pREvents.events.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].pREvents.events.Array.data[0].unityEvent.m_TypeName
+      value: Smart.Types.UnityEventObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].pREvents.events.Array.data[0].button
+      value: 
+      objectReference: {fileID: 322513440}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].pREvents.events.Array.data[0].gameObject
+      value: 
+      objectReference: {fileID: 322513437}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[1].nodeType
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playAnimation.onAnimationStart.m_TypeName
+      value: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playAnimation.onAnimationPlaying.m_TypeName
+      value: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playAnimation.onAnimationFinish.m_TypeName
+      value: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[1].btnBack.button
+      value: 
+      objectReference: {fileID: 322513440}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[1].pREvents.events.Array.data[0].eventType
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[1].pREvents.events.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 322513439}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[1].pREvents.events.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[1].pREvents.events.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[1].pREvents.events.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[1].pREvents.events.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Popup
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[1].pREvents.events.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[1].pREvents.events.Array.data[0].unityEvent.m_TypeName
+      value: Smart.Types.UnityEventObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[1].pREvents.events.Array.data[0].button
+      value: 
+      objectReference: {fileID: 322513440}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[1].pREvents.events.Array.data[0].gameObject
+      value: 
+      objectReference: {fileID: 322513437}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playAnimation.onAnimationStart.m_TypeName
+      value: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playAnimation.onAnimationPlaying.m_TypeName
+      value: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playAnimation.onAnimationFinish.m_TypeName
+      value: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].btnBack.button
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playPopup.shutButtonName
+      value: None
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playPopup.inDistance
+      value: -200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playPopup.inTime
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playPopup.isFadeIn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playPopup.fadeInEase
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playPopup.outDistance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playPopup.outTime
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playPopup.isFadeOut
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playPopup.fadeOutEase
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playPopup.color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playPopup.color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playPopup.color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playPopup.color.a
+      value: 0.697
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886405785625900, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playPopup.shut
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
