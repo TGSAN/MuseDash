@@ -13,30 +13,30 @@ public class GroundMusicNodeController : BaseEnemyObjectController {
 	}
 
 	private void AddExtraScore() {
-		var myHost = ItemComponent.Instance.GetItemHost ();
+//		var myHost = ItemComponent.Instance.GetItemHost ();
 
 		ArrayList musicData = StageBattleComponent.Instance.GetMusicData ();
 		if (this.idx >= 0 && this.idx < musicData.Count) {
 			MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx (this.idx);
 			int _iidx = NodeConfigReader.GetNodeIdxByNodeid(md.nodeData.uid);
-			myHost.SetDynamicData (SignKeys.ID, _iidx);
+//			myHost.SetDynamicData (SignKeys.ID, _iidx);
 		} else {
 			// If not from stage music config, maybe from mimic.
 			if (MimicParentController.Instance != null) {
 				FormulaHost host = MimicParentController.Instance.GetHostByGameObject (this.gameObject);
 				if (host != null) {
-					myHost.SetDynamicData (SignKeys.ID, (int)host.GetDynamicDataByKey (SignKeys.ID));
+//					myHost.SetDynamicData (SignKeys.ID, (int)host.GetDynamicDataByKey (SignKeys.ID));
 				}
 			}
 		}
 
-		int _score = (int)myHost.Result (FormulaKeys.FORMULA_22);
-		TaskStageTarget.Instance.AddScore (_score);
+//		int _score = (int)myHost.Result (FormulaKeys.FORMULA_22);
+//		TaskStageTarget.Instance.AddScore (_score);
 		BattleEnemyManager.Instance.SetPlayResult (this.idx, GameMusic.PERFECT);
 		BattleRoleAttributeComponent.Instance.FireSkill (SkillComponent.ON_EAT_ITEM);
 
 		SpineActionController.Play (ACTION_KEYS.COMEOUT, this.gameObject);
-		CharPanel.Instance.SetHpScore (_score);
+//		CharPanel.Instance.SetHpScore (_score);
 		string audioName = BattleEnemyManager.Instance.GetNodeAudioByIdx (this.idx);
 		AudioManager.Instance.PlayGirlHitByName (audioName);
 	}

@@ -42,8 +42,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: c7bdb381324e449bda26480690ff0e68, type: 2}
   mSprites:
+  - name: back_button
+    x: 377
+    y: 346
+    width: 180
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: back_button_base
+    x: 377
+    y: 250
+    width: 143
+    height: 94
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: black_block
-    x: 246
+    x: 68
     y: 6
     width: 32
     height: 32
@@ -55,65 +81,65 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: button_GM_off
-    x: 174
-    y: 280
-    width: 128
-    height: 128
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: button_GM_on
-    x: 504
-    y: 114
-    width: 128
-    height: 128
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: capsule_bar
-    x: 636
-    y: 124
-    width: 26
-    height: 22
-    borderLeft: 11
-    borderRight: 11
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: capsule_base
+  - name: decorate
     x: 0
-    y: 412
-    width: 326
-    height: 100
-    borderLeft: 150
-    borderRight: 150
+    y: 156
+    width: 360
+    height: 80
+    borderLeft: 0
+    borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: id_base
-    x: 438
-    y: 4
+  - name: energy_sld
+    x: 559
+    y: 300
+    width: 308
+    height: 56
+    borderLeft: 40
+    borderRight: 40
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: energy_sld_base
+    x: 377
+    y: 184
+    width: 160
+    height: 64
+    borderLeft: 60
+    borderRight: 60
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: exp_sld
+    x: 192
+    y: 8
+    width: 140
+    height: 44
+    borderLeft: 25
+    borderRight: 25
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: exp_sld_base
+    x: 953
+    y: 468
     width: 60
-    height: 100
-    borderLeft: 10
-    borderRight: 41
+    height: 44
+    borderLeft: 25
+    borderRight: 25
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0
@@ -121,8 +147,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: item_fly_light
-    x: 174
-    y: 127
+    x: 202
+    y: 267
     width: 145
     height: 145
     borderLeft: 0
@@ -133,245 +159,11 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: lv_icon_base
-    x: 950
-    y: 340
-    width: 36
-    height: 36
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: menu_button_adv_n
-    x: 0
-    y: 4
-    width: 170
-    height: 132
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: menu_button_adv_s
-    x: 0
-    y: 276
-    width: 170
-    height: 132
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: menu_button_back
-    x: 636
-    y: 178
-    width: 23
-    height: 28
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: menu_button_back_base
-    x: 678
-    y: 382
-    width: 170
-    height: 130
-    borderLeft: 2
-    borderRight: 8
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: menu_button_cha_n
-    x: 504
-    y: 380
-    width: 170
-    height: 132
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: menu_button_cha_s
-    x: 330
-    y: 380
-    width: 170
-    height: 132
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: menu_button_sto_n
-    x: 330
-    y: 244
-    width: 170
-    height: 132
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: menu_button_sto_s
-    x: 330
-    y: 108
-    width: 170
-    height: 132
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: menu_button_sui_n
-    x: 0
-    y: 140
-    width: 170
-    height: 132
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: menu_button_sui_n 1
-    x: 504
-    y: 246
-    width: 166
-    height: 130
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: menu_button_sui_s
-    x: 852
-    y: 382
-    width: 166
-    height: 130
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: menu_sign_new
-    x: 636
-    y: 150
-    width: 24
-    height: 24
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: message_base
-    x: 674
-    y: 12
-    width: 60
-    height: 100
-    borderLeft: 40
-    borderRight: 10
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
   - name: message_icon
-    x: 782
-    y: 296
+    x: 461
+    y: 102
     width: 80
     height: 80
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: message_icon_blue
-    x: 866
-    y: 296
-    width: 80
-    height: 80
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: message_icon_red
-    x: 674
-    y: 200
-    width: 80
-    height: 80
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: message_sign_new_blue
-    x: 282
-    y: 6
-    width: 32
-    height: 32
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: message_sign_new_red
-    x: 636
-    y: 210
-    width: 32
-    height: 32
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -381,10 +173,10 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: option_button
-    x: 674
-    y: 116
-    width: 80
-    height: 80
+    x: 559
+    y: 358
+    width: 200
+    height: 88
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -393,8 +185,34 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: property_base
+    x: 0
+    y: 238
+    width: 200
+    height: 174
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: resourse_base
+    x: 887
+    y: 448
+    width: 64
+    height: 64
+    borderLeft: 10
+    borderRight: 10
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: resourse_EnergyRecover_base
-    x: 174
+    x: 0
     y: 5
     width: 32
     height: 33
@@ -407,7 +225,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: resourse_EnergyRecover_spin
-    x: 210
+    x: 34
     y: 5
     width: 32
     height: 33
@@ -419,37 +237,11 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: sld_exp_base
-    x: 612
-    y: 70
-    width: 40
-    height: 40
-    borderLeft: 10
-    borderRight: 10
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: sld_exp_progress
-    x: 612
-    y: 26
-    width: 40
-    height: 40
-    borderLeft: 5
-    borderRight: 5
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: suitcase_sign
-    x: 674
-    y: 284
-    width: 104
-    height: 92
+  - name: servant_button
+    x: 0
+    y: 40
+    width: 190
+    height: 114
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -458,11 +250,11 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: suitcase_sign_light
-    x: 504
-    y: 18
-    width: 104
-    height: 92
+  - name: slide_button
+    x: 377
+    y: 82
+    width: 82
+    height: 100
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -471,11 +263,11 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: suitcase_sign_white
-    x: 330
-    y: 12
-    width: 104
-    height: 92
+  - name: stage_button
+    x: 377
+    y: 2
+    width: 64
+    height: 78
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -484,11 +276,50 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: task_icon
-    x: 174
-    y: 42
-    width: 127
-    height: 81
+  - name: stage_button_base
+    x: 0
+    y: 414
+    width: 375
+    height: 98
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: store_button
+    x: 192
+    y: 54
+    width: 180
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: up_base
+    x: 377
+    y: 448
+    width: 508
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: upgrade_button
+    x: 761
+    y: 380
+    width: 226
+    height: 66
     borderLeft: 0
     borderRight: 0
     borderTop: 0

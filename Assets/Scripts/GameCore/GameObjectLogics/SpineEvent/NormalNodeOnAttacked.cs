@@ -10,12 +10,13 @@
 using System;
 using System.Collections;
 using FormulaBase;
+using Spine;
 
 namespace GameLogic {
 	public class NormalNodeOnAttacked : DoNothing {
 		private const int ANI_LEN = 2;
 
-		public override void Do (Spine.AnimationState state, int trackIndex, int loopCount) {
+		public override void Do (TrackEntry entry) {
 			MusicData mcData = StageBattleComponent.Instance.GetMusicDataByIdx (this.idx);
 			string aniName = mcData.nodeData.boss_hurt;
 			if (aniName == null || aniName.Length < ANI_LEN) {

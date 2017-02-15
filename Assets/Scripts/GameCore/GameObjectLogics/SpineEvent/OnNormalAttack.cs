@@ -9,10 +9,11 @@
 // ------------------------------------------------------------------------------
 using System;
 using UnityEngine;
+using Spine;
 
 namespace GameLogic {
 	public class OnNormalAttack : DoNothing {
-	public override void Do (Spine.AnimationState state, int trackIndex, int loopCount) {
+		public override void Do (TrackEntry entry) {
 			/*
 			GirlActionController ga = this.gameObject.GetComponent<GirlActionController> ();
 			if (ga == null) {

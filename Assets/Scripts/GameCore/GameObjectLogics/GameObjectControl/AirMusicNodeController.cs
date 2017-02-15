@@ -13,16 +13,16 @@ public class AirMusicNodeController : BaseEnemyObjectController {
 	}
 
 	private void AddExtraScore(int result){
-		var myHost = ItemComponent.Instance.GetItemHost ();
+//		var myHost = ItemComponent.Instance.GetItemHost ();
 		MusicData md = StageBattleComponent.Instance.GetMusicDataByIdx (this.idx);
 		int _iidx = NodeConfigReader.GetNodeIdxByNodeid(md.nodeData.uid);
-		myHost.SetDynamicData (SignKeys.ID, _iidx);
-		int _score = (int)myHost.Result (FormulaKeys.FORMULA_22);
-		TaskStageTarget.Instance.AddScore (_score);
+//		myHost.SetDynamicData (SignKeys.ID, _iidx);
+//		int _score = (int)myHost.Result (FormulaKeys.FORMULA_22);
+//		TaskStageTarget.Instance.AddScore (_score);
 		BattleEnemyManager.Instance.SetPlayResult (this.idx, GameMusic.PERFECT);
 		BattleRoleAttributeComponent.Instance.FireSkill (SkillComponent.ON_EAT_ITEM);
 
-		CharPanel.Instance.SetHpScore (_score);
+//		CharPanel.Instance.SetHpScore (_score);
 		SpineActionController.Play (ACTION_KEYS.COMEOUT, this.gameObject);
 
 		string audioName = BattleEnemyManager.Instance.GetNodeAudioByIdx (this.idx);

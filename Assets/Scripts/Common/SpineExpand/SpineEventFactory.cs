@@ -65,15 +65,14 @@ public class SpineEventFactory : MonoBehaviour {
 		return this.eventObjects.Length;
 	}
 
-	public Spine.AnimationState.CompleteDelegate GetFunc(int idx) {
+	public Spine.AnimationState.TrackEntryDelegate GetFunc(int idx) {
 		if (this.eventObjects == null || idx >= this.eventObjects.Length) {
 			return null;
 		}
-
 		return this.eventObjects [idx].Do;
 	}
 
-	public static Spine.AnimationState.CompleteDelegate GetFunction(GameObject obj, int idx) {
+	public static Spine.AnimationState.TrackEntryDelegate GetFunction(GameObject obj, int idx) {
 		if (obj == null) {
 			return null;
 		}

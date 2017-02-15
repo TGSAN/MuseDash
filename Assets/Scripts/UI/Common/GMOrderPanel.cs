@@ -2,6 +2,7 @@
 using GameLogic;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Common;
 using UnityEngine;
 
 public class GMOrderPanel : MonoBehaviour
@@ -77,12 +78,12 @@ public class GMOrderPanel : MonoBehaviour
     public void AddItem()
     {
         Debug.Log("GM命令添加物品");
-        ItemManageComponent.Instance.CreateAllItems();
+        //        ItemManageComponent.Instance.CreateAllItems();
         DOTweenUtils.Delay(() =>
         {
-            if (PnlSuitcase.PnlSuitcase.Instance != null)
+            //            if (PnlSuitcase.PnlSuitcase.Instance != null)
             {
-                PnlSuitcase.PnlSuitcase.Instance.UpdateSuitcase();
+                //                PnlSuitcase.PnlSuitcase.Instance.UpdateSuitcase();
             }
         }, 0.5f);
     }
@@ -101,7 +102,7 @@ public class GMOrderPanel : MonoBehaviour
             TempitemList.Add(int.Parse(temp));
         }
 
-        MaterialManageComponent.Instance.CreateItem(TempitemList);
+        //        MaterialManageComponent.Instance.CreateItem(TempitemList);
     }
 
     public void DestroyScene()
@@ -122,7 +123,7 @@ public class GMOrderPanel : MonoBehaviour
             TempEquipList.Add(int.Parse(temp));
         }
 
-        EquipManageComponent.Instance.CreateItem(TempEquipList);
+        //        EquipManageComponent.Instance.CreateItem(TempEquipList);
     }
 
     public void AddCharm()
@@ -155,7 +156,7 @@ public class GMOrderPanel : MonoBehaviour
             TempEquipList.Add(int.Parse(temp));
         }
 
-        ChestManageComponent.Instance.CreateItem(TempEquipList);
+        //        ChestManageComponent.Instance.CreateItem(TempEquipList);
     }
 
     public void UNLockAllStages()

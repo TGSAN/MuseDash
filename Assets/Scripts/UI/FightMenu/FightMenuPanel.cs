@@ -4,6 +4,7 @@ using FormulaBase;
 using GameLogic;
 using System.Collections;
 using System.Linq;
+using Assets.Scripts.Common;
 using UnityEngine;
 
 public class FightMenuPanel : MonoBehaviour
@@ -140,7 +141,7 @@ public class FightMenuPanel : MonoBehaviour
             }
             DOTweenUtils.Delay(() =>
             {
-                m_Seq = DOTweenUtils.Update(() =>
+                /*m_Seq = DOTweenUtils.Update(() =>
                 {
                     if (twnAchievement != null)
                     {
@@ -158,7 +159,7 @@ public class FightMenuPanel : MonoBehaviour
                             t.Play(true);
                         }
                     });
-                }, () => TaskStageTarget.Instance.IsAchieve());
+                }, () => TaskStageTarget.Instance.IsAchieve());*/
             }, 1.0f);
         }
         trophyShow.SetActive(!isAchieve);

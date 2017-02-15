@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
 public class FindReferences {
-	[MenuItem("RHY/查找资源引用", false, 10)]
+	[MenuItem("MD/查找资源引用", false, 10)]
 	static private void Find() {
 		EditorSettings.serializationMode = SerializationMode.ForceText;
 		string path = AssetDatabase.GetAssetPath (Selection.activeObject);

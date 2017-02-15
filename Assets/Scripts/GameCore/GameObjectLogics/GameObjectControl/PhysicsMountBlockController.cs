@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using GameLogic;
+using Spine.Unity;
 
 public class PhysicsMountBlockController : BaseSpineObjectController {
 	private GameObject parentObject = null;

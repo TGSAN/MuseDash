@@ -9,17 +9,17 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000013158296640}
+  m_RootGameObject: {fileID: 1000012875593018}
   m_IsPrefabParent: 1
---- !u!1 &1000013158296640
+--- !u!1 &1000012875593018
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000013098504356}
-  - 114: {fileID: 114000011775949898}
+  - component: {fileID: 4000013549692628}
+  - component: {fileID: 114000010556935760}
   m_Layer: 0
   m_Name: achievement_atlas
   m_TagString: Untagged
@@ -27,249 +27,262 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000013098504356
+--- !u!4 &4000013549692628
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013158296640}
+  m_GameObject: {fileID: 1000012875593018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &114000011775949898
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114000010556935760
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013158296640}
+  m_GameObject: {fileID: 1000012875593018}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d0c51bb0b6e93049af5e88f93826e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: f0efc3a594cc9894f9aa4228a342137e, type: 2}
+  material: {fileID: 2100000, guid: fd595833e6a609c46a0a5815458b6cf4, type: 2}
   mSprites:
-  - name: achievement_line
-    x: 326
-    y: 800
-    width: 32
-    height: 6
-    borderLeft: 1
-    borderRight: 1
-    borderTop: 1
-    borderBottom: 1
+  - name: achv_sign
+    x: 446
+    y: 401
+    width: 49
+    height: 49
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
     paddingLeft: 0
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: achievement_progress
-    x: 471
-    y: 922
-    width: 510
+  - name: base
+    x: 0
+    y: 392
+    width: 120
+    height: 120
+    borderLeft: 10
+    borderRight: 10
+    borderTop: 90
+    borderBottom: 10
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: big_board
+    x: 162
+    y: 212
+    width: 96
+    height: 96
+    borderLeft: 10
+    borderRight: 10
+    borderTop: 40
+    borderBottom: 10
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: black_line
+    x: 122
+    y: 428
+    width: 16
+    height: 2
+    borderLeft: 2
+    borderRight: 2
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: button_x
+    x: 446
+    y: 452
+    width: 60
+    height: 60
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: crystals
+    x: 211
+    y: 113
+    width: 47
+    height: 47
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: currency_coin
+    x: 162
+    y: 113
+    width: 47
+    height: 47
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: grade_a
+    x: 0
+    y: 146
+    width: 160
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: grade_a_f
+    x: 0
+    y: 64
+    width: 160
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: grade_b
+    x: 162
+    y: 310
+    width: 160
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: grade_b_f
+    x: 324
+    y: 310
+    width: 160
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: grade_c
+    x: 0
+    y: 228
+    width: 160
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: grade_c_f
+    x: 0
+    y: 310
+    width: 160
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: grade_s
+    x: 284
+    y: 432
+    width: 160
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: grade_s_f
+    x: 122
+    y: 432
+    width: 160
+    height: 80
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: item_board
+    x: 98
+    y: 14
+    width: 48
     height: 48
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: achievement_progress_base
-    x: 471
-    y: 974
-    width: 510
-    height: 50
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: achievemt_button
-    x: 254
-    y: 810
-    width: 213
-    height: 214
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: default_head_icon
-    x: 741
-    y: 778
-    width: 70
-    height: 70
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
+    borderLeft: 10
+    borderRight: 10
+    borderTop: 10
+    borderBottom: 10
     paddingLeft: 0
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
   - name: mask
-    x: 254
-    y: 774
-    width: 32
-    height: 32
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: player_image
-    x: 815
-    y: 778
-    width: 70
-    height: 70
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: rank_base
-    x: 665
-    y: 852
-    width: 344
-    height: 16
-    borderLeft: 3
-    borderRight: 3
-    borderTop: 3
-    borderBottom: 3
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: rank_label
-    x: 471
-    y: 788
-    width: 100
-    height: 80
-    borderLeft: 77
-    borderRight: 9
-    borderTop: 9
-    borderBottom: 9
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: socre_base
-    x: 0
-    y: 622
-    width: 32
-    height: 148
-    borderLeft: 1
-    borderRight: 1
-    borderTop: 1
-    borderBottom: 1
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: start_button
-    x: 0
-    y: 774
-    width: 250
-    height: 250
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: trophy_base
-    x: 290
-    y: 774
-    width: 32
-    height: 32
-    borderLeft: 1
-    borderRight: 1
-    borderTop: 1
-    borderBottom: 1
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: trophy_icon
-    x: 943
-    y: 800
-    width: 50
+    x: 162
+    y: 162
+    width: 48
     height: 48
-    borderLeft: 0
-    borderRight: 0
+    borderLeft: 2
+    borderRight: 2
+    borderTop: 2
+    borderBottom: 2
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: title_board
+    x: 0
+    y: 14
+    width: 96
+    height: 48
+    borderLeft: 20
+    borderRight: 20
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: trophy_icon_gray
-    x: 575
-    y: 787
-    width: 86
-    height: 81
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: trophy_info_button
-    x: 889
-    y: 798
-    width: 50
-    height: 50
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: trophy_label
-    x: 665
-    y: 776
-    width: 72
-    height: 72
-    borderLeft: 9
-    borderRight: 9
-    borderTop: 9
-    borderBottom: 9
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: trophy_score_label
-    x: 471
-    y: 872
-    width: 454
-    height: 46
-    borderLeft: 35
-    borderRight: 35
-    borderTop: 1
-    borderBottom: 1
     paddingLeft: 0
     paddingRight: 0
     paddingTop: 0

@@ -9,7 +9,7 @@ public class SpineModeInspector : EditorWindow {
 	private static string ADD_BUTTON = "+";
 	private static string DEL_BUTTON = "-";
 
-	[MenuItem("RHY/Spine扩展/node类型模式编辑")]
+	[MenuItem("MD/Spine扩展/node类型模式编辑")]
 	static void Init () {
 		SpineModeInspector window = (SpineModeInspector)EditorWindow.GetWindow (typeof(SpineModeInspector));
 		window.Show ();

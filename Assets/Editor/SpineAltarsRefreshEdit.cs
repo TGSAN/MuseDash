@@ -5,6 +5,7 @@ using System.Linq;
 using System.Collections;
 using System.Text.RegularExpressions;
 using System.IO;
+using Spine.Unity;
 
 /// <summary>
 /// Formula edit.
@@ -19,7 +20,7 @@ public class SpineAltarsRefreshEdit : EditorWindow {
 	private float fscale = 0.005f;
 
 
-	[MenuItem("RHY/spine的.asset统一刷新")]
+	[MenuItem("MD/spine的.asset统一刷新")]
 	static void Init () {
 		SpineAltarsRefreshEdit window = (SpineAltarsRefreshEdit)EditorWindow.GetWindow (typeof(SpineAltarsRefreshEdit));
 		window.Show ();

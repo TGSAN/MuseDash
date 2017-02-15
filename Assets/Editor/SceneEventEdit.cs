@@ -27,7 +27,7 @@ public class SceneEventEdit : EditorWindow {
 	private StageEvent editData;
 	private string timeStr;
 
-	[MenuItem("RHY/场景编辑器")]
+	[MenuItem("MD/场景编辑器")]
 	static void Init () {
 		SceneEventEdit window = (SceneEventEdit)EditorWindow.GetWindow (typeof(SceneEventEdit));
 		window.Show ();
