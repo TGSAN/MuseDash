@@ -17,28 +17,26 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using Assets.Scripts.NewUI;
 using UnityEngine;
 
-public class PopupAnimator : MonoBehaviour
-{
-    public GameObject popupPrefab; // 弹窗对象预设。
-    protected Canvas m_canvas;
+public class PopupAnimator : MonoBehaviour {
 
-    protected void Start()
-    {
-        m_canvas = UIManager.instance.GetComponent<Canvas>();
-    }
+	public GameObject popupPrefab; // 弹窗对象预设。
+	protected Canvas m_canvas;
 
-    public virtual void OpenPopup()
-    {
-        var popup = Instantiate(popupPrefab) as GameObject; //将预设实例化。
-        popup.SetActive(true); // 且设置为Active为True状态。
+	protected void Start () {
+		m_canvas = GameObject.Find("UIManager").GetComponent<Canvas>();
+	}
+		
+	public virtual void OpenPopup()
+	{
+		var popup = Instantiate(popupPrefab) as GameObject; //将预设实例化。
+		popup.SetActive(true); // 且设置为Active为True状态。
 
-        // 创建到m_canvas以下的层级。
-        popup.transform.SetParent(m_canvas.transform, false);
+		// 创建到m_canvas以下的层级。
+		popup.transform.SetParent(m_canvas.transform, false);
 
-        // 获取预设的PopupStates组件中名为Open的方法来完成弹窗事件。
-        popup.GetComponent<PopupAnimation>().Open();
-    }
+		// 获取预设的PopupStates组件中名为Open的方法来完成弹窗事件。
+		popup.GetComponent<PopupAnimation>().Open();
+	}
 }
