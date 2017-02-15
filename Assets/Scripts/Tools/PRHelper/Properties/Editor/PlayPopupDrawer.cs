@@ -60,13 +60,13 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
             rect = new Rect(rect.x, rect.y + m_Height + m_Gap, rect.width, rect.height);
             var btnNamePpt = property.FindPropertyRelative("shutButtonName");
             var btnNames = UIManager.instance[nameProperty.stringValue].GetComponentsInChildren<Button>().ToList().Select(b => b.gameObject.name).ToArray();
-            var btnContents = EditorUtils.GetGUIContentArray(btnNames);
+            var btnContents = EditorUtils.GetGUIContentArray(btnNames, "None");
             var btnIdx = btnNames.ToList().FindIndex(s => s == btnNamePpt.stringValue);
-            btnIdx = btnIdx == -1 ? 0 : btnIdx;
+            btnIdx = btnIdx == -1 ? btnContents.Length - 1 : btnIdx;
             btnIdx = EditorGUI.Popup(rect, new GUIContent("Shut Button"), btnIdx, btnContents);
-            if (btnIdx < btnNames.Length)
+            if (btnIdx <= btnNames.Length)
             {
-                btnNamePpt.stringValue = btnNames[btnIdx];
+                btnNamePpt.stringValue = btnContents[btnIdx].text;
             }
         }
 

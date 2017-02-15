@@ -103,7 +103,10 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
             }
 
             var btn = gameObject.GetComponentsInChildren<Button>().ToList().Find(b => b.gameObject.name == shutButtonName);
-            btn.onClick.AddListener(clickEvent);
+            if (btn != null)
+            {
+                btn.onClick.AddListener(clickEvent);
+            }
         }
     }
 }

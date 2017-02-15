@@ -81,12 +81,14 @@ namespace Assets.Scripts.Tools.Commons
             return toggled;
         }
 
-        public static GUIContent[] GetGUIContentArray(string[] stringArray)
+        public static GUIContent[] GetGUIContentArray(string[] stringArray, params string[] other)
         {
-            GUIContent[] guiContentArray = new GUIContent[stringArray.Length];
+            GUIContent[] guiContentArray = new GUIContent[stringArray.Length + other.Length];
             for (int i = 0; i < guiContentArray.Length; i++)
             {
-                guiContentArray[i] = new GUIContent(stringArray[i]);
+                var str = string.Empty;
+                str = i < stringArray.Length ? stringArray[i] : other[i - stringArray.Length];
+                guiContentArray[i] = new GUIContent(str);
             }
 
             return guiContentArray;
