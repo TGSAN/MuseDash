@@ -109,7 +109,7 @@ MonoBehaviour:
   duration: 0
   lengthRate: 0
   rendererPreb: {fileID: 0}
-  detroyEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
   clipEffect: {fileID: 0}
   rotateRuration: 1
   clipParticles: []
@@ -121,19 +121,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012243347922}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+  m_Script: {fileID: 11500000, guid: cd9e86a340006ee4e938b09baba4e36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 11400000, guid: 90b9a7254f2d3c54e8b8720f8628ae80, type: 2}
   initialSkinName: default
-  calculateNormals: 0
-  calculateTangents: 0
+  separatorSlotNames: []
   zSpacing: 0
   renderMeshes: 1
   immutableTriangles: 0
-  frontFacing: 0
+  pmaVertexColors: 1
+  clearStateOnDisable: 0
+  calculateNormals: 0
+  calculateTangents: 0
   logErrors: 0
-  submeshSeparators: []
+  disableRenderingOnOverride: 1
+  _animationName: 
+  loop: 0
   timeScale: 1
-  loop: 1
-  _animationName: 1stand

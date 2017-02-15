@@ -5,13 +5,13 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 434906}
-  - 33: {fileID: 3337244}
-  - 23: {fileID: 2366162}
-  - 114: {fileID: 11465818}
-  - 114: {fileID: 114000013365039278}
+  - component: {fileID: 434906}
+  - component: {fileID: 3337244}
+  - component: {fileID: 2366162}
+  - component: {fileID: 11465818}
+  - component: {fileID: 114000013365039278}
   m_Layer: 0
   m_Name: 0301_portal
   m_TagString: Untagged
@@ -44,9 +44,10 @@ MeshRenderer:
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
-  m_Materials:
-  - {fileID: 2100000, guid: ed4fb266e9a915645af7bbd66c5a118d, type: 2}
-  m_SubsetIndices: 
+  m_Materials: []
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -54,7 +55,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -76,22 +77,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 191332}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+  m_Script: {fileID: 11500000, guid: cd9e86a340006ee4e938b09baba4e36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 11400000, guid: d7ec4b049615e964cbf35d2c87930e90, type: 2}
   initialSkinName: default
-  calculateNormals: 0
-  calculateTangents: 0
+  separatorSlotNames: []
   zSpacing: 0
   renderMeshes: 1
   immutableTriangles: 0
-  frontFacing: 0
+  pmaVertexColors: 1
+  clearStateOnDisable: 0
+  calculateNormals: 0
+  calculateTangents: 0
   logErrors: 0
-  submeshSeparators: []
-  timeScale: 1
+  disableRenderingOnOverride: 1
+  _animationName: 
   loop: 0
-  _animationName: execute
+  timeScale: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -157,3 +160,10 @@ MonoBehaviour:
     actionEventIdx: 01000000000000000000000000000000000000000000000000000000000000000000000000000000
   actionMode: 0
   startDelay: 3
+  duration: 0
+  lengthRate: 0
+  rendererPreb: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  clipEffect: {fileID: 0}
+  rotateRuration: 1
+  clipParticles: []

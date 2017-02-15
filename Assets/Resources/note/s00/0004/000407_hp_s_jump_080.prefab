@@ -5,15 +5,15 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 410338}
-  - 33: {fileID: 3342802}
-  - 23: {fileID: 2388526}
-  - 114: {fileID: 11485414}
-  - 114: {fileID: 11411950}
-  - 95: {fileID: 9517440}
-  - 114: {fileID: 11473666}
+  - component: {fileID: 410338}
+  - component: {fileID: 3342802}
+  - component: {fileID: 2388526}
+  - component: {fileID: 11485414}
+  - component: {fileID: 11411950}
+  - component: {fileID: 9517440}
+  - component: {fileID: 11473666}
   m_Layer: 0
   m_Name: 000407_hp_s_jump_080
   m_TagString: Untagged
@@ -48,7 +48,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: 393ca40651ccf8b45bec40893a541365, type: 2}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -56,7 +58,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -122,6 +124,13 @@ MonoBehaviour:
     actionEventIdx: 01000000000000000000000000000000000000000000000000000000000000000000000000000000
   actionMode: 14
   startDelay: 0.85
+  duration: 0
+  lengthRate: 0
+  rendererPreb: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  clipEffect: {fileID: 0}
+  rotateRuration: 1
+  clipParticles: []
 --- !u!114 &11473666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -145,22 +154,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 106292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+  m_Script: {fileID: 11500000, guid: cd9e86a340006ee4e938b09baba4e36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 11400000, guid: cf784b185b0dd914686c0c7daedd335e, type: 2}
-  initialSkinName: default
-  calculateNormals: 0
-  calculateTangents: 0
+  initialSkinName: 
+  separatorSlotNames: []
   zSpacing: 0
   renderMeshes: 1
   immutableTriangles: 0
-  frontFacing: 0
+  pmaVertexColors: 1
+  clearStateOnDisable: 0
+  calculateNormals: 0
+  calculateTangents: 0
   logErrors: 0
-  submeshSeparators: []
-  timeScale: 1
-  loop: 0
+  disableRenderingOnOverride: 1
   _animationName: 
+  loop: 0
+  timeScale: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

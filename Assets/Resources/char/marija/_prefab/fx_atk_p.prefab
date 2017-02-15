@@ -210,8 +210,8 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: 1efbaa23a9c5d6841a0e4c3a1e357659, type: 2}
   m_StaticBatchInfo:
@@ -283,7 +283,7 @@ MonoBehaviour:
   duration: 0
   lengthRate: 0
   rendererPreb: {fileID: 0}
-  detroyEffect: {fileID: 0}
+  destroyEffect: {fileID: 0}
   clipEffect: {fileID: 0}
   rotateRuration: 1
   clipParticles: []
@@ -306,22 +306,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000013066030320}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+  m_Script: {fileID: 11500000, guid: cd9e86a340006ee4e938b09baba4e36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 11400000, guid: 8e0b9a587a8080346815b0e42006d11f, type: 2}
-  initialSkinName: default
-  calculateNormals: 0
-  calculateTangents: 0
+  initialSkinName: 
+  separatorSlotNames: []
   zSpacing: 0
   renderMeshes: 1
   immutableTriangles: 0
-  frontFacing: 0
+  pmaVertexColors: 1
+  clearStateOnDisable: 0
+  calculateNormals: 0
+  calculateTangents: 0
   logErrors: 0
-  submeshSeparators: []
-  timeScale: 1
-  loop: 0
+  disableRenderingOnOverride: 1
   _animationName: 
+  loop: 0
+  timeScale: 1
 --- !u!198 &198000010063053334
 ParticleSystem:
   m_ObjectHideFlags: 1
