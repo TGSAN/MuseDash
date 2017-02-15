@@ -8,8 +8,7 @@ namespace Assets.Scripts.Tools.PRHelper
     [Serializable]
     public class PRHelperNode
     {
-        public string key;
-        public bool isActive;
+        public string key = "fucker";
         public NodeType nodeType;
 
         public PlayAnimation playAnimation;
@@ -38,10 +37,14 @@ namespace Assets.Scripts.Tools.PRHelper
 
         public void Init(GameObject go)
         {
-            if (!isActive) return;
             if (pREvents == null) pREvents = new PREvents();
             pREvents.Init(go);
             if (btnBack != null) btnBack.Init(go);
+            var e = PRHelper.OnEvent(go, PREvents.EventType.OnButtonClick);
+            e.AddListener(obj =>
+            {
+                Play();
+            });
         }
     }
 }

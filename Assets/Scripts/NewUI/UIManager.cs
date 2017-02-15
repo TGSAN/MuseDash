@@ -39,9 +39,9 @@ namespace Assets.Scripts.NewUI
 
                     if (l.transform.parent != r.transform.parent)
                     {
-                        return l.transform.parent.GetSiblingIndex() - r.transform.parent.GetSiblingIndex();
+                        return r.transform.parent.GetSiblingIndex() - l.transform.parent.GetSiblingIndex();
                     }
-                    return l.transform.GetSiblingIndex() - r.transform.GetSiblingIndex();
+                    return r.transform.GetSiblingIndex() - l.transform.GetSiblingIndex();
                 });
                 return pnls[0];
             }

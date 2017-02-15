@@ -3364,8 +3364,8 @@ MonoBehaviour:
   pivot: {fileID: 566143371}
   scrollRect: {fileID: 1975026806}
   cell: {fileID: 1354878548353102, guid: 0d9e4c9cdef118441928792fcdbc532b, type: 2}
-  leftButton: {fileID: 0}
-  rightButton: {fileID: 0}
+  btnLeft: {fileID: 0}
+  btnRight: {fileID: 0}
   txtNameNext: {fileID: 0}
   txtAuthorNext: {fileID: 0}
   txtNameLast: {fileID: 0}
@@ -9704,9 +9704,8 @@ MonoBehaviour:
   isNewNode: 0
   newNodeName: 
   nodes:
-  - key: Popup
-    isActive: 1
-    nodeType: 6
+  - key: fucker
+    nodeType: 7
     playAnimation:
       animator: {fileID: 0}
       animationType: 0
@@ -9737,88 +9736,34 @@ MonoBehaviour:
       isPlay: 0
     btnBack:
       button: {fileID: 0}
-      curPnlName: 
-      nextPnlName: 
+      curPnlName: PnlHome
+      nextPnlName: None
     active:
       go: {fileID: 0}
       isActive: 0
     playPopup:
       pnlName: PnlElfin
-      bkgColor: {r: 0, g: 0, b: 0, a: 0.766}
-      speed: 0.4
-      distance: -200
-      moveInDt: 0.1
-      moveOutDt: 0.1
-      moveInEase: 21
-      moveOutEase: 33
-    pREvents:
-      events: []
-  - key: 
-    isActive: 1
-    nodeType: 8
-    playAnimation:
-      animator: {fileID: 0}
-      animationType: 0
-      afterAction: 0
-      stateName: 
-      hasStart: 0
-      hasPlaying: 0
-      hasFinish: 0
-      onAnimationStart:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationPlaying:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationFinish:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-    playTween:
-      tweenType: 0
-    playAudio:
-      audioClip: {fileID: 0}
-      isPlay: 0
-    btnBack:
-      button: {fileID: 0}
-      curPnlName: 
-      nextPnlName: 
-    active:
-      go: {fileID: 0}
-      isActive: 0
-    playPopup:
-      pnlName: 
-      bkgColor: {r: 0, g: 0, b: 0, a: 0}
-      speed: 0
-      distance: 0
-      moveInDt: 0
-      moveOutDt: 0
-      moveInEase: 0
-      moveOutEase: 0
+      inTime: 0.4
+      inDistance: 200
+      moveInEase: 22
+      isFadeIn: 1
+      fadeInEase: 25
+      outTime: 0.4
+      outDistance: -200
+      moveOutEase: 32
+      isFadeOut: 1
+      fadeOutEase: 27
+      color: {r: 0, g: 0, b: 0, a: 0.722}
+      shut: 1
+      shutButtonName: BtnUnlock
     pREvents:
       events:
-      - eventType: 13
+      - eventType: 1
         unityEvent:
           m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 742376673}
-              m_MethodName: Play
-              m_Mode: 5
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: Popup
-                m_BoolArgument: 0
-              m_CallState: 2
-          m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-            Culture=neutral, PublicKeyToken=null
+            m_Calls: []
+          m_TypeName: Smart.Types.UnityEventObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+            PublicKeyToken=null
         button: {fileID: 0}
         gameObject: {fileID: 0}
 --- !u!1 &755707453
@@ -13155,7 +13100,6 @@ MonoBehaviour:
   newNodeName: 
   nodes:
   - key: 
-    isActive: 1
     nodeType: 5
     playAnimation:
       animator: {fileID: 0}
@@ -13194,13 +13138,19 @@ MonoBehaviour:
       isActive: 0
     playPopup:
       pnlName: 
-      bkgColor: {r: 0, g: 0, b: 0, a: 0}
-      speed: 0
-      distance: 0
-      moveInDt: 0
-      moveOutDt: 0
+      inTime: 0
+      inDistance: 0
       moveInEase: 0
+      isFadeIn: 0
+      fadeInEase: 0
+      outTime: 0
+      outDistance: 0
       moveOutEase: 0
+      isFadeOut: 0
+      fadeOutEase: 0
+      color: {r: 0, g: 0, b: 0, a: 0}
+      shut: 0
+      shutButtonName: 
     pREvents:
       events: []
 --- !u!224 &1085868409
@@ -17861,7 +17811,6 @@ GameObject:
   - component: {fileID: 1447048623}
   - component: {fileID: 1447048622}
   - component: {fileID: 1447048621}
-  - component: {fileID: 1447048620}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -17903,20 +17852,6 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!114 &1447048620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1447048618}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34382083ad114a07d000fbfb8d76c639, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  iterations: 10
-  blurSpread: 0.586
-  blurShader: {fileID: 4800000, guid: 57e6deea7c2924e22a5138e2b70bb4dc, type: 3}
 --- !u!81 &1447048621
 AudioListener:
   m_ObjectHideFlags: 0
@@ -21389,7 +21324,6 @@ MonoBehaviour:
   newNodeName: PlayPopup
   nodes:
   - key: 
-    isActive: 1
     nodeType: 5
     playAnimation:
       animator: {fileID: 0}
@@ -21428,13 +21362,19 @@ MonoBehaviour:
       isActive: 0
     playPopup:
       pnlName: 
-      bkgColor: {r: 0, g: 0, b: 0, a: 0}
-      speed: 0
-      distance: 0
-      moveInDt: 0
-      moveOutDt: 0
+      inTime: 0
+      inDistance: 0
       moveInEase: 0
+      isFadeIn: 0
+      fadeInEase: 0
+      outTime: 0
+      outDistance: 0
       moveOutEase: 0
+      isFadeOut: 0
+      fadeOutEase: 0
+      color: {r: 0, g: 0, b: 0, a: 0}
+      shut: 0
+      shutButtonName: 
     pREvents:
       events: []
 --- !u!1 &1687480083

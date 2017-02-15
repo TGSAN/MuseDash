@@ -61,7 +61,6 @@ namespace Assets.Scripts.Tools.PRHelper
                 node = new PRHelperNode();
                 node.pREvents = new PREvents();
                 node.nodeType = NodeType.VM_PREvents;
-                node.isActive = true;
                 prHelper.nodes.Add(node);
             }
             return OnEvent(node, eventType);

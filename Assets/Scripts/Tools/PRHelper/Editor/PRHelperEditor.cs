@@ -422,7 +422,6 @@ namespace Assets.Scripts.Tools.PRHelper.Editor
                                 node = new PRHelperNode();
                                 prHelper.nodes.Add(node);
                                 node.nodeType = NodeType.VM_PREvents;
-                                node.isActive = true;
                             }
                             var eventType = (PREvents.EventType)Enum.Parse(typeof(PREvents.EventType), str);
                             Tools.PRHelper.PRHelper.OnEvent(node, eventType);

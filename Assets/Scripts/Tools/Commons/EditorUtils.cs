@@ -5,6 +5,21 @@ namespace Assets.Scripts.Tools.Commons
 {
     public class EditorUtils
     {
+        public static Rect MakeLabelField(GUIContent content, Rect rect, float gap, float height, GUIStyle style = null)
+        {
+            rect = new Rect(rect.x, rect.y + height + gap, rect.width, rect.height);
+            if (style != null)
+            {
+                EditorGUI.LabelField(rect, content, style);
+            }
+            else
+            {
+                EditorGUI.LabelField(rect, content);
+            }
+
+            return rect;
+        }
+
         public static Rect MakePropertyField(string name, SerializedProperty mainProperty, Rect rect, float gap, float height, GUIContent content = null)
         {
             var property = mainProperty.FindPropertyRelative(name);

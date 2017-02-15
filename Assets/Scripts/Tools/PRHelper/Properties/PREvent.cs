@@ -68,10 +68,10 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
                 {
                     case EventType.OnButtonClick:
                         {
-                            var e1 = e;
+                            var theEvent = e;
                             e.button.onClick.AddListener(() =>
                             {
-                                e1.unityEvent.Invoke(null);
+                                theEvent.unityEvent.Invoke(null);
                             });
                         }
                         break;

@@ -1,9 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Common;
 using Assets.Scripts.NewUI;
 using DG.Tweening;
+using Smart.Extensions;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
@@ -13,18 +15,28 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
     public class PlayPopup
     {
         public string pnlName;
-        public Color bkgColor;
-        public float speed;
-        public float distance;
-        public float moveInDt;
-        public float moveOutDt;
+
+        public float inTime;
+        public float inDistance;
         public Ease moveInEase;
+        public bool isFadeIn;
+        public Ease fadeInEase;
+
+        public float outTime;
+        public float outDistance;
         public Ease moveOutEase;
+        public bool isFadeOut;
+        public Ease fadeOutEase;
+
+        public Color color;
+        public bool shut;
+        public string shutButtonName;
 
         public void Play()
         {
             var gameObject = UIManager.instance[pnlName];
             gameObject.SetActive(true);
+            var originPos = gameObject.transform.localPosition;
             var btnCancellGO = new GameObject("BtnCancel");
             var rectTransform = btnCancellGO.AddComponent<RectTransform>();
 
@@ -35,37 +47,63 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
             btnCancellGO.transform.SetSiblingIndex(parent.transform.GetSiblingIndex());
 
             var texBkg = new Texture2D(1, 1);
-            texBkg.SetPixel(0, 0, bkgColor);
+            texBkg.SetPixel(0, 0, color);
             texBkg.Apply();
             var image = btnCancellGO.AddComponent<Image>();
             var rect = new Rect(0, 0, texBkg.width, texBkg.height);
             var sprite = Sprite.Create(texBkg, rect, new Vector2(0.5f, 0.5f), 1);
             image.material.mainTexture = texBkg;
             image.sprite = sprite;
-            image.color = bkgColor;
+            image.color = color;
             image.canvasRenderer.SetAlpha(0.0f);
             image.CrossFadeAlpha(1.0f, 0.1f, false);
 
             var boards = gameObject.GetComponentsInChildren<Image>();
             var txts = gameObject.GetComponentsInChildren<Text>();
-            gameObject.transform.DOLocalMoveY(distance, speed).From().SetEase(moveInEase).SetDelay(moveInDt);
-
-            boards.ToList().ForEach(b => b.DOFade(0, 0.1f).From().SetDelay(moveInDt));
-            txts.ToList().ForEach(t => t.DOFade(0, 0.1f).From().SetDelay(moveInDt));
+            //延迟0.15秒移动、淡入
+            gameObject.transform.DOLocalMoveY(inDistance, inTime).From().SetEase(moveInEase).SetDelay(0.15f);
+            if (isFadeIn)
+            {
+                boards.ToList().ForEach(b => b.DOFade(0, 0.1f).From().SetDelay(0.15f).SetEase(fadeInEase));
+                txts.ToList().ForEach(t => t.DOFade(0, 0.1f).From().SetDelay(0.15f).SetEase(fadeInEase));
+            }
 
             var btnCancell = btnCancellGO.AddComponent<Button>();
-            btnCancell.onClick.AddListener(() =>
-            {
-                boards.ToList().ForEach(b => b.DOFade(0, 0.05f).From());
-                txts.ToList().ForEach(t => t.DOFade(0, 0.05f).From());
 
-                image.DOFade(0, 0.2f).SetDelay(0.05f);
-                DOTweenUtils.Delay(() =>
+            UnityAction clickEvent = () =>
+            {
+                gameObject.transform.DOLocalMoveY(outDistance, outTime).SetEase(moveOutEase).SetDelay(0.15f).OnComplete(
+                    () =>
+                    {
+                        gameObject.transform.localPosition = originPos;
+                    });
+                if (isFadeOut)
+                {
+                    boards.ToList().ForEach(b => b.DOFade(0, 0.05f).SetEase(fadeOutEase));
+                    txts.ToList().ForEach(t => t.DOFade(0, 0.05f).SetEase(fadeOutEase));
+                }
+                image.DOFade(0, 0.2f).SetDelay(0.05f).OnComplete(() =>
                 {
                     gameObject.SetActive(false);
                     Object.Destroy(btnCancell.gameObject);
-                }, 0.25f);
-            });
+                    boards.ToList().ForEach(b =>
+                    {
+                        b.color = new Color(b.color.r, b.color.g, b.color.b, 1.0f);
+                    });
+                    txts.ToList().ForEach(t =>
+                    {
+                        t.color = new Color(t.color.r, t.color.g, t.color.b, 1.0f);
+                    });
+                });
+            };
+            //按下关闭按钮时淡出
+            if (shut)
+            {
+                btnCancell.onClick.AddListener(clickEvent);
+            }
+
+            var btn = gameObject.GetComponentsInChildren<Button>().ToList().Find(b => b.gameObject.name == shutButtonName);
+            btn.onClick.AddListener(clickEvent);
         }
     }
 }
