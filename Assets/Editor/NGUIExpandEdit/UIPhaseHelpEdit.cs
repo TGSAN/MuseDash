@@ -15,14 +15,14 @@ public class UIPhaseHelpEdit : Editor
     private const string DES1 = "激活条件";
     private const string DES2 = "字符匹配";
     private const string DES3 = "滑动条 变量值/最大值 (两个值类型相同时无效)";
-    private const string DES4 = "界面内点击响应对象";
+    private const string DES4 = "是否开关子节点";
     private const string DES5 = "父节点";
-    private const string DES6 = "点击响应是否隐藏父节点";
-    private const string DES7 = "点击响应的其它父节点";
-    private const string DES8 = "点击后是否隐藏自己";
+    private const string DES6 = "是否开关自身父节点";
+    private const string DES7 = "是否开关其它父节点";
+    private const string DES8 = "是否隐藏自身";
     private const string DES9 = "自定义匹配关键字";
     private const string DES10 = "是否强制保留";
-    private const string DES11 = "是否动画文字";
+    private const string DES11 = "是否动画数字增减过程";
 
     private GameObject obj;
 
@@ -90,15 +90,21 @@ public class UIPhaseHelpEdit : Editor
         EditorGUILayout.BeginVertical();
         GUILayout.Label(uph.des + " / " + TITLE_DES1, EditorStyles.boldLabel);
 
-        uph.isAnimateTxt = EditorGUILayout.Toggle(DES11, uph.isAnimateTxt);
+		//父节点
+		uph.root = (GameObject)EditorGUILayout.ObjectField(DES5, uph.root, typeof(GameObject), true);
+
+		//是否动画数字增减过程
+		uph.isAnimateTxt = EditorGUILayout.Toggle(DES11, uph.isAnimateTxt);
         if (uph.isAnimateTxt)
         {
             uph.txtCurve = EditorGUILayout.CurveField("文字动画曲线", uph.txtCurve, Color.white, new Rect(0, 0, 100, 100));
             uph.txtAnimTime = EditorGUILayout.FloatField("文字渐变时间", uph.txtAnimTime);
         }
 
+
         uph.isForceKeep = EditorGUILayout.Toggle(DES10, uph.isForceKeep);
-        uph.root = (GameObject)EditorGUILayout.ObjectField(DES5, uph.root, typeof(GameObject), true);
+
+
 
         UIButton _btn = uph.gameObject.GetComponent<UIButton>();
         if (_btn != null)
@@ -161,7 +167,7 @@ public class UIPhaseHelpEdit : Editor
             }
             EditorGUILayout.EndVertical();
 
-            EditorGUILayout.BeginVertical();
+//            EditorGUILayout.BeginVertical();
 
             uph.isFoldParentObjs = EditorGUILayout.Foldout(uph.isFoldParentObjs, DES7 + " / " + uph.clickResponseParentNames.Count);
             if (uph.isFoldParentObjs)
@@ -206,7 +212,7 @@ public class UIPhaseHelpEdit : Editor
                 }
             }
 
-            EditorGUILayout.EndVertical();
+//            EditorGUILayout.EndVertical();
         }
 
         EditorGUILayout.BeginHorizontal();

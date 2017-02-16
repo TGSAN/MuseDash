@@ -6,6 +6,7 @@ using FormulaBase;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 
 namespace PnlUnlockNewCos
 {
@@ -64,7 +65,7 @@ namespace PnlUnlockNewCos
             {
                 var curCos = m_Coss[m_Coss.Count - 1];
                 m_Coss.Remove(curCos);
-                PnlChar.PnlChar.Instance.OnShowCos(curCos);
+//                PnlChar.PnlChar.Instance.OnShowCos(curCos);
             };
             UIEventListener.Get(btnNext.gameObject).onClick = go =>
             {

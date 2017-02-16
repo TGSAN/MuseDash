@@ -3,6 +3,7 @@ using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 using Spine;
+using Spine.Unity;
 
 [CustomEditor(typeof(SpineMountController))]
 public class SpineMountEdit : Editor {

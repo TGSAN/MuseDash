@@ -9,10 +9,11 @@
 // ------------------------------------------------------------------------------
 using System;
 using UnityEngine;
+using Spine;
 
 namespace GameLogic {
 	public class UnLockActionProtect : DoNothing {
-		public override void Do (Spine.AnimationState state, int trackIndex, int loopCount) {
+		public override void Do (TrackEntry entry) {
 			SpineActionController sac = this.gameObject.GetComponent<SpineActionController> ();
 			if (sac != null) {
 				sac.SetProtectLevel (0);

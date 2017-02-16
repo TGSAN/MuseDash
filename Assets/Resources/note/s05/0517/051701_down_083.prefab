@@ -133,22 +133,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 114592}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+  m_Script: {fileID: 11500000, guid: cd9e86a340006ee4e938b09baba4e36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 11400000, guid: eaff6d8351d5b6844a06dc2e30969986, type: 2}
-  initialSkinName: default
-  calculateNormals: 0
-  calculateTangents: 0
+  initialSkinName: 
+  separatorSlotNames: []
   zSpacing: 0
   renderMeshes: 1
   immutableTriangles: 0
-  frontFacing: 0
+  pmaVertexColors: 1
+  clearStateOnDisable: 0
+  calculateNormals: 0
+  calculateTangents: 0
   logErrors: 0
-  submeshSeparators: []
-  timeScale: 1
-  loop: 0
+  disableRenderingOnOverride: 1
   _animationName: 
+  loop: 0
+  timeScale: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -851,17 +853,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: water
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: water
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!114 &114070075615843716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -873,17 +872,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: shadow
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: shadow
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!114 &114071663342024616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -895,17 +891,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: L_eye_y
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: L_eye_y
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!114 &114149492192543552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -917,17 +910,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: all body
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: all body
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!114 &114165244601697566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -939,17 +929,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: body
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: body
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!114 &114231502385459342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -961,17 +948,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: X
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: X
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!114 &114231551446451806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -983,17 +967,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: b
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: b
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!114 &114242526820611342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1005,17 +986,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: R_eye_y
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: R_eye_y
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!114 &114281816709644666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1040,17 +1018,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: pc
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: pc
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!114 &114415876638518688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1062,17 +1037,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: Y
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: Y
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!114 &114440947798949030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1084,17 +1056,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: mouth_x
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: mouth_x
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!114 &114450287685334536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1106,17 +1075,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: mouth_y
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: mouth_y
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!114 &114487214356928842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1128,17 +1094,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: L_eye_x
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: L_eye_x
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!114 &114500716608655816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1150,17 +1113,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: a
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: a
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!114 &114531484593967860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1172,17 +1132,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: root
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: root
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!114 &114546569534468322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1194,17 +1151,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: Y_rotate
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: Y_rotate
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!114 &114614882478543032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1216,17 +1170,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: R_eye_x
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: R_eye_x
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!114 &114878043289544640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1238,17 +1189,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: root2
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: root2
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!114 &114963321374869204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1260,17 +1208,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b238dfcde8209044b97d23f62bcaadf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boneName: face
+  parentReference: {fileID: 0}
   mode: 0
-  zPosition: 1
   position: 1
   rotation: 1
   scale: 1
-  flip: 0
-  flipX: 0
+  zPosition: 1
   overrideAlpha: 1
-  boneName: face
-  parentReference: {fileID: 0}
-  transformLerpComplete: 0
 --- !u!198 &198398734197357064
 ParticleSystem:
   m_ObjectHideFlags: 1

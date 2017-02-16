@@ -29,7 +29,7 @@ public class TestAssetEdit : EditorWindow {
 	private float debugTimeScale = 1f;
 	private float debugHpRate = 1f;
 
-	[MenuItem("RHY/测试辅助工具")]
+	[MenuItem("MD/测试辅助工具")]
 	static void Init () {
 		TestAssetEdit window = (TestAssetEdit)EditorWindow.GetWindow (typeof(TestAssetEdit));
 		window.Show ();

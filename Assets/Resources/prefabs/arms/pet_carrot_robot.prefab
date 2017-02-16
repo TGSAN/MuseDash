@@ -5,13 +5,13 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 450350}
-  - 33: {fileID: 3338176}
-  - 23: {fileID: 2353292}
-  - 114: {fileID: 11407458}
-  - 114: {fileID: 11477562}
+  - component: {fileID: 450350}
+  - component: {fileID: 3338176}
+  - component: {fileID: 2353292}
+  - component: {fileID: 11407458}
+  - component: {fileID: 11477562}
   m_Layer: 0
   m_Name: pet_carrot_robot
   m_TagString: Untagged
@@ -45,8 +45,10 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8e7b1386fc9ea4145a275a0cd4d5602d, type: 2}
-  m_SubsetIndices: 
+  - {fileID: 2100000, guid: 731672bb4c0f9486db7e0d858f7c00c9, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -54,7 +56,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -76,22 +78,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 173276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+  m_Script: {fileID: 11500000, guid: cd9e86a340006ee4e938b09baba4e36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: ce054908c3b47b94285b2bada56367dc, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 71f66e65790df4dfc910f4bdb7cd69be, type: 2}
   initialSkinName: default
-  calculateNormals: 0
-  calculateTangents: 0
+  separatorSlotNames: []
   zSpacing: 0
   renderMeshes: 1
   immutableTriangles: 0
-  frontFacing: 0
+  pmaVertexColors: 1
+  clearStateOnDisable: 0
+  calculateNormals: 0
+  calculateTangents: 0
   logErrors: 0
-  submeshSeparators: []
-  timeScale: 1
-  loop: 0
+  disableRenderingOnOverride: 1
   _animationName: 
+  loop: 0
+  timeScale: 1
 --- !u!114 &11477562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,7 +113,7 @@ MonoBehaviour:
     isEndLoop: 1
     isRandomSequence: 0
     isSelfProtect: 0
-    name: comein
+    name: standby
     protectLevel: 1
     arrayCount: 2
     spineActionKeyIndex: 2
@@ -119,7 +123,7 @@ MonoBehaviour:
     isEndLoop: 0
     isRandomSequence: 0
     isSelfProtect: 0
-    name: comeout
+    name: char_jump
     protectLevel: 1
     arrayCount: 1
     spineActionKeyIndex: 4
@@ -129,7 +133,7 @@ MonoBehaviour:
     isEndLoop: 1
     isRandomSequence: 0
     isSelfProtect: 0
-    name: default
+    name: char_run
     protectLevel: 0
     arrayCount: 1
     spineActionKeyIndex: 3
@@ -139,7 +143,7 @@ MonoBehaviour:
     isEndLoop: 1
     isRandomSequence: 0
     isSelfProtect: 0
-    name: melee1
+    name: out
     protectLevel: 0
     arrayCount: 3
     spineActionKeyIndex: 1
@@ -147,6 +151,13 @@ MonoBehaviour:
     actionEventIdx: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   actionMode: 4
   startDelay: 0
+  duration: 0
+  lengthRate: 0
+  rendererPreb: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  clipEffect: {fileID: 0}
+  rotateRuration: 1
+  clipParticles: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

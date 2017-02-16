@@ -16,17 +16,14 @@ namespace PnlMainMenu
     public class PnlMainMenu : UIPhaseBase
     {
         private static PnlMainMenu instance = null;
-        public GameObject goSelectedSuitcase, goBtnEnhancement;
-        public UIButton btnSuitcase;
-        public UILabel txtEnergy, txtCharm, txtCharmMax;
-        public UISprite sprRecoverTime, sprCharmBar, sprExpBar;
+//        public GameObject goSelectedSuitcase, goBtnEnhancement;
+        public UILabel txtEnergy;
+        public UISprite sprRecoverTime;
         public UITweener twnEnergy, twnCoin, twnCrystal;
-        public GameObject[] capsules;
-        public RandomObjFly coin, crystal, charm, exp, energy, item;
+        public RandomObjFly coin, crystal, energy, item;
         public float barTime = 1.0f;
         public AnimationCurve barCurve;
-        private Animator m_CapsuleAnimator;
-        private bool m_IsUnlockNextSong = false;
+//        private bool m_IsUnlockNextSong = false;
 
         public static PnlMainMenu Instance
         {
@@ -36,33 +33,30 @@ namespace PnlMainMenu
             }
         }
 
-        public override void BeCatched()
-        {
-            instance = this;
-            m_IsUnlockNextSong = TaskStageTarget.isNextUnlock;
-            UIEventListener.Get(btnSuitcase.gameObject).onClick = go =>
-            {
-                PnlSuitcase.PnlSuitcase.Instance.SetTypeActive(true, false, false);
-            };
-        }
+//        public override void BeCatched()
+//        {
+//            instance = this;
+//            m_IsUnlockNextSong = TaskStageTarget.isNextUnlock;
+//
+//        }
 
         public override void OnShow()
         {
             gameObject.SetActive(true);
             OnUpdateInfo();
 
-            if (!m_IsUnlockNextSong)
-            {
-                DOTweenUtils.Delay(UpdateEvent, 1.0f);
-            }
-            else
-            {
-                m_IsUnlockNextSong = false;
-                DOTweenUtils.Delay(() =>
-                {
-                    PnlUnlockSong.PnlUnlockSong.Instance.onDisable += UpdateEvent;
-                }, 1.0f);
-            }
+//            if (!m_IsUnlockNextSong)
+//            {
+//                DOTweenUtils.Delay(UpdateEvent, 1.0f);
+//            }
+//            else
+//            {
+//                m_IsUnlockNextSong = false;
+//                DOTweenUtils.Delay(() =>
+//                {
+//                    PnlUnlockSong.PnlUnlockSong.Instance.onDisable += UpdateEvent;
+//                }, 1.0f);
+//            }
         }
 
         private void UpdateEvent()
@@ -83,45 +77,45 @@ namespace PnlMainMenu
             OnEnergyUpdate();
             OnCrystalUpdate();
             OnCoinUpdate();
-            OnCharmUpdate();
-            OnExpUpdate();
+//            OnCharmUpdate();
+//            OnExpUpdate();
         }
 
-        public void OnExpUpdate()
-        {
-            var expNextLvl = AccountLevelManagerComponent.Instance.NextLvlExp();
-            var curExp = AccountLevelManagerComponent.Instance.GetExp();
-            sprExpBar.transform.localScale = new Vector3(Mathf.Min((float)curExp / (float)expNextLvl, 1f), 1f, 1f);
-        }
+//        public void OnExpUpdate()
+//        {
+//            var expNextLvl = AccountLevelManagerComponent.Instance.NextLvlExp();
+//            var curExp = AccountLevelManagerComponent.Instance.GetExp();
+//            sprExpBar.transform.localScale = new Vector3(Mathf.Min((float)curExp / (float)expNextLvl, 1f), 1f, 1f);
+//        }
 
-        public void OnCharmUpdate(bool isUpdate = false, Action callFunc = null, bool isCapsuleShake = true)
-        {
-            GameObject capsule = null;
-            var curCapsule = CapsuleManager.instance.curCapsule;
-            var curCharm = AccountCharmComponent.Instance.GetCharm();
-            var maxCharm = curCapsule.charmRequire;
-            //txtCharm.text = curCharm.ToString();
-            txtCharmMax.text = maxCharm.ToString();
-            var barValue = 300f * Mathf.Min((float)curCharm / (float)maxCharm, 1.0f);
-            DOTween.To(() => sprCharmBar.width, x => sprCharmBar.width = (int)x, barValue, barTime);
-            for (var i = 0; i < capsules.Length; i++)
-            {
-                if (i == curCapsule.path)
-                {
-                    capsule = capsules[i];
-                }
-                capsules[i].SetActive(i == curCapsule.path);
-            }
-            if (capsule != null)
-            {
-                m_CapsuleAnimator = capsule.transform.GetChild(0).gameObject.GetComponent<Animator>();
-                m_CapsuleAnimator.enabled = true;
-                if (m_CapsuleAnimator.isActiveAndEnabled)
-                {
-                    m_CapsuleAnimator.Play(curCharm >= maxCharm && isCapsuleShake ? "capsule_unlocked" : "capsule_in_nolight");
-                }
-            }
-        }
+//        public void OnCharmUpdate(bool isUpdate = false, Action callFunc = null, bool isCapsuleShake = true)
+//        {
+//            GameObject capsule = null;
+//            var curCapsule = CapsuleManager.instance.curCapsule;
+//            var curCharm = AccountCharmComponent.Instance.GetCharm();
+//            var maxCharm = curCapsule.charmRequire;
+//            txtCharm.text = curCharm.ToString();
+//            txtCharmMax.text = maxCharm.ToString();
+//            var barValue = 300f * Mathf.Min((float)curCharm / (float)maxCharm, 1.0f);
+//            DOTween.To(() => sprCharmBar.width, x => sprCharmBar.width = (int)x, barValue, barTime);
+//            for (var i = 0; i < capsules.Length; i++)
+//            {
+//                if (i == curCapsule.path)
+//                {
+//                    capsule = capsules[i];
+//                }
+//                capsules[i].SetActive(i == curCapsule.path);
+//            }
+//            if (capsule != null)
+//            {
+//                m_CapsuleAnimator = capsule.transform.GetChild(0).gameObject.GetComponent<Animator>();
+//                m_CapsuleAnimator.enabled = true;
+//                if (m_CapsuleAnimator.isActiveAndEnabled)
+//                {
+//                    m_CapsuleAnimator.Play(curCharm >= maxCharm && isCapsuleShake ? "capsule_unlocked" : "capsule_in_nolight");
+//                }
+//            }
+//        }
 
         public void OnEnergyUpdate(bool isUpdate = false, Action callFunc = null)
         {

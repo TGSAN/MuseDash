@@ -1,6 +1,7 @@
 ﻿using FormulaBase;
 using GameLogic;
 using System.Collections;
+using Spine.Unity;
 using UnityEngine;
 
 public abstract class BaseEnemyObjectController : BaseSpineObjectController

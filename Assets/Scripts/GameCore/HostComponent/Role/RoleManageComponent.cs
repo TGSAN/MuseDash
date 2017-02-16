@@ -65,7 +65,7 @@ namespace FormulaBase
             return count;
         }
 
-        public int GetChoseRoleIdx()
+/*        public int GetChoseRoleIdx()
         {
             var idx = 1;
             foreach (var formulaHost in HostList.Values)
@@ -77,12 +77,12 @@ namespace FormulaBase
                 }
             }
             return idx;
-        }
+        } 
 
         public FormulaHost GetChoseGirl()
         {
             return GetRole(GetChoseRoleIdx());
-        }
+        }*/
 
         public FormulaHost GetRole(string name)
         {
@@ -122,10 +122,10 @@ namespace FormulaBase
             //初始化角色信息
             UpdateRoleInfo(hostList);
             // 初始化战斗角色
-            this.SetFightGirlIndex(GetChoseRoleIdx(), () =>
-            {
-                this.SetFightGirlCallBack(null);
-            });
+//            this.SetFightGirlIndex(GetChoseRoleIdx(), () =>
+//            {
+//                this.SetFightGirlCallBack(null);
+//            });
             this.SetFightGirlClothByOrder(1);
         }
 
@@ -216,20 +216,20 @@ namespace FormulaBase
             Exp = 0;
             Cost = 0;
             FormulaHost tempEquip = new FormulaHost(HOST_IDX);
-            List<FormulaHost> tList = ItemManageComponent.Instance.GetChosedItem;
-            for (int i = 0, max = tList.Count; i < max; i++)
-            {
-                FormulaHost _item = tList[i];
-                if (_item == null)
-                {
-                    continue;
-                }
-
-                /*
-                Exp += (int)_item.Result(FormulaKeys.FORMULA_40) * _item.GetDynamicIntByKey(SignKeys.CHOSED);
-                Cost += (int)_item.Result(FormulaKeys.FORMULA_41) * _item.GetDynamicIntByKey(SignKeys.CHOSED);
-                */
-            }
+//            List<FormulaHost> tList = ItemManageComponent.Instance.GetChosedItem;
+//            for (int i = 0, max = tList.Count; i < max; i++)
+//            {
+//                FormulaHost _item = tList[i];
+//                if (_item == null)
+//                {
+//                    continue;
+//                }
+//
+//                /*
+//                Exp += (int)_item.Result(FormulaKeys.FORMULA_40) * _item.GetDynamicIntByKey(SignKeys.CHOSED);
+//                Cost += (int)_item.Result(FormulaKeys.FORMULA_41) * _item.GetDynamicIntByKey(SignKeys.CHOSED);
+//                */
+//            }
         }
 
         /// <summary>
@@ -402,9 +402,9 @@ namespace FormulaBase
             {
                 CommonPanel.GetInstance().ShowWaittingPanel();
             }
-            if (PnlAdventure.PnlAdventure.Instance != null)
+            if (PnlHome.PnlHome.Instance != null)
             {
-                PnlAdventure.PnlAdventure.Instance.ChoseGirl();
+				PnlHome.PnlHome.Instance.ChoseGirl();
             }
             if (_callBack != null)
             {
@@ -602,20 +602,20 @@ namespace FormulaBase
             description = (string)cos["description"];
             owner = ((string)cos["owner"]).ToLower();
 
-            var allEquips = EquipManageComponent.Instance.GetGirlEquipHosts(RoleManageComponent.Instance.GetID(owner), 0).ToList();
-            var idxList = new List<int>();
-            allEquips.ForEach(equip =>
-            {
-                if (equip.GetDynamicStrByKey(SignKeys.SUIT) == name)
-                {
-                    var idx = equip.GetDynamicIntByKey(SignKeys.ID);
-                    if (!idxList.Contains(idx))
-                    {
-                        idxList.Add(idx);
-                        host.Add(equip);
-                    }
-                }
-            });
+//            var allEquips = EquipManageComponent.Instance.GetGirlEquipHosts(RoleManageComponent.Instance.GetID(owner), 0).ToList();
+//            var idxList = new List<int>();
+//            allEquips.ForEach(equip =>
+//            {
+//                if (equip.GetDynamicStrByKey(SignKeys.SUIT) == name)
+//                {
+//                    var idx = equip.GetDynamicIntByKey(SignKeys.ID);
+//                    if (!idxList.Contains(idx))
+//                    {
+//                        idxList.Add(idx);
+//                        host.Add(equip);
+//                    }
+//                }
+//            });
             isLock = host.Count < 3;
             if (uid % 10 == 0)
             {
@@ -637,21 +637,21 @@ namespace FormulaBase
                 description = (string)cos["description"];
                 owner = ((string)cos["owner"]).ToLower();
 
-                var allEquips = EquipManageComponent.Instance.GetGirlEquipHosts(RoleManageComponent.Instance.GetID(owner), 0).ToList();
-                var count = 0;
-                allEquips.ForEach(equip =>
-                {
-                    if (equip.GetDynamicStrByKey(SignKeys.SUIT) == name)
-                    {
-                        count++;
-                    }
-                });
-                isLock = count < 3;
-                if (uid % 10 == 0)
-                {
-                    isLock = false;
-                }
-                break;
+//                var allEquips = EquipManageComponent.Instance.GetGirlEquipHosts(RoleManageComponent.Instance.GetID(owner), 0).ToList();
+//                var count = 0;
+//                allEquips.ForEach(equip =>
+//                {
+//                    if (equip.GetDynamicStrByKey(SignKeys.SUIT) == name)
+//                    {
+//                        count++;
+//                    }
+//                });
+//                isLock = count < 3;
+//                if (uid % 10 == 0)
+//                {
+//                    isLock = false;
+//                }
+//                break;
             }
         }
 
@@ -669,21 +669,21 @@ namespace FormulaBase
                 description = (string)cos["description"];
                 owner = ((string)cos["owner"]).ToLower();
 
-                var allEquips = EquipManageComponent.Instance.GetGirlEquipHosts(RoleManageComponent.Instance.GetID(owner), 0).ToList();
-                var count = 0;
-                allEquips.ForEach(equip =>
-                {
-                    if (equip.GetDynamicStrByKey(SignKeys.SUIT) == name)
-                    {
-                        count++;
-                    }
-                });
-                isLock = count < 3;
-                if (uid % 10 == 0)
-                {
-                    isLock = false;
-                }
-                break;
+//                var allEquips = EquipManageComponent.Instance.GetGirlEquipHosts(RoleManageComponent.Instance.GetID(owner), 0).ToList();
+//                var count = 0;
+//                allEquips.ForEach(equip =>
+//                {
+//                    if (equip.GetDynamicStrByKey(SignKeys.SUIT) == name)
+//                    {
+//                        count++;
+//                    }
+//                });
+//                isLock = count < 3;
+//                if (uid % 10 == 0)
+//                {
+//                    isLock = false;
+//                }
+//                break;
             }
         }
     }

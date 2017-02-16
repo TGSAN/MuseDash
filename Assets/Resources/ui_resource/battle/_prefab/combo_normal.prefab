@@ -5,13 +5,13 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 427498}
-  - 33: {fileID: 3310690}
-  - 23: {fileID: 2386930}
-  - 114: {fileID: 11435494}
-  - 114: {fileID: 11497640}
+  - component: {fileID: 427498}
+  - component: {fileID: 3310690}
+  - component: {fileID: 2386930}
+  - component: {fileID: 11435494}
+  - component: {fileID: 11497640}
   m_Layer: 5
   m_Name: combo_normal
   m_TagString: Untagged
@@ -28,10 +28,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -2.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2386930
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -46,7 +46,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 43e2dcb607ee14a0eb6d065bd2d78cc2, type: 2}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -54,7 +56,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -76,22 +78,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 108552}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+  m_Script: {fileID: 11500000, guid: cd9e86a340006ee4e938b09baba4e36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 11400000, guid: be86b9b033b1a4ae0ba8c7b2cfea7665, type: 2}
   initialSkinName: default
-  calculateNormals: 0
-  calculateTangents: 0
+  separatorSlotNames: []
   zSpacing: 0
   renderMeshes: 1
   immutableTriangles: 0
-  frontFacing: 0
+  pmaVertexColors: 1
+  clearStateOnDisable: 0
+  calculateNormals: 0
+  calculateTangents: 0
   logErrors: 0
-  submeshSeparators: []
-  timeScale: 1
-  loop: 0
+  disableRenderingOnOverride: 1
   _animationName: 
+  loop: 0
+  timeScale: 1
 --- !u!114 &11497640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,6 +131,13 @@ MonoBehaviour:
     actionEventIdx: 05000000000000000000000000000000000000000000000000000000000000000000000000000000
   actionMode: 0
   startDelay: 1.2
+  duration: 0
+  lengthRate: 0
+  rendererPreb: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  clipEffect: {fileID: 0}
+  rotateRuration: 1
+  clipParticles: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

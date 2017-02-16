@@ -49,7 +49,7 @@ namespace FormulaBase
 
         public void DeletePlayerData(HttpEndResponseDelegate _callBack)
         {
-            ItemManageComponent.Instance.GetItemTimeId = 0;
+//            ItemManageComponent.Instance.GetItemTimeId = 0;
             FomulaHostManager.Instance.DeleteAllHost(_callBack);
         }
 
@@ -58,7 +58,7 @@ namespace FormulaBase
             var capsuleStr = Host.GetDynamicStrByKey(SignKeys.CAPSULE);
             if (capsuleStr == "0" || string.IsNullOrEmpty(capsuleStr))
             {
-                capsuleStr = Capsule.ConfigToString();
+//                capsuleStr = Capsule.ConfigToString();
                 SetCapsuleStr(capsuleStr);
             }
             return capsuleStr;

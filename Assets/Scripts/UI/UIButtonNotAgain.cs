@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Assets.Scripts.Common;
 using UnityEngine;
 
 public class UIButtonNotAgain : MonoBehaviour

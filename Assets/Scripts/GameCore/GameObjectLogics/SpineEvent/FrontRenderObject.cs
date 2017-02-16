@@ -9,10 +9,11 @@
 // ------------------------------------------------------------------------------
 using System;
 using UnityEngine;
+using Spine;
 
 namespace GameLogic {
 	public class FrontRenderObject : DoNothing {
-		public override void Do (Spine.AnimationState state, int trackIndex, int loopCount) {
+		public override void Do (TrackEntry entry) {
 			MeshRenderer render = this.gameObject.GetComponent<MeshRenderer> ();
 			if (render == null) {
 				return;

@@ -29,7 +29,7 @@ namespace FormulaBase {
 
 		public void LevelUpCallBack(bool _success) {
 			if (_success) {
-				Messenger.Broadcast (CharactorPanel2.BroadCast_SetHeroData, RoleManageComponent.Instance.GetRole ());
+//				Messenger.Broadcast (CharactorPanel2.BroadCast_SetHeroData, RoleManageComponent.Instance.GetRole ());
 			} else {
 				CommonPanel.GetInstance ().ShowText ("connect is fail");
 			}

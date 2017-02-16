@@ -79,22 +79,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 190260}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+  m_Script: {fileID: 11500000, guid: cd9e86a340006ee4e938b09baba4e36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 11400000, guid: 1c1ea07e62e506242ab95d858b60b6a0, type: 2}
-  initialSkinName: default
-  calculateNormals: 0
-  calculateTangents: 0
+  initialSkinName: 
+  separatorSlotNames: []
   zSpacing: 0
   renderMeshes: 1
   immutableTriangles: 0
-  frontFacing: 0
+  pmaVertexColors: 1
+  clearStateOnDisable: 0
+  calculateNormals: 0
+  calculateTangents: 0
   logErrors: 0
-  submeshSeparators: []
-  timeScale: 1
-  loop: 0
+  disableRenderingOnOverride: 1
   _animationName: 
+  loop: 0
+  timeScale: 1
 --- !u!114 &11480166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,6 +142,13 @@ MonoBehaviour:
     actionEventIdx: 01000000010000000000000000000000000000000000000000000000000000000000000000000000
   actionMode: 0
   startDelay: 1
+  duration: 0
+  lengthRate: 0
+  rendererPreb: {fileID: 0}
+  destroyEffect: {fileID: 0}
+  clipEffect: {fileID: 0}
+  rotateRuration: 1
+  clipParticles: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

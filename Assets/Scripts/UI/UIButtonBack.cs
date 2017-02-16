@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Smart.Extensions;
+using Assets.Scripts.Common;
 using UnityEngine;
 
 namespace Assets.Scripts.UI

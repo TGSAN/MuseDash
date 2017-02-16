@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23319398014313228}
   - component: {fileID: 114847477075323384}
   m_Layer: 0
-  m_Name: Renderer
+  m_Name: renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,22 +118,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1069401333770404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+  m_Script: {fileID: 11500000, guid: cd9e86a340006ee4e938b09baba4e36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 11400000, guid: 040adc87b85c7ab4ebe3999832562451, type: 2}
   initialSkinName: default
-  calculateNormals: 0
-  calculateTangents: 0
+  separatorSlotNames: []
   zSpacing: 0
   renderMeshes: 1
   immutableTriangles: 0
-  frontFacing: 0
+  pmaVertexColors: 1
+  clearStateOnDisable: 0
+  calculateNormals: 0
+  calculateTangents: 0
   logErrors: 0
-  submeshSeparators: []
-  timeScale: 1
-  loop: 1
+  disableRenderingOnOverride: 1
   _animationName: standby_5S
+  loop: 0
+  timeScale: 1
 --- !u!212 &212718526353385990
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -29,7 +29,7 @@ namespace FormulaBase
             {
                 m_IsAdd = false;
                 //PnlMainMenu.PnlMainMenu.Instance.exp.FlyAll();
-                PnlMainMenu.PnlMainMenu.Instance.OnExpUpdate();
+//                PnlMainMenu.PnlMainMenu.Instance.OnExpUpdate();
             }
         }
 
