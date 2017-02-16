@@ -119,23 +119,6 @@ namespace Assets.Scripts.Tools.PRHelper.Editor
             base.OnInspectorGUI();
         }
 
-        [Inspector]
-        private void NewPRNode()
-        {
-            var pRHelper = (Tools.PRHelper.PRHelper)target;
-
-            pRHelper.isNewNode = !pRHelper.isNewNode;
-
-            if (pRHelper.isNewNode)
-            {
-                ShowGroup("Create New Node");
-            }
-            else
-            {
-                HideGroup("Create New Node");
-            }
-        }
-
         [Inspector(@group = "Create New Node")]
         public void CreateNode()
         {

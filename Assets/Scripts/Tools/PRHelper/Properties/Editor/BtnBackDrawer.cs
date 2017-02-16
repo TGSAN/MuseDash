@@ -20,9 +20,9 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
 
             var pnlNames = UIManager.instance.pnlNames;
             rect = EditorUtils.MakePopupField(property, "curPnlName", new GUIContent("Current Panel Name"),
-                pnlNames, rect, m_Gap, m_Height, null, "None");
+                pnlNames, rect, m_Gap, m_Height, false, null, "None");
             rect = EditorUtils.MakePopupField(property, "nextPnlName", new GUIContent("Next Panel Name"),
-               pnlNames, rect, m_Gap, m_Height, null, "None");
+               pnlNames, rect, m_Gap, m_Height, false, null, "None");
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

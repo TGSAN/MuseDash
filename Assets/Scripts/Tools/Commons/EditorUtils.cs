@@ -6,27 +6,27 @@ namespace Assets.Scripts.Tools.Commons
 {
     public class EditorUtils
     {
-        public static Rect MakePopupField(SerializedProperty property, string pptName, GUIContent contentName, string[] strs, Rect rect, float gap, float height, GUIStyle style = null, params string[] others)
+        public static Rect MakePopupField(SerializedProperty property, string pptName, GUIContent contentName, string[] strs, Rect rect, float gap, float height, bool isEnum = false, GUIStyle style = null, params string[] others)
         {
             rect = new Rect(rect.x, rect.y + height + gap, rect.width, rect.height);
             var contents = EditorUtils.GetGUIContentArray(strs, others);
             var nameProperty = property.FindPropertyRelative(pptName);
-            var idx = strs.ToList().FindIndex(s => s == nameProperty.stringValue);
+            var idx = isEnum ? nameProperty.enumValueIndex : strs.ToList().FindIndex(s => s == nameProperty.stringValue);
             idx = idx == -1 ? contents.Length - 1 : idx;
 
             var nameIdx = 0;
-            if (style == null)
-            {
-                nameIdx = EditorGUI.Popup(rect, contentName, idx, contents);
-            }
-            else
-            {
-                nameIdx = EditorGUI.Popup(rect, contentName, idx, contents, style);
-            }
+            nameIdx = style == null ? EditorGUI.Popup(rect, contentName, idx, contents) : EditorGUI.Popup(rect, contentName, idx, contents, style);
 
             if (nameIdx < contents.Length)
             {
-                nameProperty.stringValue = contents[nameIdx].text;
+                if (isEnum)
+                {
+                    nameProperty.enumValueIndex = nameIdx;
+                }
+                else
+                {
+                    nameProperty.stringValue = contents[nameIdx].text;
+                }
             }
             return rect;
         }

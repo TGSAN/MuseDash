@@ -51,7 +51,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
 
             var btnNames = UIManager.instance[property.FindPropertyRelative("pnlName").stringValue].GetComponentsInChildren<Button>().ToList().Select(b => b.gameObject.name).ToArray();
             rect = EditorUtils.MakePopupField(property, "shutButtonName", new GUIContent("Shut Button"),
-                btnNames, rect, m_Gap, m_Height, null, "None");
+                btnNames, rect, m_Gap, m_Height, false, null, "None");
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
