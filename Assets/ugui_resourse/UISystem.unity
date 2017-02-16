@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -977,6 +977,32 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: -310
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114390513449620286, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].nodeType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114390513449620286, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].textBinding.name
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 114390513449620286, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].textBinding.jsonName
+      value: config/daily_task.json
+      objectReference: {fileID: 0}
+    - target: {fileID: 114390513449620286, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].textBinding.jsonPath
+      value: config/upgrade_info.json
+      objectReference: {fileID: 0}
+    - target: {fileID: 114390513449620286, guid: 137daa7bb5a194580a431f4e0395c4ca,
+        type: 2}
+      propertyPath: nodes.Array.data[0].textBinding.jsonKey
+      value: cool
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114116596538739674, guid: 137daa7bb5a194580a431f4e0395c4ca, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 137daa7bb5a194580a431f4e0395c4ca, type: 2}
   m_IsPrefabParent: 0

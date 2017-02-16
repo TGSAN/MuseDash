@@ -1,10 +1,36 @@
-﻿using UnityEditor;
+﻿using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.Tools.Commons
 {
     public class EditorUtils
     {
+        public static Rect MakePopupField(SerializedProperty property, string pptName, GUIContent contentName, string[] strs, Rect rect, float gap, float height, GUIStyle style = null, params string[] others)
+        {
+            rect = new Rect(rect.x, rect.y + height + gap, rect.width, rect.height);
+            var contents = EditorUtils.GetGUIContentArray(strs, others);
+            var nameProperty = property.FindPropertyRelative(pptName);
+            var idx = strs.ToList().FindIndex(s => s == nameProperty.stringValue);
+            idx = idx == -1 ? contents.Length - 1 : idx;
+
+            var nameIdx = 0;
+            if (style == null)
+            {
+                nameIdx = EditorGUI.Popup(rect, contentName, idx, contents);
+            }
+            else
+            {
+                nameIdx = EditorGUI.Popup(rect, contentName, idx, contents, style);
+            }
+
+            if (nameIdx < contents.Length)
+            {
+                nameProperty.stringValue = contents[nameIdx].text;
+            }
+            return rect;
+        }
+
         public static Rect MakeLabelField(GUIContent content, Rect rect, float gap, float height, GUIStyle style = null)
         {
             rect = new Rect(rect.x, rect.y + height + gap, rect.width, rect.height);

@@ -1,12 +1,16 @@
-﻿namespace Assets.Scripts.Common
+﻿using UnityEngine;
+
+namespace Assets.Scripts.Common
 {
     public class StringCommons
     {
         public const string PRPRToolHead = "PRPR Studio Tools/";
         public const string ResourcesPathInAssets = "Assets/Resources/";
-        public const string ConfigPoolMenuItem = PRPRToolHead + "Packager/Package Json Configs";
-        public const string ConfigPoolPathInResources = "Configs/Json Configs";
-        public const string ConfigPoolPathInAssets = ResourcesPathInAssets + ConfigPoolPathInResources + ".asset";
+        public const string ResourcesPathInApp = "Assets/Resources/";
+        public const string ConfigManagerMenuItem = PRPRToolHead + "Packager/Package Json Configs";
+        public const string ConfigManagerConfigPoolPathInResources = "Configs/";
+        public const string ConfigManagerInResources = ConfigManagerConfigPoolPathInResources + "Config";
+        public const string ConfigManagerPathInAssets = ResourcesPathInAssets + ConfigManagerConfigPoolPathInResources + "Config.asset";
         public const string PRNodePathInAssets = "/Scripts/Tools/PRHelper/Properties";
         public const string PRNodeDrawerPathInAssets = PRNodePathInAssets + "/Editor";
 

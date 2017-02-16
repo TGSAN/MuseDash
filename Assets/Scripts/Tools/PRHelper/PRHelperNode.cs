@@ -25,6 +25,8 @@ namespace Assets.Scripts.Tools.PRHelper
 
         public PREvents pREvents = new PREvents();
 
+        public TextBinding textBinding;
+
         public void Play()
         {
             var myType = GetType();
@@ -37,14 +39,16 @@ namespace Assets.Scripts.Tools.PRHelper
 
         public void Init(GameObject go)
         {
-            if (pREvents == null) pREvents = new PREvents();
-            pREvents.Init(go);
-            if (btnBack != null) btnBack.Init(go);
             var e = PRHelper.OnEvent(go, PREvents.EventType.OnButtonClick);
             e.AddListener(obj =>
             {
                 Play();
             });
+
+            if (pREvents == null) pREvents = new PREvents();
+            pREvents.Init(go);
+
+            if (btnBack != null) btnBack.Init(go);
         }
     }
 }
