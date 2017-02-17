@@ -53,7 +53,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
 
         public List<PREvent> events = new List<PREvent>();
 
-        public void Play()
+        public void Play(GameObject go)
         {
             Debug.Log("Play Event");
         }
@@ -69,10 +69,13 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
                     case EventType.OnButtonClick:
                         {
                             var theEvent = e;
-                            e.button.onClick.AddListener(() =>
+                            if (e.button != null)
                             {
-                                theEvent.unityEvent.Invoke(null);
-                            });
+                                e.button.onClick.AddListener(() =>
+                                {
+                                    theEvent.unityEvent.Invoke(null);
+                                });
+                            }
                         }
                         break;
                 }

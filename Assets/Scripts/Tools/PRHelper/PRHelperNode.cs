@@ -25,26 +25,37 @@ namespace Assets.Scripts.Tools.PRHelper
 
         public PREvents pREvents = new PREvents();
 
-        public void Play()
+        public TextBinding textBinding;
+
+        public void Play(GameObject go)
         {
             var myType = GetType();
             var nodeTypeStr = myType.GetField("nodeType").GetValue(this).ToString();
             nodeTypeStr = StringUtils.LastAfter(nodeTypeStr, '_');
             nodeTypeStr = StringUtils.FirstToLower(nodeTypeStr);
             var node = myType.GetField(nodeTypeStr).GetValue(this);
-            node.GetType().GetMethod("Play").Invoke(node, null);
+            node.GetType().GetMethod("Play").Invoke(node, new object[] { go });
         }
 
         public void Init(GameObject go)
         {
+            PRHelper.OnEvent(go, PREvents.EventType.OnButtonClick).AddListener(obj =>
+            {
+                Play(go);
+            });
+
+            if (textBinding != null && !string.IsNullOrEmpty(textBinding.name))
+            {
+                PRHelper.OnEvent(go, PREvents.EventType.OnUpdate).AddListener(obj =>
+                {
+                    Play(go);
+                });
+            }
+
             if (pREvents == null) pREvents = new PREvents();
             pREvents.Init(go);
+
             if (btnBack != null) btnBack.Init(go);
-            var e = PRHelper.OnEvent(go, PREvents.EventType.OnButtonClick);
-            e.AddListener(obj =>
-            {
-                Play();
-            });
         }
     }
 }

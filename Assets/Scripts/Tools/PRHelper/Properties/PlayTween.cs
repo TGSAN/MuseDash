@@ -8,7 +8,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
     {
         public TweenType tweenType;
 
-        public void Play()
+        public void Play(GameObject go)
         {
             Debug.Log("Play Tween");
         }

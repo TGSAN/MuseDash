@@ -28,7 +28,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
         public bool hasStart = false, hasPlaying = false, hasFinish = false;
         public UnityEventGameObject onAnimationStart, onAnimationPlaying, onAnimationFinish;
 
-        public void Play()
+        public void Play(GameObject go)
         {
             if (animator != null && !string.IsNullOrEmpty(stateName))
             {

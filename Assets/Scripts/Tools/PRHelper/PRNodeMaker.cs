@@ -22,7 +22,9 @@ namespace Assets.Scripts.Tools.PRHelper
         private static string GenerateMainCode(string nodeName)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("namespace Assets.Scripts.Tool.PRHelper.Properties");
+            sb.Append("using System;");
+            sb.Append(Environment.NewLine);
+            sb.Append("namespace Assets.Scripts.Tools.PRHelper.Properties");
             sb.Append(Environment.NewLine);
             sb.Append("{");
             sb.Append(Environment.NewLine);
@@ -54,7 +56,7 @@ namespace Assets.Scripts.Tools.PRHelper
             sb.Append(Environment.NewLine);
             sb.Append("using UnityEngine;");
             sb.Append(Environment.NewLine);
-            sb.Append("namespace Assets.Scripts.Tool.PRHelper.Properties.Editor");
+            sb.Append("namespace Assets.Scripts.Tools.PRHelper.Properties.Editor");
             sb.Append(Environment.NewLine);
             sb.Append("{");
             sb.Append(Environment.NewLine);

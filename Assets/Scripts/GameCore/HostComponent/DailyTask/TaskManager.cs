@@ -125,7 +125,7 @@ namespace FormulaBase
 
         public void Init()
         {
-            ResourceLoader.Instance.Load("config/task", res =>
+            ResourceLoader.Instance.Load("config/daily_task", res =>
             {
                 var txt = res as TextAsset;
                 if (txt != null)
