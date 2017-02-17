@@ -31,7 +31,7 @@ namespace Assets.Scripts.Tools.PRHelper
 
         public void Play(string key)
         {
-            this[key].Play();
+            this[key].Play(gameObject);
         }
 
         #region static Func

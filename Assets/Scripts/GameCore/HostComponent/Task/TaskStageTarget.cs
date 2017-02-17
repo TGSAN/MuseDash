@@ -299,7 +299,7 @@ namespace FormulaBase
         public FormulaHost GetStageByIdx(int idx)
         {
             var hostList = HostList ?? GetList("Task");
-            return hostList.Values.FirstOrDefault(formulaHost => formulaHost.GetDynamicIntByKey(SignKeys.ID) == idx);
+            return hostList.Values.ToList().Find(formulaHost => formulaHost.GetDynamicIntByKey(SignKeys.ID) == idx);
         }
 
         /// <summary>
@@ -1680,6 +1680,13 @@ namespace FormulaBase
             }
 
             return this.Host.GetDynamicIntByKey(TASK_SIGNKEY_STAGE_CLEAR_COUNT);
+        }
+
+        public int GetStageClearCount(int idx)
+        {
+            var host = GetStageByIdx(idx);
+            if (host == null) return 0;
+            return host.GetDynamicIntByKey(TASK_SIGNKEY_STAGE_CLEAR_COUNT);
         }
 
         /// <summary>

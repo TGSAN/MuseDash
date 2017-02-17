@@ -9,7 +9,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
         public AudioClip audioClip;
         public bool isPlay;
 
-        public void Play()
+        public void Play(GameObject go)
         {
             Debug.Log("Play Audio");
             //doTweenAnimation.DOPlay();

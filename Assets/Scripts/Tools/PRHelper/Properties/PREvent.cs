@@ -53,7 +53,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
 
         public List<PREvent> events = new List<PREvent>();
 
-        public void Play()
+        public void Play(GameObject go)
         {
             Debug.Log("Play Event");
         }

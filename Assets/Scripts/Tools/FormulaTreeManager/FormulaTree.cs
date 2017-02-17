@@ -15,7 +15,7 @@ namespace Assets.Scripts.Tools.FormulaTreeManager
         {
             get
             {
-                m_Instance = m_Instance ?? (m_Instance = ResourcesLoader<FormulaTree>.Load(StringCommons.FormulaTreePathInResources));
+                m_Instance = m_Instance ?? (m_Instance = ResourcesLoader.Load<FormulaTree>(StringCommons.FormulaTreePathInResources));
                 return m_Instance ?? ScriptableObject.CreateInstance<FormulaTree>();
             }
         }

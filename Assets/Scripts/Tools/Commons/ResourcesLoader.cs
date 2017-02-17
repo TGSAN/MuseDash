@@ -2,9 +2,9 @@
 
 namespace Assets.Scripts.Tools.Commons
 {
-    public class ResourcesLoader<T> where T : Object
+    public class ResourcesLoader
     {
-        public static T Load(string path)
+        public static T Load<T>(string path) where T : Object
         {
             var obj = Resources.Load(path);
             return obj as T;

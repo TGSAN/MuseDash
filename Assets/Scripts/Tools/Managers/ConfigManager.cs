@@ -22,8 +22,13 @@ namespace Assets.Scripts.Tools.Managers
             get
             {
                 var path = StringUtils.BeginBefore(configs.Find(c => c.fileName == idx).path, '.');
-                var data = ResourcesLoader<TextAsset>.Load(path).text;
-                return JsonMapper.ToObject(data);
+                var txt = ResourcesLoader.Load<TextAsset>(path);
+                if (txt != null)
+                {
+                    var data = txt.text;
+                    return JsonMapper.ToObject(data);
+                }
+                return null;
             }
         }
 
@@ -31,7 +36,7 @@ namespace Assets.Scripts.Tools.Managers
         {
             get
             {
-                m_Instance = m_Instance ?? (m_Instance = ResourcesLoader<ConfigManager>.Load(StringCommons.ConfigManagerInResources));
+                m_Instance = m_Instance ?? (m_Instance = ResourcesLoader.Load<ConfigManager>(StringCommons.ConfigManagerInResources));
                 return m_Instance;
             }
         }

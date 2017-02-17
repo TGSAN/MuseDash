@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,12 +8,47 @@ namespace Assets.Scripts.Tools.Commons
 {
     public class EditorUtils
     {
-        public static Rect MakePopupField(SerializedProperty property, string pptName, GUIContent contentName, string[] strs, Rect rect, float gap, float height, bool isEnum = false, GUIStyle style = null, params string[] others)
+        public static Rect MakeObjectField(GameObject go, SerializedProperty property, string pptName, GUIContent contentName, Rect rect, float gap, float height, bool isEnum = false, GUIStyle style = null, params string[] others)
+        {
+            var names = new List<string>();
+            var asType = typeof(string);
+            if (go != null)
+            {
+                var allMono = go.GetComponents<MonoBehaviour>().ToList();
+                allMono.ForEach(m =>
+                {
+                    var type = m.GetType();
+                    var allField = type.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                    names.AddRange(allField.Select(f =>
+                    {
+                        var field = f.IsPrivate ? "private/" : "public/";
+                        return type.Name + "/" + field + f.Name;
+                    }).ToArray());
+                });
+            }
+
+            var allPpt = typeof(GameObject).GetProperties(BindingFlags.Instance | BindingFlags.Public).Where(p => !p.GetIndexParameters().Any<ParameterInfo>() && asType.IsAssignableFrom(p.PropertyType));
+            names.AddRange(allPpt.Select(p => "GameObject/" + p.Name).ToArray());
+
+            rect = EditorUtils.MakePopupField(property, pptName, contentName,
+            names.ToArray(), rect, gap, height, isEnum, style, false, others);
+            return rect;
+        }
+
+        public static Rect MakePopupField(SerializedProperty property, string pptName, GUIContent contentName, string[] strs, Rect rect, float gap, float height, bool isEnum = false, GUIStyle style = null, bool underline = false, params string[] others)
         {
             rect = new Rect(rect.x, rect.y + height + gap, rect.width, rect.height);
-            var contents = EditorUtils.GetGUIContentArray(strs, others);
+
             var nameProperty = property.FindPropertyRelative(pptName);
             var idx = isEnum ? nameProperty.enumValueIndex : strs.ToList().FindIndex(s => s == nameProperty.stringValue);
+            if (underline)
+            {
+                for (int i = 0; i < strs.Length; i++)
+                {
+                    strs[i] = strs[i].Replace("_", "/");
+                }
+            }
+            var contents = EditorUtils.GetGUIContentArray(strs, others);
             idx = idx == -1 ? contents.Length - 1 : idx;
 
             var nameIdx = 0;
@@ -25,6 +62,13 @@ namespace Assets.Scripts.Tools.Commons
                 }
                 else
                 {
+                    if (underline)
+                    {
+                        foreach (GUIContent t in contents)
+                        {
+                            t.text = t.text.Replace("/", "_");
+                        }
+                    }
                     nameProperty.stringValue = contents[nameIdx].text;
                 }
             }
