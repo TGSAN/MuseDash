@@ -32,7 +32,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
         public bool shut;
         public string shutButtonName;
 
-        public void Play()
+        public void Play(GameObject go)
         {
             var gameObject = UIManager.instance[pnlName];
             gameObject.SetActive(true);

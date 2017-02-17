@@ -102,6 +102,7 @@ namespace Assets.Scripts.NewUI
             foreach (var pnlGameObject in m_PnlGameObjects)
             {
                 var go = pnlGameObject;
+
                 Tools.PRHelper.PRHelper.OnEvent(pnlGameObject, PREvents.EventType.OnDisable).AddListener(g =>
                 {
                     Push(go);

@@ -21,16 +21,8 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
             {
                 return;
             }
-            rect = new Rect(rect.x, rect.y + m_Height + m_Gap, rect.width, rect.height);
-            var pnlContents = EditorUtils.GetGUIContentArray(pnlNames);
-            var nameProperty = property.FindPropertyRelative("pnlName");
-            var idx = pnlNames.ToList().FindIndex(p => p == nameProperty.stringValue);
-            idx = idx == -1 ? 0 : idx;
-            var nameIdx = EditorGUI.Popup(rect, new GUIContent("Popup Panel Name"), idx, pnlContents);
-            if (nameIdx < pnlNames.Length)
-            {
-                nameProperty.stringValue = pnlNames[nameIdx];
-            }
+            rect = EditorUtils.MakePopupField(property, "pnlName", new GUIContent("Popup Panel Name"),
+                pnlNames, rect, m_Gap, m_Height);
 
             rect = EditorUtils.MakeLabelField(new GUIContent("In"), rect, m_Gap, m_Height, PRHelperEditor.skin.GetStyle("Bold"));
             rect = EditorUtils.MakePropertyField("inDistance", property, rect, m_Gap, m_Height, new GUIContent("Distance"));
@@ -57,17 +49,9 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
             rect = EditorUtils.MakeLabelField(new GUIContent("Blur", "Invalid"), rect, m_Gap, m_Height);
             rect = EditorUtils.MakePropertyField("shut", property, rect, m_Gap, m_Height);
 
-            rect = new Rect(rect.x, rect.y + m_Height + m_Gap, rect.width, rect.height);
-            var btnNamePpt = property.FindPropertyRelative("shutButtonName");
-            var btnNames = UIManager.instance[nameProperty.stringValue].GetComponentsInChildren<Button>().ToList().Select(b => b.gameObject.name).ToArray();
-            var btnContents = EditorUtils.GetGUIContentArray(btnNames, "None");
-            var btnIdx = btnNames.ToList().FindIndex(s => s == btnNamePpt.stringValue);
-            btnIdx = btnIdx == -1 ? btnContents.Length - 1 : btnIdx;
-            btnIdx = EditorGUI.Popup(rect, new GUIContent("Shut Button"), btnIdx, btnContents);
-            if (btnIdx <= btnNames.Length)
-            {
-                btnNamePpt.stringValue = btnContents[btnIdx].text;
-            }
+            var btnNames = UIManager.instance[property.FindPropertyRelative("pnlName").stringValue].GetComponentsInChildren<Button>().ToList().Select(b => b.gameObject.name).ToArray();
+            rect = EditorUtils.MakePopupField(property, "shutButtonName", new GUIContent("Shut Button"),
+                btnNames, rect, m_Gap, m_Height, false, null, false, "None");
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
