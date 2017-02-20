@@ -16,20 +16,20 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
     {
         public string pnlName;
 
-        public float inTime;
-        public float inDistance;
-        public Ease moveInEase;
-        public bool isFadeIn;
-        public Ease fadeInEase;
+        public float inTime = 0.4f;
+        public float inDistance = 200;
+		public Ease moveInEase = Ease.OutElastic;
+		public bool isFadeIn = true;
+		public Ease fadeInEase = Ease.Linear;
 
-        public float outTime;
-        public float outDistance;
-        public Ease moveOutEase;
-        public bool isFadeOut;
-        public Ease fadeOutEase;
+        public float outTime = 0.4f;
+        public float outDistance = 200;
+		public Ease moveOutEase = Ease.InExpo;
+		public bool isFadeOut = true;
+		public Ease fadeOutEase = Ease.Linear;
 
         public Color color;
-        public bool shut;
+		public bool shut = true;
         public string shutButtonName;
 
         public void Play(GameObject go)
