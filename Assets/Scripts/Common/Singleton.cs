@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.Common
@@ -90,7 +89,7 @@ namespace Assets.Scripts.Common
             }
         }
     }
-
+	/*
     public class SingtonEditor<T> : EditorWindow where T : EditorWindow
     {
         private static T m_Instance;
@@ -114,4 +113,5 @@ namespace Assets.Scripts.Common
             }
         }
     }
+    */
 }

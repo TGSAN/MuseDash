@@ -11,7 +11,10 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
 
         public void Play()
         {
-            go.SetActive(isActive);
+			if (go != null) {
+				go.SetActive(isActive);
+			}
+           
         }
     }
 }
