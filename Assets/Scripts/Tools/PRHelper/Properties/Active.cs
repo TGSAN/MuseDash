@@ -6,15 +6,12 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
     [Serializable]
     public class Active
     {
-        public GameObject go;
+        public GameObject gameObject;
         public bool isActive;
 
-        public void Play()
+        public void Play(GameObject go)
         {
-			if (go != null) {
-				go.SetActive(isActive);
-			}
-           
+            gameObject.SetActive(isActive);
         }
     }
 }

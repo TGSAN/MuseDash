@@ -40,7 +40,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
             }
         }
 
-        public void Play()
+        public void Play(GameObject go)
         {
         }
     }

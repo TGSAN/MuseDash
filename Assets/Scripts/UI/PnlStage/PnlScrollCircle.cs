@@ -373,11 +373,14 @@ namespace Assets.Scripts.NGUI
                 for (int i = 0; i < m_StageInfos.Count; i++)
                 {
                     var theAngle = i * 40f;
-                    m_GradientDics.Add(theAngle, gradients[idx]);
-                    idx++;
-                    if (idx >= gradients.Count)
+                    if (gradients != null)
                     {
-                        idx = 0;
+                        m_GradientDics.Add(theAngle, gradients[idx]);
+                        idx++;
+                        if (idx >= gradients.Count)
+                        {
+                            idx = 0;
+                        }
                     }
                 }
             }

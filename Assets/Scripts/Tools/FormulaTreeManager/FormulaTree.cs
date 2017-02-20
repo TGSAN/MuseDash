@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Common;
+using Assets.Scripts.Tools.Commons;
 using UnityEngine;
 
 namespace Assets.Scripts.Tools.FormulaTreeManager
@@ -14,7 +15,7 @@ namespace Assets.Scripts.Tools.FormulaTreeManager
         {
             get
             {
-                m_Instance = m_Instance ?? (m_Instance = Resources.Load<FormulaTree>(StringCommons.FormulaTreePathInResources));
+                m_Instance = m_Instance ?? (m_Instance = ResourcesLoader.Load<FormulaTree>(StringCommons.FormulaTreePathInResources));
                 return m_Instance ?? ScriptableObject.CreateInstance<FormulaTree>();
             }
         }

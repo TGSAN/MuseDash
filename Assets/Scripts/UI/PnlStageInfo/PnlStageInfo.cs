@@ -47,11 +47,11 @@ namespace PnlStageInfo
 
         public override void OnHide()
         {
-            if (PnlScrollCircle.instance != null)
-            {
-                PnlScrollCircle.instance.finishEnter = true;
-                Debug.Log("Back to PnlScrollCircle.");
-            }
+            /* if (PnlScrollCircle.instance != null)
+             {
+                 PnlScrollCircle.instance.finishEnter = true;
+                 Debug.Log("Back to PnlScrollCircle.");
+             }*/
             this.gameObject.SetActive(false);
         }
 
