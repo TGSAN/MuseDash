@@ -29,7 +29,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
             index = collectionBindingNode != null ? collectionBindingNode.collectionBinding.index : ReflectionUtil.Reflect(sourceObj, fieldName);
 
             var jdata = ConfigManager.instance.GetFromFilePath(path);
-            var resourcePath = (string)jdata[index][key];
+			var resourcePath = jdata [index] [key].ToJson ();
             if (m_ResourcePath == resourcePath)
             {
                 return;

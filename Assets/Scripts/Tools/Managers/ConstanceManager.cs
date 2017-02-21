@@ -29,6 +29,9 @@ namespace Assets.Scripts.Tools.Managers
         {
             {"Account_Level", (new Func<string>(()=>AccountLevelManagerComponent.Instance.GetLvl().ToString()))},
             {"Account_Exp", (new Func<string>(()=>AccountLevelManagerComponent.Instance.GetExp().ToString()))},
+			{"Account_Energy", (new Func<string>(()=>AccountPhysicsManagerComponent.Instance.GetPhysical().ToString()))},
+			{"Account_MaxEnergy", (new Func<string>(()=>AccountPhysicsManagerComponent.Instance.GetMaxPhysical().ToString()))},
+
 
             {"Stage_ClearCount", (new  Func<object, string>(idx =>
             {

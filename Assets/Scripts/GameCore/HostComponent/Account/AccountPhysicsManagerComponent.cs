@@ -77,8 +77,11 @@ namespace FormulaBase
 
         public int GetAccountPhysical()
         {
-            return ConfigPool.Instance.GetConfigIntValue("experience",
-                AccountManagerComponent.Instance.GetAccount().GetDynamicStrByKey(SignKeys.LEVEL), "energy");
+			if (AccountManagerComponent.Instance.GetAccount() != null) {
+				return ConfigPool.Instance.GetConfigIntValue("experience",
+					AccountManagerComponent.Instance.GetAccount().GetDynamicStrByKey(SignKeys.LEVEL), "energy");
+			}
+			return 0;
         }
 
         /// <summary>
