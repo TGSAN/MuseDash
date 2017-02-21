@@ -466,23 +466,23 @@ namespace FormulaBase
         {
             //扣体力回调
             var r = AccountPhysicsManagerComponent.Instance.ChangePhysical(-(int)Host.Result(FormulaKeys.FORMULA_20), false, true,
-               result =>
-               {
-                   if (PnlScrollCircle.instance != null)
-                   {
-                       SceneAudioManager.Instance.bgm.clip = PnlScrollCircle.instance.CatchClip;
-                   }
+          result =>
+          {
+              if (PnlScrollCircle.instance != null)
+              {
+                  SceneAudioManager.Instance.bgm.clip = PnlScrollCircle.instance.CatchClip;
+              }
 
-                   if (UISceneHelper.Instance != null)
-                   {
-                       UISceneHelper.Instance.HideWidget();
-                   }
-                   Debug.Log("Enter Stage " + id + " with diffcult " + diff + " !");
-                   GameKernel.Instance.InitGameKernel();
+              if (UISceneHelper.Instance != null)
+              {
+                  UISceneHelper.Instance.HideWidget();
+              }
+              Debug.Log("Enter Stage " + id + " with diffcult " + diff + " !");
+              GameKernel.Instance.InitGameKernel();
 
-                   this.Host.SetDynamicData(SignKeys.DIFFCULT, diff);
-                   this.Enter(id);
-               });
+              this.Host.SetDynamicData(SignKeys.DIFFCULT, diff);
+              this.Enter(id);
+          });
             if (r == 0)
             {
                 CommonPanel.GetInstance().ShowText("体力不足哦~");
@@ -825,7 +825,7 @@ namespace FormulaBase
 
         private void OnExit()
         {
-			PnlHome.PnlHome.backFromBattle = true;
+            PnlHome.PnlHome.backFromBattle = true;
             SceneManager.LoadScene(GameGlobal.LOADING_SCENE_NAME);
         }
 
