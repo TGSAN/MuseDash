@@ -24,6 +24,8 @@ namespace Assets.Scripts.Tools.PRHelper
             StringBuilder sb = new StringBuilder();
             sb.Append("using System;");
             sb.Append(Environment.NewLine);
+            sb.Append("using UnityEngine;");
+            sb.Append(Environment.NewLine);
             sb.Append("namespace Assets.Scripts.Tools.PRHelper.Properties");
             sb.Append(Environment.NewLine);
             sb.Append("{");
@@ -34,7 +36,7 @@ namespace Assets.Scripts.Tools.PRHelper
             sb.Append(Environment.NewLine);
             sb.Append("    {");
             sb.Append(Environment.NewLine);
-            sb.Append("        public void Play()");
+            sb.Append("        public void Play(GameObject go)");
             sb.Append(Environment.NewLine);
             sb.Append("        {");
             sb.Append(Environment.NewLine);
