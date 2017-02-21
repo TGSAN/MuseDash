@@ -344,6 +344,7 @@ GameObject:
   - component: {fileID: 222299055402818208}
   - component: {fileID: 114984139688404014}
   - component: {fileID: 114037610177581382}
+  - component: {fileID: 114896892701413330}
   m_Layer: 5
   m_Name: BtnStageExtra
   m_TagString: Untagged
@@ -8673,7 +8674,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224554854138274166}
   - component: {fileID: 222819600348172566}
-  - component: {fileID: 114645020065323416}
+  - component: {fileID: 114457909610235922}
   m_Layer: 5
   m_Name: TxtUnlockAt
   m_TagString: Untagged
@@ -11429,7 +11430,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224616723523182942}
-  - component: {fileID: 114371823082516596}
+  - component: {fileID: 114462616194532354}
   m_Layer: 5
   m_Name: StageDisc (1)
   m_TagString: Untagged
@@ -15225,7 +15226,6 @@ MonoBehaviour:
       name: 
       sourceObj: {fileID: 0}
       fieldName: 
-      path: 
       key: 
       index: 
     objectBinding:
@@ -15474,7 +15474,6 @@ MonoBehaviour:
       name: 
       sourceObj: {fileID: 0}
       fieldName: 
-      path: 
       key: 
       index: 
     objectBinding:
@@ -15940,7 +15939,6 @@ MonoBehaviour:
       name: 
       sourceObj: {fileID: 0}
       fieldName: 
-      path: 
       key: 
       index: 
     objectBinding:
@@ -16034,7 +16032,6 @@ MonoBehaviour:
       name: 
       sourceObj: {fileID: 0}
       fieldName: 
-      path: 
       key: 
       index: 
     objectBinding:
@@ -16128,7 +16125,6 @@ MonoBehaviour:
       name: 
       sourceObj: {fileID: 0}
       fieldName: 
-      path: 
       key: 
       index: 
     objectBinding:
@@ -18843,7 +18839,6 @@ MonoBehaviour:
       name: 
       sourceObj: {fileID: 0}
       fieldName: 
-      path: 
       key: 
       index: 
     objectBinding:
@@ -19389,7 +19384,6 @@ MonoBehaviour:
       name: 
       sourceObj: {fileID: 0}
       fieldName: 
-      path: 
       key: 
       index: 
     objectBinding:
@@ -22722,7 +22716,6 @@ MonoBehaviour:
       name: 
       sourceObj: {fileID: 0}
       fieldName: 
-      path: 
       key: 
       index: 
     objectBinding:
@@ -23041,7 +23034,6 @@ MonoBehaviour:
       name: 
       sourceObj: {fileID: 0}
       fieldName: 
-      path: 
       key: 
       index: 
     objectBinding:
@@ -23693,208 +23685,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114371823082516596
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1865904129634214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ceeb32605dbb8542b3f91c475477f42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isNewNode: 1
-  newNodeName: 
-  nodes:
-  - key: 
-    nodeType: 6
-    playAnimation:
-      animator: {fileID: 0}
-      animationType: 0
-      afterAction: 0
-      stateName: 
-      hasStart: 0
-      hasPlaying: 0
-      hasFinish: 0
-      onAnimationStart:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationPlaying:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationFinish:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-    playTween:
-      tweenType: 0
-    playAudio:
-      audioClip: {fileID: 0}
-      isPlay: 0
-    btnBack:
-      button: {fileID: 0}
-      curPnlName: 
-      nextPnlName: 
-    active:
-      gameObject: {fileID: 0}
-      isActive: 0
-    playPopup:
-      pnlName: 
-      inTime: 0
-      inDistance: 0
-      moveInEase: 0
-      isFadeIn: 0
-      fadeInEase: 0
-      outTime: 0
-      outDistance: 0
-      moveOutEase: 0
-      isFadeOut: 0
-      fadeOutEase: 0
-      color: {r: 0, g: 0, b: 0, a: 0}
-      shut: 0
-      shutButtonName: 
-    pREvents:
-      events: []
-    textBinding:
-      name: 
-      type: 0
-      sourceObj: {fileID: 0}
-      fieldName: 
-      path: 
-      key: 
-      index: 
-      value: 
-    imageBinding:
-      name: 
-      sourceObj: {fileID: 0}
-      fieldName: 
-      path: 
-      key: 
-      index: 
-    methodBinding:
-      name: 
-      sourceObj: {fileID: 0}
-      fieldName: 
-      path: 
-      key: 
-      index: 
-    objectBinding:
-      name: None
-      sourceObj: {fileID: 0}
-      fieldName: 
-      path: stage/_config/stage_value
-      key: id
-      index: 
-    audioBinding:
-      name: 
-      sourceObj: {fileID: 0}
-      fieldName: 
-      path: 
-      key: 
-      index: 
-      isAutoPlay: 0
-    collectionBinding:
-      index: 
-  - key: 
-    nodeType: 3
-    playAnimation:
-      animator: {fileID: 0}
-      animationType: 0
-      afterAction: 0
-      stateName: 
-      hasStart: 0
-      hasPlaying: 0
-      hasFinish: 0
-      onAnimationStart:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationPlaying:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationFinish:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-    playTween:
-      tweenType: 0
-    playAudio:
-      audioClip: {fileID: 0}
-      isPlay: 0
-    btnBack:
-      button: {fileID: 0}
-      curPnlName: 
-      nextPnlName: 
-    active:
-      gameObject: {fileID: 0}
-      isActive: 0
-    playPopup:
-      pnlName: 
-      inTime: 0
-      inDistance: 0
-      moveInEase: 0
-      isFadeIn: 0
-      fadeInEase: 0
-      outTime: 0
-      outDistance: 0
-      moveOutEase: 0
-      isFadeOut: 0
-      fadeOutEase: 0
-      color: {r: 0, g: 0, b: 0, a: 0}
-      shut: 0
-      shutButtonName: 
-    pREvents:
-      events: []
-    textBinding:
-      name: 
-      type: 0
-      sourceObj: {fileID: 0}
-      fieldName: 
-      path: 
-      key: 
-      index: 
-      value: 
-    imageBinding:
-      name: ImgCover
-      sourceObj: {fileID: 0}
-      fieldName: 
-      path: stage/_config/stage
-      key: id
-      index: 
-    methodBinding:
-      name: 
-      sourceObj: {fileID: 0}
-      fieldName: 
-      path: 
-      key: 
-      index: 
-    objectBinding:
-      name: 
-      sourceObj: {fileID: 0}
-      fieldName: 
-      path: 
-      key: 
-      index: 
-    audioBinding:
-      name: 
-      sourceObj: {fileID: 0}
-      fieldName: 
-      path: 
-      key: 
-      index: 
-      isAutoPlay: 0
-    collectionBinding:
-      index: 
 --- !u!114 &114374350193238708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26221,6 +26011,20 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.ScrollRect+ScrollRectEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114457909610235922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1652224141168652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ceeb32605dbb8542b3f91c475477f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNewNode: 1
+  newNodeName: 
+  nodes: []
 --- !u!114 &114459078595020546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26341,6 +26145,299 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114462616194532354
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1865904129634214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ceeb32605dbb8542b3f91c475477f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNewNode: 1
+  newNodeName: 
+  nodes:
+  - key: 
+    nodeType: 6
+    playAnimation:
+      animator: {fileID: 0}
+      animationType: 0
+      afterAction: 0
+      stateName: 
+      hasStart: 0
+      hasPlaying: 0
+      hasFinish: 0
+      onAnimationStart:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      onAnimationPlaying:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      onAnimationFinish:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    playTween:
+      tweenType: 0
+    playAudio:
+      audioClip: {fileID: 0}
+      isPlay: 0
+    btnBack:
+      button: {fileID: 0}
+      curPnlName: 
+      nextPnlName: 
+    active:
+      gameObject: {fileID: 0}
+      isActive: 0
+    playPopup:
+      pnlName: 
+      inTime: 0
+      inDistance: 0
+      moveInEase: 0
+      isFadeIn: 0
+      fadeInEase: 0
+      outTime: 0
+      outDistance: 0
+      moveOutEase: 0
+      isFadeOut: 0
+      fadeOutEase: 0
+      color: {r: 0, g: 0, b: 0, a: 0}
+      shut: 0
+      shutButtonName: 
+    pREvents:
+      events: []
+    textBinding:
+      name: 
+      type: 0
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      value: 
+    imageBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    methodBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      key: 
+      index: 
+    objectBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    audioBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      isAutoPlay: 0
+    collectionBinding:
+      index: 
+  - key: 
+    nodeType: 1
+    playAnimation:
+      animator: {fileID: 0}
+      animationType: 0
+      afterAction: 0
+      stateName: 
+      hasStart: 0
+      hasPlaying: 0
+      hasFinish: 0
+      onAnimationStart:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      onAnimationPlaying:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      onAnimationFinish:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    playTween:
+      tweenType: 0
+    playAudio:
+      audioClip: {fileID: 0}
+      isPlay: 0
+    btnBack:
+      button: {fileID: 0}
+      curPnlName: 
+      nextPnlName: 
+    active:
+      gameObject: {fileID: 0}
+      isActive: 0
+    playPopup:
+      pnlName: 
+      inTime: 0
+      inDistance: 0
+      moveInEase: 0
+      isFadeIn: 0
+      fadeInEase: 0
+      outTime: 0
+      outDistance: 0
+      moveOutEase: 0
+      isFadeOut: 0
+      fadeOutEase: 0
+      color: {r: 0, g: 0, b: 0, a: 0}
+      shut: 0
+      shutButtonName: 
+    pREvents:
+      events: []
+    textBinding:
+      name: TxtValue
+      type: 0
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: stage/_config/stage_value
+      key: level_lock
+      index: 
+      value: 
+    imageBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    methodBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      key: 
+      index: 
+    objectBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    audioBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      isAutoPlay: 0
+    collectionBinding:
+      index: 
+  - key: 
+    nodeType: 3
+    playAnimation:
+      animator: {fileID: 0}
+      animationType: 0
+      afterAction: 0
+      stateName: 
+      hasStart: 0
+      hasPlaying: 0
+      hasFinish: 0
+      onAnimationStart:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      onAnimationPlaying:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      onAnimationFinish:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    playTween:
+      tweenType: 0
+    playAudio:
+      audioClip: {fileID: 0}
+      isPlay: 0
+    btnBack:
+      button: {fileID: 0}
+      curPnlName: 
+      nextPnlName: 
+    active:
+      gameObject: {fileID: 0}
+      isActive: 0
+    playPopup:
+      pnlName: 
+      inTime: 0
+      inDistance: 0
+      moveInEase: 0
+      isFadeIn: 0
+      fadeInEase: 0
+      outTime: 0
+      outDistance: 0
+      moveOutEase: 0
+      isFadeOut: 0
+      fadeOutEase: 0
+      color: {r: 0, g: 0, b: 0, a: 0}
+      shut: 0
+      shutButtonName: 
+    pREvents:
+      events: []
+    textBinding:
+      name: 
+      type: 0
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      value: 
+    imageBinding:
+      name: ImgCover
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: stage/_config/stage
+      key: cover
+      index: 
+    methodBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      key: 
+      index: 
+    objectBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    audioBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      isAutoPlay: 0
+    collectionBinding:
+      index: 
 --- !u!114 &114463659122188756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -30633,39 +30730,6 @@ MonoBehaviour:
   m_Text: '(5/10)
 
 '
---- !u!114 &114645020065323416
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1652224141168652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.5176471, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: bb22fb5beacef47a6816ba69bce73b56, type: 3}
-    m_FontSize: 40
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 4
-    m_MaxSize: 72
-    m_Alignment: 5
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: UNLOCK AT LEVEL
 --- !u!114 &114645327246018210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -34687,7 +34751,6 @@ MonoBehaviour:
       name: 
       sourceObj: {fileID: 0}
       fieldName: 
-      path: 
       key: 
       index: 
     objectBinding:
@@ -36495,6 +36558,113 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Increase the Level to add the max of energy.
+--- !u!114 &114896892701413330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1017428137582576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ceeb32605dbb8542b3f91c475477f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNewNode: 1
+  newNodeName: 
+  nodes:
+  - key: 
+    nodeType: 1
+    playAnimation:
+      animator: {fileID: 0}
+      animationType: 0
+      afterAction: 0
+      stateName: 
+      hasStart: 0
+      hasPlaying: 0
+      hasFinish: 0
+      onAnimationStart:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      onAnimationPlaying:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      onAnimationFinish:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    playTween:
+      tweenType: 0
+    playAudio:
+      audioClip: {fileID: 0}
+      isPlay: 0
+    btnBack:
+      button: {fileID: 0}
+      curPnlName: 
+      nextPnlName: 
+    active:
+      gameObject: {fileID: 0}
+      isActive: 0
+    playPopup:
+      pnlName: 
+      inTime: 0
+      inDistance: 0
+      moveInEase: 0
+      isFadeIn: 0
+      fadeInEase: 0
+      outTime: 0
+      outDistance: 0
+      moveOutEase: 0
+      isFadeOut: 0
+      fadeOutEase: 0
+      color: {r: 0, g: 0, b: 0, a: 0}
+      shut: 0
+      shutButtonName: 
+    pREvents:
+      events: []
+    textBinding:
+      name: Text
+      type: 0
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: stage/_config/stage_value
+      key: level_lock
+      index: 
+      value: 
+    imageBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    methodBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      key: 
+      index: 
+    objectBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    audioBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      isAutoPlay: 0
+    collectionBinding:
+      index: 
 --- !u!114 &114897233746116294
 MonoBehaviour:
   m_ObjectHideFlags: 1
