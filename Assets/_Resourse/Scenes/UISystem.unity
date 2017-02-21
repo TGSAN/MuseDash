@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731316, g: 0.38074896, b: 0.3587254, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -184,7 +184,6 @@ MonoBehaviour:
       name: 
       sourceObj: {fileID: 0}
       fieldName: 
-      path: 
       key: 
       index: 
     objectBinding:
@@ -297,7 +296,6 @@ MonoBehaviour:
       name: 
       sourceObj: {fileID: 0}
       fieldName: 
-      path: 
       key: 
       index: 
     objectBinding:
@@ -391,7 +389,6 @@ MonoBehaviour:
       name: 
       sourceObj: {fileID: 0}
       fieldName: 
-      path: 
       key: 
       index: 
     objectBinding:
@@ -485,7 +482,6 @@ MonoBehaviour:
       name: 
       sourceObj: {fileID: 0}
       fieldName: 
-      path: 
       key: 
       index: 
     objectBinding:
@@ -579,7 +575,6 @@ MonoBehaviour:
       name: 
       sourceObj: {fileID: 0}
       fieldName: 
-      path: 
       key: 
       index: 
     objectBinding:
@@ -673,7 +668,6 @@ MonoBehaviour:
       name: 
       sourceObj: {fileID: 0}
       fieldName: 
-      path: 
       key: 
       index: 
     objectBinding:
@@ -682,6 +676,211 @@ MonoBehaviour:
       fieldName: 
       path: char/_config/char_cos
       key: path
+      index: 
+    audioBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      isAutoPlay: 0
+    collectionBinding:
+      index: 
+--- !u!1 &285760542 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1590506002447122, guid: 84d114b316c734ad188aabc1ff6e98d8,
+    type: 2}
+  m_PrefabInternal: {fileID: 2076258895}
+--- !u!114 &285760544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 285760542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ceeb32605dbb8542b3f91c475477f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNewNode: 1
+  newNodeName: 
+  nodes:
+  - key: 
+    nodeType: 6
+    playAnimation:
+      animator: {fileID: 0}
+      animationType: 0
+      afterAction: 0
+      stateName: 
+      hasStart: 0
+      hasPlaying: 0
+      hasFinish: 0
+      onAnimationStart:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      onAnimationPlaying:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      onAnimationFinish:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    playTween:
+      tweenType: 0
+    playAudio:
+      audioClip: {fileID: 0}
+      isPlay: 0
+    btnBack:
+      button: {fileID: 0}
+      curPnlName: 
+      nextPnlName: 
+    active:
+      gameObject: {fileID: 0}
+      isActive: 0
+    playPopup:
+      pnlName: 
+      inTime: 0
+      inDistance: 0
+      moveInEase: 0
+      isFadeIn: 0
+      fadeInEase: 0
+      outTime: 0
+      outDistance: 0
+      moveOutEase: 0
+      isFadeOut: 0
+      fadeOutEase: 0
+      color: {r: 0, g: 0, b: 0, a: 0}
+      shut: 0
+      shutButtonName: 
+    pREvents:
+      events: []
+    textBinding:
+      name: 
+      type: 0
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      value: 
+    imageBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    methodBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      key: 
+      index: 
+    objectBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    audioBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      isAutoPlay: 0
+    collectionBinding:
+      index: 1
+  - key: 
+    nodeType: 2
+    playAnimation:
+      animator: {fileID: 0}
+      animationType: 0
+      afterAction: 0
+      stateName: 
+      hasStart: 0
+      hasPlaying: 0
+      hasFinish: 0
+      onAnimationStart:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      onAnimationPlaying:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      onAnimationFinish:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    playTween:
+      tweenType: 0
+    playAudio:
+      audioClip: {fileID: 0}
+      isPlay: 0
+    btnBack:
+      button: {fileID: 0}
+      curPnlName: 
+      nextPnlName: 
+    active:
+      gameObject: {fileID: 0}
+      isActive: 0
+    playPopup:
+      pnlName: 
+      inTime: 0
+      inDistance: 0
+      moveInEase: 0
+      isFadeIn: 0
+      fadeInEase: 0
+      outTime: 0
+      outDistance: 0
+      moveOutEase: 0
+      isFadeOut: 0
+      fadeOutEase: 0
+      color: {r: 0, g: 0, b: 0, a: 0}
+      shut: 0
+      shutButtonName: 
+    pREvents:
+      events: []
+    textBinding:
+      name: 
+      type: 0
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      value: 
+    imageBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    methodBinding:
+      name: BtnMuse
+      sourceObj: {fileID: 0}
+      fieldName: 
+      key: Game_BattleStart
+      index: 
+    objectBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
       index: 
     audioBinding:
       name: 
@@ -855,6 +1054,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1368678364 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1844724424361416, guid: 84d114b316c734ad188aabc1ff6e98d8,
+    type: 2}
+  m_PrefabInternal: {fileID: 2076258895}
+--- !u!114 &1368678366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1368678364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ceeb32605dbb8542b3f91c475477f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNewNode: 1
+  newNodeName: 
+  nodes: []
 --- !u!1 &1447048618
 GameObject:
   m_ObjectHideFlags: 0
@@ -1050,7 +1268,6 @@ MonoBehaviour:
       name: 
       sourceObj: {fileID: 0}
       fieldName: 
-      path: 
       key: 
       index: 
     objectBinding:
@@ -1230,7 +1447,7 @@ Prefab:
     - target: {fileID: 224119934288022838, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224421936547903966, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
@@ -1250,7 +1467,7 @@ Prefab:
     - target: {fileID: 224421936547903966, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224912851823910470, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
@@ -1270,7 +1487,7 @@ Prefab:
     - target: {fileID: 224912851823910470, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224995105832006122, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
@@ -1290,7 +1507,7 @@ Prefab:
     - target: {fileID: 224995105832006122, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224160585294945856, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
@@ -1310,7 +1527,7 @@ Prefab:
     - target: {fileID: 224160585294945856, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224775993437004138, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
@@ -1330,7 +1547,7 @@ Prefab:
     - target: {fileID: 224775993437004138, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224415032116300288, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
@@ -1350,7 +1567,7 @@ Prefab:
     - target: {fileID: 224415032116300288, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224572564891677122, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
@@ -1370,7 +1587,7 @@ Prefab:
     - target: {fileID: 224572564891677122, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224322352291592164, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
@@ -1390,7 +1607,7 @@ Prefab:
     - target: {fileID: 224322352291592164, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224297076620553408, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
@@ -1410,7 +1627,7 @@ Prefab:
     - target: {fileID: 224297076620553408, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224662602889621356, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
@@ -1430,7 +1647,7 @@ Prefab:
     - target: {fileID: 224662602889621356, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224978984941757068, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
@@ -1450,7 +1667,7 @@ Prefab:
     - target: {fileID: 224978984941757068, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 114205602473535516, guid: 84d114b316c734ad188aabc1ff6e98d8,
         type: 2}

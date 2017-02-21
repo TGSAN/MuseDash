@@ -14,7 +14,6 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
         public UnityEngine.Object sourceObj;
         public string fieldName;
 
-        public string path;
         public string key;
         public string index;
 

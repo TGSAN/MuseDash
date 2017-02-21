@@ -46,7 +46,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
                             var i = int.Parse(index.ToString());
                             if (jdata.Count < i)
                             {
-								str = (string)jdata[i][key].ToJson();
+                                str = (string)jdata[i][key].ToJson();
                             }
                         }
                         else
@@ -54,7 +54,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
                             var i = index.ToString();
                             if (jdata.Keys.Contains(i))
                             {
-								str = jdata[i][key].ToJson();
+                                str = jdata[i][key].ToJson();
                             }
                         }
                     }
