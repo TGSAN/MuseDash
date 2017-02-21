@@ -1718,14 +1718,13 @@ GameObject:
   m_Component:
   - component: {fileID: 224951674607935016}
   - component: {fileID: 114735409297871528}
-  - component: {fileID: 114256196740561858}
   m_Layer: 5
   m_Name: PnlStage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1135628181326784
 GameObject:
   m_ObjectHideFlags: 1
@@ -5447,7 +5446,6 @@ GameObject:
   m_Component:
   - component: {fileID: 224455047932481856}
   - component: {fileID: 114367111935701722}
-  - component: {fileID: 114463942543751016}
   m_Layer: 5
   m_Name: PnlStageExtra
   m_TagString: Untagged
@@ -7802,7 +7800,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224868673914120190}
-  - component: {fileID: 114364114124125494}
   m_Layer: 5
   m_Name: PnlMenu
   m_TagString: Untagged
@@ -10588,7 +10585,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224958417687374896}
-  - component: {fileID: 114853843158027424}
   m_Layer: 5
   m_Name: PnlMuse
   m_TagString: Untagged
@@ -10889,7 +10885,6 @@ GameObject:
   m_Component:
   - component: {fileID: 224984007418112648}
   - component: {fileID: 82956317195467186}
-  - component: {fileID: 114935534332306212}
   m_Layer: 5
   m_Name: PnlHome
   m_TagString: Untagged
@@ -11004,7 +10999,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224156087440635472}
-  - component: {fileID: 114073555494699402}
   m_Layer: 5
   m_Name: PnlSupply
   m_TagString: Untagged
@@ -14915,10 +14909,35 @@ MonoBehaviour:
       name: 
       type: 0
       sourceObj: {fileID: 0}
+      fieldName: 
       path: 
       key: 
-      fieldName: 
+      index: 
       value: 
+    imageBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    objectBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    audioBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      isAutoPlay: 0
+    collectionBinding:
+      index: 
 --- !u!114 &114070786325632332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15000,98 +15019,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114073555494699402
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1857074304530042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ceeb32605dbb8542b3f91c475477f42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isNewNode: 1
-  newNodeName: 
-  nodes:
-  - key: 
-    nodeType: 8
-    playAnimation:
-      animator: {fileID: 0}
-      animationType: 0
-      afterAction: 0
-      stateName: 
-      hasStart: 0
-      hasPlaying: 0
-      hasFinish: 0
-      onAnimationStart:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationPlaying:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationFinish:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-    playTween:
-      tweenType: 0
-    playAudio:
-      audioClip: {fileID: 0}
-      isPlay: 0
-    btnBack:
-      button: {fileID: 0}
-      curPnlName: 
-      nextPnlName: 
-    active:
-      gameObject: {fileID: 0}
-      isActive: 0
-    playPopup:
-      pnlName: 
-      inTime: 0
-      inDistance: 0
-      moveInEase: 0
-      isFadeIn: 0
-      fadeInEase: 0
-      outTime: 0
-      outDistance: 0
-      moveOutEase: 0
-      isFadeOut: 0
-      fadeOutEase: 0
-      color: {r: 0, g: 0, b: 0, a: 0}
-      shut: 0
-      shutButtonName: 
-    pREvents:
-      events:
-      - eventType: 5
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls: []
-          m_TypeName: Smart.Types.UnityEventObject, SmartCore, Version=1.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        button: {fileID: 0}
-        gameObject: {fileID: 0}
-      - eventType: 2
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls: []
-          m_TypeName: Smart.Types.UnityEventObject, SmartCore, Version=1.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        button: {fileID: 0}
-        gameObject: {fileID: 0}
-    textBinding:
-      name: 
-      type: 0
-      sourceObj: {fileID: 0}
-      path: 
-      key: 
-      fieldName: 
-      value: 
 --- !u!114 &114076218414423778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15224,10 +15151,35 @@ MonoBehaviour:
       name: 
       type: 0
       sourceObj: {fileID: 0}
+      fieldName: 
       path: 
       key: 
-      fieldName: 
+      index: 
       value: 
+    imageBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    objectBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    audioBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      isAutoPlay: 0
+    collectionBinding:
+      index: 
 --- !u!114 &114082762759625516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15604,10 +15556,35 @@ MonoBehaviour:
       name: 
       type: 0
       sourceObj: {fileID: 0}
+      fieldName: 
       path: 
       key: 
-      fieldName: 
+      index: 
       value: 
+    imageBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    objectBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    audioBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      isAutoPlay: 0
+    collectionBinding:
+      index: 
   - key: 
     nodeType: 5
     playAnimation:
@@ -15666,10 +15643,35 @@ MonoBehaviour:
       name: 
       type: 0
       sourceObj: {fileID: 0}
+      fieldName: 
       path: 
       key: 
-      fieldName: 
+      index: 
       value: 
+    imageBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    objectBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    audioBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      isAutoPlay: 0
+    collectionBinding:
+      index: 
   - key: 
     nodeType: 5
     playAnimation:
@@ -15728,10 +15730,35 @@ MonoBehaviour:
       name: 
       type: 0
       sourceObj: {fileID: 0}
+      fieldName: 
       path: 
       key: 
-      fieldName: 
+      index: 
       value: 
+    imageBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    objectBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    audioBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      isAutoPlay: 0
+    collectionBinding:
+      index: 
 --- !u!114 &114092626171281632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18378,10 +18405,35 @@ MonoBehaviour:
       name: 
       type: 0
       sourceObj: {fileID: 0}
+      fieldName: 
       path: 
       key: 
-      fieldName: 
+      index: 
       value: 
+    imageBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    objectBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    audioBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      isAutoPlay: 0
+    collectionBinding:
+      index: 
 --- !u!114 &114205792956632908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19852,98 +19904,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114256196740561858
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1135566782630080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ceeb32605dbb8542b3f91c475477f42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isNewNode: 1
-  newNodeName: 
-  nodes:
-  - key: 
-    nodeType: 8
-    playAnimation:
-      animator: {fileID: 0}
-      animationType: 0
-      afterAction: 0
-      stateName: 
-      hasStart: 0
-      hasPlaying: 0
-      hasFinish: 0
-      onAnimationStart:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationPlaying:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationFinish:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-    playTween:
-      tweenType: 0
-    playAudio:
-      audioClip: {fileID: 0}
-      isPlay: 0
-    btnBack:
-      button: {fileID: 0}
-      curPnlName: 
-      nextPnlName: 
-    active:
-      gameObject: {fileID: 0}
-      isActive: 0
-    playPopup:
-      pnlName: 
-      inTime: 0
-      inDistance: 0
-      moveInEase: 0
-      isFadeIn: 0
-      fadeInEase: 0
-      outTime: 0
-      outDistance: 0
-      moveOutEase: 0
-      isFadeOut: 0
-      fadeOutEase: 0
-      color: {r: 0, g: 0, b: 0, a: 0}
-      shut: 0
-      shutButtonName: 
-    pREvents:
-      events:
-      - eventType: 5
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls: []
-          m_TypeName: Smart.Types.UnityEventObject, SmartCore, Version=1.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        button: {fileID: 0}
-        gameObject: {fileID: 0}
-      - eventType: 2
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls: []
-          m_TypeName: Smart.Types.UnityEventObject, SmartCore, Version=1.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        button: {fileID: 0}
-        gameObject: {fileID: 0}
-    textBinding:
-      name: 
-      type: 0
-      sourceObj: {fileID: 0}
-      path: 
-      key: 
-      fieldName: 
-      value: 
 --- !u!114 &114256498117815326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22209,10 +22169,35 @@ MonoBehaviour:
       name: 
       type: 0
       sourceObj: {fileID: 0}
+      fieldName: 
       path: 
       key: 
-      fieldName: 
+      index: 
       value: 
+    imageBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    objectBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    audioBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      isAutoPlay: 0
+    collectionBinding:
+      index: 
 --- !u!114 &114351017926149980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22496,10 +22481,35 @@ MonoBehaviour:
       name: 
       type: 0
       sourceObj: {fileID: 0}
+      fieldName: 
       path: 
       key: 
-      fieldName: 
+      index: 
       value: 
+    imageBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    objectBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    audioBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      isAutoPlay: 0
+    collectionBinding:
+      index: 
 --- !u!114 &114353762234203280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22800,98 +22810,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114364114124125494
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1590506002447122}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ceeb32605dbb8542b3f91c475477f42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isNewNode: 1
-  newNodeName: 
-  nodes:
-  - key: 
-    nodeType: 8
-    playAnimation:
-      animator: {fileID: 0}
-      animationType: 0
-      afterAction: 0
-      stateName: 
-      hasStart: 0
-      hasPlaying: 0
-      hasFinish: 0
-      onAnimationStart:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationPlaying:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationFinish:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-    playTween:
-      tweenType: 0
-    playAudio:
-      audioClip: {fileID: 0}
-      isPlay: 0
-    btnBack:
-      button: {fileID: 0}
-      curPnlName: 
-      nextPnlName: 
-    active:
-      gameObject: {fileID: 0}
-      isActive: 0
-    playPopup:
-      pnlName: 
-      inTime: 0
-      inDistance: 0
-      moveInEase: 0
-      isFadeIn: 0
-      fadeInEase: 0
-      outTime: 0
-      outDistance: 0
-      moveOutEase: 0
-      isFadeOut: 0
-      fadeOutEase: 0
-      color: {r: 0, g: 0, b: 0, a: 0}
-      shut: 0
-      shutButtonName: 
-    pREvents:
-      events:
-      - eventType: 5
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls: []
-          m_TypeName: Smart.Types.UnityEventObject, SmartCore, Version=1.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        button: {fileID: 0}
-        gameObject: {fileID: 0}
-      - eventType: 2
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls: []
-          m_TypeName: Smart.Types.UnityEventObject, SmartCore, Version=1.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        button: {fileID: 0}
-        gameObject: {fileID: 0}
-    textBinding:
-      name: 
-      type: 0
-      sourceObj: {fileID: 0}
-      path: 
-      key: 
-      fieldName: 
-      value: 
 --- !u!114 &114366521494346056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25703,20 +25621,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: LEVEL
---- !u!114 &114463942543751016
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1415204973443978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ceeb32605dbb8542b3f91c475477f42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isNewNode: 1
-  newNodeName: 
-  nodes: []
 --- !u!114 &114464186061752140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -34331,98 +34235,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114853843158027424
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1822673595353524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ceeb32605dbb8542b3f91c475477f42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isNewNode: 1
-  newNodeName: 
-  nodes:
-  - key: 
-    nodeType: 8
-    playAnimation:
-      animator: {fileID: 0}
-      animationType: 0
-      afterAction: 0
-      stateName: 
-      hasStart: 0
-      hasPlaying: 0
-      hasFinish: 0
-      onAnimationStart:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationPlaying:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationFinish:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-    playTween:
-      tweenType: 0
-    playAudio:
-      audioClip: {fileID: 0}
-      isPlay: 0
-    btnBack:
-      button: {fileID: 0}
-      curPnlName: 
-      nextPnlName: 
-    active:
-      gameObject: {fileID: 0}
-      isActive: 0
-    playPopup:
-      pnlName: 
-      inTime: 0
-      inDistance: 0
-      moveInEase: 0
-      isFadeIn: 0
-      fadeInEase: 0
-      outTime: 0
-      outDistance: 0
-      moveOutEase: 0
-      isFadeOut: 0
-      fadeOutEase: 0
-      color: {r: 0, g: 0, b: 0, a: 0}
-      shut: 0
-      shutButtonName: 
-    pREvents:
-      events:
-      - eventType: 5
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls: []
-          m_TypeName: Smart.Types.UnityEventObject, SmartCore, Version=1.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        button: {fileID: 0}
-        gameObject: {fileID: 0}
-      - eventType: 2
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls: []
-          m_TypeName: Smart.Types.UnityEventObject, SmartCore, Version=1.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        button: {fileID: 0}
-        gameObject: {fileID: 0}
-    textBinding:
-      name: 
-      type: 0
-      sourceObj: {fileID: 0}
-      path: 
-      key: 
-      fieldName: 
-      value: 
 --- !u!114 &114854405727667918
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -36643,98 +36455,6 @@ MonoBehaviour:
   preset: 0
   onEnableBehaviour: 1
   onDisableBehaviour: 2
---- !u!114 &114935534332306212
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1844724424361416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ceeb32605dbb8542b3f91c475477f42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isNewNode: 1
-  newNodeName: 
-  nodes:
-  - key: 
-    nodeType: 8
-    playAnimation:
-      animator: {fileID: 0}
-      animationType: 0
-      afterAction: 0
-      stateName: 
-      hasStart: 0
-      hasPlaying: 0
-      hasFinish: 0
-      onAnimationStart:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationPlaying:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationFinish:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-    playTween:
-      tweenType: 0
-    playAudio:
-      audioClip: {fileID: 0}
-      isPlay: 0
-    btnBack:
-      button: {fileID: 0}
-      curPnlName: 
-      nextPnlName: 
-    active:
-      gameObject: {fileID: 0}
-      isActive: 0
-    playPopup:
-      pnlName: 
-      inTime: 0
-      inDistance: 0
-      moveInEase: 0
-      isFadeIn: 0
-      fadeInEase: 0
-      outTime: 0
-      outDistance: 0
-      moveOutEase: 0
-      isFadeOut: 0
-      fadeOutEase: 0
-      color: {r: 0, g: 0, b: 0, a: 0}
-      shut: 0
-      shutButtonName: 
-    pREvents:
-      events:
-      - eventType: 5
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls: []
-          m_TypeName: Smart.Types.UnityEventObject, SmartCore, Version=1.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        button: {fileID: 0}
-        gameObject: {fileID: 0}
-      - eventType: 2
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls: []
-          m_TypeName: Smart.Types.UnityEventObject, SmartCore, Version=1.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        button: {fileID: 0}
-        gameObject: {fileID: 0}
-    textBinding:
-      name: 
-      type: 0
-      sourceObj: {fileID: 0}
-      path: 
-      key: 
-      fieldName: 
-      value: 
 --- !u!114 &114940128920875674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -56538,9 +56258,9 @@ RectTransform:
   m_Father: {fileID: 224254976432141494}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 41.25, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 18, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224120530549571736
@@ -57137,9 +56857,9 @@ RectTransform:
   m_Father: {fileID: 224254976432141494}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 171.25, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 18, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224161753610636658
@@ -58809,9 +58529,9 @@ RectTransform:
   m_Father: {fileID: 224254976432141494}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 333.75, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 18, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224298662413100414
@@ -58921,7 +58641,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -59094,9 +58814,9 @@ RectTransform:
   m_Father: {fileID: 224254976432141494}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 301.25, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 18, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224322568891571872
@@ -60740,9 +60460,9 @@ RectTransform:
   m_Father: {fileID: 224254976432141494}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 236.25, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 18, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224415965204336426
@@ -60893,9 +60613,9 @@ RectTransform:
   m_Father: {fileID: 224254976432141494}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 73.75, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 18, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224421997215694820
@@ -63144,9 +62864,9 @@ RectTransform:
   m_Father: {fileID: 224254976432141494}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 268.75, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 18, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224572755157570774
@@ -64482,9 +64202,9 @@ RectTransform:
   m_Father: {fileID: 224254976432141494}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 366.25, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 18, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224663947481533400
@@ -66156,9 +65876,9 @@ RectTransform:
   m_Father: {fileID: 224254976432141494}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 203.75, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 18, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224777734865348970
@@ -68210,9 +67930,9 @@ RectTransform:
   m_Father: {fileID: 224254976432141494}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 106.25, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 18, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224913838001473276
@@ -69037,9 +68757,9 @@ RectTransform:
   m_Father: {fileID: 224254976432141494}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 398.75, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 18, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224982227566587146
@@ -69365,9 +69085,9 @@ RectTransform:
   m_Father: {fileID: 224254976432141494}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 138.75, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 18, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224996392570517032
