@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Xml.Serialization;
 using UnityEngine;
 
@@ -180,6 +181,31 @@ namespace Assets.Scripts.Common
             }
             gradient.colorKeys = list.ToArray();
             return gradient;
+        }
+    }
+
+    public class ReflectionUtil
+    {
+        public static string Reflect(UnityEngine.Object sourceObj, string fieldName)
+        {
+            var index = "1";
+            if (sourceObj)
+            {
+                var strs = fieldName.Split('/');
+                if (strs[0] != "GameObject")
+                {
+                    var gameObject = sourceObj as GameObject;
+                    if (gameObject != null) sourceObj = gameObject.GetComponent(strs[0]);
+                }
+                var theType = sourceObj.GetType();
+                var field = theType.GetField(strs[strs.Length - 1],
+                    BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                if (field != null)
+                {
+                    index = field.GetValue(sourceObj).ToString();
+                }
+            }
+            return index;
         }
     }
 }

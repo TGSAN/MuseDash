@@ -6,8 +6,13 @@ namespace Assets.Scripts.Tools.Commons
     {
         public static T Load<T>(string path) where T : Object
         {
-            var obj = Resources.Load(path);
-            return obj as T;
+            var obj = Resources.Load<T>(path);
+            return obj;
+        }
+
+        public static void Unload(Object obj)
+        {
+            Resources.UnloadAsset(obj);
         }
     }
 }

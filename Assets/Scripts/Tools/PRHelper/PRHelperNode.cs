@@ -8,7 +8,7 @@ namespace Assets.Scripts.Tools.PRHelper
     [Serializable]
     public class PRHelperNode
     {
-        public string key = "fucker";
+        public string key = string.Empty;
         public NodeType nodeType;
 
         public PlayAnimation playAnimation;
@@ -26,6 +26,10 @@ namespace Assets.Scripts.Tools.PRHelper
         public PREvents pREvents = new PREvents();
 
         public TextBinding textBinding;
+        public ImageBinding imageBinding;
+        public ObjectBinding objectBinding;
+        public AudioBinding audioBinding;
+        public CollectionBinding collectionBinding;
 
         public void Play(GameObject go)
         {
@@ -39,11 +43,29 @@ namespace Assets.Scripts.Tools.PRHelper
 
         public void Init(GameObject go)
         {
+            ModelInit(go);
+            VMInit(go);
+            ViewInit(go);
+        }
+
+        private void ViewInit(GameObject go)
+        {
+            if (btnBack != null) btnBack.Init(go);
+        }
+
+        private void VMInit(GameObject go)
+        {
+            if (pREvents == null) pREvents = new PREvents();
+            pREvents.Init(go);
+
             PRHelper.OnEvent(go, PREvents.EventType.OnButtonClick).AddListener(obj =>
             {
                 Play(go);
             });
+        }
 
+        private void ModelInit(GameObject go)
+        {
             if (textBinding != null && !string.IsNullOrEmpty(textBinding.name))
             {
                 PRHelper.OnEvent(go, PREvents.EventType.OnUpdate).AddListener(obj =>
@@ -51,11 +73,34 @@ namespace Assets.Scripts.Tools.PRHelper
                     Play(go);
                 });
             }
-
-            if (pREvents == null) pREvents = new PREvents();
-            pREvents.Init(go);
-
-            if (btnBack != null) btnBack.Init(go);
+            else if (imageBinding != null && !string.IsNullOrEmpty(imageBinding.name))
+            {
+                PRHelper.OnEvent(go, PREvents.EventType.OnUpdate).AddListener(obj =>
+                {
+                    Play(go);
+                });
+            }
+            else if (objectBinding != null && !string.IsNullOrEmpty(objectBinding.name))
+            {
+                PRHelper.OnEvent(go, PREvents.EventType.OnUpdate).AddListener(obj =>
+                {
+                    Play(go);
+                });
+            }
+            else if (audioBinding != null && !string.IsNullOrEmpty(audioBinding.name))
+            {
+                PRHelper.OnEvent(go, PREvents.EventType.OnUpdate).AddListener(obj =>
+                {
+                    Play(go);
+                });
+            }
+            else if (collectionBinding != null && !string.IsNullOrEmpty(collectionBinding.index))
+            {
+                PRHelper.OnEvent(go, PREvents.EventType.OnUpdate).AddListener(obj =>
+                {
+                    Play(go);
+                });
+            }
         }
     }
 }

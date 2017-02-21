@@ -30,9 +30,8 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                 childTxts.Select(c => c.name).ToArray(), rect, m_Gap, m_Height, false, null, false, "None");
             rect = EditorUtils.MakePopupField(property, "type", new GUIContent("Source Type"),
                 Enum.GetNames(typeof(TextBinding.SourceType)), rect, m_Gap, m_Height, true);
-
-            var sourceType =
-                (TextBinding.SourceType)
+            var hasRoot = parent.GetComponent<PRHelper>().nodes.Exists(n => n.nodeType == NodeType.Model_CollectionBinding);
+            var sourceType = (TextBinding.SourceType)
                     Enum.ToObject(typeof(TextBinding.SourceType), property.FindPropertyRelative("type").enumValueIndex);
             switch (sourceType)
             {
@@ -40,60 +39,29 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                     {
                         rect = EditorUtils.MakePopupField(property, "path", new GUIContent("Json Path"),
                 ConfigManager.instance.configs.Select(c => c.path).ToArray(), rect, m_Gap, m_Height);
-                        var fileName = ConfigManager.instance.configs.Find(c => c.path == property.FindPropertyRelative("path").stringValue).fileName;
-                        var jdata = ConfigManager.instance[fileName];
+                        var jdata = ConfigManager.instance.GetFromFilePath(property.FindPropertyRelative("path").stringValue);
                         if (jdata == null) break;
                         var isArray = jdata.IsArray || jdata.Keys.Contains("0") || jdata.Keys.Contains("1");
                         if (!isArray)
                         {
                             rect = EditorUtils.MakePopupField(property, "key", new GUIContent("Json Key"),
                              jdata.Keys.ToArray(), rect, m_Gap, m_Height);
-                            property.FindPropertyRelative("value").stringValue =
-                                (string)jdata[property.FindPropertyRelative("key").stringValue];
                         }
                         else
                         {
-                            var value = property.FindPropertyRelative("value");
-                            var key = property.FindPropertyRelative("key");
                             var go = property.FindPropertyRelative("sourceObj").objectReferenceValue as GameObject;
                             go = go ?? parent;
 
-                            var originRect = rect;
-                            rect = new Rect(150, rect.y, 100, rect.height);
-                            rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height, new GUIContent(string.Empty));
-                            rect = originRect;
-                            rect = EditorUtils.MakeObjectField(go, property, "fieldName", new GUIContent("Index"), rect,
-                                   m_Gap, m_Height);
                             rect = EditorUtils.MakePopupField(property, "key", new GUIContent("Json Key"),
                          jdata[0].Keys.ToArray(), rect, m_Gap, m_Height);
-                            var fieldName = property.FindPropertyRelative("fieldName").stringValue;
-                            var strs = fieldName.Split('/');
-                            UnityEngine.Object obj = go;
-                            if (strs[0] != "GameObject")
+                            if (!hasRoot)
                             {
-                                obj = go.GetComponent(strs[0]);
-                            }
-                            var type = obj.GetType();
-                            var field = type.GetField(strs[strs.Length - 1], BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
-                            if (field != null)
-                            {
-                                var index = field.GetValue(obj);
-
-                                if (jdata.IsArray)
+                                rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height);
+                                if (property.FindPropertyRelative("sourceObj").objectReferenceValue != null)
                                 {
-                                    var i = int.Parse(index.ToString());
-                                    if (jdata.Count < i)
-                                    {
-                                        value.stringValue = (string)jdata[i][key.stringValue];
-                                    }
-                                }
-                                else
-                                {
-                                    var i = index.ToString();
-                                    if (jdata.Keys.Contains(i))
-                                    {
-                                        value.stringValue = (string)jdata[i][key.stringValue];
-                                    }
+                                    rect = EditorUtils.MakeObjectField(go, property, "fieldName", new GUIContent("Index"),
+                                        rect,
+                                        m_Gap, m_Height);
                                 }
                             }
                         }
@@ -104,33 +72,12 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                     {
                         var go = property.FindPropertyRelative("sourceObj").objectReferenceValue as GameObject;
                         go = go ?? parent;
-                        var value = property.FindPropertyRelative("value");
 
-                        var originRect = rect;
-                        rect = new Rect(150, rect.y, 100, rect.height);
-                        rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height, new GUIContent(string.Empty));
-                        rect = originRect;
-                        rect = EditorUtils.MakeObjectField(go, property, "fieldName", new GUIContent("Member"), rect,
-                               m_Gap, m_Height);
-                        var fieldName = property.FindPropertyRelative("fieldName").stringValue;
-                        var strs = fieldName.Split('/');
-                        UnityEngine.Object obj = go;
-                        if (strs[0] != "GameObject")
+                        rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height);
+                        if (property.FindPropertyRelative("sourceObj").objectReferenceValue != null)
                         {
-                            obj = go.GetComponent(strs[0]);
-                        }
-                        var type = obj.GetType();
-                        var field = type.GetField(strs[strs.Length - 1], BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
-                        if (field != null)
-                        {
-                            var index = field.GetValue(obj);
-                            value.stringValue = index.ToString();
-                        }
-                        else
-                        {
-                            var ppt = type.GetProperty(strs[strs.Length - 1], BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
-                            var index = ppt.GetValue(obj, null);
-                            value.stringValue = index.ToString();
+                            rect = EditorUtils.MakeObjectField(go, property, "fieldName", new GUIContent("Member"), rect,
+                              m_Gap, m_Height);
                         }
                     }
                     break;
@@ -139,48 +86,34 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                     {
                         var go = property.FindPropertyRelative("sourceObj").objectReferenceValue as GameObject;
                         go = go ?? parent;
-                        var value = property.FindPropertyRelative("value");
-
                         rect = EditorUtils.MakePopupField(property, "key", new GUIContent("Enum Key"),
                                 ConstanceManager.instance.keys, rect, m_Gap, m_Height, false, null, true);
+
                         var key = property.FindPropertyRelative("key").stringValue;
                         var obj = ConstanceManager.instance[key];
                         var func = obj as Func<string>;
                         if (func == null)
                         {
-                            var funcParam = obj as Func<object, string>;
-                            var originRect = rect;
-                            rect = new Rect(150, rect.y, 100, rect.height);
-                            rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height, new GUIContent(string.Empty));
-                            rect = originRect;
-                            rect = EditorUtils.MakeObjectField(go, property, "fieldName", new GUIContent("Member"), rect,
-                                   m_Gap, m_Height);
-                            var fieldName = property.FindPropertyRelative("fieldName").stringValue;
-                            var strs = fieldName.Split('/');
-                            UnityEngine.Object bindingObj = go;
-                            if (strs[0] != "GameObject")
+                            if (!hasRoot)
                             {
-                                bindingObj = go.GetComponent(strs[0]);
+                                rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height);
+                                if (property.FindPropertyRelative("sourceObj").objectReferenceValue != null)
+                                {
+                                    rect = EditorUtils.MakeObjectField(go, property, "fieldName", new GUIContent("Member"), rect,
+                                       m_Gap, m_Height);
+                                }
                             }
-                            var type = bindingObj.GetType();
-                            var field = type.GetField(strs[strs.Length - 1], BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
-                            if (field != null)
-                            {
-                                var index = field.GetValue(bindingObj);
-                                if (funcParam != null) value.stringValue = funcParam(index);
-                            }
-                        }
-                        else
-                        {
-                            value.stringValue = func();
                         }
                     }
                     break;
             }
+            rect = EditorUtils.MakePropertyField("value", property, rect, m_Gap, m_Height);
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
+            var parent = Selection.activeGameObject;
+            var hasRoot = parent.GetComponent<PRHelper>().nodes.Exists(n => n.nodeType == NodeType.Model_CollectionBinding);
             var sourceType = (TextBinding.SourceType)
                        Enum.ToObject(typeof(TextBinding.SourceType), property.FindPropertyRelative("type").enumValueIndex);
             var extra = 0;
@@ -188,20 +121,26 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
             {
                 case TextBinding.SourceType.Json:
                     {
-                        extra = 20;
-                        var fileName = ConfigManager.instance.configs.Find(c => c.path == property.FindPropertyRelative("path").stringValue).fileName;
-                        var jdata = ConfigManager.instance[fileName];
+                        extra = 40;
+                        var jdata = ConfigManager.instance.GetFromFilePath(property.FindPropertyRelative("path").stringValue);
                         if (jdata != null)
                         {
                             var isArray = jdata.IsArray || jdata.Keys.Contains("0") || jdata.Keys.Contains("1");
-                            extra = isArray ? 60 : 40;
+                            extra = isArray ? 80 : 40;
+                            extra = property.FindPropertyRelative("sourceObj").objectReferenceValue != null
+                                ? extra + 20
+                                : extra;
+                        }
+                        if (hasRoot)
+                        {
+                            extra = 60;
                         }
                     }
                     break;
 
                 case TextBinding.SourceType.Script:
                     {
-                        extra = 25;
+                        extra = property.FindPropertyRelative("sourceObj").objectReferenceValue != null ? 60 : 40;
                     }
                     break;
 
@@ -212,11 +151,15 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                         var func = obj as Func<string>;
                         if (func == null)
                         {
-                            extra = 45;
+                            extra = property.FindPropertyRelative("sourceObj").objectReferenceValue != null ? 80 : 60;
                         }
                         else
                         {
-                            extra = 25;
+                            extra = 20;
+                        }
+                        if (hasRoot)
+                        {
+                            extra = 40;
                         }
                     }
                     break;

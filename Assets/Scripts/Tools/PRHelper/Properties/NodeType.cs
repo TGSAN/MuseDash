@@ -6,8 +6,9 @@
 
         Model_TextBinding,
         Model_MethodBinding,
-        Model_TextureBinding,
+        Model_ImageBinding,
         Model_AudioBinding,
+        Model_ObjectBinding,
         Model_CollectionBinding,
 
         View_PlayAnimation,
