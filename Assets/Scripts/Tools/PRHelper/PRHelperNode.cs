@@ -27,6 +27,7 @@ namespace Assets.Scripts.Tools.PRHelper
 
         public TextBinding textBinding;
         public ImageBinding imageBinding;
+        public MethodBinding methodBinding;
         public ObjectBinding objectBinding;
         public AudioBinding audioBinding;
         public CollectionBinding collectionBinding;
@@ -97,6 +98,13 @@ namespace Assets.Scripts.Tools.PRHelper
             else if (collectionBinding != null && !string.IsNullOrEmpty(collectionBinding.index))
             {
                 PRHelper.OnEvent(go, PREvents.EventType.OnUpdate).AddListener(obj =>
+                {
+                    Play(go);
+                });
+            }
+            else if (methodBinding != null && !string.IsNullOrEmpty(methodBinding.name))
+            {
+                PRHelper.OnEvent(go, PREvents.EventType.OnStart).AddListener(obj =>
                 {
                     Play(go);
                 });

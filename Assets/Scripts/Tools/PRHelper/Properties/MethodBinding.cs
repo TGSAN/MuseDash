@@ -1,8 +1,6 @@
 using System;
 using System.Linq;
-using System.Reflection;
 using Assets.Scripts.Common;
-using Assets.Scripts.Tools.Commons;
 using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +8,7 @@ using UnityEngine.UI;
 namespace Assets.Scripts.Tools.PRHelper.Properties
 {
     [Serializable]
-    public class ImageBinding
+    public class MethodBinding
     {
         public string name;
         public UnityEngine.Object sourceObj;
@@ -20,34 +18,32 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
         public string key;
         public string index;
 
-        private Image m_Image;
-        private string m_ResourcePath;
-
         public void Play(GameObject go)
         {
+            var btn = go.GetComponentsInChildren<Button>().ToList().Find(t => t.gameObject.name == name);
+
             var collectionBindingNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
             index = collectionBindingNode != null ? collectionBindingNode.collectionBinding.index : ReflectionUtil.Reflect(sourceObj, fieldName);
 
-            var jdata = ConfigManager.instance.GetFromFilePath(path);
-            var resourcePath = (string)jdata[index][key];
-            if (m_ResourcePath == resourcePath)
+            var obj = ConstanceManager.instance[key];
+            var func = obj as Func<string>;
+            if (func == null)
             {
-                return;
+                var funcParam = obj as Func<object, string>;
+                if (funcParam != null)
+                {
+                    btn.onClick.AddListener(() =>
+                    {
+                        funcParam(index);
+                    });
+                }
             }
             else
             {
-                m_ResourcePath = resourcePath;
-            }
-
-            if (!m_Image)
-            {
-                m_Image = go.GetComponentsInChildren<Image>().ToList().Find(t => t.gameObject.name == name);
-            }
-
-            var spr = ResourcesLoader.Load<Sprite>(m_ResourcePath);
-            if (spr)
-            {
-                m_Image.sprite = spr;
+                btn.onClick.AddListener(() =>
+                {
+                    func();
+                });
             }
         }
     }

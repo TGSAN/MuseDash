@@ -25,8 +25,8 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
 
         public void Play(GameObject go)
         {
-            var collectionBinding = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding).collectionBinding;
-            index = collectionBinding != null ? collectionBinding.index : ReflectionUtil.Reflect(sourceObj, fieldName);
+            var collectionBindingNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
+            index = collectionBindingNode != null ? collectionBindingNode.collectionBinding.index : ReflectionUtil.Reflect(sourceObj, fieldName);
 
             var jdata = ConfigManager.instance.GetFromFilePath(path);
             var resourcePath = (string)jdata[index][key];

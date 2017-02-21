@@ -155,7 +155,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                         }
                         else
                         {
-                            extra = 20;
+                            extra = 40;
                         }
                         if (hasRoot)
                         {

@@ -32,8 +32,8 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
                 m_Txt = go.GetComponentsInChildren<Text>().ToList().Find(t => t.gameObject.name == name);
             }
 
-            var collectionBinding = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding).collectionBinding;
-            index = collectionBinding != null ? collectionBinding.index : ReflectionUtil.Reflect(sourceObj, fieldName);
+            var collectionBindingNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
+            index = collectionBindingNode != null ? collectionBindingNode.collectionBinding.index : ReflectionUtil.Reflect(sourceObj, fieldName);
 
             var str = string.Empty;
             switch (type)
