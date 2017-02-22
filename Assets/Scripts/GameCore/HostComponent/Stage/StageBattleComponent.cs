@@ -10,6 +10,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Assets.Scripts.NewUI.Panels;
+using Assets.Scripts.Tools.Commons;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -468,9 +471,14 @@ namespace FormulaBase
             var r = AccountPhysicsManagerComponent.Instance.ChangePhysical(-(int)Host.Result(FormulaKeys.FORMULA_20), false, true,
           result =>
           {
-              if (PnlScrollCircle.instance != null)
+              var clip = PnlStage.instance.catchClip;
+              if (clip != null)
               {
-                  SceneAudioManager.Instance.bgm.clip = PnlScrollCircle.instance.CatchClip;
+                  SceneAudioManager.Instance.bgm.clip = clip;
+              }
+              else
+              {
+                  SceneAudioManager.Instance.bgm.clip = ResourcesLoader.Load<AudioClip>((string)ConfigManager.instance["stage"][(int)id - 1]["music"]);
               }
 
               if (UISceneHelper.Instance != null)
