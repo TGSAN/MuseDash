@@ -76,7 +76,7 @@ namespace PnlWelcome_new
         /// </summary>
         public void Login()
         {
-            JsonData loadData = GameLogic.GameGlobal.gConfigLoader.LoadPrefs(SAVE_FILE_NAME);
+            /*JsonData loadData = GameLogic.GameGlobal.gConfigLoader.LoadPrefs(SAVE_FILE_NAME);
             if (loadData == null ||
                 loadData.GetJsonType() == JsonType.None ||
                 !loadData.Keys.Contains("username") ||
@@ -109,7 +109,7 @@ namespace PnlWelcome_new
             {
                 this.waitCoroutine = this.StartCoroutine(this.OnLoginWait());
                 return;
-            });
+            });*/
         }
 
         public string GetVerficationCode()
