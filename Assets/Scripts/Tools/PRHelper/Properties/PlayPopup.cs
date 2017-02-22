@@ -40,11 +40,11 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
             var btnCancellGO = new GameObject("BtnCancel");
             var rectTransform = btnCancellGO.AddComponent<RectTransform>();
 
-            var parent = UIManager.instance.gameObject;
+            var parent = gameObject.transform.parent;
             btnCancellGO.transform.localScale = new Vector3(1, 1, 1);
-            rectTransform.sizeDelta = parent.GetComponent<RectTransform>().sizeDelta;
+            rectTransform.sizeDelta = UIManager.instance.gameObject.GetComponent<RectTransform>().sizeDelta;
             btnCancellGO.transform.SetParent(parent.transform, false);
-            btnCancellGO.transform.SetSiblingIndex(parent.transform.GetSiblingIndex());
+            btnCancellGO.transform.SetSiblingIndex(0);
 
             var texBkg = new Texture2D(1, 1);
             texBkg.SetPixel(0, 0, color);
