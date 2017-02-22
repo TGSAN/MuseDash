@@ -23,7 +23,7 @@ namespace Assets.Scripts.Tools.Managers
             {
                 AccountManagerComponent.Instance.Init();
                 AccountPhysicsManagerComponent.Instance.Init();
-                TaskManager.instance.Init();
+                //TaskManager.instance.Init();
                 StageBattleComponent.Instance.InitById(0);
                 AccountManagerComponent.Instance.AddLoginCount(1);
             });
