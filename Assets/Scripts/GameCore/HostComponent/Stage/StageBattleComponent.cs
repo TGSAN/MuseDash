@@ -370,7 +370,7 @@ namespace FormulaBase
 
         public int GetStageCount()
         {
-            return ConfigPool.Instance.GetConfigByName("stage").Count;
+            return ConfigManager.instance["stage"].Count;
         }
 
         public uint GetPlayResultLock()
