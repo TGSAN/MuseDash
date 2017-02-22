@@ -148,35 +148,69 @@ public class ConfigPool
             return null;
         }
 
-        foreach (string jid in jd.Keys)
+        if (jd.IsArray)
         {
-            JsonData _jd = this.GetConfigValue(filename, jid, compkey);
-            if (_jd == null)
+            for (int i = 0; i < jd.Count; i++)
             {
-                continue;
-            }
-
-            if (_jd.IsInt)
-            {
-                if (int.Parse(_jd.ToString()) == (int)compvalue)
+                var jid = jd[i];
+                var _jd = jid[compkey];
+                if (_jd.IsInt)
                 {
-                    return this.GetConfigValue(filename, jid, valuekey);
+                    if (int.Parse(_jd.ToString()) == (int)compvalue)
+                    {
+                        return jid[valuekey];
+                    }
+                }
+
+                if (_jd.IsString)
+                {
+                    if (_jd.ToString() == compvalue.ToString())
+                    {
+                        return jid[valuekey];
+                    }
+                }
+
+                if (_jd.IsDouble)
+                {
+                    if (float.Parse(_jd.ToString()) == (float)compvalue)
+                    {
+                        return jid[valuekey];
+                    }
                 }
             }
-
-            if (_jd.IsString)
+        }
+        else
+        {
+            foreach (string jid in jd.Keys)
             {
-                if (_jd.ToString() == compvalue.ToString())
+                JsonData _jd = this.GetConfigValue(filename, jid, compkey);
+                if (_jd == null)
                 {
-                    return this.GetConfigValue(filename, jid, valuekey);
+                    continue;
                 }
-            }
 
-            if (_jd.IsDouble)
-            {
-                if (float.Parse(_jd.ToString()) == (float)compvalue)
+                if (_jd.IsInt)
                 {
-                    return this.GetConfigValue(filename, jid, valuekey);
+                    if (int.Parse(_jd.ToString()) == (int)compvalue)
+                    {
+                        return this.GetConfigValue(filename, jid, valuekey);
+                    }
+                }
+
+                if (_jd.IsString)
+                {
+                    if (_jd.ToString() == compvalue.ToString())
+                    {
+                        return this.GetConfigValue(filename, jid, valuekey);
+                    }
+                }
+
+                if (_jd.IsDouble)
+                {
+                    if (float.Parse(_jd.ToString()) == (float)compvalue)
+                    {
+                        return this.GetConfigValue(filename, jid, valuekey);
+                    }
                 }
             }
         }

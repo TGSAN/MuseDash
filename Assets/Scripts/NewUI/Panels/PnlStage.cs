@@ -113,7 +113,7 @@ namespace Assets.Scripts.NewUI.Panels
 
         public float offsetX { get; private set; }
 
-        public AudioClip CatchClip
+        public AudioClip catchClip
         {
             get { return this.m_CatchClip; }
         }
@@ -775,7 +775,7 @@ namespace Assets.Scripts.NewUI.Panels
             {
                 Resources.UnloadAsset(audioSource.clip);
             }
-
+            m_CatchClip = newClip;
             audioSource.clip = newClip;
             audioSource.Play();
             audioSource.loop = true;

@@ -2,6 +2,7 @@
 using Assets.Scripts.Common;
 using Assets.Scripts.Tools.PRHelper.Properties;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Tools.PRHelper
 {
@@ -59,10 +60,13 @@ namespace Assets.Scripts.Tools.PRHelper
             if (pREvents == null) pREvents = new PREvents();
             pREvents.Init(go);
 
-            PRHelper.OnEvent(go, PREvents.EventType.OnButtonClick).AddListener(obj =>
+            if (go.GetComponent<Button>() != null)
             {
-                Play(go);
-            });
+                PRHelper.OnEvent(go, PREvents.EventType.OnButtonClick).AddListener(obj =>
+                {
+                    Play(go);
+                });
+            }
         }
 
         private void ModelInit(GameObject go)

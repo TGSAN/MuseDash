@@ -87,10 +87,10 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                         var go = property.FindPropertyRelative("sourceObj").objectReferenceValue as GameObject;
                         go = go ?? parent;
                         rect = EditorUtils.MakePopupField(property, "key", new GUIContent("Enum Key"),
-                                ConstanceManager.instance.keys, rect, m_Gap, m_Height, false, null, true);
+                                CallbacksManager.instance.keys, rect, m_Gap, m_Height, false, null, true);
 
                         var key = property.FindPropertyRelative("key").stringValue;
-                        var obj = ConstanceManager.instance[key];
+                        var obj = CallbacksManager.instance[key];
                         var func = obj as Func<string>;
                         if (func == null)
                         {
@@ -147,7 +147,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                 case TextBinding.SourceType.Enum:
                     {
                         var key = property.FindPropertyRelative("key").stringValue;
-                        var obj = ConstanceManager.instance[key];
+                        var obj = CallbacksManager.instance[key];
                         var func = obj as Func<string>;
                         if (func == null)
                         {

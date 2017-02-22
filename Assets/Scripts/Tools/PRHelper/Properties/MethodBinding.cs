@@ -24,7 +24,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
             var collectionBindingNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
             index = collectionBindingNode != null ? collectionBindingNode.collectionBinding.index : ReflectionUtil.Reflect(sourceObj, fieldName);
 
-            var obj = ConstanceManager.instance[key];
+            var obj = CallbacksManager.instance[key];
             var func = obj as Func<string>;
             if (func == null)
             {

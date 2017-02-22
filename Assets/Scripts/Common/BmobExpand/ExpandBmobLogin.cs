@@ -51,7 +51,7 @@ public class ExpandBmobLogin : MonoBehaviour
     public string password;
 
     // Use this for initialization
-    private void Start()
+    private void Awake()
     {
         instance = this;
         Bmob = gameObject.GetComponent<BmobUnity>();

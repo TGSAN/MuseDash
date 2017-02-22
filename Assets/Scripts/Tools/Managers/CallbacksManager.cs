@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Common;
 using FormulaBase;
+using UnityEngine;
 
 namespace Assets.Scripts.Tools.Managers
 {
-    public class ConstanceManager : Singleton<ConstanceManager>
+    public class CallbacksManager : Singleton<CallbacksManager>
     {
         public object this[string key]
         {
             get
             {
-                if (m_EnumValue.ContainsKey(key))
+                if (m_CallbackDic.ContainsKey(key))
                 {
-                    return m_EnumValue[key];
+                    return m_CallbackDic[key];
                 }
                 return null;
             }
@@ -22,10 +23,10 @@ namespace Assets.Scripts.Tools.Managers
 
         public string[] keys
         {
-            get { return m_EnumValue.Keys.ToArray(); }
+            get { return m_CallbackDic.Keys.ToArray(); }
         }
 
-        private readonly Dictionary<string, object> m_EnumValue = new Dictionary<string, object>
+        private readonly Dictionary<string, object> m_CallbackDic = new Dictionary<string, object>
         {
             {"Account_Level", (new Func<string>(()=>AccountLevelManagerComponent.Instance.GetLvl().ToString()))},
             {"Account_Exp", (new Func<string>(()=>AccountLevelManagerComponent.Instance.GetExp().ToString()))},
@@ -41,9 +42,14 @@ namespace Assets.Scripts.Tools.Managers
             {"Game_BattleStart", (new  Func<object, string>(idx =>
             {
                 var index = int.Parse(idx.ToString());
-                StageBattleComponent.Instance.SetStageId((uint)index);
-                uint diff = StageBattleComponent.Instance.GetDiffcult();
-                StageBattleComponent.Instance.Enter((uint)index, diff);
+                GameMain.instance.BattleStart(index);
+                return string.Empty;
+            }))},
+
+            {"Game_Login", (new  Func<object, string>(idx =>
+            {
+                var index = int.Parse(idx.ToString());
+                GameMain.instance.Login(index);
                 return string.Empty;
             }))},
         };
