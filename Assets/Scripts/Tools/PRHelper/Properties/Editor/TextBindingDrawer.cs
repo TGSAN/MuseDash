@@ -41,8 +41,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                 ConfigManager.instance.configs.Select(c => c.path).ToArray(), rect, m_Gap, m_Height);
                         var jdata = ConfigManager.instance.Convert(property.FindPropertyRelative("path").stringValue);
                         if (jdata == null) break;
-                        var isArray = jdata.IsArray || jdata.Keys.Contains("0") || jdata.Keys.Contains("1");
-                        if (!isArray)
+                        if (!jdata.IsArray)
                         {
                             rect = EditorUtils.MakePopupField(property, "key", new GUIContent("Json Key"),
                              jdata.Keys.ToArray(), rect, m_Gap, m_Height);
@@ -95,10 +94,10 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                         var go = property.FindPropertyRelative("sourceObj").objectReferenceValue as GameObject;
                         go = go ?? parent;
                         rect = EditorUtils.MakePopupField(property, "key", new GUIContent("Enum Key"),
-                                CallbacksManager.instance.keys, rect, m_Gap, m_Height, false, null, true);
+                                CallbackManager.instance.keys, rect, m_Gap, m_Height, false, null, true);
 
                         var key = property.FindPropertyRelative("key").stringValue;
-                        var obj = CallbacksManager.instance[key];
+                        var obj = CallbackManager.instance[key];
                         var func = obj as Func<string>;
                         if (func == null)
                         {
@@ -137,8 +136,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                         var jdata = ConfigManager.instance.Convert(property.FindPropertyRelative("path").stringValue);
                         if (jdata != null)
                         {
-                            var isArray = jdata.IsArray || jdata.Keys.Contains("0") || jdata.Keys.Contains("1");
-                            extra = isArray ? 100 : 60;
+                            extra = jdata.IsArray ? 100 : 60;
                         }
                         if (hasRoot)
                         {
@@ -156,7 +154,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                 case TextBinding.SourceType.Enum:
                     {
                         var key = property.FindPropertyRelative("key").stringValue;
-                        var obj = CallbacksManager.instance[key];
+                        var obj = CallbackManager.instance[key];
                         var func = obj as Func<string>;
                         extra = func == null ? 80 : 40;
                         if (hasRoot)

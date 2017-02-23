@@ -31,11 +31,11 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
             var go = property.FindPropertyRelative("sourceObj").objectReferenceValue as GameObject;
             go = go ?? parent;
             rect = EditorUtils.MakePopupField(property, "key", new GUIContent("Enum Key"),
-                    CallbacksManager.instance.keys, rect, m_Gap, m_Height, false, null, true);
+                    CallbackManager.instance.keys, rect, m_Gap, m_Height, false, null, true);
 
             var key = property.FindPropertyRelative("key").stringValue;
-            var obj = CallbacksManager.instance[key];
-            var func = obj as Func<string>;
+            var obj = CallbackManager.instance[key];
+            var func = obj as Action;
             if (func == null)
             {
                 if (!hasRoot)
@@ -47,7 +47,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                     }
                     else
                     {
-                        rect = EditorUtils.MakePropertyField("index", property, rect, m_Gap, m_Height);
+                        rect = EditorUtils.MakePropertyField("index", property, rect, m_Gap, m_Height, new GUIContent("Param"));
                     }
                     rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height);
                 }
@@ -60,8 +60,8 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
             var parent = Selection.activeGameObject;
             var hasRoot = parent.GetComponent<PRHelper>().nodes.Exists(n => n.nodeType == NodeType.Model_CollectionBinding);
             var key = property.FindPropertyRelative("key").stringValue;
-            var obj = CallbacksManager.instance[key];
-            var func = obj as Func<string>;
+            var obj = CallbackManager.instance[key];
+            var func = obj as Action;
             extra = func == null ? 80 : 40;
             if (hasRoot)
             {

@@ -2,6 +2,7 @@
 /// Formula condiction object.
 /// </summary>
 using System;
+using Assets.Scripts.Tools.Managers;
 
 namespace FormulaBase
 {
@@ -188,10 +189,10 @@ namespace FormulaBase
                     {
                         this.InitConfig();
                         string signKey = FormulaData.Instance.DynamicParams[this.condiction.condictionKeyIndex];
-                        string key = ((int)this.host.GetDynamicDataByKey(signKey)).ToString();
                         if (this.cfgname != null)
                         {
-                            this.dynamicValue = float.Parse(ConfigPool.Instance.GetConfigValue(this.cfgname, key, this.rowname).ToJson());
+                            this.dynamicValue = ConfigManager.instance.GetConfigFloatValue(cfgname,
+                                (int)this.host.GetDynamicDataByKey(signKey), rowname);
                         }
                         else
                         {

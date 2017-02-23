@@ -218,19 +218,19 @@ namespace FormulaBase
 
         public int GetChapterId(int stageId)
         {
-            return ConfigPool.Instance.GetConfigIntValue("stage", stageId.ToString(), "chapter");
+            return ConfigManager.instance.GetConfigIntValue("stage", stageId, "chapter");
         }
 
         public List<int> GetStageIdsInChapter(int chapterId)
         {
-            LitJson.JsonData jData = ConfigPool.Instance.GetConfigByName("stage");
+            var jData = ConfigManager.instance["stage"];
             if (jData == null || jData.Count <= 0)
             {
                 return null;
             }
 
             List<int> list = new List<int>();
-            for (int i = 0; i < jData.Count + 1; i++)
+            for (int i = 0; i < jData.Count; i++)
             {
                 int cid = this.GetChapterId(i);
                 if (cid != chapterId)
@@ -298,7 +298,7 @@ namespace FormulaBase
             }
 
             int sid = this.GetId();
-            return ConfigPool.Instance.GetConfigStringValue("stage", sid.ToString(), "music");
+            return ConfigManager.instance.GetConfigStringValue("stage", sid, "music");
         }
 
         public string GetSceneName()
@@ -466,20 +466,12 @@ namespace FormulaBase
         // ------------------------------------------------------------// ------------------------------------------------------------
         public void Enter(uint id, uint diff)
         {
+            Debug.Log(id + "====");
             //扣体力回调
             var r = AccountPhysicsManagerComponent.Instance.ChangePhysical(-(int)Host.Result(FormulaKeys.FORMULA_20), false, true,
           result =>
           {
-              var clip = PnlStage.instance.catchClip;
-              if (clip != null)
-              {
-                  SceneAudioManager.Instance.bgm.clip = clip;
-              }
-              else
-              {
-                  SceneAudioManager.Instance.bgm.clip = ResourcesLoader.Load<AudioClip>((string)ConfigManager.instance["stage"][(int)id - 1]["music"]);
-              }
-
+              SceneAudioManager.Instance.bgm.clip = ResourcesLoader.Load<AudioClip>(ConfigManager.instance.GetConfigStringValue("stage", "id", "music", id));
               if (UISceneHelper.Instance != null)
               {
                   UISceneHelper.Instance.HideWidget();
@@ -795,12 +787,11 @@ namespace FormulaBase
         // Reset start stage.
         public void ReEnter()
         {
-            string sceneName = "GameScene";
-            this.Exit(sceneName, false, true);
+            this.Exit("GameScene", false, true);
         }
 
         // Exit stage.
-        public void Exit(string sceneName = "ChooseSongs", bool isFinish = false, bool isRestart = false)
+        public void Exit(string sceneName = "UISystem", bool isFinish = false, bool isRestart = false)
         {
             Debug.Log("Stage Exit.");
             Action callFunc = () =>

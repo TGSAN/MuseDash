@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Tools.Managers;
 
 namespace FormulaBase
 {
@@ -65,24 +66,24 @@ namespace FormulaBase
             return count;
         }
 
-/*        public int GetChoseRoleIdx()
-        {
-            var idx = 1;
-            foreach (var formulaHost in HostList.Values)
-            {
-                if (formulaHost.GetDynamicIntByKey(SignKeys.FIGHTHERO) == 1)
+        /*        public int GetChoseRoleIdx()
                 {
-                    idx = formulaHost.GetDynamicIntByKey(SignKeys.ID);
-                    break;
+                    var idx = 1;
+                    foreach (var formulaHost in HostList.Values)
+                    {
+                        if (formulaHost.GetDynamicIntByKey(SignKeys.FIGHTHERO) == 1)
+                        {
+                            idx = formulaHost.GetDynamicIntByKey(SignKeys.ID);
+                            break;
+                        }
+                    }
+                    return idx;
                 }
-            }
-            return idx;
-        } 
 
-        public FormulaHost GetChoseGirl()
-        {
-            return GetRole(GetChoseRoleIdx());
-        }*/
+                public FormulaHost GetChoseGirl()
+                {
+                    return GetRole(GetChoseRoleIdx());
+                }*/
 
         public FormulaHost GetRole(string name)
         {
@@ -107,25 +108,25 @@ namespace FormulaBase
             if (this.HostList == null || this.HostList.Count <= 0)
             {
                 hostList = new List<FormulaHost>();
-                LitJson.JsonData roleCfg = ConfigPool.Instance.GetConfigByName("char_info");
-                foreach (string key in roleCfg.Keys)
+                var roleCfg = ConfigManager.instance["char_info"];
+                for (var i = 0; i < roleCfg.Count; i++)
                 {
                     var role = FomulaHostManager.Instance.CreateHost("Role");
-                    role.SetDynamicData(SignKeys.ID, int.Parse(key));
+                    role.SetDynamicData(SignKeys.ID, i);
                     role.Result(FormulaKeys.FORMULA_35);
                     FomulaHostManager.Instance.AddHost(role);
                     var formulaHosts = HostList;
-                    if (formulaHosts != null) formulaHosts[key] = role;
+                    if (formulaHosts != null) formulaHosts[i.ToString()] = role;
                     hostList.Add(role);
                 }
             }
             //初始化角色信息
             UpdateRoleInfo(hostList);
             // 初始化战斗角色
-//            this.SetFightGirlIndex(GetChoseRoleIdx(), () =>
-//            {
-//                this.SetFightGirlCallBack(null);
-//            });
+            //            this.SetFightGirlIndex(GetChoseRoleIdx(), () =>
+            //            {
+            //                this.SetFightGirlCallBack(null);
+            //            });
             this.SetFightGirlClothByOrder(1);
         }
 
@@ -216,20 +217,20 @@ namespace FormulaBase
             Exp = 0;
             Cost = 0;
             FormulaHost tempEquip = new FormulaHost(HOST_IDX);
-//            List<FormulaHost> tList = ItemManageComponent.Instance.GetChosedItem;
-//            for (int i = 0, max = tList.Count; i < max; i++)
-//            {
-//                FormulaHost _item = tList[i];
-//                if (_item == null)
-//                {
-//                    continue;
-//                }
-//
-//                /*
-//                Exp += (int)_item.Result(FormulaKeys.FORMULA_40) * _item.GetDynamicIntByKey(SignKeys.CHOSED);
-//                Cost += (int)_item.Result(FormulaKeys.FORMULA_41) * _item.GetDynamicIntByKey(SignKeys.CHOSED);
-//                */
-//            }
+            //            List<FormulaHost> tList = ItemManageComponent.Instance.GetChosedItem;
+            //            for (int i = 0, max = tList.Count; i < max; i++)
+            //            {
+            //                FormulaHost _item = tList[i];
+            //                if (_item == null)
+            //                {
+            //                    continue;
+            //                }
+            //
+            //                /*
+            //                Exp += (int)_item.Result(FormulaKeys.FORMULA_40) * _item.GetDynamicIntByKey(SignKeys.CHOSED);
+            //                Cost += (int)_item.Result(FormulaKeys.FORMULA_41) * _item.GetDynamicIntByKey(SignKeys.CHOSED);
+            //                */
+            //            }
         }
 
         /// <summary>
@@ -269,7 +270,8 @@ namespace FormulaBase
         public void GetMaxLevelProperties(FormulaHost host, ref int vigour, ref int stamina, ref int strengh)
         {
             var id = host.GetDynamicIntByKey(SignKeys.ID);
-            var roleConfig = ConfigPool.Instance.GetConfigValue("char_info", id.ToString());
+
+            var roleConfig = ConfigManager.instance["char_info"][id];
             var maxLevel = (int)roleConfig["level_max_add"] - host.GetDynamicIntByKey(SignKeys.LEVEL);
             vigour = (int)((float)maxLevel * (double)roleConfig["vig_growth"]) + (int)host.Result(FormulaKeys.FORMULA_0);
             stamina = (int)((float)maxLevel * (double)roleConfig["sta_growth"]) + (int)host.Result(FormulaKeys.FORMULA_36);
@@ -404,7 +406,7 @@ namespace FormulaBase
             }
             if (PnlHome.PnlHome.Instance != null)
             {
-				PnlHome.PnlHome.Instance.ChoseGirl();
+                PnlHome.PnlHome.Instance.ChoseGirl();
             }
             if (_callBack != null)
             {
@@ -428,8 +430,8 @@ namespace FormulaBase
         public List<CharCos> GetCloths(int idx)
         {
             var list = new List<CharCos>();
-            var allCharCos = ConfigPool.Instance.GetConfigByName("char_cos");
-            for (int i = 1; i <= allCharCos.Count; i++)
+            var allCharCos = ConfigManager.instance["char_cos"];
+            for (var i = 0; i < allCharCos.Count; i++)
             {
                 var charCos = new CharCos(i);
                 if (charCos.owner == GetName(idx))
@@ -467,7 +469,7 @@ namespace FormulaBase
             }
 
             int clothUid = idx * 10 + (order - 1);
-            string clothName = ConfigPool.Instance.GetConfigStringValue("char_cos", "uid", "name", clothUid);
+            string clothName = ConfigManager.instance.GetConfigStringValue("char_cos", "uid", "name", clothUid);
             if (clothName == null)
             {
                 clothUid = idx * 10;
@@ -538,8 +540,8 @@ namespace FormulaBase
             {
                 return 0;
             }
-            var charConfig = ConfigPool.Instance.GetConfigByName("char_info");
-            var value = this.HostList.Values.Select(role => role.GetDynamicIntByKey(SignKeys.ID)).Where(id => GetRoleState(id) != ChoseHeroDefine.RESULT_EQUIP.NO_GET).Sum(id => (int)charConfig[id.ToString()]["extra_energy_max"]);
+            var charConfig = ConfigManager.instance["char_info"];
+            var value = this.HostList.Values.Select(role => role.GetDynamicIntByKey(SignKeys.ID)).Where(id => GetRoleState(id) != ChoseHeroDefine.RESULT_EQUIP.NO_GET).Sum(id => (int)charConfig[id]["extra_energy_max"]);
             return value;
         }
 
@@ -593,29 +595,15 @@ namespace FormulaBase
         public CharCos(int i)
         {
             host = new List<FormulaHost>();
-            var charCos = ConfigPool.Instance.GetConfigByName("char_cos");
+            var charCos = ConfigManager.instance["char_cos"];
             id = i;
-            var cos = charCos[id.ToString()];
+            var cos = charCos[id];
             name = (string)cos["name"];
             uid = (int)cos["uid"];
             path = (string)cos["path"];
             description = (string)cos["description"];
             owner = ((string)cos["owner"]).ToLower();
 
-//            var allEquips = EquipManageComponent.Instance.GetGirlEquipHosts(RoleManageComponent.Instance.GetID(owner), 0).ToList();
-//            var idxList = new List<int>();
-//            allEquips.ForEach(equip =>
-//            {
-//                if (equip.GetDynamicStrByKey(SignKeys.SUIT) == name)
-//                {
-//                    var idx = equip.GetDynamicIntByKey(SignKeys.ID);
-//                    if (!idxList.Contains(idx))
-//                    {
-//                        idxList.Add(idx);
-//                        host.Add(equip);
-//                    }
-//                }
-//            });
             isLock = host.Count < 3;
             if (uid % 10 == 0)
             {
@@ -625,65 +613,33 @@ namespace FormulaBase
 
         public CharCos(float u)
         {
-            var charCos = ConfigPool.Instance.GetConfigByName("char_cos");
+            var charCos = ConfigManager.instance["char_cos"];
             uid = (int)u;
-            for (int i = 1; i <= charCos.Count; i++)
+            for (int i = 0; i < charCos.Count; i++)
             {
-                var cos = charCos[i.ToString()];
+                var cos = charCos[i];
                 if ((int)cos["uid"] != uid) continue;
                 id = (int)cos["id"];
                 name = cos["name"].ToString();
                 path = (string)cos["path"];
                 description = (string)cos["description"];
                 owner = ((string)cos["owner"]).ToLower();
-
-//                var allEquips = EquipManageComponent.Instance.GetGirlEquipHosts(RoleManageComponent.Instance.GetID(owner), 0).ToList();
-//                var count = 0;
-//                allEquips.ForEach(equip =>
-//                {
-//                    if (equip.GetDynamicStrByKey(SignKeys.SUIT) == name)
-//                    {
-//                        count++;
-//                    }
-//                });
-//                isLock = count < 3;
-//                if (uid % 10 == 0)
-//                {
-//                    isLock = false;
-//                }
-//                break;
             }
         }
 
         public CharCos(string n)
         {
-            var charCos = ConfigPool.Instance.GetConfigByName("char_cos");
+            var charCos = ConfigManager.instance["char_cos"];
             name = n;
-            for (var i = 1; i <= charCos.Count; i++)
+            for (var i = 0; i < charCos.Count; i++)
             {
-                var cos = charCos[i.ToString()];
+                var cos = charCos[i];
                 if (cos["name"].ToString() != n) continue;
                 id = (int)cos["id"];
                 uid = (int)cos["uid"];
                 path = (string)cos["path"];
                 description = (string)cos["description"];
                 owner = ((string)cos["owner"]).ToLower();
-
-//                var allEquips = EquipManageComponent.Instance.GetGirlEquipHosts(RoleManageComponent.Instance.GetID(owner), 0).ToList();
-//                var count = 0;
-//                allEquips.ForEach(equip =>
-//                {
-//                    if (equip.GetDynamicStrByKey(SignKeys.SUIT) == name)
-//                    {
-//                        count++;
-//                    }
-//                });
-//                isLock = count < 3;
-//                if (uid % 10 == 0)
-//                {
-//                    isLock = false;
-//                }
-//                break;
             }
         }
     }

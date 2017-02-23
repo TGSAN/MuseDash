@@ -43,10 +43,11 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
                         var jdata = ConfigManager.instance.Convert(path);
                         if (jdata.IsArray)
                         {
-                            var i = int.Parse(index.ToString());
+                            var i = int.Parse(index);
                             if (jdata.Count < i)
                             {
-                                str = (string)jdata[i][key].ToJson();
+                                str = ConfigManager.instance.GetConfigStringValue(ConfigManager.instance.GetFileName(path),
+                i, key);
                             }
                         }
                         else
@@ -54,7 +55,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
                             var i = index.ToString();
                             if (jdata.Keys.Contains(i))
                             {
-                                str = jdata[i][key].ToJson();
+                                str = jdata[i][key].ToString();
                             }
                         }
                     }
@@ -68,7 +69,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
 
                 case SourceType.Enum:
                     {
-                        var obj = CallbacksManager.instance[key];
+                        var obj = CallbackManager.instance[key];
                         var func = obj as Func<string>;
                         if (func == null)
                         {

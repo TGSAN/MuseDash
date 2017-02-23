@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Assets.Scripts.Tools.Managers;
 
 namespace Assets.Scripts.Common
 {
@@ -21,7 +22,7 @@ namespace Assets.Scripts.Common
         public UpgradeInfo(UpgradeResultType r)
         {
             var strName = r.ToString().ToLower();
-            var jsonData = ConfigPool.Instance.GetConfigValue("upgrade_info", strName);
+            var jsonData = ConfigManager.instance["upgrade_info"][strName];
             result = r;
             radio = (float)((double)jsonData["radio"]);
             probability = (float)((double)jsonData["probability"]);
@@ -34,7 +35,6 @@ namespace Assets.Scripts.Common
 
         public UpgradeManager()
         {
-            var good = ConfigPool.Instance.GetConfigByName("upgrade_info", "cool");
             m_CoolInfo = new UpgradeInfo(UpgradeResultType.Cool);
             m_GreatInfo = new UpgradeInfo(UpgradeResultType.Great);
             m_PerfectInfo = new UpgradeInfo(UpgradeResultType.Perfect);
@@ -85,7 +85,7 @@ namespace Assets.Scripts.Common
             exp = (int)((float)exp * upgradeResult.radio);
             lvlUp = () =>
             {
-                var expRequired = ConfigPool.Instance.GetConfigIntValue("experience", lvl.ToString(), "char_exp") - firstTimeExp;
+                var expRequired = ConfigManager.instance.GetConfigIntValue("experience", lvl, "char_exp") - firstTimeExp;
                 exp -= expRequired;
                 if (exp >= 0)
                 {
@@ -116,7 +116,7 @@ namespace Assets.Scripts.Common
                     }
                     else
                     {
-//                        PnlCharUpgrade.PnlCharUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeResult);
+                        //                        PnlCharUpgrade.PnlCharUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeResult);
                         PnlMainMenu.PnlMainMenu.Instance.OnEnergyUpdate(true);
                         TaskManager.instance.AddValue(expHosts.Count, TaskManager.FOOD_IDX);
                     }
@@ -142,10 +142,10 @@ namespace Assets.Scripts.Common
             var sum = host.GetDynamicIntByKey(SignKeys.EXP);
             var id = host.GetDynamicIntByKey(SignKeys.ID);
             var lvl = host.GetDynamicIntByKey(SignKeys.LEVEL);
-            var baseExp = ConfigPool.Instance.GetConfigIntValue("items", id.ToString(), "experience_base");
+            var baseExp = ConfigManager.instance.GetConfigIntValue("items", id, "experience_base");
             for (int i = 1; i < lvl; i++)
             {
-                sum += ConfigPool.Instance.GetConfigIntValue("experience", i.ToString(), "eqpt_exp");
+                sum += ConfigManager.instance.GetConfigIntValue("experience", i, "eqpt_exp");
             }
             sum = baseExp + (int)((float)sum / 2f);
             return sum;
@@ -167,7 +167,7 @@ namespace Assets.Scripts.Common
             exp = (int)((float)exp * upgradeResult.radio);
             lvlUp = () =>
             {
-                var expRequired = ConfigPool.Instance.GetConfigIntValue("experience", lvl.ToString(), "eqpt_exp") - firstTimeExp;
+                var expRequired = ConfigManager.instance.GetConfigIntValue("experience", lvl, "eqpt_exp") - firstTimeExp;
                 exp -= expRequired;
                 if (exp >= 0)
                 {
@@ -193,8 +193,8 @@ namespace Assets.Scripts.Common
                 {
                     if (result)
                     {
-//                        ItemManageComponent.Instance.DeleteListItem(expHosts);
-//                        PnlItemUpgrade.PnlItemUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeResult);
+                        //                        ItemManageComponent.Instance.DeleteListItem(expHosts);
+                        //                        PnlItemUpgrade.PnlItemUpgrade.Instance.OnShow(host, expHosts.ToArray(), upgradeResult);
                         TaskManager.instance.AddValue(expHosts.Count, TaskManager.UPGRADE_ITEM_IDX);
                     }
                     else

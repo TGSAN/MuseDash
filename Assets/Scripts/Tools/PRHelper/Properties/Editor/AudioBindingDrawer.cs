@@ -32,8 +32,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                ConfigManager.instance.configs.Select(c => c.path).ToArray(), rect, m_Gap, m_Height);
             var jdata = ConfigManager.instance.Convert(property.FindPropertyRelative("path").stringValue);
             if (jdata == null) return;
-            var isArray = jdata.IsArray || jdata.Keys.Contains("0") || jdata.Keys.Contains("1");
-            if (!isArray)
+            if (!jdata.IsArray)
             {
                 rect = EditorUtils.MakePopupField(property, "key", new GUIContent("Json Key"),
                  jdata.Keys.ToArray(), rect, m_Gap, m_Height);

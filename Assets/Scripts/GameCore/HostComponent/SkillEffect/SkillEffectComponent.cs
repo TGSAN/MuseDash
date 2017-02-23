@@ -6,6 +6,7 @@ using LitJson;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 namespace FormulaBase
@@ -45,7 +46,7 @@ namespace FormulaBase
                 return;
             }
 
-            JsonData config = ConfigPool.Instance.GetConfigByName("skilleffect");
+            var config = ConfigManager.instance["skilleffect"];
             if (config == null || config.Count <= 0)
             {
                 return;
@@ -54,9 +55,9 @@ namespace FormulaBase
             this.skillEffects = new Dictionary<int, FormulaHost>();
             Type tpe = assembly.GetType("FormulaBase.SkillEffectComponent");
 
-            for (int i = 1; i <= config.Count; i++)
+            for (int i = 0; i < config.Count; i++)
             {
-                JsonData _cfg = config[i.ToString()];
+                var _cfg = config[i];
                 FormulaHost host = FomulaHostManager.Instance.CreateHost(HOST_IDX);
 
                 if (_cfg.Keys.Contains("action"))
@@ -88,19 +89,6 @@ namespace FormulaBase
                     float value = float.Parse(_cfg["value"].ToString());
                     host.SetDynamicData(EFFECT_VALUE, value);
                 }
-                /*
-					//获取需要传入的参数
-		            ParameterInfo[] parms = method.GetParameters();
-
-		            //这里是判断参数类型
-		            foreach (ParameterInfo ss in parms)
-		            {
-		                if (ss.ParameterType == typeof(string))
-		                {
-		                    Console.WriteLine("Yes");
-		                }
-		            }
-		            */
 
                 host.SetDynamicData(SignKeys.ID, i);
                 this.skillEffects[i] = host;
@@ -1185,7 +1173,7 @@ namespace FormulaBase
                     continue;
                 }
 
-                string _cfgname = ConfigPool.Instance.GetConfigStringValue("notedata", nodeId.ToString(), "animation");
+                string _cfgname = ConfigManager.instance.GetConfigStringValue("notedata", "id", "animation", nodeId.ToString());
                 if (_cfgname == null)
                 {
                     continue;

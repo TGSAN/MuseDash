@@ -1,5 +1,6 @@
 ///自定义模块，可定制模块具体行为
 using System;
+using Assets.Scripts.Tools.Managers;
 
 namespace FormulaBase
 {
@@ -68,7 +69,7 @@ namespace FormulaBase
 
         public string GetImageName(int _id)
         {
-            return ConfigPool.Instance.GetConfigStringValue("Store", _id.ToString(), "Image");
+            return ConfigManager.instance.GetConfigStringValue("Store", _id, "Image");
         }
 
         public void UseMoneyBuySomething(int _buystyel, int _buyNumber, int _getStyel, int _getNumber)

@@ -4,6 +4,7 @@ using GameLogic;
 ///自定义模块，可定制模块具体行为
 using System;
 using System.Collections.Generic;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 namespace FormulaBase
@@ -56,13 +57,13 @@ namespace FormulaBase
         {
             this.SetStage(stageHost);
 
-            string id = this.stage.GetDynamicStrByKey(SignKeys.ID);
+            var id = this.stage.GetDynamicIntByKey(SignKeys.ID);
 
             // 通关基础奖励
             float rwRate = TaskStageTarget.Instance.GetStageRewardRank();
-            int rwExp = (int)(ConfigPool.Instance.GetConfigIntValue(REWARD_CONFIG_NAME, id, "exp") * rwRate);
-            int rwGold = (int)(ConfigPool.Instance.GetConfigIntValue(REWARD_CONFIG_NAME, id, "coin") * rwRate * RoleManageComponent.Instance.GetGoldAdd());
-            int rwCharm = (int)(ConfigPool.Instance.GetConfigIntValue(REWARD_CONFIG_NAME, id, "charm") * rwRate * RoleManageComponent.Instance.GetCharmAdd());
+            int rwExp = (int)(ConfigManager.instance.GetConfigIntValue(REWARD_CONFIG_NAME, id, "exp") * rwRate);
+            int rwGold = (int)(ConfigManager.instance.GetConfigIntValue(REWARD_CONFIG_NAME, id, "coin") * rwRate * RoleManageComponent.Instance.GetGoldAdd());
+            int rwCharm = (int)(ConfigManager.instance.GetConfigIntValue(REWARD_CONFIG_NAME, id, "charm") * rwRate * RoleManageComponent.Instance.GetCharmAdd());
             // reward gold
             stageHost.SetDynamicData(SignKeys.GOLD, rwGold);
             // reward exp

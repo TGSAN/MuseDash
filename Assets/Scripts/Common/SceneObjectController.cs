@@ -5,6 +5,7 @@ using DYUnityLib;
 using GameLogic;
 using System.Collections.Generic;
 using System;
+using Assets.Scripts.Tools.Managers;
 
 public class SceneObjectController : MonoBehaviour
 {
@@ -186,7 +187,7 @@ public class SceneObjectController : MonoBehaviour
         for (int i = 0; i < this.eventData.actionEvents.Length; i++)
         {
             StageActionEvent _event = this.eventData.actionEvents[i];
-            string _nid = ConfigPool.Instance.GetConfigStringValue("notedata", _event.nodeIndex.ToString(), "uid");
+            string _nid = ConfigManager.instance.GetConfigStringValue("notedata", "id", "uid", _event.nodeIndex);
             if (_nid != nodeId)
             {
                 continue;
@@ -220,7 +221,7 @@ public class SceneObjectController : MonoBehaviour
         for (int i = 0; i < this.eventData.actionEvents.Length; i++)
         {
             StageActionEvent _event = this.eventData.actionEvents[i];
-            string _nid = ConfigPool.Instance.GetConfigStringValue("notedata", _event.nodeIndex.ToString(), "uid");
+            string _nid = ConfigManager.instance.GetConfigStringValue("notedata", "id", "uid", _event.nodeIndex);
             if (_nid != nodeId)
             {
                 continue;
@@ -254,7 +255,7 @@ public class SceneObjectController : MonoBehaviour
         for (int i = 0; i < this.eventData.actionEvents.Length; i++)
         {
             StageActionEvent _event = this.eventData.actionEvents[i];
-            string _nid = ConfigPool.Instance.GetConfigStringValue("notedata", _event.nodeIndex.ToString(), "uid");
+            string _nid = ConfigManager.instance.GetConfigStringValue("notedata", "id", "uid", _event.nodeIndex);
             if (_nid != nodeId)
             {
                 continue;

@@ -3,6 +3,7 @@ using GameLogic;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Common;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 public class GMOrderPanel : MonoBehaviour
@@ -88,42 +89,12 @@ public class GMOrderPanel : MonoBehaviour
         }, 0.5f);
     }
 
-    public void AddMaterials()
-    {
-        LitJson.JsonData cfg2 = ConfigPool.Instance.GetConfigByName("item");
-        Debug.Log("item" + cfg2.Count);
-        List<int> TempitemList = new List<int>();
-        int tempi = 0;
-        foreach (string temp in cfg2.Keys)
-        {
-            //			tempi++;
-            //			if(tempi>=20)
-            //				break;
-            TempitemList.Add(int.Parse(temp));
-        }
-
-        //        MaterialManageComponent.Instance.CreateItem(TempitemList);
-    }
-
     public void DestroyScene()
     {
         if (SceneObjectController.Instance != null)
         {
             Destroy(SceneObjectController.Instance.gameObject);
         }
-    }
-
-    public void AddEquip()
-    {
-        LitJson.JsonData cfg1 = ConfigPool.Instance.GetConfigByName("Equipment_info");
-        Debug.Log("Equipment_info" + cfg1.Count);
-        List<int> TempEquipList = new List<int>();
-        foreach (string temp in cfg1.Keys)
-        {
-            TempEquipList.Add(int.Parse(temp));
-        }
-
-        //        EquipManageComponent.Instance.CreateItem(TempEquipList);
     }
 
     public void AddCharm()
@@ -139,24 +110,6 @@ public class GMOrderPanel : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-    }
-
-    public void AddChest()
-    {
-        Dictionary<string, FormulaHost> _materialdic = FomulaHostManager.Instance.GetHostListByFileName("Material");
-        if (_materialdic != null)
-        {
-            Debug.Log("所有材料的份数" + _materialdic.Count);
-        }
-
-        LitJson.JsonData cfg1 = ConfigPool.Instance.GetConfigByName("chest");
-        List<int> TempEquipList = new List<int>();
-        foreach (string temp in cfg1.Keys)
-        {
-            TempEquipList.Add(int.Parse(temp));
-        }
-
-        //        ChestManageComponent.Instance.CreateItem(TempEquipList);
     }
 
     public void UNLockAllStages()
@@ -275,22 +228,21 @@ public class GMOrderPanel : MonoBehaviour
         FormulaHost role = RoleManageComponent.Instance.GetRole(idx);
         string name = role.GetDynamicStrByKey(SignKeys.NAME);
         int clothId = role.GetDynamicIntByKey(SignKeys.CLOTH);
-        LitJson.JsonData jd = ConfigPool.Instance.GetConfigByName("char_cos");
-        foreach (string key in jd.Keys)
+        var jd = ConfigManager.instance["char_cos"];
+        for (int i = 0; i < jd.Count; i++)
         {
-            int cid = int.Parse(key);
-            if (cid <= clothId)
+            if (i <= clothId)
             {
                 continue;
             }
 
-            string ownername = ConfigPool.Instance.GetConfigStringValue("char_cos", key, "owner");
+            string ownername = ConfigManager.instance.GetConfigStringValue("char_cos", i, "owner");
             if (ownername != name)
             {
                 continue;
             }
 
-            role.SetDynamicData(SignKeys.CLOTH, cid);
+            role.SetDynamicData(SignKeys.CLOTH, i);
             break;
         }
 
@@ -302,24 +254,22 @@ public class GMOrderPanel : MonoBehaviour
         }
 
         clothId = 0;
-        foreach (string key in jd.Keys)
+        for (var i = 0; i < jd.Count; i++)
         {
-            int cid = int.Parse(key);
-            if (cid <= clothId)
+            if (i <= clothId)
             {
                 continue;
             }
 
-            string ownername = ConfigPool.Instance.GetConfigStringValue("char_cos", key, "owner");
+            string ownername = ConfigManager.instance.GetConfigStringValue("char_cos", i, "owner");
             if (ownername != name)
             {
                 continue;
             }
 
-            role.SetDynamicData(SignKeys.CLOTH, cid);
+            role.SetDynamicData(SignKeys.CLOTH, i);
             break;
         }
-
         setClothId = role.GetDynamicIntByKey(SignKeys.CLOTH);
         if (setClothId != clothId)
         {
