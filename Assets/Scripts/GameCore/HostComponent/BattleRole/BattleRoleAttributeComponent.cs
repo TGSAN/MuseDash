@@ -110,6 +110,7 @@ namespace FormulaBase
 
         public bool IsComboProtect()
         {
+            return false;
             if (this.Host == null)
             {
                 return false;
@@ -448,7 +449,7 @@ namespace FormulaBase
             }
 
             // Role attack from fromula.
-            int attack = (int)this.Host.Result(FormulaKeys.FORMULA_5);
+            int attack = 100;
 
             // Skill dynamic effect to attack.
             int skPlus = (int)this.GetSkillSwitchAddUp(SkillComponent.SING_KEY_SWITCHS_ATK, attack);

@@ -82,13 +82,6 @@ public class EffectManager : MonoBehaviour
         string feverScene = ConfigManager.instance.GetConfigStringValue("char_info", heroIndex, "fever");
         this.ferverScene = GameObject.Instantiate(Resources.Load(feverScene)) as GameObject;
 
-        string pressFxName = ConfigManager.instance.GetConfigStringValue("char_info", heroIndex, "fx_atk_press");
-        UnityEngine.Object _eff = Resources.Load(pressFxName);
-        if (_eff != null)
-        {
-            this.pressEffect = GameObject.Instantiate(_eff) as GameObject;
-        }
-
         string atkFxGreat = ConfigManager.instance.GetConfigStringValue("char_info", heroIndex, "fx_atk_great");
         string atkFxPerfect = ConfigManager.instance.GetConfigStringValue("char_info", heroIndex, "fx_atk_perfect");
         string atkFxCrit = ConfigManager.instance.GetConfigStringValue("char_info", heroIndex, "fx_atk_crit");

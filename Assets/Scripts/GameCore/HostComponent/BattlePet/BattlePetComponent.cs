@@ -42,7 +42,7 @@ namespace FormulaBase
             {
                 string pid = testpets[i];
 
-                string perfabName = ConfigManager.instance.GetConfigStringValue("Elfin", "Uid", "Prefab", pid);
+                //string perfabName = ConfigManager.instance.GetConfigStringValue("Elfin", "Uid", "Prefab", pid);
 #if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
                 if (AdminData.Instance.DefaultPetSkill > 0)
                 {
@@ -54,7 +54,8 @@ namespace FormulaBase
                 host.SetDynamicData(SignKeys.ID, i);
                 /*host.SetDynamicData(SkillComponent.SIGN_KEY_ACTIVE_SKILL, actSkillId.ToString());
                 host.SetDynamicData(SkillComponent.SIGN_KEY_PASSIVE_SKILL, passiveSkillId.ToString());*/
-                host.SetDynamicData(SignKeys.NAME, perfabName);
+
+                //host.SetDynamicData(SignKeys.NAME, perfabName);
 
                 // Init pet skill obj.
                 /* FormulaHost actSkillObj = SkillComponent.Instance.CreateSkill(actSkillId, host);
