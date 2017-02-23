@@ -208,17 +208,11 @@ namespace GameLogic
             }
 
             JsonData _data = ConfigManager.instance[CONFIG_NAME];
-            for (int i = 0; i <= _data.Count; i++)
+            for (int i = 0; i < _data.Count; i++)
             {
-                string k = i.ToString();
                 NodeConfigData sd = new NodeConfigData();
-                if (!_data.Keys.Contains(k))
-                {
-                    this.Add(sd);
-                    continue;
-                }
 
-                sd = (NodeConfigData)this.ConfigToObject(_data[k], sd);
+                sd = (NodeConfigData)this.ConfigToObject(_data[i], sd);
 
                 // 从这里以下开始调整属性
                 sd.hit_type = GameMusic.TOUCH_ACTION_SIGNLE_PRESS;
@@ -301,6 +295,7 @@ namespace GameLogic
 
             NodeConfigReader.Instance.Init();
             ArrayList nodeData = NodeConfigReader.Instance.GetData();
+            Debug.Log(filename + "===");
             JsonData _data = ConfigManager.instance[filename];
             // Start from 1
             this.Add(new MusicData());

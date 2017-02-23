@@ -100,7 +100,7 @@ namespace Assets.Scripts.NewUI.Panels
         private int m_PreDiff = 30;
         private int m_TrophySum = 0;
         private float m_ZAngle = 0.0f;
-        private static int m_CurrentIdx = 0;
+        private int m_CurrentIdx = 0;
         private bool m_IsSliding = false;
         private ResourceRequest m_Request;
         private Coroutine m_Coroutine;
@@ -136,7 +136,7 @@ namespace Assets.Scripts.NewUI.Panels
             }
         }
 
-        public static int currentSongIdx
+        public int currentSongIdx
         {
             get { return m_CurrentIdx + 1; }
         }

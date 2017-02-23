@@ -136,7 +136,7 @@ public class GirlManager : MonoBehaviour
 
     public void Reset()
     {
-        BattlePetComponent.Instance.Init();
+        //BattlePetComponent.Instance.Init();
         this.isJumpingAction = false;
         //FightMenuPanel.Instance.SetFerver (0);
         this.girls = new GameObject[this.girlnames.Length];
