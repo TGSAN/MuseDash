@@ -83,7 +83,6 @@ namespace Assets.Scripts.NewUI.Panels
         public float lowEnhance = 1f;
         public float minSize = 1.0f;
         public float changeValue = 5.0f;
-        public float scale = 1.0f;
         public Action<int> onSongChange;
 
         [Header("背景")]
@@ -117,6 +116,11 @@ namespace Assets.Scripts.NewUI.Panels
         public AudioClip catchClip
         {
             get { return this.m_CatchClip; }
+        }
+
+        public float scale
+        {
+            get { return UIManager.instance.GetComponent<RectTransform>().lossyScale.x; }
         }
 
         public bool FinishEnter
@@ -669,7 +673,7 @@ namespace Assets.Scripts.NewUI.Panels
             {
                 var go = pair.Value;
                 var idx = pair.Key;
-                var xOffset = Mathf.Abs(go.transform.position.x - pivot.transform.position.x) * scale;
+                var xOffset = Mathf.Abs(go.transform.position.x - pivot.transform.position.x) / scale;
                 if (go.transform.localScale.x > maxCellScaleX)
                 {
                     m_CurrentIdx = m_StageInfos[pair.Key].idx;
@@ -687,7 +691,6 @@ namespace Assets.Scripts.NewUI.Panels
                 }
                 go.transform.localScale = Vector3.Lerp(Vector3.one * minScale, Vector3.one * maxScale,
                     1 - xOffset / distanceToChangeScale);
-
                 var texs = go.GetComponentsInChildren<UITexture>();
                 foreach (var tex in texs)
                 {
@@ -740,7 +743,7 @@ namespace Assets.Scripts.NewUI.Panels
                     {
                         offset = new Vector3(-offset.x, offset.y, offset.z);
                     }
-                    offset = go.transform.InverseTransformVector(offset) / scale;
+                    offset = go.transform.InverseTransformVector(offset) * scale;
 
                     for (int i = 0; i < go.transform.childCount; i++)
                     {
