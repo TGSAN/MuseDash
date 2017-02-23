@@ -1,5 +1,6 @@
 using LitJson;
 using System.Collections;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 namespace GameLogic
@@ -206,8 +207,7 @@ namespace GameLogic
                 return;
             }
 
-            // JsonData _data = this.GetJsonConfig (CONFIG_NAME);
-            JsonData _data = ConfigPool.Instance.GetConfigByName(CONFIG_NAME);
+            JsonData _data = ConfigManager.instance[CONFIG_NAME];
             for (int i = 0; i <= _data.Count; i++)
             {
                 string k = i.ToString();
@@ -310,7 +310,7 @@ namespace GameLogic
 
             NodeConfigReader.Instance.Init();
             ArrayList nodeData = NodeConfigReader.Instance.GetData();
-            JsonData _data = ConfigPool.Instance.GetConfigByName(filename);
+            JsonData _data = ConfigManager.instance[filename];
             // Start from 1
             this.Add(new MusicData());
             var idx = 1;

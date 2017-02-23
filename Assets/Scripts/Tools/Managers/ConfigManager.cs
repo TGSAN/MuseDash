@@ -24,8 +24,9 @@ namespace Assets.Scripts.Tools.Managers
                 {
                     return JsonMapper.ToObject(m_Dictionary[idx]);
                 }
-
+                Debug.Log(idx);
                 var path = StringUtils.BeginBefore(configs.Find(c => c.fileName == idx).path, '.');
+                Debug.Log(path);
                 var txt = ResourcesLoader.Load<TextAsset>(path);
                 if (txt != null)
                 {
