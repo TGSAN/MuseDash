@@ -257,8 +257,7 @@ namespace FormulaBase
             {
                 return null;
             }
-
-            return this.Host.GetDynamicStrByKey(SignKeys.NAME).ToString();
+            return (string)ConfigManager.instance["stage"][GetStageId()]["note_json"];
         }
 
         public string GetStageDesName()
@@ -1005,7 +1004,7 @@ namespace FormulaBase
         private void LoadMusicData()
         {
             string name = this.GetStageName();
-            string cfgName = name + 1;
+            string cfgName = name + "1";
 
             this.musicTickData = MusicConfigReader.Instance.GetData(ref cfgName);
             if (this.musicTickData == null || this.musicTickData.Count <= 0)
