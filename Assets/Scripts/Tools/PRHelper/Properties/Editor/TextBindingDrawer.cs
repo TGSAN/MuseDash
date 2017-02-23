@@ -41,8 +41,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                 ConfigManager.instance.configs.Select(c => c.path).ToArray(), rect, m_Gap, m_Height);
                         var jdata = ConfigManager.instance.Convert(property.FindPropertyRelative("path").stringValue);
                         if (jdata == null) break;
-                        var isArray = jdata.IsArray || jdata.Keys.Contains("0") || jdata.Keys.Contains("1");
-                        if (!isArray)
+                        if (!jdata.IsArray)
                         {
                             rect = EditorUtils.MakePopupField(property, "key", new GUIContent("Json Key"),
                              jdata.Keys.ToArray(), rect, m_Gap, m_Height);
@@ -137,8 +136,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                         var jdata = ConfigManager.instance.Convert(property.FindPropertyRelative("path").stringValue);
                         if (jdata != null)
                         {
-                            var isArray = jdata.IsArray || jdata.Keys.Contains("0") || jdata.Keys.Contains("1");
-                            extra = isArray ? 100 : 60;
+                            extra = jdata.IsArray ? 100 : 60;
                         }
                         if (hasRoot)
                         {

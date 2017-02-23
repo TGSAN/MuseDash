@@ -273,16 +273,7 @@ namespace GameLogic
 
         public static int GetNodeIdxByNodeid(string uid)
         {
-            int len = ConfigPool.Instance.GetConfigByName(CONFIG_NAME).Count;
-            foreach (string keyId in ConfigPool.Instance.GetConfigByName(CONFIG_NAME).Keys)
-            {
-                if (uid == ConfigPool.Instance.GetConfigStringValue(CONFIG_NAME, keyId, "uid"))
-                {
-                    return int.Parse(keyId);
-                }
-            }
-
-            return 0;
+            return ConfigManager.instance.GetConfigIntValue(CONFIG_NAME, "uid", "id", uid);
         }
     }
 

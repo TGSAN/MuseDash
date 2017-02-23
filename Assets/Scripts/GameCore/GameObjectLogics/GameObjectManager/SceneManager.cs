@@ -286,7 +286,7 @@ namespace GameLogic
             this.sceneObject = obj;
 
             // add action event module
-            int eventId = int.Parse(ConfigPool.Instance.GetConfigValue("stage", idx.ToString(), "event_id").ToString());
+            int eventId = ConfigPool.Instance.GetConfigIntValue("stage", "id", "event_id", idx.ToString());
             this.sceneObjController = this.sceneObject.AddComponent<SceneObjectController>();
             this.sceneObjController.Init(eventId);
         }

@@ -2,6 +2,7 @@
 using GameLogic;
 using System;
 using System.Collections;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 public class GroundEnergyBottleController : BaseEnemyObjectController
@@ -36,8 +37,8 @@ public class GroundEnergyBottleController : BaseEnemyObjectController
     {
         var uid = BattleEnemyManager.Instance.GetNodeUidByIdx(this.idx);
         var recoverValue = 0;
-        var noteConfig = ConfigPool.Instance.GetConfigByName("notedata");
-        for (int i = 1; i <= noteConfig.Count; i++)
+        var noteConfig = ConfigManager.instance["notedata"];
+        for (int i = 0; i < noteConfig.Count; i++)
         {
             var note = noteConfig[i];
             if (note["uid"].ToString() == uid)

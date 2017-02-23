@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Assets.Scripts.Tools.Managers;
+using UnityEngine;
 
 namespace FormulaBase
 {
@@ -172,8 +174,7 @@ namespace FormulaBase
                 fco.UpDataDynamicValue();
                 v += fco.GetData();
             }
-
-            return v;
+            return v - 1f;
         }
 
         public float GetData()
@@ -256,7 +257,8 @@ namespace FormulaBase
 
             float _out = 0f;
             string k = string.Join("_", _kl);
-            string sv = ConfigPool.Instance.GetConfigStringValue(_cr[0], key.ToString(), k);
+
+            string sv = ConfigManager.instance.GetConfigStringValue(_cr[0], key - 1, k);
             if (sv != null && float.TryParse(sv, out _out))
             {
                 return float.Parse(sv);
@@ -272,14 +274,13 @@ namespace FormulaBase
             {
                 return STR_ZERO;
             }
-
-            JsonData data = ConfigPool.Instance.GetConfigValue(this.configName, key.ToString(), this.configKey);
+            var data = ConfigManager.instance.GetConfigStringValue(this.configName, key, this.configKey);
             if (this.signKey != null)
             {
                 FormulaHost host = this.parent.GetHost();
                 if (host != null && data != null)
                 {
-                    host.SetDynamicData(this.signKey, data.ToString());
+                    host.SetDynamicData(this.signKey, data);
                     // UnityEngine.Debug.Log(this.signKey + "     " + data.ToString());
                 }
             }

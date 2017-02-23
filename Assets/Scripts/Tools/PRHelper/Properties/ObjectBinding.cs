@@ -27,9 +27,8 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
         {
             var cBNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
             index = cBNode != null ? cBNode.collectionBinding.index : (sourceObj != null ? ReflectionUtil.Reflect(sourceObj, fieldName) : index);
-
-            var jdata = ConfigManager.instance.Convert(path);
-            var resourcePath = jdata[index][key].ToJson();
+            var resourcePath = ConfigManager.instance.GetConfigStringValue(ConfigManager.instance.GetFileName(path),
+                int.Parse(index), key);
             if (m_ResourcePath == resourcePath)
             {
                 return;

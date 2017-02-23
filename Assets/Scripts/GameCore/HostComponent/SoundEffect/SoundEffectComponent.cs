@@ -1,6 +1,7 @@
 ///自定义模块，可定制模块具体行为
 using System;
 using System.Collections.Generic;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 namespace FormulaBase
@@ -56,10 +57,10 @@ namespace FormulaBase
 
             speakerHost = FomulaHostManager.Instance.CreateHost("SoundEffect");
             Dictionary<string, List<FormulaHost>> _effects = new Dictionary<string, List<FormulaHost>>();
-            for (int i = 0; i < ConfigPool.Instance.GetConfigLenght(CFG_NAME); i++)
+            for (int i = 0; i < ConfigManager.instance[CFG_NAME].Count; i++)
             {
                 string _i = (i + 1).ToString();
-                string _speaker = ConfigPool.Instance.GetConfigStringValue(CFG_NAME, _i, "belong");
+                string _speaker = ConfigManager.instance.GetConfigStringValue(CFG_NAME, i, "belong");
                 if (_speaker != speaker)
                 {
                     continue;
@@ -218,13 +219,13 @@ namespace FormulaBase
                 return;
             }
 
-            string voice = ConfigPool.Instance.GetConfigStringValue(CFG_NAME, id.ToString(), "audio");
+            string voice = ConfigManager.instance.GetConfigStringValue(CFG_NAME, id, "audio");
             if (voice == null)
             {
                 return;
             }
 
-            string effType = ConfigPool.Instance.GetConfigStringValue(CFG_NAME, id.ToString(), "type");
+            string effType = ConfigManager.instance.GetConfigStringValue(CFG_NAME, id, "type");
 
             if (SceneAudioManager.Instance == null)
             {

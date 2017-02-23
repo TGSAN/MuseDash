@@ -218,19 +218,19 @@ namespace FormulaBase
 
         public int GetChapterId(int stageId)
         {
-            return ConfigPool.Instance.GetConfigIntValue("stage", stageId.ToString(), "chapter");
+            return ConfigManager.instance.GetConfigIntValue("stage", stageId, "chapter");
         }
 
         public List<int> GetStageIdsInChapter(int chapterId)
         {
-            LitJson.JsonData jData = ConfigPool.Instance.GetConfigByName("stage");
+            var jData = ConfigManager.instance["stage"];
             if (jData == null || jData.Count <= 0)
             {
                 return null;
             }
 
             List<int> list = new List<int>();
-            for (int i = 0; i < jData.Count + 1; i++)
+            for (int i = 0; i < jData.Count; i++)
             {
                 int cid = this.GetChapterId(i);
                 if (cid != chapterId)
@@ -298,7 +298,7 @@ namespace FormulaBase
             }
 
             int sid = this.GetId();
-            return ConfigPool.Instance.GetConfigStringValue("stage", sid.ToString(), "music");
+            return ConfigManager.instance.GetConfigStringValue("stage", sid, "music");
         }
 
         public string GetSceneName()

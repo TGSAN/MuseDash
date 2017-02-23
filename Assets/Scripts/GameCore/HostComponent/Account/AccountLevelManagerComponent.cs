@@ -1,5 +1,6 @@
 ///自定义模块，可定制模块具体行为
 using System;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 namespace FormulaBase
@@ -29,7 +30,7 @@ namespace FormulaBase
             {
                 m_IsAdd = false;
                 //PnlMainMenu.PnlMainMenu.Instance.exp.FlyAll();
-//                PnlMainMenu.PnlMainMenu.Instance.OnExpUpdate();
+                //                PnlMainMenu.PnlMainMenu.Instance.OnExpUpdate();
             }
         }
 
@@ -57,7 +58,7 @@ namespace FormulaBase
 
         public int NextLvlExp()
         {
-            return ConfigPool.Instance.GetConfigIntValue("experience", GetLvl().ToString(), "account_exp");
+            return ConfigManager.instance.GetConfigIntValue("experience", GetLvl() - 1, "account_exp");
         }
 
         // TODO : add exp of account

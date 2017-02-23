@@ -4,6 +4,7 @@ using LitJson;
 ///自定义模块，可定制模块具体行为
 using System;
 using System.Collections.Generic;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 namespace FormulaBase
@@ -40,36 +41,35 @@ namespace FormulaBase
             for (int i = 0; i < testpets.Length; i++)
             {
                 string pid = testpets[i];
-                int actSkillId = ConfigPool.Instance.GetConfigIntValue("pet", pid, "actskill");
-                int passiveSkillId = ConfigPool.Instance.GetConfigIntValue("pet", pid, "passiveskill");
-                string perfabName = ConfigPool.Instance.GetConfigStringValue("pet", pid, "perfab");
+
+                string perfabName = ConfigManager.instance.GetConfigStringValue("Elfin", "Uid", "Prefab", pid);
 #if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
                 if (AdminData.Instance.DefaultPetSkill > 0)
                 {
-                    actSkillId = AdminData.Instance.DefaultPetSkill;
+                    //actSkillId = AdminData.Instance.DefaultPetSkill;
                 }
 #endif
                 // Init pet data.
                 FormulaHost host = FomulaHostManager.Instance.CreateHost(HOST_IDX);
                 host.SetDynamicData(SignKeys.ID, i);
-                host.SetDynamicData(SkillComponent.SIGN_KEY_ACTIVE_SKILL, actSkillId.ToString());
-                host.SetDynamicData(SkillComponent.SIGN_KEY_PASSIVE_SKILL, passiveSkillId.ToString());
+                /*host.SetDynamicData(SkillComponent.SIGN_KEY_ACTIVE_SKILL, actSkillId.ToString());
+                host.SetDynamicData(SkillComponent.SIGN_KEY_PASSIVE_SKILL, passiveSkillId.ToString());*/
                 host.SetDynamicData(SignKeys.NAME, perfabName);
 
                 // Init pet skill obj.
-                FormulaHost actSkillObj = SkillComponent.Instance.CreateSkill(actSkillId, host);
-                FormulaHost passiveSkillObj = SkillComponent.Instance.CreateSkill(passiveSkillId, host);
-                if (actSkillObj != null)
-                {
-                    host.SetDynamicData(SkillComponent.SIGN_KEY_ACTIVE_SKILL_OBJ, actSkillObj);
-                    SkillComponent.Instance.FireSkill(actSkillObj, SkillComponent.ON_EQUIP);
-                }
+                /* FormulaHost actSkillObj = SkillComponent.Instance.CreateSkill(actSkillId, host);
+                 FormulaHost passiveSkillObj = SkillComponent.Instance.CreateSkill(passiveSkillId, host);
+                 if (actSkillObj != null)
+                 {
+                     host.SetDynamicData(SkillComponent.SIGN_KEY_ACTIVE_SKILL_OBJ, actSkillObj);
+                     SkillComponent.Instance.FireSkill(actSkillObj, SkillComponent.ON_EQUIP);
+                 }
 
-                if (passiveSkillObj != null)
-                {
-                    host.SetDynamicData(SkillComponent.SIGN_KEY_PASSIVE_SKILL_OBJ, passiveSkillObj);
-                    SkillComponent.Instance.FireSkill(passiveSkillObj, SkillComponent.ON_EQUIP);
-                }
+                 if (passiveSkillObj != null)
+                 {
+                     host.SetDynamicData(SkillComponent.SIGN_KEY_PASSIVE_SKILL_OBJ, passiveSkillObj);
+                     SkillComponent.Instance.FireSkill(passiveSkillObj, SkillComponent.ON_EQUIP);
+                 }*/
 
                 this.pets[i] = host;
             }

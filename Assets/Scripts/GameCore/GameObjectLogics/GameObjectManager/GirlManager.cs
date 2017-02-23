@@ -2,6 +2,7 @@
 using FormulaBase;
 using GameLogic;
 using System.Collections;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 public class GirlManager : MonoBehaviour
@@ -158,14 +159,14 @@ public class GirlManager : MonoBehaviour
 
         if (string.IsNullOrEmpty(clothPath))
         {
-            clothIdx = ConfigPool.Instance.GetConfigIntValue("char_info", heroIndex.ToString(), "character");
-            clothPath = ConfigPool.Instance.GetConfigStringValue("char_cos", "uid", "path", clothIdx);
+            clothIdx = ConfigManager.instance.GetConfigIntValue("char_info", heroIndex, "character");
+            clothPath = ConfigManager.instance.GetConfigStringValue("char_cos", "uid", "path", clothIdx);
         }
 
 #if UNITY_EDITOR || UNITY_EDITOR_OSX || UNITY_EDITOR_64
         heroIndex = AdminData.Instance.DefaultRoleIdx;
         clothIdx = GameGlobal.DEBUG_CLOTH_UID;
-        clothPath = ConfigPool.Instance.GetConfigStringValue("char_cos", "uid", "path", clothIdx);
+        clothPath = ConfigManager.instance.GetConfigStringValue("char_cos", "uid", "path", clothIdx);
 #endif
 
         this.girlnames[0] = clothPath;
