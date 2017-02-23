@@ -29,7 +29,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
 
             rect = EditorUtils.MakePopupField(property, "path", new GUIContent("Json Path"),
                ConfigManager.instance.configs.Select(c => c.path).ToArray(), rect, m_Gap, m_Height);
-            var jdata = ConfigManager.instance.GetFromFilePath(property.FindPropertyRelative("path").stringValue);
+            var jdata = ConfigManager.instance.Convert(property.FindPropertyRelative("path").stringValue);
             if (jdata == null) return;
             var isArray = jdata.IsArray || jdata.Keys.Contains("0") || jdata.Keys.Contains("1");
             if (!isArray)
@@ -46,13 +46,17 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
              jdata[0].Keys.ToArray(), rect, m_Gap, m_Height);
                 if (!hasRoot)
                 {
-                    rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height);
                     if (property.FindPropertyRelative("sourceObj").objectReferenceValue != null)
                     {
                         rect = EditorUtils.MakeObjectField(go, property, "fieldName", new GUIContent("Index"),
                             rect,
                             m_Gap, m_Height);
                     }
+                    else
+                    {
+                        rect = EditorUtils.MakePropertyField("index", property, rect, m_Gap, m_Height);
+                    }
+                    rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height);
                 }
             }
         }
@@ -64,11 +68,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
             {
                 return 60;
             }
-            if (property.FindPropertyRelative("sourceObj").objectReferenceValue != null)
-            {
-                return 100;
-            }
-            return 80;
+            return 100;
         }
     }
 }

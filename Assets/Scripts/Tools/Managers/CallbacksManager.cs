@@ -21,6 +21,14 @@ namespace Assets.Scripts.Tools.Managers
             }
         }
 
+        public string GetValue(string key, object param = null)
+        {
+            var callback = this[key] as Func<string>;
+            if (callback != null) return callback();
+            var callbackWithParam = this[key] as Func<object, string>;
+            return callbackWithParam != null ? callbackWithParam(param) : string.Empty;
+        }
+
         public string[] keys
         {
             get { return m_CallbackDic.Keys.ToArray(); }

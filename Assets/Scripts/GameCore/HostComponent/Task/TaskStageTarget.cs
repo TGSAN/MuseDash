@@ -6,6 +6,7 @@ using LitJson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 namespace FormulaBase
@@ -309,11 +310,11 @@ namespace FormulaBase
         public bool[] GetLockList()
         {
             var idxs = new bool[StageBattleComponent.Instance.GetStageCount()];
-            var totalTrophy = GetTotalTrophy();
-            for (int i = 1; i < idxs.Length; i++)
+            var accountLvl = int.Parse(CallbacksManager.instance.GetValue("Account_Level").ToString());
+            for (int i = 0; i < idxs.Length; i++)
             {
-                var unlockTrophy = ConfigPool.Instance.GetConfigIntValue("stage", i.ToString(), "unlock");
-                idxs[i] = unlockTrophy > totalTrophy;
+                var unlockLvl = (int)ConfigManager.instance["stage"][i]["unlock_level"];
+                idxs[i] = unlockLvl > accountLvl;
                 if (GameGlobal.IS_UNLOCK_ALL_STAGE)
                 {
                     idxs[i] = false;

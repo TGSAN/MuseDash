@@ -39,7 +39,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                     {
                         rect = EditorUtils.MakePopupField(property, "path", new GUIContent("Json Path"),
                 ConfigManager.instance.configs.Select(c => c.path).ToArray(), rect, m_Gap, m_Height);
-                        var jdata = ConfigManager.instance.GetFromFilePath(property.FindPropertyRelative("path").stringValue);
+                        var jdata = ConfigManager.instance.Convert(property.FindPropertyRelative("path").stringValue);
                         if (jdata == null) break;
                         var isArray = jdata.IsArray || jdata.Keys.Contains("0") || jdata.Keys.Contains("1");
                         if (!isArray)
@@ -56,13 +56,17 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                          jdata[0].Keys.ToArray(), rect, m_Gap, m_Height);
                             if (!hasRoot)
                             {
-                                rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height);
                                 if (property.FindPropertyRelative("sourceObj").objectReferenceValue != null)
                                 {
                                     rect = EditorUtils.MakeObjectField(go, property, "fieldName", new GUIContent("Index"),
                                         rect,
                                         m_Gap, m_Height);
                                 }
+                                else
+                                {
+                                    rect = EditorUtils.MakePropertyField("index", property, rect, m_Gap, m_Height);
+                                }
+                                rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height);
                             }
                         }
                     }
@@ -73,12 +77,16 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                         var go = property.FindPropertyRelative("sourceObj").objectReferenceValue as GameObject;
                         go = go ?? parent;
 
-                        rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height);
                         if (property.FindPropertyRelative("sourceObj").objectReferenceValue != null)
                         {
                             rect = EditorUtils.MakeObjectField(go, property, "fieldName", new GUIContent("Member"), rect,
                               m_Gap, m_Height);
                         }
+                        else
+                        {
+                            rect = EditorUtils.MakePropertyField("index", property, rect, m_Gap, m_Height);
+                        }
+                        rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height);
                     }
                     break;
 
@@ -96,12 +104,16 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                         {
                             if (!hasRoot)
                             {
-                                rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height);
                                 if (property.FindPropertyRelative("sourceObj").objectReferenceValue != null)
                                 {
                                     rect = EditorUtils.MakeObjectField(go, property, "fieldName", new GUIContent("Member"), rect,
                                        m_Gap, m_Height);
                                 }
+                                else
+                                {
+                                    rect = EditorUtils.MakePropertyField("index", property, rect, m_Gap, m_Height);
+                                }
+                                rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height);
                             }
                         }
                     }
@@ -122,14 +134,11 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                 case TextBinding.SourceType.Json:
                     {
                         extra = 40;
-                        var jdata = ConfigManager.instance.GetFromFilePath(property.FindPropertyRelative("path").stringValue);
+                        var jdata = ConfigManager.instance.Convert(property.FindPropertyRelative("path").stringValue);
                         if (jdata != null)
                         {
                             var isArray = jdata.IsArray || jdata.Keys.Contains("0") || jdata.Keys.Contains("1");
-                            extra = isArray ? 80 : 40;
-                            extra = property.FindPropertyRelative("sourceObj").objectReferenceValue != null
-                                ? extra + 20
-                                : extra;
+                            extra = isArray ? 100 : 60;
                         }
                         if (hasRoot)
                         {
@@ -140,7 +149,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
 
                 case TextBinding.SourceType.Script:
                     {
-                        extra = property.FindPropertyRelative("sourceObj").objectReferenceValue != null ? 60 : 40;
+                        extra = 60;
                     }
                     break;
 
@@ -149,14 +158,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                         var key = property.FindPropertyRelative("key").stringValue;
                         var obj = CallbacksManager.instance[key];
                         var func = obj as Func<string>;
-                        if (func == null)
-                        {
-                            extra = property.FindPropertyRelative("sourceObj").objectReferenceValue != null ? 80 : 60;
-                        }
-                        else
-                        {
-                            extra = 40;
-                        }
+                        extra = func == null ? 80 : 40;
                         if (hasRoot)
                         {
                             extra = 40;

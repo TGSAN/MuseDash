@@ -21,8 +21,8 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
         {
             var btn = go.GetComponentsInChildren<Button>().ToList().Find(t => t.gameObject.name == name);
 
-            var collectionBindingNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
-            index = collectionBindingNode != null ? collectionBindingNode.collectionBinding.index : ReflectionUtil.Reflect(sourceObj, fieldName);
+            var cBNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
+            index = cBNode != null ? cBNode.collectionBinding.index : (sourceObj != null ? ReflectionUtil.Reflect(sourceObj, fieldName) : index);
 
             var obj = CallbacksManager.instance[key];
             var func = obj as Func<string>;

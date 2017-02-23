@@ -32,15 +32,15 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
                 m_Txt = go.GetComponentsInChildren<Text>().ToList().Find(t => t.gameObject.name == name);
             }
 
-            var collectionBindingNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
-            index = collectionBindingNode != null ? collectionBindingNode.collectionBinding.index : ReflectionUtil.Reflect(sourceObj, fieldName);
+            var cBNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
+            index = cBNode != null ? cBNode.collectionBinding.index : (sourceObj != null ? ReflectionUtil.Reflect(sourceObj, fieldName) : index);
 
             var str = string.Empty;
             switch (type)
             {
                 case SourceType.Json:
                     {
-                        var jdata = ConfigManager.instance.GetFromFilePath(path);
+                        var jdata = ConfigManager.instance.Convert(path);
                         if (jdata.IsArray)
                         {
                             var i = int.Parse(index.ToString());

@@ -10,6 +10,7 @@
 using DYUnityLib;
 using LitJson;
 using System;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 public class ConfigPool
@@ -107,6 +108,17 @@ public class ConfigPool
         return int.Parse(jData.ToString());
     }
 
+    public int GetConfigIntValue(string filename, int index, string key, int defaultValue = 0)
+    {
+        JsonData jData = this.GetConfigValue(filename, index, key);
+        if (jData == null)
+        {
+            return defaultValue;
+        }
+
+        return int.Parse(jData.ToString());
+    }
+
     public int GetConfigIntValue(string filename, string compkey, string valuekey, object compvalue, int defaultValue = 0)
     {
         JsonData jData = this.GetConfigValue(filename, compkey, valuekey, compvalue);
@@ -121,6 +133,17 @@ public class ConfigPool
     public string GetConfigStringValue(string filename, string id, string key)
     {
         JsonData jData = this.GetConfigValue(filename, id, key);
+        if (jData == null)
+        {
+            return null;
+        }
+
+        return jData.ToString();
+    }
+
+    public string GetConfigStringValue(string filename, int index, string key)
+    {
+        JsonData jData = this.GetConfigValue(filename, index, key);
         if (jData == null)
         {
             return null;
@@ -249,6 +272,16 @@ public class ConfigPool
         return cfg[id];
     }
 
+    public JsonData GetConfigValue(string filename, int index)
+    {
+        var jData = ConfigManager.instance[filename];
+        if (jData != null)
+        {
+            return jData[index];
+        }
+        return null;
+    }
+
     public JsonData GetConfigValue(string filename, string id, string key)
     {
         var idcfg = GetConfigValue(filename, id);
@@ -263,6 +296,22 @@ public class ConfigPool
         }
 
         return idcfg[key];
+    }
+
+    public JsonData GetConfigValue(string filename, int index, string key)
+    {
+        var jData = GetConfigValue(filename, index);
+        if (jData == null)
+        {
+            return null;
+        }
+
+        if (!jData.Keys.Contains(key))
+        {
+            return null;
+        }
+
+        return jData[key];
     }
 
     private void ChargeConfig(string filename, string path = null)

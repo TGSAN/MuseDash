@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Common;
 using Assets.Scripts.NGUI;
+using Assets.Scripts.Tools.Managers;
 using Assets.Scripts.UI;
 using DG.Tweening;
 using FormulaBase;
@@ -357,13 +358,14 @@ namespace Assets.Scripts.NewUI.Panels
         {
             var count = StageBattleComponent.Instance.GetStageCount();
             var lockList = TaskStageTarget.Instance.GetLockList();
-            for (int i = 1; i < count; i++)
+            var stageJData = ConfigManager.instance["stage"];
+            for (int i = 0; i < count; i++)
             {
-                var iconPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "cover");
-                var musicPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "music");
-                var musicName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "name");
-                var authorName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "author");
-                var unlockNum = ConfigPool.Instance.GetConfigIntValue("stage", i.ToString(), "unlock");
+                var iconPath = stageJData[i]["cover"].ToJson();
+                var musicPath = stageJData[i]["music"].ToJson();
+                var musicName = stageJData[i]["name"].ToJson();
+                var authorName = stageJData[i]["author"].ToJson();
+                var unlockNum = (int)stageJData[i]["unlock_level"];
                 var isLock = lockList[i];
                 m_StageInfos.Add(new StageInfo(i, iconPath, musicPath, musicName, authorName, 0, 0, isLock, unlockNum));
             }
@@ -393,7 +395,7 @@ namespace Assets.Scripts.NewUI.Panels
             for (int i = 0; i < m_StageInfos.Count; i++)
             {
                 GameObject item = GameObject.Instantiate(cell) as GameObject;
-                item.transform.parent = pivot.transform;
+                item.transform.SetParent(pivot.transform);
                 /*StageDisc.StageDisc sd = item.GetComponent<StageDisc.StageDisc>();
                 if (sd != null)
                 {
@@ -415,7 +417,7 @@ namespace Assets.Scripts.NewUI.Panels
             //StageDisc.StageDisc.LoadAllDiscCover();
             //SceneAudioManager.Instance.bgm.clip = null;
 
-            JumpToSong(PnlScrollCircle.currentSongIdx);
+            JumpToSong(currentSongIdx);
             UpdateInfo();
             /*enabled = false;
             DOTweenUtils.Delay(() =>
@@ -670,7 +672,7 @@ namespace Assets.Scripts.NewUI.Panels
                 var xOffset = Mathf.Abs(go.transform.position.x - pivot.transform.position.x) * scale;
                 if (go.transform.localScale.x > maxCellScaleX)
                 {
-                    m_CurrentIdx = m_StageInfos[pair.Key].idx - 1;
+                    m_CurrentIdx = m_StageInfos[pair.Key].idx;
                 }
                 if (m_FinishEnter)
                 {
@@ -788,7 +790,7 @@ namespace Assets.Scripts.NewUI.Panels
         private void UpdatePos()
         {
             var currentIdx = m_CurrentIdx;
-            if (m_Angles.Count <= currentIdx)
+            if (currentIdx >= m_Angles.Count)
             {
                 return;
             }

@@ -34,11 +34,12 @@ namespace Assets.Scripts.Tools.Managers
                     m_Dictionary.Add(idx, data);
                     return JsonMapper.ToObject(data);
                 }
+                Debug.Log(idx + "json not found");
                 return null;
             }
         }
 
-        public JsonData GetFromFilePath(string path)
+        public JsonData Convert(string path)
         {
             var fileName = ConfigManager.instance.configs.Find(c => c.path == path).fileName;
             return this[fileName];

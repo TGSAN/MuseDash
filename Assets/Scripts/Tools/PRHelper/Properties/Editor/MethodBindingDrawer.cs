@@ -40,12 +40,16 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
             {
                 if (!hasRoot)
                 {
-                    rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height);
                     if (property.FindPropertyRelative("sourceObj").objectReferenceValue != null)
                     {
                         rect = EditorUtils.MakeObjectField(go, property, "fieldName", new GUIContent("Member"), rect,
                            m_Gap, m_Height);
                     }
+                    else
+                    {
+                        rect = EditorUtils.MakePropertyField("index", property, rect, m_Gap, m_Height);
+                    }
+                    rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height);
                 }
             }
         }
@@ -58,14 +62,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
             var key = property.FindPropertyRelative("key").stringValue;
             var obj = CallbacksManager.instance[key];
             var func = obj as Func<string>;
-            if (func == null)
-            {
-                extra = property.FindPropertyRelative("sourceObj").objectReferenceValue != null ? 80 : 60;
-            }
-            else
-            {
-                extra = 40;
-            }
+            extra = func == null ? 80 : 40;
             if (hasRoot)
             {
                 extra = 40;

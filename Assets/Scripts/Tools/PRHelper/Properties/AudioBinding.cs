@@ -25,11 +25,11 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
 
         public void Play(GameObject go)
         {
-            var collectionBinding = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding).collectionBinding;
-            index = collectionBinding != null ? collectionBinding.index : ReflectionUtil.Reflect(sourceObj, fieldName);
+            var cBNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
+            index = cBNode != null ? cBNode.collectionBinding.index : (sourceObj != null ? ReflectionUtil.Reflect(sourceObj, fieldName) : index);
 
-            var jdata = ConfigManager.instance.GetFromFilePath(path);
-			var resourcePath = jdata[index][key].ToJson();
+            var jdata = ConfigManager.instance.Convert(path);
+            var resourcePath = jdata[index][key].ToJson();
             if (m_ResourcePath == resourcePath)
             {
                 return;
