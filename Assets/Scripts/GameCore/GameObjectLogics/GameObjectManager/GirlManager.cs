@@ -201,7 +201,7 @@ public class GirlManager : MonoBehaviour
             this.StartCoroutine(this.__ReloadArm(i, _armName));
         }
 
-        EffectManager.Instance.SetEffectByCharact(heroIndex);
+        EffectManager.Instance.SetEffectByCharact(heroIndex + 1);
     }
 
     private IEnumerator __ReloadGirl(int girlIdx, string pathName)
