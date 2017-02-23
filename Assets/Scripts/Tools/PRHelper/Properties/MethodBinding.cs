@@ -24,11 +24,11 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
             var cBNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
             index = cBNode != null ? cBNode.collectionBinding.index : (sourceObj != null ? ReflectionUtil.Reflect(sourceObj, fieldName) : index);
 
-            var obj = CallbacksManager.instance[key];
-            var func = obj as Func<string>;
+            var obj = CallbackManager.instance[key];
+            var func = obj as Action;
             if (func == null)
             {
-                var funcParam = obj as Func<object, string>;
+                var funcParam = obj as Action<object>;
                 if (funcParam != null)
                 {
                     btn.onClick.AddListener(() =>

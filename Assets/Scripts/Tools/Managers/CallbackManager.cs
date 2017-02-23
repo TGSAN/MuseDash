@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Common;
+using Assets.Scripts.NewUI;
 using FormulaBase;
 using UnityEngine;
 
 namespace Assets.Scripts.Tools.Managers
 {
-    public class CallbacksManager : Singleton<CallbacksManager>
+    public class CallbackManager : Singleton<CallbackManager>
     {
         public object this[string key]
         {
@@ -41,25 +42,39 @@ namespace Assets.Scripts.Tools.Managers
             {"Account_Energy", (new Func<string>(()=>AccountPhysicsManagerComponent.Instance.GetPhysical().ToString()))},
             {"Account_MaxEnergy", (new Func<string>(()=>AccountPhysicsManagerComponent.Instance.GetMaxPhysical().ToString()))},
 
-            {"Stage_ClearCount", (new  Func<object, string>(idx =>
+            {"Stage_ClearCount", (new Func<object, string>(idx =>
             {
                 var index = 0;
                 return int.TryParse(idx.ToString(), out index) ? TaskStageTarget.Instance.GetStageClearCount(index).ToString() : string.Empty;
             }))},
 
-            {"Game_BattleStart", (new  Func<object, string>(idx =>
+            {"Game_BattleStart", (new Action<object>(param =>
             {
-                var index = int.Parse(idx.ToString());
+                var index = int.Parse(param.ToString());
                 GameMain.instance.BattleStart(index);
-                return string.Empty;
             }))},
 
-            {"Game_Login", (new  Func<object, string>(idx =>
+            {"Game_Login", (new Action<object>(param =>
             {
-                var index = int.Parse(idx.ToString());
+                var index = int.Parse(param.ToString());
                 GameMain.instance.Login(index);
-                return string.Empty;
+            }))},
+
+            {"UI_ShowPanel", (new Action<object>(param =>
+            {
+                var pnlName = param.ToString();
+                UIManager.instance[pnlName].SetActive(true);
             }))},
         };
+
+        public class FuncParam
+        {
+            public List<object> paramList = new List<object>();
+
+            public FuncParam(params object[] objs)
+            {
+                objs.ToList().Add(paramList);
+            }
+        }
     }
 }

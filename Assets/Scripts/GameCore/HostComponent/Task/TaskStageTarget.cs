@@ -307,7 +307,7 @@ namespace FormulaBase
         public bool[] GetLockList()
         {
             var idxs = new bool[StageBattleComponent.Instance.GetStageCount()];
-            var accountLvl = int.Parse(CallbacksManager.instance.GetValue("Account_Level").ToString());
+            var accountLvl = int.Parse(CallbackManager.instance.GetValue("Account_Level").ToString());
             for (int i = 0; i < idxs.Length; i++)
             {
                 var unlockLvl = (int)ConfigManager.instance["stage"][i]["unlock_level"];

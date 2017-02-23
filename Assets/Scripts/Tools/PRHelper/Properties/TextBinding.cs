@@ -69,7 +69,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
 
                 case SourceType.Enum:
                     {
-                        var obj = CallbacksManager.instance[key];
+                        var obj = CallbackManager.instance[key];
                         var func = obj as Func<string>;
                         if (func == null)
                         {

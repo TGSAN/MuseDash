@@ -69,6 +69,7 @@ namespace Assets.Scripts.Tools.Managers
 
         public string GetConfigStringValue(string fileName, int index, string key)
         {
+            //Debug.Log(fileName + "==" + index + "===" + key);
             var jData = this[fileName][index][key];
             var value = jData.ToJson().Replace("\"", string.Empty);
             return value;

@@ -167,14 +167,14 @@ namespace FormulaBase
             {
                 return v;
             }
-
             for (int i = 0; i < this.condictions.Length; i++)
             {
                 FormulaCondictionObject fco = this.condictions[i];
                 fco.UpDataDynamicValue();
                 v += fco.GetData();
             }
-            return v - 1f;
+            v = v > 0 ? v - 1 : v;
+            return v;
         }
 
         public float GetData()
@@ -281,7 +281,6 @@ namespace FormulaBase
                 if (host != null && data != null)
                 {
                     host.SetDynamicData(this.signKey, data);
-                    // UnityEngine.Debug.Log(this.signKey + "     " + data.ToString());
                 }
             }
 

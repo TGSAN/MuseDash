@@ -82,7 +82,7 @@ namespace FormulaBase {
 				case 37:
 					return ( formulaObject.GetParamValue (0) + ( formulaObject.GetParamValue (1) - 1 ) * formulaObject.GetParamValue (2) );
 				case 38:
-					return ( formulaObject.GetParamValue (0) + formulaObject.GetParamValue (1) + formulaObject.GetParamValue (2) + formulaObject.GetParamValue (3) );
+					return ( formulaObject.GetParamValue (0) );
 				case 39:
 					return ( formulaObject.GetParamValue (0) + formulaObject.GetParamValue (1) + formulaObject.GetParamValue (2) + formulaObject.GetParamValue (3) );
 				case 40:

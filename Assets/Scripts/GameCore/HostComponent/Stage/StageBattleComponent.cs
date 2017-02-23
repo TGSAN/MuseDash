@@ -470,16 +470,7 @@ namespace FormulaBase
             var r = AccountPhysicsManagerComponent.Instance.ChangePhysical(-(int)Host.Result(FormulaKeys.FORMULA_20), false, true,
           result =>
           {
-              var clip = PnlStage.instance.catchClip;
-              if (clip != null)
-              {
-                  SceneAudioManager.Instance.bgm.clip = clip;
-              }
-              else
-              {
-                  SceneAudioManager.Instance.bgm.clip = ResourcesLoader.Load<AudioClip>((string)ConfigManager.instance["stage"][(int)id - 1]["music"]);
-              }
-
+              SceneAudioManager.Instance.bgm.clip = ResourcesLoader.Load<AudioClip>(ConfigManager.instance.GetConfigStringValue("stage", "id", "music", id));
               if (UISceneHelper.Instance != null)
               {
                   UISceneHelper.Instance.HideWidget();
@@ -795,12 +786,11 @@ namespace FormulaBase
         // Reset start stage.
         public void ReEnter()
         {
-            string sceneName = "GameScene";
-            this.Exit(sceneName, false, true);
+            this.Exit("GameScene", false, true);
         }
 
         // Exit stage.
-        public void Exit(string sceneName = "ChooseSongs", bool isFinish = false, bool isRestart = false)
+        public void Exit(string sceneName = "UISystem", bool isFinish = false, bool isRestart = false)
         {
             Debug.Log("Stage Exit.");
             Action callFunc = () =>
