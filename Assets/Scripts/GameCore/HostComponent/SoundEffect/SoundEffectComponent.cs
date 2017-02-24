@@ -282,7 +282,7 @@ namespace FormulaBase
         {
             if (RoleManageComponent.Instance.Host == null)
             {
-                Debug.Log("No role data in RoleManageComponent.");
+                //Debug.Log("No role data in RoleManageComponent.");
                 return;
             }
 
