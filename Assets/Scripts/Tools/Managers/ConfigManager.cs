@@ -14,7 +14,7 @@ namespace Assets.Scripts.Tools.Managers
         [SerializeField]
         public List<FileData> configs;
 
-        private readonly Dictionary<string, string> m_Dictionary = new Dictionary<string, string>();
+        private readonly Dictionary<string, JsonData> m_Dictionary = new Dictionary<string, JsonData>();
 
         public JsonData this[string idx]
         {
@@ -22,15 +22,15 @@ namespace Assets.Scripts.Tools.Managers
             {
                 if (m_Dictionary.ContainsKey(idx))
                 {
-                    return JsonMapper.ToObject(m_Dictionary[idx]);
+                    return m_Dictionary[idx];
                 }
                 var path = StringUtils.BeginBefore(configs.Find(c => c.fileName == idx).path, '.');
                 var txt = ResourcesLoader.Load<TextAsset>(path);
                 if (txt != null)
                 {
                     var data = txt.text;
-                    ResourcesLoader.Unload(txt);
-                    m_Dictionary.Add(idx, data);
+                    m_Dictionary.Add(idx, JsonMapper.ToObject(data));
+                    //ResourcesLoader.Unload(txt);
                     return JsonMapper.ToObject(data);
                 }
                 Debug.Log(idx + "json not found");

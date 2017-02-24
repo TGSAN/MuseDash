@@ -271,7 +271,10 @@ public class SpineActionController : MonoBehaviour
                 foreach (var clipParticle in curParticles)
                 {
                     var emit = clipParticle.emission;
-                    emit.enabled = isTo;
+                    if (clipParticle.emission.enabled)
+                    {
+                        emit.enabled = isTo;
+                    }
                 }
             }
         }
