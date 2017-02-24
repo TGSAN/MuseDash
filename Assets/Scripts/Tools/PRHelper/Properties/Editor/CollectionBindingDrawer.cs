@@ -17,7 +17,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
             go = go ?? parent;
             if (property.FindPropertyRelative("sourceObj").objectReferenceValue != null)
             {
-                rect = EditorUtils.MakeObjectField(go, property, "fieldName", new GUIContent("Index"),
+                rect = EditorUtils.MakeObjectField(go, property, "reflectName", new GUIContent("Index"),
                     rect,
                     m_Gap, m_Height);
             }

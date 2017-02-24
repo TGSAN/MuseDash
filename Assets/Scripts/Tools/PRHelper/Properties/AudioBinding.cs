@@ -13,7 +13,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
     {
         public string name;
         public UnityEngine.Object sourceObj;
-        public string fieldName;
+        public string reflectName;
 
         public string path;
         public string key;
@@ -26,7 +26,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
         public void Play(GameObject go)
         {
             var cBNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
-            index = cBNode != null ? cBNode.collectionBinding.index : (sourceObj != null ? ReflectionUtil.Reflect(sourceObj, fieldName) : index);
+            index = cBNode != null ? cBNode.collectionBinding.index : (sourceObj != null ? ReflectionUtil.Reflect(sourceObj, reflectName) : index);
 
             var resourcePath = ConfigManager.instance.GetConfigStringValue(ConfigManager.instance.GetFileName(path),
                 int.Parse(index), key);

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Remoting.Messaging;
 using UnityEditor;
 using UnityEngine;
 
@@ -19,16 +20,14 @@ namespace Assets.Scripts.Tools.Commons
                 {
                     var type = m.GetType();
                     var allField = type.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-                    names.AddRange(allField.Select(f =>
-                    {
-                        var field = f.IsPrivate ? "private/" : "public/";
-                        return type.Name + "/" + field + f.Name;
-                    }).ToArray());
+                    names.AddRange(allField.Select(f => type.Name + "/Fields/" + f.Name).ToArray());
                 });
             }
 
-            var allPpt = typeof(GameObject).GetProperties(BindingFlags.Instance | BindingFlags.Public).Where(p => !p.GetIndexParameters().Any<ParameterInfo>() && asType.IsAssignableFrom(p.PropertyType));
-            names.AddRange(allPpt.Select(p => "GameObject/" + p.Name).ToArray());
+            var allGOMtd = typeof(GameObject).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            var allTsfPpt = typeof(Transform).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            names.AddRange(allGOMtd.Select(m => "GameObject/Methods/" + m.Name).ToArray());
+            names.AddRange(allTsfPpt.Select(m => "Transform/Methods/" + m.Name).ToArray());
 
             rect = EditorUtils.MakePopupField(property, pptName, contentName,
             names.ToArray(), rect, gap, height, isEnum, style, false, others);

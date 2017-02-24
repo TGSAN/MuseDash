@@ -12,7 +12,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
     {
         public string name;
         public UnityEngine.Object sourceObj;
-        public string fieldName;
+        public string reflectName;
 
         public string key;
         public string index;
@@ -22,7 +22,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
             var btn = go.GetComponentsInChildren<Button>().ToList().Find(t => t.gameObject.name == name);
 
             var cBNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
-            index = cBNode != null ? cBNode.collectionBinding.index : (sourceObj != null ? ReflectionUtil.Reflect(sourceObj, fieldName) : index);
+            index = cBNode != null ? cBNode.collectionBinding.index : (sourceObj != null ? ReflectionUtil.Reflect(sourceObj, reflectName) : index);
 
             var obj = CallbackManager.instance[key];
             var func = obj as Action;

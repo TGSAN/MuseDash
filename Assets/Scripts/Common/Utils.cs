@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
 using UnityEngine;
@@ -189,22 +190,39 @@ namespace Assets.Scripts.Common
         public static string Reflect(UnityEngine.Object sourceObj, string fieldName)
         {
             var index = "1";
-            if (sourceObj)
+            if (sourceObj != null)
             {
                 var strs = fieldName.Split('/');
-                if (strs[0] != "GameObject")
+                var type = strs[0];
+                var reflectType = strs[1];
+                var name = strs[2];
+
+                if (type != "GameObject")
                 {
                     var gameObject = sourceObj as GameObject;
-                    if (gameObject != null) sourceObj = gameObject.GetComponent(strs[0]);
+                    if (gameObject != null) sourceObj = gameObject.GetComponent(type);
                 }
-                var theType = sourceObj.GetType();
-                var field = theType.GetField(strs[strs.Length - 1],
-                    BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
-                if (field != null)
+                if (reflectType == "Fields")
                 {
-                    index = field.GetValue(sourceObj).ToString();
+                    var theType = sourceObj.GetType();
+                    var field = theType.GetField(name, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                    if (field != null)
+                    {
+                        index = field.GetValue(sourceObj).ToString();
+                    }
+                }
+                else if (reflectType == "Methods")
+                {
+                    var theType = sourceObj.GetType();
+                    var methods = theType.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                    var method = methods.ToList().Find(m => m.Name == name);
+                    if (method != null)
+                    {
+                        index = method.Invoke(sourceObj, new object[] { }).ToString();
+                    }
                 }
             }
+
             return index;
         }
     }

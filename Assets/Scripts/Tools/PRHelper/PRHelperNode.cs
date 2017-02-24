@@ -71,47 +71,19 @@ namespace Assets.Scripts.Tools.PRHelper
 
         private void ModelInit(GameObject go)
         {
-            if (textBinding != null && !string.IsNullOrEmpty(textBinding.name))
+            switch (nodeType)
             {
-                PRHelper.OnEvent(go, PREvents.EventType.OnStart).AddListener(obj =>
-                {
-                    Play(go);
-                });
-            }
-            else if (imageBinding != null && !string.IsNullOrEmpty(imageBinding.name))
-            {
-                PRHelper.OnEvent(go, PREvents.EventType.OnStart).AddListener(obj =>
-                {
-                    Play(go);
-                });
-            }
-            else if (objectBinding != null && !string.IsNullOrEmpty(objectBinding.name))
-            {
-                PRHelper.OnEvent(go, PREvents.EventType.OnStart).AddListener(obj =>
-                {
-                    Play(go);
-                });
-            }
-            else if (audioBinding != null && !string.IsNullOrEmpty(audioBinding.name))
-            {
-                PRHelper.OnEvent(go, PREvents.EventType.OnStart).AddListener(obj =>
-                {
-                    Play(go);
-                });
-            }
-            else if (collectionBinding != null && !string.IsNullOrEmpty(collectionBinding.index))
-            {
-                PRHelper.OnEvent(go, PREvents.EventType.OnStart).AddListener(obj =>
-                {
-                    Play(go);
-                });
-            }
-            else if (methodBinding != null && !string.IsNullOrEmpty(methodBinding.name))
-            {
-                PRHelper.OnEvent(go, PREvents.EventType.OnStart).AddListener(obj =>
-                {
-                    Play(go);
-                });
+                case NodeType.Model_AudioBinding:
+                case NodeType.Model_CollectionBinding:
+                case NodeType.Model_ImageBinding:
+                case NodeType.Model_ObjectBinding:
+                case NodeType.Model_MethodBinding:
+                case NodeType.Model_TextBinding:
+                    PRHelper.OnEvent(go, PREvents.EventType.OnStart).AddListener(obj =>
+                    {
+                        Play(go);
+                    });
+                    break;
             }
         }
     }

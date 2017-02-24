@@ -57,7 +57,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                             {
                                 if (property.FindPropertyRelative("sourceObj").objectReferenceValue != null)
                                 {
-                                    rect = EditorUtils.MakeObjectField(go, property, "fieldName", new GUIContent("Index"),
+                                    rect = EditorUtils.MakeObjectField(go, property, "reflectName", new GUIContent("Index"),
                                         rect,
                                         m_Gap, m_Height);
                                 }
@@ -78,7 +78,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
 
                         if (property.FindPropertyRelative("sourceObj").objectReferenceValue != null)
                         {
-                            rect = EditorUtils.MakeObjectField(go, property, "fieldName", new GUIContent("Member"), rect,
+                            rect = EditorUtils.MakeObjectField(go, property, "reflectName", new GUIContent("Member"), rect,
                               m_Gap, m_Height);
                         }
                         else
@@ -105,7 +105,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
                             {
                                 if (property.FindPropertyRelative("sourceObj").objectReferenceValue != null)
                                 {
-                                    rect = EditorUtils.MakeObjectField(go, property, "fieldName", new GUIContent("Member"), rect,
+                                    rect = EditorUtils.MakeObjectField(go, property, "reflectName", new GUIContent("Member"), rect,
                                        m_Gap, m_Height);
                                 }
                                 else

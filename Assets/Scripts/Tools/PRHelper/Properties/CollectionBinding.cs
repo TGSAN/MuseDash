@@ -9,15 +9,12 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
     {
         public string index;
         public UnityEngine.Object sourceObj;
-        public string fieldName;
+        public string reflectName;
 
         public void Play(GameObject go)
         {
-            if (string.IsNullOrEmpty(index))
-            {
-                var cBNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
-                index = cBNode != null ? cBNode.collectionBinding.index : (sourceObj != null ? ReflectionUtil.Reflect(sourceObj, fieldName) : index);
-            }
+            var cBNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
+            index = sourceObj != null ? ReflectionUtil.Reflect(sourceObj, reflectName) : index;
         }
     }
 }

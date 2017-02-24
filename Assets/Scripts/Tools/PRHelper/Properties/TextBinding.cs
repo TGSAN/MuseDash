@@ -14,7 +14,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
         public string name;
         public SourceType type;
         public UnityEngine.Object sourceObj;
-        public string fieldName;
+        public string reflectName;
 
         public string path;
         public string key;
@@ -31,7 +31,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
             {
                 m_Txt = go.GetComponentsInChildren<Text>().ToList().Find(t => t.gameObject.name == name);
                 var cBNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
-                index = cBNode != null ? cBNode.collectionBinding.index : (sourceObj != null ? ReflectionUtil.Reflect(sourceObj, fieldName) : index);
+                index = cBNode != null ? cBNode.collectionBinding.index : (sourceObj != null ? ReflectionUtil.Reflect(sourceObj, reflectName) : index);
             }
 
             var str = string.Empty;
