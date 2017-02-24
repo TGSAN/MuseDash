@@ -294,7 +294,7 @@ public class GirlManager : MonoBehaviour
             }
         }
 
-        BattlePetComponent.Instance.SwitchPet();
+        //BattlePetComponent.Instance.SwitchPet();
     }
 
     public void ResetAttacker()

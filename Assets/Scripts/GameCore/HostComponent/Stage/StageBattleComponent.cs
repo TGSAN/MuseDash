@@ -673,7 +673,7 @@ namespace FormulaBase
             // 结算统计
             bool isNewRank = TaskStageTarget.Instance.OnStageFinished();
             //成就统计
-            AchievementManager.instance.SetAchievement();
+            //AchievementManager.instance.SetAchievement();
             // 结算UI数据 奖励
             StageRewardComponent.Instance.StageReward(this.Host, isNewRank);
 
