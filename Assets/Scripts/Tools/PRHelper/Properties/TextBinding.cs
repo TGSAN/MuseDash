@@ -30,10 +30,9 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
             if (!m_Txt)
             {
                 m_Txt = go.GetComponentsInChildren<Text>().ToList().Find(t => t.gameObject.name == name);
+                var cBNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
+                index = cBNode != null ? cBNode.collectionBinding.index : (sourceObj != null ? ReflectionUtil.Reflect(sourceObj, fieldName) : index);
             }
-
-            var cBNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
-            index = cBNode != null ? cBNode.collectionBinding.index : (sourceObj != null ? ReflectionUtil.Reflect(sourceObj, fieldName) : index);
 
             var str = string.Empty;
             switch (type)

@@ -197,7 +197,6 @@ public class EffectManager : MonoBehaviour
 
     public void ShowPlayResult(uint resultCode)
     {
-        Debug.Log(resultCode + "=====");
         for (int i = 0; i < this.playResult.Length; i++)
         {
             GameObject _playResult = this.playResult[i];

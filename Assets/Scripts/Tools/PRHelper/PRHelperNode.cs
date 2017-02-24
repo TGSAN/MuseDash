@@ -73,35 +73,35 @@ namespace Assets.Scripts.Tools.PRHelper
         {
             if (textBinding != null && !string.IsNullOrEmpty(textBinding.name))
             {
-                PRHelper.OnEvent(go, PREvents.EventType.OnUpdate).AddListener(obj =>
+                PRHelper.OnEvent(go, PREvents.EventType.OnStart).AddListener(obj =>
                 {
                     Play(go);
                 });
             }
             else if (imageBinding != null && !string.IsNullOrEmpty(imageBinding.name))
             {
-                PRHelper.OnEvent(go, PREvents.EventType.OnUpdate).AddListener(obj =>
+                PRHelper.OnEvent(go, PREvents.EventType.OnStart).AddListener(obj =>
                 {
                     Play(go);
                 });
             }
             else if (objectBinding != null && !string.IsNullOrEmpty(objectBinding.name))
             {
-                PRHelper.OnEvent(go, PREvents.EventType.OnUpdate).AddListener(obj =>
+                PRHelper.OnEvent(go, PREvents.EventType.OnStart).AddListener(obj =>
                 {
                     Play(go);
                 });
             }
             else if (audioBinding != null && !string.IsNullOrEmpty(audioBinding.name))
             {
-                PRHelper.OnEvent(go, PREvents.EventType.OnUpdate).AddListener(obj =>
+                PRHelper.OnEvent(go, PREvents.EventType.OnStart).AddListener(obj =>
                 {
                     Play(go);
                 });
             }
             else if (collectionBinding != null && !string.IsNullOrEmpty(collectionBinding.index))
             {
-                PRHelper.OnEvent(go, PREvents.EventType.OnUpdate).AddListener(obj =>
+                PRHelper.OnEvent(go, PREvents.EventType.OnStart).AddListener(obj =>
                 {
                     Play(go);
                 });
