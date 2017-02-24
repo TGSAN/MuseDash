@@ -57,47 +57,38 @@ namespace FormulaBase
 
             speakerHost = FomulaHostManager.Instance.CreateHost("SoundEffect");
             Dictionary<string, List<FormulaHost>> _effects = new Dictionary<string, List<FormulaHost>>();
-            for (int i = 0; i < ConfigManager.instance[CFG_NAME].Count; i++)
+            var id = ConfigManager.instance.GetConfigIntValue(CFG_NAME, "belong", "id", speaker);
+            FormulaHost _effectHost = FomulaHostManager.Instance.CreateHost("SoundEffect");
+            _effectHost.SetDynamicData(SignKeys.ID, id);
+
+            // init  attr
+            _effectHost.Result(FormulaKeys.FORMULA_4);
+            // Set path name and file name
+            string _mn = _effectHost.GetDynamicStrByKey(SignKeys.MUSIC_NAME);
+            if (_mn != null)
             {
-                string _i = (i + 1).ToString();
-                string _speaker = ConfigManager.instance.GetConfigStringValue(CFG_NAME, i, "belong");
-                if (_speaker != speaker)
+                string _name = string.Empty;
+                if (_mn.Contains("/"))
                 {
-                    continue;
+                    string[] _ss = _mn.Split('/');
+                    _name = _ss[_ss.Length - 1];
+                }
+                else
+                {
+                    _name = _mn;
                 }
 
-                FormulaHost _effectHost = FomulaHostManager.Instance.CreateHost("SoundEffect");
-                _effectHost.SetDynamicData(SignKeys.ID, i + 1);
-
-                // init  attr
-                _effectHost.Result(FormulaKeys.FORMULA_4);
-                // Set path name and file name
-                string _mn = _effectHost.GetDynamicStrByKey(SignKeys.MUSIC_NAME);
-                if (_mn != null)
-                {
-                    string _name = string.Empty;
-                    if (_mn.Contains("/"))
-                    {
-                        string[] _ss = _mn.Split('/');
-                        _name = _ss[_ss.Length - 1];
-                    }
-                    else
-                    {
-                        _name = _mn;
-                    }
-
-                    _effectHost.SetDynamicData(SignKeys.NAME, _name);
-                }
-
-                // Add to type
-                string _effType = _effectHost.GetDynamicStrByKey(SignKeys.TYPE);
-                if (!_effects.ContainsKey(_effType))
-                {
-                    _effects.Add(_effType, new List<FormulaHost>());
-                }
-
-                _effects[_effType].Add(_effectHost);
+                _effectHost.SetDynamicData(SignKeys.NAME, _name);
             }
+
+            // Add to type
+            string _effType = _effectHost.GetDynamicStrByKey(SignKeys.TYPE);
+            if (!_effects.ContainsKey(_effType))
+            {
+                _effects.Add(_effType, new List<FormulaHost>());
+            }
+
+            _effects[_effType].Add(_effectHost);
 
             if (_effects.Count == 0)
             {
@@ -258,7 +249,6 @@ namespace FormulaBase
                 Debug.Log("Speaker " + speaker + " has no host data in SoundEffectComponent.");
                 return;
             }
-
             Dictionary<string, List<FormulaHost>> _effects = (Dictionary<string, List<FormulaHost>>)speakerHost.GetDynamicObjByKey(SIGNKEY_EFFECTS);
             if (_effects == null || !_effects.ContainsKey(effectType))
             {
@@ -274,6 +264,7 @@ namespace FormulaBase
             }
 
             int idx = UnityEngine.Random.Range(0, _effectByType.Count);
+
             FormulaHost seHost = _effectByType[idx];
             if (seHost == null)
             {

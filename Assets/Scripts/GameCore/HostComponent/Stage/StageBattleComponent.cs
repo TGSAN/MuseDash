@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Assets.Scripts.Common;
 using Assets.Scripts.NewUI.Panels;
 using Assets.Scripts.Tools.Commons;
 using Assets.Scripts.Tools.Managers;
@@ -60,7 +61,7 @@ namespace FormulaBase
         private ArrayList musicTickData = null;
 
         private Dictionary<int, List<TimeNodeOrder>> _timeNodeOrder = null;
-        public int curLPSIdx = 0;
+        public int curLPSIdx = -1;
         public int musicStartTime = 0;
 
         public float timeFromMusicStart
@@ -805,6 +806,7 @@ namespace FormulaBase
                 SceneLoader.SetLoadInfo(ref sceneName);
                 Time.timeScale = GameGlobal.TIME_SCALE;
                 CommonPanel.GetInstance().SetMask(true, this.OnExit);
+                SceneManager.LoadScene("LoadingScene");
             };
             if (!isFinish && !isRestart)
             {

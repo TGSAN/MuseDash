@@ -1,6 +1,7 @@
 ﻿using GameLogic;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Tools.Commons;
 using UnityEngine;
 
 public class SceneAudioManager : MonoBehaviour
@@ -108,8 +109,7 @@ public class SceneAudioManager : MonoBehaviour
                 return;
             }
         }
-
-        AudioClip _ac = (AudioClip)Resources.Load(pathname);
+        AudioClip _ac = ResourcesLoader.Load<AudioClip>(pathname);
         if (_ac == null)
         {
             Debug.Log("No audio source " + pathname);
@@ -121,7 +121,7 @@ public class SceneAudioManager : MonoBehaviour
         player.clip = _ac;
         player.time = 0;
         player.Play();
-        Debug.Log(player.name + " : " + player.clip.name);
+        Debug.Log(player.name + " : " + player.clip.name + "===path" + pathname);
     }
 
     public void Play(AudioSource player)
