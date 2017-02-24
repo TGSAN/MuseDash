@@ -398,7 +398,7 @@ public class AudioManager
             return;
         }
         //长按音效播放方式特别
-        if (name == "note/key_audio/press_atk")
+        if (name == "data/game_scene/note/key_audio/press_atk")
         {
             if (this.audioDic.ContainsKey(name))
             {
