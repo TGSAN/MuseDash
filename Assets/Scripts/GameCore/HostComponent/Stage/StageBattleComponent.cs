@@ -355,6 +355,7 @@ namespace FormulaBase
         public MusicData GetMusicDataByIdx(int idx)
         {
             ArrayList musicDatas = this.GetMusicData();
+
             if (musicDatas == null || idx < 0 || idx >= musicDatas.Count)
             {
                 return new MusicData();
@@ -467,7 +468,6 @@ namespace FormulaBase
         // ------------------------------------------------------------// ------------------------------------------------------------
         public void Enter(uint id, uint diff)
         {
-            Debug.Log(id + "====");
             //扣体力回调
             var r = AccountPhysicsManagerComponent.Instance.ChangePhysical(-(int)Host.Result(FormulaKeys.FORMULA_20), false, true,
           result =>

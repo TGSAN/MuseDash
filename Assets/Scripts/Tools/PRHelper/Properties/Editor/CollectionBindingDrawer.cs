@@ -12,12 +12,25 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
 
         public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
         {
-            rect = EditorUtils.MakePropertyField("index", property, rect, m_Gap, m_Height);
+            var parent = Selection.activeGameObject;
+            var go = property.FindPropertyRelative("sourceObj").objectReferenceValue as GameObject;
+            go = go ?? parent;
+            if (property.FindPropertyRelative("sourceObj").objectReferenceValue != null)
+            {
+                rect = EditorUtils.MakeObjectField(go, property, "fieldName", new GUIContent("Index"),
+                    rect,
+                    m_Gap, m_Height);
+            }
+            else
+            {
+                rect = EditorUtils.MakePropertyField("index", property, rect, m_Gap, m_Height);
+            }
+            rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height);
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            return 20;
+            return 40;
         }
     }
 }

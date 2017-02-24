@@ -251,7 +251,6 @@ namespace GameLogic
                         break;
                     }
                 }
-
                 sd.hitRange = new decimal[lenHitRange];
                 sd.hitRange[GameMusic.A_PERFECT_RANGE_INDEX] = sd.a_perfect_range;
                 sd.hitRange[GameMusic.A_GREAT_RANGE_INDEX] = sd.a_great_range;
@@ -295,7 +294,6 @@ namespace GameLogic
 
             NodeConfigReader.Instance.Init();
             ArrayList nodeData = NodeConfigReader.Instance.GetData();
-            Debug.Log(filename + "===");
             JsonData _data = ConfigManager.instance[filename];
             // Start from 1
             this.Add(new MusicData());

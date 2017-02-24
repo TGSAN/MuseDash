@@ -121,7 +121,6 @@ public class SceneAudioManager : MonoBehaviour
         player.clip = _ac;
         player.time = 0;
         player.Play();
-        Debug.Log(player.name + " : " + player.clip.name + "===path" + pathname);
     }
 
     public void Play(AudioSource player)

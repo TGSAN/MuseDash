@@ -77,14 +77,13 @@ public class EffectManager : MonoBehaviour
         // Load press succeed effect.
         string path = GirlManager.GetCharactPath(name);
 
-        string strHeroIndex = heroIndex.ToString();
         // Fever scene
-        string feverScene = ConfigManager.instance.GetConfigStringValue("char_info", heroIndex, "fever");
+        string feverScene = ConfigManager.instance.GetConfigStringValue("char_info", "id", "fever", heroIndex);
         this.ferverScene = GameObject.Instantiate(Resources.Load(feverScene)) as GameObject;
 
-        string atkFxGreat = ConfigManager.instance.GetConfigStringValue("char_info", heroIndex, "fx_atk_great");
-        string atkFxPerfect = ConfigManager.instance.GetConfigStringValue("char_info", heroIndex, "fx_atk_perfect");
-        string atkFxCrit = ConfigManager.instance.GetConfigStringValue("char_info", heroIndex, "fx_atk_crit");
+        string atkFxGreat = ConfigManager.instance.GetConfigStringValue("char_info", "id", "fx_atk_great", heroIndex);
+        string atkFxPerfect = ConfigManager.instance.GetConfigStringValue("char_info", "id", "fx_atk_perfect", heroIndex);
+        string atkFxCrit = ConfigManager.instance.GetConfigStringValue("char_info", "id", "fx_atk_crit", heroIndex);
         // Load attack succeed effect.
         this.playResult = new GameObject[(int)GameMusic.CRITICAL + 1];
         this.playResult[GameMusic.COOL] = GameObject.Instantiate(Resources.Load(atkFxGreat)) as GameObject;
@@ -198,6 +197,7 @@ public class EffectManager : MonoBehaviour
 
     public void ShowPlayResult(uint resultCode)
     {
+        Debug.Log(resultCode + "=====");
         for (int i = 0; i < this.playResult.Length; i++)
         {
             GameObject _playResult = this.playResult[i];
