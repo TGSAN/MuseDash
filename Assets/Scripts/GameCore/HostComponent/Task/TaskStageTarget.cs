@@ -423,7 +423,7 @@ namespace FormulaBase
 
             //日常任务相关
             //在任意关卡中获得1次S评价
-            //TaskManager.instance.DetectValue(s => GetStagePJ() == "s", TaskManager.S_IDX);
+            TaskManager.instance.DetectValue(s => GetStagePJ() == "s", TaskManager.S_IDX);
             //在关卡（MusicName）中获得1次S评价或a评价
             TaskManager.instance.DetectValue(s => Host.GetDynamicIntByKey(SignKeys.ID) == int.Parse(s) && (GetStagePJ() == "a" || GetStagePJ() == "s"), TaskManager.A_IDX);
             //戴耳机完成任意5个不用关卡
@@ -531,6 +531,7 @@ namespace FormulaBase
 
         private void AfterSave(bool _Success)
         {
+            return;
             //检验下首歌曲是否解锁
             if (isChange)
             {

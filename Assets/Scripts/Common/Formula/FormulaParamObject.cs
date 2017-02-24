@@ -173,7 +173,6 @@ namespace FormulaBase
                 fco.UpDataDynamicValue();
                 v += fco.GetData();
             }
-            v = v > 0 ? v - 1 : v;
             return v;
         }
 
@@ -269,6 +268,7 @@ namespace FormulaBase
 
         private string GetParamByConfig(int key)
         {
+            key = key - 1 < 0 ? 0 : key;
             this.InitConfigFormula();
             if (this.configName == null)
             {

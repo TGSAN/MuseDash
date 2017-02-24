@@ -41,6 +41,7 @@ namespace FormulaBase
 
         public void AddValue(int value, int taskID)
         {
+            return;
             foreach (var host in HostList.Values.ToList().Where(host => host.GetDynamicIntByKey(SignKeys.ID) == taskID && host.GetDynamicIntByKey(SignKeys.FINISH_TIME) == 0))
             {
                 var id = host.GetDynamicIntByKey(SignKeys.ID);
@@ -61,6 +62,7 @@ namespace FormulaBase
 
         public void DetectValue(Func<string, bool> callFunc, int taskID)
         {
+            return;
             foreach (var host in HostList.Values.ToList().Where(host => host.GetDynamicIntByKey(SignKeys.ID) == taskID && host.GetDynamicIntByKey(SignKeys.FINISH_TIME) == 0))
             {
                 var r = callFunc(Host.GetDynamicStrByKey(SignKeys.DT_TARGET));
