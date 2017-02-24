@@ -8318,6 +8318,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1639395914707680
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224116366455707048}
+  - component: {fileID: 222399419525132446}
+  - component: {fileID: 114669732539788748}
+  - component: {fileID: 114074519364153144}
+  m_Layer: 5
+  m_Name: BtnPlay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1639941189256422
 GameObject:
   m_ObjectHideFlags: 1
@@ -8633,7 +8651,6 @@ GameObject:
   - component: {fileID: 222471250772054242}
   - component: {fileID: 114610760553946276}
   - component: {fileID: 114387756741045576}
-  - component: {fileID: 114586987894471342}
   m_Layer: 5
   m_Name: BtnEnergy
   m_TagString: Untagged
@@ -9592,6 +9609,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224172402268173296}
+  - component: {fileID: 114602130950539860}
   m_Layer: 5
   m_Name: PnlPreparation
   m_TagString: Untagged
@@ -12505,6 +12523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224880036972186918}
   - component: {fileID: 114134437415769776}
+  - component: {fileID: 114240934153504090}
   m_Layer: 5
   m_Name: PnlStage
   m_TagString: Untagged
@@ -14433,7 +14452,6 @@ MonoBehaviour:
   lowEnhance: 1
   minSize: 1
   changeValue: 5
-  scale: 1
   gradients: []
   bkg: []
   cube: []
@@ -15002,6 +15020,47 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114074519364153144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1639395914707680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 114669732539788748}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114077749036548104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16612,7 +16671,6 @@ MonoBehaviour:
   lowEnhance: 1
   minSize: 1
   changeValue: 5
-  scale: 1
   gradients: []
   bkg: []
   cube: []
@@ -17877,100 +17935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNewNode: 1
   newNodeName: 
-  nodes:
-  - key: 
-    nodeType: 1
-    playAnimation:
-      animator: {fileID: 0}
-      animationType: 0
-      afterAction: 0
-      stateName: 
-      hasStart: 0
-      hasPlaying: 0
-      hasFinish: 0
-      onAnimationStart:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationPlaying:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationFinish:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-    playTween:
-      tweenType: 0
-    playAudio:
-      audioClip: {fileID: 0}
-      isPlay: 0
-    btnBack:
-      button: {fileID: 0}
-      curPnlName: 
-      nextPnlName: 
-    active:
-      gameObject: {fileID: 0}
-      isActive: 0
-    playPopup:
-      pnlName: 
-      inTime: 0
-      inDistance: 0
-      moveInEase: 0
-      isFadeIn: 0
-      fadeInEase: 0
-      outTime: 0
-      outDistance: 0
-      moveOutEase: 0
-      isFadeOut: 0
-      fadeOutEase: 0
-      color: {r: 0, g: 0, b: 0, a: 0}
-      shut: 0
-      shutButtonName: 
-    pREvents:
-      events: []
-    textBinding:
-      name: TxtValue
-      type: 1
-      sourceObj: {fileID: 0}
-      fieldName: 
-      path: stage/_config/stage_value
-      key: Account_MaxEnergy
-      index: 
-      value: '%s'
-    imageBinding:
-      name: 
-      sourceObj: {fileID: 0}
-      fieldName: 
-      path: 
-      key: 
-      index: 
-    methodBinding:
-      name: 
-      sourceObj: {fileID: 0}
-      fieldName: 
-      key: 
-      index: 
-    objectBinding:
-      name: 
-      sourceObj: {fileID: 0}
-      fieldName: 
-      path: 
-      key: 
-      index: 
-    audioBinding:
-      name: 
-      sourceObj: {fileID: 0}
-      fieldName: 
-      path: 
-      key: 
-      index: 
-      isAutoPlay: 0
-    collectionBinding:
-      index: 
+  nodes: []
 --- !u!114 &114187358471041508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19231,6 +19196,113 @@ MonoBehaviour:
   timeScale: 1
   freeze: 0
   unscaledTime: 0
+--- !u!114 &114240934153504090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1973144883751280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ceeb32605dbb8542b3f91c475477f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNewNode: 1
+  newNodeName: 
+  nodes:
+  - key: 
+    nodeType: 2
+    playAnimation:
+      animator: {fileID: 0}
+      animationType: 0
+      afterAction: 0
+      stateName: 
+      hasStart: 0
+      hasPlaying: 0
+      hasFinish: 0
+      onAnimationStart:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      onAnimationPlaying:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      onAnimationFinish:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    playTween:
+      tweenType: 0
+    playAudio:
+      audioClip: {fileID: 0}
+      isPlay: 0
+    btnBack:
+      button: {fileID: 0}
+      curPnlName: 
+      nextPnlName: 
+    active:
+      gameObject: {fileID: 0}
+      isActive: 0
+    playPopup:
+      pnlName: 
+      inTime: 0
+      inDistance: 0
+      moveInEase: 0
+      isFadeIn: 0
+      fadeInEase: 0
+      outTime: 0
+      outDistance: 0
+      moveOutEase: 0
+      isFadeOut: 0
+      fadeOutEase: 0
+      color: {r: 0, g: 0, b: 0, a: 0}
+      shut: 0
+      shutButtonName: 
+    pREvents:
+      events: []
+    textBinding:
+      name: 
+      type: 0
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      value: 
+    imageBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    methodBinding:
+      name: BtnPlay
+      sourceObj: {fileID: 0}
+      fieldName: 
+      key: UI_ShowPanel
+      index: PnlPreparation
+    objectBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    audioBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      isAutoPlay: 0
+    collectionBinding:
+      index: 
 --- !u!114 &114241017438288280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27303,113 +27375,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: LET'S RUN!!
---- !u!114 &114586987894471342
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1654950300151158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ceeb32605dbb8542b3f91c475477f42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isNewNode: 0
-  newNodeName: 
-  nodes:
-  - key: 
-    nodeType: 11
-    playAnimation:
-      animator: {fileID: 0}
-      animationType: 0
-      afterAction: 0
-      stateName: 
-      hasStart: 0
-      hasPlaying: 0
-      hasFinish: 0
-      onAnimationStart:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationPlaying:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationFinish:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-    playTween:
-      tweenType: 0
-    playAudio:
-      audioClip: {fileID: 0}
-      isPlay: 0
-    btnBack:
-      button: {fileID: 0}
-      curPnlName: None
-      nextPnlName: None
-    active:
-      gameObject: {fileID: 0}
-      isActive: 0
-    playPopup:
-      pnlName: PnlEnergy
-      inTime: 0.4
-      inDistance: -200
-      moveInEase: 24
-      isFadeIn: 1
-      fadeInEase: 1
-      outTime: 0.4
-      outDistance: 200
-      moveOutEase: 17
-      isFadeOut: 1
-      fadeOutEase: 0
-      color: {r: 0, g: 0, b: 0, a: 0.8}
-      shut: 1
-      shutButtonName: None
-    pREvents:
-      events: []
-    textBinding:
-      name: 
-      type: 0
-      sourceObj: {fileID: 0}
-      fieldName: 
-      path: 
-      key: 
-      index: 
-      value: 
-    imageBinding:
-      name: 
-      sourceObj: {fileID: 0}
-      fieldName: 
-      path: 
-      key: 
-      index: 
-    methodBinding:
-      name: 
-      sourceObj: {fileID: 0}
-      fieldName: 
-      key: 
-      index: 
-    objectBinding:
-      name: 
-      sourceObj: {fileID: 0}
-      fieldName: 
-      path: 
-      key: 
-      index: 
-    audioBinding:
-      name: 
-      sourceObj: {fileID: 0}
-      fieldName: 
-      path: 
-      key: 
-      index: 
-      isAutoPlay: 0
-    collectionBinding:
-      index: 
 --- !u!114 &114587318597829768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28229,6 +28194,113 @@ MonoBehaviour:
   optionalRotationMode: 0
   optionalScrambleMode: 0
   optionalString: 
+--- !u!114 &114602130950539860
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1724583932525902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ceeb32605dbb8542b3f91c475477f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNewNode: 1
+  newNodeName: 
+  nodes:
+  - key: 
+    nodeType: 2
+    playAnimation:
+      animator: {fileID: 0}
+      animationType: 0
+      afterAction: 0
+      stateName: 
+      hasStart: 0
+      hasPlaying: 0
+      hasFinish: 0
+      onAnimationStart:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      onAnimationPlaying:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      onAnimationFinish:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    playTween:
+      tweenType: 0
+    playAudio:
+      audioClip: {fileID: 0}
+      isPlay: 0
+    btnBack:
+      button: {fileID: 0}
+      curPnlName: 
+      nextPnlName: 
+    active:
+      gameObject: {fileID: 0}
+      isActive: 0
+    playPopup:
+      pnlName: 
+      inTime: 0
+      inDistance: 0
+      moveInEase: 0
+      isFadeIn: 0
+      fadeInEase: 0
+      outTime: 0
+      outDistance: 0
+      moveOutEase: 0
+      isFadeOut: 0
+      fadeOutEase: 0
+      color: {r: 0, g: 0, b: 0, a: 0}
+      shut: 0
+      shutButtonName: 
+    pREvents:
+      events: []
+    textBinding:
+      name: 
+      type: 0
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      value: 
+    imageBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    methodBinding:
+      name: BtnStart
+      sourceObj: {fileID: 1973144883751280}
+      fieldName: PnlStage/private/m_CurrentIdx
+      key: Game_BattleStart
+      index: 3
+    objectBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+    audioBinding:
+      name: 
+      sourceObj: {fileID: 0}
+      fieldName: 
+      path: 
+      key: 
+      index: 
+      isAutoPlay: 0
+    collectionBinding:
+      index: 
 --- !u!114 &114602737453756702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -29411,6 +29483,33 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: b7c6440b707c24149a524c54c48b8b77, type: 3}
   m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!114 &114669732539788748
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1639395914707680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -31716,7 +31815,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   skeletonDataAsset: {fileID: 11400000, guid: a2c38e0bba7c441d89fb7ef9054a693b, type: 2}
   initialSkinName: default
-  startingAnimation: standby
+  startingAnimation: 
   startingLoop: 1
   timeScale: 1
   freeze: 0
@@ -52922,6 +53021,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1827885296073566}
+--- !u!222 &222399419525132446
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1639395914707680}
 --- !u!222 &222400197112484134
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -55965,7 +56070,7 @@ RectTransform:
   m_GameObject: {fileID: 1271863652904320}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -100}
-  m_LocalScale: {x: 0.65, y: 0.65, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
   m_Children: []
   m_Father: {fileID: 224857819557009614}
   m_RootOrder: 0
@@ -56430,14 +56535,14 @@ RectTransform:
   m_GameObject: {fileID: 1990801892695964}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -100}
-  m_LocalScale: {x: -1.2, y: 1.2, z: 1}
+  m_LocalScale: {x: -2.2, y: 2.2, z: 1}
   m_Children: []
   m_Father: {fileID: 224933943460793562}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 419, y: 105}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224096732584383938
@@ -56782,6 +56887,24 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -120, y: -200}
   m_SizeDelta: {x: 48, y: 47}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224116366455707048
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1639395914707680}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224880036972186918}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224116439369219736
 RectTransform:
@@ -57820,7 +57943,7 @@ RectTransform:
   m_GameObject: {fileID: 1555828827526972}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2.2, y: 2.2, z: 1.5}
   m_Children: []
   m_Father: {fileID: 224572478940007056}
   m_RootOrder: 0
@@ -58425,7 +58548,7 @@ RectTransform:
   m_GameObject: {fileID: 1894359889889132}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 2.2, y: 2.2, z: 1.2}
   m_Children: []
   m_Father: {fileID: 224881994990002710}
   m_RootOrder: 0
@@ -59494,7 +59617,7 @@ RectTransform:
   m_GameObject: {fileID: 1558693114661344}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2.2, y: 2.2, z: 1.5}
   m_Children: []
   m_Father: {fileID: 224219854158901224}
   m_RootOrder: 0
@@ -61751,7 +61874,7 @@ RectTransform:
   m_GameObject: {fileID: 1943155188375754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2.2, y: 2.2, z: 1.5}
   m_Children: []
   m_Father: {fileID: 224823022390047726}
   m_RootOrder: 0
@@ -67079,7 +67202,7 @@ RectTransform:
   m_GameObject: {fileID: 1049016264533676}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5000001, y: 1.5000001, z: 1.5000001}
+  m_LocalScale: {x: 2.2, y: 2.2, z: 1.5000001}
   m_Children: []
   m_Father: {fileID: 224287106644815622}
   m_RootOrder: 0
@@ -68024,12 +68147,13 @@ RectTransform:
   - {fileID: 224241093370557984}
   - {fileID: 224820645954324816}
   - {fileID: 224533319345214214}
+  - {fileID: 224116366455707048}
   m_Father: {fileID: 224392481238700412}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.00000047683716}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224881681882678362
@@ -68736,7 +68860,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 420, y: 140}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224934042581886478
@@ -69268,7 +69392,7 @@ RectTransform:
   m_GameObject: {fileID: 1144147597347264}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2.2, y: 2.2, z: 1.5}
   m_Children: []
   m_Father: {fileID: 224073588359371752}
   m_RootOrder: 0
