@@ -13,7 +13,6 @@ namespace Assets.Scripts.Tools.Commons
         public static Rect MakeObjectField(GameObject go, SerializedProperty property, string pptName, GUIContent contentName, Rect rect, float gap, float height, bool isEnum = false, GUIStyle style = null, params string[] others)
         {
             var names = new List<string>();
-            var asType = typeof(string);
             if (go != null)
             {
                 var allMono = go.GetComponents<MonoBehaviour>().ToList();
