@@ -10,6 +10,7 @@
 using DYUnityLib;
 using LitJson;
 using System;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 public class ConfigPool
@@ -107,6 +108,17 @@ public class ConfigPool
         return int.Parse(jData.ToString());
     }
 
+    public int GetConfigIntValue(string filename, int index, string key, int defaultValue = 0)
+    {
+        JsonData jData = this.GetConfigValue(filename, index, key);
+        if (jData == null)
+        {
+            return defaultValue;
+        }
+
+        return int.Parse(jData.ToString());
+    }
+
     public int GetConfigIntValue(string filename, string compkey, string valuekey, object compvalue, int defaultValue = 0)
     {
         JsonData jData = this.GetConfigValue(filename, compkey, valuekey, compvalue);
@@ -121,6 +133,17 @@ public class ConfigPool
     public string GetConfigStringValue(string filename, string id, string key)
     {
         JsonData jData = this.GetConfigValue(filename, id, key);
+        if (jData == null)
+        {
+            return null;
+        }
+
+        return jData.ToString();
+    }
+
+    public string GetConfigStringValue(string filename, int index, string key)
+    {
+        JsonData jData = this.GetConfigValue(filename, index, key);
         if (jData == null)
         {
             return null;
@@ -148,35 +171,69 @@ public class ConfigPool
             return null;
         }
 
-        foreach (string jid in jd.Keys)
+        if (jd.IsArray)
         {
-            JsonData _jd = this.GetConfigValue(filename, jid, compkey);
-            if (_jd == null)
+            for (int i = 0; i < jd.Count; i++)
             {
-                continue;
-            }
-
-            if (_jd.IsInt)
-            {
-                if (int.Parse(_jd.ToString()) == (int)compvalue)
+                var jid = jd[i];
+                var _jd = jid[compkey];
+                if (_jd.IsInt)
                 {
-                    return this.GetConfigValue(filename, jid, valuekey);
+                    if (int.Parse(_jd.ToString()) == (int)compvalue)
+                    {
+                        return jid[valuekey];
+                    }
+                }
+
+                if (_jd.IsString)
+                {
+                    if (_jd.ToString() == compvalue.ToString())
+                    {
+                        return jid[valuekey];
+                    }
+                }
+
+                if (_jd.IsDouble)
+                {
+                    if (float.Parse(_jd.ToString()) == (float)compvalue)
+                    {
+                        return jid[valuekey];
+                    }
                 }
             }
-
-            if (_jd.IsString)
+        }
+        else
+        {
+            foreach (string jid in jd.Keys)
             {
-                if (_jd.ToString() == compvalue.ToString())
+                JsonData _jd = this.GetConfigValue(filename, jid, compkey);
+                if (_jd == null)
                 {
-                    return this.GetConfigValue(filename, jid, valuekey);
+                    continue;
                 }
-            }
 
-            if (_jd.IsDouble)
-            {
-                if (float.Parse(_jd.ToString()) == (float)compvalue)
+                if (_jd.IsInt)
                 {
-                    return this.GetConfigValue(filename, jid, valuekey);
+                    if (int.Parse(_jd.ToString()) == (int)compvalue)
+                    {
+                        return this.GetConfigValue(filename, jid, valuekey);
+                    }
+                }
+
+                if (_jd.IsString)
+                {
+                    if (_jd.ToString() == compvalue.ToString())
+                    {
+                        return this.GetConfigValue(filename, jid, valuekey);
+                    }
+                }
+
+                if (_jd.IsDouble)
+                {
+                    if (float.Parse(_jd.ToString()) == (float)compvalue)
+                    {
+                        return this.GetConfigValue(filename, jid, valuekey);
+                    }
                 }
             }
         }
@@ -215,6 +272,16 @@ public class ConfigPool
         return cfg[id];
     }
 
+    public JsonData GetConfigValue(string filename, int index)
+    {
+        var jData = ConfigManager.instance[filename];
+        if (jData != null)
+        {
+            return jData[index];
+        }
+        return null;
+    }
+
     public JsonData GetConfigValue(string filename, string id, string key)
     {
         var idcfg = GetConfigValue(filename, id);
@@ -229,6 +296,22 @@ public class ConfigPool
         }
 
         return idcfg[key];
+    }
+
+    public JsonData GetConfigValue(string filename, int index, string key)
+    {
+        var jData = GetConfigValue(filename, index);
+        if (jData == null)
+        {
+            return null;
+        }
+
+        if (!jData.Keys.Contains(key))
+        {
+            return null;
+        }
+
+        return jData[key];
     }
 
     private void ChargeConfig(string filename, string path = null)

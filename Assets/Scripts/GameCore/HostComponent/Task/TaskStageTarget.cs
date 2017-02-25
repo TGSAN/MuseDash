@@ -6,6 +6,7 @@ using LitJson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 namespace FormulaBase
@@ -171,8 +172,6 @@ namespace FormulaBase
         /// </summary>
         public static Action<int> onSongUnlock;
 
-        private Target[] targets = null;
-
         public void Init(int stageId)
         {
             this.Host = this.GetTaskByStageId(stageId);
@@ -196,7 +195,6 @@ namespace FormulaBase
                 this.Host.SetDynamicData(SignKeys.LOCKED, isLock);
             }
 
-            this.targets = this.GetStageTargetsByStageId(stageId);
             this.Host.SetDynamicData(SignKeys.ID, stageId);
             this.Host.SetDynamicData(TASK_SIGNKEY_STAGEID, stageId);
             this.OnInit(stageId);
@@ -205,7 +203,7 @@ namespace FormulaBase
         public string[] GetAllMusicNames()
         {
             var names = new List<string>();
-            var musicName = ConfigPool.Instance.GetConfigByName("stage");
+            var musicName = ConfigManager.instance["stage"];
             for (int i = 0; i < musicName.Count; i++)
             {
                 var name = musicName[i]["name"].ToString();
@@ -309,11 +307,11 @@ namespace FormulaBase
         public bool[] GetLockList()
         {
             var idxs = new bool[StageBattleComponent.Instance.GetStageCount()];
-            var totalTrophy = GetTotalTrophy();
-            for (int i = 1; i < idxs.Length; i++)
+            var accountLvl = int.Parse(CallbackManager.instance.GetValue("Account_Level").ToString());
+            for (int i = 0; i < idxs.Length; i++)
             {
-                var unlockTrophy = ConfigPool.Instance.GetConfigIntValue("stage", i.ToString(), "unlock");
-                idxs[i] = unlockTrophy > totalTrophy;
+                var unlockLvl = (int)ConfigManager.instance["stage"][i]["unlock_level"];
+                idxs[i] = unlockLvl > accountLvl;
                 if (GameGlobal.IS_UNLOCK_ALL_STAGE)
                 {
                     idxs[i] = false;
@@ -332,7 +330,7 @@ namespace FormulaBase
             var trophyRequest = 0;
             for (int i = 1; trophyRequest < trophyTotal; i++)
             {
-                trophyRequest = ConfigPool.Instance.GetConfigIntValue("stage", i.ToString(), "unlock");
+                trophyRequest = ConfigManager.instance.GetConfigIntValue("stage", i, "unlock_Lev");
                 idx = i;
             }
             return trophyRequest;
@@ -343,27 +341,11 @@ namespace FormulaBase
             return this.Host.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_SCORE + TaskStageTarget.TASK_SIGNKEY_COUNT_TARGET_TAIL);
         }
 
-        /// <summary>
-        /// Determines whether this instance is next lock.
-        /// 下个关卡锁定状态
-        /// 关卡1不需要奖杯作为开启条件
-        /// </summary>
-        /// <returns><c>true</c> if this instance is next lock; otherwise, <c>false</c>.</returns>
-        public bool IsNextLock()
-        {
-            if (this.GetId() <= 1)
-            {
-                return (this.GetXMax(TASK_SIGNKEY_STAGE_CLEAR_COUNT) < 1);
-            }
-
-            return (this.GetClearEvluate() < 1);
-        }
-
         public float GetStageRewardRank()
         {
             // rank 来自 score和performance的比率 : 1, 0.8, 0.6, 0.4, 0.2
             var stageHost = this.Host;
-            var performanceScore = ConfigPool.Instance.GetConfigIntValue("stage_value", stageHost.GetDynamicStrByKey(SignKeys.ID), "performance");
+            var performanceScore = ConfigManager.instance.GetConfigIntValue("stage", stageHost.GetDynamicIntByKey(SignKeys.ID), "performance");
             var rank = ((float)stageHost.GetDynamicIntByKey(TASK_SIGNKEY_MAX_COMBO) * 0.5f + (float)stageHost.GetDynamicIntByKey(TASK_SIGNKEY_HIDE_NODE_COUNT) * 0.1f + (float)stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT) * 0.4f) / performanceScore;
             return rank;
         }
@@ -500,156 +482,6 @@ namespace FormulaBase
 			*/
         }
 
-        /// <summary>
-        /// Gets the clear evluate.
-        ///
-        /// 关卡目标进度
-        /// </summary>
-        /// <returns>The clear evluate.</returns>
-        public int GetClearEvluate()
-        {
-            if (this.targets == null || this.targets.Length <= 0)
-            {
-                return 0;
-            }
-
-            int clear = 0;
-            for (int i = 0; i < this.targets.Length; i++)
-            {
-                Target _t = this.targets[i];
-                if (_t.result)
-                {
-                    clear += 1;
-                }
-            }
-
-            return clear;
-        }
-
-        public int GetDymClearEvluate()
-        {
-            if (this.targets == null || this.targets.Length <= 0)
-            {
-                return 0;
-            }
-
-            int clear = 0;
-            if (this.targets != null && this.targets.Length > 0)
-            {
-                for (int i = 0; i < this.targets.Length; i++)
-                {
-                    Target _t = this.targets[i];
-                    if (_t.signKey == null)
-                    {
-                        continue;
-                    }
-
-                    if (_t.signKey.Contains(TASK_SIGNKEY_COUNT_LESSTHAN_TAIL))
-                    {
-                        if (_t.dymFailed)
-                        {
-                            continue;
-                        }
-                    }
-                    else
-                    {
-                        if (!_t.dymResult)
-                        {
-                            continue;
-                        }
-                    }
-
-                    clear += 1;
-                }
-            }
-
-            return clear;
-        }
-
-        /// <summary>
-        /// Gets the goal DES.
-        ///
-        /// 目标面板显示用的关卡目标描述信息
-        /// 包括文字颜色调整
-        /// </summary>
-        /// <returns>The goal DES.</returns>
-        public string GetGoalDes()
-        {
-            if (this.targets == null || this.targets.Length <= 0)
-            {
-                return null;
-            }
-
-            string _signDig = "X";
-            string _singStr = "Y";
-            // sample [1598C9FF]Get [69BE25FF]90[-]/120/150 combo.[-]
-            string des = null;
-            string values = "";
-            int succeedCount = 0;
-            bool noReplaceWord = true;
-            for (int i = 0; i < this.targets.Length; i++)
-            {
-                Target _t = this.targets[i];
-                /*
-				if (des == null) {
-					des = ConfigPool.Instance.GetConfigStringValue ("Level_Goal", _t.id.ToString (), "goal_battle");
-				}
-				*/
-
-                if (_t.result)
-                {
-                    succeedCount += 1;
-                    if (_t.strValue != null)
-                    {
-                        values += ("[69BE25FF]" + _t.strValue + "[-]/");
-                    }
-                    else
-                    {
-                        values += ("[69BE25FF]" + _t.value + "[-]/");
-                    }
-                }
-                else
-                {
-                    if (_t.strValue != null)
-                    {
-                        values += (_t.strValue + "/");
-                    }
-                    else
-                    {
-                        values += (_t.value + "/");
-                    }
-                }
-            }
-
-            values = values.Remove(values.Length - 1);
-            if (des != null)
-            {
-                if (des.Contains(_signDig))
-                {
-                    noReplaceWord = false;
-                    des = des.Replace(_signDig, values);
-                }
-
-                if (des.Contains(_singStr))
-                {
-                    noReplaceWord = false;
-                    des = des.Replace(_singStr, values);
-                }
-
-                // color
-                if (noReplaceWord && succeedCount > 0)
-                {
-                    des = "[69BE25FF]" + des + "[-]";
-                }
-                else
-                {
-                    des = "[1598C9FF]" + des + "[-]";
-                }
-            }
-
-            return des;
-        }
-
         public void Save(int stageId = -1)
         {
             FormulaHost _task = null;
@@ -699,6 +531,7 @@ namespace FormulaBase
 
         private void AfterSave(bool _Success)
         {
+            return;
             //检验下首歌曲是否解锁
             if (isChange)
             {
@@ -757,10 +590,9 @@ namespace FormulaBase
                 return null;
             }
 
-            string strStageId = stageId.ToString();
             // 只放置单一难度的关卡分数目标
             int diff = this.Host.GetDynamicIntByKey(SignKeys.DIFFCULT);
-            Debug.Log("获得关卡" + strStageId + "任务目标完成状况 ");
+            Debug.Log("获得关卡" + stageId + "任务目标完成状况 ");
             Target[] targets = new Target[GameGlobal.DIFF_LEVEL_SUPER];
             for (int i = GameGlobal.DIFF_LEVEL_NORMAL; i < GameGlobal.DIFF_LEVEL_SUPER; i++)
             {
@@ -771,7 +603,8 @@ namespace FormulaBase
 
                 Target _t = new Target();
                 int targetIdx = i + 1;
-                int goalValue = ConfigPool.Instance.GetConfigIntValue("stage_value", strStageId, CFG_HEAD_VALUE + targetIdx);
+                int goalValue = ConfigManager.instance.GetConfigIntValue("stage", "id", CFG_HEAD_VALUE + targetIdx,
+                    stageId);
 
                 string maxSignKey = null;
                 bool isLessThan = false;
@@ -801,11 +634,6 @@ namespace FormulaBase
             }
 
             return targets;
-        }
-
-        public Target[] GetStageTargets()
-        {
-            return this.targets;
         }
 
         private FormulaHost GetTaskByStageId(int stageId)
@@ -940,87 +768,6 @@ namespace FormulaBase
             }
 
             return this.Host.GetDynamicStrByKey(checkKey) == checkValue;
-        }
-
-        /// <summary>
-        /// Checks the target finished.
-        ///
-        /// 检查任务目标完成状况
-        /// 包括增量和反增值（大于等于或者小于等于
-        ///
-        /// checkKey不能包含TASK_SIGNKEY_COUNT_LESSTHAN_TAIL
-        /// </summary>
-        /// <returns>The target finished.</returns>
-        /// <param name="checkKey">Check key.</param>
-        private int CheckTargetFinished(int stageId, string checkKey)
-        {
-            if (this.targets == null)
-            {
-                return -1;
-            }
-
-            if (checkKey == null || checkKey.Length <= 0)
-            {
-                return -1;
-            }
-
-            int checkIdx = -1;
-            int finIdx = -1;
-            string checkLessThanKey = (checkKey + TASK_SIGNKEY_COUNT_LESSTHAN_TAIL);
-            for (int i = 0; i < this.targets.Length; i++)
-            {
-                Target _t = this.targets[i];
-                if (_t.id <= 0)
-                {
-                    return -1;
-                }
-
-                checkIdx = i;
-                if (_t.dymResult || _t.dymFailed)
-                {
-                    continue;
-                }
-
-                // 增值检测
-                if (!_t.dymResult && _t.signKey == checkKey)
-                {
-                    if (this.IsTaskFinished(checkKey, _t.value, false))
-                    {
-                        _t.dymResult = true;
-                        // _t.result = true;
-                        this.targets[i] = _t;
-                        Debug.Log("关卡 " + stageId + " 目标 " + _t.id + " 达成(" + _t.value);
-                        this.OnTargetSucceed(i);
-                        finIdx = i;
-                        break;
-                    }
-                }
-
-                // 反增值检查
-                if (!_t.dymFailed && _t.signKey == checkLessThanKey)
-                {
-                    if (this.IsTaskFinished(checkKey, _t.value, true))
-                    {
-                        finIdx = i;
-                        break;
-                    }
-                    else
-                    {
-                        _t.dymFailed = true;
-                        this.targets[i] = _t;
-                        Debug.Log("关卡 " + stageId + " 目标 " + _t.id + " 失败(" + _t.value);
-                        this.OnTargetFailed(i);
-                    }
-                }
-
-                this.targets[i] = _t;
-                break;
-                // this.OnTargetCheck (i);
-            }
-
-            //this.OnTargetCheck (checkIdx);
-
-            return finIdx;
         }
 
         /// <summary>
@@ -1171,9 +918,6 @@ namespace FormulaBase
         {
             this.Host.SetDynamicData(key, value);
             int sid = this.Host.GetDynamicIntByKey(TASK_SIGNKEY_STAGEID);
-            // On target finished.
-            int finResult = this.CheckTargetFinished(sid, key);
-
             // Add less than max count record.
             string lessThanMaxKey = key + TASK_SIGNKEY_COUNT_LESSTHAN_TAIL + TASK_SIGNKEY_COUNT_MAX_TAIL;
             int ltMax = this.Host.GetDynamicIntByKey(lessThanMaxKey, GameGlobal.LIMITE_INT);
@@ -1192,53 +936,6 @@ namespace FormulaBase
             }
 
             this.Host.SetDynamicData(maxKey, value);
-        }
-
-        private void OnTargetSucceed(int tidx)
-        {
-            //this.OnTargetCheck (tidx);
-        }
-
-        public void OnTargetFailed(int tidx)
-        {
-            //this.OnTargetCheck (tidx);
-        }
-
-        public void OnTargetCheck(int tidx)
-        {
-            TaskStageTarget.Target[] tags = TaskStageTarget.Instance.GetStageTargets();
-            if (tags == null || tags.Length <= tidx)
-            {
-                return;
-            }
-
-            int endIdx = tags.Length - 1;
-            for (int i = 0; i < tags.Length; i++)
-            {
-                TaskStageTarget.Target _tempTag = tags[i];
-                if (_tempTag.id <= 0)
-                {
-                    endIdx = i - 1;
-                    break;
-                }
-            }
-
-            TaskStageTarget.Target _defaultTag = tags[tidx];
-            this.Host.SetDynamicData(_defaultTag.signKey + TASK_SIGNKEY_COUNT_TARGET_TAIL, _defaultTag.value);
-        }
-
-        /// <summary>
-        /// Gets the boss jump over count.
-        /// </summary>
-        /// <returns>The boss jump over count.</returns>
-        public int GetBossJumpOverCount()
-        {
-            if (this.Host == null)
-            {
-                return 0;
-            }
-
-            return this.Host.GetDynamicIntByKey(TASK_SIGNKEY_JUMPOVER_BOSS_COUNT);
         }
 
         /// <summary>

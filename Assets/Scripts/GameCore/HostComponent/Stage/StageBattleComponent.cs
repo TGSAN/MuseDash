@@ -10,6 +10,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Assets.Scripts.Common;
+using Assets.Scripts.NewUI.Panels;
+using Assets.Scripts.Tools.Commons;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -57,7 +61,7 @@ namespace FormulaBase
         private ArrayList musicTickData = null;
 
         private Dictionary<int, List<TimeNodeOrder>> _timeNodeOrder = null;
-        public int curLPSIdx = 0;
+        public int curLPSIdx = -1;
         public int musicStartTime = 0;
 
         public float timeFromMusicStart
@@ -215,19 +219,19 @@ namespace FormulaBase
 
         public int GetChapterId(int stageId)
         {
-            return ConfigPool.Instance.GetConfigIntValue("stage", stageId.ToString(), "chapter");
+            return ConfigManager.instance.GetConfigIntValue("stage", stageId, "chapter");
         }
 
         public List<int> GetStageIdsInChapter(int chapterId)
         {
-            LitJson.JsonData jData = ConfigPool.Instance.GetConfigByName("stage");
+            var jData = ConfigManager.instance["stage"];
             if (jData == null || jData.Count <= 0)
             {
                 return null;
             }
 
             List<int> list = new List<int>();
-            for (int i = 0; i < jData.Count + 1; i++)
+            for (int i = 0; i < jData.Count; i++)
             {
                 int cid = this.GetChapterId(i);
                 if (cid != chapterId)
@@ -254,8 +258,7 @@ namespace FormulaBase
             {
                 return null;
             }
-
-            return this.Host.GetDynamicStrByKey(SignKeys.NAME).ToString();
+            return (string)ConfigManager.instance["stage"][GetStageId()]["note_json"];
         }
 
         public string GetStageDesName()
@@ -296,7 +299,7 @@ namespace FormulaBase
             }
 
             int sid = this.GetId();
-            return ConfigPool.Instance.GetConfigStringValue("stage", sid.ToString(), "music");
+            return ConfigManager.instance.GetConfigStringValue("stage", sid, "music");
         }
 
         public string GetSceneName()
@@ -352,6 +355,7 @@ namespace FormulaBase
         public MusicData GetMusicDataByIdx(int idx)
         {
             ArrayList musicDatas = this.GetMusicData();
+
             if (musicDatas == null || idx < 0 || idx >= musicDatas.Count)
             {
                 return new MusicData();
@@ -367,7 +371,7 @@ namespace FormulaBase
 
         public int GetStageCount()
         {
-            return ConfigPool.Instance.GetConfigByName("stage").Count;
+            return ConfigManager.instance["stage"].Count;
         }
 
         public uint GetPlayResultLock()
@@ -466,23 +470,19 @@ namespace FormulaBase
         {
             //扣体力回调
             var r = AccountPhysicsManagerComponent.Instance.ChangePhysical(-(int)Host.Result(FormulaKeys.FORMULA_20), false, true,
-               result =>
-               {
-                   if (PnlScrollCircle.instance != null)
-                   {
-                       SceneAudioManager.Instance.bgm.clip = PnlScrollCircle.instance.CatchClip;
-                   }
+          result =>
+          {
+              SceneAudioManager.Instance.bgm.clip = ResourcesLoader.Load<AudioClip>(ConfigManager.instance.GetConfigStringValue("stage", "id", "music", id));
+              if (UISceneHelper.Instance != null)
+              {
+                  UISceneHelper.Instance.HideWidget();
+              }
+              Debug.Log("Enter Stage " + id + " with diffcult " + diff + " !");
+              GameKernel.Instance.InitGameKernel();
 
-                   if (UISceneHelper.Instance != null)
-                   {
-                       UISceneHelper.Instance.HideWidget();
-                   }
-                   Debug.Log("Enter Stage " + id + " with diffcult " + diff + " !");
-                   GameKernel.Instance.InitGameKernel();
-
-                   this.Host.SetDynamicData(SignKeys.DIFFCULT, diff);
-                   this.Enter(id);
-               });
+              this.Host.SetDynamicData(SignKeys.DIFFCULT, diff);
+              this.Enter(id);
+          });
             if (r == 0)
             {
                 CommonPanel.GetInstance().ShowText("体力不足哦~");
@@ -674,7 +674,7 @@ namespace FormulaBase
             // 结算统计
             bool isNewRank = TaskStageTarget.Instance.OnStageFinished();
             //成就统计
-            AchievementManager.instance.SetAchievement();
+            //AchievementManager.instance.SetAchievement();
             // 结算UI数据 奖励
             StageRewardComponent.Instance.StageReward(this.Host, isNewRank);
 
@@ -788,12 +788,11 @@ namespace FormulaBase
         // Reset start stage.
         public void ReEnter()
         {
-            string sceneName = "GameScene";
-            this.Exit(sceneName, false, true);
+            this.Exit("GameScene", false, true);
         }
 
         // Exit stage.
-        public void Exit(string sceneName = "ChooseSongs", bool isFinish = false, bool isRestart = false)
+        public void Exit(string sceneName = "UISystem", bool isFinish = false, bool isRestart = false)
         {
             Debug.Log("Stage Exit.");
             Action callFunc = () =>
@@ -807,6 +806,7 @@ namespace FormulaBase
                 SceneLoader.SetLoadInfo(ref sceneName);
                 Time.timeScale = GameGlobal.TIME_SCALE;
                 CommonPanel.GetInstance().SetMask(true, this.OnExit);
+                SceneManager.LoadScene("LoadingScene");
             };
             if (!isFinish && !isRestart)
             {
@@ -825,7 +825,7 @@ namespace FormulaBase
 
         private void OnExit()
         {
-			PnlHome.PnlHome.backFromBattle = true;
+            PnlHome.PnlHome.backFromBattle = true;
             SceneManager.LoadScene(GameGlobal.LOADING_SCENE_NAME);
         }
 
@@ -997,7 +997,7 @@ namespace FormulaBase
         private void LoadMusicData()
         {
             string name = this.GetStageName();
-            string cfgName = name + 1;
+            string cfgName = name + "1";
 
             this.musicTickData = MusicConfigReader.Instance.GetData(ref cfgName);
             if (this.musicTickData == null || this.musicTickData.Count <= 0)

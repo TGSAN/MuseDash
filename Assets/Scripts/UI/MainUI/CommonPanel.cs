@@ -54,7 +54,6 @@ public class CommonPanel : MonoBehaviour
         if (CommonPanel.GetInstance() == null)
         {
             m_Instance = this;
-            DontDestroyOnLoad(this.gameObject);
             return;
         }
 

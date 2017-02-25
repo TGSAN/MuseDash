@@ -1,5 +1,6 @@
 ///自定义模块，可定制模块具体行为
 using System;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 namespace FormulaBase
@@ -77,8 +78,12 @@ namespace FormulaBase
 
         public int GetAccountPhysical()
         {
-            return ConfigPool.Instance.GetConfigIntValue("experience",
-                AccountManagerComponent.Instance.GetAccount().GetDynamicStrByKey(SignKeys.LEVEL), "energy");
+            if (AccountManagerComponent.Instance.GetAccount() != null)
+            {
+                return ConfigManager.instance.GetConfigIntValue("experience",
+                    AccountManagerComponent.Instance.GetAccount().GetDynamicIntByKey(SignKeys.LEVEL) - 1, "energy");
+            }
+            return 0;
         }
 
         /// <summary>

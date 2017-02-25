@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Common;
 using Assets.Scripts.NGUI;
+using Assets.Scripts.Tools.Managers;
 using Assets.Scripts.UI;
 using DG.Tweening;
 using FormulaBase;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -62,7 +64,7 @@ namespace Assets.Scripts.NewUI.Panels
         [Header("对象绑定")]
         public Transform pivot;
 
-        public UIScrollRect scrollRect;
+        public GameObject scrollRect;
         public GameObject cell;
         public Button btnLeft, btnRight;
         public Text txtNameNext, txtAuthorNext;
@@ -82,7 +84,6 @@ namespace Assets.Scripts.NewUI.Panels
         public float lowEnhance = 1f;
         public float minSize = 1.0f;
         public float changeValue = 5.0f;
-        public float scale = 1.0f;
         public Action<int> onSongChange;
 
         [Header("背景")]
@@ -100,7 +101,7 @@ namespace Assets.Scripts.NewUI.Panels
         private int m_PreDiff = 30;
         private int m_TrophySum = 0;
         private float m_ZAngle = 0.0f;
-        private static int m_CurrentIdx = 0;
+        private int m_CurrentIdx = 0;
         private bool m_IsSliding = false;
         private ResourceRequest m_Request;
         private Coroutine m_Coroutine;
@@ -113,9 +114,14 @@ namespace Assets.Scripts.NewUI.Panels
 
         public float offsetX { get; private set; }
 
-        public AudioClip CatchClip
+        public AudioClip catchClip
         {
             get { return this.m_CatchClip; }
+        }
+
+        public float scale
+        {
+            get { return UIManager.instance.GetComponent<RectTransform>().lossyScale.x; }
         }
 
         public bool FinishEnter
@@ -131,7 +137,7 @@ namespace Assets.Scripts.NewUI.Panels
             }
         }
 
-        public static int currentSongIdx
+        public int currentSongIdx
         {
             get { return m_CurrentIdx + 1; }
         }
@@ -154,7 +160,7 @@ namespace Assets.Scripts.NewUI.Panels
 
         private void InitEvent()
         {
-            Callback<PointerEventData> onBeginDrag = (eventData) =>
+            UnityAction<BaseEventData> onBeginDrag = (eventData) =>
             {
                 if (!m_FinishEnter)
                 {
@@ -167,13 +173,14 @@ namespace Assets.Scripts.NewUI.Panels
                 }
             };
 
-            Callback<PointerEventData> onDrag = eventData =>
+            UnityAction<BaseEventData> onDrag = eventData =>
             {
+                var ed = eventData as PointerEventData;
                 if (!m_FinishEnter)
                 {
                     return;
                 }
-                offsetX = eventData.delta.x * -sensitivity;
+                offsetX = ed.delta.x * -sensitivity;
                 offsetX = offsetX < 0
                     ? Mathf.Clamp(offsetX, -minMaxSlide.y, -minMaxSlide.x)
                     : Mathf.Clamp(offsetX, minMaxSlide.x, minMaxSlide.y);
@@ -181,7 +188,7 @@ namespace Assets.Scripts.NewUI.Panels
                 pivot.localEulerAngles += new Vector3(0, 0, offsetX);
                 m_ZAngle += offsetX;
             };
-            Callback<PointerEventData> onEndDrag = eventData =>
+            UnityAction<BaseEventData> onEndDrag = eventData =>
             {
                 if (!m_FinishEnter)
                 {
@@ -215,70 +222,15 @@ namespace Assets.Scripts.NewUI.Panels
                     });
             };
 
-            Action<GameObject, bool, float> onSlide = (go, isPressing, mul) =>
-            {
-                if (isPressing)
-                {
-                    offsetX = mul;
-                    m_IsSliding = true;
-                    m_DlySeq = DOTween.Sequence();
-                    m_DlySeq.AppendInterval(delaySlideTime);
-                    m_DlySeq.AppendCallback(() =>
-                    {
-                        m_SlideSeq.Play();
-                    });
-                    m_SlideSeq = DOTween.Sequence();
-                    m_SlideSeq.AppendInterval(float.MaxValue).OnUpdate(() =>
-                    {
-                        var offset = slideSpeed * Time.deltaTime * mul;
-                        pivot.localEulerAngles += new Vector3(0, 0, offset);
-                        m_ZAngle += offset;
-                    });
-                    m_SlideSeq.Pause();
-                }
-                else
-                {
-                    var clickTime = m_DlySeq.Elapsed(false) * m_DlySeq.Duration(false);
-                    if (clickTime < 0.2f && clickTime != 0)
-                    {
-                        OnChangeOffset(new Vector3(0, 0, angle * mul), nextPageTime);
-                    }
-                    else
-                    {
-                        offsetX = 0;
-                        onEndDrag(null);
-                    }
-                    if (m_SlideSeq != null)
-                    {
-                        m_SlideSeq.Kill();
-                        m_SlideSeq = null;
-                    }
-                    if (m_DlySeq != null)
-                    {
-                        m_DlySeq.Kill();
-                        m_DlySeq = null;
-                    }
-                }
-            };
-            /* UIEventListener.Get(btnStart).onDragStart = onDragStart;
-             UIEventListener.Get(btnStart).onDrag = onDrag;
-             UIEventListener.Get(btnStart).onDragEnd = onDragEnd;
-             UIEventListener.Get(btnStart).onClick = (go) =>
-             {
-                 if (!m_FinishEnter)
-                 {
-                     CommonPanel.GetInstance().ShowText("需获得" + m_StageInfos[m_CurrentIdx].unLockNum.ToString() + "个奖杯才可以解锁！（当前：" + TaskStageTarget.Instance.GetTotalTrophy().ToString() + "奖杯）");
-                     return;
-                 }
-                 m_FinishEnter = false;
-                 //btnStart.gameObject.GetComponent<AudioSource>().Play();
-             };*/
+            UIEventUtils.OnEvent(scrollRect, EventTriggerType.BeginDrag, onBeginDrag);
+            UIEventUtils.OnEvent(scrollRect, EventTriggerType.Drag, onDrag);
+            UIEventUtils.OnEvent(scrollRect, EventTriggerType.EndDrag, onEndDrag);
 
-            scrollRect.onBeginDrag += onBeginDrag;
-            scrollRect.onDrag += onDrag;
-            scrollRect.onEndDrag += onEndDrag;
+            UIEventUtils.OnEvent(btnStart, EventTriggerType.BeginDrag, onBeginDrag);
+            UIEventUtils.OnEvent(btnStart, EventTriggerType.Drag, onDrag);
+            UIEventUtils.OnEvent(btnStart, EventTriggerType.EndDrag, onEndDrag);
 
-            btnLeft.onClick.AddListener(() =>
+            UIEventUtils.OnEvent(btnLeft.gameObject, EventTriggerType.PointerClick, eventData =>
             {
                 if (!m_FinishEnter)
                 {
@@ -291,7 +243,7 @@ namespace Assets.Scripts.NewUI.Panels
                 OnChangeOffset(new Vector3(0, 0, angle * -1), nextPageTime);
             });
 
-            btnRight.onClick.AddListener(() =>
+            UIEventUtils.OnEvent(btnRight.gameObject, EventTriggerType.PointerClick, eventData =>
             {
                 if (!m_FinishEnter)
                 {
@@ -304,47 +256,8 @@ namespace Assets.Scripts.NewUI.Panels
                 OnChangeOffset(new Vector3(0, 0, angle * 1), nextPageTime);
             });
 
-            /*UIEventListener.Get(leftButton).onDragStart = onDragStart;
-            UIEventListener.Get(leftButton).onDrag = onDrag;
-            UIEventListener.Get(leftButton).onDragEnd = onDragEnd;
-            UIEventListener.Get(leftButton).onClick = (go) =>
-            {
-                if (!m_FinishEnter)
-                {
-                    return;
-                }
-                if (m_IsSliding)
-                {
-                    return;
-                }
-                OnChangeOffset(new Vector3(0, 0, angle * -1), nextPageTime);
-            };
-
-            UIEventListener.Get(rightButton).onDragStart = onDragStart;
-            UIEventListener.Get(rightButton).onDrag = onDrag;
-            UIEventListener.Get(rightButton).onDragEnd = onDragEnd;
-            UIEventListener.Get(rightButton).onClick = (go) =>
-            {
-                if (!m_FinishEnter)
-                {
-                    return;
-                }
-                if (m_IsSliding)
-                {
-                    return;
-                }
-                OnChangeOffset(new Vector3(0, 0, angle * 1), nextPageTime);
-            };
-            UIEventListener.Get(btnTip.gameObject).onClick = go =>
-            {
-                var unLockNum = m_StageInfos[m_CurrentIdx].unLockNum;
-                CommonPanel.GetInstance().ShowText("需获得" + unLockNum.ToString() + "个奖杯才可以解锁！" + "\n" + "（当前:" + TaskStageTarget.Instance.GetTotalTrophy().ToString() + "个奖杯）");
-            };
-            UIEventListener.Get(btnTip.gameObject).onDragStart = onDragStart;
-            UIEventListener.Get(btnTip.gameObject).onDrag = onDrag;
-            UIEventListener.Get(btnTip.gameObject).onDragEnd = onDragEnd;*/
             onSongChange += PlayMusic;
-            onSongChange += OnInfoChange;
+            //onSongChange += OnInfoChange;
         }
 
         public void UpdateInfo()
@@ -357,13 +270,14 @@ namespace Assets.Scripts.NewUI.Panels
         {
             var count = StageBattleComponent.Instance.GetStageCount();
             var lockList = TaskStageTarget.Instance.GetLockList();
-            for (int i = 1; i < count; i++)
+            var stageJData = ConfigManager.instance["stage"];
+            for (int i = 0; i < count; i++)
             {
-                var iconPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "cover");
-                var musicPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "music");
-                var musicName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "name");
-                var authorName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "author");
-                var unlockNum = ConfigPool.Instance.GetConfigIntValue("stage", i.ToString(), "unlock");
+                var iconPath = stageJData[i]["cover"].ToString();
+                var musicPath = stageJData[i]["music"].ToString();
+                var musicName = stageJData[i]["name"].ToString();
+                var authorName = stageJData[i]["author"].ToString();
+                var unlockNum = (int)stageJData[i]["unlock_level"];
                 var isLock = lockList[i];
                 m_StageInfos.Add(new StageInfo(i, iconPath, musicPath, musicName, authorName, 0, 0, isLock, unlockNum));
             }
@@ -393,7 +307,7 @@ namespace Assets.Scripts.NewUI.Panels
             for (int i = 0; i < m_StageInfos.Count; i++)
             {
                 GameObject item = GameObject.Instantiate(cell) as GameObject;
-                item.transform.parent = pivot.transform;
+                item.transform.SetParent(pivot.transform);
                 /*StageDisc.StageDisc sd = item.GetComponent<StageDisc.StageDisc>();
                 if (sd != null)
                 {
@@ -415,7 +329,7 @@ namespace Assets.Scripts.NewUI.Panels
             //StageDisc.StageDisc.LoadAllDiscCover();
             //SceneAudioManager.Instance.bgm.clip = null;
 
-            JumpToSong(PnlScrollCircle.currentSongIdx);
+            JumpToSong(currentSongIdx);
             UpdateInfo();
             /*enabled = false;
             DOTweenUtils.Delay(() =>
@@ -435,7 +349,7 @@ namespace Assets.Scripts.NewUI.Panels
         {
             m_IsSliding = false;
             //PnlStageOld.PnlStageOld.Instance.OnSongChanged(m_CurrentIdx + 1);
-            //onSongChange(m_CurrentIdx);
+            onSongChange(m_CurrentIdx);
         }
 
         private void OnInfoChange(int idx)
@@ -537,7 +451,7 @@ namespace Assets.Scripts.NewUI.Panels
 
         private void OnMusicPlayAction(GameObject go)
         {
-            if (!SceneAudioManager.Instance.bgm || !SceneAudioManager.Instance.bgm.isPlaying)
+            if (!SceneAudioManager.Instance.bgm || !SceneAudioManager.Instance.bgm.isPlaying || m_IsSliding)
             {
                 return;
             }
@@ -613,7 +527,7 @@ namespace Assets.Scripts.NewUI.Panels
             if (m_IsSliding)
             {
                 //OnEnergyInfoChange(false);
-                //SceneAudioManager.Instance.bgm.Stop();
+                SceneAudioManager.Instance.bgm.Stop();
             }
 
             var theAngle = Mathf.Abs(Mathf.Abs(m_ZAngle) % (m_CellGroup.Count * 40f) - 80f);
@@ -667,10 +581,10 @@ namespace Assets.Scripts.NewUI.Panels
             {
                 var go = pair.Value;
                 var idx = pair.Key;
-                var xOffset = Mathf.Abs(go.transform.position.x - pivot.transform.position.x) * scale;
+                var xOffset = Mathf.Abs(go.transform.position.x - pivot.transform.position.x) / scale;
                 if (go.transform.localScale.x > maxCellScaleX)
                 {
-                    m_CurrentIdx = m_StageInfos[pair.Key].idx - 1;
+                    m_CurrentIdx = m_StageInfos[pair.Key].idx;
                 }
                 if (m_FinishEnter)
                 {
@@ -685,7 +599,6 @@ namespace Assets.Scripts.NewUI.Panels
                 }
                 go.transform.localScale = Vector3.Lerp(Vector3.one * minScale, Vector3.one * maxScale,
                     1 - xOffset / distanceToChangeScale);
-
                 var texs = go.GetComponentsInChildren<UITexture>();
                 foreach (var tex in texs)
                 {
@@ -701,7 +614,7 @@ namespace Assets.Scripts.NewUI.Panels
                 {
                     if (go.transform.localScale.x >= maxScale - 0.01f)
                     {
-                        //OnMusicPlayAction(go);
+                        OnMusicPlayAction(go);
                     }
                 }
                 else
@@ -738,7 +651,7 @@ namespace Assets.Scripts.NewUI.Panels
                     {
                         offset = new Vector3(-offset.x, offset.y, offset.z);
                     }
-                    offset = go.transform.InverseTransformVector(offset) / scale;
+                    offset = go.transform.InverseTransformVector(offset) * scale;
 
                     for (int i = 0; i < go.transform.childCount; i++)
                     {
@@ -775,7 +688,7 @@ namespace Assets.Scripts.NewUI.Panels
             {
                 Resources.UnloadAsset(audioSource.clip);
             }
-
+            m_CatchClip = newClip;
             audioSource.clip = newClip;
             audioSource.Play();
             audioSource.loop = true;
@@ -788,7 +701,7 @@ namespace Assets.Scripts.NewUI.Panels
         private void UpdatePos()
         {
             var currentIdx = m_CurrentIdx;
-            if (m_Angles.Count <= currentIdx)
+            if (currentIdx >= m_Angles.Count)
             {
                 return;
             }
@@ -817,7 +730,6 @@ namespace Assets.Scripts.NewUI.Panels
 
         public void PlayMusic(int idx)
         {
-            idx -= 1;
             if (m_Coroutine != null)
             {
                 StopCoroutine(m_Coroutine);

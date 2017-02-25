@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Common;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 namespace Assets.Scripts.NGUI
@@ -339,7 +340,7 @@ namespace Assets.Scripts.NGUI
             UIEventListener.Get(btnTip.gameObject).onDrag = onDrag;
             UIEventListener.Get(btnTip.gameObject).onDragEnd = onDragEnd;
             onSongChange += PlayMusic;
-            onSongChange += OnInfoChange;
+            //onSongChange += OnInfoChange;
         }
 
         public void UpdateInfo()
@@ -352,13 +353,13 @@ namespace Assets.Scripts.NGUI
         {
             var count = StageBattleComponent.Instance.GetStageCount();
             var lockList = TaskStageTarget.Instance.GetLockList();
-            for (int i = 1; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
-                var iconPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "cover");
-                var musicPath = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "music");
-                var musicName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "name");
-                var authorName = ConfigPool.Instance.GetConfigStringValue("stage", i.ToString(), "author");
-                var unlockNum = ConfigPool.Instance.GetConfigIntValue("stage", i.ToString(), "unlock");
+                var iconPath = ConfigManager.instance.GetConfigStringValue("stage", i, "cover");
+                var musicPath = ConfigManager.instance.GetConfigStringValue("stage", i, "music");
+                var musicName = ConfigManager.instance.GetConfigStringValue("stage", i, "name");
+                var authorName = ConfigManager.instance.GetConfigStringValue("stage", i, "author");
+                var unlockNum = ConfigManager.instance.GetConfigIntValue("stage", i, "unlock_level");
                 var isLock = lockList[i];
                 m_StageInfos.Add(new StageInfo(i, iconPath, musicPath, musicName, authorName, 0, 0, isLock, unlockNum));
             }

@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &154096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 439912}
+  - component: {fileID: 11441930}
+  m_Layer: 0
+  m_Name: 051502_press_100
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &439912
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154096}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11441930
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437c8c5f12a3449ee91f447c2447bdc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objController: {fileID: 0}
+  actionData:
+  - collapsed: 1
+    isEndLoop: 0
+    isRandomSequence: 1
+    isSelfProtect: 0
+    name: in
+    protectLevel: 0
+    arrayCount: 1
+    spineActionKeyIndex: 0
+    actionIdx: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+    actionEventIdx: 01000000010000000100000001000000000000000000000000000000000000000000000000000000
+  actionMode: 12
+  startDelay: 1
+  duration: 1.266666
+  lengthRate: 1.6
+  rendererPreb: {fileID: 1069401333770404, guid: e20b7f2e4f92b484182d88d10d6acfba,
+    type: 2}
+  destroyEffect: {fileID: 1736234368104174, guid: 9ed9074dcb7143340a07153a05c51998,
+    type: 2}
+  clipEffect: {fileID: 1141016292967594, guid: 246ba9a062d79e147bfffecc1ed9f339, type: 2}
+  rotateRuration: 2.5
+  clipParticles: []
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: objColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: objColor.g
+      value: .0823529437
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: objColor.b
+      value: .694117665
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: objColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: skeletonDataAsset
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 154096}
+  m_IsPrefabParent: 1

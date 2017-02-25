@@ -7,6 +7,7 @@ using GameLogic;
 ///
 using System;
 using System.Collections;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 namespace PnlStageOld
@@ -45,7 +46,7 @@ namespace PnlStageOld
                 return;
             }
 
-            int len = ConfigPool.Instance.GetConfigLenght("stage");
+            int len = ConfigManager.instance["stage"].Count;
             if (idx >= len)
             {
                 Debug.Log("Unlaw stage : " + idx);

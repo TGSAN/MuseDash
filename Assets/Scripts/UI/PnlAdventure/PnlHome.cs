@@ -102,14 +102,14 @@ namespace PnlHome
                 return;
             }
 
-            string _speaker = SoundEffectComponent.Instance.SpeakerOfType(GameGlobal.SOUND_TYPE_UI_BGM);
+            /*string _speaker = SoundEffectComponent.Instance.SpeakerOfType(GameGlobal.SOUND_TYPE_UI_BGM);
             string name = ConfigPool.Instance.GetConfigStringValue("char_info", (RoleManageComponent.RoleIndexToId(heroIndex)).ToString(), "name");
             if (SoundEffectComponent.Instance.IsPlaying(GameGlobal.SOUND_TYPE_UI_BGM) && _speaker == name)
             {
                 return;
             }
 
-            SoundEffectComponent.Instance.Say(name, GameGlobal.SOUND_TYPE_UI_BGM, "bgm_");
+            SoundEffectComponent.Instance.Say(name, GameGlobal.SOUND_TYPE_UI_BGM, "bgm_");*/
         }
 
         public void PlayBGM()

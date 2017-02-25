@@ -2,6 +2,7 @@
 using GameLogic;
 using System;
 using System.Collections;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 public class GroundEnergyBottleController : BaseEnemyObjectController
@@ -14,9 +15,9 @@ public class GroundEnergyBottleController : BaseEnemyObjectController
         if (recoveryEffect == null)
         {
             int recoverItemIdx = 4000;
-            string path = "Prefabs/skill/Skill_hp";
+            /*string path = "Prefabs/skill/Skill_hp";
             recoveryEffect = StageBattleComponent.Instance.AddObjWithControllerInit(ref path, recoverItemIdx);
-            recoveryEffect.SetActive(false);
+            recoveryEffect.SetActive(false);*/
         }
     }
 
@@ -36,16 +37,7 @@ public class GroundEnergyBottleController : BaseEnemyObjectController
     {
         var uid = BattleEnemyManager.Instance.GetNodeUidByIdx(this.idx);
         var recoverValue = 0;
-        var noteConfig = ConfigPool.Instance.GetConfigByName("notedata");
-        for (int i = 1; i <= noteConfig.Count; i++)
-        {
-            var note = noteConfig[i];
-            if (note["uid"].ToString() == uid)
-            {
-                recoverValue = (int)note["value"];
-                break;
-            }
-        }
+        recoverValue = ConfigManager.instance.GetConfigIntValue("notedata", "id", "value", uid);
 
         BattleRoleAttributeComponent.Instance.AddHp(recoverValue);
 

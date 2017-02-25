@@ -4,6 +4,7 @@ using GameLogic;
 ///自定义模块，可定制模块具体行为
 using System;
 using System.Collections.Generic;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 namespace FormulaBase
@@ -26,7 +27,7 @@ namespace FormulaBase
         }
 
         // ------------------------------------------------------------------------------------
-        public const string REWARD_CONFIG_NAME = "stage_value";
+        public const string REWARD_CONFIG_NAME = "stage";
 
         public const string ACHIEVEMENT_CONFIG_NAME = "achievement";
 
@@ -56,23 +57,23 @@ namespace FormulaBase
         {
             this.SetStage(stageHost);
 
-            string id = this.stage.GetDynamicStrByKey(SignKeys.ID);
+            var id = this.stage.GetDynamicIntByKey(SignKeys.ID);
 
             // 通关基础奖励
             float rwRate = TaskStageTarget.Instance.GetStageRewardRank();
-            int rwExp = (int)(ConfigPool.Instance.GetConfigIntValue(REWARD_CONFIG_NAME, id, "exp") * rwRate);
-            int rwGold = (int)(ConfigPool.Instance.GetConfigIntValue(REWARD_CONFIG_NAME, id, "coin") * rwRate * RoleManageComponent.Instance.GetGoldAdd());
-            int rwCharm = (int)(ConfigPool.Instance.GetConfigIntValue(REWARD_CONFIG_NAME, id, "charm") * rwRate * RoleManageComponent.Instance.GetCharmAdd());
+            int rwExp = (int)(ConfigManager.instance.GetConfigIntValue(REWARD_CONFIG_NAME, "id", "exp", id) * rwRate);
+            int rwGold = (int)(ConfigManager.instance.GetConfigIntValue(REWARD_CONFIG_NAME, "id", "coin", id) * rwRate * RoleManageComponent.Instance.GetGoldAdd());
+            //int rwCharm = (int)(ConfigManager.instance.GetConfigIntValue(REWARD_CONFIG_NAME, "id", "charm", id) * rwRate * RoleManageComponent.Instance.GetCharmAdd());
             // reward gold
             stageHost.SetDynamicData(SignKeys.GOLD, rwGold);
             // reward exp
             stageHost.SetDynamicData(SignKeys.EXP, rwExp);
             // reward diamond
-            stageHost.SetDynamicData(SignKeys.CHARM, rwCharm);
+            //stageHost.SetDynamicData(SignKeys.CHARM, rwCharm);
 
             AccountGoldManagerComponent.Instance.ChangeMoney(rwGold, false);
             AccountLevelManagerComponent.Instance.ChangeExp(rwExp, false);
-            AccountCharmComponent.Instance.ChangeCharm(rwCharm, false);
+            //AccountCharmComponent.Instance.ChangeCharm(rwCharm, false);
 
             // 通关成就奖励
             StageBattleComponent.Instance.Host = AchievementManager.instance.ReceieveAchievement(stageHost, false);

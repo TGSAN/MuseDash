@@ -4,6 +4,7 @@ using LitJson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 namespace Assets.Scripts.Common.Manager
@@ -89,7 +90,7 @@ namespace Assets.Scripts.Common.Manager
             {
                 return;
             }
-            var achiConfig = ConfigPool.Instance.GetConfigByName("achievement");
+            var achiConfig = ConfigManager.instance["achievement"];
             var strArray = str.Split('/');
             for (var i = 0; i < strArray.Length; i++)
             {
@@ -97,11 +98,12 @@ namespace Assets.Scripts.Common.Manager
                 {
                     case 0:
                         id = int.Parse(strArray[i]);
-                        achiConfig = achiConfig[id.ToString()];
+                        achiConfig = achiConfig[id - 1];
                         break;
 
                     case 1:
-                        goal = (int)achiConfig[strArray[i]];
+                        id = int.Parse(strArray[i]);
+                        goal = (int)achiConfig[id - 1];
                         var typeStr = strArray[i].Replace("_goal", string.Empty);
                         typeStr = typeStr.ToUpper();
                         achGoalType = (AchievementGoal)Enum.Parse(typeof(AchievementGoal), typeStr);
@@ -224,7 +226,7 @@ namespace Assets.Scripts.Common.Manager
             var perfectMaxCount = stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_EVLUATE_HEAD + GameMusic.PERFECT + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
             var comboCount = stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_MAX_COMBO);
             var starCount = stageHost.GetDynamicIntByKey(TaskStageTarget.TASK_SIGNKEY_HIDE_NODE_COUNT + TaskStageTarget.TASK_SIGNKEY_COUNT_MAX_TAIL);
-            var achievementConfig = ConfigPool.Instance.GetConfigByName("achievement");
+            var achievementConfig = ConfigManager.instance["achievement"];
             var count = 0;
             var achieveTpyeNum = Enum.GetNames(typeof(AchievementType)).Length;
             var stageIdx = stageHost.GetDynamicIntByKey(SignKeys.ID);
@@ -323,10 +325,10 @@ namespace Assets.Scripts.Common.Manager
         public Achievement[] GetAchievements(int idx)
         {
             var list = new List<Achievement>();
-            var achConfig = ConfigPool.Instance.GetConfigByName("achievement");
-            for (var i = 1; i <= achConfig.Count; i++)
+            var achConfig = ConfigManager.instance["achievement"];
+            for (var i = 0; i < achConfig.Count; i++)
             {
-                var ach = achConfig[i.ToString()];
+                var ach = achConfig[i];
                 if ((int)ach["uid"] != idx) continue;
                 list.Add(new Achievement(ach["id"].ToString() + "/c_goal/true"));
                 list.Add(new Achievement(ach["id"].ToString() + "/b_goal/true"));

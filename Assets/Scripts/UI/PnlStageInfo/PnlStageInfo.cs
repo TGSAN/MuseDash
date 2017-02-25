@@ -9,6 +9,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 
 namespace PnlStageInfo
@@ -41,7 +42,7 @@ namespace PnlStageInfo
             gameObject.SetActive(true);
             m_Idx = idx;
             this.StartCoroutine(this.__OnShow(0.1f));
-            var energyCost = ConfigPool.Instance.GetConfigIntValue("stage_value", idx.ToString(), "energy");
+            var energyCost = ConfigManager.instance.GetConfigIntValue("stage", idx, "energy");
             txtEnergyCost.text = energyCost.ToString();
         }
 
@@ -66,11 +67,11 @@ namespace PnlStageInfo
             if (stageHost != null)
             {
                 var stageID = stageHost.GetDynamicIntByKey(SignKeys.ID);
-                var maxCombo = (float)ConfigPool.Instance.GetConfigIntValue("stage", stageID.ToString(), "all_combo");
-                var maxPerfect = (float)ConfigPool.Instance.GetConfigIntValue("stage", stageID.ToString(), "all_perfect");
-                var maxStar = (float)ConfigPool.Instance.GetConfigIntValue("stage", stageID.ToString(), "all_star");
+                var maxCombo = (float)ConfigManager.instance.GetConfigIntValue("stage", stageID, "all_combo");
+                var maxPerfect = (float)ConfigManager.instance.GetConfigIntValue("stage", stageID, "all_perfect");
+                var maxStar = (float)ConfigManager.instance.GetConfigIntValue("stage", stageID, "all_star");
                 var maxClear = 0f;
-                var clearConfig = ConfigPool.Instance.GetConfigByName("achievement");
+                var clearConfig = ConfigManager.instance["achievement"];
                 for (var i = 0; i < clearConfig.Count; i++)
                 {
                     var table = clearConfig[i];

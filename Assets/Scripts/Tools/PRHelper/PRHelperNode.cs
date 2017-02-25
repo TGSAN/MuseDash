@@ -2,30 +2,34 @@
 using Assets.Scripts.Common;
 using Assets.Scripts.Tools.PRHelper.Properties;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Tools.PRHelper
 {
     [Serializable]
     public class PRHelperNode
     {
-        public string key = "fucker";
+        public string key = string.Empty;
         public NodeType nodeType;
 
         public PlayAnimation playAnimation;
-
         public PlayTween playTween;
-
         public PlayAudio playAudio;
-
-        public BtnBack btnBack;
-
-        public Active active;
-
         public PlayPopup playPopup;
+        public PlayActive playActive;
+        public PlayScrollRect playScrollRect;
+        public BtnBack btnBack;
 
         public PREvents pREvents = new PREvents();
 
+        public PREvents.EventType eventType;
+
         public TextBinding textBinding;
+        public ImageBinding imageBinding;
+        public MethodBinding methodBinding;
+        public ObjectBinding objectBinding;
+        public AudioBinding audioBinding;
+        public CollectionBinding collectionBinding;
 
         public void Play(GameObject go)
         {
@@ -39,23 +43,34 @@ namespace Assets.Scripts.Tools.PRHelper
 
         public void Init(GameObject go)
         {
-            PRHelper.OnEvent(go, PREvents.EventType.OnButtonClick).AddListener(obj =>
-            {
-                Play(go);
-            });
+            ModelInit(go);
+            VMInit(go);
+            ViewInit(go);
+        }
 
-            if (textBinding != null && !string.IsNullOrEmpty(textBinding.name))
-            {
-                PRHelper.OnEvent(go, PREvents.EventType.OnUpdate).AddListener(obj =>
-                {
-                    Play(go);
-                });
-            }
+        private void ViewInit(GameObject go)
+        {
+            if (btnBack != null) btnBack.Init(go);
+        }
 
+        private void VMInit(GameObject go)
+        {
             if (pREvents == null) pREvents = new PREvents();
             pREvents.Init(go);
 
-            if (btnBack != null) btnBack.Init(go);
+            if (go.GetComponent<Button>() != null)
+            {
+                eventType = PREvents.EventType.OnButtonClick; ;
+            }
+
+            PRHelper.OnEvent(go, eventType).AddListener(obj =>
+            {
+                Play(go);
+            });
+        }
+
+        private void ModelInit(GameObject go)
+        {
         }
     }
 }

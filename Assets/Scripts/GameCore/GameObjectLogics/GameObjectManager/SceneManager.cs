@@ -3,6 +3,7 @@ using DYUnityLib;
 using FormulaBase;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Tools.Managers;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -286,7 +287,7 @@ namespace GameLogic
             this.sceneObject = obj;
 
             // add action event module
-            int eventId = int.Parse(ConfigPool.Instance.GetConfigValue("stage", idx.ToString(), "event_id").ToString());
+            int eventId = ConfigManager.instance.GetConfigIntValue("stage", "id", "event_id", idx.ToString());
             this.sceneObjController = this.sceneObject.AddComponent<SceneObjectController>();
             this.sceneObjController.Init(eventId);
         }

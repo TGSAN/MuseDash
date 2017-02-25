@@ -24,7 +24,7 @@ namespace PnlVictory
             {
                 gameObject.tag = "Untagged";
                 UISceneHelper.Instance.HideUi(ROOT_PANEL_NAME, ANI_NAME_END);
-                StageBattleComponent.Instance.Exit("ChooseSongs", true);
+                StageBattleComponent.Instance.Exit("UISystem", true);
                 return;
             }
 

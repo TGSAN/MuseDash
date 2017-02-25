@@ -115,7 +115,7 @@ public class AttacksController : MonoBehaviour
         this.sceneCameraAnimator.gameObject.transform.position = this.sceneCameraOrgPosition;
         this.sceneCameraAnimator.Stop();
         this.sceneCameraAnimator.Rebind();
-        this.sceneCameraAnimator.Play("Shake");
+        //this.sceneCameraAnimator.Play("Shake");
 
         //AudioManager.Instance.PlayMissRandom ();
     }

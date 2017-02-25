@@ -315,7 +315,6 @@ namespace FormulaBase
             {
                 return null;
             }
-
             return md.nodeData.effect;
         }
 

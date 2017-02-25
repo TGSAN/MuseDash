@@ -261,18 +261,13 @@ MonoBehaviour:
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
-      dataSourceType: 1
+      dataSourceType: 0
       dataSourceIndex: 0
       dataSourceValue: 0
       dataSourceName: stage_value.goal_1
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
-      condictions:
-      - condictionType: 1
-        condictionKeyIndex: 2
-        condictionKey: ID
-        condictionValue: 0
-        plus: 1
+      condictions: []
   - idx: 4
     typeIdx: 13
     name: "\u97F3\u6548\u914D\u7F6E"
@@ -326,10 +321,10 @@ MonoBehaviour:
     fparams:
     - idx: 0
       dataSourceType: 2
-      dataSourceIndex: 187
+      dataSourceIndex: 39
       dataSourceValue: 0
       dataSourceName: "\u89D2\u8272\u6700\u7EC8\u653B\u51FB"
-      collapsed: 1
+      collapsed: 0
       paramname: "\u89D2\u8272\u653B\u51FB"
       condictions: []
     - idx: 1
@@ -425,9 +420,8 @@ MonoBehaviour:
   - idx: 7
     typeIdx: 12
     name: "\u5173\u5361\u5C5E\u6027\u66F4\u65B0"
-    formula: ( NAME + MUSIC_NAME + AUTHOR + DISPLAY_ID + STAGE_NAME + BOSS_NAME +
-      SCENE_NAME + MUSICICON + FULL_COMBO + FULL_PERFECT + FULL_STAR + UnlockTrophy
-      )
+    formula: ( NAME + MUSIC_NAME + AUTHOR + DISPLAY_ID + STAGE_NAME + SCENE_NAME +
+      MUSICICON + FULL_COMBO + FULL_PERFECT + FULL_STAR )
     fparams:
     - idx: 0
       dataSourceType: 1
@@ -498,19 +492,6 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: stage.bossnote
-      collapsed: 1
-      paramname: BOSS_NAME
-      condictions:
-      - condictionType: 1
-        condictionKeyIndex: 2
-        condictionKey: ID
-        condictionValue: 0
-        plus: 1
-    - idx: 6
-      dataSourceType: 1
-      dataSourceIndex: 0
-      dataSourceValue: 0
       dataSourceName: stage.scene
       collapsed: 1
       paramname: SCENE_NAME
@@ -520,7 +501,7 @@ MonoBehaviour:
         condictionKey: ID
         condictionValue: 0
         plus: 1
-    - idx: 7
+    - idx: 6
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
@@ -533,7 +514,7 @@ MonoBehaviour:
         condictionKey: ID
         condictionValue: 0
         plus: 1
-    - idx: 8
+    - idx: 7
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
@@ -546,7 +527,7 @@ MonoBehaviour:
         condictionKey: ID
         condictionValue: 0
         plus: 1
-    - idx: 9
+    - idx: 8
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
@@ -559,26 +540,13 @@ MonoBehaviour:
         condictionKey: ID
         condictionValue: 0
         plus: 1
-    - idx: 10
+    - idx: 9
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
       dataSourceName: stage.all_star
       collapsed: 1
       paramname: FULL_STAR
-      condictions:
-      - condictionType: 1
-        condictionKeyIndex: 2
-        condictionKey: ID
-        condictionValue: 0
-        plus: 1
-    - idx: 11
-      dataSourceType: 1
-      dataSourceIndex: 0
-      dataSourceValue: 0
-      dataSourceName: stage.unlock
-      collapsed: 1
-      paramname: UnlockTrophy
       condictions:
       - condictionType: 1
         condictionKeyIndex: 2
@@ -627,18 +595,13 @@ MonoBehaviour:
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
-      dataSourceType: 1
+      dataSourceType: 0
       dataSourceIndex: 0
       dataSourceValue: 0
       dataSourceName: stage_value.goal_2
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
-      condictions:
-      - condictionType: 1
-        condictionKeyIndex: 2
-        condictionKey: ID
-        condictionValue: 0
-        plus: 1
+      condictions: []
   - idx: 11
     typeIdx: 0
     name: "\u7B49\u7EA7\u4E0A\u9650"
@@ -885,18 +848,13 @@ MonoBehaviour:
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
-      dataSourceType: 1
+      dataSourceType: 0
       dataSourceIndex: 0
       dataSourceValue: 0
       dataSourceName: stage_value.goal_3
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
-      condictions:
-      - condictionType: 1
-        condictionKeyIndex: 2
-        condictionKey: ID
-        condictionValue: 0
-        plus: 1
+      condictions: []
   - idx: 18
     typeIdx: 6
     name: "\u66B4\u51FB\u7387"
@@ -964,7 +922,7 @@ MonoBehaviour:
       dataSourceType: 1
       dataSourceIndex: 0
       dataSourceValue: 0
-      dataSourceName: stage_value.energy
+      dataSourceName: stage.energy
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
       condictions:
@@ -989,7 +947,7 @@ MonoBehaviour:
       condictions:
       - condictionType: 7
         condictionKeyIndex: 44
-        condictionKey: "\u6218\u6597\u76F8\u5173/\u4EA7\u751F\u968F\u673A\u6570"
+        condictionKey: "\u89D2\u8272/\u89D2\u8272\u989D\u5916\u91D1\u5E01\u83B7\u5F97\u91CF"
         condictionValue: 42
         plus: 1
     - idx: 1
@@ -1543,51 +1501,16 @@ MonoBehaviour:
   - idx: 38
     typeIdx: 0
     name: "\u89D2\u8272\u6700\u7EC8\u8840\u91CF"
-    formula: "( \u89D2\u8272\u5C5E\u6027 + \u88C5\u5907\u5C5E\u6027 + \u50DA\u673A\u5C5E\u6027
-      + \u6280\u80FD\u52A0\u6210 )"
+    formula: "( \u89D2\u8272\u5C5E\u6027 )"
     fparams:
     - idx: 0
       dataSourceType: 2
       dataSourceIndex: 0
       dataSourceValue: 0
       dataSourceName: "\u89D2\u8272\u8840\u91CF\u5C5E\u6027"
-      collapsed: 0
+      collapsed: 1
       paramname: "\u89D2\u8272\u5C5E\u6027"
       condictions: []
-    - idx: 1
-      dataSourceType: 4
-      dataSourceIndex: 258
-      dataSourceValue: 0
-      dataSourceName: "\u88C5\u5907\u5B9E\u9645\u8840\u91CF"
-      collapsed: 1
-      paramname: "\u88C5\u5907\u5C5E\u6027"
-      condictions:
-      - condictionType: 1
-        condictionKeyIndex: 76
-        condictionKey: VIGOUR_FROM_EQUIP
-        condictionValue: 0
-        plus: 1
-    - idx: 2
-      dataSourceType: 2
-      dataSourceIndex: 64
-      dataSourceValue: 0
-      dataSourceName: "\u4F7F\u9B54\u5B9E\u9645\u8840\u91CF"
-      collapsed: 0
-      paramname: "\u50DA\u673A\u5C5E\u6027"
-      condictions: []
-    - idx: 3
-      dataSourceType: 4
-      dataSourceIndex: 0
-      dataSourceValue: 0
-      dataSourceName: 
-      collapsed: 1
-      paramname: "\u6280\u80FD\u52A0\u6210"
-      condictions:
-      - condictionType: 1
-        condictionKeyIndex: 49
-        condictionKey: BATTLE_ADD_UP_HPMAX
-        condictionValue: 0
-        plus: 1
   - idx: 39
     typeIdx: 0
     name: "\u89D2\u8272\u6700\u7EC8\u653B\u51FB"
@@ -1609,18 +1532,13 @@ MonoBehaviour:
       dataSourceName: "\u88C5\u5907\u5B9E\u9645\u653B\u51FB"
       collapsed: 1
       paramname: "\u88C5\u5907\u5C5E\u6027"
-      condictions:
-      - condictionType: 1
-        condictionKeyIndex: 78
-        condictionKey: STRENGH_FROM_EQUIP
-        condictionValue: 0
-        plus: 1
+      condictions: []
     - idx: 2
-      dataSourceType: 2
+      dataSourceType: 4
       dataSourceIndex: 70
       dataSourceValue: 0
       dataSourceName: "\u4F7F\u9B54\u5B9E\u9645\u653B\u51FB"
-      collapsed: 0
+      collapsed: 1
       paramname: "\u50DA\u673A\u5C5E\u6027"
       condictions: []
     - idx: 3
@@ -1655,7 +1573,7 @@ MonoBehaviour:
       dataSourceIndex: 261
       dataSourceValue: 0
       dataSourceName: "\u88C5\u5907\u5B9E\u9645\u8010\u529B"
-      collapsed: 1
+      collapsed: 0
       paramname: "\u88C5\u5907\u5C5E\u6027"
       condictions:
       - condictionType: 1
@@ -2304,7 +2222,7 @@ MonoBehaviour:
       dataSourceIndex: 255
       dataSourceValue: 0
       dataSourceName: "\u88C5\u5907\u521D\u59CB\u8840\u91CF"
-      collapsed: 0
+      collapsed: 1
       paramname: "\u521D\u59CB\u503C"
       condictions: []
     - idx: 1
@@ -2842,18 +2760,13 @@ MonoBehaviour:
     formula: "( \u914D\u7F6E\u9879 )"
     fparams:
     - idx: 0
-      dataSourceType: 5
+      dataSourceType: 0
       dataSourceIndex: 0
       dataSourceValue: 0
       dataSourceName: stage_value/goal_DIFFCULT
       collapsed: 1
       paramname: "\u914D\u7F6E\u9879"
-      condictions:
-      - condictionType: 1
-        condictionKeyIndex: 2
-        condictionKey: ID
-        condictionValue: 0
-        plus: 1
+      condictions: []
   - idx: 88
     typeIdx: 12
     name: "\u8FDB\u5165\u5173\u5361\u6240\u9700\u4F53\u529B"

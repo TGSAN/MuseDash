@@ -2,8 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Common
 {
@@ -46,6 +50,33 @@ namespace Assets.Scripts.Common
             /*var childTexs = go.GetComponentsInChildren<UIWidget>();
             return (from uiWidget in childTexs where !(Mathf.Abs(uiWidget.alpha - alpha) <= near) select DOTween.To(() => uiWidget.alpha, x => uiWidget.alpha = x, alpha, dt)).Cast<Tweener>().ToArray();*/
             return null;
+        }
+    }
+
+    public class UIEventUtils
+    {
+        public static EventTrigger.TriggerEvent OnEvent(GameObject go, EventTriggerType eventType, UnityAction<BaseEventData> callback)
+        {
+            var et = go.GetComponent<EventTrigger>();
+            et = et ?? go.AddComponent<EventTrigger>();
+            et.triggers = et.triggers ?? new List<EventTrigger.Entry>();
+            var entry = et.triggers.Find(e => e.eventID == eventType);
+            if (entry == null)
+            {
+                entry = new EventTrigger.Entry();
+                et.triggers.Add(entry);
+            }
+
+            entry.eventID = eventType;
+            var unityEvent = entry.callback;
+            if (unityEvent == null)
+            {
+                unityEvent = new EventTrigger.TriggerEvent();
+                entry.callback = unityEvent;
+            }
+
+            unityEvent.AddListener(callback);
+            return unityEvent;
         }
     }
 
@@ -180,6 +211,48 @@ namespace Assets.Scripts.Common
             }
             gradient.colorKeys = list.ToArray();
             return gradient;
+        }
+    }
+
+    public class ReflectionUtil
+    {
+        public static string Reflect(UnityEngine.Object sourceObj, string fieldName)
+        {
+            var index = "1";
+            if (sourceObj != null)
+            {
+                var strs = fieldName.Split('/');
+                var type = strs[0];
+                var reflectType = strs[1];
+                var name = strs[2];
+
+                if (type != "GameObject")
+                {
+                    var gameObject = sourceObj as GameObject;
+                    if (gameObject != null) sourceObj = gameObject.GetComponent(type);
+                }
+                if (reflectType == "Fields")
+                {
+                    var theType = sourceObj.GetType();
+                    var field = theType.GetField(name, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                    if (field != null)
+                    {
+                        index = field.GetValue(sourceObj).ToString();
+                    }
+                }
+                else if (reflectType == "Methods")
+                {
+                    var theType = sourceObj.GetType();
+                    var methods = theType.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                    var method = methods.ToList().Find(m => m.Name == name);
+                    if (method != null)
+                    {
+                        index = method.Invoke(sourceObj, new object[] { }).ToString();
+                    }
+                }
+            }
+
+            return index;
         }
     }
 }
