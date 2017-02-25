@@ -340,7 +340,7 @@ namespace Assets.Scripts.NGUI
             UIEventListener.Get(btnTip.gameObject).onDrag = onDrag;
             UIEventListener.Get(btnTip.gameObject).onDragEnd = onDragEnd;
             onSongChange += PlayMusic;
-            onSongChange += OnInfoChange;
+            //onSongChange += OnInfoChange;
         }
 
         public void UpdateInfo()

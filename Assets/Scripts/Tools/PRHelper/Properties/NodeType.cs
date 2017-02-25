@@ -14,9 +14,10 @@
         View_PlayAnimation,
         View_PlayTween,
         View_PlayAudio,
-        View_Active,
-        View_BtnBack,
+        View_PlayActive,
+        View_PlayScrollRect,
         View_PlayPopup,
+        View_BtnBack,
 
         VM_PREvents,
     }

@@ -1,11 +1,12 @@
-﻿using Assets.Scripts.Tools.Commons;
+﻿using System;
+using Assets.Scripts.Tools.Commons;
 using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
 {
-    [CustomPropertyDrawer(typeof(Active))]
-    public class ActiveDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(PlayActive))]
+    public class PlayActiveDrawer : PropertyDrawer
     {
         private float m_GOHeight = 15;
         private float m_ActiveHeight = 15;
@@ -13,8 +14,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
 
         public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
         {
-            rect = EditorUtils.MakePropertyField("go", property, rect, m_Gap, m_GOHeight);
-            EditorUtils.MakePropertyField("isActive", property, rect, m_Gap, m_ActiveHeight);
+            EditorUtils.MakeAllPropertyField(property, typeof(PlayActive), rect, m_Gap, m_GOHeight);
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

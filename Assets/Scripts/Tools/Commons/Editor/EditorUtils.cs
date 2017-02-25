@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Remoting.Messaging;
@@ -93,6 +94,16 @@ namespace Assets.Scripts.Tools.Commons
         {
             var property = mainProperty.FindPropertyRelative(name);
             return MakePropertyField(property, rect, gap, height, content);
+        }
+
+        public static Rect MakeAllPropertyField(SerializedProperty mainProperty, Type type, Rect rect, float gap, float height)
+        {
+            var names = type.GetFields(BindingFlags.Instance | BindingFlags.Public).Select(f => f.Name);
+            names.ToList().ForEach(n =>
+            {
+                rect = MakePropertyField(n, mainProperty, rect, gap, height);
+            });
+            return rect;
         }
 
         public static Rect MakePropertyField(SerializedProperty property, Rect rect, float gap, float height, GUIContent content = null)

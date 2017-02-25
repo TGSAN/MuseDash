@@ -71,7 +71,7 @@ namespace Assets.Scripts.Tools.Managers
         {
             //Debug.Log(fileName + "==" + index + "===" + key);
             var jData = this[fileName][index][key];
-            var value = jData.ToJson().Replace("\"", string.Empty);
+            var value = jData.ToString();
             return value;
         }
 

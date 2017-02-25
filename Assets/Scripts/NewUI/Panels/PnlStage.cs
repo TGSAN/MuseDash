@@ -9,6 +9,7 @@ using Assets.Scripts.UI;
 using DG.Tweening;
 using FormulaBase;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -63,7 +64,7 @@ namespace Assets.Scripts.NewUI.Panels
         [Header("对象绑定")]
         public Transform pivot;
 
-        public UIScrollRect scrollRect;
+        public GameObject scrollRect;
         public GameObject cell;
         public Button btnLeft, btnRight;
         public Text txtNameNext, txtAuthorNext;
@@ -159,7 +160,7 @@ namespace Assets.Scripts.NewUI.Panels
 
         private void InitEvent()
         {
-            Callback<PointerEventData> onBeginDrag = (eventData) =>
+            UnityAction<BaseEventData> onBeginDrag = (eventData) =>
             {
                 if (!m_FinishEnter)
                 {
@@ -172,13 +173,14 @@ namespace Assets.Scripts.NewUI.Panels
                 }
             };
 
-            Callback<PointerEventData> onDrag = eventData =>
+            UnityAction<BaseEventData> onDrag = eventData =>
             {
+                var ed = eventData as PointerEventData;
                 if (!m_FinishEnter)
                 {
                     return;
                 }
-                offsetX = eventData.delta.x * -sensitivity;
+                offsetX = ed.delta.x * -sensitivity;
                 offsetX = offsetX < 0
                     ? Mathf.Clamp(offsetX, -minMaxSlide.y, -minMaxSlide.x)
                     : Mathf.Clamp(offsetX, minMaxSlide.x, minMaxSlide.y);
@@ -186,7 +188,7 @@ namespace Assets.Scripts.NewUI.Panels
                 pivot.localEulerAngles += new Vector3(0, 0, offsetX);
                 m_ZAngle += offsetX;
             };
-            Callback<PointerEventData> onEndDrag = eventData =>
+            UnityAction<BaseEventData> onEndDrag = eventData =>
             {
                 if (!m_FinishEnter)
                 {
@@ -220,70 +222,15 @@ namespace Assets.Scripts.NewUI.Panels
                     });
             };
 
-            Action<GameObject, bool, float> onSlide = (go, isPressing, mul) =>
-            {
-                if (isPressing)
-                {
-                    offsetX = mul;
-                    m_IsSliding = true;
-                    m_DlySeq = DOTween.Sequence();
-                    m_DlySeq.AppendInterval(delaySlideTime);
-                    m_DlySeq.AppendCallback(() =>
-                    {
-                        m_SlideSeq.Play();
-                    });
-                    m_SlideSeq = DOTween.Sequence();
-                    m_SlideSeq.AppendInterval(float.MaxValue).OnUpdate(() =>
-                    {
-                        var offset = slideSpeed * Time.deltaTime * mul;
-                        pivot.localEulerAngles += new Vector3(0, 0, offset);
-                        m_ZAngle += offset;
-                    });
-                    m_SlideSeq.Pause();
-                }
-                else
-                {
-                    var clickTime = m_DlySeq.Elapsed(false) * m_DlySeq.Duration(false);
-                    if (clickTime < 0.2f && clickTime != 0)
-                    {
-                        OnChangeOffset(new Vector3(0, 0, angle * mul), nextPageTime);
-                    }
-                    else
-                    {
-                        offsetX = 0;
-                        onEndDrag(null);
-                    }
-                    if (m_SlideSeq != null)
-                    {
-                        m_SlideSeq.Kill();
-                        m_SlideSeq = null;
-                    }
-                    if (m_DlySeq != null)
-                    {
-                        m_DlySeq.Kill();
-                        m_DlySeq = null;
-                    }
-                }
-            };
-            /* UIEventListener.Get(btnStart).onDragStart = onDragStart;
-             UIEventListener.Get(btnStart).onDrag = onDrag;
-             UIEventListener.Get(btnStart).onDragEnd = onDragEnd;
-             UIEventListener.Get(btnStart).onClick = (go) =>
-             {
-                 if (!m_FinishEnter)
-                 {
-                     CommonPanel.GetInstance().ShowText("需获得" + m_StageInfos[m_CurrentIdx].unLockNum.ToString() + "个奖杯才可以解锁！（当前：" + TaskStageTarget.Instance.GetTotalTrophy().ToString() + "奖杯）");
-                     return;
-                 }
-                 m_FinishEnter = false;
-                 //btnStart.gameObject.GetComponent<AudioSource>().Play();
-             };*/
+            UIEventUtils.OnEvent(scrollRect, EventTriggerType.BeginDrag, onBeginDrag);
+            UIEventUtils.OnEvent(scrollRect, EventTriggerType.Drag, onDrag);
+            UIEventUtils.OnEvent(scrollRect, EventTriggerType.EndDrag, onEndDrag);
 
-            scrollRect.onBeginDrag += onBeginDrag;
-            scrollRect.onDrag += onDrag;
-            scrollRect.onEndDrag += onEndDrag;
+            UIEventUtils.OnEvent(btnStart, EventTriggerType.BeginDrag, onBeginDrag);
+            UIEventUtils.OnEvent(btnStart, EventTriggerType.Drag, onDrag);
+            UIEventUtils.OnEvent(btnStart, EventTriggerType.EndDrag, onEndDrag);
 
-            btnLeft.onClick.AddListener(() =>
+            UIEventUtils.OnEvent(btnLeft.gameObject, EventTriggerType.PointerClick, eventData =>
             {
                 if (!m_FinishEnter)
                 {
@@ -296,7 +243,7 @@ namespace Assets.Scripts.NewUI.Panels
                 OnChangeOffset(new Vector3(0, 0, angle * -1), nextPageTime);
             });
 
-            btnRight.onClick.AddListener(() =>
+            UIEventUtils.OnEvent(btnRight.gameObject, EventTriggerType.PointerClick, eventData =>
             {
                 if (!m_FinishEnter)
                 {
@@ -309,47 +256,8 @@ namespace Assets.Scripts.NewUI.Panels
                 OnChangeOffset(new Vector3(0, 0, angle * 1), nextPageTime);
             });
 
-            /*UIEventListener.Get(leftButton).onDragStart = onDragStart;
-            UIEventListener.Get(leftButton).onDrag = onDrag;
-            UIEventListener.Get(leftButton).onDragEnd = onDragEnd;
-            UIEventListener.Get(leftButton).onClick = (go) =>
-            {
-                if (!m_FinishEnter)
-                {
-                    return;
-                }
-                if (m_IsSliding)
-                {
-                    return;
-                }
-                OnChangeOffset(new Vector3(0, 0, angle * -1), nextPageTime);
-            };
-
-            UIEventListener.Get(rightButton).onDragStart = onDragStart;
-            UIEventListener.Get(rightButton).onDrag = onDrag;
-            UIEventListener.Get(rightButton).onDragEnd = onDragEnd;
-            UIEventListener.Get(rightButton).onClick = (go) =>
-            {
-                if (!m_FinishEnter)
-                {
-                    return;
-                }
-                if (m_IsSliding)
-                {
-                    return;
-                }
-                OnChangeOffset(new Vector3(0, 0, angle * 1), nextPageTime);
-            };
-            UIEventListener.Get(btnTip.gameObject).onClick = go =>
-            {
-                var unLockNum = m_StageInfos[m_CurrentIdx].unLockNum;
-                CommonPanel.GetInstance().ShowText("需获得" + unLockNum.ToString() + "个奖杯才可以解锁！" + "\n" + "（当前:" + TaskStageTarget.Instance.GetTotalTrophy().ToString() + "个奖杯）");
-            };
-            UIEventListener.Get(btnTip.gameObject).onDragStart = onDragStart;
-            UIEventListener.Get(btnTip.gameObject).onDrag = onDrag;
-            UIEventListener.Get(btnTip.gameObject).onDragEnd = onDragEnd;*/
             onSongChange += PlayMusic;
-            onSongChange += OnInfoChange;
+            //onSongChange += OnInfoChange;
         }
 
         public void UpdateInfo()
@@ -365,10 +273,10 @@ namespace Assets.Scripts.NewUI.Panels
             var stageJData = ConfigManager.instance["stage"];
             for (int i = 0; i < count; i++)
             {
-                var iconPath = stageJData[i]["cover"].ToJson();
-                var musicPath = stageJData[i]["music"].ToJson();
-                var musicName = stageJData[i]["name"].ToJson();
-                var authorName = stageJData[i]["author"].ToJson();
+                var iconPath = stageJData[i]["cover"].ToString();
+                var musicPath = stageJData[i]["music"].ToString();
+                var musicName = stageJData[i]["name"].ToString();
+                var authorName = stageJData[i]["author"].ToString();
                 var unlockNum = (int)stageJData[i]["unlock_level"];
                 var isLock = lockList[i];
                 m_StageInfos.Add(new StageInfo(i, iconPath, musicPath, musicName, authorName, 0, 0, isLock, unlockNum));
@@ -441,7 +349,7 @@ namespace Assets.Scripts.NewUI.Panels
         {
             m_IsSliding = false;
             //PnlStageOld.PnlStageOld.Instance.OnSongChanged(m_CurrentIdx + 1);
-            //onSongChange(m_CurrentIdx);
+            onSongChange(m_CurrentIdx);
         }
 
         private void OnInfoChange(int idx)
@@ -543,7 +451,7 @@ namespace Assets.Scripts.NewUI.Panels
 
         private void OnMusicPlayAction(GameObject go)
         {
-            if (!SceneAudioManager.Instance.bgm || !SceneAudioManager.Instance.bgm.isPlaying)
+            if (!SceneAudioManager.Instance.bgm || !SceneAudioManager.Instance.bgm.isPlaying || m_IsSliding)
             {
                 return;
             }
@@ -619,7 +527,7 @@ namespace Assets.Scripts.NewUI.Panels
             if (m_IsSliding)
             {
                 //OnEnergyInfoChange(false);
-                //SceneAudioManager.Instance.bgm.Stop();
+                SceneAudioManager.Instance.bgm.Stop();
             }
 
             var theAngle = Mathf.Abs(Mathf.Abs(m_ZAngle) % (m_CellGroup.Count * 40f) - 80f);
@@ -706,7 +614,7 @@ namespace Assets.Scripts.NewUI.Panels
                 {
                     if (go.transform.localScale.x >= maxScale - 0.01f)
                     {
-                        //OnMusicPlayAction(go);
+                        OnMusicPlayAction(go);
                     }
                 }
                 else
@@ -822,7 +730,6 @@ namespace Assets.Scripts.NewUI.Panels
 
         public void PlayMusic(int idx)
         {
-            idx -= 1;
             if (m_Coroutine != null)
             {
                 StopCoroutine(m_Coroutine);

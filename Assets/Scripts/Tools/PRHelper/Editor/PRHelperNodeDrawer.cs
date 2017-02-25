@@ -11,8 +11,7 @@ namespace Assets.Scripts.Tools.PRHelper.Editor
     public class PRHelperNodeDrawer : PropertyDrawer
     {
         private readonly float m_Gap = 5;
-        private readonly float m_KeyNameHeight = 15;
-        private readonly float m_NodeTypeHeight = 15;
+        private readonly float m_Height = 15;
 
         public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
         {
@@ -21,8 +20,9 @@ namespace Assets.Scripts.Tools.PRHelper.Editor
 
             rect = new Rect(rect.x, rect.y - rect.height, rect.width, rect.height);
             var nodeTypeProperty = property.FindPropertyRelative("nodeType");
-            rect = EditorUtils.MakePropertyField("nodeType", property, rect, m_Gap, m_NodeTypeHeight);
-            rect = EditorUtils.MakePropertyField("key", property, rect, m_Gap, m_KeyNameHeight);
+            rect = EditorUtils.MakePropertyField("nodeType", property, rect, m_Gap, m_Height);
+            rect = EditorUtils.MakePropertyField("key", property, rect, m_Gap, m_Height);
+            rect = EditorUtils.MakePropertyField("eventType", property, rect, m_Gap, m_Height);
 
             var enumType = (NodeType)Enum.Parse(typeof(NodeType), nodeTypeProperty.enumNames[nodeTypeProperty.enumValueIndex]);
             var propertyName = StringUtils.LastAfter(enumType.ToString(), '_');
@@ -34,6 +34,7 @@ namespace Assets.Scripts.Tools.PRHelper.Editor
             {
                 EditorGUI.PropertyField(rect, showProperty);
             }
+
             EditorGUI.EndProperty();
         }
 
@@ -48,9 +49,9 @@ namespace Assets.Scripts.Tools.PRHelper.Editor
 
             if (showProperty != null)
             {
-                return 2 * m_Gap + m_KeyNameHeight + m_NodeTypeHeight + EditorGUI.GetPropertyHeight(showProperty);
+                return 3 * (m_Height + m_Gap) + EditorGUI.GetPropertyHeight(showProperty);
             }
-            return 2 * m_Gap + m_KeyNameHeight + m_NodeTypeHeight;
+            return 3 * (m_Height + m_Gap);
         }
     }
 }

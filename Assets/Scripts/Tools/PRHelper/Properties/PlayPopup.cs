@@ -32,11 +32,20 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
         public bool shut = true; //点击Mask区域是否能关闭面板。
         public string shutButtonName; //关闭按钮指定。
 
+        private Vector3 m_OriginPos = Vector3.zero;
+        private bool m_Flag = false;
+
         public void Play(GameObject go)
         {
             var gameObject = UIManager.instance[pnlName];
             gameObject.SetActive(true);
-            var originPos = gameObject.transform.localPosition;
+            DOTween.Kill(gameObject, true);
+            if (!m_Flag)
+            {
+                m_Flag = true;
+                m_OriginPos = gameObject.transform.localPosition;
+            }
+            gameObject.transform.localPosition = m_OriginPos;
             var btnCancellGO = new GameObject("BtnCancel");
             var rectTransform = btnCancellGO.AddComponent<RectTransform>();
 
@@ -74,11 +83,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
             // 出场动画。
             UnityAction clickEvent = () =>
             {
-                gameObject.transform.DOLocalMoveY(outDistance, outTime).SetEase(moveOutEase).SetDelay(0.15f).OnComplete(
-                    () =>
-                    {
-                        gameObject.transform.localPosition = originPos;
-                    });
+                gameObject.transform.DOLocalMoveY(outDistance, outTime).SetEase(moveOutEase).SetDelay(0.15f);
                 if (isFadeOut)
                 {
                     boards.ToList().ForEach(b => b.DOFade(0, 0.05f).SetEase(fadeOutEase));
@@ -87,7 +92,11 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
                 image.DOFade(0, 0.2f).SetDelay(0.05f).OnComplete(() =>
                 {
                     gameObject.SetActive(false);
-                    Object.Destroy(btnCancell.gameObject);
+                    if (btnCancell)
+                    {
+                        Object.Destroy(btnCancell.gameObject);
+                    }
+
                     boards.ToList().ForEach(b =>
                     {
                         b.color = new Color(b.color.r, b.color.g, b.color.b, 1.0f);
@@ -102,11 +111,14 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
             //当 Shut 开关被勾选时，可以通过点击空白区域来关闭面板。
             if (shut)
             {
-                btnCancell.onClick.AddListener(clickEvent);
+                if (btnCancell)
+                {
+                    btnCancell.onClick.AddListener(clickEvent);
+                }
             }
             // 检索面版中的按钮，且为指定为 Shut Button 的目标添加关闭面板事件。
             var btn = gameObject.GetComponentsInChildren<Button>().ToList().Find(b => b.gameObject.name == shutButtonName);
-            if (btn != null)
+            if (btn)
             {
                 btn.onClick.AddListener(clickEvent);
             }

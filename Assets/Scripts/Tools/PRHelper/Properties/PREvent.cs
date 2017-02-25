@@ -11,6 +11,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
     {
         public enum EventType
         {
+            None,
             OnAwake,
             OnStart,
             OnEnable,
@@ -55,7 +56,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
 
         public void Play(GameObject go)
         {
-            Debug.Log("Play Event");
+            Debug.Log("Play Event" + go.name);
         }
 
         public void Init(GameObject go)

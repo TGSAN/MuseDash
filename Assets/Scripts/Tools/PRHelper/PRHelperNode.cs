@@ -13,18 +13,16 @@ namespace Assets.Scripts.Tools.PRHelper
         public NodeType nodeType;
 
         public PlayAnimation playAnimation;
-
         public PlayTween playTween;
-
         public PlayAudio playAudio;
-
+        public PlayPopup playPopup;
+        public PlayActive playActive;
+        public PlayScrollRect playScrollRect;
         public BtnBack btnBack;
 
-        public Active active;
-
-        public PlayPopup playPopup;
-
         public PREvents pREvents = new PREvents();
+
+        public PREvents.EventType eventType;
 
         public TextBinding textBinding;
         public ImageBinding imageBinding;
@@ -62,29 +60,17 @@ namespace Assets.Scripts.Tools.PRHelper
 
             if (go.GetComponent<Button>() != null)
             {
-                PRHelper.OnEvent(go, PREvents.EventType.OnButtonClick).AddListener(obj =>
-                {
-                    Play(go);
-                });
+                eventType = PREvents.EventType.OnButtonClick; ;
             }
+
+            PRHelper.OnEvent(go, eventType).AddListener(obj =>
+            {
+                Play(go);
+            });
         }
 
         private void ModelInit(GameObject go)
         {
-            switch (nodeType)
-            {
-                case NodeType.Model_AudioBinding:
-                case NodeType.Model_CollectionBinding:
-                case NodeType.Model_ImageBinding:
-                case NodeType.Model_ObjectBinding:
-                case NodeType.Model_MethodBinding:
-                case NodeType.Model_TextBinding:
-                    PRHelper.OnEvent(go, PREvents.EventType.OnStart).AddListener(obj =>
-                    {
-                        Play(go);
-                    });
-                    break;
-            }
         }
     }
 }

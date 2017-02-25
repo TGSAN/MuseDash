@@ -6,6 +6,8 @@ using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Common
 {
@@ -48,6 +50,33 @@ namespace Assets.Scripts.Common
             /*var childTexs = go.GetComponentsInChildren<UIWidget>();
             return (from uiWidget in childTexs where !(Mathf.Abs(uiWidget.alpha - alpha) <= near) select DOTween.To(() => uiWidget.alpha, x => uiWidget.alpha = x, alpha, dt)).Cast<Tweener>().ToArray();*/
             return null;
+        }
+    }
+
+    public class UIEventUtils
+    {
+        public static EventTrigger.TriggerEvent OnEvent(GameObject go, EventTriggerType eventType, UnityAction<BaseEventData> callback)
+        {
+            var et = go.GetComponent<EventTrigger>();
+            et = et ?? go.AddComponent<EventTrigger>();
+            et.triggers = et.triggers ?? new List<EventTrigger.Entry>();
+            var entry = et.triggers.Find(e => e.eventID == eventType);
+            if (entry == null)
+            {
+                entry = new EventTrigger.Entry();
+                et.triggers.Add(entry);
+            }
+
+            entry.eventID = eventType;
+            var unityEvent = entry.callback;
+            if (unityEvent == null)
+            {
+                unityEvent = new EventTrigger.TriggerEvent();
+                entry.callback = unityEvent;
+            }
+
+            unityEvent.AddListener(callback);
+            return unityEvent;
         }
     }
 
