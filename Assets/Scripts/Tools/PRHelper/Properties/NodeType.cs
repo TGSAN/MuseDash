@@ -9,6 +9,7 @@
         Model_ImageBinding,
         Model_AudioBinding,
         Model_ObjectBinding,
+        Model_SpineBinding,
         Model_CollectionBinding,
 
         View_PlayAnimation,

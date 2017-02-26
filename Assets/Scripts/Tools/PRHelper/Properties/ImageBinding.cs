@@ -13,8 +13,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
     public class ImageBinding
     {
         public string name;
-        public UnityEngine.Object sourceObj;
-        public string reflectName;
+        public ReflectObject reflectObj;
 
         public string path;
         public string key;
@@ -25,11 +24,9 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
 
         public void Play(GameObject go)
         {
-            if (string.IsNullOrEmpty(m_ResourcePath))
-            {
-                var cBNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
-                index = cBNode != null ? cBNode.collectionBinding.index : (sourceObj != null ? ReflectionUtil.Reflect(sourceObj, reflectName) : index);
-            }
+            var cBNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
+            index = cBNode != null ? cBNode.collectionBinding.index : (reflectObj.sourceObj != null ? ReflectionUtil.Reflect(reflectObj) : index);
+
             var resourcePath = ConfigManager.instance.GetConfigStringValue(ConfigManager.instance.GetFileName(path),
                 int.Parse(index), key);
             if (m_ResourcePath == resourcePath)

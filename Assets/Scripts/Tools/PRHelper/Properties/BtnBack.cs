@@ -12,7 +12,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
         public string curPnlName;
         public string nextPnlName;
 
-        public void Init(GameObject go)
+        public void Play(GameObject go)
         {
             button = button ?? go.GetComponent<Button>();
             if (button != null)
@@ -38,10 +38,6 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
                     }
                 });
             }
-        }
-
-        public void Play(GameObject go)
-        {
         }
     }
 }

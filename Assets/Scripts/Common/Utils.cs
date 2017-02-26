@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
+using Assets.Scripts.Tools.PRHelper;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -216,6 +217,11 @@ namespace Assets.Scripts.Common
 
     public class ReflectionUtil
     {
+        public static string Reflect(ReflectObject reflectObj)
+        {
+            return Reflect(reflectObj.sourceObj, reflectObj.reflectName);
+        }
+
         public static string Reflect(UnityEngine.Object sourceObj, string fieldName)
         {
             var index = "1";

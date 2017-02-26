@@ -1,6 +1,7 @@
 ﻿using System;
 using Assets.Scripts.Common;
 using Assets.Scripts.Tools.Commons;
+using Assets.Scripts.Tools.Commons.Editor;
 using Assets.Scripts.Tools.PRHelper.Properties;
 using UnityEditor;
 using UnityEngine;
@@ -20,8 +21,9 @@ namespace Assets.Scripts.Tools.PRHelper.Editor
 
             rect = new Rect(rect.x, rect.y - rect.height, rect.width, rect.height);
             var nodeTypeProperty = property.FindPropertyRelative("nodeType");
-            rect = EditorUtils.MakePropertyField("nodeType", property, rect, m_Gap, m_Height);
             rect = EditorUtils.MakePropertyField("key", property, rect, m_Gap, m_Height);
+            rect = EditorUtils.MakePropertyField("nodeType", property, rect, m_Gap, m_Height);
+
             rect = EditorUtils.MakePropertyField("eventType", property, rect, m_Gap, m_Height);
 
             var enumType = (NodeType)Enum.Parse(typeof(NodeType), nodeTypeProperty.enumNames[nodeTypeProperty.enumValueIndex]);

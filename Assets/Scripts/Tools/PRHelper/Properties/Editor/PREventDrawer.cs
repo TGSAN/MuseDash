@@ -1,5 +1,6 @@
 ﻿using System;
 using Assets.Scripts.Tools.Commons;
+using Assets.Scripts.Tools.Commons.Editor;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
         private readonly float m_BtnWidth = 15;
         private readonly float m_BtnHeight = 15;
         private readonly float m_SingleEventHeight = 43;
-        private readonly float m_EventExtraHeight = 25;
+        private readonly float m_EventExtraHeight = 20;
 
         public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
         {
@@ -61,6 +62,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
             var EType = (PREvents.EventType)Enum.Parse(typeof(PREvents.EventType), eventType.enumNames[eventType.enumValueIndex]);
             switch (EType)
             {
+                case PREvents.EventType.None:
                 case PREvents.EventType.OnAwake:
                 case PREvents.EventType.OnStart:
                 case PREvents.EventType.OnEnable:

@@ -1,4 +1,5 @@
 using Assets.Scripts.Tools.Commons;
+using Assets.Scripts.Tools.Commons.Editor;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            return 240;
+            return 280;
         }
     }
 }

@@ -12,8 +12,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
     public class AudioBinding
     {
         public string name;
-        public UnityEngine.Object sourceObj;
-        public string reflectName;
+        public ReflectObject reflectObj;
 
         public string path;
         public string key;
@@ -26,7 +25,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
         public void Play(GameObject go)
         {
             var cBNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
-            index = cBNode != null ? cBNode.collectionBinding.index : (sourceObj != null ? ReflectionUtil.Reflect(sourceObj, reflectName) : index);
+            index = cBNode != null ? cBNode.collectionBinding.index : (reflectObj.sourceObj != null ? ReflectionUtil.Reflect(reflectObj) : index);
 
             var resourcePath = ConfigManager.instance.GetConfigStringValue(ConfigManager.instance.GetFileName(path),
                 int.Parse(index), key);
@@ -34,10 +33,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
             {
                 return;
             }
-            else
-            {
-                m_ResourcePath = resourcePath;
-            }
+            m_ResourcePath = resourcePath;
             if (!m_AudioSource)
             {
                 m_AudioSource = go.GetComponentsInChildren<AudioSource>().ToList().Find(t => t.gameObject.name == name);

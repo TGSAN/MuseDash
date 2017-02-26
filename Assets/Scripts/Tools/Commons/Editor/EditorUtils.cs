@@ -2,14 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.Remoting.Messaging;
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.Scripts.Tools.Commons
+namespace Assets.Scripts.Tools.Commons.Editor
 {
     public class EditorUtils
     {
+        public static Rect MakeButton(GUIContent content, Rect rect, float gap, float height, Callback callback)
+        {
+            rect = new Rect(rect.x, rect.y + gap + height, rect.width, rect.height);
+            if (GUI.Button(rect, content))
+            {
+                callback();
+            }
+            return rect;
+        }
+
+        public static Rect MakeObjectField(SerializedProperty property, GUIContent contentName, Rect rect, float gap, float height, bool isEnum = false, GUIStyle style = null, params string[] others)
+        {
+            var go = property.FindPropertyRelative("sourceObj").objectReferenceValue;
+            return MakeObjectField((GameObject)go, property, "reflectName", contentName, rect, gap, height, isEnum, style, others);
+        }
+
         public static Rect MakeObjectField(GameObject go, SerializedProperty property, string pptName, GUIContent contentName, Rect rect, float gap, float height, bool isEnum = false, GUIStyle style = null, params string[] others)
         {
             var names = new List<string>();
@@ -36,10 +51,16 @@ namespace Assets.Scripts.Tools.Commons
 
         public static Rect MakePopupField(SerializedProperty property, string pptName, GUIContent contentName, string[] strs, Rect rect, float gap, float height, bool isEnum = false, GUIStyle style = null, bool underline = false, params string[] others)
         {
-            rect = new Rect(rect.x, rect.y + height + gap, rect.width, rect.height);
-
             var nameProperty = property.FindPropertyRelative(pptName);
-            var idx = isEnum ? nameProperty.enumValueIndex : strs.ToList().FindIndex(s => s == nameProperty.stringValue);
+            return MakePopupField(nameProperty, contentName, strs, rect, gap, height, isEnum, style, underline, others);
+        }
+
+        public static Rect MakePopupField(SerializedProperty property, GUIContent contentName, string[] strs, Rect rect,
+            float gap, float height, bool isEnum = false, GUIStyle style = null, bool underline = false,
+            params string[] others)
+        {
+            rect = new Rect(rect.x, rect.y + height + gap, rect.width, rect.height);
+            var idx = isEnum ? property.enumValueIndex : strs.ToList().FindIndex(s => s == property.stringValue);
             if (underline)
             {
                 for (int i = 0; i < strs.Length; i++)
@@ -48,7 +69,14 @@ namespace Assets.Scripts.Tools.Commons
                 }
             }
             var contents = EditorUtils.GetGUIContentArray(strs, others);
-            idx = idx == -1 ? contents.Length - 1 : idx;
+            if (others.Length > 0)
+            {
+                idx = idx == -1 ? contents.Length - 1 : idx;
+            }
+            else
+            {
+                idx = idx == -1 ? 0 : idx;
+            }
 
             var nameIdx = 0;
             nameIdx = style == null ? EditorGUI.Popup(rect, contentName, idx, contents) : EditorGUI.Popup(rect, contentName, idx, contents, style);
@@ -57,7 +85,7 @@ namespace Assets.Scripts.Tools.Commons
             {
                 if (isEnum)
                 {
-                    nameProperty.enumValueIndex = nameIdx;
+                    property.enumValueIndex = nameIdx;
                 }
                 else
                 {
@@ -68,7 +96,7 @@ namespace Assets.Scripts.Tools.Commons
                             t.text = t.text.Replace("/", "_");
                         }
                     }
-                    nameProperty.stringValue = contents[nameIdx].text;
+                    property.stringValue = contents[nameIdx].text;
                 }
             }
             return rect;

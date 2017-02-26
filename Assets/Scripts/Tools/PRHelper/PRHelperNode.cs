@@ -29,6 +29,7 @@ namespace Assets.Scripts.Tools.PRHelper
         public MethodBinding methodBinding;
         public ObjectBinding objectBinding;
         public AudioBinding audioBinding;
+        public SpineBinding spineBinding;
         public CollectionBinding collectionBinding;
 
         public void Play(GameObject go)
@@ -50,7 +51,6 @@ namespace Assets.Scripts.Tools.PRHelper
 
         private void ViewInit(GameObject go)
         {
-            if (btnBack != null) btnBack.Init(go);
         }
 
         private void VMInit(GameObject go)
@@ -58,7 +58,7 @@ namespace Assets.Scripts.Tools.PRHelper
             if (pREvents == null) pREvents = new PREvents();
             pREvents.Init(go);
 
-            if (go.GetComponent<Button>() != null)
+            if (go.GetComponent<Button>() != null && eventType == PREvents.EventType.None)
             {
                 eventType = PREvents.EventType.OnButtonClick; ;
             }
@@ -72,5 +72,12 @@ namespace Assets.Scripts.Tools.PRHelper
         private void ModelInit(GameObject go)
         {
         }
+    }
+
+    [Serializable]
+    public class ReflectObject
+    {
+        public UnityEngine.Object sourceObj;
+        public string reflectName;
     }
 }

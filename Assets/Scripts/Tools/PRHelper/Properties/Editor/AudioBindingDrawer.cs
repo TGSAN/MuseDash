@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Tools.Commons;
+using Assets.Scripts.Tools.Commons.Editor;
 using Assets.Scripts.Tools.Managers;
 using UnityEditor;
 using UnityEngine;
@@ -39,24 +40,14 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
             }
             else
             {
-                var go = property.FindPropertyRelative("sourceObj").objectReferenceValue as GameObject;
-                go = go ?? parent;
+                var sourceObjPpt = property.FindPropertyRelative("reflectObj").FindPropertyRelative("sourceObj");
 
                 rect = EditorUtils.MakePopupField(property, "key", new GUIContent("Json Key"),
              jdata[0].Keys.ToArray(), rect, m_Gap, m_Height);
                 if (!hasRoot)
                 {
-                    if (property.FindPropertyRelative("sourceObj").objectReferenceValue != null)
-                    {
-                        rect = EditorUtils.MakeObjectField(go, property, "reflectName", new GUIContent("Index"),
-                            rect,
-                            m_Gap, m_Height);
-                    }
-                    else
-                    {
-                        rect = EditorUtils.MakePropertyField("index", property, rect, m_Gap, m_Height);
-                    }
-                    rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height);
+                    rect = sourceObjPpt.objectReferenceValue != null ? EditorUtils.MakeObjectField(property.FindPropertyRelative("reflectObj"), new GUIContent("Param"), rect, m_Gap, m_Height) : EditorUtils.MakePropertyField("index", property, rect, m_Gap, m_Height, new GUIContent("Param"));
+                    rect = EditorUtils.MakePropertyField(sourceObjPpt, rect, m_Gap, m_Height);
                 }
             }
         }

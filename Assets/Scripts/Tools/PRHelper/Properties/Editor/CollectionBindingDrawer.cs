@@ -1,4 +1,5 @@
 using Assets.Scripts.Tools.Commons;
+using Assets.Scripts.Tools.Commons.Editor;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,20 +13,9 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
 
         public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
         {
-            var parent = Selection.activeGameObject;
-            var go = property.FindPropertyRelative("sourceObj").objectReferenceValue as GameObject;
-            go = go ?? parent;
-            if (property.FindPropertyRelative("sourceObj").objectReferenceValue != null)
-            {
-                rect = EditorUtils.MakeObjectField(go, property, "reflectName", new GUIContent("Index"),
-                    rect,
-                    m_Gap, m_Height);
-            }
-            else
-            {
-                rect = EditorUtils.MakePropertyField("index", property, rect, m_Gap, m_Height);
-            }
-            rect = EditorUtils.MakePropertyField("sourceObj", property, rect, m_Gap, m_Height);
+            var sourceObjPpt = property.FindPropertyRelative("reflectObj").FindPropertyRelative("sourceObj");
+            rect = sourceObjPpt.objectReferenceValue != null ? EditorUtils.MakeObjectField(sourceObjPpt.FindPropertyRelative("reflectObj"), new GUIContent("Index"), rect, m_Gap, m_Height) : EditorUtils.MakePropertyField("index", property, rect, m_Gap, m_Height);
+            rect = EditorUtils.MakePropertyField(sourceObjPpt, rect, m_Gap, m_Height);
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

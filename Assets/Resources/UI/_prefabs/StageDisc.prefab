@@ -291,102 +291,6 @@ MonoBehaviour:
   newNodeName: 
   nodes:
   - key: 
-    nodeType: 6
-    playAnimation:
-      animator: {fileID: 0}
-      animationType: 0
-      afterAction: 0
-      stateName: 
-      hasStart: 0
-      hasPlaying: 0
-      hasFinish: 0
-      onAnimationStart:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationPlaying:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      onAnimationFinish:
-        m_PersistentCalls:
-          m_Calls: []
-        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-    playTween:
-      tweenType: 0
-    playAudio:
-      audioClip: {fileID: 0}
-      isPlay: 0
-    btnBack:
-      button: {fileID: 0}
-      curPnlName: 
-      nextPnlName: 
-    active:
-      gameObject: {fileID: 0}
-      isActive: 0
-    playPopup:
-      pnlName: 
-      inTime: 0
-      inDistance: 0
-      moveInEase: 0
-      isFadeIn: 0
-      fadeInEase: 0
-      outTime: 0
-      outDistance: 0
-      moveOutEase: 0
-      isFadeOut: 0
-      fadeOutEase: 0
-      color: {r: 0, g: 0, b: 0, a: 0}
-      shut: 0
-      shutButtonName: 
-    pREvents:
-      events: []
-    eventType: 2
-    textBinding:
-      name: 
-      type: 0
-      sourceObj: {fileID: 0}
-      reflectName: 
-      path: 
-      key: 
-      index: 
-      value: 
-    imageBinding:
-      name: 
-      sourceObj: {fileID: 0}
-      reflectName: 
-      path: 
-      key: 
-      index: 
-    methodBinding:
-      name: 
-      sourceObj: {fileID: 0}
-      reflectName: 
-      key: 
-      index: 
-    objectBinding:
-      name: 
-      sourceObj: {fileID: 0}
-      reflectName: 
-      path: 
-      key: 
-      index: 
-    audioBinding:
-      name: 
-      sourceObj: {fileID: 0}
-      reflectName: 
-      path: 
-      key: 
-      index: 
-      isAutoPlay: 0
-    collectionBinding:
-      index: 
-      sourceObj: {fileID: 1354878548353102}
-      reflectName: Transform/Methods/GetSiblingIndex
-  - key: 
     nodeType: 3
     playAnimation:
       animator: {fileID: 0}
@@ -416,13 +320,6 @@ MonoBehaviour:
     playAudio:
       audioClip: {fileID: 0}
       isPlay: 0
-    btnBack:
-      button: {fileID: 0}
-      curPnlName: 
-      nextPnlName: 
-    active:
-      gameObject: {fileID: 0}
-      isActive: 0
     playPopup:
       pnlName: 
       inTime: 0
@@ -438,50 +335,87 @@ MonoBehaviour:
       color: {r: 0, g: 0, b: 0, a: 0}
       shut: 0
       shutButtonName: 
+    playActive:
+      gameObject: {fileID: 0}
+      isActive: 0
+    playScrollRect:
+      maxScale: 0
+      minScale: 0
+      scrollSpace: {fileID: 0}
+      midX: 0
+      changeDistance: 0
+      speedThreshold: 0
+      moveBackSpeed: 0
+      curve: 0
+      moveLeftRightSpeed: 0
+      moveLeftRightCurve: 0
+      btnLeft: {fileID: 0}
+      btnRight: {fileID: 0}
+      prefab: {fileID: 0}
+      count: 0
+    btnBack:
+      button: {fileID: 0}
+      curPnlName: 
+      nextPnlName: 
     pREvents:
       events: []
     eventType: 2
     textBinding:
       name: 
       type: 0
-      sourceObj: {fileID: 0}
-      reflectName: 
+      reflectObj:
+        sourceObj: {fileID: 0}
+        reflectName: 
       path: 
       key: 
       index: 
       value: 
     imageBinding:
       name: ImgCover
-      sourceObj: {fileID: 0}
-      reflectName: 
+      reflectObj:
+        sourceObj: {fileID: 1354878548353102}
+        reflectName: Transform/Methods/GetSiblingIndex
       path: data/stage/stage
       key: cover
       index: 
     methodBinding:
       name: 
-      sourceObj: {fileID: 0}
-      reflectName: 
+      reflectObj:
+        sourceObj: {fileID: 0}
+        reflectName: 
       key: 
       index: 
     objectBinding:
       name: 
-      sourceObj: {fileID: 0}
-      reflectName: 
+      reflectObj:
+        sourceObj: {fileID: 0}
+        reflectName: 
       path: 
       key: 
       index: 
     audioBinding:
       name: 
-      sourceObj: {fileID: 0}
-      reflectName: 
+      reflectObj:
+        sourceObj: {fileID: 0}
+        reflectName: 
       path: 
       key: 
       index: 
       isAutoPlay: 0
+    spineBinding:
+      name: 
+      animationName: 
+      reflectObj:
+        sourceObj: {fileID: 0}
+        reflectName: 
+      path: 
+      key: 
+      index: 
     collectionBinding:
       index: 
-      sourceObj: {fileID: 0}
-      reflectName: 
+      reflectObj:
+        sourceObj: {fileID: 0}
+        reflectName: 
 --- !u!114 &114138729020068816
 MonoBehaviour:
   m_ObjectHideFlags: 1

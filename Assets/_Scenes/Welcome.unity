@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -91,6 +91,151 @@ NavMeshSettings:
     cellSize: 0.16666667
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &703674603 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1209350572608106, guid: 9b3aba67b39ba4349b48352940919f4b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1561721305}
+--- !u!114 &703674606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 703674603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ceeb32605dbb8542b3f91c475477f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isNewNode: 1
+  newNodeName: 
+  nodes:
+  - key: Login
+    nodeType: 13
+    playAnimation:
+      animator: {fileID: 0}
+      animationType: 0
+      afterAction: 0
+      stateName: 
+      hasStart: 0
+      hasPlaying: 0
+      hasFinish: 0
+      onAnimationStart:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      onAnimationPlaying:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      onAnimationFinish:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    playTween:
+      tweenType: 0
+    playAudio:
+      audioClip: {fileID: 0}
+      isPlay: 0
+    playPopup:
+      pnlName: PnlLogin
+      inTime: 0.4
+      inDistance: 200
+      moveInEase: 24
+      isFadeIn: 1
+      fadeInEase: 1
+      outTime: 0.4
+      outDistance: -200
+      moveOutEase: 17
+      isFadeOut: 1
+      fadeOutEase: 1
+      color: {r: 0, g: 0, b: 0, a: 0.8}
+      shut: 1
+      shutButtonName: Button
+    playActive:
+      gameObject: {fileID: 0}
+      isActive: 0
+    playScrollRect:
+      maxScale: 0
+      minScale: 0
+      scrollSpace: {fileID: 0}
+      midX: 0
+      changeDistance: 0
+      speedThreshold: 0
+      moveBackSpeed: 0
+      curve: 0
+      moveLeftRightSpeed: 0
+      moveLeftRightCurve: 0
+      btnLeft: {fileID: 0}
+      btnRight: {fileID: 0}
+      prefab: {fileID: 0}
+      count: 0
+    btnBack:
+      button: {fileID: 0}
+      curPnlName: 
+      nextPnlName: 
+    pREvents:
+      events: []
+    eventType: 0
+    textBinding:
+      name: 
+      type: 0
+      reflectObj:
+        sourceObj: {fileID: 0}
+        reflectName: 
+      path: 
+      key: 
+      index: 
+      value: 
+    imageBinding:
+      name: 
+      reflectObj:
+        sourceObj: {fileID: 0}
+        reflectName: 
+      path: 
+      key: 
+      index: 
+    methodBinding:
+      name: 
+      reflectObj:
+        sourceObj: {fileID: 0}
+        reflectName: 
+      key: 
+      index: 
+    objectBinding:
+      name: 
+      reflectObj:
+        sourceObj: {fileID: 0}
+        reflectName: 
+      path: 
+      key: 
+      index: 
+    audioBinding:
+      name: 
+      reflectObj:
+        sourceObj: {fileID: 0}
+        reflectName: 
+      path: 
+      key: 
+      index: 
+      isAutoPlay: 0
+    spineBinding:
+      name: 
+      animationName: 
+      reflectObj:
+        sourceObj: {fileID: 0}
+        reflectName: 
+      path: 
+      key: 
+      index: 
+    collectionBinding:
+      index: 
+      reflectObj:
+        sourceObj: {fileID: 0}
+        reflectName: 
 --- !u!1001 &1146383886
 Prefab:
   m_ObjectHideFlags: 0
@@ -291,6 +436,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114466297048466680, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224627353522475034, guid: 9b3aba67b39ba4349b48352940919f4b,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -386,6 +541,140 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1447048619}
-    m_RemovedComponents: []
+    - target: {fileID: 114598445411642654, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[0].eventType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[0].nodeType
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[0].playPopup.shutButtonName
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].key
+      value: Login
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].nodeType
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playAnimation.onAnimationStart.m_TypeName
+      value: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playAnimation.onAnimationPlaying.m_TypeName
+      value: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playAnimation.onAnimationFinish.m_TypeName
+      value: Smart.Types.UnityEventGameObject, SmartCore, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playPopup.pnlName
+      value: PnlLogin
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playPopup.inTime
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playPopup.inDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playPopup.moveInEase
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playPopup.isFadeIn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playPopup.fadeInEase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playPopup.outTime
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playPopup.outDistance
+      value: -200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playPopup.moveOutEase
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playPopup.isFadeOut
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playPopup.fadeOutEase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playPopup.color.a
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playPopup.shut
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: nodes.Array.data[1].playPopup.shutButtonName
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 114466297048466680, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DOPlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 114466297048466680, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114466297048466680, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114466297048466680, guid: 9b3aba67b39ba4349b48352940919f4b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114617141545271320, guid: 9b3aba67b39ba4349b48352940919f4b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 9b3aba67b39ba4349b48352940919f4b, type: 2}
   m_IsPrefabParent: 0

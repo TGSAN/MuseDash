@@ -11,8 +11,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
     public class MethodBinding
     {
         public string name;
-        public UnityEngine.Object sourceObj;
-        public string reflectName;
+        public ReflectObject reflectObj;
 
         public string key;
         public string index;
@@ -22,7 +21,7 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
             var btn = go.GetComponentsInChildren<Button>().ToList().Find(t => t.gameObject.name == name);
 
             var cBNode = go.GetComponent<PRHelper>().nodes.Find(n => n.nodeType == NodeType.Model_CollectionBinding);
-            index = cBNode != null ? cBNode.collectionBinding.index : (sourceObj != null ? ReflectionUtil.Reflect(sourceObj, reflectName) : index);
+            index = cBNode != null ? cBNode.collectionBinding.index : (reflectObj.sourceObj != null ? ReflectionUtil.Reflect(reflectObj) : index);
 
             var obj = CallbackManager.instance[key];
             var func = obj as Action;

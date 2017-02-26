@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Tools.Commons;
+using Assets.Scripts.Tools.Commons.Editor;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,14 +12,9 @@ namespace Assets.Scripts.Tools.PRHelper.Properties.Editor
 
         public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
         {
-            rect = new Rect(rect.x, rect.y, rect.width, m_Height);
-            var strs = property.enumNames;
-            for (int i = 0; i < strs.Length; i++)
-            {
-                strs[i] = strs[i].Replace('_', '/');
-            }
-            var popupList = EditorUtils.GetGUIContentArray(strs);
-            property.enumValueIndex = EditorGUI.Popup(rect, new GUIContent("Node Type"), property.enumValueIndex, popupList);
+            EditorUtils.MakePopupField(property, new GUIContent("Node Type"), property.enumNames, rect, 0, 0,
+                true, null, true);
+            //property.enumValueIndex = EditorGUI.Popup(rect, new GUIContent("Node Type"), property.enumValueIndex, popupList);
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

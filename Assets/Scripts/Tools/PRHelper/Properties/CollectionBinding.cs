@@ -8,12 +8,11 @@ namespace Assets.Scripts.Tools.PRHelper.Properties
     public class CollectionBinding
     {
         public string index;
-        public UnityEngine.Object sourceObj;
-        public string reflectName;
+        public ReflectObject reflectObj;
 
         public void Play(GameObject go)
         {
-            index = sourceObj != null ? ReflectionUtil.Reflect(sourceObj, reflectName) : index;
+            index = reflectObj.sourceObj != null ? ReflectionUtil.Reflect(reflectObj) : index;
         }
     }
 }

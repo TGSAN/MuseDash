@@ -72,11 +72,11 @@ public class UIScrollScale : MonoBehaviour
 
     public void MoveNext(bool isRight)
     {
-        if (m_MoveTwner != null)
+        /*if (m_MoveTwner != null)
         {
             m_MoveTwner.Kill();
         }
-        /*if (isRight) {
+        if (isRight) {
 			m_MoveTwner = scrollRect.content.transform.DOLocalMoveX (Mathf.FloorToInt ((scrollRect.content.transform.localPosition.x - 1 + gap / 2) / gap) * gap * 1f - gap / 2, moveLeftRightTime).SetEase (moveLeftRightCurve);
 		} else {
 			m_MoveTwner = scrollRect.content.transform.DOLocalMoveX (Mathf.CeilToInt ((scrollRect.content.transform.localPosition.x + 1 + gap / 2) / gap) * gap * 1f - gap / 2, moveLeftRightTime).SetEase (moveLeftRightCurve);

@@ -40,11 +40,18 @@ namespace Assets.Scripts.Tools.Managers
 
         public string GetFileName(string path)
         {
-            return ConfigManager.instance.configs.Find(c => c.path == path).fileName;
+            var fileInfo = ConfigManager.instance.configs.Find(c => c.path == path);
+            if (fileInfo == null)
+            {
+                return string.Empty;
+            }
+            return fileInfo.fileName;
         }
 
         public JsonData Convert(string path)
         {
+            var fileName = GetFileName(path);
+            if (string.IsNullOrEmpty(fileName)) return null;
             return this[GetFileName(path)];
         }
 
